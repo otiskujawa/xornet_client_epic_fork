@@ -1,15 +1,13 @@
 <template>
   <div class="view home">
     <logo/>
-
     <fieldset v-for="vm of vms" :key="vm" class="vm">
       <legend>{{vm.name}}</legend>
-      <gauge :icon="require('@/assets/icons/cpu.png')" :value="vm.cpu + '%'"/>
-      <gauge :icon="require('@/assets/icons/ram.png')" :value="vm.ram + 'GB'"/>
-      <gauge :icon="require('@/assets/icons/upload.png')" :value="vm.upload + 'mbps'"/>
-      <gauge :icon="require('@/assets/icons/download.png')" :value="vm.download + 'mbps'"/>
-    </fieldset>
-
+      <gauge :icon="require('@/assets/icons/cpu.png')" :value="parseFloat(vm.cpu)"/>
+      <gauge :icon="require('@/assets/icons/ram.png')" :value="parseFloat(vm.ram)" :maxValue="64"/>
+      <gauge :icon="require('@/assets/icons/upload.png')" :value="parseFloat(vm.upload)" :maxValue="1000"/>
+      <gauge :icon="require('@/assets/icons/download.png')" :value="parseFloat(vm.download)" :maxValue="1000"/>
+    </fieldset> 
   </div>
 </template>
 
@@ -31,6 +29,7 @@ export default {
   },
   mounted(){
     socket.on("vms", vms => {
+      console.log(vms);
       this.vms = vms;
     });
   },

@@ -1,10 +1,8 @@
 <template>
   <div class="gauge">
     <svg class="gaugeTrack">
-      <path d='M95,50 A45,45 0 0,1 5,50 A45,45 0 0,1 50,5'/>
-    </svg>
-    <svg class="gaugeProgress">
-      <path d='M95,50 A45,45 0 0,1 5,50 A45,45'/>
+      <circle cx="70" cy="70" r="70"></circle>
+      <circle class="progress" cx="70" cy="70" r="70" :style="{'stroke-dashoffset': 440 - (440 * ((value * 75) / ((maxValue * 100) / 100))) / 100}"></circle>
     </svg>
     <img class="gaugeIcon" :src="icon" alt="">
     <h1 class="gaugeText">{{value}}</h1>
@@ -17,21 +15,12 @@ export default {
   props: {
     icon: { type: String, require: true },
     value: { type: Number, require: true },
-    maxValue: { type: Number, require: true },
+    maxValue: { type: Number, require: true, default: 100},
   },
 }
 </script>
 
 <style scoped>
-
-.gauge {
-  position: relative;
-  width: 64px;
-  height: 64px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .gaugeIcon {
   user-select: none;
@@ -54,25 +43,31 @@ export default {
 }
 
 .gaugeTrack {
-  position: absolute;
-  height: 100px;
-  width: 100px;
-  fill: none;
-  transform: scale(0.7) rotateZ(135deg);
-  stroke: #17172E;
-  stroke-width: 8;
-  stroke-linecap: round;
+  position: relative;
+  width: 150px;
+  height: 150px;
+  z-index: 1;
+  transform: rotate(135deg);
 }
 
-.gaugeProgress {
-  position: absolute;
-  height: 100px;
+.gaugeTrack circle {
+  height: 100%;
+  width: 100%;
   fill: none;
-  width: 100px;
-  transform: scale(0.7) rotateZ(0deg);
-  stroke: #DB00FF;
-  stroke-width: 8;
+  stroke-dasharray: 440;
+  stroke-dashoffset: calc(440 - (440 * 75) / 100);
+
+  stroke: #17172E;
+  stroke-width: 8px;
   stroke-linecap: round;
+  transition: 100ms ease;
+  transform: translate(5px, 5px) ;
+}
+
+.gaugeTrack circle.progress {
+  stroke-dasharray: 440;
+  stroke-width: 10px;
+  stroke: aqua;
 }
 
 </style>
