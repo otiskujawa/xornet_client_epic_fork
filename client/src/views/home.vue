@@ -3,10 +3,10 @@
     <logo/>
     <fieldset v-for="vm of vms" :key="vm" class="vm">
       <legend>{{vm.name}}</legend>
-      <gauge :icon="require('@/assets/icons/cpu.png')" :value="parseFloat(vm.cpu)"/>
-      <gauge :icon="require('@/assets/icons/ram.png')" :value="parseFloat(vm.ram)" :maxValue="64"/>
-      <gauge :icon="require('@/assets/icons/upload.png')" :value="parseFloat(vm.upload)" :maxValue="1000"/>
-      <gauge :icon="require('@/assets/icons/download.png')" :value="parseFloat(vm.download)" :maxValue="1000"/>
+      <gauge :icon="require('@/assets/icons/cpu.png')" suffix="%" :value="parseFloat(vm.cpu)"/>
+      <gauge :icon="require('@/assets/icons/ram.png')" suffix="GB" :value="parseFloat(vm.ram)" :maxValue="64"/>
+      <gauge :icon="require('@/assets/icons/upload.png')" suffix="mbps" :value="parseFloat(vm.upload)" :maxValue="1000"/>
+      <gauge :icon="require('@/assets/icons/download.png')" suffix="mbps" :value="parseFloat(vm.download)" :maxValue="1000"/>
     </fieldset> 
   </div>
 </template>
@@ -40,7 +40,6 @@ export default {
 .vm {
   display: flex;
   flex-direction: row;
-  gap: 16px;
   padding: 16px;
 
   border: 1px solid var(--dark-lighter);
