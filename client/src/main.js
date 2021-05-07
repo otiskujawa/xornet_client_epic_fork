@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
-import App from './App.vue'
+import app from './app.vue'
 import router from './router'
+import socket from '@/services/socket.js';
 
-createApp(App).use(router).mount('#app')
+createApp(app).use(router).mount('#app')

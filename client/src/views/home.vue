@@ -1,22 +1,67 @@
 <template>
   <div class="view home">
-    <svg class="logo" width="385" height="48" viewBox="0 0 385 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0 0.0514539C0 0.0882074 4.95515 5.46891 11.0074 12.0184C17.0596 18.5678 22.0074 23.9559 21.9926 23.9853C21.9853 24.0147 17.0375 29.4028 11.0074 35.9522C4.96988 42.5017 0.0294511 47.8897 0.0147256 47.9265C0 47.9706 2.51071 48 6.78849 48H13.5843L20.9471 39.951C24.9967 35.5185 28.4277 31.7623 28.5676 31.6006L28.8327 31.2992L36.512 39.6496L44.1841 48H51.002C57.4297 48 57.8126 47.9926 57.7169 47.875C57.658 47.8015 52.6881 42.3988 46.6653 35.8567L35.7095 23.9632L46.7537 12.0184C52.828 5.44686 57.7979 0.0588046 57.7979 0.0367525C57.7979 0.0147005 54.7349 -9.06177e-07 50.9946 -9.06177e-07H44.1988L36.512 8.31363L28.8327 16.6346L28.5013 16.2524C28.3099 16.0466 24.8862 12.3051 20.8735 7.93874L13.5843 0.00734978L6.79585 -9.06177e-07C3.05556 -9.06177e-07 0 0.0220512 0 0.0514539Z" fill="#24F097"/>
-      <path d="M67.2958 24V48H96.1948H125.094V24V-9.06177e-07H96.1948H67.2958V24ZM115.375 23.9632V38.2971H96.1948H77.0147V23.9632V9.6294H96.1948H115.375V23.9632Z" fill="#24F097"/>
-      <path d="M134.592 24V48H139.451H144.311V28.8147V9.6294H163.491H182.671V4.8147V-9.06177e-07H158.631H134.592V24Z" fill="#24F097"/>
-      <path d="M192.316 24V48H197.175H202.035V28.8147V9.6294H221.215H240.395V28.8147V48H245.254H250.114V24V-9.06177e-07H221.215H192.316V24Z" fill="#00D99F"/>
-      <path d="M259.759 4.81471V9.62941H288.658H317.557V4.81471V6.85174e-06H288.658H259.759V4.81471Z" fill="#00D99F"/>
-      <path d="M327.202 4.8147V9.6294H339.388H351.573V28.8147V48H356.432H361.292V28.8147V9.6294H373.146H385V4.8147V-9.06177e-07H356.101H327.202V4.8147Z" fill="#00D99F"/>
-      <path d="M259.759 23.9632V28.8147H288.658H317.557V23.9632V19.1118H288.658H259.759V23.9632Z" fill="#00D99F"/>
-      <path d="M259.759 43.1485V48H288.658H317.557V43.1485V38.2971H288.658H259.759V43.1485Z" fill="#00D99F"/>
-    </svg>
+    <logo/>
+
+    <fieldset v-for="vm of vms" :key="vm" class="vm">
+      <legend>{{vm.name}}</legend>
+      <gauge :icon="require('@/assets/icons/cpu.png')" :value="vm.cpu + '%'"/>
+      <gauge :icon="require('@/assets/icons/ram.png')" :value="vm.ram + 'GB'"/>
+      <gauge :icon="require('@/assets/icons/upload.png')" :value="vm.upload + 'mbps'"/>
+      <gauge :icon="require('@/assets/icons/download.png')" :value="vm.download + 'mbps'"/>
+    </fieldset>
+
   </div>
 </template>
 
 <script>
+import socket from '@/services/socket.js';
+import logo from '@/components/logo';
+import gauge from '@/components/gauge';
 
 export default {
   name: 'home',
+  components: {
+    gauge,
+    logo
+  },
+  data: () => {
+    return {
+      vms: {},
+    }
+  },
+  mounted(){
+    socket.on("vms", vms => {
+      this.vms = vms;
+    });
+  },
 }
 </script>
+
+<style scoped>
+.vm {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  padding: 16px;
+
+  border: 1px solid var(--dark-lighter);
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: var(--dark-light);
+  transition: 100ms ease;
+}
+.vm legend {
+  left: 24px;
+  color: white;
+  text-transform: lowercase;
+}
+
+.vm:hover {
+  border: 1px solid;
+  border-radius: 4px;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to left, #DB00FF 8.32%, #4D9FFF 89.64%);
+}
+
+</style>
 

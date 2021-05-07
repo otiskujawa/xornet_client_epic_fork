@@ -6,13 +6,23 @@
 </template>
 
 <style>
+
+:root {
+  --black: #0B0B15;
+  --dark: #151527;
+  --dark-light: #0F0F1E;
+  --dark-lighter: #252547;
+  --white: #EDF2F4;
+}
+
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Comfortaa', cursive;
 }
 
 #app {
-  background-color: #2B2D42;
+  background-color: var(--black);
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -39,6 +49,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   height: 100%;
   width: 100%;
 }
