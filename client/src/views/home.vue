@@ -40,14 +40,14 @@ export default {
 .vm {
   display: flex;
   flex-direction: row;
-  padding: 16px;
+  padding: 0px 16px 20px 16px;
 
   border: 1px solid var(--dark-lighter);
   border-radius: 4px;
   cursor: pointer;
   background-color: var(--dark-light);
-  transition: 100ms ease;
 }
+
 .vm legend {
   left: 24px;
   color: white;
