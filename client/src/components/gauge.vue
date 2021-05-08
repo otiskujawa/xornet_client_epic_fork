@@ -15,7 +15,7 @@ export default {
   props: {
     icon: { type: String, required: true },
     value: { type: Number, required: true },
-    maxValue: { type: Number, required: true, default: 100},
+    maxValue: { type: Number, default: 100},
     suffix: { type: String, required: true},
   },
 }

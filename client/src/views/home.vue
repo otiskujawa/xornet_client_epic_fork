@@ -2,6 +2,7 @@
   <div class="view home">
     <logo/>
     <gaugeField :vm="vm" v-for="vm of vms" :key="vm"/>
+    {{totalRam}}
   </div>
 </template>
 
@@ -19,12 +20,19 @@ export default {
   data: () => {
     return {
       vms: {},
+      totalRam: null,
     }
   },
   mounted(){
     socket.on("vms", vms => {
       console.log(vms);
       this.vms = vms;
+ 
+      let totalRam = 0; 
+      for(let vm of vms){
+        totalRam = totalRam + Math.ceil(vm.ram.total);
+      }
+      this.totalRam = totalRam
     });
   },
 }
