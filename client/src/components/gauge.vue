@@ -2,7 +2,7 @@
   <div class="gauge">
     <svg class="gaugeTrack" overflow="visible" viewBox="0 0 100 100">
       <circle cx="70" cy="70" r="40"></circle>
-      <circle class="progress" cx="70" cy="70" r="40" :style="{'stroke-dashoffset': 252 - (252 * ((value * 75) / ((maxValue * 100) / 100))) / 100}"></circle>
+      <circle class="progress" cx="70" cy="70" r="40" :style="{'stroke-dashoffset': 250 - (250 * ((value * 75) / ((maxValue * 100) / 100))) / 100}"></circle>
     </svg>
     <img class="gaugeIcon" :src="icon" alt="">
     <h1 class="gaugeText">{{value + suffix}}</h1>
@@ -74,8 +74,8 @@ export default {
   height: 100%;
   width: 100%;
   fill: none;
-  stroke-dasharray: 252;
-  stroke-dashoffset: calc(252 - (252 * 75) / 100);
+  stroke-dasharray: 250;
+  stroke-dashoffset: calc(250 - (250 * 75) / 100);
 
   stroke: #17172E;
   stroke-width: 8px;
@@ -85,7 +85,7 @@ export default {
 }
 
 .gaugeTrack circle.progress {
-  stroke-dasharray: 252;
+  stroke-dasharray: 250;
   stroke-width: 10px;
   stroke: aqua;
 }
