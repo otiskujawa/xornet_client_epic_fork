@@ -9,19 +9,19 @@
     <gauge
       :icon="require('@/assets/icons/ram.png')"
       suffix="GB"
-      :value="parseFloat(vm.ram)"
-      :maxValue="64"
+      :value="parseFloat(vm.ram.used)"
+      :maxValue="parseFloat(vm.ram.total)"
     />
     <gauge
       :icon="require('@/assets/icons/upload.png')"
       suffix="mbps"
-      :value="parseFloat(vm.upload)"
+      :value="parseFloat(vm.network.tx_sec)"
       :maxValue="1000"
     />
     <gauge
       :icon="require('@/assets/icons/download.png')"
       suffix="mbps"
-      :value="parseFloat(vm.download)"
+      :value="parseFloat(vm.network.rx_sec)"
       :maxValue="1000"
     />
   </fieldset>
