@@ -1,17 +1,6 @@
 <template>
-  <logo/>
   <router-view/>
 </template>
-
-<script>
-import logo from '@/components/logo';
-
-export default {
-  components: {
-    logo
-  }
-}
-</script>
 
 <style>
 
@@ -27,6 +16,7 @@ export default {
   margin: 0;
   padding: 0;
   font-family: 'Comfortaa', cursive;
+  box-sizing: border-box;
 }
 
 #app {
@@ -53,14 +43,6 @@ export default {
   color: #42b983;
 }
 
-.view {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
-}
+
 
 </style>

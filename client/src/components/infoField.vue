@@ -17,7 +17,7 @@ export default {
     props: {
         title: { type: String, required: true },
         value: { type: String, required: true },
-    }
+    },
 };
 </script>
 
@@ -27,7 +27,7 @@ export default {
   display: flex;
   flex-direction: column;
   text-align: left;
-  gap: 8px;
+  gap: 16px;
   padding: 16px;
   border: 1px solid var(--dark-lighter);
   border-radius: 4px;
@@ -43,6 +43,7 @@ export default {
 
 .info .value {
   font-size: 20px;
+  font-weight: 400;
   font-family: 'Courier Prime', monospace;
   color: var(--white);
 }

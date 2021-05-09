@@ -1,5 +1,7 @@
 <template>
   <div class="view home">
+    <serverList :vms="vms"/>
+
     <div class="informatics">
       <infoField title="Total RAM" :value="totalRam + 'GB'"/>
       <infoField title="Total Network Throughput" :value="totalThroughput + 'mbps'"/>
@@ -14,12 +16,15 @@
 import socket from '@/services/socket.js';
 import gaugeField from '@/components/gaugeField';
 import infoField from '@/components/infoField';
+import serverList from '@/components/serverList';
 
 export default {
   name: 'home',
   components: {
     infoField,
     gaugeField,
+    serverList,
+
   },
   data: () => {
     return {
@@ -49,15 +54,21 @@ export default {
 <style scoped>
 
 .home {
+  align-items: flex-start;
+  display: flex;
   flex-direction: row;
+  height: 100%;
 }
 
 .vms, .informatics {
   display: flex;
   flex-direction: column;
-  gap: 8px;
 }
 
+.informatics {
+  margin-top: 8px;
+  gap: 8px;
+}
 
 </style>
 

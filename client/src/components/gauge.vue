@@ -87,7 +87,7 @@ export default {
 .gaugeTrack circle.progress {
   stroke-dasharray: 250;
   stroke-width: 10px;
-  stroke: aqua;
+  stroke: #4D9FFF;
 }
 
 </style>
