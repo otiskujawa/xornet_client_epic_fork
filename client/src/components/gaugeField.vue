@@ -15,13 +15,13 @@
     <gauge
       :icon="require('@/assets/icons/upload.png')"
       suffix="mbps"
-      :value="parseFloat(vm.network.tx_sec)"
+      :value="parseFloat(vm.network.TxSec)"
       :maxValue="1000 * vm.network.totalInterfaces"
     />
     <gauge
       :icon="require('@/assets/icons/download.png')"
       suffix="mbps"
-      :value="parseFloat(vm.network.rx_sec)"
+      :value="parseFloat(vm.network.RxSec)"
       :maxValue="1000 * vm.network.totalInterfaces"
     />
   </fieldset>
