@@ -1,11 +1,11 @@
 <template>
   <div class="view home">
-    <div class="vms">
-      <gaugeField :vm="vm" v-for="vm of vms" :key="vm"/>
-    </div>
     <div class="informatics">
       <infoField title="Total RAM" :value="totalRam + 'GB'"/>
       <infoField title="Total Network Throughput" :value="totalThroughput + 'mbps'"/>
+    </div>
+    <div class="vms">
+      <gaugeField :vm="vm" v-for="vm of vms" :key="vm"/>
     </div>
   </div>
 </template>
