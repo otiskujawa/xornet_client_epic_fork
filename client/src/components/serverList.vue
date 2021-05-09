@@ -14,12 +14,13 @@
             <img :src="require('@/assets/icons/vm.png')" alt="">
             <div class="info">
                 <h1 class="hostname">{{vm.name}}</h1>
-                <h1 class="status">online</h1>
+                <h1 class="status">Online</h1>
             </div>
             <div class="platform">
                 <img v-if="vm.platform == 'win32'" :src="require('@/assets/icons/windows-small.png')" alt="">
                 <img v-if="vm.platform == 'darwin'" :src="require('@/assets/icons/macos-small.png')" alt="">
                 <img v-if="vm.platform == 'linux'" :src="require('@/assets/icons/linux-small.png')" alt="">
+                <h1 v-if="vm.reporterVersion">v{{vm.reporterVersion}}</h1>
             </div>
         </div>
     </div>
@@ -136,10 +137,11 @@ export default {
     color: var(--white);
 }
 
-.serverList .list .button .info .status {
+.serverList .list .button .info .status,
+.serverList .list .button .platform h1 {
     font-weight: 600;
     font-size: 10px;
-    text-transform: capitalize;
+    font-family: 'Work Sans', sans-serif;
 
     color: #414569;
 }
@@ -147,8 +149,9 @@ export default {
 .serverList .list .button .platform {
     width: 100%;
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
 
 }
 

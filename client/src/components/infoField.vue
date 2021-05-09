@@ -27,7 +27,7 @@ export default {
   display: flex;
   flex-direction: column;
   text-align: left;
-  gap: 16px;
+  gap: 8px;
   padding: 16px;
   border: 1px solid var(--dark-lighter);
   border-radius: 4px;
@@ -46,6 +46,7 @@ export default {
   font-weight: 400;
   font-family: 'Courier Prime', monospace;
   color: var(--white);
+  line-height: 18px;
 }
 
 </style>
