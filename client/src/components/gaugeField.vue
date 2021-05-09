@@ -6,6 +6,11 @@
       suffix="%"
       :value="parseFloat(vm.cpu)"
     />
+    <gauge v-if="vm.gpu"
+      :icon="require('@/assets/icons/gpu.png')"
+      suffix="%"
+      :value="parseFloat(vm.gpu.utilizationGpu)"
+    />
     <gauge
       :icon="require('@/assets/icons/ram.png')"
       suffix="GB"
@@ -48,7 +53,7 @@ export default {
   display: flex;
   flex-direction: row;
   padding: 0px 16px 20px 16px;
-
+  width: fit-content;
   border: 1px solid var(--dark-lighter);
   border-radius: 4px;
   cursor: pointer;

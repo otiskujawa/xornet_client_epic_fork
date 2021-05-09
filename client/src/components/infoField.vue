@@ -39,6 +39,7 @@ export default {
   font-size: 12px;
   font-family: inherit;
   color: var(--white);
+  white-space: nowrap;
 }
 
 .info .value {

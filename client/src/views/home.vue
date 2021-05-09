@@ -4,7 +4,8 @@
 
     <div class="informatics">
       <infoField title="Total RAM" :value="totalRam + 'GB'"/>
-      <infoField title="Total Network Throughput" :value="totalThroughput + 'mbps'"/>
+      <infoField title="Total Upload Throughput" :value="totalUploadThroughput + 'mbps'"/>
+      <infoField title="Total Download Throughput" :value="totalDownloadThroughput + 'mbps'"/>
     </div>
     <div class="vms">
       <gaugeField :vm="vm" v-for="vm of vms" :key="vm"/>
@@ -30,7 +31,8 @@ export default {
     return {
       vms: {},
       totalRam: null,
-      totalThroughput: null,
+      totalDownloadThroughput: null,
+      totalUploadThroughput: null,
     }
   },
   mounted(){
@@ -39,13 +41,16 @@ export default {
       this.vms = vms;
  
       let totalRam = 0; 
-      let totalThroughput = 0;
+      let totalDownloadThroughput = 0;
+      let totalUploadThroughput = 0;
       for(let vm of vms){
         totalRam = totalRam + Math.ceil(vm.ram.total);
-        totalThroughput = totalThroughput + vm.network.TxSec + vm.network.RxSec;
+        totalDownloadThroughput = totalDownloadThroughput + vm.network.TxSec + vm.network.TxSec;
+        totalUploadThroughput = totalUploadThroughput + vm.network.RxSec + vm.network.RxSec;
       }
       this.totalRam = totalRam;
-      this.totalThroughput = totalThroughput.toFixed(2);
+      this.totalDownloadThroughput = totalDownloadThroughput.toFixed(2);
+      this.totalUploadThroughput = totalUploadThroughput.toFixed(2);
     });
   },
 }
