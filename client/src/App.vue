@@ -1,9 +1,17 @@
 <template>
-  <!-- <div id="nav">
-    <router-link to="/">Home</router-link>
-  </div> -->
+  <logo/>
   <router-view/>
 </template>
+
+<script>
+import logo from '@/components/logo';
+
+export default {
+  components: {
+    logo
+  }
+}
+</script>
 
 <style>
 
@@ -47,6 +55,7 @@
 
 .view {
   display: flex;
+  gap: 8px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
