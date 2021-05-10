@@ -9,7 +9,7 @@
   --dark: #151527;
   --dark-light: #0F0F1E;
   --dark-lighter: #252547;
-  --white: #EDF2F4;
+  --white: #f6f6f6;
 }
 
 * {
@@ -19,8 +19,11 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow: hidden;
+}
+
 #app {
-  background-color: var(--black);
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

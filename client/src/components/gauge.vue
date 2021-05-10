@@ -37,12 +37,12 @@ export default {
   transform: translate(-50%, -50%);
   height: 32px;
   width: 32px;
-  filter: invert(1);
+  /* filter: invert(1); */
 }
 
 .gaugeText {
   font-family: 'Courier Prime', monospace;
-  color: var(--white);
+  color: black;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -77,7 +77,7 @@ export default {
   stroke-dasharray: 250;
   stroke-dashoffset: calc(250 - (250 * 75) / 100);
 
-  stroke: #17172E;
+  stroke: var(--white);
   stroke-width: 8px;
   stroke-linecap: round;
   transition: 100ms ease;

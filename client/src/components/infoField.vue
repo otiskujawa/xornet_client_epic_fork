@@ -28,11 +28,17 @@ export default {
   flex-direction: column;
   text-align: left;
   gap: 8px;
+  color: black;
   padding: 16px;
-  border: 1px solid var(--dark-lighter);
   border-radius: 4px;
   cursor: pointer;
-  background-color: var(--dark-light);
+  background-color: white;
+  transition: 100ms ease;
+}
+
+.info:hover {
+  transform: translateY(-1px);
+  box-shadow: rgb(0 0 0 / 10%) 0px 10px 20px;
 }
 
 .info h1 {
@@ -42,14 +48,12 @@ export default {
 .info .title {
   font-size: 12px;
   font-family: inherit;
-  color: var(--white);
 }
 
 .info .value {
   font-size: 20px;
   font-weight: 400;
   font-family: 'Courier Prime', monospace;
-  color: var(--white);
   line-height: 18px;
 }
 

@@ -54,23 +54,22 @@ export default {
   flex-direction: row;
   padding: 0px 16px 20px 16px;
   width: fit-content;
-  border: 1px solid var(--dark-lighter);
+  border: 1px solid transparent;
   border-radius: 4px;
   cursor: pointer;
-  background-color: var(--dark-light);
+  background-color: white;
+  transition: 100ms ease;
 }
 
 .machine legend {
   left: 24px;
-  color: white;
+  color: black;
   text-transform: lowercase;
 }
 
 .machine:hover {
-  border: 1px solid;
-  border-radius: 4px;
-  border-image-slice: 1;
-  border-image-source: linear-gradient(to left, #DB00FF 8.32%, #4D9FFF 89.64%);
+  transform: translateY(-1px);
+  box-shadow: rgb(0 0 0 / 10%) 0px 10px 20px;
 }
 
 </style>

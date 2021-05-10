@@ -2,13 +2,17 @@
   <div class="view home">
     <serverList :vms="Array.from(serverList.vms.values())" :pms="Array.from(serverList.pms.values())"/>
 
-    <div class="informatics">
-      <infoField title="Total RAM" :value="totalRamUsed + 'GB / ' + totalRam + 'GB'"/>
-      <infoField title="Total Upload Throughput" :value="totalUploadThroughput + 'mbps'"/>
-      <infoField title="Total Download Throughput" :value="totalDownloadThroughput + 'mbps'"/>
-    </div>
-    <div class="machines">
-      <gaugeField :machine="machine" v-for="machine of machines" :key="machine"/>
+    <div class="contentWrapper">
+      <div class="content">
+        <div class="informatics">
+          <infoField title="Total RAM" :value="totalRamUsed + 'GB / ' + totalRam + 'GB'"/>
+          <infoField title="Total Upload Throughput" :value="totalUploadThroughput + 'mbps'"/>
+          <infoField title="Total Download Throughput" :value="totalDownloadThroughput + 'mbps'"/>
+        </div>
+        <div class="machines">
+          <gaugeField :machine="machine" v-for="machine of machines" :key="machine"/>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -85,13 +89,31 @@ export default {
   height: 100%;
 }
 
+.contentWrapper {
+  max-height: 100%;
+  padding-top: 24px;
+  height: 100%;
+  width: 100%;
+}
+
+.content {
+  box-sizing: border-box;
+  background-color: var(--white);
+  padding: 8px;
+  height: 100%;
+  display: flex;
+  gap: 8px;
+  overflow: scroll;
+  border-radius: 4px 0px 0px 0px;
+}
+
 .machines, .informatics {
   display: flex;
+  width: fit-content;
   flex-direction: column;
 }
 
 .informatics {
-  margin-top: 8px;
   gap: 8px;
 }
 
