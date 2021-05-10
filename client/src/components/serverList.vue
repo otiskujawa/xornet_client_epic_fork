@@ -6,7 +6,7 @@
 
     <section>
         <img :src="require('@/assets/icons/vm-small.png')" alt="">
-        <h1>VMS</h1>
+        <h1>Virtual Machines</h1>
     </section>
 
     <div class="list">
@@ -27,8 +27,24 @@
 
     <section>
         <img :src="require('@/assets/icons/hypervisor-small.png')" alt="">
-        <h1>HYPERVISORS</h1>
+        <h1>Physical Machines</h1>
     </section>
+
+    <div class="list">
+        <div class="button" v-for="pm of pms" :key="pm">
+            <img :src="require('@/assets/icons/hypervisor.png')" alt="">
+            <div class="info">
+                <h1 class="hostname">{{pm.name}}</h1>
+                <h1 class="status">Online</h1>
+            </div>
+            <div class="platform">
+                <img v-if="pm.platform == 'win32'" :src="require('@/assets/icons/windows-small.png')" alt="">
+                <img v-if="pm.platform == 'darwin'" :src="require('@/assets/icons/macos-small.png')" alt="">
+                <img v-if="pm.platform == 'linux'" :src="require('@/assets/icons/linux-small.png')" alt="">
+                <h1 v-if="pm.reporterVersion">v{{pm.reporterVersion}}</h1>
+            </div>
+        </div>
+    </div>
 
   </nav>
 </template>
@@ -41,7 +57,8 @@ export default {
         logo
     },
     props: {
-        vms: { type: Object, required: true },
+        vms: { type: Object, required: false },
+        pms: { type: Object, required: false },
     }
 }
 </script>
@@ -77,8 +94,7 @@ export default {
 }
 
 .serverList section h1 {
-    /* VMS */
-
+    text-transform: uppercase;
     font-family: Work Sans;
     font-style: normal;
     font-weight: 600;

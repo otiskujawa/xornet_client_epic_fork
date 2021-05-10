@@ -1,14 +1,14 @@
 <template>
   <div class="view home">
-    <serverList :vms="vms"/>
+    <serverList :machines="machines.filter(machine => machine.static.system.virtual)" :pms="machines.filter(machine => !machine.static.system.virtual)"/>
 
     <div class="informatics">
       <infoField title="Total RAM" :value="totalRamUsed + 'GB / ' + totalRam + 'GB'"/>
       <infoField title="Total Upload Throughput" :value="totalUploadThroughput + 'mbps'"/>
       <infoField title="Total Download Throughput" :value="totalDownloadThroughput + 'mbps'"/>
     </div>
-    <div class="vms">
-      <gaugeField :vm="vm" v-for="vm of vms" :key="vm"/>
+    <div class="machines">
+      <gaugeField :machine="machine" v-for="machine of machines" :key="machine"/>
     </div>
   </div>
 </template>
@@ -29,26 +29,26 @@ export default {
   },
   data: () => {
     return {
-      vms: {},
+      machines: [],
       totalRam: null,
       totalDownloadThroughput: null,
       totalUploadThroughput: null,
     }
   },
   mounted(){
-    socket.on("vms", vms => {
-      console.log(vms);
-      this.vms = vms;
+    socket.on("machines", machines => {
+      console.log(machines);
+      this.machines = machines;
  
       let totalRam = 0; 
       let totalRamUsed = 0; 
       let totalDownloadThroughput = 0;
       let totalUploadThroughput = 0;
-      for(let vm of vms){
-        totalRam = totalRam + Math.ceil(vm.ram.total);
-        totalRamUsed = totalRamUsed + vm.ram.used;
-        totalDownloadThroughput = totalDownloadThroughput + vm.network.RxSec;
-        totalUploadThroughput = totalUploadThroughput + vm.network.TxSec;
+      for(let machine of machines){
+        totalRam = totalRam + Math.ceil(machine.ram.total);
+        totalRamUsed = totalRamUsed + machine.ram.used;
+        totalDownloadThroughput = totalDownloadThroughput + machine.network.RxSec;
+        totalUploadThroughput = totalUploadThroughput + machine.network.TxSec;
       }
       this.totalRam = totalRam;
       this.totalRamUsed = totalRamUsed.toFixed(2);
@@ -68,7 +68,7 @@ export default {
   height: 100%;
 }
 
-.vms, .informatics {
+.machines, .informatics {
   display: flex;
   flex-direction: column;
 }
