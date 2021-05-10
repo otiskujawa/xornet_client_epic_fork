@@ -1,6 +1,6 @@
 <template>
   <div class="view home">
-    <serverList :vms="machines.filter(machine => machine.static.system.virtual)" :pms="machines.filter(machine => !machine.static.system.virtual)"/>
+    <serverList v-if="Array.from(serverList.vms.values()).length > 0" :vms="Array.from(serverList.vms.values())" :pms="Array.from(serverList.pms.values())"/>
 
     <div class="informatics">
       <infoField title="Total RAM" :value="totalRamUsed + 'GB / ' + totalRam + 'GB'"/>
@@ -30,6 +30,10 @@ export default {
   data: () => {
     return {
       machines: [],
+      serverList: {
+        vms: new Map(),
+        pms: new Map(),
+      },
       totalRam: null,
       totalDownloadThroughput: null,
       totalUploadThroughput: null,
@@ -38,8 +42,10 @@ export default {
   mounted(){
     socket.on("machines", machines => {
       console.log(machines);
+      
+      this.addMachinesToServerList(machines);
+
       this.machines = machines;
- 
       let totalRam = 0; 
       let totalRamUsed = 0; 
       let totalDownloadThroughput = 0;
@@ -56,6 +62,17 @@ export default {
       this.totalUploadThroughput = totalUploadThroughput.toFixed(2);
     });
   },
+  methods: {
+    addMachinesToServerList(machines){
+      machines.forEach(machine => {
+        if (machine.static.system.virtual){
+          if(!this.serverList.vms.has(machine.static.uuid.os)) this.serverList.vms.set(machine.static.uuid.os, machine);
+        } else {
+          if(!this.serverList.pms.has(machine.static.uuid.os)) this.serverList.pms.set(machine.static.uuid.os, machine);
+        }
+      });
+    }
+  }
 }
 </script>
 

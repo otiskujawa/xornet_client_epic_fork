@@ -10,7 +10,7 @@
     </section>
     <div class="list">
         <div class="button" v-for="vm of vms" :key="vm">
-            <img :src="require('@/assets/icons/vm.png')" alt="">
+            <img  class="machineType" :src="require('@/assets/icons/vm.png')" alt="">
             <div class="info">
                 <h1 class="hostname">{{vm.name}}</h1>
                 <h1 class="status">{{vm.static.uuid.os}}</h1>
@@ -31,7 +31,7 @@
 
     <div class="list">
         <div class="button" v-for="pm of pms" :key="pm">
-            <img :src="require('@/assets/icons/hypervisor.png')" alt="">
+            <img class="machineType" :src="require('@/assets/icons/hypervisor.png')" alt="">
             <div class="info">
                 <h1 class="hostname">{{pm.name}}</h1>
                 <h1 class="status">{{pm.static.uuid.os.replace(/-/g, '')}}</h1>
@@ -71,7 +71,7 @@ export default {
     flex-direction: column;
     font-family: 'Work Sans', sans-serif;
     padding: 0px 8px;
-
+    background-color: white;
 }
 
 .serverList .logo {
@@ -113,23 +113,28 @@ export default {
 
 .serverList .list .button {
     padding: 8px;
-    background-color: #0F0F1E;
+    background-color: white;
     border-radius: 4px;
     box-sizing: border-box;
     border: 1px solid transparent;
     display: flex;
     gap: 8px;
     cursor: pointer;
+    transition: 100ms ease;
 }
 
 .serverList .list .button:hover {
-    border: 1px solid #252547;
+    border: 1px solid var(--white);
+    transform: translateY(-1px);
+    box-shadow: rgb(0 0 0 / 10%) 0px 10px 20px;
+
 }
 
 
-.serverList .list .button img {
+.serverList .list .button img.machineType {
     width: 32px;
     height: 32px;
+    filter: invert(1);
 }
 
 .serverList .list .button .info {
@@ -141,7 +146,7 @@ export default {
     gap: 2px;
 }
 
-.serverList .list .button .info h1 {
+.serverList .list .button .info .hostname {
     font-family: Work Sans;
     font-style: normal;
     font-weight: 500;
@@ -149,7 +154,7 @@ export default {
     font-size: 14px;
     line-height: 117.9%;
     text-transform: lowercase;
-    color: var(--white);
+    color: var(--black);
 }
 
 .serverList .list .button .info .status,
