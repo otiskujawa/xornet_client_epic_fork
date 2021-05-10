@@ -8,13 +8,12 @@
         <img :src="require('@/assets/icons/vm-small.png')" alt="">
         <h1>Virtual Machines</h1>
     </section>
-
     <div class="list">
         <div class="button" v-for="vm of vms" :key="vm">
             <img :src="require('@/assets/icons/vm.png')" alt="">
             <div class="info">
                 <h1 class="hostname">{{vm.name}}</h1>
-                <h1 class="status">Online</h1>
+                <h1 class="status">{{vm.static.uuid.os}}</h1>
             </div>
             <div class="platform">
                 <img v-if="vm.platform == 'win32'" :src="require('@/assets/icons/windows-small.png')" alt="">
@@ -35,7 +34,7 @@
             <img :src="require('@/assets/icons/hypervisor.png')" alt="">
             <div class="info">
                 <h1 class="hostname">{{pm.name}}</h1>
-                <h1 class="status">Online</h1>
+                <h1 class="status">{{pm.static.uuid.os.replace(/-/g, '')}}</h1>
             </div>
             <div class="platform">
                 <img v-if="pm.platform == 'win32'" :src="require('@/assets/icons/windows-small.png')" alt="">
@@ -66,8 +65,8 @@ export default {
 <style scoped>
 
 .serverList {
-    width: 256px;
-    min-width: 256px;
+    width: 320px;
+    min-width: 320px;
     height: 100%;
     flex-direction: column;
     font-family: 'Work Sans', sans-serif;
@@ -136,7 +135,7 @@ export default {
 .serverList .list .button .info {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: flex-start;
     text-align: center;
     gap: 2px;
@@ -160,6 +159,11 @@ export default {
     font-family: 'Work Sans', sans-serif;
 
     color: #414569;
+}
+.serverList .list .button .info .status {
+    background: linear-gradient(110.78deg, rgb(118, 230, 80) -1.13%, rgb(249, 214, 73) 15.22%, rgb(240, 142, 53) 32.09%, rgb(236, 81, 87) 48.96%, rgb(255, 24, 189) 67.94%, rgb(26, 75, 255) 85.34%, rgb(98, 216, 249) 99.57%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .serverList .list .button .platform {

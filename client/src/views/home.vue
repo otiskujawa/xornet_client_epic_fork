@@ -1,6 +1,6 @@
 <template>
   <div class="view home">
-    <serverList :machines="machines.filter(machine => machine.static.system.virtual)" :pms="machines.filter(machine => !machine.static.system.virtual)"/>
+    <serverList :vms="machines.filter(machine => machine.static.system.virtual)" :pms="machines.filter(machine => !machine.static.system.virtual)"/>
 
     <div class="informatics">
       <infoField title="Total RAM" :value="totalRamUsed + 'GB / ' + totalRam + 'GB'"/>
