@@ -49,8 +49,8 @@ export default {
 <style scoped>
 
 .serverList {
-    width: 320px;
-    min-width: 320px;
+    width: 256px;
+    min-width: 256px;
     height: 100%;
     flex-direction: column;
     font-family: 'Work Sans', sans-serif;

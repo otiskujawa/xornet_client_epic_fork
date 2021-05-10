@@ -3,7 +3,7 @@
     <serverList :vms="vms"/>
 
     <div class="informatics">
-      <infoField title="Total RAM" :value="totalRam + 'GB'"/>
+      <infoField title="Total RAM" :value="totalRamUsed + 'GB / ' + totalRam + 'GB'"/>
       <infoField title="Total Upload Throughput" :value="totalUploadThroughput + 'mbps'"/>
       <infoField title="Total Download Throughput" :value="totalDownloadThroughput + 'mbps'"/>
     </div>
@@ -41,14 +41,17 @@ export default {
       this.vms = vms;
  
       let totalRam = 0; 
+      let totalRamUsed = 0; 
       let totalDownloadThroughput = 0;
       let totalUploadThroughput = 0;
       for(let vm of vms){
         totalRam = totalRam + Math.ceil(vm.ram.total);
-        totalDownloadThroughput = totalDownloadThroughput + vm.network.TxSec + vm.network.TxSec;
-        totalUploadThroughput = totalUploadThroughput + vm.network.RxSec + vm.network.RxSec;
+        totalRamUsed = totalRamUsed + vm.ram.used;
+        totalDownloadThroughput = totalDownloadThroughput + vm.network.RxSec;
+        totalUploadThroughput = totalUploadThroughput + vm.network.TxSec;
       }
       this.totalRam = totalRam;
+      this.totalRamUsed = totalRamUsed.toFixed(2);
       this.totalDownloadThroughput = totalDownloadThroughput.toFixed(2);
       this.totalUploadThroughput = totalUploadThroughput.toFixed(2);
     });

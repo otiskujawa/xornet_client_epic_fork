@@ -35,11 +35,14 @@ export default {
   background-color: var(--dark-light);
 }
 
+.info h1 {
+  white-space: nowrap;
+}
+
 .info .title {
   font-size: 12px;
   font-family: inherit;
   color: var(--white);
-  white-space: nowrap;
 }
 
 .info .value {
