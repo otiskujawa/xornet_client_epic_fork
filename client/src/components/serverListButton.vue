@@ -1,9 +1,9 @@
 <template>
-    <router-link :to="`/${machine.static.uuid.os}`" class="button">
+    <router-link :to="`/${machine.static.uuid.os.replace(/-/g, '')}`" class="button">
         <img  class="machineType" :src="require(`@/assets/icons/${type}.png`)" alt="">
         <div class="info">
             <h1 class="hostname">{{machine.name}}</h1>
-            <h1 class="status">{{machine.static.uuid.os}}</h1>
+            <h1 class="status">{{machine.static.uuid.os.replace(/-/g, '')}}</h1>
         </div>
         <div class="platform">
             <img v-if="machine.platform == 'win32'" :src="require('@/assets/icons/windows-small.png')" alt="">
@@ -41,6 +41,7 @@ export default {
     cursor: pointer;
     transition: 100ms ease;
     text-decoration: none;
+    user-select: none;
 }
 
 .button:hover {
