@@ -9,7 +9,7 @@
         <h1>Virtual Machines</h1>
     </section>
     <div class="list">
-        <div class="button" v-for="vm of vms" :key="vm">
+        <router-link :to="`/${vm.static.uuid.os}`" class="button" v-for="vm of vms" :key="vm">
             <img  class="machineType" :src="require('@/assets/icons/vm.png')" alt="">
             <div class="info">
                 <h1 class="hostname">{{vm.name}}</h1>
@@ -21,7 +21,7 @@
                 <img v-if="vm.platform == 'linux'" :src="require('@/assets/icons/linux-small.png')" alt="">
                 <h1 v-if="vm.reporterVersion">v{{vm.reporterVersion}}</h1>
             </div>
-        </div>
+        </router-link>
     </div>
 
     <section>
@@ -30,7 +30,7 @@
     </section>
 
     <div class="list">
-        <div class="button" v-for="pm of pms" :key="pm">
+        <router-link :to="`/${pm.static.uuid.os}`" class="button" v-for="pm of pms" :key="pm">
             <img class="machineType" :src="require('@/assets/icons/hypervisor.png')" alt="">
             <div class="info">
                 <h1 class="hostname">{{pm.name}}</h1>
@@ -42,7 +42,7 @@
                 <img v-if="pm.platform == 'linux'" :src="require('@/assets/icons/linux-small.png')" alt="">
                 <h1 v-if="pm.reporterVersion">v{{pm.reporterVersion}}</h1>
             </div>
-        </div>
+        </router-link>
     </div>
 
   </nav>
@@ -121,15 +121,18 @@ export default {
     gap: 8px;
     cursor: pointer;
     transition: 100ms ease;
+    text-decoration: none;
 }
 
 .serverList .list .button:hover {
     border: 1px solid var(--white);
     transform: translateY(-1px);
     box-shadow: rgb(0 0 0 / 10%) 0px 10px 20px;
-
 }
 
+.serverList .list .button:active {
+    transform: translateY(-0px);
+}
 
 .serverList .list .button img.machineType {
     width: 32px;

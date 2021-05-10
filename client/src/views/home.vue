@@ -1,6 +1,6 @@
 <template>
   <div class="view home">
-    <serverList v-if="Array.from(serverList.vms.values()).length > 0" :vms="Array.from(serverList.vms.values())" :pms="Array.from(serverList.pms.values())"/>
+    <serverList :vms="Array.from(serverList.vms.values())" :pms="Array.from(serverList.pms.values())"/>
 
     <div class="informatics">
       <infoField title="Total RAM" :value="totalRamUsed + 'GB / ' + totalRam + 'GB'"/>
