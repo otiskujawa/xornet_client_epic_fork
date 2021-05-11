@@ -20,7 +20,6 @@
     <div class="list">
         <serverListButton :machine="pm" v-for="pm of pms" :key="pm"/>
     </div>
-
   </nav>
 </template>
 
