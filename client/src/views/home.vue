@@ -1,5 +1,6 @@
 <template>
   <div class="view home">
+    <loadingScreen :isLoaded="!isLoading"/>
     <serverList :vms="Array.from(serverList.vms.values())" :pms="Array.from(serverList.pms.values())"/>
 
     <div class="content">
@@ -20,17 +21,22 @@ import socket from '@/services/socket.js';
 import gaugeField from '@/components/gaugeField';
 import infoField from '@/components/infoField';
 import serverList from '@/components/serverList';
+import loadingScreen from '@/components/loadingScreen';
 
 export default {
   name: 'home',
   components: {
     infoField,
     gaugeField,
+    loadingScreen,
     serverList,
   },
   computed: {
     selectedMachine: function(){
       return this.$route.params.machine;
+    },
+    isLoading: function(){
+      return Object.values(this.machines).length > 0 ? false : true;
     }
   },
   data: () => {
