@@ -68,14 +68,11 @@ export default {
     background-color: rgb(247, 247, 247);
 }
 
-
-
 .button img.machineType {
     width: 32px;
     height: 32px;
     filter: invert(1);
 }
-
 .button .infofield  {
     display: flex;
     flex-direction: column;
@@ -85,8 +82,8 @@ export default {
     gap: 2px;
 }
 .button .info {
-    min-width: 190px;
-    width: 190px;
+    min-width: 200px;
+    width: 200px;
 }
 .button .info .hostname {
     font-family: Work Sans;
@@ -109,6 +106,7 @@ export default {
     font-size: 10px;
     font-family: 'Work Sans', sans-serif;
     color: #414569;
+    text-align: left;
 }
 
 .button .field {
@@ -118,7 +116,7 @@ export default {
     min-width: 72px;
 }
 
-.button .field strong { opacity: 50%; }
+.button .field strong { opacity: .5; }
 .button .field.cpuUsage { margin-left: 32px; min-width: 32px; }
 
 
