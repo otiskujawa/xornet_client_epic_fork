@@ -12,9 +12,24 @@
       <div class="machines">
         <gaugeField v-if="machines[selectedMachine]" :machine="machines[selectedMachine]"/>
       </div>
+
+      <chart :type="'line'" :data="{
+        labels: ['10:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00'],
+        datasets: [
+          {
+            label: 'Upload Speed',
+            data: Array.from({length: 40}, () => Math.floor(Math.random() * 40)),
+          },
+                  {
+            label: 'Download Speed',
+            data: Array.from({length: 40}, () => Math.floor(Math.random() * 40)),
+          },
+        ]}"/>
+
+
     </div>
 
-    <!-- <chart :type="" :data="" :options=""/> -->
+
 
   </div>
 </template>
@@ -54,20 +69,6 @@ export default {
       totalRam: null,
       totalDownloadThroughput: null,
       totalUploadThroughput: null,
-      datacollection: {
-          labels: [Math.floor(Math.random() * (50 - 5 + 1)) + 5, Math.floor(Math.random() * (50 - 5 + 1)) + 5],
-          datasets: [
-            {
-              label: 'Data One',
-              backgroundColor: '#f87979',
-              data: [Math.floor(Math.random() * (50 - 5 + 1)) + 5, Math.floor(Math.random() * (50 - 5 + 1)) + 5]
-            }, {
-              label: 'Data One',
-              backgroundColor: '#f87979',
-              data: [Math.floor(Math.random() * (50 - 5 + 1)) + 5, Math.floor(Math.random() * (50 - 5 + 1)) + 5]
-            }
-          ]
-        }
     }
   },
   mounted(){
@@ -130,6 +131,7 @@ export default {
   height: 100%;
   width: 100%;
   display: flex;
+  flex-direction: column;
   gap: 8px;
   overflow: scroll;
   border-radius: 4px 0px 0px 0px;
