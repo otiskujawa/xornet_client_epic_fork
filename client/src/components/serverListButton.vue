@@ -28,7 +28,7 @@ export default {
     name: 'serverListButton',
     computed: {
         type: function(){
-            return this.machine.static.system.virtual ? 'vm' : 'pm';
+            return this.machine.isVirtual ? 'vm' : 'pm';
         }
     },
     props: {

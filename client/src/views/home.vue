@@ -13,6 +13,9 @@
         <gaugeField v-if="machines[selectedMachine]" :machine="machines[selectedMachine]"/>
       </div>
     </div>
+
+    <!-- <chart :type="" :data="" :options=""/> -->
+
   </div>
 </template>
 
@@ -22,12 +25,14 @@ import gaugeField from '@/components/gaugeField';
 import infoField from '@/components/infoField';
 import serverList from '@/components/serverList';
 import loadingScreen from '@/components/loadingScreen';
+import chart from '@/components/chart';
 
 export default {
   name: 'home',
   components: {
     infoField,
     gaugeField,
+    chart,
     loadingScreen,
     serverList,
   },
@@ -49,6 +54,20 @@ export default {
       totalRam: null,
       totalDownloadThroughput: null,
       totalUploadThroughput: null,
+      datacollection: {
+          labels: [Math.floor(Math.random() * (50 - 5 + 1)) + 5, Math.floor(Math.random() * (50 - 5 + 1)) + 5],
+          datasets: [
+            {
+              label: 'Data One',
+              backgroundColor: '#f87979',
+              data: [Math.floor(Math.random() * (50 - 5 + 1)) + 5, Math.floor(Math.random() * (50 - 5 + 1)) + 5]
+            }, {
+              label: 'Data One',
+              backgroundColor: '#f87979',
+              data: [Math.floor(Math.random() * (50 - 5 + 1)) + 5, Math.floor(Math.random() * (50 - 5 + 1)) + 5]
+            }
+          ]
+        }
     }
   },
   mounted(){
@@ -77,12 +96,12 @@ export default {
   methods: {
     addMachinesToServerList(machines){
       Object.values(machines).forEach(machine => {
-        if (machine.static.system.virtual){
+        if (machine.isVirtual){
           // if(!this.serverList.vms.has(machine.static.uuid.os)) this.serverList.vms.set(machine.static.uuid.os, machine);
-          this.serverList.vms.set(machine.static.uuid.os, machine);
+          this.serverList.vms.set(machine.uuid, machine);
         } else {
           // if(!this.serverList.pms.has(machine.static.uuid.os)) this.serverList.pms.set(machine.static.uuid.os, machine);
-          this.serverList.pms.set(machine.static.uuid.os, machine);
+          this.serverList.pms.set(machine.uuid, machine);
         }
       });
     }
