@@ -1,5 +1,5 @@
 <template>
-  <nav class="serverList">
+  <nav class="serverList" :class="{small: isSmall}">
     <div class="logo">
         <logo/>
     </div>
@@ -9,7 +9,7 @@
         <h1>Virtual Machines</h1>
     </section>
     <div class="list">
-        <serverListButton :machine="vm" v-for="vm of vms" :key="vm"/>
+        <serverListButton :showDetails="!isSmall" :machine="vm" v-for="vm of vms" :key="vm"/>
     </div>
 
     <section>
@@ -18,7 +18,7 @@
     </section>
 
     <div class="list">
-        <serverListButton :machine="pm" v-for="pm of pms" :key="pm"/>
+        <serverListButton :showDetails="!isSmall" :machine="pm" v-for="pm of pms" :key="pm"/>
     </div>
   </nav>
 </template>
@@ -28,6 +28,11 @@ import logo from '@/components/logo';
 import serverListButton from '@/components/serverListButton';
 export default {
     name: 'serverList',
+    computed: {
+        isSmall: function(){
+            return this.$route.params.machine ? true : false;
+        }
+    },
     components: {
         serverListButton,
         logo
@@ -35,20 +40,31 @@ export default {
     props: {
         vms: { type: Object, required: false },
         pms: { type: Object, required: false },
-    }
+    },
+    watch:{
+        $route (to, from){
+            this.isSmall = false;
+        }
+    },
 }
 </script>
 
 <style scoped>
 
 .serverList {
-    width: 320px;
-    min-width: 320px;
+    width: 100%;
+    min-width: 100%;
     height: 100%;
     flex-direction: column;
     font-family: 'Work Sans', sans-serif;
     padding: 0px 8px;
     background-color: white;
+    transition: 200ms ease;
+}
+
+.serverList.small {
+    width: 320px;
+    min-width: 320px;
 }
 
 .serverList .logo {

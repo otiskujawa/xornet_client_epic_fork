@@ -5,10 +5,19 @@
             <h1 class="hostname">{{machine.name}}</h1>
             <h1 class="status">{{machine.static.uuid.os.replace(/-/g, '')}}</h1>
         </div>
+        <div class="field cpuUsage" v-if="showDetails">{{machine.cpu}}<strong>%</strong></div>
+        <div class="field ramUsage" v-if="showDetails">{{machine.ram.used}}/{{machine.ram.total}}<strong>GB</strong></div>
+        <div class="field networkUsage" v-if="showDetails">{{machine.network.RxSec}}<strong>mbps</strong></div>
+        <div class="field networkUsage" v-if="showDetails">{{machine.network.TxSec}}<strong>mbps</strong></div>
         <div class="platform">
             <img v-if="machine.platform == 'win32'" :src="require('@/assets/icons/windows-small.png')" alt="">
             <img v-if="machine.platform == 'darwin'" :src="require('@/assets/icons/macos-small.png')" alt="">
             <img v-if="machine.platform == 'linux'" :src="require('@/assets/icons/linux-small.png')" alt="">
+            <!-- <img v-if="machine.static.system.manufacturer.startsWith('Raspberry Pi')" :src="require('@/assets/icons/raspberry.png')" alt="">
+            <img v-if="machine.static.system.manufacturer.startsWith('Dell')" style="height: 10px" :src="require('@/assets/icons/dell.png')" alt="">
+            <img v-if="machine.static.system.manufacturer.startsWith('Hewlett-Packard')" :src="require('@/assets/icons/hp.png')" alt="">
+            <img v-if="machine.static.system.manufacturer.startsWith('Gigabyte')" style="height: 7px" :src="require('@/assets/icons/gigabyte.png')" alt="">
+            <img v-if="machine.static.system.manufacturer.startsWith('Asus')" style="height: 7px" :src="require('@/assets/icons/asus.png')" alt=""> -->
             <h1 v-if="machine.reporterVersion">v{{machine.reporterVersion}}</h1>
         </div>
     </router-link>
@@ -24,6 +33,7 @@ export default {
     },
     props: {
         machine: { type: Object, required: true },
+        showDetails: { type: Boolean, required: true },
     }
 }
 </script>
@@ -54,13 +64,20 @@ export default {
     transform: translateY(-0px);
 }
 
+.button.router-link-active {
+    background-color: rgb(247, 247, 247);
+
+    border: 1px solid var(--white);
+}
+
+
 .button img.machineType {
     width: 32px;
     height: 32px;
     filter: invert(1);
 }
 
-.button .info {
+.button .infofield  {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -68,26 +85,44 @@ export default {
     text-align: center;
     gap: 2px;
 }
-
+.button .info {
+    min-width: 190px;
+    width: 190px;
+}
 .button .info .hostname {
     font-family: Work Sans;
     font-style: normal;
     font-weight: 500;
-    white-space: nowrap;
     font-size: 14px;
     line-height: 117.9%;
     text-transform: lowercase;
     color: var(--black);
+    text-align: left;
 }
 
+.button .info * { width: 100%; }
+
 .button .info .status,
+.button .field,
+.button .field strong,
 .button .platform h1 {
     font-weight: 600;
     font-size: 10px;
     font-family: 'Work Sans', sans-serif;
-
     color: #414569;
 }
+
+.button .field {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    min-width: 72px;
+}
+
+.button .field strong { opacity: 50%; }
+.button .field.cpuUsage { margin-left: 32px; min-width: 32px; }
+
+
 .button .info .status {
     background: linear-gradient(110.78deg, rgb(118, 230, 80) -1.13%, rgb(249, 214, 73) 15.22%, rgb(240, 142, 53) 32.09%, rgb(236, 81, 87) 48.96%, rgb(255, 24, 189) 67.94%, rgb(26, 75, 255) 85.34%, rgb(98, 216, 249) 99.57%);
     background-clip: text;
@@ -101,12 +136,11 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-end;
-
 }
 
 .button .platform img {
-    width: 12px;
-    height: 12px;
+    width: auto;
+    height: 13px;
 }
 
 </style>
