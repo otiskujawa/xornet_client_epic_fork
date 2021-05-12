@@ -1,9 +1,9 @@
 <template>
-    <router-link :to="`/${machine.static.uuid.os.replace(/-/g, '')}`" class="button">
+    <router-link :to="`/${machine.uuid}`" class="button">
         <img  class="machineType" :src="require(`@/assets/icons/${type}.png`)" alt="">
         <div class="info">
             <h1 class="hostname">{{machine.name}}</h1>
-            <h1 class="status">{{machine.static.uuid.os.replace(/-/g, '')}}</h1>
+            <h1 class="status">{{machine.uuid}}</h1>
         </div>
         <div class="field cpuUsage" v-if="showDetails">{{machine.cpu}}<strong>%</strong></div>
         <div class="field ramUsage" v-if="showDetails">{{machine.ram.used}}/{{machine.ram.total}}<strong>GB</strong></div>
@@ -66,9 +66,8 @@ export default {
 
 .button.router-link-active {
     background-color: rgb(247, 247, 247);
-
-    border: 1px solid var(--white);
 }
+
 
 
 .button img.machineType {

@@ -28,9 +28,9 @@ import logo from '@/components/logo';
 import serverListButton from '@/components/serverListButton';
 export default {
     name: 'serverList',
-    computed: {
-        isSmall: function(){
-            return this.$route.params.machine ? true : false;
+    data: () => {
+        return {
+            isSmall: false,
         }
     },
     components: {
@@ -43,7 +43,7 @@ export default {
     },
     watch:{
         $route (to, from){
-            this.isSmall = false;
+            this.isSmall = this.$route.params.machine ? true : false;
         }
     },
 }

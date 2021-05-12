@@ -9,7 +9,7 @@
         <infoField title="Total Download Throughput" :value="totalDownloadThroughput + 'mbps'"/>
       </div>
       <div class="machines">
-        <gaugeField :machine="machine" v-for="machine of machines" :key="machine"/>
+        <gaugeField v-if="machines[selectedMachine]" :machine="machines[selectedMachine]"/>
       </div>
     </div>
   </div>
@@ -27,11 +27,15 @@ export default {
     infoField,
     gaugeField,
     serverList,
-
+  },
+  computed: {
+    selectedMachine: function(){
+      return this.$route.params.machine;
+    }
   },
   data: () => {
     return {
-      machines: [],
+      machines: {},
       serverList: {
         vms: new Map(),
         pms: new Map(),
@@ -52,7 +56,7 @@ export default {
       let totalRamUsed = 0; 
       let totalDownloadThroughput = 0;
       let totalUploadThroughput = 0;
-      for(let machine of machines){
+      for(let machine of Object.values(machines)){
         totalRam = totalRam + Math.ceil(machine.ram.total);
         totalRamUsed = totalRamUsed + machine.ram.used;
         totalDownloadThroughput = totalDownloadThroughput + machine.network.RxSec;
@@ -66,15 +70,22 @@ export default {
   },
   methods: {
     addMachinesToServerList(machines){
-      machines.forEach(machine => {
+      Object.values(machines).forEach(machine => {
         if (machine.static.system.virtual){
-          if(!this.serverList.vms.has(machine.static.uuid.os)) this.serverList.vms.set(machine.static.uuid.os, machine);
+          // if(!this.serverList.vms.has(machine.static.uuid.os)) this.serverList.vms.set(machine.static.uuid.os, machine);
+          this.serverList.vms.set(machine.static.uuid.os, machine);
         } else {
-          if(!this.serverList.pms.has(machine.static.uuid.os)) this.serverList.pms.set(machine.static.uuid.os, machine);
+          // if(!this.serverList.pms.has(machine.static.uuid.os)) this.serverList.pms.set(machine.static.uuid.os, machine);
+          this.serverList.pms.set(machine.static.uuid.os, machine);
         }
       });
     }
-  }
+  },
+  watch:{
+    $route (to, from){
+      this.isSmall = false;
+    }
+  },
 }
 </script>
 
