@@ -1,6 +1,6 @@
 <template>
     <div class="chart" >
-        <canvas id="myChart" width="400" height="400"></canvas>
+        <canvas :id="identity" width="400" height="400"></canvas>
     </div>
 </template>
 
@@ -11,10 +11,10 @@ export default {
         data: { type: [Object, Array], required: true },
         type: { type: String, required: true },
         options: { type: Object, required: false },
+        identity: { type: String, required: true },
     },
     mounted(){
-        var ctx = document.getElementById('myChart').getContext('2d');
-        ctx.height = 500;
+        var ctx = document.getElementById(this.identity).getContext('2d');
         var myChart = new Chart(ctx, {
             type: this.type,
             data: this.data,

@@ -13,7 +13,7 @@
         <gaugeField v-if="machines[selectedMachine]" :machine="machines[selectedMachine]"/>
       </div>
 
-      <chart :key="totalDownload[totalDownload.length - 1]" :type="'line'" :data="{
+      <chart :key="totalUpload[totalUpload.length - 2] + 'upload'" :identity="totalUpload[totalUpload.length - 2] + 'upload'" :type="'line'" :data="{
         labels: labels,
         datasets: [
           {
@@ -22,6 +22,10 @@
             borderColor: '#ff0062',
             backgroundColor: '#ff458caa'
           },
+        ]}"/>
+      <chart :key="totalDownload[totalDownload.length - 1] + 'download'" :identity="totalDownload[totalDownload.length - 1] + 'download'" :type="'line'" :data="{
+        labels: labels,
+        datasets: [
           {
             label: 'Download',
             data: totalDownload,
