@@ -21,7 +21,24 @@ export default {
             options: this.options || {
                 maintainAspectRatio: false,
                 fill: true,
-                backgroundColor: 'rgba(200, 0, 150, 0.50)'
+                tension: 0.4,
+                animation: {
+                    duration: 0
+                },
+                pointBackgroundColor: '#00000000',
+                pointBorderColor: '#00000000',
+                scales: {
+                    x: {
+                        grid: {
+                            display: false,
+                        },
+                    },
+                    y: {
+                        grid: {
+                            display: false,
+                        },
+                    }
+                }
             }
         });
     },
@@ -31,7 +48,7 @@ export default {
 <style scoped>
 .chart {
     background-color: white;
-    width: 500px;
+    width: 800px;
     height: 250px;
 }
 </style>

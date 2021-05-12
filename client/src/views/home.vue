@@ -13,24 +13,23 @@
         <gaugeField v-if="machines[selectedMachine]" :machine="machines[selectedMachine]"/>
       </div>
 
-      <chart :type="'line'" :data="{
-        labels: ['10:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00', '11:00', '12:00', '13:00'],
+      <chart :key="totalDownload[totalDownload.length - 1]" :type="'line'" :data="{
+        labels: labels,
         datasets: [
           {
-            label: 'Upload Speed',
-            data: Array.from({length: 40}, () => Math.floor(Math.random() * 40)),
+            label: 'Upload',
+            data: totalUpload,
+            borderColor: '#ff0062',
+            backgroundColor: '#ff458caa'
           },
-                  {
-            label: 'Download Speed',
-            data: Array.from({length: 40}, () => Math.floor(Math.random() * 40)),
+          {
+            label: 'Download',
+            data: totalDownload,
+            borderColor: '#00c8ff',
+            backgroundColor: '#52daffaa'
           },
         ]}"/>
-
-
     </div>
-
-
-
   </div>
 </template>
 
@@ -69,6 +68,9 @@ export default {
       totalRam: null,
       totalDownloadThroughput: null,
       totalUploadThroughput: null,
+      totalDownload: [],
+      totalUpload: [],
+      labels: [],
     }
   },
   mounted(){
@@ -92,6 +94,16 @@ export default {
       this.totalRamUsed = totalRamUsed.toFixed(2);
       this.totalDownloadThroughput = totalDownloadThroughput.toFixed(2);
       this.totalUploadThroughput = totalUploadThroughput.toFixed(2);
+
+      this.totalDownload.push(parseFloat(totalDownloadThroughput.toFixed(2)));
+      this.totalUpload.push(parseFloat(totalUploadThroughput.toFixed(2)));
+      this.labels.push(`${new Date().getHours()}:${new Date().getMinutes()}`);
+
+      if (this.totalDownload.length > 128) {
+        this.totalDownload.shift();
+        this.totalUpload.shift();
+        this.labels.shift();
+      }
     });
   },
   methods: {
