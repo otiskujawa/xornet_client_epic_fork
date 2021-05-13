@@ -32,8 +32,8 @@
     <gauge
       :icon="require('@/assets/icons/hdd.png')"
       suffix="GB"
-      :value="parseFloat(machine.disks.total)"
-      :maxValue="10000"
+      :value="parseFloat(machine.disks.available)"
+      :maxValue="parseFloat(machine.disks.total)"
     />
   </fieldset>
 </template>
