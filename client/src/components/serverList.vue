@@ -170,8 +170,8 @@ export default {
     text-transform: uppercase;
     font-family: Work Sans;
     font-style: normal;
-    font-weight: 600;
-    font-size: 10px;
+    font-weight: 500;
+    font-size: 12px;
     line-height: 117.9%;
     display: flex;
     align-items: center;

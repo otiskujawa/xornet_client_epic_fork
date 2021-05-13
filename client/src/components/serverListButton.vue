@@ -7,7 +7,7 @@
         </div>
         <div class="field cpuUsage" v-if="showDetails">{{machine.cpu}}<strong>%</strong></div>
         <div class="field ramUsage" v-if="showDetails">{{machine.ram.used}}/{{machine.ram.total}}<strong>GB</strong></div>
-        <div class="field diskUsage" v-if="showDetails">{{machine.disks.total}}<strong>GB</strong></div>
+        <div class="field diskUsage" v-if="showDetails">{{machine.disks?.total}}<strong>GB</strong></div>
         <div class="field networkUsage" v-if="showDetails">{{machine.network.RxSec}}<strong>mbps</strong></div>
         <div class="field networkUsage" v-if="showDetails">{{machine.network.TxSec}}<strong>mbps</strong></div>
         <div class="platform">
@@ -53,6 +53,7 @@ export default {
     cursor: pointer;
     transition: 100ms ease;
     text-decoration: none;
+    overflow: hidden;
     user-select: none;
 }
 
@@ -91,13 +92,17 @@ export default {
 }
 
 .button .info {
-    min-width: 200px;
+    min-width: 238px;
     width: 200px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 }
 
 .button.thin .info  {
     display: flex;
-    min-width: 268px;
+    flex-direction: row;
+    min-width: 348px;
 }
 
 .button .info .hostname {
@@ -112,8 +117,8 @@ export default {
 }
 
 .button.thin .info .hostname {
-    font-weight: 600;
-    font-size: 10px;
+    font-weight: 500;
+    font-size: 12px;
     min-width: 100px;
 }
 
@@ -124,8 +129,8 @@ export default {
 .button .field,
 .button .field strong,
 .button .platform h1 {
-    font-weight: 600;
-    font-size: 10px;
+    font-weight: 500;
+    font-size: 12px;
     font-family: 'Work Sans', sans-serif;
     color: var(--slyColor);;
     text-align: left;
