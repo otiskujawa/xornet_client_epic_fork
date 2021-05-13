@@ -29,6 +29,12 @@
       :value="parseFloat(machine.network.RxSec)"
       :maxValue="1000 * machine.network.totalInterfaces"
     />
+    <gauge
+      :icon="require('@/assets/icons/download.png')"
+      suffix="GB"
+      :value="parseFloat(machine.disks.total)"
+      :maxValue="10000"
+    />
   </fieldset>
 </template>
 
