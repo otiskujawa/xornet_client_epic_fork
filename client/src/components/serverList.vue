@@ -1,7 +1,8 @@
 <template>
   <nav class="serverList" :class="{small: isSmall}">
-    <div class="logo">
+    <div class="heading">
         <logo/>
+        <downloadButton/>
     </div>
 
     <section>
@@ -20,12 +21,14 @@
     <div class="list">
         <serverListButton :showDetails="!isSmall" :machine="pm" v-for="pm of pms" :key="pm"/>
     </div>
+    
   </nav>
 </template>
 
 <script>
 import logo from '@/components/logo';
 import serverListButton from '@/components/serverListButton';
+import downloadButton from '@/components/downloadButton';
 export default {
     name: 'serverList',
     computed: {
@@ -34,6 +37,7 @@ export default {
         }
     },
     components: {
+        downloadButton,
         serverListButton,
         logo
     },
@@ -67,10 +71,11 @@ export default {
     min-width: 320px;
 }
 
-.serverList .logo {
+.serverList .heading {
     width: 100%;
     padding: 8px 0px;
     display: flex;
+    justify-content: space-between;
 }
 
 .serverList section {
