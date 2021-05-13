@@ -21,7 +21,7 @@ export default {
             options: this.options || {
                 maintainAspectRatio: false,
                 fill: true,
-                tension: 0.4,
+                tension: 0.2,
                 animation: {
                     duration: 0
                 },
@@ -35,7 +35,6 @@ export default {
                     },
                     y: {
                         grid: {
-                            display: false,
                         },
                     }
                 }
