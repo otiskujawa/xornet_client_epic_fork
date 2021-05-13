@@ -30,7 +30,7 @@
       :maxValue="1000 * machine.network.totalInterfaces"
     />
     <gauge
-      :icon="require('@/assets/icons/download.png')"
+      :icon="require('@/assets/icons/hdd.png')"
       suffix="GB"
       :value="parseFloat(machine.disks.total)"
       :maxValue="10000"
