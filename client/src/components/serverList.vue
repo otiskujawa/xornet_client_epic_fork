@@ -76,12 +76,14 @@ export default {
                 document.documentElement.style.setProperty('--background-color', '#0d1117');
                 document.documentElement.style.setProperty('--white', '#161b22');
                 document.documentElement.style.setProperty('--black', '#fff');
+                document.documentElement.style.setProperty('--slyColor', '#fff');
                 document.documentElement.style.setProperty('--filter', 1);
                 this.darkmode = true;
             } else {
                 document.documentElement.style.setProperty('--background-color', '#fff');
                 document.documentElement.style.setProperty('--white', '#f6f6f6');
                 document.documentElement.style.setProperty('--black', '#000');
+                document.documentElement.style.setProperty('--slyColor', '#414569');
                 document.documentElement.style.setProperty('--filter', 0);
                 this.darkmode = false;
             }
