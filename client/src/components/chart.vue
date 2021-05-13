@@ -46,7 +46,7 @@ export default {
 
 <style scoped>
 .chart {
-    background-color: white;
+    background-color: var(--background-color);
     width: 800px;
     height: 250px;
 }

@@ -9,6 +9,9 @@
             <a href="https://github.com/Geoxor/Xornet/releases" target="_blank" class="button">
                 <img :src="require('@/assets/icons/repository.png')" alt="">
             </a>
+            <div class="button" @click="toggleDarkmode()">
+                <img :src="require('@/assets/icons/darkmode.png')" alt="">
+            </div>
             <div class="button" @click="thinButtons = false">
                 <img :src="require('@/assets/icons/thick.png')" alt="">
             </div>
@@ -51,6 +54,7 @@ export default {
     data: () => {
         return {
             thinButtons: false,
+            darkmode: false,
         }
     },
     components: {
@@ -66,6 +70,23 @@ export default {
             this.isSmall = this.$route.params.machine ? true : false;
         }
     },
+    methods: {
+        toggleDarkmode(){
+            if(!this.darkmode){
+                document.documentElement.style.setProperty('--background-color', '#0d1117');
+                document.documentElement.style.setProperty('--white', '#161b22');
+                document.documentElement.style.setProperty('--black', '#fff');
+                document.documentElement.style.setProperty('--filter', 1);
+                this.darkmode = true;
+            } else {
+                document.documentElement.style.setProperty('--background-color', '#fff');
+                document.documentElement.style.setProperty('--white', '#f6f6f6');
+                document.documentElement.style.setProperty('--black', '#000');
+                document.documentElement.style.setProperty('--filter', 0);
+                this.darkmode = false;
+            }
+        }
+    }
 }
 </script>
 
@@ -80,7 +101,7 @@ export default {
     flex-direction: column;
     font-family: 'Work Sans', sans-serif;
     padding: 0px 8px;
-    background-color: white;
+    background-color: var(--background-color);
     transition: 200ms ease;
 }
 
@@ -103,7 +124,7 @@ export default {
 
 .serverList .heading .buttons .button {
     padding: 8px;
-    background-color: white;
+    background-color: var(--background-color);
     border-radius: 4px;
     box-sizing: border-box;
     border: 1px solid transparent;
@@ -128,6 +149,7 @@ export default {
 .serverList .heading .buttons .button img {
     width: 24px;
     height: 24px;
+    filter: invert(var(--filter));
 }
 
 .serverList section {
@@ -152,7 +174,7 @@ export default {
     display: flex;
     align-items: center;
     text-align: center;
-    color: #414569;
+    color: var(--slyColor);;
 }
 
 .serverList .list {

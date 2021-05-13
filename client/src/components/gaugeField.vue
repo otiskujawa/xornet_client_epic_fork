@@ -63,13 +63,13 @@ export default {
   border: 1px solid transparent;
   border-radius: 4px;
   cursor: pointer;
-  background-color: white;
+  background-color: var(--background-color);
   transition: 100ms ease;
 }
 
 .machine legend {
   left: 24px;
-  color: black;
+  color: var(--black);
   text-transform: lowercase;
 }
 

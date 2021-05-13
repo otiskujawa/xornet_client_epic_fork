@@ -44,7 +44,7 @@ export default {
 
 .button {
     padding: 8px;
-    background-color: white;
+    background-color: var(--background-color);
     border-radius: 4px;
     box-sizing: border-box;
     border: 1px solid transparent;
@@ -67,13 +67,13 @@ export default {
 }
 
 .button.router-link-active {
-    background-color: rgb(247, 247, 247);
+    background-color: var(--white);
 }
 
 .button img.machineType {
     width: 32px;
     height: 32px;
-    filter: invert(1);
+    filter: invert(var(--filter));
 }
 
 .button.thin img.machineType {
@@ -127,7 +127,7 @@ export default {
     font-weight: 600;
     font-size: 10px;
     font-family: 'Work Sans', sans-serif;
-    color: #414569;
+    color: var(--slyColor);;
     text-align: left;
 }
 

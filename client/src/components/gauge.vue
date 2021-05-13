@@ -37,12 +37,12 @@ export default {
   transform: translate(-50%, -50%);
   height: 32px;
   width: 32px;
-  /* filter: invert(1); */
+  filter: invert(var(--filter));
 }
 
 .gaugeText {
   font-family: 'Courier Prime', monospace;
-  color: black;
+  color: var(--black);
   font-size: 13px;
   font-style: normal;
   font-weight: 400;

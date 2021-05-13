@@ -5,11 +5,14 @@
 <style>
 
 :root {
+  --background-color: #ffffff;
+  --white: #f6f6f6;
   --black: #0B0B15;
   --dark: #151527;
   --dark-light: #0F0F1E;
   --dark-lighter: #252547;
-  --white: #f6f6f6;
+  --slyColor: #414569;
+  --filter: 0;
 }
 
 * {
@@ -45,7 +48,5 @@ html {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
-
-
 
 </style>
