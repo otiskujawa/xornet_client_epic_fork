@@ -103,7 +103,7 @@ export default {
       this.totalUpload.push(parseFloat(totalUploadThroughput.toFixed(2)));
       this.labels.push(`${new Date().getHours()}:${new Date().getMinutes()}`);
 
-      if (this.totalDownload.length > 128) {
+      if (this.totalDownload.length > 300) {
         this.totalDownload.shift();
         this.totalUpload.shift();
         this.labels.shift();
