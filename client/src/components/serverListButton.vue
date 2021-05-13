@@ -92,7 +92,7 @@ export default {
 }
 
 .button .info {
-    min-width: 238px;
+    min-width: 218px;
     width: 200px;
     display: flex;
     justify-content: space-between;
@@ -118,7 +118,7 @@ export default {
 
 .button.thin .info .hostname {
     font-weight: 500;
-    font-size: 12px;
+    font-size: 11px;
     min-width: 100px;
 }
 
@@ -130,7 +130,7 @@ export default {
 .button .field strong,
 .button .platform h1 {
     font-weight: 500;
-    font-size: 12px;
+    font-size: 11px;
     font-family: 'Work Sans', sans-serif;
     color: var(--slyColor);;
     text-align: left;

@@ -171,7 +171,7 @@ export default {
     font-family: Work Sans;
     font-style: normal;
     font-weight: 500;
-    font-size: 12px;
+    font-size: 11px;
     line-height: 117.9%;
     display: flex;
     align-items: center;

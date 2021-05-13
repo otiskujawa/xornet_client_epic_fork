@@ -46,7 +46,7 @@ export default {
 }
 
 .info .title {
-  font-size: 12px;
+  font-size: 11px;
   font-family: inherit;
 }
 
