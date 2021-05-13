@@ -1,6 +1,6 @@
 <template>
-    <router-link :to="`/${machine.uuid}`" class="button">
-        <img  class="machineType" :src="require(`@/assets/icons/${type}.png`)" alt="">
+    <router-link :to="`/${machine.uuid}`" class="button" :class="{thin: thin}">
+        <img class="machineType" :src="require(`@/assets/icons/${type}.png`)" alt="">
         <div class="info">
             <h1 class="hostname">{{machine.name}}</h1>
             <h1 class="status">{{machine.uuid}}</h1>
@@ -34,6 +34,7 @@ export default {
     props: {
         machine: { type: Object, required: true },
         showDetails: { type: Boolean, required: true },
+        thin: { type: Boolean, required: false, default: false },
     }
 }
 </script>
@@ -73,6 +74,12 @@ export default {
     height: 32px;
     filter: invert(1);
 }
+
+.button.thin img.machineType {
+    width: 16px;
+    height: 16px;
+}
+
 .button .infofield  {
     display: flex;
     flex-direction: column;
@@ -81,10 +88,17 @@ export default {
     text-align: center;
     gap: 2px;
 }
+
 .button .info {
     min-width: 200px;
     width: 200px;
 }
+
+.button.thin .info  {
+    display: flex;
+    min-width: 268px;
+}
+
 .button .info .hostname {
     font-family: Work Sans;
     font-style: normal;
@@ -96,7 +110,14 @@ export default {
     text-align: left;
 }
 
-.button .info * { width: 100%; }
+.button.thin .info .hostname {
+    font-weight: 600;
+    font-size: 10px;
+    min-width: 100px;
+}
+
+.button .info * { width: 100%; white-space: nowrap;}
+.button.thin .info * { text-align: center; align-items: center; display: flex; gap: 2px;}
 
 .button .info .status,
 .button .field,
@@ -107,6 +128,10 @@ export default {
     font-family: 'Work Sans', sans-serif;
     color: #414569;
     text-align: left;
+}
+
+.button.thin .info .status {
+    min-width: fit-content;
 }
 
 .button .field {
@@ -134,6 +159,13 @@ export default {
     justify-content: space-between;
     align-items: flex-end;
 }
+
+.button.thin .platform {
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 4px;
+}
+
 
 .button .platform img {
     width: auto;

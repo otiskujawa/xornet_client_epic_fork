@@ -2,7 +2,20 @@
   <nav class="serverList" :class="{small: isSmall}">
     <div class="heading">
         <logo/>
-        <downloadButton/>
+        <div class="buttons">
+            <router-link to="/" class="button">
+                <img :src="require('@/assets/icons/home.png')" alt="">
+            </router-link>
+            <a href="https://github.com/Geoxor/Xornet/releases" target="_blank" class="button">
+                <img :src="require('@/assets/icons/repository.png')" alt="">
+            </a>
+            <div class="button" @click="thinButtons = false">
+                <img :src="require('@/assets/icons/thick.png')" alt="">
+            </div>
+            <div class="button" @click="thinButtons = true">
+                <img :src="require('@/assets/icons/thin.png')" alt="">
+            </div>
+        </div>
     </div>
 
     <section>
@@ -10,7 +23,7 @@
         <h1>Virtual Machines</h1>
     </section>
     <div class="list">
-        <serverListButton :showDetails="!isSmall" :machine="vm" v-for="vm of vms" :key="vm"/>
+        <serverListButton :thin="thinButtons" :showDetails="!isSmall" :machine="vm" v-for="vm of vms" :key="vm"/>
     </div>
 
     <section>
@@ -19,7 +32,7 @@
     </section>
 
     <div class="list">
-        <serverListButton :showDetails="!isSmall" :machine="pm" v-for="pm of pms" :key="pm"/>
+        <serverListButton :thin="thinButtons" :showDetails="!isSmall" :machine="pm" v-for="pm of pms" :key="pm"/>
     </div>
     
   </nav>
@@ -28,7 +41,6 @@
 <script>
 import logo from '@/components/logo';
 import serverListButton from '@/components/serverListButton';
-import downloadButton from '@/components/downloadButton';
 export default {
     name: 'serverList',
     computed: {
@@ -36,8 +48,12 @@ export default {
             return this.$route.params.machine ? true : false;
         }
     },
+    data: () => {
+        return {
+            thinButtons: false,
+        }
+    },
     components: {
-        downloadButton,
         serverListButton,
         logo
     },
@@ -54,6 +70,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 
 .serverList {
     width: 100%;
@@ -76,6 +94,40 @@ export default {
     padding: 8px 0px;
     display: flex;
     justify-content: space-between;
+}
+
+.serverList .heading .buttons {
+    gap: 4px;
+    display: flex;
+}
+
+.serverList .heading .buttons .button {
+    padding: 8px;
+    background-color: white;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    display: flex;
+    gap: 8px;
+    cursor: pointer;
+    transition: 100ms ease;
+    text-decoration: none;
+    user-select: none;
+}
+
+.serverList .heading .buttons .button:hover {
+    border: 1px solid var(--white);
+    transform: translateY(-1px);
+    box-shadow: rgb(0 0 0 / 10%) 0px 10px 20px;
+}
+
+.serverList .heading .buttons .button:active {
+    transform: translateY(-0px);
+}
+
+.serverList .heading .buttons .button img {
+    width: 24px;
+    height: 24px;
 }
 
 .serverList section {
