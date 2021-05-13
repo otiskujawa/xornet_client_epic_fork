@@ -30,10 +30,12 @@
       :maxValue="1000 * machine.network.totalInterfaces"
     />
     <gauge
+      v-for="disk of machine.disks"
+      :key="disk"
       :icon="require('@/assets/icons/hdd.png')"
-      suffix="GB"
-      :value="parseFloat(machine.disks.available)"
-      :maxValue="parseFloat(machine.disks.total)"
+      suffix="%"
+      :value="parseFloat(disk.use)"
+      :maxValue="100"
     />
   </fieldset>
 </template>

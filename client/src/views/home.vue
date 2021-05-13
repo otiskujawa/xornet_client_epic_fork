@@ -8,7 +8,6 @@
         <infoField title="Total RAM" :value="totalRamUsed + 'GB / ' + totalRam + 'GB'"/>
         <infoField title="Total Upload Throughput" :value="totalUploadThroughput + 'mbps'"/>
         <infoField title="Total Download Throughput" :value="totalDownloadThroughput + 'mbps'"/>
-        <infoField title="Total Disk Storage" :value="totalDiskStorage + 'GB'"/>
       </div>
       <div class="machines">
         <gaugeField v-if="machines[selectedMachine]" :machine="machines[selectedMachine]"/>
@@ -89,19 +88,16 @@ export default {
       let totalRamUsed = 0; 
       let totalDownloadThroughput = 0;
       let totalUploadThroughput = 0;
-      let totalDiskStorage = 0;
       for(let machine of Object.values(machines)){
         totalRam = totalRam + Math.ceil(machine.ram.total);
         totalRamUsed = totalRamUsed + machine.ram.used;
         totalDownloadThroughput = totalDownloadThroughput + machine.network.RxSec;
         totalUploadThroughput = totalUploadThroughput + machine.network.TxSec;
-        totalDiskStorage = totalDiskStorage + machine.disks.total;
       }
       this.totalRam = totalRam;
       this.totalRamUsed = totalRamUsed.toFixed(2);
       this.totalDownloadThroughput = totalDownloadThroughput.toFixed(2);
       this.totalUploadThroughput = totalUploadThroughput.toFixed(2);
-      this.totalDiskStorage = totalDiskStorage;
 
       this.totalDownload.push(parseFloat(totalDownloadThroughput.toFixed(2)));
       this.totalUpload.push(parseFloat(totalUploadThroughput.toFixed(2)));
