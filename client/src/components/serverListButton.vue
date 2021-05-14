@@ -1,5 +1,5 @@
 <template>
-    <router-link :to="`/${machine.uuid}`" class="button" :class="{thin: thin}">
+    <router-link :to="`/${machine.uuid}`" class="button" :class="{thin: thin, rogue: machine.rogue}">
         <img class="machineType" :src="require(`@/assets/icons/${type}.png`)" alt="">
         <div class="info">
             <h1 class="hostname">{{machine.name}}</h1>
@@ -57,10 +57,18 @@ export default {
     user-select: none;
 }
 
+.button.rogue {
+    background-color: #2d0000;
+}
+
 .button:hover {
     border: 1px solid var(--white);
     transform: translateY(-1px);
     box-shadow: rgb(0 0 0 / 10%) 0px 10px 20px;
+}
+
+.button.rogue:hover {
+    border: 1px solid #870000;
 }
 
 .button:active {
