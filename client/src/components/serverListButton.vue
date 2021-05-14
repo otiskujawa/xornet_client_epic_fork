@@ -144,7 +144,7 @@ export default {
 }
 
 .button .info * { width: 100%; white-space: nowrap;}
-.button.thin .info * { text-align: center; align-items: center; display: flex; gap: 2px;}
+.button.thin .info * { text-align: center; align-items: center; display: flex; gap: 2px; }
 
 .button .info .status,
 .button .field,
@@ -159,6 +159,7 @@ export default {
 
 .button.thin .info .status {
     min-width: fit-content;
+    justify-content: flex-end;
 }
 
 .button .field {

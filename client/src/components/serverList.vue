@@ -85,7 +85,6 @@ export default {
                 document.documentElement.style.setProperty('--rogue-red-border', '#870000');
                 document.documentElement.style.setProperty('--rogue-red-active', '#480000');
                 document.documentElement.style.setProperty('--filter', 1);
-                 
                 this.darkmode = true;
             } else {
                 document.documentElement.style.setProperty('--background-color', '#fff');

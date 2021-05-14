@@ -2,7 +2,7 @@
   <div class="view home">
     <loadingScreen :isLoaded="!isLoading"/>
 
-    <harmonyNavigation/>
+    <!-- <harmonyNavigation/> -->
 
     <serverList :vms="Array.from(serverList.vms.values())" :pms="Array.from(serverList.pms.values())"/>
 
@@ -16,7 +16,7 @@
         <gaugeField v-if="machines[selectedMachine]" :machine="machines[selectedMachine]"/>
       </div>
 
-      <chart :key="totalUpload[totalUpload.length - 2] + 'upload'" :identity="totalUpload[totalUpload.length - 2] + 'upload'" :type="'line'" :data="{
+      <!-- <chart :key="totalUpload[totalUpload.length - 2] + 'upload'" :identity="totalUpload[totalUpload.length - 2] + 'upload'" :type="'line'" :data="{
         labels: labels,
         datasets: [
           {
@@ -35,7 +35,7 @@
             borderColor: '#00c8ff',
             backgroundColor: '#52daffaa'
           },
-        ]}"/>
+        ]}"/> -->
     </div>
   </div>
 </template>
