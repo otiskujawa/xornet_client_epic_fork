@@ -24,14 +24,6 @@
     <serverListColumns v-if="thinButtons" :thin="thinButtons"/>
 
     <section v-if="!thinButtons">
-        <img :src="require('@/assets/icons/vm-small.png')" alt="">
-        <h1>Virtual Machines</h1>
-    </section>
-    <div class="list">
-        <serverListButton :thin="thinButtons" :showDetails="!isSmall" :machine="vm" v-for="vm of vms" :key="vm"/>
-    </div>
-
-    <section v-if="!thinButtons">
         <img :src="require('@/assets/icons/pm-small.png')" alt="">
         <h1>Physical Machines</h1>
     </section>
@@ -39,7 +31,15 @@
     <div class="list">
         <serverListButton :thin="thinButtons" :showDetails="!isSmall" :machine="pm" v-for="pm of pms" :key="pm"/>
     </div>
-    
+
+    <section v-if="!thinButtons">
+        <img :src="require('@/assets/icons/vm-small.png')" alt="">
+        <h1>Virtual Machines</h1>
+    </section>
+    <div class="list">
+        <serverListButton :thin="thinButtons" :showDetails="!isSmall" :machine="vm" v-for="vm of vms" :key="vm"/>
+    </div>
+   
   </nav>
 </template>
 
@@ -109,6 +109,7 @@ export default {
     padding: 0px 8px;
     background-color: var(--background-color);
     transition: 200ms ease;
+    overflow-x: hidden;
 }
 
 .serverList.small {
@@ -186,7 +187,7 @@ export default {
 .serverList .list {
     flex-direction: column;
     display: flex;
-    gap: 4px;
+    /* gap: 4px; */
 }
 
 </style>
