@@ -21,7 +21,9 @@
         </div>
     </div>
 
-    <section>
+    <serverListColumns v-if="thinButtons" :thin="thinButtons"/>
+
+    <section v-if="!thinButtons">
         <img :src="require('@/assets/icons/vm-small.png')" alt="">
         <h1>Virtual Machines</h1>
     </section>
@@ -29,7 +31,7 @@
         <serverListButton :thin="thinButtons" :showDetails="!isSmall" :machine="vm" v-for="vm of vms" :key="vm"/>
     </div>
 
-    <section>
+    <section v-if="!thinButtons">
         <img :src="require('@/assets/icons/pm-small.png')" alt="">
         <h1>Physical Machines</h1>
     </section>
@@ -44,6 +46,7 @@
 <script>
 import logo from '@/components/logo';
 import serverListButton from '@/components/serverListButton';
+import serverListColumns from '@/components/serverListColumns';
 export default {
     name: 'serverList',
     computed: {
@@ -58,6 +61,7 @@ export default {
         }
     },
     components: {
+        serverListColumns,
         serverListButton,
         logo
     },
