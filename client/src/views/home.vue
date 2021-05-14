@@ -1,6 +1,9 @@
 <template>
   <div class="view home">
     <loadingScreen :isLoaded="!isLoading"/>
+
+    <harmonyNavigation/>
+
     <serverList :vms="Array.from(serverList.vms.values())" :pms="Array.from(serverList.pms.values())"/>
 
     <div class="content">
@@ -43,6 +46,7 @@ import gaugeField from '@/components/gaugeField';
 import infoField from '@/components/infoField';
 import serverList from '@/components/serverList';
 import loadingScreen from '@/components/loadingScreen';
+import harmonyNavigation from '@/components/harmonyNavigation';
 import chart from '@/components/chart';
 
 export default {
@@ -51,6 +55,7 @@ export default {
     infoField,
     gaugeField,
     chart,
+    harmonyNavigation,
     loadingScreen,
     serverList,
   },
