@@ -1,8 +1,10 @@
 <template>
     <router-link :to="`/${machine.uuid}`" class="button" :class="{thin: thin, rogue: machine.rogue}">
-        <img class="machineType" :src="require(`@/assets/icons/${type}.png`)" alt="">
+        <img v-if="!machine.rogue" class="machineType" :src="require(`@/assets/icons/${type}.png`)" alt="">
+        <img v-if="machine.rogue" class="machineType" :src="require(`@/assets/icons/warning.png`)" alt="">
         <div class="info">
-            <h1 class="hostname">{{machine.name}}</h1>
+            <h1 v-if="!machine.rogue" class="hostname">{{machine.name}}</h1>
+            <h1 v-if="machine.rogue" class="hostname">{{machine.name}} <strong>(rogue)</strong></h1>
             <h1 class="status">{{machine.uuid}}</h1>
         </div>
         <div class="field cpuUsage" v-if="showDetails">{{machine.cpu}}<strong>%</strong></div>
@@ -58,7 +60,7 @@ export default {
 }
 
 .button.rogue {
-    background-color: #2d0000;
+    background-color: var(--rogue-red);
 }
 
 .button:hover {
@@ -68,7 +70,7 @@ export default {
 }
 
 .button.rogue:hover {
-    border: 1px solid #870000;
+    border: 1px solid var(--rogue-red-border);
 }
 
 .button:active {
@@ -77,6 +79,10 @@ export default {
 
 .button.router-link-active {
     background-color: var(--white);
+}
+
+.button.rogue.router-link-active {
+    background-color: var(--rogue-red-active) !important;
 }
 
 .button img.machineType {
@@ -113,7 +119,8 @@ export default {
     min-width: 348px;
 }
 
-.button .info .hostname {
+.button .info .hostname,
+.button .info .hostname strong {
     font-family: Work Sans;
     font-style: normal;
     font-weight: 500;
@@ -124,10 +131,16 @@ export default {
     text-align: left;
 }
 
-.button.thin .info .hostname {
+.button.thin .info .hostname,
+.button.thin .info .hostname strong {
     font-weight: 500;
     font-size: 11px;
     min-width: 100px;
+}
+
+.button.thin .info .hostname strong {
+    color: var(--rogue-red-border);
+    margin-left: 4px;
 }
 
 .button .info * { width: 100%; white-space: nowrap;}

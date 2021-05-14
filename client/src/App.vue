@@ -12,6 +12,9 @@
   --dark-light: #0F0F1E;
   --dark-lighter: #252547;
   --slyColor: #414569;
+  --rogue-red: #ffb1b1;
+  --rogue-red-border: #ff0000;
+  --rogue-red-active: #ff9999;
   --filter: 0;
 }
 

@@ -81,13 +81,20 @@ export default {
                 document.documentElement.style.setProperty('--white', '#161b22');
                 document.documentElement.style.setProperty('--black', '#fff');
                 document.documentElement.style.setProperty('--slyColor', '#fff');
+                document.documentElement.style.setProperty('--rogue-red', '#2d0000');
+                document.documentElement.style.setProperty('--rogue-red-border', '#870000');
+                document.documentElement.style.setProperty('--rogue-red-active', '#480000');
                 document.documentElement.style.setProperty('--filter', 1);
+                 
                 this.darkmode = true;
             } else {
                 document.documentElement.style.setProperty('--background-color', '#fff');
                 document.documentElement.style.setProperty('--white', '#f6f6f6');
                 document.documentElement.style.setProperty('--black', '#000');
                 document.documentElement.style.setProperty('--slyColor', '#414569');
+                document.documentElement.style.setProperty('--rogue-red', '#ffb1b1');
+                document.documentElement.style.setProperty('--rogue-red-border', '#ff0000');
+                document.documentElement.style.setProperty('--rogue-red-active', '#ff9999');
                 document.documentElement.style.setProperty('--filter', 0);
                 this.darkmode = false;
             }
