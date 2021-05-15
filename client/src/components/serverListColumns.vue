@@ -8,6 +8,7 @@
         <div class="field networkUsage">Upload</div>
         <div class="field networkUsage">Download</div>
         <div class="field region">Region</div>
+        <div class="field ping">ping</div>
         <div class="field uptime">uptime</div>
     </nav>
 </template>

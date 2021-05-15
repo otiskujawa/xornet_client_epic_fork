@@ -15,10 +15,10 @@
             <div class="button" @click="showRogues = !showRogues" :class="{enabled: showRogues}">
                 <img :src="require('@/assets/icons/rogue.svg')" alt="">
             </div>
-            <div class="button" @click="thinButtons = false">
+            <div v-if="thinButtons" class="button" @click="thinButtons = false">
                 <img :src="require('@/assets/icons/thick.png')" alt="">
             </div>
-            <div class="button" @click="thinButtons = true">
+            <div v-if="!thinButtons" class="button" @click="thinButtons = true">
                 <img :src="require('@/assets/icons/thin.png')" alt="">
             </div>
         </div>
