@@ -7,6 +7,8 @@
         <div class="field disksUsage">disks</div>
         <div class="field networkUsage">Upload</div>
         <div class="field networkUsage">Download</div>
+        <div class="field region">Region</div>
+        <div class="field uptime">uptime</div>
     </nav>
 </template>
 
@@ -63,6 +65,10 @@ export default {
     margin-left: 24px;
     min-width: 216px;
     justify-content: flex-end;
+}
+
+.columns .field.region {
+    min-width: 48px;
 }
 
 </style>
