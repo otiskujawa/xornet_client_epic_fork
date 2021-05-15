@@ -15,7 +15,7 @@
         <div class="field region" v-if="showDetails"><img :src="machine.geolocation?.countryCode ? require(`@/assets/flags/${machine.geolocation.countryCode}.png`) : require('@/assets/flags/__.png')" alt="Country Flag"></div>
         <div class="field ping" :class="{invalid: !machine.ping}" v-if="showDetails">{{machine.ping ? `${machine.ping}ms` : 'Unknown'}}</div>
         <div class="field uptime" v-if="showDetails">{{machine.uptime}}</div>
-        <div class="platform">
+        <div class="platform"> 
             <img v-if="machine.platform == 'win32'" :src="require('@/assets/icons/windows-small.png')" alt="">
             <img v-if="machine.platform == 'darwin'" :src="require('@/assets/icons/macos-small.png')" alt="">
             <img v-if="machine.platform == 'linux'" :src="require('@/assets/icons/linux-small.png')" alt="">
