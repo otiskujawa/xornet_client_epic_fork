@@ -13,7 +13,7 @@
         <infoField title="Total Download Throughput" :value="totalDownloadThroughput + 'mbps'"/>
       </div>
       <div class="machines">
-        <gaugeField v-if="machines[selectedMachine]" :machine="machines[selectedMachine]"/>
+        <gaugeField v-if="machines.get(selectedMachine)" :machine="machines.get(selectedMachine)"/>
       </div>
 
       <!-- <chart :key="totalUpload[totalUpload.length - 2] + 'upload'" :identity="totalUpload[totalUpload.length - 2] + 'upload'" :type="'line'" :data="{
