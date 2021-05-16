@@ -64,7 +64,7 @@ export default {
             thinButtons: false,
             showRogues: true,
             darkmode: false,
-            sortingMethod: 'cpu',
+            sortingMethod: 'hostname',
             sortingDirection: true,
             sortedMachines: [],
         }
@@ -99,8 +99,8 @@ export default {
         switchSorting(sortBy) {
             const sortingAlgorithms = {
                 hostname: (a, b) => {
-                    if(a.name < b.name) return -1;
-                    if(a.name > b.name) return 1;
+                    if(a.hostname < b.hostname) return -1;
+                    if(a.hostname > b.hostname) return 1;
                     return 0;
                 },
                 uuid: (a, b) => {

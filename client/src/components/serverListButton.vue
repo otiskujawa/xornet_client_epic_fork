@@ -3,8 +3,8 @@
         <img v-if="!machine.rogue" class="machineType" :src="require(`@/assets/icons/${type}.png`)" alt="">
         <img v-if="machine.rogue" class="machineType" :src="require(`@/assets/icons/warning.png`)" alt="">
         <div class="info">
-            <h1 v-if="!machine.rogue" class="hostname">{{machine.name}}</h1>
-            <h1 v-if="machine.rogue" class="hostname">{{machine.name}} <strong>(rogue)</strong></h1>
+            <h1 v-if="!machine.rogue" class="hostname">{{machine.hostname}}</h1>
+            <h1 v-if="machine.rogue" class="hostname">{{machine.hostname}} <strong>(rogue)</strong></h1>
             <h1 class="status">{{machine.uuid}}</h1>
         </div>
         <div class="field cpuUsage" v-if="showDetails">{{machine.cpu}}<strong>%</strong></div>
