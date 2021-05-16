@@ -139,7 +139,7 @@ export default {
                     return 0;
                 },
                 ping: (a, b) => {
-                    if(a.ping < b.ping || !isNaN(b.ping)) return -1;
+                    if(a.ping < b.ping || isNaN(b.ping)) return -1;
                     if(a.ping > b.ping) return 1;
                     return 0;
                 },
