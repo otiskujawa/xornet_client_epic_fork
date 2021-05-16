@@ -15,7 +15,7 @@
       <div class="machines">
         <gaugeField v-if="machines.get(selectedMachine)" :machine="machines.get(selectedMachine)"/>
       </div>
-      <!-- Disabled temp due to it causing lag when developing -->
+      <!-- Disabled temp due to it causing lag when developing --> 
       <!-- <chart :key="totalUpload[totalUpload.length - 2] + 'upload'" :identity="totalUpload[totalUpload.length - 2] + 'upload'" :type="'line'" :data="{
         labels: labels,
         datasets: [

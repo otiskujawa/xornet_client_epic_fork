@@ -1,6 +1,6 @@
 <template>
   <fieldset class="machine">
-    <legend>{{ machine.name }}</legend>
+    <legend>{{ machine.hostname }}</legend>
     <gauge
       :icon="require('@/assets/icons/cpu.png')"
       suffix="%"
