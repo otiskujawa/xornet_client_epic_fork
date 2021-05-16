@@ -316,6 +316,7 @@ export default {
 
 .columns .field img {
     width: 8px;
+    filter: invert(var(--filter));
     margin-left: 8px;
 }
 
