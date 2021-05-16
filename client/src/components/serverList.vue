@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <nav v-if="thinButtons" class="columns" :class="{thin: thin}">
+    <nav v-if="thinButtons" class="columns" :class="{thin: thinButtons}">
         <div @click="sort('hostname')" class="field hostname">hostname <img v-if="sortingMethod == 'hostname'" :src="sortingDirection ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
         <div @click="sort('uuid')"     class="field uuid">uuid <img v-if="sortingMethod == 'uuid'" :src="sortingDirection ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
         <div @click="sort('cpu')"      class="field cpuUsage">cpu  <img v-if="sortingMethod == 'cpu'" :src="sortingDirection ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
@@ -77,9 +77,6 @@ export default {
         machines: { type: Object, required: false },
     },
     watch:{
-        $route(to, from){
-            this.isSmall = this.$route.params.machine ? true : false;
-        },
         machines(to, from){
             this.switchSorting(this.sortingMethod);
         },
