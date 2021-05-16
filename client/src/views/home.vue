@@ -80,7 +80,7 @@ export default {
   },
   mounted(){
     socket.on("machines", machines => {
-      console.log(machines);
+      // console.log(machines);
 
       Object.values(machines).forEach(machine => this.machines.set(machine.uuid, machine));
       
@@ -109,11 +109,6 @@ export default {
         this.labels.shift();
       }
     });
-  },
-  watch:{
-    $route (to, from){
-      this.isSmall = false;
-    }
   },
 }
 </script>
