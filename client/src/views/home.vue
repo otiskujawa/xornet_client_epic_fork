@@ -4,7 +4,7 @@
 
     <!-- <harmonyNavigation/> -->
 
-    <serverList :vms="Array.from(serverList.vms.values())" :pms="Array.from(serverList.pms.values())"/>
+    <serverList :machines="Array.from(machines.values())"/>
 
     <div class="content">
       <div class="informatics">
@@ -69,11 +69,7 @@ export default {
   },
   data: () => {
     return {
-      machines: {},
-      serverList: {
-        vms: new Map(),
-        pms: new Map(),
-      },
+      machines: new Map(),
       totalRam: null,
       totalDownloadThroughput: null,
       totalUploadThroughput: null,
@@ -85,10 +81,9 @@ export default {
   mounted(){
     socket.on("machines", machines => {
       console.log(machines);
-      
-      this.addMachinesToServerList(machines);
 
-      this.machines = machines;
+      Object.values(machines).forEach(machine => this.machines.set(machine.uuid, machine));
+      
       let totalRam = 0; 
       let totalRamUsed = 0; 
       let totalDownloadThroughput = 0;
@@ -114,19 +109,6 @@ export default {
         this.labels.shift();
       }
     });
-  },
-  methods: {
-    addMachinesToServerList(machines){
-      Object.values(machines).forEach(machine => {
-        if (machine.isVirtual){
-          // if(!this.serverList.vms.has(machine.static.uuid.os)) this.serverList.vms.set(machine.static.uuid.os, machine);
-          this.serverList.vms.set(machine.uuid, machine);
-        } else {
-          // if(!this.serverList.pms.has(machine.static.uuid.os)) this.serverList.pms.set(machine.static.uuid.os, machine);
-          this.serverList.pms.set(machine.uuid, machine);
-        }
-      });
-    }
   },
   watch:{
     $route (to, from){

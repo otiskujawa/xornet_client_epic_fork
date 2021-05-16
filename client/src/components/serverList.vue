@@ -25,16 +25,16 @@
     </div>
 
     <nav v-if="thinButtons" class="columns" :class="{thin: thin}">
-        <div class="field hostname">hostname</div>
-        <div class="field uuid">uuid</div>
-        <div class="field cpuUsage">cpu</div>
-        <div class="field ramUsage">ram</div>
-        <div class="field disksUsage">disks</div>
-        <div class="field networkUsage">Upload</div>
-        <div class="field networkUsage">Download</div>
-        <div class="field region">Region</div>
-        <div class="field ping">ping</div>
-        <div class="field uptime">uptime</div>
+        <div @click="sort('hostname')" class="field hostname">hostname</div>
+        <div @click="sort('uuid')"     class="field uuid">uuid</div>
+        <div @click="sort('cpu')"      class="field cpuUsage">cpu</div>
+        <div @click="sort('ram')"      class="field ramUsage">ram</div>
+        <div @click="sort('disks')"    class="field disksUsage">disks</div>
+        <div @click="sort('upload')"   class="field networkUsage">Upload</div>
+        <div @click="sort('download')" class="field networkUsage">Download</div>
+        <div @click="sort('region')"   class="field region">Region</div>
+        <div @click="sort('ping')"     class="field ping">ping</div>
+        <div @click="sort('uptime')"   class="field uptime">uptime</div>
     </nav>
 
     <section v-if="!thinButtons">
@@ -43,16 +43,7 @@
     </section>
 
     <div class="list">
-        <serverListButton :thin="thinButtons" :showDetails="!isSmall" :machine="pm" v-for="pm of showRogues ? pms : pms.filter(pm => !pm.rogue)" :key="pm"/>
-    </div>
-
-    <section v-if="!thinButtons">
-        <img :src="require('@/assets/icons/vm-small.png')" alt="">
-        <h1>Virtual Machines</h1>
-    </section>
-
-    <div class="list">
-        <serverListButton :thin="thinButtons" :showDetails="!isSmall" :machine="vm" v-for="vm of showRogues ? vms : vms.filter(vm => !vm.rogue)" :key="vm"/>
+        <serverListButton :thin="thinButtons" :showDetails="!isSmall" :machine="machine" v-for="machine of showRogues ? sortedMachines : sortedMachines.filter(machine => !machine.rogue)" :key="machine"/>
     </div>
 
   </nav>
@@ -66,13 +57,16 @@ export default {
     computed: {
         isSmall: function(){
             return this.$route.params.machine ? true : false;
-        }
+        },
     },
     data: () => {
         return {
             thinButtons: false,
             showRogues: true,
             darkmode: false,
+            sortingMethod: 'cpu',
+            sortingDirection: true,
+            sortedMachines: [],
         }
     },
     components: {
@@ -80,15 +74,87 @@ export default {
         logo
     },
     props: {
-        vms: { type: Object, required: false },
-        pms: { type: Object, required: false },
+        machines: { type: Object, required: false },
     },
     watch:{
-        $route (to, from){
+        $route(to, from){
             this.isSmall = this.$route.params.machine ? true : false;
-        }
+        },
+        machines(to, from){
+            this.switchSorting(this.sortingMethod);
+        },
+        sortingMethod(to, from){
+            this.switchSorting(to, from);
+        },
+        sortingDirection(to, from){
+            this.switchSorting(this.sortingMethod);
+        },
     },
     methods: {
+        sort(field){
+            if (field == this.sortingMethod) this.sortingDirection = !this.sortingDirection;
+            else this.sortingDirection = false;
+            this.sortingMethod = field;
+        },
+        switchSorting(sortBy) {
+            const sortingAlgorithms = {
+                hostname: (a, b) => {
+                    if(a.name < b.name) return -1;
+                    if(a.name > b.name) return 1;
+                    return 0;
+                },
+                uuid: (a, b) => {
+                    if(a.uuid < b.uuid) return -1;
+                    if(a.uuid > b.uuid) return 1;
+                    return 0;
+                },
+                cpu: (a, b) => {
+                    if(a.cpu < b.cpu) return -1;
+                    if(a.cpu > b.cpu) return 1;
+                    return 0;
+                },
+                ram: (a, b) => {
+                    if(a.ram.used < b.ram.used) return -1;
+                    if(a.ram.used > b.ram.used) return 1;
+                    return 0;
+                },
+                disks: (a, b) => {
+                    if(a.disks.use < b.disks.use) return -1;
+                    if(a.disks.use > b.disks.use) return 1;
+                    return 0;
+                },
+                upload: (a, b) => {
+                    if(a.network.TxSec < b.network.TxSec) return -1;
+                    if(a.network.TxSec > b.network.TxSec) return 1;
+                    return 0;
+                },
+                download: (a, b) => {
+                    if(a.network.RxSec < b.network.RxSec) return -1;
+                    if(a.network.RxSec > b.network.RxSec) return 1;
+                    return 0;
+                },
+                region: (a, b) => {
+                    if(a.geolocation.countryCode < b.geolocation.countryCode) return -1;
+                    if(a.geolocation.countryCode > b.geolocation.countryCode) return 1;
+                    return 0;
+                },
+                ping: (a, b) => {
+                    if(a.ping < b.ping || !isNaN(b.ping)) return -1;
+                    if(a.ping > b.ping) return 1;
+                    return 0;
+                },
+                uptime: (a, b) => {
+                    if(a.uptime.pure < b.uptime.pure) return -1;
+                    if(a.uptime.pure > b.uptime.pure) return 1;
+                    return 0;
+                },
+            }
+
+            let sortedArray = this.machines.sort((a, b) => sortingAlgorithms[sortBy](a, b));
+
+            if (!this.sortingDirection) this.sortedMachines = sortedArray.reverse();
+            this.sortedMachines = sortedArray;
+        },
         toggleDarkmode(){
             if(!this.darkmode){
                 document.documentElement.style.setProperty('--background-color', '#0d1117');
