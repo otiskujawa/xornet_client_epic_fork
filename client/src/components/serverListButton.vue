@@ -10,8 +10,8 @@
         <div class="field cpuUsage" v-if="showDetails">{{machine.cpu}}<strong>%</strong></div>
         <div class="field ramUsage" v-if="showDetails">{{machine.ram.used}}/{{machine.ram.total > 1 ? Math.ceil(machine.ram.total) : machine.ram.total}}<strong>GB</strong></div>
         <div class="field diskUsage" v-if="showDetails">{{machine.disks?.total ? machine.disks.total : 0}}<strong>%</strong></div>
-        <div class="field networkUsage" v-if="showDetails">{{machine.network.RxSec}}<strong>mbps</strong></div>
         <div class="field networkUsage" v-if="showDetails">{{machine.network.TxSec}}<strong>mbps</strong></div>
+        <div class="field networkUsage" v-if="showDetails">{{machine.network.RxSec}}<strong>mbps</strong></div>
         <div class="field region" v-if="showDetails"><img :src="machine.geolocation?.countryCode ? require(`@/assets/flags/${machine.geolocation.countryCode}.png`) : require('@/assets/flags/__.png')" alt="Country Flag"></div>
         <div class="field ping" :class="{invalid: !machine.ping}" v-if="showDetails">{{machine.ping ? `${machine.ping}ms` : 'Unknown'}}</div>
         <div class="field uptime" v-if="showDetails">{{machine.uptime.formatted}}</div>
@@ -181,6 +181,7 @@ export default {
 .button .field.region img {
     width: 22px;
     height: auto;
+
 }
 
 .button .field.uptime { 
@@ -213,6 +214,7 @@ export default {
 .button .platform img {
     width: auto;
     height: 13px;
+    filter: invert(var(--filter));
 }
 
 </style>
