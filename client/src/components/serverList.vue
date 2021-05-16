@@ -157,24 +157,30 @@ export default {
         },
         toggleDarkmode(){
             if(!this.darkmode){
-                document.documentElement.style.setProperty('--background-color', '#0d1117');
-                document.documentElement.style.setProperty('--white', '#161b22');
-                document.documentElement.style.setProperty('--black', '#fff');
-                document.documentElement.style.setProperty('--slyColor', '#fff');
-                document.documentElement.style.setProperty('--rogue-red', '#2d0000');
-                document.documentElement.style.setProperty('--rogue-red-border', '#870000');
-                document.documentElement.style.setProperty('--rogue-red-active', '#480000');
-                document.documentElement.style.setProperty('--filter', 1);
+
+                // this switches the colors on the :root of the css to the darkmode variables
+
+                document.documentElement.style.setProperty('--background-color', 'var(--darkmode-background-color)');
+                document.documentElement.style.setProperty('--white',            'var(--darkmode-white)');
+                document.documentElement.style.setProperty('--black',            'var(--darkmode-black)');
+                document.documentElement.style.setProperty('--slyColor',         'var(--darkmode-slyColor)');
+                document.documentElement.style.setProperty('--rogue-red',        'var(--darkmode-rogue-red)');
+                document.documentElement.style.setProperty('--rogue-red-active', 'var(--darkmode-rogue-red-active)');
+                document.documentElement.style.setProperty('--filter',           1);
                 this.darkmode = true;
             } else {
+
+                // im sure this can be improved by persisting initial colors on 
+                // the :root as well and just switching between them instead of hardcoding this
+                // kinda like how it does it above with the var(--);
+
                 document.documentElement.style.setProperty('--background-color', '#fff');
-                document.documentElement.style.setProperty('--white', '#f6f6f6');
-                document.documentElement.style.setProperty('--black', '#000');
-                document.documentElement.style.setProperty('--slyColor', '#414569');
-                document.documentElement.style.setProperty('--rogue-red', '#ffb1b1');
-                document.documentElement.style.setProperty('--rogue-red-border', '#ff0000');
-                document.documentElement.style.setProperty('--rogue-red-active', '#ff9999');
-                document.documentElement.style.setProperty('--filter', 0);
+                document.documentElement.style.setProperty('--white',            '#f6f6f6');
+                document.documentElement.style.setProperty('--black',            '#000');
+                document.documentElement.style.setProperty('--slyColor',         '#414569');
+                document.documentElement.style.setProperty('--rogue-red',        '#ffeef0');
+                document.documentElement.style.setProperty('--rogue-red-active', '#fdaeb7');
+                document.documentElement.style.setProperty('--filter',           0);
                 this.darkmode = false;
             }
         }

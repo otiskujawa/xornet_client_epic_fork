@@ -5,16 +5,31 @@
 <style>
 
 :root {
-  --background-color: #ffffff;
-  --white: #f6f6f6;
-  --black: #0B0B15;
+
+  /* Static colors that wont change */
   --dark: #151527;
   --dark-light: #0F0F1E;
   --dark-lighter: #252547;
+  --rogue-red-border: #f85149;
+
+  /* Initial colors */
+  --background-color: #ffffff;
+  --white: #f6f6f6;
+  --black: #0B0B15;
   --slyColor: #414569;
-  --rogue-red: #ffb1b1;
-  --rogue-red-border: #ff0000;
-  --rogue-red-active: #ff9999;
+  --rogue-red: #ffeef0;
+  --rogue-red-active:#fdaeb7;
+  
+  /* Darkmode colors */
+  --darkmode-background-color: #0d1117;
+  --darkmode-white:#161b22;
+  --darkmode-black:#fff;
+  --darkmode-slyColor: #fff;
+  --darkmode-rogue-red: rgba(218, 54, 51, 0.2);
+  --darkmode-rogue-red-active: #8e1519;
+
+ /* This variable decides weither the images on the buttons will have their color inverted 
+    it switches states if darkmode is on or off in serverList.vue */
   --filter: 0;
 }
 
