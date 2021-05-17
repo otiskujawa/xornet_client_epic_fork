@@ -57,6 +57,7 @@ export default {
     border: 1px solid transparent;
     display: flex;
     gap: 8px;
+    align-items: center;
     cursor: pointer;
     transition: 100ms ease;
     text-decoration: none;
