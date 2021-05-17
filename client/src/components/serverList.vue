@@ -341,5 +341,8 @@ export default {
     min-width: 48px;
 }
 
+.columns .field.diskUsage {
+    min-width: 128px;
+}
 
 </style>

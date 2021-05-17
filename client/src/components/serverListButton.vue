@@ -9,9 +9,11 @@
         </div>
         <div class="field cpuUsage" v-if="showDetails">{{machine.cpu}}<strong>%</strong></div>
         <div class="field ramUsage" v-if="showDetails">{{machine.ram.used}}/{{machine.ram.total > 1 ? Math.ceil(machine.ram.total) : machine.ram.total}}<strong>GB</strong></div>
-        <div class="field diskUsage" v-if="showDetails">{{machine.disks?.total ? machine.disks.total : 0}}<strong>%</strong></div>
-        <div class="field networkUsage" v-if="showDetails">{{machine.network.TxSec}}<strong>mbps</strong></div>
-        <div class="field networkUsage" v-if="showDetails">{{machine.network.RxSec}}<strong>mbps</strong></div>
+        <div class="field diskUsage" v-if="showDetails">
+            <h1 v-for="disk of machine.disks" :key="disk"><strong>{{disk.mount}}</strong> {{disk.used}}/{{disk.size}}<strong>GB</strong></h1>
+        </div>
+        <div class="field networkUsage" v-if="showDetails">{{machine.network?.TxSec}}<strong>mbps</strong></div>
+        <div class="field networkUsage" v-if="showDetails">{{machine.network?.RxSec}}<strong>mbps</strong></div>
         <div class="field region" v-if="showDetails"><img :src="machine.geolocation?.countryCode ? require(`@/assets/flags/${machine.geolocation.countryCode}.png`) : require('@/assets/flags/__.png')" alt="Country Flag"></div>
         <div class="field ping" :class="{invalid: !machine.ping}" v-if="showDetails">{{machine.ping ? `${machine.ping}ms` : 'Unknown'}}</div>
         <div class="field uptime" v-if="showDetails">{{machine.uptime.formatted}}</div>
@@ -150,8 +152,7 @@ export default {
 .button.thin .info * { text-align: center; align-items: center; display: flex; gap: 2px; }
 
 .button .info .status,
-.button .field,
-.button .field strong,
+.button *,
 .button .platform h1 {
     font-weight: 500;
     font-size: 11px;
@@ -188,6 +189,12 @@ export default {
     min-width: fit-content;    
 }
 
+.button .field.diskUsage {
+    display: flex;
+    flex-direction: column;
+    min-width: 128px;
+    align-items: flex-start;
+}
 
 .button .info .status {
     background: linear-gradient(110.78deg, rgb(118, 230, 80) -1.13%, rgb(249, 214, 73) 15.22%, rgb(240, 142, 53) 32.09%, rgb(236, 81, 87) 48.96%, rgb(255, 24, 189) 67.94%, rgb(26, 75, 255) 85.34%, rgb(98, 216, 249) 99.57%);
