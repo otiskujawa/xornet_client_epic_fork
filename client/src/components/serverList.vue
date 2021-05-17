@@ -61,7 +61,7 @@ export default {
     },
     data: () => {
         return {
-            thinButtons: false,
+            thinButtons: true,
             showRogues: true,
             darkmode: false,
             sortingMethod: 'hostname',
@@ -342,7 +342,7 @@ export default {
 }
 
 .columns .field.disksUsage {
-    min-width: 128px ;
+    min-width: 168px;
 }
 
 </style>

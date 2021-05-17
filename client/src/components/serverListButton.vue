@@ -1,7 +1,8 @@
 <template>
-    <router-link :to="`/${machine.uuid}`" class="button" :class="{thin: thin, rogue: machine.rogue}">
-        <img v-if="!machine.rogue" class="machineType" :src="require(`@/assets/icons/${type}.png`)" alt="">
-        <img v-if="machine.rogue" class="machineType" :src="require(`@/assets/icons/warning.png`)" alt="">
+    <router-link :to="`/${machine.uuid}`" class="button" :class="{thin: thin, rogue: machine.rogue, disconnected: Date.now() > machine.timestamp + 5000}">
+        <img v-if="!machine.rogue && Date.now() < machine.timestamp + 5000" class="machineType" :src="require(`@/assets/icons/${type}.png`)" alt="">
+        <img v-if="machine.rogue && Date.now() < machine.timestamp + 5000 " class="machineType" :src="require(`@/assets/icons/warning.png`)" alt="">
+        <img v-if="Date.now() > machine.timestamp + 5000 " class="machineType" :src="require(`@/assets/icons/disconnected.png`)" alt="">
         <div class="info">
             <h1 v-if="!machine.rogue" class="hostname">{{machine.hostname}}</h1>
             <h1 v-if="machine.rogue" class="hostname">{{machine.hostname}} <strong>(rogue)</strong></h1>
@@ -177,6 +178,7 @@ export default {
 
 .button .field {
     text-align: center;
+    white-space: nowrap;
     display: flex;
     align-items: center;
     min-width: 72px;
@@ -201,7 +203,7 @@ export default {
 .button .field.diskUsage {
     display: flex;
     flex-direction: column;
-    min-width: 128px;
+    min-width: 168px;
     align-items: flex-start;
 }
 
@@ -226,6 +228,10 @@ export default {
     gap: 4px;
 }
 
+.button.disconnected {
+    filter: grayscale(1);
+    background-color: var(--white);
+}
 
 .button .platform img {
     width: auto;
