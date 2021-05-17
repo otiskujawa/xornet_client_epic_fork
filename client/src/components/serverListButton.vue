@@ -18,9 +18,9 @@
         <div class="field ping" :class="{invalid: !machine.ping}" v-if="showDetails">{{machine.ping ? `${machine.ping}ms` : 'Unknown'}}</div>
         <div class="field uptime" v-if="showDetails">{{machine.uptime.formatted}}</div>
         <div class="platform"> 
-            <img v-if="machine.platform == 'win32'" :src="require('@/assets/icons/windows-small.png')" alt="">
-            <img v-if="machine.platform == 'darwin'" :src="require('@/assets/icons/macos-small.png')" alt="">
-            <img v-if="machine.platform == 'linux'" :src="require('@/assets/icons/linux-small.png')" alt="">
+            <img v-if="machine.platform == 'win32'" :src="require('@/assets/icons/windows-black.png')" alt="">
+            <img v-if="machine.platform == 'darwin'" :src="require('@/assets/icons/macos-black.png')" alt="">
+            <img v-if="machine.platform == 'linux'" :src="require('@/assets/icons/linux-black.png')" alt="">
             <!-- <img v-if="machine.static.system.manufacturer.startsWith('Raspberry Pi')" :src="require('@/assets/icons/raspberry.png')" alt="">
             <img v-if="machine.static.system.manufacturer.startsWith('Dell')" style="height: 10px" :src="require('@/assets/icons/dell.png')" alt="">
             <img v-if="machine.static.system.manufacturer.startsWith('Hewlett-Packard')" :src="require('@/assets/icons/hp.png')" alt="">
