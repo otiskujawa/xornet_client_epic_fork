@@ -10,7 +10,7 @@
         <div class="field cpuUsage" v-if="showDetails">{{machine.cpu}}<strong>%</strong></div>
         <div class="field ramUsage" v-if="showDetails">{{machine.ram.used}}/{{machine.ram.total > 1 ? Math.ceil(machine.ram.total) : machine.ram.total}}<strong>GB</strong></div>
         <div class="field diskUsage" v-if="showDetails">
-            <h1 v-for="disk of machine.disks" :key="disk"><strong>{{disk.mount}}</strong> {{disk.used}}/{{disk.size}}<strong>GB</strong></h1>
+            <h1 v-for="disk of machine.disks" :key="disk"><strong>{{disk.fs}}</strong> {{disk.used}}/{{disk.size}}<strong>GB</strong></h1>
         </div>
         <div class="field networkUsage" v-if="showDetails">{{machine.network?.TxSec}}<strong>mbps</strong></div>
         <div class="field networkUsage" v-if="showDetails">{{machine.network?.RxSec}}<strong>mbps</strong></div>

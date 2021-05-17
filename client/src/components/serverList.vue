@@ -116,8 +116,8 @@ export default {
                     return 0;
                 },
                 disks: (a, b) => {
-                    if(a.disks.use < b.disks.use) return -1;
-                    if(a.disks.use > b.disks.use) return 1;
+                    if(a.disks.reduce((a, b) => a + b.use, 0) < b.disks.reduce((a, b) => a + b.use, 0)) return -1;
+                    if(a.disks.reduce((a, b) => a + b.use, 0) > b.disks.reduce((a, b) => a + b.use, 0)) return 1;
                     return 0;
                 },
                 upload: (a, b) => {
