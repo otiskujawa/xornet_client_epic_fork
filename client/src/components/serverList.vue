@@ -12,7 +12,10 @@
             <div class="button" @click="toggleDarkmode()">
                 <img :src="require('@/assets/icons/darkmode.png')" alt="">
             </div>
-            <div class="button" @click="showRogues = !showRogues" :class="{enabled: showRogues}">
+            <div class="button" @click="showDetails = !showDetails" :class="{enabled: showDetails}">
+                <img :src="require('@/assets/icons/details.png')" alt="">
+            </div>
+            <div class="button" @click="showRogues = !showRogues" v-if="machines.some(machine => machine.rogue)" :class="{enabled: showRogues}">
                 <img :src="require('@/assets/icons/rogue.svg')" alt="">
             </div>
             <div v-if="thinButtons" class="button" @click="thinButtons = false">
@@ -43,7 +46,7 @@
     </section>
 
     <div class="list">
-        <serverListButton :thin="thinButtons" :showDetails="!isSmall" :machine="machine" v-for="machine of showRogues ? sortedMachines : sortedMachines.filter(machine => !machine.rogue)" :key="machine"/>
+        <serverListButton :thin="thinButtons" :showDetails="showDetails" :machine="machine" v-for="machine of showRogues ? sortedMachines : sortedMachines.filter(machine => !machine.rogue)" :key="machine"/>
     </div>
 
   </nav>
@@ -63,6 +66,7 @@ export default {
         return {
             thinButtons: true,
             showRogues: true,
+            showDetails: false,
             darkmode: false,
             sortingMethod: 'hostname',
             sortingDirection: true,
@@ -240,7 +244,8 @@ export default {
     transform: translateY(-0px);
 }
 .serverList .heading .buttons .button.enabled {
-    background-color: var(--rogue-red-border);
+    filter: invert(1);
+    /* background-color: var(--rogue-red-border); */
 }
 
 .serverList .heading .buttons .button img {
