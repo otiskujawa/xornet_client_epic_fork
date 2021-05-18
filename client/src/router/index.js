@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   {
-    path: '/:machine?',
+    path: '/:info?',
     name: 'home',
     component: () => import(/* webpackChunkName: "home" */ '@/views/home.vue'),
     meta: {
@@ -10,11 +10,11 @@ const routes = [
     }
   },
   {
-    path: '/homepage/:page?',
-    name: 'homepage',
-    component: () => import(/* webpackChunkName: "homepage" */ '@/views/homepage.vue'),
+    path: '/dashboard/:machine?',
+    name: 'dashboard',
+    component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard.vue'),
     meta: {
-      title: 'Xornet | Homepage'
+      title: 'Xornet | Dashboard'
     }
   },
 ]

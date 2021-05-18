@@ -61,7 +61,6 @@ export default {
     },
     async mounted(){
         const response = (await axios.get('http://backend.xornet.cloud/stats'));
-        console.log(response.status);
         if (response.status == 200) {
             this.totalMachines = response.data.totalMachines;
             this.totalTraffic = response.data.totalTraffic;
