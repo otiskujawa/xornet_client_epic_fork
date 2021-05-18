@@ -35,7 +35,7 @@
             </div>
             <div class="textField">
                 <h1>{{totalCores}}</h1>
-                <p>Total Cores</p>
+                <p>Total Shared Cores</p>
             </div>
             <div class="textField">
                 <h1>{{totalRam}}GB</h1>

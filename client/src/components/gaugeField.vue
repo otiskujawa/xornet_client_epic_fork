@@ -13,7 +13,7 @@
     />
     <gauge
       :icon="require('@/assets/icons/ram.png')"
-      suffix="GB"
+      suffix="r"
       :value="parseFloat(machine.ram.used)"
       :maxValue="parseFloat(machine.ram.total)"
     />
@@ -35,6 +35,7 @@
       :icon="require('@/assets/icons/hdd.png')"
       suffix="%"
       :value="parseFloat(disk.use)"
+      :driveLetter="disk.fs"
       :maxValue="100"
     />
   </fieldset>

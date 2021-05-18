@@ -5,6 +5,7 @@
       <circle class="progress" cx="70" cy="70" r="40" :style="{'stroke-dashoffset': 250 - (250 * ((value * 75) / ((maxValue * 100) / 100))) / 100}"></circle>
     </svg>
     <img class="gaugeIcon" :src="icon" alt="">
+    <h1 v-if="driveLetter" class="gaugeText gaugeDriveLetter">{{driveLetter}}</h1>
     <h1 class="gaugeText">{{value + suffix}}</h1>
   </div>
 </template>
@@ -17,6 +18,7 @@ export default {
     value: { type: Number, required: true },
     maxValue: { type: Number, default: 100},
     suffix: { type: String, required: true},
+    driveLetter: { type: String, required: false },
   },
 }
 </script>
@@ -54,6 +56,10 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
   margin-top: 48px;
+}
+
+.gaugeDriveLetter {
+  margin-top: 60px;
 }
 
 .gaugeTrack {
