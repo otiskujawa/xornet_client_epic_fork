@@ -7,7 +7,7 @@
                 <h1>Our Goal</h1>
                 <p>
                     We are XORNET this is a fun little project started by Geoxor for people who have servers and don’t have shit to do with them<br>
-                    Our goal is to let people use our servers for themselves for cheap!<br>
+                    Our goal is to make a platform for people to manage their servers!<br>
                     <br>
                     As an individual: you can contact us to get a VM to host your websites, discord bots, and so on!<br>
                     As a sysadmin: you can become one our nodes for people to use your server for!<br>

@@ -64,7 +64,7 @@ export default {
       return this.$route.params.machine;
     },
     isLoading: function(){
-      return Object.values(this.machines).length > 0 ? false : true;
+      return this.machines.size > 0 ? false : true;
     }
   },
   data: () => {
