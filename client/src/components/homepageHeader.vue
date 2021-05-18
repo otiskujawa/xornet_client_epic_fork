@@ -5,7 +5,7 @@
       <router-link :to="{ name: 'homepage', params: {page: 'about'}}">About Us</router-link>
       <router-link :to="{ name: 'homepage', params: {page: 'virtualmachine'}}">I want a VM</router-link>
       <router-link :to="{ name: 'homepage', params: {page: 'hosting'}}">I want to Host</router-link>
-      <a href="https://github.com/Geoxor/Xornet">Repository</a>
+      <a href="https://github.com/Geoxor/Xornet" target="_blank">Repository</a>
       <router-link class="fancy" :to="{ name: 'homepage', params: {page: 'downloads'}}">Downloads</router-link>
       <router-link class="fancy" :to="{ name: 'home'}">Dashboard</router-link>
     </div>
@@ -34,12 +34,13 @@ export default {
 
 
 header {
+  position: fixed;
   height: 56px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 328px;
+  padding: 8px 10vw;
   /* background-color: var(--white); */
 }
 

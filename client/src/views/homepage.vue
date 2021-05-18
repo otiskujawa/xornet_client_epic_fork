@@ -1,15 +1,18 @@
 <template>
   <div class="view homepage">
     <homepageHeader/>
+    <homepageMain/>
   </div>
 </template>
 
 <script>
 import homepageHeader from '@/components/homepageHeader';
+import homepageMain from '@/components/homepageMain';
 
 export default {
   name: 'homepage',
   components: {
+    homepageMain,
     homepageHeader
   },
   computed: {
@@ -28,9 +31,10 @@ export default {
 <style scoped>
 
 .homepage {
-  width: 100%;
-  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
   background-color: var(--black);
+  position: relative;
 }
 
 </style>
