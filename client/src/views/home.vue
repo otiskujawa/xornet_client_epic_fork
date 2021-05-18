@@ -25,7 +25,7 @@
             borderColor: '#ff0062',
             backgroundColor: '#ff458caa'
           },
-        ]}"/>
+        ]}"//>
       <chart :key="totalDownload[totalDownload.length - 1] + 'download'" :identity="totalDownload[totalDownload.length - 1] + 'download'" :type="'line'" :data="{
         labels: labels,
         datasets: [

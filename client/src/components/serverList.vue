@@ -61,13 +61,16 @@ export default {
         isSmall: function(){
             return this.$route.params.machine ? true : false;
         },
+        settings: function(){
+            if (localStorage.settings) return JSON.parse(localStorage.settings);
+        }
     },
     data: () => {
         return {
             thinButtons: true,
             showRogues: true,
             showDetails: false,
-            darkmode: false,
+            darkmode: localStorage.settings.darkmode,
             sortingMethod: 'hostname',
             sortingDirection: true,
             sortedMachines: [],

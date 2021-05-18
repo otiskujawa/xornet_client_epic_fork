@@ -4,14 +4,19 @@ const routes = [
   {
     path: '/:machine?',
     name: 'home',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '@/views/home.vue'),
+    component: () => import(/* webpackChunkName: "home" */ '@/views/home.vue'),
     meta: {
       title: 'Xornet | Home'
     }
-  } 
+  },
+  {
+    path: '/homepage/:page?',
+    name: 'homepage',
+    component: () => import(/* webpackChunkName: "homepage" */ '@/views/homepage.vue'),
+    meta: {
+      title: 'Xornet | Homepage'
+    }
+  },
 ]
 
 const router = createRouter({

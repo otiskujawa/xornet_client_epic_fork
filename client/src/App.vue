@@ -2,6 +2,16 @@
   <router-view/>
 </template>
 
+<script>
+export default {
+  created() {
+    if (!localStorage.settings) localStorage.setItem('settings', JSON.stringify({
+      darkmode: false
+    }));
+  }
+}
+</script>
+
 <style>
 
 :root {
