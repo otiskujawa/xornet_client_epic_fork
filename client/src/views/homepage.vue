@@ -35,6 +35,7 @@ export default {
   min-height: 100%;
   background-color: var(--black);
   position: relative;
+  height: 100%;
 }
 
 </style>

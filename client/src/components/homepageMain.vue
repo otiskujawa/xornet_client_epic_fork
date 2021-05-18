@@ -24,36 +24,51 @@
             </section>
         </div>
 
-        <div class="coolShit">
-            <div>
-                <h1>6</h1>
+        <div v-if="totalMachines" class="coolShit">
+            <div class="textField">
+                <h1>{{totalMachines}}</h1>
                 <p>Total Machines</p>
             </div>
-            <div>
-                <h1>468GB</h1>
+            <div class="textField">
+                <h1>{{totalTraffic}}GB</h1>
                 <p>Total Daily Traffic</p>
             </div>
-            <div>
-                <h1>56</h1>
-                <p>Total Cores throughout</p>
+            <div class="textField">
+                <h1>{{totalCores}}</h1>
+                <p>Total Cores</p>
             </div>
-            <div>
-                <h1>156GB</h1>
+            <div class="textField">
+                <h1>{{totalRam}}GB</h1>
                 <p>Total RAM</p>
             </div>
-            <!-- <div class="backgroundRectangle"></div> -->
+            <div class="backgroundRectangle"></div>
         </div>
 
     </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     data: () => {
         return {
-            
+            totalMachines: null,
+            totalTraffic: null,
+            totalCores: null,
+            totalRam: null,
         }
     },
+    async mounted(){
+        const response = (await axios.get('http://backend.xornet.cloud/stats'));
+        console.log(response.status);
+        if (response.status == 200) {
+            this.totalMachines = response.data.totalMachines;
+            this.totalTraffic = response.data.totalTraffic;
+            this.totalCores = response.data.totalCores;
+            this.totalRam = response.data.totalRam;
+        }
+    }
 }
 </script>
 
@@ -64,6 +79,7 @@ export default {
     padding: 8px 10vw;
     position: relative;
     height: 100%;
+    overflow: hidden scroll;
 }
 
 .main img {
@@ -112,26 +128,32 @@ export default {
     color: white;
 }
 
-.main .coolShit h1 {
+.main .coolShit .textField {
+    transform: translateY(160px);
+    z-index: 2;
+    position: relative;
+}
+
+.main .coolShit .textField h1 {
     font-size: 48px;
     text-align: left;
 }
 
-.main .coolShit p {
+.main .coolShit .textField p {
     color: rgba(141, 153, 174, 1);
     text-align: left;
 }
 
 .main .coolShit .backgroundRectangle {
     width: calc(120vw + 200px);
-    height: 100vh;
+    height: 328px;
     position: absolute;
     top: 0px;
 
     /* Dark */
     z-index: 1;
     background: #151527;
-    transform: rotate(-6.71deg) translateX(-25vw);
+    transform: rotate(-4.71deg) translateX(-25vw);
 }
 
 .main .coolShit h1 {

@@ -34,6 +34,8 @@ export default {
 
 
 header {
+
+  z-index: 1000;
   position: fixed;
   height: 56px;
   width: 100%;
