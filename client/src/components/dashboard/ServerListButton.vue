@@ -1,15 +1,27 @@
 <template>
     <router-link :to="{name: 'dashboard', params: {machine: machine.uuid}}" class="button" :class="{thin: thin, rogue: machine.rogue, disconnected: Date.now() > machine.timestamp + 5000}">
+        
+        <!-- Icons Column -->
         <img v-if="!machine.rogue && Date.now() < machine.timestamp + 5000" class="machineType" :src="require(`@/assets/icons/${type}.png`)" alt="">
         <img v-if="machine.rogue && Date.now() < machine.timestamp + 5000 " class="machineType" :src="require(`@/assets/icons/warning.png`)" alt="">
         <img v-if="Date.now() > machine.timestamp + 5000 " class="machineType" :src="require(`@/assets/icons/disconnected.png`)" alt="">
+        
+        <!-- UUID Column -->
         <div class="info">
             <h1 v-if="!machine.rogue" class="hostname">{{machine.hostname}}</h1>
             <h1 v-if="machine.rogue" class="hostname">{{machine.hostname}} <strong>(rogue)</strong></h1>
             <h1 class="status">{{machine.uuid}}</h1>
         </div>
-        <div class="field cpuUsage">{{machine.cpu}}<strong>%</strong></div>
-        <div class="field ramUsage">{{machine.ram.used}}/{{machine.ram.total > 1 ? Math.ceil(machine.ram.total) : machine.ram.total}}<strong>GB</strong></div>
+
+        <!-- CPU Column -->
+        <div class="field cpuUsage" v-if="machine.cpu == null"><strong>Unknown</strong></div>
+        <div class="field cpuUsage" v-if="machine.cpu != null">{{machine.cpu}}<strong>%</strong></div>
+        
+        <!-- RAM Column -->
+        <div class="field ramUsage" v-if="Object.values(machine.ram).some(field => field != null)">{{machine.ram.used}}/{{machine.ram.total > 1 ? Math.ceil(machine.ram.total) : machine.ram.total}}<strong>GB</strong></div>
+        <div class="field ramUsage" v-if="Object.values(machine.ram).some(field => field == null)"><strong>Unknown</strong></div>
+        
+        <!-- Disks Column -->
         <div class="field diskUsage">
             <h1 v-for="disk of showDetails ? machine.disks : [machine.disks[0]]" :key="disk">
                 <strong>
@@ -21,11 +33,22 @@
                 </strong>
             </h1>
         </div>
+
+        <!-- Network Column -->
         <div class="field networkUsage">{{machine.network?.TxSec}}<strong>mbps</strong></div>
         <div class="field networkUsage">{{machine.network?.RxSec}}<strong>mbps</strong></div>
+
+        <!-- Region Column -->
         <div class="field region"><img :src="machine.geolocation?.countryCode ? require(`@/assets/flags/${machine.geolocation.countryCode}.png`) : require('@/assets/flags/__.png')" alt="Country Flag"></div>
-        <div class="field ping" :class="{invalid: !machine.ping}">{{machine.ping ? `${machine.ping}ms` : 'Unknown'}}</div>
+        
+        <!-- Ping Column -->
+        <div class="field ping" v-if="machine.ping != null">{{machine.ping}}<strong>ms</strong></div>
+        <div class="field ping" v-if="machine.ping == null"><strong>Unknown</strong></div>
+        
+        <!-- Uptime Column -->
         <div class="field uptime">{{machine.uptime.formatted}}</div>
+
+        <!-- Platform Column -->
         <div class="platform"> 
             <img v-if="machine.platform == 'win32'" :src="require('@/assets/icons/windows-black.png')" alt="">
             <img v-if="machine.platform == 'darwin'" :src="require('@/assets/icons/macos-black.png')" alt="">
@@ -205,6 +228,14 @@ export default {
     flex-direction: column;
     min-width: 168px;
     align-items: flex-start;
+}
+
+.button .field.networkUsage {
+    min-width: 86px;
+}
+
+.button .field.region {
+    min-width: 66px;
 }
 
 .button .info .status {

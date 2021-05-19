@@ -353,4 +353,11 @@ export default {
     min-width: 168px;
 }
 
+.columns .field.networkUsage {
+    min-width: 86px;
+}
+
+.columns .field.region {
+    min-width: 66px;
+}
 </style>
