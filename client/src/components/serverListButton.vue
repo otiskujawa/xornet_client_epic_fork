@@ -185,7 +185,7 @@ export default {
 }
 
 .button .field strong, .button .field.invalid { opacity: .5; }
-.button .field.cpuUsage { margin-left: 32px; min-width: 32px; }
+.button .field.cpuUsage { margin-left: 32px; min-width: 48px; }
 
 .button .field.region {
     min-width: 48px;

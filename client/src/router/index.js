@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
+  // Xornet Home Page
   {
     path: '/:info?',
     name: 'home',
@@ -9,12 +10,22 @@ const routes = [
       title: 'Xornet | Home'
     }
   },
+  // Xornet Dashboard
   {
     path: '/dashboard/:machine?',
     name: 'dashboard',
     component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard.vue'),
     meta: {
       title: 'Xornet | Dashboard'
+    }
+  },
+  // Xornet Login
+  {
+    path: '/login/:machine?',
+    name: 'login',
+    component: () => import(/* webpackChunkName: "login" */ '@/views/login.vue'),
+    meta: {
+      title: 'Xornet | Login'
     }
   },
 ]

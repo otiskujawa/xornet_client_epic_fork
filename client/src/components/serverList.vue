@@ -332,7 +332,7 @@ export default {
 }
 
 .columns .field strong { opacity: .5; }
-.columns .field.cpuUsage { margin-left: 32px; min-width: 32px; }
+.columns .field.cpuUsage { margin-left: 32px; min-width: 48px; }
 
 .columns .field.hostname {
     margin-left: 24px;
