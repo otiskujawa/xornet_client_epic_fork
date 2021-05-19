@@ -1,19 +1,19 @@
 <template>
-  <div class="view homepage">
-    <homepageHeader/>
-    <homepageMain/>
+  <div class="view home">
+    <Header/>
+    <Main/>
   </div>
 </template>
 
 <script>
-import homepageHeader from '@/components/homepageHeader';
-import homepageMain from '@/components/homepageMain';
+import Header from '@/components/home/Header';
+import Main from   '@/components/home/Main';
 
 export default {
-  name: 'home',
+  name: 'Home',
   components: {
-    homepageMain,
-    homepageHeader
+    Main,
+    Header
   },
   computed: {
   },
@@ -30,7 +30,7 @@ export default {
 
 <style scoped>
 
-.homepage {
+.home {
   min-width: 100%;
   min-height: 100%;
   background-color: var(--black);

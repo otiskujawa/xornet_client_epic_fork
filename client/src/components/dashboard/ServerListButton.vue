@@ -42,7 +42,7 @@
 
 <script>
 export default {
-    name: 'serverListButton',
+    name: 'ServerListButton',
     computed: {
         type: function(){
             return this.machine.isVirtual ? 'vm' : 'pm';

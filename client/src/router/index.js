@@ -5,27 +5,28 @@ const routes = [
   {
     path: '/:info?',
     name: 'home',
-    component: () => import(/* webpackChunkName: "home" */ '@/views/home.vue'),
+    component: () => import(/* webpackChunkName: "home" */ '@/views/home/Home.vue'),
     meta: {
       title: 'Xornet | Home'
-    }
-  },
-  // Xornet Dashboard
-  {
-    path: '/dashboard/:machine?',
-    name: 'dashboard',
-    component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard.vue'),
-    meta: {
-      title: 'Xornet | Dashboard'
     }
   },
   // Xornet Login
   {
     path: '/login/:machine?',
     name: 'login',
-    component: () => import(/* webpackChunkName: "login" */ '@/views/login.vue'),
+    component: () => import(/* webpackChunkName: "login" */ '@/views/home/Login.vue'),
     meta: {
       title: 'Xornet | Login'
+    }
+  },
+
+  // Xornet Dashboard
+  {
+    path: '/dashboard/:machine?',
+    name: 'dashboard',
+    component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/Dashboard.vue'),
+    meta: {
+      title: 'Xornet | Dashboard'
     }
   },
 ]

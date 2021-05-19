@@ -1,12 +1,16 @@
 <template>
   <div class="view loginpage">
+  <Header/>
   </div>
 </template>
 
 <script>
+import Header from '@/components/home/Header';
+
 export default {
-    name: 'login',
+    name: 'Login',
     components: {
+      Header
     }
 }
 </script>

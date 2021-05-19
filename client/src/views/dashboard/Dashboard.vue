@@ -1,22 +1,20 @@
 <template>
   <div class="view home">
-    <loadingScreen :isLoaded="!isLoading"/>
+    <LoadingScreen :isLoaded="!isLoading"/>
 
-    <!-- <harmonyNavigation/> -->
-
-    <serverList :machines="Array.from(machines.values())"/>
+    <ServerList :machines="Array.from(machines.values())"/>
 
     <div class="content">
       <div class="informatics">
-        <infoField title="Total RAM" :value="totalRamUsed + 'GB / ' + totalRam + 'GB'"/>
-        <infoField title="Total Upload Throughput" :value="totalUploadThroughput + 'mbps'"/>
-        <infoField title="Total Download Throughput" :value="totalDownloadThroughput + 'mbps'"/>
+        <InfoField title="Total RAM" :value="totalRamUsed + 'GB / ' + totalRam + 'GB'"/>
+        <InfoField title="Total Upload Throughput" :value="totalUploadThroughput + 'mbps'"/>
+        <InfoField title="Total Download Throughput" :value="totalDownloadThroughput + 'mbps'"/>
       </div>
       <div class="machines">
-        <gaugeField v-if="machines.get(selectedMachine)" :machine="machines.get(selectedMachine)"/>
+        <GaugeField v-if="machines.get(selectedMachine)" :machine="machines.get(selectedMachine)"/>
       </div>
       <!-- Disabled temp due to it causing lag when developing --> 
-      <!-- <chart :key="totalUpload[totalUpload.length - 2] + 'upload'" :identity="totalUpload[totalUpload.length - 2] + 'upload'" :type="'line'" :data="{
+      <!-- <Chart :key="totalUpload[totalUpload.length - 2] + 'upload'" :identity="totalUpload[totalUpload.length - 2] + 'upload'" :type="'line'" :data="{
         labels: labels,
         datasets: [
           {
@@ -26,7 +24,7 @@
             backgroundColor: '#ff458caa'
           },
         ]}"//>
-      <chart :key="totalDownload[totalDownload.length - 1] + 'download'" :identity="totalDownload[totalDownload.length - 1] + 'download'" :type="'line'" :data="{
+      <Chart :key="totalDownload[totalDownload.length - 1] + 'download'" :identity="totalDownload[totalDownload.length - 1] + 'download'" :type="'line'" :data="{
         labels: labels,
         datasets: [
           {
@@ -41,23 +39,21 @@
 </template>
 
 <script>
-import socket from '@/services/socket.js';
-import gaugeField from '@/components/gaugeField';
-import infoField from '@/components/infoField';
-import serverList from '@/components/serverList';
-import loadingScreen from '@/components/loadingScreen';
-import harmonyNavigation from '@/components/harmonyNavigation';
-import chart from '@/components/chart';
+import socket from        '@/services/socket.js';
+import GaugeField from    '@/components/dashboard/GaugeField';
+import InfoField from     '@/components/dashboard/InfoField';
+import ServerList from    '@/components/dashboard/ServerList';
+import LoadingScreen from '@/components/dashboard/LoadingScreen';
+import Chart from         '@/components/dashboard/Chart';
 
 export default {
-  name: 'dashboard',
+  name: 'Dashboard',
   components: {
-    infoField,
-    gaugeField,
-    chart,
-    harmonyNavigation,
-    loadingScreen,
-    serverList,
+    InfoField,
+    GaugeField,
+    Chart,
+    LoadingScreen,
+    ServerList,
   },
   computed: {
     selectedMachine: function(){

@@ -1,7 +1,7 @@
 <template>
   <nav class="serverList" :class="{small: isSmall}">
     <div class="heading">
-        <logo/>
+        <Logo/>
         <div class="buttons">
             <router-link :to="{name: 'dashboard'}" class="button">
                 <img :src="require('@/assets/icons/home.png')" alt="">
@@ -46,17 +46,17 @@
     </section>
 
     <div class="list">
-        <serverListButton :thin="thinButtons" :showDetails="showDetails" :machine="machine" v-for="machine of showRogues ? sortedMachines : sortedMachines.filter(machine => !machine.rogue)" :key="machine"/>
+        <ServerListButton :thin="thinButtons" :showDetails="showDetails" :machine="machine" v-for="machine of showRogues ? sortedMachines : sortedMachines.filter(machine => !machine.rogue)" :key="machine"/>
     </div>
 
   </nav>
 </template>
 
 <script>
-import logo from '@/components/logo';
-import serverListButton from '@/components/serverListButton';
+import Logo from             '@/components/dashboard/Logo';
+import ServerListButton from '@/components/dashboard/ServerListButton';
 export default {
-    name: 'serverList',
+    name: 'ServerList',
     computed: {
         isSmall: function(){
             return this.$route.params.machine ? true : false;
@@ -77,8 +77,8 @@ export default {
         }
     },
     components: {
-        serverListButton,
-        logo
+        ServerListButton,
+        Logo
     },
     props: {
         machines: { type: Object, required: false },

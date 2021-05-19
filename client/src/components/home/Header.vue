@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'homepageHeader',
+  name: 'Header',
   components: {
   },
   computed: {

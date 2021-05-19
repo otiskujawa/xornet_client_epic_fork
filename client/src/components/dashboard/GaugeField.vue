@@ -1,35 +1,35 @@
 <template>
   <fieldset class="machine">
     <legend>{{ machine.hostname }}</legend>
-    <gauge
+    <Gauge
       :icon="require('@/assets/icons/cpu.png')"
       suffix="%"
       :value="parseFloat(machine.cpu)"
     />
-    <gauge v-if="machine.gpu"
+    <Gauge v-if="machine.gpu"
       :icon="require('@/assets/icons/gpu.png')"
       suffix="%"
       :value="parseFloat(machine.gpu.utilizationGpu)"
     />
-    <gauge
+    <Gauge
       :icon="require('@/assets/icons/ram.png')"
       suffix="r"
       :value="parseFloat(machine.ram.used)"
       :maxValue="parseFloat(machine.ram.total)"
     />
-    <gauge
+    <Gauge
       :icon="require('@/assets/icons/upload.png')"
       suffix="mbps"
       :value="parseFloat(machine.network.TxSec)"
       :maxValue="1000 * machine.network.totalInterfaces"
     />
-    <gauge
+    <Gauge
       :icon="require('@/assets/icons/download.png')"
       suffix="mbps"
       :value="parseFloat(machine.network.RxSec)"
       :maxValue="1000 * machine.network.totalInterfaces"
     />
-    <gauge
+    <Gauge
       v-for="disk of machine.disks"
       :key="disk"
       :icon="require('@/assets/icons/hdd.png')"
@@ -42,13 +42,13 @@
 </template>
 
 <script>
-import gauge from '@/components/gauge';
+import Gauge from '@/components/dashboard/Gauge.vue';
 
 
 export default {
-    name: 'gaugeField',
+    name: 'GaugeField',
     components: {
-        gauge,
+        Gauge,
     },
     props: {
         machine: { type: Object, required: true},

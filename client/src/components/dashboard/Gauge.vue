@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: "gauge",
+  name: "Gauge",
   props: {
     icon: { type: String, required: true },
     value: { type: Number, required: true },

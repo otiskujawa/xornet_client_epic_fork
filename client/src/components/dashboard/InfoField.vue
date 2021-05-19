@@ -6,14 +6,8 @@
 </template>
 
 <script>
-import gauge from '@/components/gauge';
-
-
 export default {
-    name: 'infoField',
-    components: {
-        gauge,
-    },
+    name: 'InfoField',
     props: {
         title: { type: String, required: true },
         value: { type: String, required: true },

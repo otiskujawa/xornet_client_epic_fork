@@ -6,7 +6,7 @@
 
 <script>
 export default {
-    name: 'chart',
+    name: 'Chart',
     props: {
         data: { type: [Object, Array], required: true },
         type: { type: String, required: true },

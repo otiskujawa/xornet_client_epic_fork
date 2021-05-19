@@ -51,6 +51,7 @@
 import axios from 'axios';
 
 export default {
+    name: 'main',
     data: () => {
         return {
             totalMachines: null,
