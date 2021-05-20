@@ -4,6 +4,8 @@
 
     <ServerList :machines="Array.from(machines.values())"/>
 
+    <Terminal/>
+
     <div class="content">
       <div class="informatics">
         <InfoField title="Total RAM" :value="totalRamUsed + 'GB / ' + totalRam + 'GB'"/>
@@ -45,12 +47,14 @@ import InfoField from     '@/components/dashboard/InfoField';
 import ServerList from    '@/components/dashboard/ServerList';
 import LoadingScreen from '@/components/dashboard/LoadingScreen';
 import Chart from         '@/components/dashboard/Chart';
+import Terminal from      '@/components/dashboard/Terminal';
 
 export default {
   name: 'Dashboard',
   components: {
     InfoField,
     GaugeField,
+    Terminal,
     Chart,
     LoadingScreen,
     ServerList,
