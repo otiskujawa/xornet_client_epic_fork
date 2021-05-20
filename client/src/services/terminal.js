@@ -7,10 +7,13 @@ export class TerminalUI {
   
       /* You can make your terminals colorful :) */
       this.terminal.setOption("theme", {
-        background: "#202B33",
+        background: "#0B0B15",
         foreground: "#F5F8FA"
       });
-  
+      this.terminal.setOption("fontSize", 14);
+      this.terminal.setOption("fontWeight", '400');
+      this.terminal.setOption("fontFamily", 'Courier Prime');
+
       this.socket = socket;
     }
   
@@ -54,6 +57,7 @@ export class TerminalUI {
      */
     attachTo(container) {
       this.terminal.open(container);
+    //   this.terminal.fit()l
       // Default text to display on terminal.
       this.terminal.write("Terminal Connected");
       this.terminal.write("");

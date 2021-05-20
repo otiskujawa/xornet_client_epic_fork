@@ -19,12 +19,13 @@ export default {
 
 .info {
   display: flex;
+  border: 1px solid #252547;
+  border-radius: 4px;
   flex-direction: column;
   text-align: left;
   gap: 8px;
   color: var(--black);
   padding: 16px;
-  border-radius: 4px;
   cursor: pointer;
   background-color: var(--background-color);
   transition: 100ms ease;

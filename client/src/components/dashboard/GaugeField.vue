@@ -60,10 +60,10 @@ export default {
 
 .machine {
   display: flex;
+  border: 1px solid #252547;
   flex-direction: row;
   padding: 0px 16px 20px 16px;
   width: fit-content;
-  border: 1px solid transparent;
   border-radius: 4px;
   cursor: pointer;
   background-color: var(--background-color);

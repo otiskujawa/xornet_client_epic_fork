@@ -36,4 +36,22 @@ export default {
 
 <style>
 
+#terminalLmao {
+    border-radius: 8px;
+    border: 1px solid #252547;
+    padding: 16px;
+    background-color: var(--terminal-background);
+    width: fit-content;
+    height: fit-content;
+    overflow: hidden;
+}
+
+#terminalLmao *::-webkit-scrollbar {
+  display: none;
+}
+#terminalLmao * {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 </style>

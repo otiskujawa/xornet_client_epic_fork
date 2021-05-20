@@ -1,20 +1,20 @@
 <template>
   <div class="view home">
     <LoadingScreen :isLoaded="!isLoading"/>
-
     <ServerList :machines="Array.from(machines.values())"/>
-
-    <Terminal/>
-
     <div class="content">
+      <div class="machines">
+        <GaugeField v-if="machines.get(selectedMachine)" :machine="machines.get(selectedMachine)"/>
+      </div>
+
+      <Terminal/>
+
       <div class="informatics">
         <InfoField title="Total RAM" :value="totalRamUsed + 'GB / ' + totalRam + 'GB'"/>
         <InfoField title="Total Upload Throughput" :value="totalUploadThroughput + 'mbps'"/>
         <InfoField title="Total Download Throughput" :value="totalDownloadThroughput + 'mbps'"/>
       </div>
-      <div class="machines">
-        <GaugeField v-if="machines.get(selectedMachine)" :machine="machines.get(selectedMachine)"/>
-      </div>
+
       <!-- Disabled temp due to it causing lag when developing --> 
       <!-- <Chart :key="totalUpload[totalUpload.length - 2] + 'upload'" :identity="totalUpload[totalUpload.length - 2] + 'upload'" :type="'line'" :data="{
         labels: labels,

@@ -21,6 +21,7 @@ export default {
   --dark-light: #0F0F1E;
   --dark-lighter: #252547;
   --rogue-red-border: #f85149;
+  --terminal-background: #0B0B15;
 
   /* Initial colors */
   --background-color: #ffffff;
@@ -29,10 +30,10 @@ export default {
   --slyColor: #414569;
   --rogue-red: #ffeef0;
   --rogue-red-active:#fdaeb7;
-  
+    
   /* Darkmode colors */
-  --darkmode-background-color: #0d1117;
-  --darkmode-white:#161b22;
+  --darkmode-background-color: #0B0B15;
+  --darkmode-white:#0F0F1E;
   --darkmode-black:#fff;
   --darkmode-slyColor: #fff;
   --darkmode-rogue-red: rgba(218, 54, 51, 0.2);
