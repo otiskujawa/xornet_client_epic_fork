@@ -1,32 +1,5 @@
 <template>
   <nav class="serverList" :class="{small: isSmall}">
-    <div class="heading">
-        <Logo/>
-        <div class="buttons">
-            <router-link :to="{name: 'dashboard'}" class="button">
-                <img :src="require('@/assets/icons/home.png')" alt="">
-            </router-link>
-            <a href="https://github.com/Geoxor/Xornet/releases" target="_blank" class="button">
-                <img :src="require('@/assets/icons/repository.png')" alt="">
-            </a>
-            <div class="button" @click="toggleDarkmode()">
-                <img :src="require('@/assets/icons/darkmode.png')" alt="">
-            </div>
-            <div class="button" @click="showDetails = !showDetails" :class="{enabled: showDetails}">
-                <img :src="require('@/assets/icons/details.png')" alt="">
-            </div>
-            <div class="button" @click="showRogues = !showRogues" v-if="machines.some(machine => machine.rogue)" :class="{enabled: showRogues}">
-                <img :src="require('@/assets/icons/rogue.svg')" alt="">
-            </div>
-            <div v-if="thinButtons" class="button" @click="thinButtons = false">
-                <img :src="require('@/assets/icons/thick.png')" alt="">
-            </div>
-            <div v-if="!thinButtons" class="button" @click="thinButtons = true">
-                <img :src="require('@/assets/icons/thin.png')" alt="">
-            </div>
-        </div>
-    </div>
-
     <nav v-if="thinButtons" class="columns" :class="{thin: thinButtons}">
         <div @click="sort('hostname')" class="field hostname">hostname <img v-if="sortingMethod == 'hostname'" :src="sortingDirection ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
         <div @click="sort('uuid')"     class="field uuid">uuid <img v-if="sortingMethod == 'uuid'" :src="sortingDirection ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
@@ -53,7 +26,6 @@
 </template>
 
 <script>
-import Logo from             '@/components/dashboard/Logo';
 import ServerListButton from '@/components/dashboard/ServerListButton';
 export default {
     name: 'ServerList',
@@ -78,7 +50,6 @@ export default {
     },
     components: {
         ServerListButton,
-        Logo
     },
     props: {
         machines: { type: Object, required: false },
@@ -159,35 +130,6 @@ export default {
             if (!this.sortingDirection) this.sortedMachines = sortedArray.reverse();
             this.sortedMachines = sortedArray;
         },
-        toggleDarkmode(){
-            if(!this.darkmode){
-
-                // this switches the colors on the :root of the css to the darkmode variables
-
-                document.documentElement.style.setProperty('--background-color', 'var(--darkmode-background-color)');
-                document.documentElement.style.setProperty('--white',            'var(--darkmode-white)');
-                document.documentElement.style.setProperty('--black',            'var(--darkmode-black)');
-                document.documentElement.style.setProperty('--slyColor',         'var(--darkmode-slyColor)');
-                document.documentElement.style.setProperty('--rogue-red',        'var(--darkmode-rogue-red)');
-                document.documentElement.style.setProperty('--rogue-red-active', 'var(--darkmode-rogue-red-active)');
-                document.documentElement.style.setProperty('--filter',           1);
-                this.darkmode = true;
-            } else {
-
-                // im sure this can be improved by persisting initial colors on 
-                // the :root as well and just switching between them instead of hardcoding this
-                // kinda like how it does it above with the var(--);
-
-                document.documentElement.style.setProperty('--background-color', '#fff');
-                document.documentElement.style.setProperty('--white',            '#f6f6f6');
-                document.documentElement.style.setProperty('--black',            '#000');
-                document.documentElement.style.setProperty('--slyColor',         '#414569');
-                document.documentElement.style.setProperty('--rogue-red',        '#ffeef0');
-                document.documentElement.style.setProperty('--rogue-red-active', '#fdaeb7');
-                document.documentElement.style.setProperty('--filter',           0);
-                this.darkmode = false;
-            }
-        }
     }
 }
 </script>
@@ -216,45 +158,6 @@ export default {
     padding: 8px 0px;
     display: flex;
     justify-content: space-between;
-}
-
-.serverList .heading .buttons {
-    gap: 4px;
-    display: flex;
-}
-
-.serverList .heading .buttons .button {
-    padding: 8px;
-    background-color: var(--background-color);
-    border-radius: 4px;
-    box-sizing: border-box;
-    border: 1px solid transparent;
-    display: flex;
-    gap: 8px;
-    cursor: pointer;
-    transition: 100ms ease;
-    text-decoration: none;
-    user-select: none;
-}
-
-.serverList .heading .buttons .button:hover {
-    border: 1px solid var(--white);
-    transform: translateY(-1px);
-    box-shadow: rgb(0 0 0 / 10%) 0px 10px 20px;
-}
-
-.serverList .heading .buttons .button:active {
-    transform: translateY(-0px);
-}
-.serverList .heading .buttons .button.enabled {
-    filter: invert(1);
-    /* background-color: var(--rogue-red-border); */
-}
-
-.serverList .heading .buttons .button img {
-    width: 24px;
-    height: 24px;
-    filter: invert(var(--filter));
 }
 
 .serverList section {

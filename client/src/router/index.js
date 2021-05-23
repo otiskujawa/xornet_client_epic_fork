@@ -19,15 +19,48 @@ const routes = [
       title: 'Xornet | Login'
     }
   },
-
   // Xornet Dashboard
   {
-    path: '/dashboard/:machine?',
+    path: '/dashboard',
     name: 'dashboard',
     component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/Dashboard.vue'),
     meta: {
       title: 'Xornet | Dashboard'
-    }
+    },
+    children: [ 
+      {
+        path: 'summary',
+        name: 'summary',
+        component: () => import(/* webpackChunkName: "summary" */ '@/views/dashboard/Summary.vue'),
+        meta: {
+          title: 'Xornet | Summary'
+        },
+      },
+      {
+        path: 'logs',
+        name: 'logs',
+        component: () => import(/* webpackChunkName: "logs" */ '@/views/dashboard/Logs.vue'),
+        meta: {
+          title: 'Xornet | Logs'
+        },
+      },
+      {
+        path: 'network',
+        name: 'network',
+        component: () => import(/* webpackChunkName: "network" */ '@/views/dashboard/Network.vue'),
+        meta: {
+          title: 'Xornet | Network'
+        },
+      },
+      {
+        path: 'machines/:machine?',
+        name: 'machines',
+        component: () => import(/* webpackChunkName: "machines" */ '@/views/dashboard/Machines.vue'),
+        meta: {
+          title: 'Xornet | Machines'
+        },
+      },
+    ]
   },
 ]
 

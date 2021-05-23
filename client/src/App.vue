@@ -21,6 +21,7 @@ export default {
   --dark-light: #0F0F1E;
   --dark-lighter: #252547;
   --rogue-red-border: #f85149;
+  --theme-main: #FF006B;
   --terminal-background: #0B0B15;
 
   /* Initial colors */
@@ -53,6 +54,7 @@ export default {
 
 html {
   overflow: hidden;
+  background-color: var(--background-color);
 }
 
 #app {
