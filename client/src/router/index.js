@@ -12,11 +12,20 @@ const routes = [
   },
   // Xornet Login
   {
-    path: '/login/:machine?',
+    path: '/login',
     name: 'login',
     component: () => import(/* webpackChunkName: "login" */ '@/views/home/Login.vue'),
     meta: {
       title: 'Xornet | Login'
+    }
+  },
+  // Xornet Signup
+  {
+    path: '/signup',
+    name: 'signup',
+    component: () => import(/* webpackChunkName: "signup" */ '@/views/home/Signup.vue'),
+    meta: {
+      title: 'Xornet | Signup'
     }
   },
   // Xornet Dashboard

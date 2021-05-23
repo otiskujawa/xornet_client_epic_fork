@@ -1,4 +1,5 @@
 import axios from 'axios'
+axios.defaults.withCredentials = true;
 
 let ROOT_PATH = 'https://backend.xornet.cloud';
 
@@ -17,11 +18,9 @@ class API {
      * @private
      */
     logResponse(response){
-        if(response.data.message) this.log(response.data.message);
-        else if(response.data) this.log(response.data);
+        if(response.data?.message) this.log(response.data?.message);
+        else if(response?.data) this.log(response?.data);
         else this.log(response)
-
-        console.log(response);
     }
 
     /**
@@ -43,22 +42,25 @@ class API {
      * @example const response = super.post('channels/group', undefined, body);
      */
     async post(route, params, body, headers){
-        if(headers) {
-            const response = await axios.post(this.constructEndpoint(route, params), body || undefined, {
-                withCredentials: true,
-                headers,
-            });
+        return new Promise (async (resolve, reject) => {
+            console.log(headers);
+            if(headers) {
+                const response = await axios.post(this.constructEndpoint(route, params), body || undefined, {
+                    withCredentials: true,
+                    headers,
+                });
 
-            this.logResponse(response);
-            return response;
-        } else {
-            const response = await axios.post(this.constructEndpoint(route, params), body || undefined, {
-                withCredentials: true
-            });
+                this.logResponse(response);
+                resolve(response);
+            } else {
+                const response = await axios.post(this.constructEndpoint(route, params), body || undefined, {
+                    withCredentials: true
+                });
 
-            this.logResponse(response);
-            return response;
-        }
+                this.logResponse(response);
+                resolve(response);
+            }
+        });
     }
 
     /**
@@ -116,8 +118,18 @@ class User extends API {
      * Post login credentials into backend and returns the login token on successful login
      * @param {Object} json Json object, which contains login credentials
      */
-    async login(json){ 
-        return super.post('login', undefined, json, {'Content-Type': 'application/json'});
+    async login(json){
+        return new Promise(async (resolve, reject) => {
+            try {
+                const response = await super.post('login', undefined, json, {'Content-Type': 'application/json'});
+                localStorage.setItem('token', response.data.token);
+                super.log('Logged in successfully');
+                resolve(response.status);
+            } catch (error) {
+                super.log(error);
+                reject(response.status);
+            }
+        });
     }
 
     /**

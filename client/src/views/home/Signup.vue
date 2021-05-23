@@ -1,15 +1,21 @@
   <template>
-  <div class="view loginpage">
+  <div class="view signuppage">
     <Header/> 
-    <form v-on:submit.prevent="login">
+    <form v-on:submit.prevent="signup">
       <h1>Welcome Back!</h1>
       <div class="inputField">
         <input v-model="formData.username" class="i" type="text" placeholder="Username">
       </div>
       <div class="inputField">
+        <input v-model="formData.email" class="i" type="email" placeholder="Email">
+      </div>
+      <div class="inputField">
         <input v-model="formData.password" class="i" type="password" placeholder="Password">
       </div>
-      <button type="submit">LOGIN</button>
+      <div class="inputField">
+        <input v-model="formData.repeatPassword" class="i" type="password" placeholder="Repeat password">
+      </div>
+      <button type="submit">SIGNUP</button>
     </form>
   </div>
 </template>
@@ -18,7 +24,7 @@
 import Header from '@/components/home/Header';
 
 export default {
-    name: 'Login',
+    name: 'Signup',
     components: {
       Header
     },
@@ -26,21 +32,23 @@ export default {
       return {
         formData: {
           username: null,
+          email: null,
           password: null,
+          repeatPassword: null,
         }
       }
     },
     methods: {
-      async login(){
-        const status = await this.api.user.login(JSON.stringify(this.formData));
-        if (status == 200) this.$router.push('/dashboard/machines');
+      signup(){
+        console.log(this.formData);
+        this.api.user.signup(this.formData);
       }
     }
 }
 </script>
 
 <style scoped>
-.loginpage {
+.signuppage {
   min-width: 100%;
   min-height: 100%;
   background-color: var(--black);
@@ -48,7 +56,7 @@ export default {
   height: 100%;
 }
 
-.loginpage form {
+.signuppage form {
   height: 100%;
   display: flex;
   justify-content: center;
