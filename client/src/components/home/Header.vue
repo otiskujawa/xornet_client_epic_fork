@@ -3,8 +3,6 @@
     <router-link :to="{ name: 'home'}"><img :src="require('@/assets/logos/logo.svg')" alt="Xornet"></router-link>
     <div class="buttons">
       <router-link :to="{ name: 'home', params: {page: 'about'}}">What is Xornet</router-link>
-      <router-link :to="{ name: 'home', params: {page: 'virtualmachine'}}">I want a VM</router-link>
-      <router-link :to="{ name: 'home', params: {page: 'hosting'}}">I want to Host</router-link>
       <a href="https://github.com/Geoxor/Xornet" target="_blank">Repository</a>
       <router-link class="fancy" :to="{ name: 'home', params: {page: 'downloads'}}">Downloads</router-link>
       <router-link class="fancy" :to="{ name: 'dashboard'}">Dashboard</router-link>
