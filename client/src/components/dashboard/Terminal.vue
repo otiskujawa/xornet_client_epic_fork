@@ -21,7 +21,7 @@ export default {
             terminal.startListening();
         },
         start(){
-            const serverAddress = "http://localhost:8081";
+            const serverAddress = "https://localhost:8081";
             console.log(`connecting to ${serverAddress}`);
             const container = document.getElementById("terminalLmao");
             // Connect to socket and when it is available, start terminal.

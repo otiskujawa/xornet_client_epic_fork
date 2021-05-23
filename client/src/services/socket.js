@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 
-const socket = io('ws://backend.xornet.cloud', { 
+const socket = io('wss://backend.xornet.cloud', { 
     reconnect: true,
     auth: {
         type: 'client',
