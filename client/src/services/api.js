@@ -143,9 +143,7 @@ class User extends API {
      * Returns the user object of the logged in user, takes no input parameters
      */
     async fetchMe(){
-        const request = (await super.get('user')).data;
-        console.log(request);
-        return request;
+        return (await super.get('profile')).data;
     }
 }
 

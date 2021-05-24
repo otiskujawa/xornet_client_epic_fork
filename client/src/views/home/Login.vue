@@ -35,7 +35,7 @@ export default {
     methods: {
       async login(){
         const status = await this.api.user.login(JSON.stringify(this.formData));
-        if (status == 200) this.$router.push('/dashboard/machines');
+        if (status == 200) this.$router.push('/dashboard/profile');
       }
     }
 }

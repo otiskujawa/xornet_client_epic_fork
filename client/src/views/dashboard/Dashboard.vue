@@ -37,9 +37,6 @@ export default {
     return {
     }
   },
-  mounted(){
-    this.api.user.fetchMe();
-  }
 }
 </script>
 
