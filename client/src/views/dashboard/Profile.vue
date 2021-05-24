@@ -1,13 +1,12 @@
   <template>
   <div class="profilepage">
     <h1>Profile</h1>
-    <form v-on:submit.prevent="save">
-      <img class="pfp" :src="profile?.pfp ?? 'https://wallpapercave.com/wp/wp8846945.jpg'" alt="" @click="$refs.pfp.click()">
-      <input type="file" id="myFile" ref="pfp" name="filename" accept="image/*">
+    <form v-on:submit.prevent="save()">
+      <img class="profileImage" :src="profile?.profileImage ?? 'https://wallpapercave.com/wp/wp8846945.jpg'" alt="" @click="$refs.profileImage.click()">
+      <input type="file" id="profileImage" ref="profileImage" name="profileImage" accept="image/*">
 
       <input v-model="profile.username" class="i" type="text" placeholder="Username">
-      <!-- <input v-model="profile.email" class="i" type="email" placeholder="Email">
-      <input v-model="profile.password" class="i" type="password" placeholder="**********"> -->
+      <input v-model="profile.email" class="i" type="email" placeholder="Email">
       <button type="submit">SAVE</button>
     </form>
   </div>
@@ -24,8 +23,10 @@ export default {
     async created(){
       this.profile = await this.api.user.fetchMe();
     },
-    async save(){
-      await this.api.user.fetchMe(this.profile);
+    methods: {
+      async save(){
+        await this.api.user.save(Object.assign({}, this.profile), this.$refs.profileImage.files[0]);
+      }
     }
 }
 </script>
@@ -46,7 +47,7 @@ export default {
   flex-direction: column;
 }
 
-.profilepage .pfp {
+.profilepage .profileImage {
   width: 128px;
   height: 128px;
   border-radius: 50%;

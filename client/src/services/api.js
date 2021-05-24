@@ -38,6 +38,7 @@ class API {
      * @param {String} route The route you wanna make a request to e.g. channels/pin
      * @param {String} params Any optional params the url should have e.g. channels/pin/:channel_uuid
      * @param {Object} body An optional body object to send to the route
+     * @param {Object} headers An optional headers object to send to the route
      * @example const response = super.post('channels/group', undefined, body);
      */
     async post(route, params, body, headers){
@@ -63,9 +64,40 @@ class API {
     }
 
     /**
+     * Creates a new PATCH request to the backend
+     * @param {String} route The route you wanna make a request to e.g. channels/pin
+     * @param {String} params Any optional params the url should have e.g. channels/pin/:channel_uuid
+     * @param {Object} body An optional body object to send to the route
+     * @param {Object} headers An optional headers object to send to the route
+     * @example const response = super.patch('channels/group', undefined, body);
+     */
+    async patch(route, params, body, headers){
+        return new Promise (async (resolve, reject) => {
+            console.log(headers);
+            if(headers) {
+                const response = await axios.patch(this.constructEndpoint(route, params), body || undefined, {
+                    withCredentials: true,
+                    headers,
+                });
+
+                this.logResponse(response);
+                resolve(response);
+            } else {
+                const response = await axios.patch(this.constructEndpoint(route, params), body || undefined, {
+                    withCredentials: true
+                });
+
+                this.logResponse(response);
+                resolve(response);
+            }
+        });
+    }
+
+    /**
      * Creates a new GET request to the backend
      * @param {String} route The route you wanna make a request to e.g. channels/pin
      * @param {String} params Any optional params the url should have e.g. channels/pin/:channel_uuid
+     * @param {Object} headers An optional headers object to send to the route
      * @example const response = super.get('user');
      */
     async get(route, params, headers){
@@ -144,6 +176,19 @@ class User extends API {
      */
     async fetchMe(){
         return (await super.get('profile')).data;
+    }
+
+    /**
+     * Post signup credentials into backend and returns the result of signup process
+     * @param {Object} profile profile object, which contains new desired user credentials
+     * @param {Object} profileImage profileImage object, which contains image class from the refs
+     */
+    async save(profile, profileImage){ 
+        let formData = new FormData();
+        formData.append('json', JSON.stringify(profile));
+        formData.append('image', profileImage);
+
+        return super.patch('profile', undefined, formData, {'Content-Type': 'multipart/form-data'});
     }
 }
 
