@@ -6,4 +6,5 @@ import api from '@/services/api.js';
 let app = createApp(App);
 app.use(router);
 app.config.globalProperties.api = api;
+app.config.globalProperties.profile = {};
 app.mount('#app');

@@ -69,6 +69,14 @@ const routes = [
           title: 'Xornet | Machines'
         },
       },
+      {
+        path: 'profile/',
+        name: 'profile',
+        component: () => import(/* webpackChunkName: "profile" */ '@/views/dashboard/Profile.vue'),
+        meta: {
+          title: 'Xornet | Profile'
+        },
+      },
     ]
   },
 ]

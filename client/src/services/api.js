@@ -1,5 +1,4 @@
 import axios from 'axios'
-axios.defaults.withCredentials = true;
 
 let ROOT_PATH = 'https://backend.xornet.cloud';
 
@@ -138,6 +137,15 @@ class User extends API {
      */
      async signup(json){ 
         return super.post('signup', undefined, json, {'Content-Type': 'application/json'});
+    }
+
+    /**
+     * Returns the user object of the logged in user, takes no input parameters
+     */
+    async fetchMe(){
+        const request = (await super.get('user')).data;
+        console.log(request);
+        return request;
     }
 }
 

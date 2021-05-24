@@ -5,7 +5,8 @@
       <router-link :to="{ name: 'home', params: {page: 'about'}}">What is Xornet</router-link>
       <a href="https://github.com/Geoxor/Xornet" target="_blank">Repository</a>
       <router-link class="fancy" :to="{ name: 'home', params: {page: 'downloads'}}">Downloads</router-link>
-      <router-link class="fancy" :to="{ name: 'dashboard'}">Dashboard</router-link>
+      <router-link class="fancy" v-if="isLoggedIn" :to="{ name: 'dashboard'}">Dashboard</router-link>
+      <router-link class="fancy" v-if="!isLoggedIn" :to="{ name: 'login'}">Login</router-link>
     </div>
   </header> 
 </template>
@@ -16,6 +17,9 @@ export default {
   components: {
   },
   computed: {
+    isLoggedIn: function(){
+      return localStorage.getItem('token') == null ? false : true;
+    }
   },
   data: () => {
     return {

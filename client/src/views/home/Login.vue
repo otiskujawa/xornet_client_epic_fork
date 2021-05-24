@@ -9,6 +9,8 @@
       <div class="inputField">
         <input v-model="formData.password" class="i" type="password" placeholder="Password">
       </div>
+      
+      <p>don't have account? click <router-link :to="{ name: 'signup'}">here</router-link></p>
       <button type="submit">LOGIN</button>
     </form>
   </div>
