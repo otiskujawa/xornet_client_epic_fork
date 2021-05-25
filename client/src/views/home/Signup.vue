@@ -1,32 +1,21 @@
   <template>
   <div class="view signuppage">
     <Header/> 
-    <form v-on:submit.prevent="signup">
-      <h1>Welcome Back!</h1>
-      <div class="inputField">
-        <input v-model="formData.username" class="i" type="text" placeholder="Username">
-      </div>
-      <div class="inputField">
-        <input v-model="formData.email" class="i" type="email" placeholder="Email">
-      </div>
-      <div class="inputField">
-        <input v-model="formData.password" class="i" type="password" placeholder="Password">
-      </div>
-      <div class="inputField">
-        <input v-model="formData.repeatPassword" class="i" type="password" placeholder="Repeat password">
-      </div>
-      <button type="submit">SIGNUP</button>
-    </form>
+    <div class="content">
+      <SignupCard :image="'https://cdn.discordapp.com/attachments/806300597338767450/846781636171006033/paimon.gif'" /> 
+    </div>
   </div>
 </template>
 
 <script>
 import Header from '@/components/home/Header';
+import SignupCard from '@/components/misc/SignupCard';
 
 export default {
     name: 'Signup',
     components: {
-      Header
+      SignupCard,
+      Header,
     },
     data: () => {
       return {
@@ -56,7 +45,7 @@ export default {
   height: 100%;
 }
 
-.signuppage form {
+.signuppage .content {
   height: 100%;
   display: flex;
   justify-content: center;

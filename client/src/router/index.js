@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import auth from '@/router/middleware/auth.js';
 
 const routes = [
   // Xornet Home Page
@@ -16,7 +17,8 @@ const routes = [
     name: 'login',
     component: () => import(/* webpackChunkName: "login" */ '@/views/home/Login.vue'),
     meta: {
-      title: 'Xornet | Login'
+      title: 'Xornet | Login',
+      guest: true,
     }
   },
   // Xornet Signup
@@ -25,7 +27,8 @@ const routes = [
     name: 'signup',
     component: () => import(/* webpackChunkName: "signup" */ '@/views/home/Signup.vue'),
     meta: {
-      title: 'Xornet | Signup'
+      title: 'Xornet | Signup',
+      guest: true,
     }
   },
   // Xornet Dashboard
@@ -34,7 +37,8 @@ const routes = [
     name: 'dashboard',
     component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/Dashboard.vue'),
     meta: {
-      title: 'Xornet | Dashboard'
+      title: 'Xornet | Dashboard',
+      requiresAuth: true,
     },
     children: [ 
       {
@@ -86,10 +90,6 @@ const router = createRouter({
   routes
 })
 
-// this sets the tab title to the current page dynamically
-router.beforeEach(async (to, from, next) => {
-  if (to.meta.title) document.title = to.meta.title;
-  next();
-});
+router.beforeEach(auth);
 
 export default router
