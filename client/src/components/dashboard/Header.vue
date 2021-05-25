@@ -29,8 +29,11 @@
     </div>
 
     <div class="account">
+      <div class="button" @click="logout">
+          <img :src="require('@/assets/icons/logout.png')" alt="">
+      </div>
       <router-link :to="{name: 'profile'}" >
-        <img :src="profile?.profileImage" alt="">
+        <img :src="profile?.profileImage"  class="profileImage" alt="profileImage">
       </router-link>
     </div>
 
@@ -55,6 +58,22 @@ export default {
   mounted(){
   },
   methods: {
+    logout(){
+      function deleteAllCookies() {
+          var cookies = document.cookie.split(";");
+
+          for (var i = 0; i < cookies.length; i++) {
+              var cookie = cookies[i];
+              var eqPos = cookie.indexOf("=");
+              var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+              document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+          }
+      }
+
+      deleteAllCookies();
+      localStorage.removeItem('token');
+      this.$router.push('/login');
+    },
     toggleDarkmode(){
       if(!this.darkmode){
 
@@ -114,7 +133,7 @@ header .buttons {
     display: flex;
 }
 
-header .buttons .button {
+header .button {
     padding: 16px;
     background-color: var(--background-color);
     box-sizing: border-box;
@@ -131,21 +150,21 @@ header .buttons .button {
     user-select: none;
 }
 
-header .buttons .button:hover {
+header .button:hover {
     /* border: 1px solid var(--white); */
     transform: translateY(1px);
     box-shadow: rgb(0 0 0 / 10%) 0px 10px 20px;
 }
 
-header .buttons .button:active {
+header .button:active {
     transform: translateY(-0px);
 }
-header .buttons .button.enabled {
+header .button.enabled {
     filter: invert(1);
     /* background-color: var(--rogue-red-border); */
 }
 
-header .buttons .button img {
+header .button img {
     width: 24px;
     height: 24px;
     filter: invert(var(--filter));
@@ -159,7 +178,7 @@ header .account {
 
 }
 
-header .account img {
+header .account img.profileImage {
   width: 32px;
   height: 32px;
   object-fit: cover;
