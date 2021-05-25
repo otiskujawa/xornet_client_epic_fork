@@ -80,15 +80,15 @@ class API {
                     headers,
                 });
 
-                this.logResponse(response);
-                resolve(response);
+                this.logResponse(response.data);
+                resolve(response.data);
             } else {
                 const response = await axios.patch(this.constructEndpoint(route, params), body || undefined, {
                     withCredentials: true
                 });
 
-                this.logResponse(response);
-                resolve(response);
+                this.logResponse(response.data);
+                resolve(response.data);
             }
         });
     }

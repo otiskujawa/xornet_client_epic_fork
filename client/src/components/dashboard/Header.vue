@@ -28,6 +28,11 @@
         </div>
     </div>
 
+    <div class="account">
+      <router-link :to="{name: 'profile'}" >
+        <img :src="profile?.profileImage" alt="">
+      </router-link>
+    </div>
 
   </header> 
 </template>
@@ -41,9 +46,11 @@ export default {
   },
   data: () => {
     return {
+      profile: null,
     }
   },
-  created(){
+  async created(){
+    this.profile = await this.api.user.fetchMe();
   },
   mounted(){
   },
@@ -142,6 +149,22 @@ header .buttons .button img {
     width: 24px;
     height: 24px;
     filter: invert(var(--filter));
+}
+
+header .account {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+  justify-content: center;
+
+}
+
+header .account img {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 8px
 }
 
 
