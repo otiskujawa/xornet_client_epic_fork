@@ -1,6 +1,9 @@
 <template>
   <nav>
     <div class="buttons">
+      <router-link :to="{name: 'profile'}" class="button">
+        <img :src="require('@/assets/icons/user.png')" alt="">
+      </router-link>
       <router-link :to="{name: 'summary'}" class="button">
         <img :src="require('@/assets/icons/dash.png')" alt="">
       </router-link>
