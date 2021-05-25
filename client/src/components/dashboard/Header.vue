@@ -5,7 +5,7 @@
     </div>
 
     <div class="buttons">
-        <router-link :to="{name: 'dashboard'}" class="button">
+        <router-link :to="{name: 'dashboard'}" class="button dashboard">
             <img :src="require('@/assets/icons/home.png')" alt="">
         </router-link>
         <a href="https://github.com/Geoxor/Xornet/releases" target="_blank" class="button">

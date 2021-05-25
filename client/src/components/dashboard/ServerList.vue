@@ -37,7 +37,7 @@ export default {
             if (localStorage.settings) return JSON.parse(localStorage.settings);
         }
     },
-    data: () => {
+    data() {
         return {
             thinButtons: true,
             showRogues: true,

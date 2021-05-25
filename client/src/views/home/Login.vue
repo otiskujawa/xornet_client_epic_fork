@@ -1,43 +1,22 @@
   <template>
   <div class="view loginpage">
     <Header/> 
-    <form v-on:submit.prevent="login">
-      <h1>Welcome Back!</h1>
-      <div class="inputField">
-        <input v-model="formData.username" class="i" type="text" placeholder="Username">
-      </div>
-      <div class="inputField">
-        <input v-model="formData.password" class="i" type="password" placeholder="Password">
-      </div>
-      
-      <p>don't have account? click <router-link :to="{ name: 'signup'}">here</router-link></p>
-      <button type="submit">LOGIN</button>
-    </form>
+    <div class="content">
+      <LoginCard :image="'https://cdn.discordapp.com/attachments/806300597338767450/846759276889636885/twitch-xqc.gif'" /> 
+    </div>
   </div>
 </template>
 
 <script>
 import Header from '@/components/home/Header';
+import LoginCard from '@/components/misc/LoginCard';
 
 export default {
     name: 'Login',
     components: {
+      LoginCard,
       Header
     },
-    data: () => {
-      return {
-        formData: {
-          username: null,
-          password: null,
-        }
-      }
-    },
-    methods: {
-      async login(){
-        const status = await this.api.user.login(JSON.stringify(this.formData));
-        if (status == 200) this.$router.push('/dashboard/profile');
-      }
-    }
 }
 </script>
 
@@ -50,7 +29,7 @@ export default {
   height: 100%;
 }
 
-.loginpage form {
+.loginpage .content {
   height: 100%;
   display: flex;
   justify-content: center;
