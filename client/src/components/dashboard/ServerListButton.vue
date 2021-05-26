@@ -1,10 +1,10 @@
 <template>
-    <router-link :to="{name: 'dashboard', params: {machine: machine.uuid}}" class="button" :class="{thin: thin, rogue: machine.rogue, disconnected: Date.now() > machine.timestamp + 5000}">
-        
+    <router-link :to="{name: 'machines', params: {machine: machine.uuid}}" class="button" :class="{thin: thin, rogue: machine.rogue, disconnected: Date.now() > machine.timestamp + 15000}">
+         
         <!-- Icons Column -->
-        <img v-if="!machine.rogue && Date.now() < machine.timestamp + 5000" class="machineType" :src="require(`@/assets/icons/${type}.png`)" alt="">
-        <img v-if="machine.rogue && Date.now() < machine.timestamp + 5000 " class="machineType" :src="require(`@/assets/icons/warning.png`)" alt="">
-        <img v-if="Date.now() > machine.timestamp + 5000 " class="machineType" :src="require(`@/assets/icons/disconnected.png`)" alt="">
+        <img v-if="!machine.rogue && Date.now() < machine.timestamp + 15000" class="machineType" :src="require(`@/assets/icons/${type}.png`)" alt="">
+        <img v-if="machine.rogue && Date.now() < machine.timestamp + 15000 " class="machineType" :src="require(`@/assets/icons/warning.png`)" alt="">
+        <img v-if="Date.now() > machine.timestamp + 15000 " class="machineType" :src="require(`@/assets/icons/disconnected.png`)" alt="">
         
         <!-- UUID Column -->
         <div class="info">
@@ -46,7 +46,12 @@
         <div class="field ping" v-if="machine.ping == null"><strong>Unknown</strong></div>
         
         <!-- Uptime Column -->
-        <div class="field uptime">{{machine.uptime.formatted}}</div>
+        <div class="field uptime">
+            {{machine.uptime.formatted.d}}<strong>d</strong>
+            {{machine.uptime.formatted.h}}<strong>h</strong>
+            {{machine.uptime.formatted.m}}<strong>m</strong>
+            {{machine.uptime.formatted.s}}<strong>s</strong>
+        </div>
 
         <!-- Platform Column -->
         <div class="platform"> 
@@ -222,6 +227,11 @@ export default {
 .button .field.uptime { 
     min-width: fit-content;    
 }
+.button .field.uptime strong { 
+    margin-right: 2px;
+}
+
+
 
 .button .field.diskUsage {
     display: flex;

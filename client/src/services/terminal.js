@@ -39,7 +39,7 @@ export class TerminalUI {
      * Utility function to print new line on terminal.
      */
     prompt() {
-      this.terminal.write(`\\r\\n$ `);
+      this.terminal.write(`\r\n$ `);
     }
   
     /**
