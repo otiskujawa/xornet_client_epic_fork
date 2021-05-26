@@ -90,6 +90,7 @@ const router = createRouter({
   routes
 })
 
+// Frontend redirecting
 router.beforeEach(auth);
 
 export default router
