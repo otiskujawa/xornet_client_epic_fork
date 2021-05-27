@@ -138,8 +138,8 @@ export default {
 }
 
 .button.thin img.machineType {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
 }
 
 .button .infofield  {
