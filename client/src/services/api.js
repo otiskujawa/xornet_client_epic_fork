@@ -94,6 +94,36 @@ class API {
     }
 
     /**
+     * Creates a new PUT request to the backend
+     * @param {String} route The route you wanna make a request to e.g. machine
+     * @param {String} params Any optional params the url should have e.g. machine/:machine_uuid
+     * @param {Object} body An optional body object to send to the route
+     * @param {Object} headers An optional headers object to send to the route
+     * @example const response = super.put('machine', undefined, body);
+     */
+    async put(route, params, body, headers){
+        return new Promise (async (resolve, reject) => {
+            console.log(headers);
+            if(headers) {
+                const response = await axios.put(this.constructEndpoint(route, params), body || undefined, {
+                    withCredentials: true,
+                    headers,
+                });
+
+                this.logResponse(response.data);
+                resolve(response.data);
+            } else {
+                const response = await axios.put(this.constructEndpoint(route, params), body || undefined, {
+                    withCredentials: true
+                });
+
+                this.logResponse(response.data);
+                resolve(response.data);
+            }
+        });
+    }
+
+    /**
      * Creates a new GET request to the backend
      * @param {String} route The route you wanna make a request to e.g. channels/pin
      * @param {String} params Any optional params the url should have e.g. channels/pin/:channel_uuid
@@ -190,6 +220,15 @@ class User extends API {
 
         return super.patch('profile', undefined, formData, {'Content-Type': 'multipart/form-data'});
     }
+
+    /**
+     * Puts a new machine to the users database
+     * @param {String} machineUUID The machine's uuid that you want to add
+     */
+    async addMachine(machineUUID){ 
+        return super.put('profile/machine', undefined, {machine: machineUUID}, {'Content-Type': 'application/json'});
+    }
+
 }
 
 

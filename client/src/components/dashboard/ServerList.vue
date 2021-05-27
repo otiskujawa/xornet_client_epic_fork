@@ -11,6 +11,7 @@
         <div @click="sort('region')"   class="field region">Region <img v-if="sortingMethod == 'region'" :src="sortingDirection ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
         <div @click="sort('ping')"     class="field ping">ping <img v-if="sortingMethod == 'ping'" :src="sortingDirection ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
         <div @click="sort('uptime')"   class="field uptime">uptime <img v-if="sortingMethod == 'uptime'" :src="sortingDirection ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
+        <div @click="sort('owner')"    class="field owner">owner <img v-if="sortingMethod == 'owner'" :src="sortingDirection ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
     </nav>
 
     <section v-if="!thinButtons">
@@ -121,6 +122,11 @@ export default {
                 uptime: (a, b) => {
                     if(a.uptime.pure < b.uptime.pure) return -1;
                     if(a.uptime.pure > b.uptime.pure) return 1;
+                    return 0;
+                },
+                owner: (a, b) => {
+                    if(a.owner < b.owner) return -1;
+                    if(a.owner > b.owner) return 1;
                     return 0;
                 },
             }
@@ -263,4 +269,8 @@ export default {
 .columns .field.region {
     min-width: 66px;
 }
+.columns .field.uptime {
+    min-width: 100px;
+}
+
 </style>

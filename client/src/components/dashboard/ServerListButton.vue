@@ -53,6 +53,9 @@
             {{machine.uptime.formatted.s}}<strong>s</strong>
         </div>
 
+        <!-- Owner Column -->
+        <div class="field owner"><img :src="machine?.owner?.profileImage" :alt="machine?.owner?.username"></div>
+
         <!-- Platform Column -->
         <div class="platform"> 
             <img v-if="machine.platform == 'win32'" :src="require('@/assets/icons/windows-black.png')" alt="">
@@ -212,7 +215,7 @@ export default {
     min-width: 72px;
 }
 
-.button .field strong, .button .field.invalid { opacity: .5; }
+.button .field strong, .button .field.invalid { opacity: .7; }
 .button .field.cpuUsage { margin-left: 32px; min-width: 48px; }
 
 .button .field.region {
@@ -225,12 +228,17 @@ export default {
 }
 
 .button .field.uptime { 
-    min-width: fit-content;    
+    min-width: 100px;
 }
 .button .field.uptime strong { 
     margin-right: 2px;
 }
 
+.button .field.owner img {
+    width: 24px;
+    border-radius: 100%;
+    height: 24px;
+}
 
 
 .button .field.diskUsage {
