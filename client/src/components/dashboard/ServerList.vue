@@ -1,16 +1,16 @@
 <template>
   <nav class="serverList" :class="{small: isSmall}">
     <nav v-if="thinButtons" class="columns" :class="{thin: thinButtons}">
-        <div @click="sort('hostname')" class="field hostname">hostname <img v-if="sortingMethod == 'hostname'" :src="sortingDirection ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
-        <div @click="sort('uuid')"     class="field uuid">uuid <img v-if="sortingMethod == 'uuid'" :src="sortingDirection ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
-        <div @click="sort('cpu')"      class="field cpuUsage">cpu  <img v-if="sortingMethod == 'cpu'" :src="sortingDirection ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
-        <div @click="sort('ram')"      class="field ramUsage">ram  <img v-if="sortingMethod == 'ram'" :src="sortingDirection ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
-        <div @click="sort('disks')"    class="field disksUsage">disks  <img v-if="sortingMethod == 'disks'" :src="sortingDirection ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
-        <div @click="sort('upload')"   class="field networkUsage">Upload   <img v-if="sortingMethod == 'upload'" :src="sortingDirection ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
-        <div @click="sort('download')" class="field networkUsage">Download <img v-if="sortingMethod == 'download'" :src="sortingDirection ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
-        <div @click="sort('region')"   class="field region">Region <img v-if="sortingMethod == 'region'" :src="sortingDirection ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
-        <div @click="sort('ping')"     class="field ping">ping <img v-if="sortingMethod == 'ping'" :src="sortingDirection ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
-        <div @click="sort('uptime')"   class="field uptime">uptime <img v-if="sortingMethod == 'uptime'" :src="sortingDirection ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
+        <div @click="sort('hostname')" class="field hostname">hostname <img v-if="sortingMethod == 'hostname'" :src="isAscending ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
+        <div @click="sort('uuid')"     class="field uuid">uuid <img v-if="sortingMethod == 'uuid'" :src="isAscending ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
+        <div @click="sort('cpu')"      class="field cpuUsage">cpu  <img v-if="sortingMethod == 'cpu'" :src="isAscending ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
+        <div @click="sort('ram')"      class="field ramUsage">ram  <img v-if="sortingMethod == 'ram'" :src="isAscending ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
+        <div @click="sort('disks')"    class="field disksUsage">disks  <img v-if="sortingMethod == 'disks'" :src="isAscending ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
+        <div @click="sort('upload')"   class="field networkUsage">Upload   <img v-if="sortingMethod == 'upload'" :src="isAscending ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
+        <div @click="sort('download')" class="field networkUsage">Download <img v-if="sortingMethod == 'download'" :src="isAscending ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
+        <div @click="sort('region')"   class="field region">Region <img v-if="sortingMethod == 'region'" :src="isAscending ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
+        <div @click="sort('ping')"     class="field ping">ping <img v-if="sortingMethod == 'ping'" :src="isAscending ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
+        <div @click="sort('uptime')"   class="field uptime">uptime <img v-if="sortingMethod == 'uptime'" :src="isAscending ? require('@/assets/icons/chevron-up.png') :  require('@/assets/icons/chevron-down.png')" alt=""></div>
     </nav>
 
     <section v-if="!thinButtons">
@@ -44,7 +44,7 @@ export default {
             showDetails: false,
             darkmode: localStorage.settings.darkmode,
             sortingMethod: 'hostname',
-            sortingDirection: true,
+            isAscending: true,
             sortedMachines: [],
         }
     },
@@ -61,14 +61,14 @@ export default {
         sortingMethod(to, from){
             this.switchSorting(to, from);
         },
-        sortingDirection(to, from){
+        isAscending(to, from){
             this.switchSorting(this.sortingMethod);
         },
     },
     methods: {
         sort(field){
-            if (field == this.sortingMethod) this.sortingDirection = !this.sortingDirection;
-            else this.sortingDirection = false;
+            if (field == this.sortingMethod) this.isAscending = !this.isAscending;
+            else this.isAscending = false;
             this.sortingMethod = field;
         },
         switchSorting(sortBy) {
@@ -127,8 +127,8 @@ export default {
 
             let sortedArray = this.machines.sort((a, b) => sortingAlgorithms[sortBy](a, b));
 
-            if (!this.sortingDirection) this.sortedMachines = sortedArray.reverse();
             this.sortedMachines = sortedArray;
+            if (!this.isAscending) this.sortedMachines = sortedArray.reverse();
         },
     }
 }

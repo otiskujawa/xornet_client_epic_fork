@@ -72,7 +72,7 @@ export default {
 .machines, .informatics {
   display: flex;
   width: fit-content;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .informatics {

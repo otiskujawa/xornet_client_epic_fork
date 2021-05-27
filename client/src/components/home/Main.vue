@@ -73,7 +73,7 @@ export default {
 </script>
 
 <style scoped>
-
+/*scoped means only applies to this component */
 .main {
     width: 100%;
     padding: 8px 10vw;

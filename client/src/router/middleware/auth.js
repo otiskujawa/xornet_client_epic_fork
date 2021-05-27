@@ -1,4 +1,4 @@
-export default function (to, from, next){
+export default function (to, from, next){ //middleware checks if route requiresauth
     if (to.meta.title) document.title = to.meta.title;
     if(to.matched.some(record => record.meta.requiresAuth)) {
       if (localStorage.getItem('token') == null) {
