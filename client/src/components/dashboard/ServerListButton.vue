@@ -245,10 +245,10 @@ export default {
 }
 
 .button .field.owner img {
-  width: 24px;
+  width: 18px;
+  height: 18px;
   object-fit: cover;
   border-radius: 100%;
-  height: 24px;
 }
 
 .button .field.diskUsage {
