@@ -1,5 +1,5 @@
 <template>
-  <header class="view">
+  <header :class="route == 'home' ? 'view-home' : 'view-login' ">
     <router-link :to="{ name: 'home'}">
     <img :src="route == 'home' ? require('@/assets/logos/logo.svg') : require('@/assets/logos/logo2.svg')" alt="Xornet">
     </router-link>
@@ -37,16 +37,19 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 10vw;
   /* background-color: var(--white); */
 }
-
+.view-home {
+padding: 8px 10vw;
+}
+.view-login {
+padding: 8px 4vw;
+}
 header .buttons {
   display: flex;
   height: 100%;
   gap: 8px;
 }
-
 header .buttons .button {
   color: white;
   border: none;
@@ -67,16 +70,13 @@ header .buttons .button {
   white-space: nowrap;
   text-decoration: none;
 }
-
 header .buttons .button:hover {
   box-shadow: 0px 4px 12px #4361ee80;
   transform: translateY(-1px);
 }
-
 header .buttons .button:active {
   transform: translateY(1px);
 }
-
 header .buttons .button img {
   filter: invert(1);
   width: 24px;
