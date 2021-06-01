@@ -1,6 +1,9 @@
 <template>
   <header class="view">
-    <router-link :to="{ name: 'home' }"><img :src="require('@/assets/logos/logo.svg')" alt="Xornet"/></router-link>
+    <router-link :to="{ name: 'home'}">
+    <img v-if="$route.name == 'Home'" :src="require('@/assets/logos/logo.svg')" alt="Xornet">
+    <img v-if="$route.name != 'Home'" :src="require('@/assets/logos/logo2.svg')" alt="Xornet">
+    </router-link>
     <div class="buttons">
       <router-link class="button" :to="{ name: 'home', params: { page: 'about' } }"> <img :src="require('@/assets/icons/details.png')" alt="details" /> What is Xornet </router-link>
       <a class="button" href="https://github.com/Geoxor/Xornet" target="_blank"> <img :src="require('@/assets/icons/repository.png')" alt="repository" /> Repository </a>
