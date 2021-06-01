@@ -2,10 +2,11 @@ const fs = require('fs');
 
 module.exports = {
     devServer: {
-        //public: 'https://xornet.cloud',
+        public: 'https://xornet.cloud',
         disableHostCheck: true,
-        https: false,
-        //cert: fs.readFileSync('./cert.pem'),
-        //key: fs.readFileSync('./key.pem'),
+        port: 8082,
+        https: true,
+        cert: fs.readFileSync('./cert.pem'),
+        key: fs.readFileSync('./key.pem'),
     },
 }

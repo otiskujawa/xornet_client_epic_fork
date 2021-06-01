@@ -1,22 +1,21 @@
 <template>
   <div class="info">
-    <h1 class="title">{{title}}</h1>
-    <h1 class="value">{{value}}</h1>
+    <h1 class="title">{{ title }}</h1>
+    <h1 class="value">{{ value }}</h1>
   </div>
 </template>
 
 <script>
 export default {
-    name: 'InfoField',
-    props: {
-        title: { type: String, required: true },
-        value: { type: String, required: true },
-    },
+  name: "InfoField",
+  props: {
+    title: { type: String, required: true },
+    value: { type: String, required: true }
+  }
 };
 </script>
 
 <style scoped>
-
 .info {
   display: flex;
   border: 1px solid #252547;
@@ -48,8 +47,7 @@ export default {
 .info .value {
   font-size: 20px;
   font-weight: 400;
-  font-family: 'Courier Prime', monospace;
+  font-family: "Courier Prime", monospace;
   line-height: 18px;
 }
-
 </style>

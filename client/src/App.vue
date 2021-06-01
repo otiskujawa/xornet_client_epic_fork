@@ -28,6 +28,7 @@ export default {
   --background-color: #ffffff;
   --white: #f6f6f6;
   --black: #0B0B15;
+  --gray: #c7c7c7;
   --slyColor: #414569;
   --rogue-red: #ffeef0;
   --rogue-red-active:#fdaeb7;
@@ -39,6 +40,7 @@ export default {
   --darkmode-slyColor: #fff;
   --darkmode-rogue-red: rgba(218, 54, 51, 0.2);
   --darkmode-rogue-red-active: #8e1519;
+  --darkmode-gray: #c7c7c7;
 
  /* This variable decides weither the images on the buttons will have their color inverted 
     it switches states if darkmode is on or off in serverList.vue */

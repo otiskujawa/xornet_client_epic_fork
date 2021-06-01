@@ -1,30 +1,36 @@
-  <template>
+<template>
   <div class="view loginpage">
-    <Header/> 
+    <Header />
     <div class="content">
-      <LoginCard :image="'https://cdn.discordapp.com/attachments/806300597338767450/846759276889636885/twitch-xqc.gif'" /> 
+      <LoginCard :image="'https://cdn.discordapp.com/attachments/806300597338767450/846759276889636885/twitch-xqc.gif'" />
     </div>
   </div>
 </template>
 
 <script>
-import Header from '@/components/home/Header';
-import LoginCard from '@/components/misc/LoginCard';
+import Header from "@/components/home/Header";
+import LoginCard from "@/components/misc/LoginCard";
 
 export default {
-    name: 'Login',
-    components: {
-      LoginCard,
-      Header
-    },
-}
+  name: "Login",
+  components: {
+    LoginCard,
+    Header
+  }
+};
 </script>
 
 <style scoped>
 .loginpage {
   min-width: 100%;
   min-height: 100%;
-  background-color: var(--black);
+
+  background: linear-gradient(0deg, #ffffff, #ffffff), url("https://cdn.discordapp.com/attachments/806300597338767450/849090088070938694/wallhaven-eogkdo.png"), #bcbcbc;
+  background-blend-mode: color, screen, normal;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+
   position: relative;
   height: 100%;
 }
@@ -36,6 +42,4 @@ export default {
   align-items: center;
   flex-direction: column;
 }
-
-
 </style>

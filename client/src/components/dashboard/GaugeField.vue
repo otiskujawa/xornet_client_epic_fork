@@ -1,12 +1,9 @@
 <template>
   <fieldset class="machine">
     <legend>{{ machine.hostname }}</legend>
+    <Gauge :icon="require('@/assets/icons/cpu.png')" suffix="%" :value="parseFloat(machine.cpu)" />
     <Gauge
-      :icon="require('@/assets/icons/cpu.png')"
-      suffix="%"
-      :value="parseFloat(machine.cpu)"
-    />
-    <Gauge v-if="machine.gpu"
+      v-if="machine.gpu"
       :icon="require('@/assets/icons/gpu.png')"
       suffix="%"
       :value="parseFloat(machine.gpu.utilizationGpu)"
@@ -42,22 +39,20 @@
 </template>
 
 <script>
-import Gauge from '@/components/dashboard/Gauge.vue';
-
+import Gauge from "@/components/dashboard/Gauge.vue";
 
 export default {
-    name: 'GaugeField',
-    components: {
-        Gauge,
-    },
-    props: {
-        machine: { type: Object, required: true},
-    }
+  name: "GaugeField",
+  components: {
+    Gauge
+  },
+  props: {
+    machine: { type: Object, required: true }
+  }
 };
 </script>
 
 <style scoped>
-
 .machine {
   display: flex;
   border: 1px solid #252547;
@@ -80,5 +75,4 @@ export default {
   transform: translateY(-1px);
   box-shadow: rgb(0 0 0 / 10%) 0px 10px 20px;
 }
-
 </style>
