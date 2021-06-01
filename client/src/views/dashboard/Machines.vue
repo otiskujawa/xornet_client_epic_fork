@@ -85,7 +85,7 @@ export default {
         socket.on("machines", machines => {
             // console.log(machines);
 
-            Object.values(machines).forEach(machine => this.machines.set(machine.uuid, machine));
+            Object.values(machines).forEach(machine => machine.uuid ? this.machines.set(machine.uuid, machine) : null);
             
             let totalRam = 0; 
             let totalRamUsed = 0; 

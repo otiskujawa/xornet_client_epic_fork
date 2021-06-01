@@ -46,15 +46,11 @@
         <div class="field ping" v-if="machine.ping == null"><strong>Unknown</strong></div>
         
         <!-- Uptime Column -->
-        <div class="field uptime">
-            {{machine.uptime.formatted.d}}<strong>d</strong>
-            {{machine.uptime.formatted.h}}<strong>h</strong>
-            {{machine.uptime.formatted.m}}<strong>m</strong>
-            {{machine.uptime.formatted.s}}<strong>s</strong>
+        <div class="field uptime">{{machine.uptime.formatted.d}}:{{machine.uptime.formatted.h}}:{{machine.uptime.formatted.m}}:{{machine.uptime.formatted.s}}
         </div>
-
+ 
         <!-- Owner Column -->
-        <div class="field owner"><img :src="machine?.owner?.profileImage" :alt="machine?.owner?.username"></div>
+        <div class="field owner"><img :src="machine?.owner?.profileImage" :alt="machine?.owner?.username">{{machine.owner.username}}</div>
 
         <!-- Platform Column -->
         <div class="platform"> 
@@ -99,7 +95,7 @@ export default {
     gap: 8px;
     align-items: center;
     cursor: pointer;
-    transition: 100ms ease;
+    /* transition: 100ms ease; */
     text-decoration: none;
     overflow: hidden;
     user-select: none;
@@ -109,10 +105,11 @@ export default {
     background-color: var(--rogue-red);
 }
 
-.button:hover {
+.button:hover:not(.rogue) {
     border: 1px solid var(--white);
-    transform: translateY(-1px);
-    box-shadow: rgb(0 0 0 / 10%) 0px 10px 20px;
+    background-color: var(--white);
+    /* transform: translateY(-1px); */
+    /* box-shadow: rgb(0 0 0 / 10%) 0px 10px 20px; */
 }
 
 .button.rogue:hover {
@@ -138,8 +135,8 @@ export default {
 }
 
 .button.thin img.machineType {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
 }
 
 .button .infofield  {
@@ -233,9 +230,13 @@ export default {
 .button .field.uptime strong { 
     margin-right: 2px;
 }
+.button .field.owner {
+    gap: 8px;
+}
 
 .button .field.owner img {
     width: 24px;
+    object-fit: cover;
     border-radius: 100%;
     height: 24px;
 }
@@ -244,7 +245,7 @@ export default {
 .button .field.diskUsage {
     display: flex;
     flex-direction: column;
-    min-width: 168px;
+    min-width: 138px;
     align-items: flex-start;
 }
 

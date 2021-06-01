@@ -125,8 +125,8 @@ export default {
                     return 0;
                 },
                 owner: (a, b) => {
-                    if(a.owner < b.owner) return -1;
-                    if(a.owner > b.owner) return 1;
+                    if(a.owner.username < b.owner.username) return -1;
+                    if(a.owner.username > b.owner.username) return 1;
                     return 0;
                 },
             }
@@ -259,7 +259,7 @@ export default {
 }
 
 .columns .field.disksUsage {
-    min-width: 168px;
+    min-width: 138px;
 }
 
 .columns .field.networkUsage {
