@@ -12,7 +12,7 @@
           <input v-model="form.username" class="inputField" type="text" placeholder="Username" />
           <input v-model="form.password" class="inputField" type="password" placeholder="Password" />
           <p>Don’t have an account? <router-link :to="{ name: 'signup' }">Click here</router-link></p>
-          <p>Forgot your password? <router-link :to="{ name: 'forgot' }">Click here</router-link></p>
+          <!-- <p>Forgot your password? <router-link :to="{ name: 'forgot' }">Click here</router-link></p> -->
         </div>
 
         <button type="submit" :class="{ disabled: isFormValid || isLoading }">Login <img v-if="isLoading" :src="require('@/assets/icons/loading.gif')" alt="" /></button>
