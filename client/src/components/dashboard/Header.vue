@@ -32,7 +32,7 @@
       <div class="button" @click="logout">
         <img :src="require('@/assets/icons/logout.png')" alt="" />
       </div>
-      <router-link :to="{ name: 'profile', params: {username}}">
+      <router-link :to="{ name: 'profile', params: { username } }">
         <img :src="profile?.profileImage?.url" class="profileImage" alt="profileImage" />
       </router-link>
     </div>
@@ -44,8 +44,8 @@ export default {
   name: "Header",
   components: {},
   computed: {
-    username: function(){
-      return localStorage.getItem('username');
+    username: function() {
+      return localStorage.getItem("username");
     }
   },
   data: () => {

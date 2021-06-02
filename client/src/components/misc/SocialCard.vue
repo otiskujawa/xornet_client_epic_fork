@@ -23,24 +23,23 @@ export default {
   data() {
     return {
       form: {
-        url: "",
+        url: ""
       },
       isLoading: false
     };
   },
   props: {
-    add: { type: Function },
+    add: { type: Function }
   },
   computed: {
     isFormValid: function() {
       return Object.values(this.form).some(field => field == "");
     }
-  },
+  }
 };
 </script>
 
 <style scoped>
-
 .card {
   position: absolute;
   left: 50%;
@@ -177,5 +176,4 @@ export default {
   width: 16px;
   height: 16px;
 }
-
 </style>

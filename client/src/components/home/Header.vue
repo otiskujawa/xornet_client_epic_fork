@@ -1,7 +1,7 @@
 <template>
-  <header :class="route == 'home' ? 'view-home' : 'view-login' ">
-    <router-link :to="{ name: 'home'}">
-    <img :src="route == 'home' ? require('@/assets/logos/logo.svg') : require('@/assets/logos/logo2.svg')" alt="Xornet">
+  <header :class="route == 'home' ? 'view-home' : 'view-login'">
+    <router-link :to="{ name: 'home' }">
+      <img :src="route == 'home' ? require('@/assets/logos/logo.svg') : require('@/assets/logos/logo2.svg')" alt="Xornet" />
     </router-link>
     <div class="buttons">
       <router-link class="button" :to="{ name: 'home', params: { page: 'about' } }"> <img :src="require('@/assets/icons/details.png')" alt="details" /> What is Xornet </router-link>
@@ -40,10 +40,10 @@ header {
   /* background-color: var(--white); */
 }
 .view-home {
-padding: 8px 10vw;
+  padding: 8px 10vw;
 }
 .view-login {
-padding: 8px 4vw;
+  padding: 8px 4vw;
 }
 header .buttons {
   display: flex;

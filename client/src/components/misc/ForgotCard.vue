@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       form: {
-        email: "",
+        email: ""
       },
       isLoading: false
     };
@@ -35,6 +35,6 @@ export default {
   },
   props: {
     image: { type: String, required: true }
-  },
+  }
 };
 </script>

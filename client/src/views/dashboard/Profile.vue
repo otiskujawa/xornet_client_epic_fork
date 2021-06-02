@@ -16,7 +16,14 @@
         <img :src="require(`@/assets/icons/edit.png`)" />
       </section>
 
-      <section v-if="isEditing && profile.username == username" @click="save(); isEditing = !isEditing" class="shadowButton edit">
+      <section
+        v-if="isEditing && profile.username == username"
+        @click="
+          save();
+          isEditing = !isEditing;
+        "
+        class="shadowButton edit"
+      >
         <h1>Save</h1>
         <img :src="require(`@/assets/icons/save.png`)" />
       </section>
@@ -24,7 +31,7 @@
 
     <SocialCard :add="add" v-if="isAddingSocial && isEditing" />
 
-    <div class="details" :class="{editing: isEditing}">
+    <div class="details" :class="{ editing: isEditing }">
       <div class="heading">
         <!-- make this change to the user's selected badge -->
         <img v-if="profile.badges?.owned[profile.badges.selected]" :src="require(`@/assets/badges/${profile.badges?.owned[profile.badges.selected]}.svg`)" />
@@ -35,8 +42,8 @@
         </div>
       </div>
 
-      <section class="shadowButton uuid" :class="{didCopy: didCopy}" @click="copyUUID">
-        <h1 id="profileID" >{{ copyMessage || profile._id }}</h1>
+      <section class="shadowButton uuid" :class="{ didCopy: didCopy }" @click="copyUUID">
+        <h1 id="profileID">{{ copyMessage || profile._id }}</h1>
         <img :src="require(`@/assets/icons/clipboard.png`)" />
       </section>
 
@@ -77,28 +84,25 @@
       <div class="line"></div>
 
       <section class="socials" v-if="profile.socials?.length != 0 || isEditing">
-        <div v-for="(platform, index) of profile.socials" :key="platform" @click="isEditing ? remove(index) : open(platform.url)" class="shadowButton" :class="{isEditing: isEditing}" >
-          <h1 v-if="platforms.includes(platform.name) && !isEditing" class="nameOnPlatform">@{{platform.url.split('/')[platform.url.split('/').length - 1]}}</h1>
-          <h1 v-if="!platforms.includes(platform.name) && !isEditing" class="nameOnPlatform">{{platform.name}}</h1>
+        <div v-for="(platform, index) of profile.socials" :key="platform" @click="isEditing ? remove(index) : open(platform.url)" class="shadowButton" :class="{ isEditing: isEditing }">
+          <h1 v-if="platforms.includes(platform.name) && !isEditing" class="nameOnPlatform">@{{ platform.url.split("/")[platform.url.split("/").length - 1] }}</h1>
+          <h1 v-if="!platforms.includes(platform.name) && !isEditing" class="nameOnPlatform">{{ platform.name }}</h1>
           <img :src="platform.name != null && platforms.includes(platform.name) ? require(`@/assets/icons/${platform.name}.png`) : require(`@/assets/icons/globe.png`)" />
           <img v-if="isEditing" :src="require(`@/assets/icons/x.png`)" />
         </div>
 
-        <div class="shadowButton" @click="isAddingSocial = !isAddingSocial" v-if="isEditing" :class="{isEditing: isEditing}" >
+        <div class="shadowButton" @click="isAddingSocial = !isAddingSocial" v-if="isEditing" :class="{ isEditing: isEditing }">
           <h1 class="nameOnPlatform">Add</h1>
           <img :src="require(`@/assets/icons/add.png`)" />
         </div>
       </section>
 
-
-
       <div class="line" v-if="profile.socials?.length != 0 || isEditing"></div>
 
       <section>
         <h1 class="descriptionHeading">Bio</h1>
-        <p class="descriptionText">{{ profile.bio || "Im new to xornet uwu!"}}</p>
+        <p class="descriptionText">{{ profile.bio || "Im new to xornet uwu!" }}</p>
       </section>
-
     </div>
   </div>
 </template>
@@ -113,71 +117,69 @@ export default {
   },
   data: () => {
     return {
-      platforms: ["youtube", "twitch", "twitter", "discord", "reddit", "facebook", "github", "steam", "instagram", "tiktok", "tumblr", "vk" ],
+      platforms: ["youtube", "twitch", "twitter", "discord", "reddit", "facebook", "github", "steam", "instagram", "tiktok", "tumblr", "vk"],
       profile: {},
       didCopy: false,
       copyMessage: null,
       isEditing: false,
-      isAddingSocial: false,
+      isAddingSocial: false
     };
   },
   computed: {
-    username: function(){
-      return localStorage.getItem('username');
+    username: function() {
+      return localStorage.getItem("username");
     }
   },
   async created() {
     this.profile = await this.api.user.fetchProfile(this.$route.params.username);
   },
   methods: {
-    remove(index){
+    remove(index) {
       this.profile.socials.splice(index, 1);
     },
-    add(url){
-
+    add(url) {
       let name = extractHostname(url);
 
-      if (url.includes('youtube')) name = 'youtube';
-      if (url.includes('twitch')) name = 'twitch';
-      if (url.includes('twitter')) name = 'twitter';
-      if (url.includes('discord')) name = 'discord';
-      if (url.includes('reddit')) name = 'reddit';
-      if (url.includes('github')) name = 'github';
-      if (url.includes('facebook')) name = 'facebook';
-      if (url.includes('steam')) name = 'steam';
-      if (url.includes('instagram')) name = 'instagram';
-      if (url.includes('tiktok')) name = 'tiktok';
-      if (url.includes('tumblr')) name = 'tumblr';
-      if (url.includes('vk')) name = 'vk';
+      if (url.includes("youtube")) name = "youtube";
+      if (url.includes("twitch")) name = "twitch";
+      if (url.includes("twitter")) name = "twitter";
+      if (url.includes("discord")) name = "discord";
+      if (url.includes("reddit")) name = "reddit";
+      if (url.includes("github")) name = "github";
+      if (url.includes("facebook")) name = "facebook";
+      if (url.includes("steam")) name = "steam";
+      if (url.includes("instagram")) name = "instagram";
+      if (url.includes("tiktok")) name = "tiktok";
+      if (url.includes("tumblr")) name = "tumblr";
+      if (url.includes("vk")) name = "vk";
 
       function extractHostname(url) {
-          var hostname;
-          //find & remove protocol (http, ftp, etc.) and get hostname
+        var hostname;
+        //find & remove protocol (http, ftp, etc.) and get hostname
 
-          if (url.indexOf("//") > -1) {
-              hostname = url.split('/')[2];
-          }
-          else {
-              hostname = url.split('/')[0];
-          }
+        if (url.indexOf("//") > -1) {
+          hostname = url.split("/")[2];
+        } else {
+          hostname = url.split("/")[0];
+        }
 
-          //find & remove port number
-          hostname = hostname.split(':')[0];
-          //find & remove "?"
-          hostname = hostname.split('?')[0];
+        //find & remove port number
+        hostname = hostname.split(":")[0];
+        //find & remove "?"
+        hostname = hostname.split("?")[0];
 
-          return hostname;
+        return hostname;
       }
 
       url = {
         name,
-        url,
+        url
       };
 
       this.profile.socials.push(url);
     },
-    open(url){
-      window.open(url,'_blank')
+    open(url) {
+      window.open(url, "_blank");
     },
     async save() {
       let response = await this.api.user.save(Object.assign({}, this.profile), this.$refs.profileImage.files[0], this.$refs.profileBanner.files[0]);
@@ -187,15 +189,15 @@ export default {
       }
     },
     copyUUID() {
-      let toCopy = document.querySelector('#profileID');
+      let toCopy = document.querySelector("#profileID");
       var temp = document.createElement("textarea");
       document.body.appendChild(temp);
-      temp.value= toCopy.innerText
+      temp.value = toCopy.innerText;
       temp.select();
-      try{
+      try {
         var successful = document.execCommand("copy");
-        document.body.removeChild(temp); 
-        var msg = successful ? 'successful' : 'unsuccessful';
+        document.body.removeChild(temp);
+        var msg = successful ? "successful" : "unsuccessful";
 
         this.didCopy = true;
         this.copyMessage = "UUID Copied!";
@@ -204,9 +206,9 @@ export default {
           this.copyMessage = null;
         }, 3000);
       } catch {
-        console.log('Oops, unable to copy');
-      };
-    },
+        console.log("Oops, unable to copy");
+      }
+    }
   },
   watch: {
     async $route(to, from) {
@@ -391,7 +393,7 @@ export default {
   gap: 8px;
 }
 
-.profilepage .details .badges  .badge {
+.profilepage .details .badges .badge {
   width: 28px;
   height: 28px;
 }

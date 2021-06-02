@@ -26,7 +26,7 @@
         <strong>
           {{ disk.fs }}
         </strong>
-          {{ disk.size > 1000 ? `${(disk.used / 1000).toFixed(2)}/${(disk.size / 1000).toFixed(2)}` : `${disk.used}/${disk.size}` }}
+        {{ disk.size > 1000 ? `${(disk.used / 1000).toFixed(2)}/${(disk.size / 1000).toFixed(2)}` : `${disk.used}/${disk.size}` }}
         <strong>
           {{ disk.size > 1000 ? "TB" : "GB" }}
         </strong>
@@ -48,7 +48,7 @@
     <div class="field uptime">{{ machine.uptime.formatted.d }}:{{ machine.uptime.formatted.h }}:{{ machine.uptime.formatted.m }}:{{ machine.uptime.formatted.s }}</div>
 
     <!-- Owner Column -->
-    <router-link class="field owner" :to="{ name: 'profile', params: {username: machine?.owner?.username}}"><img :src="machine?.owner?.profileImage" :alt="machine?.owner?.username" />{{ machine.owner.username }}</router-link>
+    <router-link class="field owner" :to="{ name: 'profile', params: { username: machine?.owner?.username } }"><img :src="machine?.owner?.profileImage" :alt="machine?.owner?.username" />{{ machine.owner.username }}</router-link>
 
     <!-- Platform Column -->
     <div class="platform">
