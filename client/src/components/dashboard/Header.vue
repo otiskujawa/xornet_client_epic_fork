@@ -33,7 +33,7 @@
         <img :src="require('@/assets/icons/logout.png')" alt="" />
       </div>
       <router-link :to="{ name: 'profile', params: {username}}">
-        <img :src="profile?.profileImage" class="profileImage" alt="profileImage" />
+        <img :src="profile?.profileImage.url" class="profileImage" alt="profileImage" />
       </router-link>
     </div>
   </header>

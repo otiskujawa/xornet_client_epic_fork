@@ -1,67 +1,64 @@
 <template>
   <div class="profilepage">
-
     <div class="heading">
       <img class="profileBanner" :src="profile?.profileBanner ?? 'https://i.pinimg.com/originals/65/c7/d4/65c7d4a8f34de11f9414ce49b847e56a.gif'" :alt="profile.username" />
-      <div class="profileImage" :style="{'background-image': `url(${profile?.profileImage ?? 'https://wallpapercave.com/wp/wp8846945.jpg'})`}">
-        <div class="xornetBadge"><img :src="require('@/assets/logos/logo.svg')" alt="Xornet Developer"></div>
+      <div class="profileImage" :class="{border: profile?.profileImage?.hasAlpha}" :style="{ 'background-image': `url(${profile?.profileImage?.url ?? 'https://wallpapercave.com/wp/wp8846945.jpg'})` }">
+        <div class="xornetBadge"><img :src="require('@/assets/logos/logo.svg')" alt="Xornet Developer" /></div>
       </div>
     </div>
 
     <div class="details">
       <div class="heading">
         <!-- make this change to the user's selected badge -->
-        <img :src="require(`@/assets/badges/developer.svg`)">
+        <img :src="require(`@/assets/badges/developer.svg`)" />
 
         <div class="container">
-          <h1 class="username">{{profile.username}}</h1>
+          <h1 class="username">{{ profile.username }}</h1>
           <img class="location" :src="profile.geolocation?.countryCode ? require(`@/assets/flags/${profile.geolocation.countryCode}.png`) : require('@/assets/flags/__.png')" alt="Country Flag" />
         </div>
       </div>
 
       <section class="uuid">
-        <h1>{{profile._id}}</h1>
-        <img :src="require(`@/assets/icons/clipboard.png`)">
+        <h1>{{ profile._id }}</h1>
+        <img :src="require(`@/assets/icons/clipboard.png`)" />
       </section>
 
       <section>
         <h1 class="descriptionHeading">Points</h1>
-        <p class="points">{{profile.points  || '0'}}</p>
+        <p class="points">{{ profile.points || "0" }}</p>
         <div class="line"></div>
       </section>
 
       <section v-if="profile.badges">
         <h1 class="descriptionHeading">Badges</h1>
 
-        <img v-if="profile.badges.includes('developer')" :src="require(`@/assets/badges/developer.svg`)">
-        <img v-if="profile.badges.includes('designer')" :src="require(`@/assets/badges/designer.svg`)">
-        <img v-if="profile.badges.includes('contributor')" :src="require(`@/assets/badges/contributor.svg`)">
+        <img v-if="profile.badges.includes('developer')" :src="require(`@/assets/badges/developer.svg`)" />
+        <img v-if="profile.badges.includes('designer')" :src="require(`@/assets/badges/designer.svg`)" />
+        <img v-if="profile.badges.includes('contributor')" :src="require(`@/assets/badges/contributor.svg`)" />
 
         <div class="line"></div>
       </section>
 
       <section v-if="profile.name">
         <h1 class="descriptionHeading">Name</h1>
-        <p class="descriptionText">{{profile.name}}</p>
+        <p class="descriptionText">{{ profile.name }}</p>
       </section>
 
       <section v-if="profile.email">
         <h1 class="descriptionHeading">Email</h1>
-        <p class="descriptionText">{{profile.email}}</p>
+        <p class="descriptionText">{{ profile.email }}</p>
       </section>
 
       <section v-if="profile.created">
         <h1 class="descriptionHeading">Created</h1>
-        <p class="descriptionText">{{profile.created}}</p>
+        <p class="descriptionText">{{ profile.created }}</p>
       </section>
 
       <div class="line"></div>
-
-
     </div>
 
     <form v-if="isEditing" v-on:submit.prevent="save()">
-      <img class="profileImage" :src="profile?.profileImage ?? 'https://wallpapercave.com/wp/wp8846945.jpg'" alt="" @click="$refs.profileImage.click()" />
+      <img class="profileImage" :src="profile?.profileImage?.url ?? 'https://wallpapercave.com/wp/wp8846945.jpg'" alt="" @click="$refs.profileImage.click()" />
       <input type="file" id="profileImage" ref="profileImage" style="display: none;" name="profileImage" accept="image/*" />
 
       <input v-model="profile.username" class="i" type="text" placeholder="Username" />
@@ -79,7 +76,7 @@ export default {
   data: () => {
     return {
       profile: {},
-      isEditing: false,
+      isEditing: true,
     };
   },
   async created() {
@@ -92,7 +89,7 @@ export default {
       for (const [key, value] of Object.entries(response.profile)) {
         this.profile[key] = value;
       }
-    }
+    },
   },
   watch: {
     async $route(to, from) {
@@ -147,8 +144,12 @@ export default {
   object-fit: cover;
 }
 
+.profilepage .heading .profileImage.border {
+  border: 6px solid transparent;
+}
+
 .profilepage .heading .xornetBadge {
-  background: linear-gradient(90deg, #DB00FF 0%, #8000FF 31.77%, #00B2FF 64.06%, #00FFF0 98.44%);
+  background: linear-gradient(90deg, #db00ff 0%, #8000ff 31.77%, #00b2ff 64.06%, #00fff0 98.44%);
   transform: translate(-6px);
   border: 6px solid var(--background-color);
   width: fit-content;
@@ -179,15 +180,14 @@ export default {
   align-items: center;
 }
 
-
 .profilepage .details .heading .container {
   display: flex;
-  gap:8px;
+  gap: 8px;
   align-items: flex-end;
 }
 
 .profilepage .details .heading .username {
-  font-family: 'Work Sans';
+  font-family: "Work Sans";
   font-style: normal;
   font-weight: 600;
   font-size: 36px;
@@ -219,7 +219,7 @@ export default {
 }
 
 .profilepage .details .uuid h1 {
-  font-family: 'Roboto Mono', monospace;
+  font-family: "Roboto Mono", monospace;
   font-style: normal;
   font-weight: 700;
   font-size: 12px;
@@ -241,11 +241,11 @@ section h1 {
   font-size: 14px;
   display: flex;
   align-items: center;
-  color: #C8C8C8;
+  color: #c8c8c8;
 }
 
 .points {
-  background: linear-gradient(90deg, #DB00FF 0%, #8000FF 31.77%, #00B2FF 64.06%, #00FFF0 98.44%);
+  background: linear-gradient(90deg, #db00ff 0%, #8000ff 31.77%, #00b2ff 64.06%, #00fff0 98.44%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
   font-family: Work Sans;
@@ -271,9 +271,6 @@ section h1 {
   width: 100%;
   height: 1px;
   margin-top: 20px;
-  background-color: #E7E7E7;
+  background-color: #e7e7e7;
 }
-
-
-
 </style>
