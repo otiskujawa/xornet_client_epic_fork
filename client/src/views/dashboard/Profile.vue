@@ -1,16 +1,16 @@
 <template>
-  <div class="profilepage">
+  <div class="profilepage" v-if="profile.username">
     <div class="heading">
-      <img class="profileBanner" :src="profile?.profileBanner ?? 'https://i.pinimg.com/originals/65/c7/d4/65c7d4a8f34de11f9414ce49b847e56a.gif'" :alt="profile.username" />
+      <img class="profileBanner" :src="profile?.profileBanner ?? 'https://cdn.discordapp.com/attachments/806300597338767450/849668963033153606/Normal.gif'" :alt="profile.username" />
       <div class="profileImage" :class="{ border: profile?.profileImage?.hasAlpha }" :style="{ 'background-image': `url(${profile?.profileImage?.url ?? 'https://wallpapercave.com/wp/wp8846945.jpg'})` }">
-        <div class="xornetBadge"><img :src="require('@/assets/logos/logo.svg')" alt="Xornet Developer" /></div>
+        <div class="xornetBadge" v-if="profile.isDev"><img :src="require('@/assets/logos/logo.svg')" alt="Xornet Developer" /></div>
       </div>
     </div>
 
     <div class="details">
       <div class="heading">
         <!-- make this change to the user's selected badge -->
-        <img :src="require(`@/assets/badges/developer.svg`)" />
+        <img v-if="profile.badges?.owned[profile.badges.selected]" :src="require(`@/assets/badges/${profile.badges?.owned[profile.badges.selected]}.svg`)" />
 
         <div class="container">
           <h1 class="username">{{ profile.username }}</h1>
@@ -18,23 +18,26 @@
         </div>
       </div>
 
-      <section class="shadowButton uuid" @click="copyUUID">
-        <h1 id="profileID" >{{ profile._id }}</h1>
+      <section class="shadowButton uuid" :class="{didCopy: didCopy}" @click="copyUUID">
+        <h1 id="profileID" >{{ copyMessage || profile._id }}</h1>
         <img :src="require(`@/assets/icons/clipboard.png`)" />
       </section>
 
       <section>
         <h1 class="descriptionHeading">Points</h1>
         <p class="points">{{ profile.points || "0" }}</p>
-        <div class="line"></div>
       </section>
 
-      <section v-if="profile.badges">
+      <div class="line"></div>
+
+      <section v-if="profile.badges?.owned && profile.badges?.owned.length != 0">
         <h1 class="descriptionHeading">Badges</h1>
 
-        <img v-if="profile.badges.includes('developer')" :src="require(`@/assets/badges/developer.svg`)" />
-        <img v-if="profile.badges.includes('designer')" :src="require(`@/assets/badges/designer.svg`)" />
-        <img v-if="profile.badges.includes('contributor')" :src="require(`@/assets/badges/contributor.svg`)" />
+        <div class="badges">
+          <img class="badge" v-if="profile.badges?.owned?.includes('developer')" :src="require(`@/assets/badges/developer.svg`)" />
+          <img class="badge" v-if="profile.badges?.owned?.includes('designer')" :src="require(`@/assets/badges/designer.svg`)" />
+          <img class="badge" v-if="profile.badges?.owned?.includes('contributor')" :src="require(`@/assets/badges/contributor.svg`)" />
+        </div>
 
         <div class="line"></div>
       </section>
@@ -49,19 +52,24 @@
         <p class="descriptionText">{{ profile.email }}</p>
       </section>
 
-      <section v-if="profile.created_at">
+      <section v-if="profile?.created_at">
         <h1 class="descriptionHeading">Created</h1>
-        <p class="descriptionText">{{ new Date(profile.created_at).toLocaleString() }}</p>
+        <p class="descriptionText">{{ new Date(profile?.created_at).toLocaleString() }}</p>
       </section>
 
       <div class="line"></div>
 
-      <section v-if="profile.socials">
+      <section class="socials" v-if="profile?.socials?.length != 0">
         <a :href="platform.url" target="_blank" class="shadowButton uuid" v-for="platform of profile.socials" :key="platform">
-          <h1 class="descriptionHeading">{{platform.name}}</h1>
+          <h1 class="nameOnPlatform">@{{platform.url.split('/')[platform.url.split('/').length - 1]}}</h1>
           <img :src="require(`@/assets/icons/${platform.name}.png`)" />
         </a>
         <div class="line"></div>
+      </section>
+
+      <section>
+        <h1 class="descriptionHeading">Bio</h1>
+        <p class="descriptionText">{{ profile.bio || "Im new to xornet uwu!"}}</p>
       </section>
 
     </div>
@@ -85,6 +93,8 @@ export default {
   data: () => {
     return {
       profile: {},
+      didCopy: false,
+      copyMessage: null,
       isEditing: true
     };
   },
@@ -109,9 +119,15 @@ export default {
         var successful = document.execCommand("copy");
         document.body.removeChild(temp); 
         var msg = successful ? 'successful' : 'unsuccessful';
-        alert('Testing code was copied ' + msg);
+
+        this.didCopy = true;
+        this.copyMessage = "UUID Copied!";
+        setTimeout(() => {
+          this.didCopy = false;
+          this.copyMessage = null;
+        }, 3000);
       } catch {
-        alert('Oops, unable to copy')
+        console.log('Oops, unable to copy');
       };
     },
   },
@@ -129,6 +145,7 @@ export default {
   min-height: 100%;
   position: relative;
   height: 100%;
+  overflow: scroll;
 }
 
 .profilepage form {
@@ -231,14 +248,19 @@ export default {
   display: flex;
   align-items: center;
   cursor: pointer;
-  transform: translate(-6px);
+  text-decoration: none;
   gap: 8px;
+  flex-direction: row;
   border-radius: 200px;
-  transition: all 50ms;
+  transition: all 100ms;
   background-color: var(--background-color);
 }
 
-.profilepage .details .uuid:hover {
+.shadowButton.didCopy {
+  background-color: rgb(51, 255, 0) !important;
+}
+
+.profilepage .details .uuid:not(.didCopy):hover {
   filter: invert(1);
 }
 
@@ -260,13 +282,38 @@ export default {
   width: 20px;
 }
 
+.profilepage .details .badges {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.profilepage .details .badges  .badge {
+  width: 28px;
+  height: 28px;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: space-between;
+}
+
 section h1 {
   font-family: Work Sans;
   font-weight: 600;
   font-size: 14px;
+  text-decoration: none;
   display: flex;
   align-items: center;
   color: #c8c8c8;
+}
+
+section.socials {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
 }
 
 .points {
@@ -295,7 +342,7 @@ section h1 {
 .line {
   width: 100%;
   height: 1px;
-  margin-top: 20px;
+  margin-top: 8px;
   background-color: #e7e7e7;
 }
 </style>
