@@ -102,7 +102,7 @@
       <section>
         <h1 class="descriptionHeading">Bio</h1>
         <p v-if="!isEditing" class="descriptionText">{{ profile.bio || "Im new to xornet uwu!" }}</p>
-        <textarea v-if="isEditing" class="descriptionText" cols="30" rows="10" v-model="profile.bio"></textarea>
+        <textarea v-if="isEditing" class="descriptionText textArea" cols="30" rows="10" v-model="profile.bio"></textarea>
       </section>
     </div>
   </div>
@@ -453,6 +453,14 @@ section.socials {
   align-items: center;
 
   color: #000000;
+}
+
+.textArea {
+  padding: 8px;;
+  border: 1px #e7e7e7 dashed;
+  border-radius: 8px;
+  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
+  resize: none;
 }
 
 .line {
