@@ -135,7 +135,6 @@ export default {
     },
     add(url){
 
-      url = url.toLowerCase();
       let name = extractHostname(url);
 
       if (url.includes('youtube')) name = 'youtube';
