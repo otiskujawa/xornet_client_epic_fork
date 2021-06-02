@@ -112,6 +112,7 @@ header {
   height: 48px;
   width: 100%;
   display: flex;
+  background-color: var(--background-color);
 }
 
 header .logo {
@@ -149,13 +150,8 @@ header .button {
 }
 
 header .button:hover {
+  /* filter: invert(0); */
   /* border: 1px solid var(--white); */
-  transform: translateY(1px);
-  box-shadow: rgb(0 0 0 / 10%) 0px 10px 20px;
-}
-
-header .button:active {
-  transform: translateY(-0px);
 }
 
 header .button.enabled {

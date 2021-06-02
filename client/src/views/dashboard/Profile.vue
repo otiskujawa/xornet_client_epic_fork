@@ -101,7 +101,8 @@
 
       <section>
         <h1 class="descriptionHeading">Bio</h1>
-        <p class="descriptionText">{{ profile.bio || "Im new to xornet uwu!" }}</p>
+        <p v-if="!isEditing" class="descriptionText">{{ profile.bio || "Im new to xornet uwu!" }}</p>
+        <textarea v-if="isEditing" class="descriptionText" cols="30" rows="10" v-model="profile.bio"></textarea>
       </section>
     </div>
   </div>
@@ -122,7 +123,7 @@ export default {
       didCopy: false,
       copyMessage: null,
       isEditing: false,
-      isAddingSocial: false
+      isAddingSocial: false,
     };
   },
   computed: {
@@ -138,20 +139,8 @@ export default {
       this.profile.socials.splice(index, 1);
     },
     add(url) {
-      let name = extractHostname(url);
 
-      if (url.includes("youtube")) name = "youtube";
-      if (url.includes("twitch")) name = "twitch";
-      if (url.includes("twitter")) name = "twitter";
-      if (url.includes("discord")) name = "discord";
-      if (url.includes("reddit")) name = "reddit";
-      if (url.includes("github")) name = "github";
-      if (url.includes("facebook")) name = "facebook";
-      if (url.includes("steam")) name = "steam";
-      if (url.includes("instagram")) name = "instagram";
-      if (url.includes("tiktok")) name = "tiktok";
-      if (url.includes("tumblr")) name = "tumblr";
-      if (url.includes("vk")) name = "vk";
+      let name = extractHostname(url);
 
       function extractHostname(url) {
         var hostname;
@@ -170,6 +159,21 @@ export default {
 
         return hostname;
       }
+
+      if (url.endsWith('/')) url = url.substring(0, url.length - 1);
+
+      if (url.match(/(youtube)/g)) name = "youtube";
+      if (url.match(/(twitch)/g)) name = "twitch";
+      if (url.match(/(twitter)/g)) name = "twitter";
+      if (url.match(/(discord)/g)) name = "discord";
+      if (url.match(/(reddit)/g)) name = "reddit";
+      if (url.match(/(github)/g)) name = "github";
+      if (url.match(/(facebook)/g)) name = "facebook";
+      if (url.match(/(steam)/g)) name = "steam";
+      if (url.match(/(instagram)/g)) name = "instagram";
+      if (url.match(/(tiktok)/g)) name = "tiktok";
+      if (url.match(/(tumblr)/g)) name = "tumblr";
+      if (url.match(/(vk)/g)) name = "vk";
 
       url = {
         name,
@@ -231,6 +235,10 @@ export default {
   display: flex;
   position: relative;
   align-items: flex-end;
+}
+
+.profilepage .heading img {
+  user-select: none;
 }
 
 .profilepage .heading .profileBanner {
@@ -315,6 +323,7 @@ export default {
 
 .profilepage .details .heading .location {
   height: 20px;
+  user-select: none;
 }
 
 .shadowButton {
@@ -323,6 +332,7 @@ export default {
   display: flex;
   align-items: center;
   height: fit-content;
+  user-select: none;
   cursor: pointer;
   justify-content: space-between;
   text-decoration: none;
@@ -396,6 +406,7 @@ export default {
 .profilepage .details .badges .badge {
   width: 28px;
   height: 28px;
+  user-select: none;
 }
 
 section {

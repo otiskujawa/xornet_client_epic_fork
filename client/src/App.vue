@@ -54,6 +54,11 @@ export default {
   box-sizing: border-box;
 }
 
+*::selection {
+  background: black;
+  color: white;
+}
+
 html {
   overflow: hidden;
   background-color: var(--background-color);
