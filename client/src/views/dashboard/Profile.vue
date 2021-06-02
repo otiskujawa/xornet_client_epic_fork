@@ -19,10 +19,43 @@
         </div>
       </div>
 
-      <div class="uuid">
+      <section class="uuid">
         <h1>{{profile._id}}</h1>
         <img :src="require(`@/assets/icons/clipboard.png`)">
-      </div>
+      </section>
+
+      <section>
+        <h1 class="descriptionHeading">Points</h1>
+        <p class="points">{{profile.points  || '0'}}</p>
+        <div class="line"></div>
+      </section>
+
+      <section v-if="profile.badges">
+        <h1 class="descriptionHeading">Badges</h1>
+
+        <img v-if="profile.badges.includes('developer')" :src="require(`@/assets/badges/developer.svg`)">
+        <img v-if="profile.badges.includes('designer')" :src="require(`@/assets/badges/designer.svg`)">
+        <img v-if="profile.badges.includes('contributor')" :src="require(`@/assets/badges/contributor.svg`)">
+
+        <div class="line"></div>
+      </section>
+
+      <section v-if="profile.name">
+        <h1 class="descriptionHeading">Name</h1>
+        <p class="descriptionText">{{profile.name}}</p>
+      </section>
+
+      <section v-if="profile.email">
+        <h1 class="descriptionHeading">Email</h1>
+        <p class="descriptionText">{{profile.email}}</p>
+      </section>
+
+      <section v-if="profile.created">
+        <h1 class="descriptionHeading">Created</h1>
+        <p class="descriptionText">{{profile.created}}</p>
+      </section>
+
+      <div class="line"></div>
 
 
     </div>
@@ -60,7 +93,12 @@ export default {
         this.profile[key] = value;
       }
     }
-  }
+  },
+  watch: {
+    async $route(to, from) {
+      this.profile = await this.api.user.fetchProfile(this.$route.params.username);
+    }
+  },
 };
 </script>
 
@@ -196,5 +234,46 @@ export default {
 .profilepage .details .uuid img {
   width: 20px;
 }
+
+section h1 {
+  font-family: Work Sans;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  color: #C8C8C8;
+}
+
+.points {
+  background: linear-gradient(90deg, #DB00FF 0%, #8000FF 31.77%, #00B2FF 64.06%, #00FFF0 98.44%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: Work Sans;
+  font-weight: 600;
+  font-size: 36px;
+}
+
+.descriptionText {
+  font-family: Work Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 117.9%;
+  /* identical to box height, or 17px */
+
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  margin-top: 20px;
+  background-color: #E7E7E7;
+}
+
+
 
 </style>
