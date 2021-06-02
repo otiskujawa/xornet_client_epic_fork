@@ -1,7 +1,33 @@
 <template>
   <div class="profilepage">
-    <h1>Profile</h1>
-    <form v-on:submit.prevent="save()">
+
+    <div class="heading">
+      <img class="profileBanner" :src="profile?.profileBanner ?? 'https://i.pinimg.com/originals/65/c7/d4/65c7d4a8f34de11f9414ce49b847e56a.gif'" :alt="profile.username" />
+      <div class="profileImage" :style="{'background-image': `url(${profile?.profileImage ?? 'https://wallpapercave.com/wp/wp8846945.jpg'})`}">
+        <div class="xornetBadge"><img :src="require('@/assets/logos/logo.svg')" alt="Xornet Developer"></div>
+      </div>
+    </div>
+
+    <div class="details">
+      <div class="heading">
+        <!-- make this change to the user's selected badge -->
+        <img :src="require(`@/assets/badges/developer.svg`)">
+
+        <div class="container">
+          <h1 class="username">{{profile.username}}</h1>
+          <img class="location" :src="profile.geolocation?.countryCode ? require(`@/assets/flags/${profile.geolocation.countryCode}.png`) : require('@/assets/flags/__.png')" alt="Country Flag" />
+        </div>
+      </div>
+
+      <div class="uuid">
+        <h1>{{profile._id}}</h1>
+        <img :src="require(`@/assets/icons/clipboard.png`)">
+      </div>
+
+
+    </div>
+
+    <form v-if="isEditing" v-on:submit.prevent="save()">
       <img class="profileImage" :src="profile?.profileImage ?? 'https://wallpapercave.com/wp/wp8846945.jpg'" alt="" @click="$refs.profileImage.click()" />
       <input type="file" id="profileImage" ref="profileImage" style="display: none;" name="profileImage" accept="image/*" />
 
@@ -19,11 +45,12 @@ export default {
   name: "Profile",
   data: () => {
     return {
-      profile: {}
+      profile: {},
+      isEditing: false,
     };
   },
   async created() {
-    this.profile = await this.api.user.fetchMe();
+    this.profile = await this.api.user.fetchProfile(this.$route.params.username);
   },
   methods: {
     async save() {
@@ -53,11 +80,121 @@ export default {
   flex-direction: column;
 }
 
-.profilepage .profileImage {
-  width: 128px;
-  height: 128px;
+.profilepage .heading {
+  display: flex;
+  position: relative;
+}
+
+.profilepage .heading .profileBanner {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  position: absolute;
+}
+
+.profilepage .heading .profileImage {
+  transform: translate(-6px);
+  width: 180px;
+  box-sizing: content-box;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 180px;
+  margin: 200px 0px 0px 200px;
+  border: 6px solid var(--background-color);
   border-radius: 50%;
+  z-index: 2;
   cursor: pointer;
+  position: relative;
   object-fit: cover;
 }
+
+.profilepage .heading .xornetBadge {
+  background: linear-gradient(90deg, #DB00FF 0%, #8000FF 31.77%, #00B2FF 64.06%, #00FFF0 98.44%);
+  transform: translate(-6px);
+  border: 6px solid var(--background-color);
+  width: fit-content;
+  padding: 4px 8px;
+  border-radius: 100px;
+  height: fit-content;
+  position: absolute;
+  bottom: 0px;
+}
+.profilepage .heading .xornetBadge img {
+  height: 8px;
+  width: auto;
+}
+
+.profilepage .details {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 20px;
+  width: 256px;
+  margin-left: 200px;
+  margin-top: 24px;
+}
+
+.profilepage .details .heading {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+
+.profilepage .details .heading .container {
+  display: flex;
+  gap:8px;
+  align-items: flex-end;
+}
+
+.profilepage .details .heading .username {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 68%;
+  /* or 42px */
+
+  color: #000000;
+}
+
+.profilepage .details .heading .location {
+  height: 20px;
+}
+
+.profilepage .details .uuid {
+  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transform: translate(-6px);
+  gap: 8px;
+  border-radius: 200px;
+  transition: all 50ms;
+  background-color: var(--background-color);
+}
+
+.profilepage .details .uuid:hover {
+  filter: invert(1);
+}
+
+.profilepage .details .uuid h1 {
+  font-family: 'Roboto Mono', monospace;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  color: #000000;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.profilepage .details .uuid img {
+  width: 20px;
+}
+
 </style>

@@ -1,7 +1,7 @@
 <template>
   <nav>
     <div class="buttons">
-      <router-link :to="{ name: 'profile' }" class="button">
+      <router-link :to="{ name: 'profile', params: {username}}" class="button">
         <img :src="require('@/assets/icons/user.png')" alt="" />
       </router-link>
       <router-link :to="{ name: 'summary' }" class="button">
@@ -24,7 +24,11 @@
 export default {
   name: "Nav",
   components: {},
-  computed: {},
+  computed: {
+    username: function(){
+      return localStorage.getItem('username');
+    }
+  },
   data: () => {
     return {};
   },

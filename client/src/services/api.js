@@ -198,6 +198,7 @@ class User extends API {
         const loginForm = {geolocation: await this.getGeolocation(), ...JSON.parse(json)};
         const response = await super.post("login", undefined, loginForm, { "Content-Type": "application/json" });
         localStorage.setItem("token", response.data.token);
+        localStorage.setItem("username", loginForm.username);
         super.log("Logged in successfully");
         resolve(response.status);
       } catch (error) {
@@ -217,10 +218,18 @@ class User extends API {
   }
 
   /**
+   * Returns the user object of a user
+   * @param {String} the user to get
+   */
+  async fetchProfile(username) {
+    return (await super.get(`profile/${username}`)).data;
+  }
+  
+  /**
    * Returns the user object of the logged in user, takes no input parameters
    */
   async fetchMe() {
-    return (await super.get("profile")).data;
+    return (await super.get(`profile/${localStorage.getItem('username')}`)).data;
   }
 
   /**

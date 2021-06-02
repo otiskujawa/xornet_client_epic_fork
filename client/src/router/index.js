@@ -84,7 +84,7 @@ const routes = [
         }
       },
       {
-        path: "profile/",
+        path: "profile/:username?",
         name: "profile",
         component: () => import(/* webpackChunkName: "profile" */ "@/views/dashboard/Profile.vue"),
         meta: {
