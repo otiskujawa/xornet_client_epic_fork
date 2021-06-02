@@ -129,7 +129,7 @@ export default {
 
 .card .content form .fields p a {
   font-family: Montserrat;
-  color: var(--theme-main);
+  color: var(--theme-color);
   font-weight: bold;
   font-style: normal;
   text-decoration: none;
@@ -138,7 +138,7 @@ export default {
 .card .content form button {
   color: white;
   border: none;
-  background-color: var(--theme-main);
+  background-color: var(--theme-color);
   width: min-content;
   padding: 4px 16px;
   border-radius: 4px;

@@ -118,7 +118,7 @@ header .logo {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--theme-main);
+  background-color: var(--theme-color);
   height: 48px;
   min-height: 48px;
   width: 48px;

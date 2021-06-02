@@ -48,7 +48,7 @@
     <div class="field uptime">{{ machine.uptime.formatted.d }}:{{ machine.uptime.formatted.h }}:{{ machine.uptime.formatted.m }}:{{ machine.uptime.formatted.s }}</div>
 
     <!-- Owner Column -->
-    <router-link class="field owner" :to="{ name: 'profile', params: {username: machine?.owner?.username}}"><img :src="machine?.owner?.profileImage.url" :alt="machine?.owner?.username" />{{ machine.owner.username }}</router-link>
+    <router-link class="field owner" :to="{ name: 'profile', params: {username: machine?.owner?.username}}"><img :src="machine?.owner?.profileImage" :alt="machine?.owner?.username" />{{ machine.owner.username }}</router-link>
 
     <!-- Platform Column -->
     <div class="platform">

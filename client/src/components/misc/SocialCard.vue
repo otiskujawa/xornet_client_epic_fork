@@ -1,71 +1,57 @@
 <template>
-  <div class="view signuppage">
-    <Header />
+  <div class="card">
+    <a href="https://cdn.discordapp.com/attachments/806300597338767450/833734391883759656/deskslam.mp4" target="_blank"><img src="https://media.discordapp.net/attachments/812793476059496448/846190595706060810/image0.gif" alt=""/></a>
     <div class="content">
-      <SignupCard :image="'https://cdn.discordapp.com/attachments/806300597338767450/846781636171006033/paimon.gif'" />
+      <form v-on:submit.prevent="!isLoading && !isFormValid ? add(form.url) : null">
+        <div class="text">
+          <h1>Flexing I see</h1>
+          <p>Type in a URL</p>
+        </div>
+
+        <div class="fields">
+          <input v-model="form.url" class="inputField" type="text" placeholder="URL" />
+        </div>
+        <button type="submit" :class="{ disabled: isFormValid || isLoading }">Add <img v-if="isLoading" :src="require('@/assets/icons/loading.gif')" alt="" /></button>
+      </form>
     </div>
   </div>
 </template>
 
 <script>
-import Header from "@/components/home/Header";
-import SignupCard from "@/components/misc/SignupCard";
-
 export default {
-  name: "Signup",
-  components: {
-    SignupCard,
-    Header
-  },
-  data: () => {
+  name: "SocialCard",
+  data() {
     return {
-      formData: {
-        username: null,
-        email: null,
-        password: null,
-        repeatPassword: null
-      }
+      form: {
+        url: "",
+      },
+      isLoading: false
     };
   },
-  methods: {
-    signup() {
-      console.log(this.formData);
-      this.api.user.signup(this.formData);
+  props: {
+    add: { type: Function },
+  },
+  computed: {
+    isFormValid: function() {
+      return Object.values(this.form).some(field => field == "");
     }
-  }
+  },
 };
 </script>
 
-<style>
-.signuppage {
-  min-width: 100%;
-  min-height: 100%;
-
-  background: linear-gradient(0deg, #ffffff, #ffffff), url("https://cdn.discordapp.com/attachments/806300597338767450/849089973431959594/wallhaven-lmkoqp.png"), #bcbcbc;
-  background-blend-mode: color, screen, normal;
-  background-repeat: no-repeat;
-  background-position: top;
-  background-size: cover;
-
-  position: relative;
-  height: 100%;
-}
-
-.signuppage .content {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
+<style scoped>
 
 .card {
-  width: 280px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(50%, 50%);
+
+  width: fit-content;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   background: var(--background-color);
-  min-height: 400px;
   box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
   transform: scale(1.25);
@@ -191,4 +177,5 @@ export default {
   width: 16px;
   height: 16px;
 }
+
 </style>

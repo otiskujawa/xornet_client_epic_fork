@@ -22,6 +22,8 @@
       </section>
     </div>
 
+    <SocialCard :add="add" v-if="isAddingSocial && isEditing" />
+
     <div class="details" :class="{editing: isEditing}">
       <div class="heading">
         <!-- make this change to the user's selected badge -->
@@ -74,13 +76,23 @@
 
       <div class="line"></div>
 
-      <section class="socials" v-if="profile.socials?.length != 0">
-        <a :href="platform.url" target="_blank" class="shadowButton uuid" v-for="platform of profile.socials" :key="platform">
-          <h1 class="nameOnPlatform">@{{platform.url.split('/')[platform.url.split('/').length - 1]}}</h1>
-          <img :src="require(`@/assets/icons/${platform.name}.png`)" />
-        </a>
-        <div class="line"></div>
+      <section class="socials" v-if="profile.socials?.length != 0 || isEditing">
+        <div v-for="(platform, index) of profile.socials" :key="platform" @click="isEditing ? remove(index) : open(platform.url)" class="shadowButton" :class="{isEditing: isEditing}" >
+          <h1 v-if="platforms.includes(platform.name) && !isEditing" class="nameOnPlatform">@{{platform.url.split('/')[platform.url.split('/').length - 1]}}</h1>
+          <h1 v-if="!platforms.includes(platform.name) && !isEditing" class="nameOnPlatform">{{platform.name}}</h1>
+          <img :src="platform.name != null && platforms.includes(platform.name) ? require(`@/assets/icons/${platform.name}.png`) : require(`@/assets/icons/globe.png`)" />
+          <img v-if="isEditing" :src="require(`@/assets/icons/x.png`)" />
+        </div>
+
+        <div class="shadowButton" @click="isAddingSocial = !isAddingSocial" v-if="isEditing" :class="{isEditing: isEditing}" >
+          <h1 class="nameOnPlatform">Add</h1>
+          <img :src="require(`@/assets/icons/add.png`)" />
+        </div>
       </section>
+
+
+
+      <div class="line" v-if="profile.socials?.length != 0 || isEditing"></div>
 
       <section>
         <h1 class="descriptionHeading">Bio</h1>
@@ -92,14 +104,21 @@
 </template>
 
 <script>
+import SocialCard from "@/components/misc/SocialCard";
+
 export default {
   name: "Profile",
+  components: {
+    SocialCard
+  },
   data: () => {
     return {
+      platforms: ["youtube", "twitch", "twitter", "discord", "reddit", "facebook", "github", "steam", "instagram", "tiktok", "tumblr", "vk" ],
       profile: {},
       didCopy: false,
       copyMessage: null,
-      isEditing: false
+      isEditing: false,
+      isAddingSocial: false,
     };
   },
   computed: {
@@ -111,6 +130,56 @@ export default {
     this.profile = await this.api.user.fetchProfile(this.$route.params.username);
   },
   methods: {
+    remove(index){
+      this.profile.socials.splice(index, 1);
+    },
+    add(url){
+
+      url = url.toLowerCase();
+      let name = extractHostname(url);
+
+      if (url.includes('youtube')) name = 'youtube';
+      if (url.includes('twitch')) name = 'twitch';
+      if (url.includes('twitter')) name = 'twitter';
+      if (url.includes('discord')) name = 'discord';
+      if (url.includes('reddit')) name = 'reddit';
+      if (url.includes('github')) name = 'github';
+      if (url.includes('facebook')) name = 'facebook';
+      if (url.includes('steam')) name = 'steam';
+      if (url.includes('instagram')) name = 'instagram';
+      if (url.includes('tiktok')) name = 'tiktok';
+      if (url.includes('tumblr')) name = 'tumblr';
+      if (url.includes('vk')) name = 'vk';
+
+      function extractHostname(url) {
+          var hostname;
+          //find & remove protocol (http, ftp, etc.) and get hostname
+
+          if (url.indexOf("//") > -1) {
+              hostname = url.split('/')[2];
+          }
+          else {
+              hostname = url.split('/')[0];
+          }
+
+          //find & remove port number
+          hostname = hostname.split(':')[0];
+          //find & remove "?"
+          hostname = hostname.split('?')[0];
+
+          return hostname;
+      }
+
+      url = {
+        name,
+        url,
+      };
+
+      this.profile.socials.push(url);
+    },
+    open(url){
+      window.open(url,'_blank')
+    },
     async save() {
       let response = await this.api.user.save(Object.assign({}, this.profile), this.$refs.profileImage.files[0], this.$refs.profileBanner.files[0]);
       // this.profile.profileImage = response.profile.profileImage;
@@ -157,22 +226,17 @@ export default {
   overflow: scroll;
 }
 
-.profilepage form {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
 .profilepage .heading {
   display: flex;
   position: relative;
+  align-items: flex-end;
 }
 
 .profilepage .heading .profileBanner {
   width: 100%;
   height: 300px;
+  position: absolute;
+  top: 0;
   object-fit: cover;
   position: absolute;
 }
@@ -222,6 +286,7 @@ export default {
   width: 256px;
   margin-left: 200px;
   margin-top: 24px;
+  margin-bottom: 128px;
 }
 
 .profilepage .details .heading {
@@ -258,6 +323,7 @@ export default {
   align-items: center;
   height: fit-content;
   cursor: pointer;
+  justify-content: space-between;
   text-decoration: none;
   gap: 8px;
   flex-direction: row;
@@ -266,7 +332,19 @@ export default {
   background-color: var(--background-color);
 }
 
-.shadowButton:not(.didCopy):hover {
+.shadowButton:not(.didCopy):not(.isEditing):hover {
+  filter: invert(1);
+}
+
+.shadowButton.isEditing:not(.didCopy):hover {
+  background-color: var(--theme-color);
+}
+
+.shadowButton.isEditing:not(.didCopy):hover h1 {
+  color: white;
+}
+
+.shadowButton.isEditing:not(.didCopy):hover img {
   filter: invert(1);
 }
 
@@ -293,8 +371,9 @@ export default {
 }
 
 .shadowButton.edit {
-  transform: translate(210px, 118px);
   width: min-content;
+  margin-bottom: 24px;
+  margin-left: 16px;
 }
 
 .shadowButton.edit h1 {
@@ -337,7 +416,7 @@ section h1 {
 
 section.socials {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(50px, 1fr));
   gap: 8px;
 }
 

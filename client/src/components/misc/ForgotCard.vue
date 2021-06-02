@@ -36,18 +36,5 @@ export default {
   props: {
     image: { type: String, required: true }
   },
-  methods: {
-    // async login() {
-    //   this.isLoading = true;
-    //   try {
-    //     const status = await this.api.user.login(JSON.stringify(this.form));
-    //     if (status == 200) this.$router.push("/dashboard/profile");
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-
-    //   this.isLoading = false;
-    // }
-  }
 };
 </script>
