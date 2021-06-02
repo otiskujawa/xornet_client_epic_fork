@@ -2,12 +2,26 @@
   <div class="profilepage" v-if="profile.username">
     <div class="heading">
       <img class="profileBanner" :src="profile?.profileBanner ?? 'https://cdn.discordapp.com/attachments/806300597338767450/849668963033153606/Normal.gif'" :alt="profile.username" />
-      <div class="profileImage" :class="{ border: profile?.profileImage?.hasAlpha }" :style="{ 'background-image': `url(${profile?.profileImage?.url ?? 'https://wallpapercave.com/wp/wp8846945.jpg'})` }">
+      <div class="profileImage" @click="$refs.profileImage.click()" :class="{ border: profile?.profileImage?.hasAlpha }" :style="{ 'background-image': `url(${profile?.profileImage?.url ?? 'https://wallpapercave.com/wp/wp8846945.jpg'})` }">
         <div class="xornetBadge" v-if="profile.isDev"><img :src="require('@/assets/logos/logo.svg')" alt="Xornet Developer" /></div>
       </div>
+
+      <form v-if="isEditing">
+        <input type="file" id="profileImage" ref="profileImage" style="display: none;" name="profileImage" accept="image/*" />
+      </form>
+
+      <section v-if="!isEditing && profile.username == username" @click="isEditing = !isEditing" class="shadowButton edit">
+        <h1>Edit</h1>
+        <img :src="require(`@/assets/icons/edit.png`)" />
+      </section>
+
+      <section v-if="isEditing && profile.username == username" @click="save(); isEditing = !isEditing" class="shadowButton edit">
+        <h1>Save</h1>
+        <img :src="require(`@/assets/icons/save.png`)" />
+      </section>
     </div>
 
-    <div class="details">
+    <div class="details" :class="{editing: isEditing}">
       <div class="heading">
         <!-- make this change to the user's selected badge -->
         <img v-if="profile.badges?.owned[profile.badges.selected]" :src="require(`@/assets/badges/${profile.badges?.owned[profile.badges.selected]}.svg`)" />
@@ -73,17 +87,6 @@
       </section>
 
     </div>
-
-    <form v-if="isEditing" v-on:submit.prevent="save()">
-      <img class="profileImage" :src="profile?.profileImage?.url ?? 'https://wallpapercave.com/wp/wp8846945.jpg'" alt="" @click="$refs.profileImage.click()" />
-      <input type="file" id="profileImage" ref="profileImage" style="display: none;" name="profileImage" accept="image/*" />
-
-      <input v-model="profile.username" class="i" type="text" placeholder="Username" />
-      <input v-model="profile.email" class="i" type="email" placeholder="Email" />
-      <input v-model="profile.password" class="i" type="password" placeholder="New password" />
-      <input v-model="profile.repeatPassword" class="i" type="password" placeholder="Repeat Password" />
-      <button type="submit">SAVE</button>
-    </form>
   </div>
 </template>
 
@@ -95,8 +98,13 @@ export default {
       profile: {},
       didCopy: false,
       copyMessage: null,
-      isEditing: true
+      isEditing: false
     };
+  },
+  computed: {
+    username: function(){
+      return localStorage.getItem('username');
+    }
   },
   async created() {
     this.profile = await this.api.user.fetchProfile(this.$route.params.username);
@@ -247,6 +255,7 @@ export default {
   padding: 8px 12px;
   display: flex;
   align-items: center;
+  height: fit-content;
   cursor: pointer;
   text-decoration: none;
   gap: 8px;
@@ -256,15 +265,11 @@ export default {
   background-color: var(--background-color);
 }
 
-.shadowButton.didCopy {
-  background-color: rgb(51, 255, 0) !important;
-}
-
-.profilepage .details .uuid:not(.didCopy):hover {
+.shadowButton:not(.didCopy):hover {
   filter: invert(1);
 }
 
-.profilepage .details .uuid h1 {
+.shadowButton h1 {
   font-family: "Roboto Mono", monospace;
   font-style: normal;
   font-weight: 700;
@@ -278,8 +283,27 @@ export default {
   text-transform: uppercase;
 }
 
-.profilepage .details .uuid img {
+.shadowButton img {
   width: 20px;
+}
+
+.shadowButton.didCopy {
+  background-color: rgb(51, 255, 0) !important;
+}
+
+.shadowButton.edit {
+  transform: translate(210px, 118px);
+  width: min-content;
+}
+
+.shadowButton.edit h1 {
+  font-family: Work Sans;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: capitalize;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
 .profilepage .details .badges {
