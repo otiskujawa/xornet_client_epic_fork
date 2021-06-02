@@ -1,13 +1,14 @@
 <template>
   <div class="profilepage" v-if="profile.username">
     <div class="heading">
-      <img class="profileBanner" :src="profile?.profileBanner ?? 'https://cdn.discordapp.com/attachments/806300597338767450/849668963033153606/Normal.gif'" :alt="profile.username" />
-      <div class="profileImage" @click="$refs.profileImage.click()" :class="{ border: profile?.profileImage?.hasAlpha }" :style="{ 'background-image': `url(${profile?.profileImage?.url ?? 'https://wallpapercave.com/wp/wp8846945.jpg'})` }">
+      <img class="profileBanner" @click="$refs.profileBanner.click()" :src="profile.profileBanner?.url || 'https://cdn.discordapp.com/attachments/806300597338767450/849668963033153606/Normal.gif'" :alt="profile.username" />
+      <div class="profileImage" @click="$refs.profileImage.click()" :class="{ border: profile.profileImage?.hasAlpha }" :style="{ 'background-image': `url(${profile.profileImage?.url ?? 'https://wallpapercave.com/wp/wp8846945.jpg'})` }">
         <div class="xornetBadge" v-if="profile.isDev"><img :src="require('@/assets/logos/logo.svg')" alt="Xornet Developer" /></div>
       </div>
 
       <form v-if="isEditing">
         <input type="file" id="profileImage" ref="profileImage" style="display: none;" name="profileImage" accept="image/*" />
+        <input type="file" id="profileBanner" ref="profileBanner" style="display: none;" name="profileBanner" accept="image/*" />
       </form>
 
       <section v-if="!isEditing && profile.username == username" @click="isEditing = !isEditing" class="shadowButton edit">
@@ -66,14 +67,14 @@
         <p class="descriptionText">{{ profile.email }}</p>
       </section>
 
-      <section v-if="profile?.created_at">
+      <section v-if="profile.created_at">
         <h1 class="descriptionHeading">Created</h1>
-        <p class="descriptionText">{{ new Date(profile?.created_at).toLocaleString() }}</p>
+        <p class="descriptionText">{{ new Date(profile.created_at).toLocaleString() }}</p>
       </section>
 
       <div class="line"></div>
 
-      <section class="socials" v-if="profile?.socials?.length != 0">
+      <section class="socials" v-if="profile.socials?.length != 0">
         <a :href="platform.url" target="_blank" class="shadowButton uuid" v-for="platform of profile.socials" :key="platform">
           <h1 class="nameOnPlatform">@{{platform.url.split('/')[platform.url.split('/').length - 1]}}</h1>
           <img :src="require(`@/assets/icons/${platform.name}.png`)" />
@@ -111,7 +112,7 @@ export default {
   },
   methods: {
     async save() {
-      let response = await this.api.user.save(Object.assign({}, this.profile), this.$refs.profileImage.files[0]);
+      let response = await this.api.user.save(Object.assign({}, this.profile), this.$refs.profileImage.files[0], this.$refs.profileBanner.files[0]);
       // this.profile.profileImage = response.profile.profileImage;
       for (const [key, value] of Object.entries(response.profile)) {
         this.profile[key] = value;

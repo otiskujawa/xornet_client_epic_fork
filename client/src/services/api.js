@@ -235,12 +235,14 @@ class User extends API {
   /**
    * Post signup credentials into backend and returns the result of signup process
    * @param {Object} profile profile object, which contains new desired user credentials
-   * @param {Object} profileImage profileImage object, which contains image class from the refs
+   * @param {Object} profileImage image object, which contains image class from the refs
+   * @param {Object} profileBanner image object, which contains image class from the refs
    */
-  async save(profile, profileImage) {
+  async save(profile, profileImage, profileBanner) {
     let formData = new FormData();
     formData.append("json", JSON.stringify(profile));
     formData.append("image", profileImage);
+    formData.append("banner", profileBanner);
 
     return super.patch("profile", undefined, formData, { "Content-Type": "multipart/form-data" });
   }

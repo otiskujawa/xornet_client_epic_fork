@@ -9,8 +9,8 @@
         </div>
 
         <div class="fields">
-          <input v-model="form.username" class="inputField" type="text" placeholder="Username" />
           <input v-model="form.email" class="inputField" type="email" placeholder="Email" />
+          <input v-model="form.username" class="inputField" type="text" placeholder="Username" />
           <input v-model="form.password" class="inputField" type="password" placeholder="Password" />
           <input v-model="form.repeatPassword" class="inputField" type="password" placeholder="Repeat password" />
           <p>Have an account? <router-link :to="{ name: 'login' }">Click here</router-link></p>
