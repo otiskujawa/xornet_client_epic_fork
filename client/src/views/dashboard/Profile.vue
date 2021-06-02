@@ -2,7 +2,7 @@
   <div class="profilepage">
     <div class="heading">
       <img class="profileBanner" :src="profile?.profileBanner ?? 'https://i.pinimg.com/originals/65/c7/d4/65c7d4a8f34de11f9414ce49b847e56a.gif'" :alt="profile.username" />
-      <div class="profileImage" :class="{border: profile?.profileImage?.hasAlpha}" :style="{ 'background-image': `url(${profile?.profileImage?.url ?? 'https://wallpapercave.com/wp/wp8846945.jpg'})` }">
+      <div class="profileImage" :class="{ border: profile?.profileImage?.hasAlpha }" :style="{ 'background-image': `url(${profile?.profileImage?.url ?? 'https://wallpapercave.com/wp/wp8846945.jpg'})` }">
         <div class="xornetBadge"><img :src="require('@/assets/logos/logo.svg')" alt="Xornet Developer" /></div>
       </div>
     </div>
@@ -49,9 +49,9 @@
         <p class="descriptionText">{{ profile.email }}</p>
       </section>
 
-      <section v-if="profile.created">
+      <section v-if="profile.created_at">
         <h1 class="descriptionHeading">Created</h1>
-        <p class="descriptionText">{{ profile.created }}</p>
+        <p class="descriptionText">{{ new Date(profile.created_at).toLocaleString() }}</p>
       </section>
 
       <div class="line"></div>
@@ -76,7 +76,7 @@ export default {
   data: () => {
     return {
       profile: {},
-      isEditing: true,
+      isEditing: true
     };
   },
   async created() {
@@ -89,13 +89,13 @@ export default {
       for (const [key, value] of Object.entries(response.profile)) {
         this.profile[key] = value;
       }
-    },
+    }
   },
   watch: {
     async $route(to, from) {
       this.profile = await this.api.user.fetchProfile(this.$route.params.username);
     }
-  },
+  }
 };
 </script>
 
@@ -227,6 +227,7 @@ export default {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  width: 100%;
   text-align: center;
   text-transform: uppercase;
 }
