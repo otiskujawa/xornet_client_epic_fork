@@ -18,8 +18,8 @@
         </div>
       </div>
 
-      <section class="uuid">
-        <h1>{{ profile._id }}</h1>
+      <section class="shadowButton uuid" @click="copyUUID">
+        <h1 id="profileID" >{{ profile._id }}</h1>
         <img :src="require(`@/assets/icons/clipboard.png`)" />
       </section>
 
@@ -55,6 +55,15 @@
       </section>
 
       <div class="line"></div>
+
+      <section v-if="profile.socials">
+        <a :href="platform.url" target="_blank" class="shadowButton uuid" v-for="platform of profile.socials" :key="platform">
+          <h1 class="descriptionHeading">{{platform.name}}</h1>
+          <img :src="require(`@/assets/icons/${platform.name}.png`)" />
+        </a>
+        <div class="line"></div>
+      </section>
+
     </div>
 
     <form v-if="isEditing" v-on:submit.prevent="save()">
@@ -89,7 +98,22 @@ export default {
       for (const [key, value] of Object.entries(response.profile)) {
         this.profile[key] = value;
       }
-    }
+    },
+    copyUUID() {
+      let toCopy = document.querySelector('#profileID');
+      var temp = document.createElement("textarea");
+      document.body.appendChild(temp);
+      temp.value= toCopy.innerText
+      temp.select();
+      try{
+        var successful = document.execCommand("copy");
+        document.body.removeChild(temp); 
+        var msg = successful ? 'successful' : 'unsuccessful';
+        alert('Testing code was copied ' + msg);
+      } catch {
+        alert('Oops, unable to copy')
+      };
+    },
   },
   watch: {
     async $route(to, from) {
@@ -201,7 +225,7 @@ export default {
   height: 20px;
 }
 
-.profilepage .details .uuid {
+.shadowButton {
   box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
   padding: 8px 12px;
   display: flex;
