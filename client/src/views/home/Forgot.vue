@@ -1,31 +1,31 @@
 <template>
-  <div class="view loginpage">
+  <div class="view forgotpage">
     <Header />
     <div class="content">
-      <LoginCard :image="'https://cdn.discordapp.com/attachments/806300597338767450/846759276889636885/twitch-xqc.gif'" />
+      <ForgotCard :image="'https://cdn.discordapp.com/attachments/806300597338767450/849532306846908416/tenor.gif'" />
     </div>
   </div>
 </template>
 
 <script>
 import Header from "@/components/home/Header";
-import LoginCard from "@/components/misc/LoginCard";
+import ForgotCard from "@/components/misc/ForgotCard";
 
 export default {
-  name: "Login",
+  name: "Forgot",
   components: {
-    LoginCard,
+    ForgotCard,
     Header
   }
 };
 </script>
 
 <style>
-.loginpage {
+.forgotpage {
   min-width: 100%;
   min-height: 100%;
 
-  background: linear-gradient(0deg, #ffffff, #ffffff), url("https://cdn.discordapp.com/attachments/806300597338767450/849090088070938694/wallhaven-eogkdo.png"), #bcbcbc;
+  background: linear-gradient(0deg, #ffffff, #ffffff), url("https://media.discordapp.net/attachments/677741501752672258/819677738154852372/image0.jpg"), #bcbcbc;
   background-blend-mode: color, screen, normal;
   background-repeat: no-repeat;
   background-position: top;
@@ -35,7 +35,7 @@ export default {
   height: 100%;
 }
 
-.loginpage .content {
+.forgotpage .content {
   height: 100%;
   display: flex;
   justify-content: center;
@@ -153,6 +153,7 @@ export default {
   display: flex;
   align-items: center;
   gap: 8px;
+  white-space: nowrap;
 }
 .card .content form button.disabled {
   cursor: not-allowed;
