@@ -85,8 +85,8 @@
 
       <section class="socials" v-if="profile.socials?.length != 0 || isEditing">
         <div v-for="(platform, index) of profile.socials" :key="platform" @click="isEditing ? remove(index) : open(platform.url)" class="shadowButton" :class="{ isEditing: isEditing }">
-          <h1 v-if="platforms.includes(platform.name) && !isEditing" class="nameOnPlatform">@{{ platform.url.split("/")[platform.url.split("/").length - 1] }}</h1>
-          <h1 v-if="!platforms.includes(platform.name) && !isEditing" class="nameOnPlatform">{{ platform.name }}</h1>
+          <h1 v-if="platforms.includes(platform.name)" class="nameOnPlatform">@{{ platform.url.split("/")[platform.url.split("/").length - 1] }}</h1>
+          <h1 v-if="!platforms.includes(platform.name)" class="nameOnPlatform">{{ platform.name }}</h1>
           <img :src="platform.name != null && platforms.includes(platform.name) ? require(`@/assets/icons/${platform.name}.png`) : require(`@/assets/icons/globe.png`)" />
           <img v-if="isEditing" :src="require(`@/assets/icons/x.png`)" />
         </div>
@@ -162,18 +162,18 @@ export default {
 
       if (url.endsWith('/')) url = url.substring(0, url.length - 1);
 
-      if (url.match(/(youtube)/g)) name = "youtube";
-      if (url.match(/(twitch)/g)) name = "twitch";
-      if (url.match(/(twitter)/g)) name = "twitter";
-      if (url.match(/(discord)/g)) name = "discord";
-      if (url.match(/(reddit)/g)) name = "reddit";
-      if (url.match(/(github)/g)) name = "github";
-      if (url.match(/(facebook)/g)) name = "facebook";
-      if (url.match(/(steam)/g)) name = "steam";
-      if (url.match(/(instagram)/g)) name = "instagram";
-      if (url.match(/(tiktok)/g)) name = "tiktok";
-      if (url.match(/(tumblr)/g)) name = "tumblr";
-      if (url.match(/(vk)/g)) name = "vk";
+      if (url.includes("youtube")) name = "youtube";
+      if (url.includes("twitch")) name = "twitch";
+      if (url.includes("twitter")) name = "twitter";
+      if (url.includes("discord")) name = "discord";
+      if (url.includes("reddit")) name = "reddit";
+      if (url.includes("github")) name = "github";
+      if (url.includes("facebook")) name = "facebook";
+      if (url.includes("steam")) name = "steam";
+      if (url.includes("instagram")) name = "instagram";
+      if (url.includes("tiktok")) name = "tiktok";
+      if (url.includes("tumblr")) name = "tumblr";
+      if (url.includes("vk")) name = "vk";
 
       url = {
         name,
@@ -258,7 +258,7 @@ export default {
   background-position: center;
   background-size: cover;
   height: 180px;
-  margin: 200px 0px 0px 200px;
+  margin: 200px 0px 0px 10vw;
   border: 6px solid var(--background-color);
   border-radius: 50%;
   z-index: 2;
@@ -293,7 +293,7 @@ export default {
   text-align: left;
   gap: 20px;
   width: 256px;
-  margin-left: 200px;
+  margin-left: 10vw;
   margin-top: 24px;
   margin-bottom: 128px;
 }
