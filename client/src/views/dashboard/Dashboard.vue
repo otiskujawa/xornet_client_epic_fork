@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import socket from "@/services/socket.js";
 import GaugeField from "@/components/dashboard/GaugeField";
 import InfoField from "@/components/dashboard/InfoField";
 import ServerList from "@/components/dashboard/ServerList";

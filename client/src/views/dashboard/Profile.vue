@@ -49,7 +49,7 @@
 
         <section>
           <h1 class="descriptionHeading">Points</h1>
-          <p class="points" @mouseenter="showFullPoints = true" @mouseleave="showFullPoints = false" >{{ showFullPoints ? profile.points :  millify(profile.points) || "0" }}</p>
+          <p class="points" @mouseenter="showFullPoints = true" @mouseleave="showFullPoints = false" >{{ showFullPoints ? Math.floor(points.tweened) :  millify(points.number) || "0" }}</p>
         </section>
 
         <div class="line"></div>
@@ -127,6 +127,8 @@
 
 <script>
 import SocialCard from "@/components/misc/SocialCard";
+import gsap from "gsap";
+import socket from "@/services/socket.js";
 import Gauge from "@/components/dashboard/Gauge";
 import InfoField from "@/components/dashboard/InfoField";
 import {millify} from "millify";
@@ -142,6 +144,10 @@ export default {
     return {
       platforms: ["youtube", "twitch", "twitter", "discord", "reddit", "facebook", "github", "steam", "instagram", "tiktok", "tumblr", "vk"],
       profile: {},
+      points: {
+        number: 0,
+        tweened: 0,
+      },
       didCopy: false,
       showFullPoints: false,
       copyMessage: null,
@@ -156,6 +162,15 @@ export default {
   },
   async created() {
     this.profile = await this.api.user.fetchProfile(this.$route.params.username);
+    this.points.number = this.profile.points;
+    this.points.tweened = this.profile.points;
+  },
+  mounted(){
+    socket.emit('getPoints', this.$route.params.username);
+    socket.on('points', points => {
+      this.points.number = points;
+      gsap.to(this.points, { duration: 1, tweened: points });
+    });
   },
   methods: {
     millify,
@@ -241,7 +256,10 @@ export default {
   },
   watch: {
     async $route(to, from) {
-      if(to.name == from.name) this.profile = await this.api.user.fetchProfile(this.$route.params.username);
+      if(to.name == from.name) {
+        socket.emit('getPoints', this.$route.params.username);
+        this.profile = await this.api.user.fetchProfile(this.$route.params.username);
+      }
     }
   }
 };
