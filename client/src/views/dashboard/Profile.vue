@@ -110,8 +110,8 @@
 
         <InfoField :icon="require('@/assets/icons/stack.png')" title="Total servers" :value="(profile.machines).length"/>
         <InfoField :icon="require('@/assets/icons/ram.png')" title="Total ram" :value="`${Math.ceil(profile.totalRam / 1000 / 1000 / 1000)}GB`"/>
-        <InfoField :icon="require('@/assets/icons/cpu.png')" title="Total shared cores" :value="(profile.machines).length"/>
-        <InfoField :icon="require('@/assets/icons/rj45.png')" title="Total bandwidth" :value="(profile.machines).length"/>
+        <InfoField :icon="require('@/assets/icons/cpu.png')" title="Total shared cores" :value="(profile.totalCores)"/>
+        <InfoField :icon="require('@/assets/icons/rj45.png')" title="Total bandwidth" :value="(profile.totalBandwidth)"/>
 
         <div class="speedtest" v-if="profile.speedtest">
           <h1>Internet Speedtest <strong>{{new Date(Date.now() - new Date(profile.speedtest.timestamp).valueOf()).getMinutes()}}m ago</strong></h1>
@@ -212,6 +212,7 @@ export default {
     },
     async save() {
       let response = await this.api.user.save(Object.assign({}, this.profile), this.$refs.profileImage.files[0], this.$refs.profileBanner.files[0]);
+      
       // this.profile.profileImage = response.profile.profileImage;
       for (const [key, value] of Object.entries(response.profile)) {
         this.profile[key] = value;
