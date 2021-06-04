@@ -46,7 +46,7 @@ export default {
       this.isLoading = true;
       try {
         const status = await this.api.user.login(JSON.stringify(this.form));
-        if (status == 200) this.$router.push("/dashboard/profile");
+        if (status == 200) this.$router.push(`/dashboard/profile/${this.form.username}`);
       } catch (error) {
         console.log(error);
       }
