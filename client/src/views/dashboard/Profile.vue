@@ -107,12 +107,6 @@
       </div>
 
       <div class="stats">
-
-        <InfoField :icon="require('@/assets/icons/stack.png')" title="Total servers" :value="(profile.machines).length"/>
-        <InfoField :icon="require('@/assets/icons/ram.png')" title="Total ram" :value="`${Math.ceil(profile.totalRam / 1000 / 1000 / 1000)}GB`"/>
-        <InfoField :icon="require('@/assets/icons/cpu.png')" title="Total shared cores" :value="(profile.totalCores)"/>
-        <InfoField :icon="require('@/assets/icons/rj45.png')" title="Total bandwidth" :value="(profile.totalBandwidth)"/>
-
         <div class="speedtest" v-if="profile.speedtest">
           <h1>Internet Speedtest <strong>{{new Date(Date.now() - new Date(profile.speedtest.timestamp).valueOf()).getMinutes()}}m ago</strong></h1>
           <div class="gauges">
@@ -120,6 +114,10 @@
             <Gauge :icon="require('@/assets/icons/upload.png')" suffix="mbps" :value="parseFloat((profile.speedtest.upload.bandwidth / 100000).toFixed(2))" color="#000"/>
           </div>
         </div>
+
+        <InfoField :icon="require('@/assets/icons/stack.png')" title="Total servers" :value="(profile.machines).length"/>
+        <InfoField :icon="require('@/assets/icons/ram.png')" title="Total ram" :value="`${Math.ceil(profile.totalRam / 1000 / 1000 / 1000)}GB`"/>
+        <InfoField :icon="require('@/assets/icons/cpu.png')" title="Total shared cores" :value="(profile.totalCores)"/>
 
       </div>
     </div>
