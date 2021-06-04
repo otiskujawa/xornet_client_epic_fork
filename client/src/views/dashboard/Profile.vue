@@ -49,7 +49,7 @@
 
         <section>
           <h1 class="descriptionHeading">Points</h1>
-          <p class="points">{{ profile.points || "0" }}</p>
+          <p class="points" @mouseenter="showFullPoints = true" @mouseleave="showFullPoints = false" >{{ showFullPoints ? profile.points :  millify(profile.points) || "0" }}</p>
         </section>
 
         <div class="line"></div>
@@ -129,6 +129,7 @@
 import SocialCard from "@/components/misc/SocialCard";
 import Gauge from "@/components/dashboard/Gauge";
 import InfoField from "@/components/dashboard/InfoField";
+import {millify} from "millify";
 
 export default {
   name: "Profile",
@@ -142,6 +143,7 @@ export default {
       platforms: ["youtube", "twitch", "twitter", "discord", "reddit", "facebook", "github", "steam", "instagram", "tiktok", "tumblr", "vk"],
       profile: {},
       didCopy: false,
+      showFullPoints: false,
       copyMessage: null,
       isEditing: false,
       isAddingSocial: false,
@@ -156,6 +158,7 @@ export default {
     this.profile = await this.api.user.fetchProfile(this.$route.params.username);
   },
   methods: {
+    millify,
     remove(index) {
       this.profile.socials.splice(index, 1);
     },
