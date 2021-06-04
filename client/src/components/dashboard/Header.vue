@@ -40,6 +40,8 @@
 </template>
 
 <script>
+import { isDark } from "@/services/theme.js";
+
 export default {
   name: "Header",
   components: {},
@@ -75,33 +77,7 @@ export default {
       this.$router.push("/login");
     },
     toggleDarkmode() {
-      let documentStyle = document.documentElement.style;
-
-      if (!this.darkmode) {
-        // this switches the colors on the :root of the css to the darkmode variables
-
-        documentStyle.setProperty("--background-color", "var(--darkmode-background-color)");
-        documentStyle.setProperty("--white", "var(--darkmode-white)");
-        documentStyle.setProperty("--black", "var(--darkmode-black)");
-        documentStyle.setProperty("--slyColor", "var(--darkmode-slyColor)");
-        documentStyle.setProperty("--rogue-red", "var(--darkmode-rogue-red)");
-        documentStyle.setProperty("--rogue-red-active", "var(--darkmode-rogue-red-active)");
-        documentStyle.setProperty("--filter", 1);
-        this.darkmode = true;
-      } else {
-        // im sure this can be improved by persisting initial colors on
-        // the :root as well and just switching between them instead of hardcoding this
-        // kinda like how it does it above with the var(--);
-
-        documentStyle.setProperty("--background-color", "#fff");
-        documentStyle.setProperty("--white", "#f6f6f6");
-        documentStyle.setProperty("--black", "#000");
-        documentStyle.setProperty("--slyColor", "#414569");
-        documentStyle.setProperty("--rogue-red", "#ffeef0");
-        documentStyle.setProperty("--rogue-red-active", "#fdaeb7");
-        documentStyle.setProperty("--filter", 0);
-        this.darkmode = false;
-      }
+      isDark.value = !isDark.value;
     }
   }
 };

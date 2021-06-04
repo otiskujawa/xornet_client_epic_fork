@@ -1,48 +1,40 @@
 <template>
-  <router-view/>
+  <router-view />
 </template>
 
 <script>
-export default {
-  created() {
-    if (!localStorage.settings) localStorage.setItem('settings', JSON.stringify({
-      darkmode: false
-    }));
-  }
-}
+export default {};
 </script>
 
 <style>
-
 :root {
-
   /* Static colors that wont change */
   --dark: #151527;
-  --dark-light: #0F0F1E;
+  --dark-light: #0f0f1e;
   --dark-lighter: #252547;
   --rogue-red-border: #f85149;
-  --theme-color: #FF006B;
-  --terminal-background: #0B0B15;
+  --theme-color: #ff006b;
+  --terminal-background: #0b0b15;
 
   /* Initial colors */
   --background-color: #ffffff;
   --white: #f6f6f6;
-  --black: #0B0B15;
+  --black: #0b0b15;
   --gray: #c7c7c7;
   --slyColor: #414569;
   --rogue-red: #ffeef0;
-  --rogue-red-active:#fdaeb7;
-    
+  --rogue-red-active: #fdaeb7;
+
   /* Darkmode colors */
-  --darkmode-background-color: #0B0B15;
-  --darkmode-white:#0F0F1E;
-  --darkmode-black:#fff;
+  --darkmode-background-color: #0b0b15;
+  --darkmode-white: #0f0f1e;
+  --darkmode-black: #fff;
   --darkmode-slyColor: #fff;
   --darkmode-rogue-red: rgba(218, 54, 51, 0.2);
   --darkmode-rogue-red-active: #8e1519;
   --darkmode-gray: #c7c7c7;
 
- /* This variable decides weither the images on the buttons will have their color inverted 
+  /* This variable decides weither the images on the buttons will have their color inverted 
     it switches states if darkmode is on or off in serverList.vue */
   --filter: 0;
 }
@@ -50,7 +42,7 @@ export default {
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Comfortaa', cursive;
+  font-family: "Comfortaa", cursive;
   box-sizing: border-box;
 }
 
@@ -86,5 +78,4 @@ html {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
-
 </style>
