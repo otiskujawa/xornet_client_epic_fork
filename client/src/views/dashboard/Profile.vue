@@ -100,7 +100,7 @@
         <div class="line" v-if="profile.socials?.length != 0 || isEditing"></div>
 
         <section>
-          <h1 class="descriptionHeading">Bio</h1>
+          <h1 class="descriptionHeading" v-if="profile.bio && !isEditing">Bio</h1>
           <textarea v-if="!isEditing" maxlength="256" class="descriptionText textArea" cols="30" rows="10" v-model="profile.bio" disabled></textarea>
           <textarea v-if="isEditing" maxlength="256" class="descriptionText textArea editing" cols="30" rows="10" v-model="profile.bio"></textarea>
         </section>
