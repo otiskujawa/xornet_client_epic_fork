@@ -106,14 +106,21 @@
         </section>
       </div>
 
-      <div class="cards">
-        <div class="speedtest">
+      <div class="stats">
+
+        <InfoField :icon="require('@/assets/icons/stack.png')" title="Total servers" :value="(profile.machines).length"/>
+        <InfoField :icon="require('@/assets/icons/ram.png')" title="Total ram" :value="`${Math.ceil(profile.totalRam / 1000 / 1000 / 1000)}GB`"/>
+        <InfoField :icon="require('@/assets/icons/cpu.png')" title="Total shared cores" :value="(profile.machines).length"/>
+        <InfoField :icon="require('@/assets/icons/rj45.png')" title="Total bandwidth" :value="(profile.machines).length"/>
+
+        <div class="speedtest" v-if="profile.speedtest">
           <h1>Internet Speedtest <strong>{{new Date(Date.now() - new Date(profile.speedtest.timestamp).valueOf()).getMinutes()}}m ago</strong></h1>
           <div class="gauges">
-            <Gauge :icon="require('@/assets/icons/upload.png')" suffix="mbps" :value="parseFloat((profile.speedtest.upload.bandwidth / 100000).toFixed(2))" color="#000"/>
             <Gauge :icon="require('@/assets/icons/download.png')" suffix="mbps" :value="parseFloat((profile.speedtest.download.bandwidth / 100000).toFixed(2))" color="#000"/>
+            <Gauge :icon="require('@/assets/icons/upload.png')" suffix="mbps" :value="parseFloat((profile.speedtest.upload.bandwidth / 100000).toFixed(2))" color="#000"/>
           </div>
         </div>
+
       </div>
     </div>
 
@@ -123,11 +130,13 @@
 <script>
 import SocialCard from "@/components/misc/SocialCard";
 import Gauge from "@/components/dashboard/Gauge";
+import InfoField from "@/components/dashboard/InfoField";
 
 export default {
   name: "Profile",
   components: {
     SocialCard,
+    InfoField,
     Gauge
   },
   data: () => {
@@ -232,7 +241,7 @@ export default {
   },
   watch: {
     async $route(to, from) {
-      this.profile = await this.api.user.fetchProfile(this.$route.params.username);
+      if(to.name == from.name) this.profile = await this.api.user.fetchProfile(this.$route.params.username);
     }
   }
 };
@@ -305,17 +314,33 @@ export default {
 
 .content {
   display: flex;
-  gap: 128px;
+  margin-top: 24px;
+  gap: 64px;
+}
+
+.stats {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(4, 224px);
+  grid-template-rows: repeat(4, 72px);
 }
 
 .speedtest {
-  width: 224px;
+  width: 100%;
   padding: 16px 16px 20px 16px;
   border-radius: 8px;
   border: 1px solid #E7E7E7;
   display: flex;
+  cursor: pointer;
+  transition: 100ms ease;
   gap: 16px;
+  height: fit-content;
   flex-direction: column;
+}
+
+.speedtest:hover {
+  transform: translateY(-1px);
+  box-shadow: rgb(0 0 0 / 10%) 0px 10px 20px;
 }
 
 .speedtest h1 {
@@ -347,7 +372,6 @@ export default {
   gap: 20px;
   width: 256px;
   margin-left: 10vw;
-  margin-top: 24px;
   margin-bottom: 128px;
 }
 

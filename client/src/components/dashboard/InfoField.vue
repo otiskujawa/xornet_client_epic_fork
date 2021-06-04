@@ -1,7 +1,10 @@
 <template>
   <div class="info">
-    <h1 class="title">{{ title }}</h1>
-    <h1 class="value">{{ value }}</h1>
+    <img v-if="icon" :src="icon" :alt="title">
+    <div class="text">
+      <h1 class="title">{{ title }}</h1>
+      <h1 class="value">{{ value }}</h1>
+    </div>
   </div>
 </template>
 
@@ -9,6 +12,7 @@
 export default {
   name: "InfoField",
   props: {
+    icon: { type: String },
     title: { type: String, required: true },
     value: { type: String, required: true }
   }
@@ -18,9 +22,9 @@ export default {
 <style scoped>
 .info {
   display: flex;
-  border: 1px solid #252547;
+  border: 1px solid #E7E7E7;
   border-radius: 4px;
-  flex-direction: column;
+  flex-direction: row;
   text-align: left;
   gap: 8px;
   color: var(--black);
@@ -35,19 +39,45 @@ export default {
   box-shadow: rgb(0 0 0 / 10%) 0px 10px 20px;
 }
 
+.info img {
+  width: auto;
+  height: 40px;
+}
+
+.info .text {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .info h1 {
   white-space: nowrap;
 }
 
 .info .title {
-  font-size: 11px;
-  font-family: inherit;
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 117.9%;
+  color: black;
 }
 
 .info .value {
-  font-size: 20px;
-  font-weight: 400;
-  font-family: "Courier Prime", monospace;
-  line-height: 18px;
+  font-family: Roboto Mono;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 117.9%;
+  /* or 21px */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  color: black;
+
 }
 </style>
