@@ -101,8 +101,8 @@
 
         <section>
           <h1 class="descriptionHeading">Bio</h1>
-          <textarea v-if="!isEditing" class="descriptionText textArea" cols="30" rows="10" v-model="profile.bio" disabled></textarea>
-          <textarea v-if="isEditing"  class="descriptionText textArea editing" cols="30" rows="10" v-model="profile.bio"></textarea>
+          <textarea v-if="!isEditing" maxlength="256" class="descriptionText textArea" cols="30" rows="10" v-model="profile.bio" disabled></textarea>
+          <textarea v-if="isEditing" maxlength="256" class="descriptionText textArea editing" cols="30" rows="10" v-model="profile.bio"></textarea>
         </section>
       </div>
 
@@ -140,9 +140,7 @@ export default {
   data: () => {
     return {
       platforms: ["youtube", "twitch", "twitter", "discord", "reddit", "facebook", "github", "steam", "instagram", "tiktok", "tumblr", "vk"],
-      profile: {
-        bio: 'im new to xornet uwu'
-      },
+      profile: {},
       didCopy: false,
       copyMessage: null,
       isEditing: false,

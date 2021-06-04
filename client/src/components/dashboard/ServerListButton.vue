@@ -242,6 +242,7 @@ export default {
 }
 .button .field.owner {
   gap: 8px;
+  text-decoration: none;
 }
 
 .button .field.owner img {

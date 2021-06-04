@@ -79,7 +79,6 @@ export default {
     };
   },
   mounted() {
-    console.log(this.$route.query.newMachine);
     if (this.$route.query.newMachine) this.api.user.addMachine(this.$route.query.newMachine);
 
     socket.on("machines", machines => {

@@ -14,7 +14,7 @@ export default {
   props: {
     icon: { type: String },
     title: { type: String, required: true },
-    value: { type: String, required: true }
+    value: { type: [String, Number], required: true }
   }
 };
 </script>
