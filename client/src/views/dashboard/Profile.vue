@@ -560,7 +560,7 @@ section.socials {
   background-color: white;
   padding: 8px;
   border-radius: 8px;
-  border: 1px #e7e7e7 dashed;
+  border: 2px #e7e7e7 dashed;
   box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
 }
 
