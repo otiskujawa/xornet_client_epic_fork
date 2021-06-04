@@ -28,98 +28,114 @@
         <img :src="require(`@/assets/icons/save.png`)" />
       </section>
     </div>
-
     <SocialCard :add="add" v-if="isAddingSocial && isEditing" />
 
-    <div class="details" :class="{ editing: isEditing }">
-      <div class="heading">
-        <!-- make this change to the user's selected badge -->
-        <img v-if="profile.badges?.owned[profile.badges.selected]" :src="require(`@/assets/badges/${profile.badges?.owned[profile.badges.selected]}.svg`)" />
+    <div class="content">
+      <div class="details" :class="{ editing: isEditing }">
+        <div class="heading">
+          <!-- make this change to the user's selected badge -->
+          <img v-if="profile.badges?.owned[profile.badges.selected]" :src="require(`@/assets/badges/${profile.badges?.owned[profile.badges.selected]}.svg`)" />
 
-        <div class="container">
-          <h1 class="username">{{ profile.username }}</h1>
-          <img class="location" :src="profile.geolocation?.countryCode ? require(`@/assets/flags/${profile.geolocation.countryCode}.png`) : require('@/assets/flags/__.png')" alt="Country Flag" />
+          <div class="container">
+            <h1 class="username">{{ profile.username }}</h1>
+            <img class="location" :src="profile.geolocation?.countryCode ? require(`@/assets/flags/${profile.geolocation.countryCode}.png`) : require('@/assets/flags/__.png')" alt="Country Flag" />
+          </div>
         </div>
-      </div>
 
-      <section class="shadowButton uuid" :class="{ didCopy: didCopy }" @click="copyUUID">
-        <h1 id="profileID">{{ copyMessage || profile._id }}</h1>
-        <img :src="require(`@/assets/icons/clipboard.png`)" />
-      </section>
+        <section class="shadowButton uuid" :class="{ didCopy: didCopy }" @click="copyUUID">
+          <h1 id="profileID">{{ copyMessage || profile._id }}</h1>
+          <img :src="require(`@/assets/icons/clipboard.png`)" />
+        </section>
 
-      <section>
-        <h1 class="descriptionHeading">Points</h1>
-        <p class="points">{{ profile.points || "0" }}</p>
-      </section>
-
-      <div class="line"></div>
-
-      <section v-if="profile.badges?.owned && profile.badges?.owned.length != 0">
-        <h1 class="descriptionHeading">Badges</h1>
-
-        <div class="badges">
-          <img class="badge" v-if="profile.badges?.owned?.includes('developer')" :src="require(`@/assets/badges/developer.svg`)" />
-          <img class="badge" v-if="profile.badges?.owned?.includes('designer')" :src="require(`@/assets/badges/designer.svg`)" />
-          <img class="badge" v-if="profile.badges?.owned?.includes('contributor')" :src="require(`@/assets/badges/contributor.svg`)" />
-        </div>
+        <section>
+          <h1 class="descriptionHeading">Points</h1>
+          <p class="points">{{ profile.points || "0" }}</p>
+        </section>
 
         <div class="line"></div>
-      </section>
 
-      <section v-if="profile.name">
-        <h1 class="descriptionHeading">Name</h1>
-        <p class="descriptionText">{{ profile.name }}</p>
-      </section>
+        <section v-if="profile.badges?.owned && profile.badges?.owned.length != 0">
+          <h1 class="descriptionHeading">Badges</h1>
 
-      <section v-if="profile.email">
-        <h1 class="descriptionHeading">Email</h1>
-        <p class="descriptionText">{{ profile.email }}</p>
-      </section>
+          <div class="badges">
+            <img class="badge" v-if="profile.badges?.owned?.includes('developer')" :src="require(`@/assets/badges/developer.svg`)" />
+            <img class="badge" v-if="profile.badges?.owned?.includes('designer')" :src="require(`@/assets/badges/designer.svg`)" />
+            <img class="badge" v-if="profile.badges?.owned?.includes('contributor')" :src="require(`@/assets/badges/contributor.svg`)" />
+          </div>
 
-      <section v-if="profile.created_at">
-        <h1 class="descriptionHeading">Created</h1>
-        <p class="descriptionText">{{ new Date(profile.created_at).toLocaleString() }}</p>
-      </section>
+          <div class="line"></div>
+        </section>
 
-      <div class="line"></div>
+        <section v-if="profile.name">
+          <h1 class="descriptionHeading">Name</h1>
+          <p class="descriptionText">{{ profile.name }}</p>
+        </section>
 
-      <section class="socials" v-if="profile.socials?.length != 0 || isEditing">
-        <div v-for="(platform, index) of profile.socials" :key="platform" @click="isEditing ? remove(index) : open(platform.url)" class="shadowButton" :class="{ isEditing: isEditing }">
-          <h1 v-if="platforms.includes(platform.name)" class="nameOnPlatform">@{{ platform.url.split("/")[platform.url.split("/").length - 1] }}</h1>
-          <h1 v-if="!platforms.includes(platform.name)" class="nameOnPlatform">{{ platform.name }}</h1>
-          <img :src="platform.name != null && platforms.includes(platform.name) ? require(`@/assets/icons/${platform.name}.png`) : require(`@/assets/icons/globe.png`)" />
-          <img v-if="isEditing" :src="require(`@/assets/icons/x.png`)" />
+        <section v-if="profile.email">
+          <h1 class="descriptionHeading">Email</h1>
+          <p class="descriptionText">{{ profile.email }}</p>
+        </section>
+
+        <section v-if="profile.created_at">
+          <h1 class="descriptionHeading">Created</h1>
+          <p class="descriptionText">{{ new Date(profile.created_at).toLocaleString() }}</p>
+        </section>
+
+        <div class="line"></div>
+
+        <section class="socials" v-if="profile.socials?.length != 0 || isEditing">
+          <div v-for="(platform, index) of profile.socials" :key="platform" @click="isEditing ? remove(index) : open(platform.url)" class="shadowButton" :class="{ isEditing: isEditing }">
+            <h1 v-if="platforms.includes(platform.name)" class="nameOnPlatform">@{{ platform.url.split("/")[platform.url.split("/").length - 1] }}</h1>
+            <h1 v-if="!platforms.includes(platform.name)" class="nameOnPlatform">{{ platform.name }}</h1>
+            <img :src="platform.name != null && platforms.includes(platform.name) ? require(`@/assets/icons/${platform.name}.png`) : require(`@/assets/icons/globe.png`)" />
+            <img v-if="isEditing" :src="require(`@/assets/icons/x.png`)" />
+          </div>
+
+          <div class="shadowButton" @click="isAddingSocial = !isAddingSocial" v-if="isEditing" :class="{ isEditing: isEditing }">
+            <h1 class="nameOnPlatform">Add</h1>
+            <img :src="require(`@/assets/icons/add.png`)" />
+          </div>
+        </section>
+
+        <div class="line" v-if="profile.socials?.length != 0 || isEditing"></div>
+
+        <section>
+          <h1 class="descriptionHeading">Bio</h1>
+          <textarea v-if="!isEditing" class="descriptionText textArea" cols="30" rows="10" v-model="profile.bio" disabled></textarea>
+          <textarea v-if="isEditing"  class="descriptionText textArea editing" cols="30" rows="10" v-model="profile.bio"></textarea>
+        </section>
+      </div>
+
+      <div class="cards">
+        <div class="speedtest">
+          <h1>Internet Speedtest <strong>{{new Date(Date.now() - new Date(profile.speedtest.timestamp).valueOf()).getMinutes()}}m ago</strong></h1>
+          <div class="gauges">
+            <Gauge :icon="require('@/assets/icons/upload.png')" suffix="mbps" :value="parseFloat((profile.speedtest.upload.bandwidth / 100000).toFixed(2))" color="#000"/>
+            <Gauge :icon="require('@/assets/icons/download.png')" suffix="mbps" :value="parseFloat((profile.speedtest.download.bandwidth / 100000).toFixed(2))" color="#000"/>
+          </div>
         </div>
-
-        <div class="shadowButton" @click="isAddingSocial = !isAddingSocial" v-if="isEditing" :class="{ isEditing: isEditing }">
-          <h1 class="nameOnPlatform">Add</h1>
-          <img :src="require(`@/assets/icons/add.png`)" />
-        </div>
-      </section>
-
-      <div class="line" v-if="profile.socials?.length != 0 || isEditing"></div>
-
-      <section>
-        <h1 class="descriptionHeading">Bio</h1>
-        <p v-if="!isEditing" class="descriptionText">{{ profile.bio || "Im new to xornet uwu!" }}</p>
-        <textarea v-if="isEditing" class="descriptionText textArea" cols="30" rows="10" v-model="profile.bio"></textarea>
-      </section>
+      </div>
     </div>
+
   </div>
 </template>
 
 <script>
 import SocialCard from "@/components/misc/SocialCard";
+import Gauge from "@/components/dashboard/Gauge";
 
 export default {
   name: "Profile",
   components: {
-    SocialCard
+    SocialCard,
+    Gauge
   },
   data: () => {
     return {
       platforms: ["youtube", "twitch", "twitter", "discord", "reddit", "facebook", "github", "steam", "instagram", "tiktok", "tumblr", "vk"],
-      profile: {},
+      profile: {
+        bio: 'im new to xornet uwu'
+      },
       didCopy: false,
       copyMessage: null,
       isEditing: false,
@@ -285,6 +301,43 @@ export default {
 .profilepage .heading .xornetBadge img {
   height: 8px;
   width: auto;
+}
+
+.content {
+  display: flex;
+  gap: 128px;
+}
+
+.speedtest {
+  width: 224px;
+  padding: 16px 16px 20px 16px;
+  border-radius: 8px;
+  border: 1px solid #E7E7E7;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+}
+
+.speedtest h1 {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 117.9%;
+  color: black;
+}
+
+.speedtest h1 strong {
+  font-family: 'Roboto Mono';
+  color: #C8C8C8;
+  text-transform: lowercase;
+}
+
+.speedtest .gauges {
+  display: flex;
+  gap: 16px;
+
 }
 
 .profilepage .details {
@@ -456,11 +509,17 @@ section.socials {
 }
 
 .textArea {
-  padding: 8px;;
-  border: 1px #e7e7e7 dashed;
-  border-radius: 8px;
-  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
+  border: none;
   resize: none;
+  background: none;
+}
+
+.textArea.editing {
+  background-color: white;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px #e7e7e7 dashed;
+  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
 }
 
 .line {
