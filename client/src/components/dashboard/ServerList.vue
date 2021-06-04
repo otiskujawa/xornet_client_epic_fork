@@ -42,7 +42,6 @@ export default {
       thinButtons: true,
       showRogues: true,
       showDetails: false,
-      darkmode: localStorage.settings.darkmode,
       sortingMethod: "hostname",
       sortingDirection: true,
       sortedMachines: []
