@@ -2,19 +2,19 @@
   <nav>
     <div class="buttons">
       <router-link :to="{ name: 'profile', params: { username } }" class="button">
-        <img :src="require('@/assets/icons/user.png')" alt="" />
+        <img :src="require('@/assets/icons/user.svg')" alt="" />
       </router-link>
       <router-link :to="{ name: 'summary' }" class="button">
-        <img :src="require('@/assets/icons/dash.png')" alt="" />
+        <img :src="require('@/assets/icons/dashboard.svg')" alt="" />
       </router-link>
       <router-link :to="{ name: 'machines' }" class="button">
-        <img :src="require('@/assets/icons/stack.png')" alt="" />
+        <img :src="require('@/assets/icons/stack.svg')" alt="" />
       </router-link>
       <router-link :to="{ name: 'network' }" class="button">
-        <img :src="require('@/assets/icons/network.png')" alt="" />
+        <img :src="require('@/assets/icons/network.svg')" alt="" />
       </router-link>
       <router-link :to="{ name: 'logs' }" class="button">
-        <img :src="require('@/assets/icons/clipboard.png')" alt="" />
+        <img :src="require('@/assets/icons/clipboard.svg')" alt="" />
       </router-link>
     </div>
   </nav>
@@ -74,7 +74,6 @@ nav .buttons .button {
   height: 48px;
   cursor: pointer;
   transition: 100ms ease;
-  
   user-select: none;
 }
 

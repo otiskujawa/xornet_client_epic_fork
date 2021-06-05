@@ -6,31 +6,31 @@
 
     <div class="buttons">
       <router-link :to="{ name: 'dashboard' }" class="button dashboard">
-        <img :src="require('@/assets/icons/home.png')" alt="" />
+        <img :src="require('@/assets/icons/home.svg')" alt="" />
       </router-link>
       <a href="https://github.com/Geoxor/Xornet/releases" target="_blank" class="button">
-        <img :src="require('@/assets/icons/repository.png')" alt="" />
+        <img :src="require('@/assets/icons/repository.svg')" alt="" />
       </a>
       <div class="button" @click="toggleDarkmode()">
-        <img :src="require('@/assets/icons/darkmode.png')" alt="" />
+        <img :src="require('@/assets/icons/darkmode.svg')" alt="" />
       </div>
       <div class="button" @click="showDetails = !showDetails" :class="{ enabled: showDetails }">
-        <img :src="require('@/assets/icons/details.png')" alt="" />
+        <img :src="require('@/assets/icons/details.svg')" alt="" />
       </div>
       <!-- <div class="button" @click="showRogues = !showRogues" v-if="machines.some(machine => machine.rogue)" :class="{enabled: showRogues}">
             <img :src="require('@/assets/icons/rogue.svg')" alt="">
         </div> -->
       <div v-if="thinButtons" class="button" @click="thinButtons = false">
-        <img :src="require('@/assets/icons/thick.png')" alt="" />
+        <img :src="require('@/assets/icons/thick.svg')" alt="" />
       </div>
       <div v-if="!thinButtons" class="button" @click="thinButtons = true">
-        <img :src="require('@/assets/icons/thin.png')" alt="" />
+        <img :src="require('@/assets/icons/thin.svg')" alt="" />
       </div>
     </div>
 
     <div class="account">
       <div class="button" @click="logout">
-        <img :src="require('@/assets/icons/logout.png')" alt="" />
+        <img :src="require('@/assets/icons/logout.svg')" alt="" />
       </div>
       <router-link :to="{ name: 'profile', params: { username } }">
         <img :src="profile?.profileImage?.url" class="profileImage" alt="profileImage" />
