@@ -11,7 +11,7 @@
         <div class="fields">
           <input v-model="form.url" class="inputField" type="text" placeholder="URL" />
         </div>
-        <button type="submit" :class="{ disabled: isFormValid || isLoading }">Add <img v-if="isLoading" :src="require('@/assets/icons/loading.gif')" alt="" /></button>
+        <button type="submit" :class="{ disabled: isFormValid || isLoading }">Add <img v-if="isLoading" :src="require('@/assets/animations/loading.gif')" alt="" /></button>
       </form>
     </div>
   </div>

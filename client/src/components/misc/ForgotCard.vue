@@ -11,7 +11,7 @@
         <div class="fields">
           <input v-model="form.email" class="inputField" type="email" placeholder="Email" />
         </div>
-        <button type="submit" :class="{ disabled: isFormValid || isLoading }">Reset Password <img v-if="isLoading" :src="require('@/assets/icons/loading.gif')" alt="" /></button>
+        <button type="submit" :class="{ disabled: isFormValid || isLoading }">Reset Password <img v-if="isLoading" :src="require('@/assets/animations/loading.gif')" alt="" /></button>
       </form>
     </div>
   </div>

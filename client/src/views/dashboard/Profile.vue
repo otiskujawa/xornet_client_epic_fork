@@ -13,7 +13,7 @@
 
       <section v-if="!isEditing && profile.username == username" @click="isEditing = !isEditing" class="shadowButton edit">
         <h1>Edit</h1>
-        <img :src="require(`@/assets/icons/edit.png`)" />
+        <img :src="require(`@/assets/icons/edit.svg`)" />
       </section>
 
       <section
@@ -25,7 +25,7 @@
         class="shadowButton edit"
       >
         <h1>Save</h1>
-        <img :src="require(`@/assets/icons/save.png`)" />
+        <img :src="require(`@/assets/icons/save.svg`)" />
       </section>
     </div>
     <SocialCard :add="add" v-if="isAddingSocial && isEditing" />
@@ -44,7 +44,7 @@
 
         <section class="shadowButton uuid" :class="{ didCopy: didCopy }" @click="copyUUID">
           <h1 id="profileID">{{ copyMessage || profile._id }}</h1>
-          <img :src="require(`@/assets/icons/clipboard.png`)" />
+          <img :src="require(`@/assets/icons/clipboard.svg`)" />
         </section>
 
         <section>
@@ -87,13 +87,13 @@
           <div v-for="(platform, index) of profile.socials" :key="platform" @click="isEditing ? remove(index) : open(platform.url)" class="shadowButton" :class="{ isEditing: isEditing }">
             <h1 v-if="platforms.includes(platform.name)" class="nameOnPlatform">@{{ platform.url.split("/")[platform.url.split("/").length - 1] }}</h1>
             <h1 v-if="!platforms.includes(platform.name)" class="nameOnPlatform">{{ platform.name }}</h1>
-            <img :src="platform.name != null && platforms.includes(platform.name) ? require(`@/assets/icons/${platform.name}.png`) : require(`@/assets/icons/globe.png`)" />
-            <img v-if="isEditing" :src="require(`@/assets/icons/x.png`)" />
+            <img :src="platform.name != null && platforms.includes(platform.name) ? require(`@/assets/icons/${platform.name}.svg`) : require(`@/assets/icons/globe.svg`)" />
+            <img v-if="isEditing" :src="require(`@/assets/icons/x.svg`)" />
           </div>
 
           <div class="shadowButton" @click="isAddingSocial = !isAddingSocial" v-if="isEditing" :class="{ isEditing: isEditing }">
             <h1 class="nameOnPlatform">Add</h1>
-            <img :src="require(`@/assets/icons/add.png`)" />
+            <img :src="require(`@/assets/icons/add.svg`)" />
           </div>
         </section>
 
@@ -110,14 +110,14 @@
         <a :href="profile.speedtest.result.url" target="_blank" class="speedtest" v-if="profile.speedtest">
           <h1>Internet Speedtest <strong>{{new Date(Date.now() - new Date(profile.speedtest.timestamp).valueOf()).getMinutes()}}m ago</strong></h1>
           <div class="gauges">
-            <Gauge :icon="require('@/assets/icons/download.png')" suffix="mbps" :value="parseFloat((profile.speedtest.download.bandwidth / 100000).toFixed(2))" color="#000"/>
-            <Gauge :icon="require('@/assets/icons/upload.png')" suffix="mbps" :value="parseFloat((profile.speedtest.upload.bandwidth / 100000).toFixed(2))" color="#000"/>
+            <Gauge :icon="require('@/assets/icons/download.svg')" suffix="mbps" :value="parseFloat((profile.speedtest.download.bandwidth / 100000).toFixed(2))" color="#000"/>
+            <Gauge :icon="require('@/assets/icons/upload.svg')" suffix="mbps" :value="parseFloat((profile.speedtest.upload.bandwidth / 100000).toFixed(2))" color="#000"/>
           </div>
         </a>
 
-        <InfoField :icon="require('@/assets/icons/stack.png')" title="Total servers" :value="(profile.machines).length"/>
-        <InfoField :icon="require('@/assets/icons/ram.png')" title="Total ram" :value="`${Math.ceil(profile.totalRam / 1000 / 1000 / 1000)}GB`"/>
-        <InfoField :icon="require('@/assets/icons/cpu.png')" title="Total shared cores" :value="(profile.totalCores)"/>
+        <InfoField :icon="require('@/assets/icons/stack.svg')" title="Total servers" :value="(profile.machines).length"/>
+        <InfoField :icon="require('@/assets/icons/ram.svg')" title="Total ram" :value="`${Math.ceil(profile.totalRam / 1000 / 1000 / 1000)}GB`"/>
+        <InfoField :icon="require('@/assets/icons/cpu.svg')" title="Total shared cores" :value="(profile.totalCores)"/>
 
       </div>
     </div>
