@@ -44,6 +44,7 @@ export default {};
   padding: 0;
   font-family: "Comfortaa", cursive;
   box-sizing: border-box;
+  text-decoration: none;
 }
 
 *::selection {

@@ -74,7 +74,7 @@ nav .buttons .button {
   height: 48px;
   cursor: pointer;
   transition: 100ms ease;
-  text-decoration: none;
+  
   user-select: none;
 }
 

@@ -107,13 +107,13 @@
       </div>
 
       <div class="stats">
-        <div class="speedtest" v-if="profile.speedtest">
+        <a :href="profile.speedtest.result.url" target="_blank" class="speedtest" v-if="profile.speedtest">
           <h1>Internet Speedtest <strong>{{new Date(Date.now() - new Date(profile.speedtest.timestamp).valueOf()).getMinutes()}}m ago</strong></h1>
           <div class="gauges">
             <Gauge :icon="require('@/assets/icons/download.png')" suffix="mbps" :value="parseFloat((profile.speedtest.download.bandwidth / 100000).toFixed(2))" color="#000"/>
             <Gauge :icon="require('@/assets/icons/upload.png')" suffix="mbps" :value="parseFloat((profile.speedtest.upload.bandwidth / 100000).toFixed(2))" color="#000"/>
           </div>
-        </div>
+        </a>
 
         <InfoField :icon="require('@/assets/icons/stack.png')" title="Total servers" :value="(profile.machines).length"/>
         <InfoField :icon="require('@/assets/icons/ram.png')" title="Total ram" :value="`${Math.ceil(profile.totalRam / 1000 / 1000 / 1000)}GB`"/>
@@ -349,6 +349,7 @@ export default {
   border-radius: 8px;
   border: 1px solid #E7E7E7;
   display: flex;
+  
   cursor: pointer;
   transition: 100ms ease;
   gap: 16px;
@@ -430,7 +431,7 @@ export default {
   user-select: none;
   cursor: pointer;
   justify-content: space-between;
-  text-decoration: none;
+  
   gap: 8px;
   flex-direction: row;
   border-radius: 200px;
@@ -487,7 +488,7 @@ export default {
   font-weight: 600;
   font-size: 14px;
   text-transform: capitalize;
-  text-decoration: none;
+  
   display: flex;
   align-items: center;
 }
@@ -515,7 +516,7 @@ section h1 {
   font-family: Work Sans;
   font-weight: 600;
   font-size: 14px;
-  text-decoration: none;
+  
   display: flex;
   align-items: center;
   color: #c8c8c8;

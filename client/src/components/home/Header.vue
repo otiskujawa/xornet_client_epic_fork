@@ -68,7 +68,7 @@ header .buttons .button {
   align-items: center;
   gap: 8px;
   white-space: nowrap;
-  text-decoration: none;
+  
 }
 header .buttons .button:hover {
   box-shadow: 0px 4px 12px #4361ee80;

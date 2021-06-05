@@ -93,7 +93,7 @@ export default {
   align-items: center;
   cursor: pointer;
   /* transition: 100ms ease; */
-  text-decoration: none;
+  
   overflow: hidden;
   user-select: none;
 }
@@ -242,7 +242,7 @@ export default {
 }
 .button .field.owner {
   gap: 8px;
-  text-decoration: none;
+  
 }
 
 .button .field.owner img {
