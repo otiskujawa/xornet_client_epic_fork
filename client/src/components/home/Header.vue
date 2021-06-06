@@ -39,6 +39,44 @@ header {
   align-items: center;
   /* background-color: var(--white); */
 }
+
+header .buttons {
+  display: flex;
+  height: 100%;
+  gap: 8px;
+}
+header .buttons .button {
+  color: white;
+  border: none;
+  background-color: #4361ee;
+  width: min-content;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  line-height: 175%;
+  transition: 100ms ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  
+}
+header .buttons .button:hover {
+  box-shadow: 0px 4px 12px #4361ee80;
+  transform: translateY(-1px);
+}
+header .buttons .button:active {
+  transform: translateY(1px);
+}
+header .buttons .button img {
+  filter: invert(1);
+  width: 24px;
+  height: 24px;
+}
 .view-home {
   padding: 8px 10vw;
 }
