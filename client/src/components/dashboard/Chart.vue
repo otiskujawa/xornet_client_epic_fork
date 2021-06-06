@@ -45,12 +45,16 @@ export default {
           x: {
             grid: {
               display: false
-            }
+            },
+            ticks: {
+              display: false,
+            },
+            beginAtZero: true
           },
           y: {
             grid: {
               display: false
-            }
+            },
           }
         }
       }
@@ -63,6 +67,6 @@ export default {
 .chart {
   background-color: var(--background-color);
   width: 800px;
-  height: 400px;
+  height: 200px;
 }
 </style>
