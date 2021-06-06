@@ -22,7 +22,7 @@ export default {
 <style scoped>
 .info {
   display: flex;
-  border: 1px solid #E7E7E7;
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   flex-direction: row;
   text-align: left;
@@ -42,6 +42,7 @@ export default {
 .info img {
   width: auto;
   height: 40px;
+  filter: invert(var(--filter));
 }
 
 .info .text {
@@ -62,7 +63,7 @@ export default {
   text-transform: uppercase;
   font-size: 12px;
   line-height: 117.9%;
-  color: black;
+  color: var(--black);
 }
 
 .info .value {
@@ -77,7 +78,7 @@ export default {
   align-items: center;
   text-align: center;
   text-transform: uppercase;
-  color: black;
+  color: var(--black);
 
 }
 </style>

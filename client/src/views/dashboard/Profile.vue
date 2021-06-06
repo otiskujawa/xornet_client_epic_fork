@@ -347,7 +347,7 @@ export default {
   width: 100%;
   padding: 16px 16px 20px 16px;
   border-radius: 8px;
-  border: 1px solid #E7E7E7;
+  border: 1px solid var(--border-color);
   display: flex;
   
   cursor: pointer;
@@ -369,7 +369,7 @@ export default {
   text-transform: uppercase;
   font-size: 12px;
   line-height: 117.9%;
-  color: black;
+  color: var(--black);
 }
 
 .speedtest h1 strong {
@@ -414,7 +414,7 @@ export default {
   line-height: 68%;
   /* or 42px */
 
-  color: #000000;
+  color: var(--black);
 }
 
 .profilepage .details .heading .location {
@@ -460,7 +460,7 @@ export default {
   font-style: normal;
   font-weight: 700;
   font-size: 12px;
-  color: #000000;
+  color: var(--black);
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -471,6 +471,8 @@ export default {
 
 .shadowButton img {
   width: 20px;
+  filter: invert(var(--filter));
+
 }
 
 .shadowButton.didCopy {
@@ -548,7 +550,7 @@ section.socials {
   display: flex;
   align-items: center;
 
-  color: #000000;
+  color: var(--black);
 }
 
 .textArea {
@@ -561,7 +563,7 @@ section.socials {
   background-color: white;
   padding: 8px;
   border-radius: 8px;
-  border: 2px #e7e7e7 dashed;
+  border: 2px var(--border-color) dashed;
   box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
 }
 
@@ -569,6 +571,6 @@ section.socials {
   width: 100%;
   height: 1px;
   margin-top: 8px;
-  background-color: #e7e7e7;
+  background-color: var(--border-color);
 }
 </style>
