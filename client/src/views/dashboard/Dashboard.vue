@@ -31,9 +31,6 @@ export default {
       // return this.machines.size > 0 ? false : true;
       return false;
     }
-  },
-  data: () => {
-    return {};
   }
 };
 </script>

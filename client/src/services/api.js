@@ -32,17 +32,16 @@ class API {
     return endpoint;
   }
 
-
   /**
    * Gets the geolocation of the client
    * @private
    */
-  async getGeolocation(){
+  async getGeolocation() {
     const location = (await axios.get(`https://ipwhois.app/json/`)).data;
     const geolocation = {
       location: location.country,
       countryCode: location.country_code,
-      isp: location.isp,
+      isp: location.isp
     };
     return geolocation;
   }
@@ -195,7 +194,7 @@ class User extends API {
   async login(json) {
     return new Promise(async (resolve, reject) => {
       try {
-        const loginForm = {geolocation: await this.getGeolocation(), ...JSON.parse(json)};
+        const loginForm = { geolocation: await this.getGeolocation(), ...JSON.parse(json) };
         const response = await super.post("login", undefined, loginForm, { "Content-Type": "application/json" });
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("username", loginForm.username);
@@ -213,7 +212,7 @@ class User extends API {
    * @param {Object} json Json object, which contains signup credentials
    */
   async signup(json) {
-    const signupForm = {geolocation: await this.getGeolocation(), ...json};
+    const signupForm = { geolocation: await this.getGeolocation(), ...json };
     return super.post("signup", undefined, signupForm, { "Content-Type": "application/json" });
   }
 
@@ -224,12 +223,12 @@ class User extends API {
   async fetchProfile(username) {
     return (await super.get(`profile/${username}`)).data;
   }
-  
+
   /**
    * Returns the user object of the logged in user, takes no input parameters
    */
   async fetchMe() {
-    return (await super.get(`profile/${localStorage.getItem('username')}`)).data;
+    return (await super.get(`profile/${localStorage.getItem("username")}`)).data;
   }
 
   /**

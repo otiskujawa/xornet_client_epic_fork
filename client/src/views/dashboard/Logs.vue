@@ -1,13 +1,9 @@
-<template>
-  
-</template>
+<template></template>
 
 <script>
 export default {
-    name: 'Logs'
-}
+  name: "Logs"
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

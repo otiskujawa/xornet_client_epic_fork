@@ -4,7 +4,7 @@ const socket = io("wss://backend.xornet.cloud", {
   reconnect: true,
   auth: {
     type: "client",
-    token: localStorage.getItem('token'),
+    token: localStorage.getItem("token")
   }
 });
 socket.on("connect", () => console.log("[Socket] Connected"));

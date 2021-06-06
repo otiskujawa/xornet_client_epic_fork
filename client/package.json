@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "prettify": "npx prettier --write \"./**/*.vue\" && npx prettier --write \"./**/*.js\""
   },
   "dependencies": {
     "axios": "^0.21.1",

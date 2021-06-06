@@ -14,10 +14,10 @@
 export default {
   name: "SquareButton",
   props: {
-    to: {type: Object, required: false},
-    icon: {type: String, required: true},
-    href: {type: String, required: false},
-    isEnabled: {type: Boolean, required: false}
+    to: { type: Object, required: false },
+    icon: { type: String, required: true },
+    href: { type: String, required: false },
+    isEnabled: { type: Boolean, required: false }
   }
 };
 </script>
@@ -64,5 +64,4 @@ export default {
 .button:hover img {
   filter: invert(1);
 }
-
 </style>

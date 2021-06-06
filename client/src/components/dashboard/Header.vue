@@ -5,15 +5,15 @@
     </div>
 
     <div class="buttons">
-      <SquareButton icon="repository" href="https://github.com/Geoxor/Xornet/releases"/>
-      <SquareButton icon="darkmode" @click="toggleDarkmode"/>
-      <SquareButton icon="details" @click="isShowingDetails = !isShowingDetails" :isEnabled="isShowingDetails"/>
-      <SquareButton icon="thick" @click="thinButtons = false" v-if="thinButtons"/>
-      <SquareButton icon="thin" @click="thinButtons = true" v-if="!thinButtons"/>
+      <SquareButton icon="repository" href="https://github.com/Geoxor/Xornet/releases" />
+      <SquareButton icon="darkmode" @click="toggleDarkmode" />
+      <SquareButton icon="details" @click="isShowingDetails = !isShowingDetails" :isEnabled="isShowingDetails" />
+      <SquareButton icon="thick" @click="thinButtons = false" v-if="thinButtons" />
+      <SquareButton icon="thin" @click="thinButtons = true" v-if="!thinButtons" />
     </div>
 
     <div class="account">
-      <SquareButton icon="logout" @click.native="logout"/>
+      <SquareButton icon="logout" @click.native="logout" />
 
       <router-link :to="{ name: 'profile', params: { username } }">
         <img :src="profile?.profileImage?.url" class="profileImage" alt="profileImage" />
@@ -24,12 +24,12 @@
 
 <script>
 import { isDark } from "@/services/theme.js";
-import SquareButton from '@/components/dashboard/SquareButton';
+import SquareButton from "@/components/dashboard/SquareButton";
 
 export default {
   name: "Header",
   components: {
-    SquareButton,
+    SquareButton
   },
   computed: {
     username: function() {

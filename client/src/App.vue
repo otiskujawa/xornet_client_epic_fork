@@ -24,7 +24,7 @@ export default {};
   --slyColor: #414569;
   --rogue-red: #ffeef0;
   --rogue-red-active: #fdaeb7;
-  --border-color: #E7E7E7;
+  --border-color: #e7e7e7;
 
   /* Darkmode colors */
   --darkmode-background-color: #0b0b15;

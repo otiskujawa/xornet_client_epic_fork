@@ -203,7 +203,7 @@ export default {
   display: flex;
   gap: 8px;
   transition: 100ms ease;
-  
+
   overflow: hidden;
   user-select: none;
 }

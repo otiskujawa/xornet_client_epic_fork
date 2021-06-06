@@ -133,7 +133,6 @@ export default {
   color: var(--theme-color);
   font-weight: bold;
   font-style: normal;
-  
 }
 
 .card .content form button {

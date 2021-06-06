@@ -7,8 +7,8 @@
       </div>
 
       <form v-if="isEditing">
-        <input type="file" id="profileImage" ref="profileImage" style="display: none;" name="profileImage" accept="image/*" />
-        <input type="file" id="profileBanner" ref="profileBanner" style="display: none;" name="profileBanner" accept="image/*" />
+        <input type="file" id="profileImage" ref="profileImage" style="display: none" name="profileImage" accept="image/*" />
+        <input type="file" id="profileBanner" ref="profileBanner" style="display: none" name="profileBanner" accept="image/*" />
       </form>
 
       <section v-if="!isEditing && profile.username == username" @click="isEditing = !isEditing" class="shadowButton edit">
@@ -49,7 +49,7 @@
 
         <section>
           <h1 class="descriptionHeading">Points</h1>
-          <p class="points" @mouseenter="showFullPoints = true" @mouseleave="showFullPoints = false" >{{ showFullPoints ? Math.floor(points.tweened) :  millify(points.number) || "0" }}</p>
+          <p class="points" @mouseenter="showFullPoints = true" @mouseleave="showFullPoints = false">{{ showFullPoints ? Math.floor(points.tweened) : millify(points.number) || "0" }}</p>
         </section>
 
         <div class="line"></div>
@@ -108,20 +108,20 @@
 
       <div class="stats">
         <a :href="profile.speedtest.result.url" target="_blank" class="speedtest" v-if="profile.speedtest">
-          <h1>Internet Speedtest <strong>{{new Date(Date.now() - new Date(profile.speedtest.timestamp).valueOf()).getMinutes()}}m ago</strong></h1>
+          <h1>
+            Internet Speedtest <strong>{{ new Date(Date.now() - new Date(profile.speedtest.timestamp).valueOf()).getMinutes() }}m ago</strong>
+          </h1>
           <div class="gauges">
-            <Gauge :icon="require('@/assets/icons/download.svg')" suffix="mbps" :value="parseFloat((profile.speedtest.download.bandwidth / 100000).toFixed(2))" color="#000"/>
-            <Gauge :icon="require('@/assets/icons/upload.svg')" suffix="mbps" :value="parseFloat((profile.speedtest.upload.bandwidth / 100000).toFixed(2))" color="#000"/>
+            <Gauge :icon="require('@/assets/icons/download.svg')" suffix="mbps" :value="parseFloat((profile.speedtest.download.bandwidth / 100000).toFixed(2))" color="#000" />
+            <Gauge :icon="require('@/assets/icons/upload.svg')" suffix="mbps" :value="parseFloat((profile.speedtest.upload.bandwidth / 100000).toFixed(2))" color="#000" />
           </div>
         </a>
 
-        <InfoField :icon="require('@/assets/icons/stack.svg')" title="Total servers" :value="(profile.machines).length"/>
-        <InfoField :icon="require('@/assets/icons/ram.svg')" title="Total ram" :value="`${Math.ceil(profile.totalRam / 1000 / 1000 / 1000)}GB`"/>
-        <InfoField :icon="require('@/assets/icons/cpu.svg')" title="Total shared cores" :value="(profile.totalCores)"/>
-
+        <InfoField :icon="require('@/assets/icons/stack.svg')" title="Total servers" :value="profile.machines.length" />
+        <InfoField :icon="require('@/assets/icons/ram.svg')" title="Total ram" :value="`${Math.ceil(profile.totalRam / 1000 / 1000 / 1000)}GB`" />
+        <InfoField :icon="require('@/assets/icons/cpu.svg')" title="Total shared cores" :value="profile.totalCores" />
       </div>
     </div>
-
   </div>
 </template>
 
@@ -131,7 +131,7 @@ import gsap from "gsap";
 import socket from "@/services/socket.js";
 import Gauge from "@/components/dashboard/Gauge";
 import InfoField from "@/components/dashboard/InfoField";
-import {millify} from "millify";
+import { millify } from "millify";
 
 export default {
   name: "Profile",
@@ -146,13 +146,13 @@ export default {
       profile: {},
       points: {
         number: 0,
-        tweened: 0,
+        tweened: 0
       },
       didCopy: false,
       showFullPoints: false,
       copyMessage: null,
       isEditing: false,
-      isAddingSocial: false,
+      isAddingSocial: false
     };
   },
   computed: {
@@ -165,9 +165,9 @@ export default {
     this.points.number = this.profile.points;
     this.points.tweened = this.profile.points;
   },
-  mounted(){
-    socket.emit('getPoints', this.$route.params.username);
-    socket.on('points', points => {
+  mounted() {
+    socket.emit("getPoints", this.$route.params.username);
+    socket.on("points", points => {
       this.points.number = points;
       gsap.to(this.points, { duration: 1, tweened: points });
     });
@@ -178,7 +178,6 @@ export default {
       this.profile.socials.splice(index, 1);
     },
     add(url) {
-
       let name = extractHostname(url);
 
       function extractHostname(url) {
@@ -199,7 +198,7 @@ export default {
         return hostname;
       }
 
-      if (url.endsWith('/')) url = url.substring(0, url.length - 1);
+      if (url.endsWith("/")) url = url.substring(0, url.length - 1);
 
       if (url.includes("youtube")) name = "youtube";
       if (url.includes("twitch")) name = "twitch";
@@ -226,7 +225,7 @@ export default {
     },
     async save() {
       let response = await this.api.user.save(Object.assign({}, this.profile), this.$refs.profileImage.files[0], this.$refs.profileBanner.files[0]);
-      
+
       // this.profile.profileImage = response.profile.profileImage;
       for (const [key, value] of Object.entries(response.profile)) {
         this.profile[key] = value;
@@ -256,8 +255,8 @@ export default {
   },
   watch: {
     async $route(to, from) {
-      if(to.name == from.name) {
-        socket.emit('getPoints', this.$route.params.username);
+      if (to.name == from.name) {
+        socket.emit("getPoints", this.$route.params.username);
         this.profile = await this.api.user.fetchProfile(this.$route.params.username);
       }
     }
@@ -349,7 +348,7 @@ export default {
   border-radius: 8px;
   border: 1px solid var(--border-color);
   display: flex;
-  
+
   cursor: pointer;
   transition: 100ms ease;
   gap: 16px;
@@ -363,7 +362,7 @@ export default {
 }
 
 .speedtest h1 {
-  font-family: 'Roboto Mono';
+  font-family: "Roboto Mono";
   font-style: normal;
   font-weight: bold;
   text-transform: uppercase;
@@ -373,15 +372,14 @@ export default {
 }
 
 .speedtest h1 strong {
-  font-family: 'Roboto Mono';
-  color: #C8C8C8;
+  font-family: "Roboto Mono";
+  color: #c8c8c8;
   text-transform: lowercase;
 }
 
 .speedtest .gauges {
   display: flex;
   gap: 16px;
-
 }
 
 .profilepage .details {
@@ -431,7 +429,7 @@ export default {
   user-select: none;
   cursor: pointer;
   justify-content: space-between;
-  
+
   gap: 8px;
   flex-direction: row;
   border-radius: 200px;
@@ -472,7 +470,6 @@ export default {
 .shadowButton img {
   width: 20px;
   filter: invert(var(--filter));
-
 }
 
 .shadowButton.didCopy {
@@ -490,7 +487,7 @@ export default {
   font-weight: 600;
   font-size: 14px;
   text-transform: capitalize;
-  
+
   display: flex;
   align-items: center;
 }
@@ -518,7 +515,7 @@ section h1 {
   font-family: Work Sans;
   font-weight: 600;
   font-size: 14px;
-  
+
   display: flex;
   align-items: center;
   color: #c8c8c8;

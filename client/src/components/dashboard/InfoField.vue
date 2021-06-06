@@ -1,6 +1,6 @@
 <template>
   <div class="info">
-    <img v-if="icon" :src="icon" :alt="title">
+    <img v-if="icon" :src="icon" :alt="title" />
     <div class="text">
       <h1 class="title">{{ title }}</h1>
       <h1 class="value">{{ value }}</h1>
@@ -57,7 +57,7 @@ export default {
 }
 
 .info .title {
-  font-family: 'Roboto Mono';
+  font-family: "Roboto Mono";
   font-style: normal;
   font-weight: bold;
   text-transform: uppercase;
@@ -79,6 +79,5 @@ export default {
   text-align: center;
   text-transform: uppercase;
   color: var(--black);
-
 }
 </style>

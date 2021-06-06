@@ -9,19 +9,18 @@
 </template>
 
 <script>
-
-import SquareButton from '@/components/dashboard/SquareButton';
+import SquareButton from "@/components/dashboard/SquareButton";
 
 export default {
   name: "Nav",
   components: {
-    SquareButton,
+    SquareButton
   },
   computed: {
     username: function() {
       return localStorage.getItem("username");
     }
-  },
+  }
 };
 </script>
 
