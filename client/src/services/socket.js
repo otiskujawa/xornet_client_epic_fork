@@ -7,7 +7,7 @@ const socket = io("wss://backend.xornet.cloud", {
     token: localStorage.getItem("token")
   }
 });
-socket.on("connect", () => console.log("[WS] Connected"));
-socket.on("disconnect", () => console.log("[WS] Disconnected"));
+socket.on("connect", () => console.log("%c[WS] [Connected]", "color: #ff4488; font-weight: bold;"));
+socket.on("disconnect", () => console.log("%c[WS] [Disconnected]", "color: #ff4488; font-weight: bold;"));
 
 export default socket;

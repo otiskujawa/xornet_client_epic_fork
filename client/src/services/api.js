@@ -62,14 +62,14 @@ class API {
           headers
         });
 
-        this.logResponse("POST", response);
+        this.logResponse(`POST ${route}`, response);
         resolve(response);
       } else {
         const response = await axios.post(this.constructEndpoint(route, params), body || undefined, {
           withCredentials: true
         });
 
-        this.logResponse("POST", response);
+        this.logResponse(`POST ${route}`, response);
         resolve(response);
       }
     });
@@ -92,14 +92,14 @@ class API {
           headers
         });
 
-        this.logResponse("PATCH", response.data);
+        this.logResponse(`PATCH ${route}`, response.data);
         resolve(response.data);
       } else {
         const response = await axios.patch(this.constructEndpoint(route, params), body || undefined, {
           withCredentials: true
         });
 
-        this.logResponse("PATCH", response.data);
+        this.logResponse(`PATCH ${route}`, response.data);
         resolve(response.data);
       }
     });
@@ -122,14 +122,14 @@ class API {
           headers
         });
 
-        this.logResponse("PUT", response.data);
+        this.logResponse(`PUT ${route}`, response.data);
         resolve(response.data);
       } else {
         const response = await axios.put(this.constructEndpoint(route, params), body || undefined, {
           withCredentials: true
         });
 
-        this.logResponse("PUT", response.data);
+        this.logResponse(`PUT ${route}`, response.data);
         resolve(response.data);
       }
     });
@@ -149,14 +149,14 @@ class API {
         headers: headers
       });
 
-      this.logResponse("GET", response);
+      this.logResponse(`GET ${route}`, response);
       return response;
     } else {
       const response = await axios.get(this.constructEndpoint(route, params), {
         withCredentials: true
       });
 
-      this.logResponse("GET", response);
+      this.logResponse(`GET ${route}`, response);
       return response;
     }
   }
@@ -172,7 +172,7 @@ class API {
       withCredentials: true
     });
 
-    this.logResponse("DELETE", response);
+    this.logResponse(`DELETE ${route}`, response);
     return response;
   }
 }
@@ -276,7 +276,8 @@ class Machine extends API {
   }
 }
 
-console.log("[API] Class Loaded");
+console.log(`%c[API] [Class Loaded]`, "color: #aa66ff; font-weight: bold;");
+
 const api = {
   user: new User(),
   machine: new Machine()

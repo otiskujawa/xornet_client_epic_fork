@@ -8,7 +8,7 @@
         <Chart
           v-if="uploadGraph.length != 0"
           :key="labels[2]"
-          :identity="labels[2]" 
+          :identity="labels[2]"
           :type="'line'"
           :data="{
             labels: labels,
@@ -25,7 +25,7 @@
         <Chart
           v-if="uploadGraph.length != 0"
           :key="labels[2] + 'up'"
-          :identity="labels[2] + 'up'" 
+          :identity="labels[2] + 'up'"
           :type="'line'"
           :data="{
             labels: labels,
@@ -35,7 +35,7 @@
                 data: uploadGraph,
                 borderColor: '#ff0062',
                 backgroundColor: '#ff458caa'
-              },
+              }
             ]
           }"
         />
@@ -91,27 +91,27 @@ export default {
     };
   },
   methods: {
-    async getNetwork(){
+    async getNetwork() {
       const networkData = await this.api.machine.getNetwork(this.selectedMachine);
       this.downloadGraph = networkData.map(entity => entity.network.RxSec);
       this.uploadGraph = networkData.map(entity => entity.network.TxSec);
       this.labels = networkData.map(entity => {
-        let [hour, minute, second] = new Date().toLocaleTimeString("en-US").split(/:| /)
-        return `${hour}:${minute}:${second}`
+        let [hour, minute, second] = new Date().toLocaleTimeString("en-US").split(/:| /);
+        return `${hour}:${minute}:${second}`;
       });
-    },
+    }
   },
   watch: {
-    selectedMachine: async function (to, from) {
-      this.getNetwork();
+    selectedMachine: async function() {
+      if (this.selectedMachine) this.getNetwork();
     }
   },
   async mounted() {
     if (this.$route.query.newMachine) {
       this.api.user.addMachine(this.$route.query.newMachine);
     }
-    
-    if(this.selectedMachine) this.getNetwork();
+
+    if (this.selectedMachine) this.getNetwork();
 
     socket.on("machines", machines => {
       Object.values(machines).forEach(machine => (machine.uuid ? this.machines.set(machine.uuid, machine) : null));

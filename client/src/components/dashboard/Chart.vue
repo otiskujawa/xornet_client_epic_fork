@@ -16,17 +16,16 @@ export default {
   mounted() {
     var ctx = document.getElementById(this.identity).getContext("2d");
     var myChart = new Chart(ctx, {
-      
       type: this.type,
-      data: this.data, 
+      data: this.data,
       options: this.options || {
         plugins: {
           tooltip: {
             intersect: false,
             interaction: {
-              mode: 'index',
-              axis: 'x'
-            },
+              mode: "index",
+              axis: "x"
+            }
           }
         },
         maintainAspectRatio: false,
@@ -45,13 +44,13 @@ export default {
         scales: {
           x: {
             grid: {
-              display: false,
-            },
+              display: false
+            }
           },
           y: {
             grid: {
-              display: false,
-            },
+              display: false
+            }
           }
         }
       }
