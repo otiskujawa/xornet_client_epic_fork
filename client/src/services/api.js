@@ -85,7 +85,6 @@ class API {
    */
   async patch(route, params, body, headers) {
     return new Promise(async (resolve, reject) => {
-      console.log(headers);
       if (headers) {
         const response = await axios.patch(this.constructEndpoint(route, params), body || undefined, {
           withCredentials: true,
@@ -115,7 +114,6 @@ class API {
    */
   async put(route, params, body, headers) {
     return new Promise(async (resolve, reject) => {
-      console.log(headers);
       if (headers) {
         const response = await axios.put(this.constructEndpoint(route, params), body || undefined, {
           withCredentials: true,
