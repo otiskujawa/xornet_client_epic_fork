@@ -24,11 +24,11 @@
     <div class="field diskUsage">
       <h1 v-for="disk of showDetails ? machine.disks : [machine.disks[0]]" :key="disk">
         <strong>
-          {{ disk.fs }}
+          {{ disk?.fs }}
         </strong>
-        {{ disk.size > 1000 ? `${(disk.used / 1000).toFixed(2)}/${(disk.size / 1000).toFixed(2)}` : `${disk.used}/${disk.size}` }}
+        {{ disk?.size > 1000 ? `${(disk?.used / 1000).toFixed(2)}/${(disk?.size / 1000).toFixed(2)}` : `${disk?.used}/${disk?.size}` }}
         <strong>
-          {{ disk.size > 1000 ? "TB" : "GB" }}
+          {{ disk?.size > 1000 ? "TB" : "GB" }}
         </strong>
       </h1>
     </div>

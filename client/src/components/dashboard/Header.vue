@@ -5,33 +5,16 @@
     </div>
 
     <div class="buttons">
-      <router-link :to="{ name: 'dashboard' }" class="button dashboard">
-        <img :src="require('@/assets/icons/home.svg')" alt="" />
-      </router-link>
-      <a href="https://github.com/Geoxor/Xornet/releases" target="_blank" class="button">
-        <img :src="require('@/assets/icons/repository.svg')" alt="" />
-      </a>
-      <div class="button" @click="toggleDarkmode()">
-        <img :src="require('@/assets/icons/darkmode.svg')" alt="" />
-      </div>
-      <div class="button" @click="showDetails = !showDetails" :class="{ enabled: showDetails }">
-        <img :src="require('@/assets/icons/details.svg')" alt="" />
-      </div>
-      <!-- <div class="button" @click="showRogues = !showRogues" v-if="machines.some(machine => machine.rogue)" :class="{enabled: showRogues}">
-            <img :src="require('@/assets/icons/rogue.svg')" alt="">
-        </div> -->
-      <div v-if="thinButtons" class="button" @click="thinButtons = false">
-        <img :src="require('@/assets/icons/thick.svg')" alt="" />
-      </div>
-      <div v-if="!thinButtons" class="button" @click="thinButtons = true">
-        <img :src="require('@/assets/icons/thin.svg')" alt="" />
-      </div>
+      <SquareButton icon="repository" href="https://github.com/Geoxor/Xornet/releases"/>
+      <SquareButton icon="darkmode" @click="toggleDarkmode"/>
+      <SquareButton icon="details" @click="isShowingDetails = !isShowingDetails" :enabled="isShowingDetails"/>
+      <SquareButton icon="thick" @click="thinButtons = false" v-if="thinButtons"/>
+      <SquareButton icon="thin" @click="thinButtons = true" v-if="!thinButtons"/>
     </div>
 
     <div class="account">
-      <div class="button" @click="logout">
-        <img :src="require('@/assets/icons/logout.svg')" alt="" />
-      </div>
+      <SquareButton icon="logout" @click.native="logout"/>
+
       <router-link :to="{ name: 'profile', params: { username } }">
         <img :src="profile?.profileImage?.url" class="profileImage" alt="profileImage" />
       </router-link>
@@ -41,10 +24,13 @@
 
 <script>
 import { isDark } from "@/services/theme.js";
+import SquareButton from '@/components/dashboard/SquareButton';
 
 export default {
   name: "Header",
-  components: {},
+  components: {
+    SquareButton,
+  },
   computed: {
     username: function() {
       return localStorage.getItem("username");
@@ -58,7 +44,6 @@ export default {
   async created() {
     this.profile = await this.api.user.fetchMe();
   },
-  mounted() {},
   methods: {
     logout() {
       function deleteAllCookies() {
@@ -88,6 +73,8 @@ header {
   height: 48px;
   width: 100%;
   display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--background-color);
 }
 
@@ -106,39 +93,6 @@ header .buttons {
   width: 100%;
   align-items: center;
   display: flex;
-}
-
-header .button {
-  padding: 16px;
-  background-color: var(--background-color);
-  box-sizing: border-box;
-  border: 1px solid transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 48px;
-  height: 48px;
-  cursor: pointer;
-  transition: 100ms ease;
-  
-  user-select: none;
-}
-
-header .button:hover {
-  /* filter: invert(0); */
-  /* border: 1px solid var(--white); */
-}
-
-header .button.enabled {
-  filter: invert(1);
-  /* background-color: var(--rogue-red-border); */
-}
-
-header .button img {
-  width: 24px;
-  height: 24px;
-  filter: invert(var(--filter));
 }
 
 header .account {
