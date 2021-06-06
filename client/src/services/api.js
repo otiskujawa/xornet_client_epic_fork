@@ -7,18 +7,18 @@ class API {
    * Custom log function with API suffix
    * @private
    */
-  log(...messages) {
-    console.log("%c[API]", "color: #ff0066; font-weight: bold;", ...messages);
+  log(method, ...messages) {
+    console.log(`%c[API] [${method}]`, "color: #aa66ff; font-weight: bold;", ...messages);
   }
 
   /**
    * Creates a pretty log for the API responses
    * @private
    */
-  logResponse(response) {
-    if (response.data?.message) this.log(response.data?.message);
-    else if (response?.data) this.log(response?.data);
-    else this.log(response);
+  logResponse(method, response) {
+    if (response.data?.message) this.log(method, response.data?.message);
+    else if (response?.data) this.log(method, response?.data);
+    else this.log(method, response);
   }
 
   /**
@@ -56,21 +56,20 @@ class API {
    */
   async post(route, params, body, headers) {
     return new Promise(async (resolve, reject) => {
-      console.log(headers);
       if (headers) {
         const response = await axios.post(this.constructEndpoint(route, params), body || undefined, {
           withCredentials: true,
           headers
         });
 
-        this.logResponse(response);
+        this.logResponse("POST", response);
         resolve(response);
       } else {
         const response = await axios.post(this.constructEndpoint(route, params), body || undefined, {
           withCredentials: true
         });
 
-        this.logResponse(response);
+        this.logResponse("POST", response);
         resolve(response);
       }
     });
@@ -93,14 +92,14 @@ class API {
           headers
         });
 
-        this.logResponse(response.data);
+        this.logResponse("PATCH", response.data);
         resolve(response.data);
       } else {
         const response = await axios.patch(this.constructEndpoint(route, params), body || undefined, {
           withCredentials: true
         });
 
-        this.logResponse(response.data);
+        this.logResponse("PATCH", response.data);
         resolve(response.data);
       }
     });
@@ -123,14 +122,14 @@ class API {
           headers
         });
 
-        this.logResponse(response.data);
+        this.logResponse("PUT", response.data);
         resolve(response.data);
       } else {
         const response = await axios.put(this.constructEndpoint(route, params), body || undefined, {
           withCredentials: true
         });
 
-        this.logResponse(response.data);
+        this.logResponse("PUT", response.data);
         resolve(response.data);
       }
     });
@@ -150,14 +149,14 @@ class API {
         headers: headers
       });
 
-      this.logResponse(response);
+      this.logResponse("GET", response);
       return response;
     } else {
       const response = await axios.get(this.constructEndpoint(route, params), {
         withCredentials: true
       });
 
-      this.logResponse(response);
+      this.logResponse("GET", response);
       return response;
     }
   }
@@ -173,7 +172,7 @@ class API {
       withCredentials: true
     });
 
-    this.logResponse(response);
+    this.logResponse("DELETE", response);
     return response;
   }
 }
@@ -282,7 +281,5 @@ const api = {
   user: new User(),
   machine: new Machine()
 };
-
-console.log(api);
 
 export default api;
