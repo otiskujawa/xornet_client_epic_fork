@@ -1,13 +1,15 @@
 <template>
-  <router-link @click="$emit('click')" v-if="to" :to="to" class="button" :class="{ isEnabled }">
-    <img :src="require(`@/assets/icons/${icon}.svg`)" :alt="icon" />
-  </router-link>
-  <div @click="$emit('click')" v-if="!to && !href" class="button" :class="{ isEnabled }">
-    <img :src="require(`@/assets/icons/${icon}.svg`)" :alt="icon" />
+  <div @click="$emit('click')">
+    <router-link @click="$emit('click')" v-if="to" :to="to" class="button" :class="{ isEnabled }">
+      <img :src="require(`@/assets/icons/${icon}.svg`)" :alt="icon" />
+    </router-link>
+    <div @click="$emit('click')" v-if="!to && !href" class="button" :class="{ isEnabled }">
+      <img :src="require(`@/assets/icons/${icon}.svg`)" :alt="icon" />
+    </div>
+    <a v-if="href" :href="href" target="_blank" @click="$emit('click')" class="button" :class="{ isEnabled }">
+      <img :src="require(`@/assets/icons/${icon}.svg`)" :alt="icon" />
+    </a>
   </div>
-  <a v-if="href" :href="href" target="_blank" @click="$emit('click')" class="button" :class="{ isEnabled }">
-    <img :src="require(`@/assets/icons/${icon}.svg`)" :alt="icon" />
-  </a>
 </template>
 
 <script>

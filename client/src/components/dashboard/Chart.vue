@@ -1,6 +1,6 @@
 <template>
   <div class="chart">
-    <canvas :id="identity" width="400" height="400"></canvas>
+    <canvas :id="identity" width="800" height="600"></canvas>
   </div>
 </template>
 
@@ -16,12 +16,25 @@ export default {
   mounted() {
     var ctx = document.getElementById(this.identity).getContext("2d");
     var myChart = new Chart(ctx, {
+      
       type: this.type,
-      data: this.data,
+      data: this.data, 
       options: this.options || {
+        plugins: {
+          tooltip: {
+            intersect: false,
+            interaction: {
+              mode: 'index',
+              axis: 'x'
+            },
+          }
+        },
         maintainAspectRatio: false,
         fill: true,
         tension: 0.2,
+        legend: {
+          display: false
+        },
         animation: {
           duration: 0
         },
@@ -30,11 +43,11 @@ export default {
         scales: {
           x: {
             grid: {
-              display: false
-            }
+              display: false,
+            },
           },
           y: {
-            grid: {}
+            grid: {},
           }
         }
       }
@@ -46,7 +59,7 @@ export default {
 <style scoped>
 .chart {
   background-color: var(--background-color);
-  width: 800px;
-  height: 250px;
+  width: 1200px;
+  height: 400px;
 }
 </style>

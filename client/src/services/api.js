@@ -255,9 +255,24 @@ class User extends API {
   }
 }
 
+/**
+ * Handles all the endpoint functions for User
+ */
+class Machine extends API {
+  constructor() {
+    super();
+    super.log("Initialized machine class");
+  }
+
+  async getNetwork(machineUUID) {
+    return (await super.get(`stats/network/${machineUUID}`)).data;
+  }
+}
+
 console.log("[API] Class Loaded");
 const api = {
-  user: new User()
+  user: new User(),
+  machine: new Machine()
 };
 
 console.log(api);

@@ -2,10 +2,6 @@
   <router-view />
 </template>
 
-<script>
-export default {};
-</script>
-
 <style>
 :root {
   /* Static colors that wont change */
