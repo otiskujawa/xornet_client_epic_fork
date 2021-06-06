@@ -36,5 +36,4 @@ export default {
 .home * {
   font-family: "Comfortaa", cursive;
 }
-
 </style>

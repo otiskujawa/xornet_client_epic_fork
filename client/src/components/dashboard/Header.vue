@@ -7,9 +7,9 @@
     <div class="buttons">
       <SquareButton icon="repository" href="https://github.com/Geoxor/Xornet/releases" />
       <SquareButton icon="darkmode" @click="toggleDarkmode" />
-      <SquareButton icon="details" v-if="currentRoute == 'machines'" @click="isShowingDetails = !isShowingDetails" :isEnabled="isShowingDetails" />
-      <SquareButton icon="thick" v-if="currentRoute == 'machines' && thinButtons"/>
-      <SquareButton icon="thin" v-if="currentRoute == 'machines' && !thinButtons"/>
+      <!-- <SquareButton icon="details" v-if="currentRoute == 'machines'" @click="isShowingDetails = !isShowingDetails" :isEnabled="isShowingDetails" /> -->
+      <!-- <SquareButton icon="thick" v-if="currentRoute == 'machines' && thinButtons"/> -->
+      <!-- <SquareButton icon="thin" v-if="currentRoute == 'machines' && !thinButtons"/> -->
     </div>
 
     <div class="account">
@@ -39,7 +39,7 @@ export default {
   data: () => {
     return {
       profile: null,
-      currentRoute : null,
+      currentRoute: null
     };
   },
   async created() {

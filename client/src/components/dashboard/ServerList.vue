@@ -1,17 +1,17 @@
 <template>
   <nav class="serverList" :class="{ small: isSmall }">
     <nav v-if="thinButtons" class="columns" :class="{ thin: thinButtons }">
-      <div @click="sort('hostname')" class="field hostname">hostname <img v-if="sortingMethod == 'hostname'" :src="sortingDirection ? require('@/assets/icons/chevron-up.svg') : require('@/assets/icons/chevron-down.svg')" alt="" /></div>
-      <div @click="sort('uuid')" class="field uuid">uuid <img v-if="sortingMethod == 'uuid'" :src="sortingDirection ? require('@/assets/icons/chevron-up.svg') : require('@/assets/icons/chevron-down.svg')" alt="" /></div>
-      <div @click="sort('cpu')" class="field cpuUsage">cpu <img v-if="sortingMethod == 'cpu'" :src="sortingDirection ? require('@/assets/icons/chevron-up.svg') : require('@/assets/icons/chevron-down.svg')" alt="" /></div>
-      <div @click="sort('ram')" class="field ramUsage">ram <img v-if="sortingMethod == 'ram'" :src="sortingDirection ? require('@/assets/icons/chevron-up.svg') : require('@/assets/icons/chevron-down.svg')" alt="" /></div>
-      <div @click="sort('disks')" class="field disksUsage">disks <img v-if="sortingMethod == 'disks'" :src="sortingDirection ? require('@/assets/icons/chevron-up.svg') : require('@/assets/icons/chevron-down.svg')" alt="" /></div>
-      <div @click="sort('upload')" class="field networkUsage">Upload <img v-if="sortingMethod == 'upload'" :src="sortingDirection ? require('@/assets/icons/chevron-up.svg') : require('@/assets/icons/chevron-down.svg')" alt="" /></div>
-      <div @click="sort('download')" class="field networkUsage">Download <img v-if="sortingMethod == 'download'" :src="sortingDirection ? require('@/assets/icons/chevron-up.svg') : require('@/assets/icons/chevron-down.svg')" alt="" /></div>
-      <div @click="sort('region')" class="field region">Region <img v-if="sortingMethod == 'region'" :src="sortingDirection ? require('@/assets/icons/chevron-up.svg') : require('@/assets/icons/chevron-down.svg')" alt="" /></div>
-      <div @click="sort('ping')" class="field ping">ping <img v-if="sortingMethod == 'ping'" :src="sortingDirection ? require('@/assets/icons/chevron-up.svg') : require('@/assets/icons/chevron-down.svg')" alt="" /></div>
-      <div @click="sort('uptime')" class="field uptime">uptime <img v-if="sortingMethod == 'uptime'" :src="sortingDirection ? require('@/assets/icons/chevron-up.svg') : require('@/assets/icons/chevron-down.svg')" alt="" /></div>
-      <div @click="sort('owner')" class="field owner">owner <img v-if="sortingMethod == 'owner'" :src="sortingDirection ? require('@/assets/icons/chevron-up.svg') : require('@/assets/icons/chevron-down.svg')" alt="" /></div>
+      <div @click="sort('hostname')" class="field hostname">hostname <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'hostname'" /></div>
+      <div @click="sort('uuid')" class="field uuid">uuid <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'uuid'" /></div>
+      <div @click="sort('cpu')" class="field cpuUsage">cpu <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'cpu'" /></div>
+      <div @click="sort('ram')" class="field ramUsage">ram <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'ram'" /></div>
+      <div @click="sort('disks')" class="field disksUsage">disks <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'disks'" /></div>
+      <div @click="sort('upload')" class="field networkUsage">Upload <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'upload'" /></div>
+      <div @click="sort('download')" class="field networkUsage">Download <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'download'" /></div>
+      <div @click="sort('region')" class="field region">Region <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'region'" /></div>
+      <div @click="sort('ping')" class="field ping">ping <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'ping'" /></div>
+      <div @click="sort('uptime')" class="field uptime">uptime <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'uptime'" /></div>
+      <div @click="sort('owner')" class="field owner">owner <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'owner'" /></div>
     </nav>
 
     <section v-if="!thinButtons">
@@ -39,6 +39,8 @@ export default {
   },
   data() {
     return {
+      chevronUp: require("@/assets/icons/chevron-up.svg"),
+      chevronDown: require("@/assets/icons/chevron-down.svg"),
       thinButtons: true,
       showRogues: true,
       showDetails: false,
