@@ -52,7 +52,7 @@ header .buttons .button {
   width: min-content;
   padding: 4px 12px;
   border-radius: 4px;
-  font-family: "Montserrat", sans-serif;
+  
   font-style: normal;
   font-weight: 600;
   font-size: 13px;

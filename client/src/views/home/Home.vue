@@ -24,7 +24,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .home {
   min-width: 100%;
   min-height: 100%;
@@ -32,4 +32,9 @@ export default {
   position: relative;
   height: 100%;
 }
+
+.home * {
+  font-family: "Comfortaa", cursive;
+}
+
 </style>

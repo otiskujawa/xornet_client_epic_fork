@@ -144,7 +144,7 @@ export default {
   min-width: 100%;
   height: 100%;
   flex-direction: column;
-  font-family: "Work Sans", sans-serif;
+  font-family: "Roboto Mono";
   padding: 0px 8px;
   background-color: var(--background-color);
   transition: 200ms ease;
@@ -173,6 +173,7 @@ export default {
 
 .serverList section img {
   height: 16px;
+  filter: invert(var(--filter));
 }
 
 .serverList section h1 {
@@ -211,7 +212,6 @@ export default {
 .columns .field strong {
   font-weight: 500;
   font-size: 11px;
-  font-family: "Work Sans", sans-serif;
   color: var(--slyColor);
   min-width: fit-content;
   text-align: left;

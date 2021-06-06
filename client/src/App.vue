@@ -44,7 +44,7 @@ export default {};
 * {
   margin: 0;
   padding: 0;
-  font-family: "Comfortaa", cursive;
+  font-family: "Montserrat", sans-serif;
   box-sizing: border-box;
   text-decoration: none;
 }

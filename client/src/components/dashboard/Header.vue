@@ -7,9 +7,9 @@
     <div class="buttons">
       <SquareButton icon="repository" href="https://github.com/Geoxor/Xornet/releases" />
       <SquareButton icon="darkmode" @click="toggleDarkmode" />
-      <SquareButton icon="details" @click="isShowingDetails = !isShowingDetails" :isEnabled="isShowingDetails" />
-      <SquareButton icon="thick" @click="thinButtons = false" v-if="thinButtons" />
-      <SquareButton icon="thin" @click="thinButtons = true" v-if="!thinButtons" />
+      <SquareButton icon="details" v-if="currentRoute == 'machines'" @click="isShowingDetails = !isShowingDetails" :isEnabled="isShowingDetails" />
+      <SquareButton icon="thick" v-if="currentRoute == 'machines' && thinButtons"/>
+      <SquareButton icon="thin" v-if="currentRoute == 'machines' && !thinButtons"/>
     </div>
 
     <div class="account">
@@ -38,11 +38,13 @@ export default {
   },
   data: () => {
     return {
-      profile: null
+      profile: null,
+      currentRoute : null,
     };
   },
   async created() {
     this.profile = await this.api.user.fetchMe();
+    this.currentRoute = this.$route.name;
   },
   methods: {
     logout() {
@@ -63,6 +65,11 @@ export default {
     },
     toggleDarkmode() {
       isDark.value = !isDark.value;
+    }
+  },
+  watch: {
+    $route(to, from) {
+      if (to.name) this.currentRoute = to.name;
     }
   }
 };

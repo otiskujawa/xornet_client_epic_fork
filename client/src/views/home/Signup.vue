@@ -95,7 +95,7 @@ export default {
 }
 
 .card .content form .text * {
-  font-family: "Montserrat", sans-serif;
+  
   font-style: normal;
   line-height: 175%;
 }
@@ -121,7 +121,7 @@ export default {
 .card .content form .fields .inputField {
   width: 100%;
 
-  font-family: "Montserrat", sans-serif;
+  
   font-weight: 600;
   font-size: 12px;
 
@@ -158,7 +158,7 @@ export default {
   padding: 4px 16px;
   border-radius: 4px;
   /* box-shadow: 0px 4px 12px rgba(67, 97, 238, 0.5); */
-  font-family: "Montserrat", sans-serif;
+  
   font-style: normal;
   font-weight: 600;
   font-size: 13px;
