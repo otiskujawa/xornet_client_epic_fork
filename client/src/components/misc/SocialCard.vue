@@ -43,6 +43,7 @@ export default {
 .card {
   position: absolute;
   left: 50%;
+  z-index: 100;
   top: 50%;
   transform: translate(50%, 50%);
 
