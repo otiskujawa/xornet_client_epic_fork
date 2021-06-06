@@ -1,11 +1,11 @@
 <template>
-  <router-link @click="$emit('click')" v-if="to" :to="to" class="button" :class="{ enabled }">
+  <router-link @click="$emit('click')" v-if="to" :to="to" class="button" :class="{ isEnabled }">
     <img :src="require(`@/assets/icons/${icon}.svg`)" :alt="icon" />
   </router-link>
-  <div @click="$emit('click')" v-if="!to && !href" class="button" :class="{ enabled }">
+  <div @click="$emit('click')" v-if="!to && !href" class="button" :class="{ isEnabled }">
     <img :src="require(`@/assets/icons/${icon}.svg`)" :alt="icon" />
   </div>
-  <a v-if="href" :href="href" target="_blank" @click="$emit('click')" class="button" :class="{ enabled }">
+  <a v-if="href" :href="href" target="_blank" @click="$emit('click')" class="button" :class="{ isEnabled }">
     <img :src="require(`@/assets/icons/${icon}.svg`)" :alt="icon" />
   </a>
 </template>
@@ -17,7 +17,7 @@ export default {
     to: {type: Object, required: false},
     icon: {type: String, required: true},
     href: {type: String, required: false},
-    enabled: {type: Boolean, required: false}
+    isEnabled: {type: Boolean, required: false}
   }
 };
 </script>
@@ -47,7 +47,7 @@ export default {
   filter: invert(1);
 }
 
-.button.enabled {
+.button.isEnabled {
   filter: invert(1);
 }
 

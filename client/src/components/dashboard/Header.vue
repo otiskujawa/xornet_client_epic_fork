@@ -7,7 +7,7 @@
     <div class="buttons">
       <SquareButton icon="repository" href="https://github.com/Geoxor/Xornet/releases"/>
       <SquareButton icon="darkmode" @click="toggleDarkmode"/>
-      <SquareButton icon="details" @click="isShowingDetails = !isShowingDetails" :enabled="isShowingDetails"/>
+      <SquareButton icon="details" @click="isShowingDetails = !isShowingDetails" :isEnabled="isShowingDetails"/>
       <SquareButton icon="thick" @click="thinButtons = false" v-if="thinButtons"/>
       <SquareButton icon="thin" @click="thinButtons = true" v-if="!thinButtons"/>
     </div>
