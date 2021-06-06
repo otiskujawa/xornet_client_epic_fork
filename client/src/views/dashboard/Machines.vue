@@ -111,7 +111,7 @@ export default {
       this.api.user.addMachine(this.$route.query.newMachine);
     }
     
-    this.getNetwork();
+    if(this.selectedMachine) this.getNetwork();
 
     socket.on("machines", machines => {
       Object.values(machines).forEach(machine => (machine.uuid ? this.machines.set(machine.uuid, machine) : null));
