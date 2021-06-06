@@ -14,17 +14,28 @@
             labels: labels,
             datasets: [
               {
-                label: 'Upload',
-                data: uploadGraph,
-                borderColor: '#ff0062',
-                backgroundColor: '#ff458caa'
-              },
-              {
                 label: 'Download',
                 data: downloadGraph,
                 borderColor: '#00c8ff',
                 backgroundColor: '#52daffaa'
               }
+            ]
+          }"
+        />
+        <Chart
+          v-if="uploadGraph.length != 0"
+          :key="labels[2] + 'up'"
+          :identity="labels[2] + 'up'" 
+          :type="'line'"
+          :data="{
+            labels: labels,
+            datasets: [
+              {
+                label: 'Upload',
+                data: uploadGraph,
+                borderColor: '#ff0062',
+                backgroundColor: '#ff458caa'
+              },
             ]
           }"
         />

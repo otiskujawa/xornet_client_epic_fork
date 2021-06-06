@@ -30,8 +30,9 @@ export default {
           }
         },
         maintainAspectRatio: false,
-        fill: true,
-        tension: 0.2,
+        fill: false,
+        borderWidth: 3,
+        tension: 0.35,
         legend: {
           display: false
         },
@@ -40,6 +41,7 @@ export default {
         },
         pointBackgroundColor: "#00000000",
         pointBorderColor: "#00000000",
+        spanGaps: 55,
         scales: {
           x: {
             grid: {
@@ -47,7 +49,9 @@ export default {
             },
           },
           y: {
-            grid: {},
+            grid: {
+              display: false,
+            },
           }
         }
       }
@@ -59,7 +63,7 @@ export default {
 <style scoped>
 .chart {
   background-color: var(--background-color);
-  width: 1200px;
+  width: 800px;
   height: 400px;
 }
 </style>
