@@ -1,9 +1,9 @@
 <template>
   <router-link :to="{ name: 'machines', params: { machine: machine.uuid } }" class="button" :class="{ thin: thin, rogue: machine.rogue, disconnected: Date.now() > machine.timestamp + 15000 }">
     <!-- Icons Column -->
-    <img v-if="!machine.rogue && Date.now() < machine.timestamp + 15000" class="machineType" :src="require(`@/assets/icons/${type}.svg`)" alt="" />
-    <img v-if="machine.rogue && Date.now() < machine.timestamp + 15000" class="machineType" :src="require(`@/assets/icons/warning.svg`)" alt="" />
-    <img v-if="Date.now() > machine.timestamp + 15000" class="machineType" :src="require(`@/assets/icons/disconnected.svg`)" alt="" />
+    <img v-if="!machine.rogue && Date.now() < machine.timestamp + 15000" class="machineType" :src="require(`@/assets/icons/filled/${type}.svg`)" alt="" />
+    <img v-if="machine.rogue && Date.now() < machine.timestamp + 15000" class="machineType" :src="require(`@/assets/icons/filled/warning.svg`)" alt="" />
+    <img v-if="Date.now() > machine.timestamp + 15000" class="machineType" :src="require(`@/assets/icons/filled/disconnected.svg`)" alt="" />
 
     <!-- UUID Column -->
     <div class="info">
@@ -52,14 +52,14 @@
 
     <!-- Platform Column -->
     <div class="platform">
-      <img v-if="machine.platform == 'win32'" :src="require('@/assets/icons/windows.svg')" alt="" />
-      <img v-if="machine.platform == 'darwin'" :src="require('@/assets/icons/macos.svg')" alt="" />
-      <img v-if="machine.platform == 'linux'" :src="require('@/assets/icons/linux.svg')" alt="" />
-      <!-- <img v-if="machine.static.system.manufacturer.startsWith('Raspberry Pi')" :src="require('@/assets/icons/raspberry.svg')" alt="">
-            <img v-if="machine.static.system.manufacturer.startsWith('Dell')" style="height: 10px" :src="require('@/assets/icons/dell.svg')" alt="">
-            <img v-if="machine.static.system.manufacturer.startsWith('Hewlett-Packard')" :src="require('@/assets/icons/hp.svg')" alt="">
-            <img v-if="machine.static.system.manufacturer.startsWith('Gigabyte')" style="height: 7px" :src="require('@/assets/icons/gigabyte.svg')" alt="">
-            <img v-if="machine.static.system.manufacturer.startsWith('Asus')" style="height: 7px" :src="require('@/assets/icons/asus.svg')" alt=""> -->
+      <img v-if="machine.platform == 'win32'" :src="require('@/assets/icons/filled/windows.svg')" alt="" />
+      <img v-if="machine.platform == 'darwin'" :src="require('@/assets/icons/filled/macos.svg')" alt="" />
+      <img v-if="machine.platform == 'linux'" :src="require('@/assets/icons/filled/linux.svg')" alt="" />
+      <!-- <img v-if="machine.static.system.manufacturer.startsWith('Raspberry Pi')" :src="require('@/assets/icons/filled/raspberry.svg')" alt="">
+            <img v-if="machine.static.system.manufacturer.startsWith('Dell')" style="height: 10px" :src="require('@/assets/icons/filled/dell.svg')" alt="">
+            <img v-if="machine.static.system.manufacturer.startsWith('Hewlett-Packard')" :src="require('@/assets/icons/filled/hp.svg')" alt="">
+            <img v-if="machine.static.system.manufacturer.startsWith('Gigabyte')" style="height: 7px" :src="require('@/assets/icons/filled/gigabyte.svg')" alt="">
+            <img v-if="machine.static.system.manufacturer.startsWith('Asus')" style="height: 7px" :src="require('@/assets/icons/filled/asus.svg')" alt=""> -->
       <h1 v-if="machine.reporterVersion">v{{ machine.reporterVersion }}</h1>
     </div>
   </router-link>

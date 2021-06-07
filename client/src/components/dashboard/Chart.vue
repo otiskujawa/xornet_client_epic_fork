@@ -47,14 +47,14 @@ export default {
               display: false
             },
             ticks: {
-              display: false,
+              display: false
             },
             beginAtZero: true
           },
           y: {
             grid: {
               display: false
-            },
+            }
           }
         }
       }

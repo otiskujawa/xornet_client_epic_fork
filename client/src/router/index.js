@@ -90,6 +90,14 @@ const routes = [
         meta: {
           title: "Xornet | Profile"
         }
+      },
+      {
+        path: "settings",
+        name: "settings",
+        component: () => import(/* webpackChunkName: "profile" */ "@/views/dashboard/Settings.vue"),
+        meta: {
+          title: "Xornet | Settings"
+        }
       }
     ]
   }

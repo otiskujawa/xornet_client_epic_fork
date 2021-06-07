@@ -1,18 +1,19 @@
 <template>
   <div @click="$emit('click')">
     <router-link @click="$emit('click')" v-if="to" :to="to" class="button" :class="{ isEnabled }">
-      <img :src="require(`@/assets/icons/${icon}.svg`)" :alt="icon" />
+      <Icon :icon="icon" isStroked="" />
     </router-link>
     <div @click="$emit('click')" v-if="!to && !href" class="button" :class="{ isEnabled }">
-      <img :src="require(`@/assets/icons/${icon}.svg`)" :alt="icon" />
+      <Icon :icon="icon" isStroked="" />
     </div>
     <a v-if="href" :href="href" target="_blank" @click="$emit('click')" class="button" :class="{ isEnabled }">
-      <img :src="require(`@/assets/icons/${icon}.svg`)" :alt="icon" />
+      <Icon :icon="icon" isStroked="" />
     </a>
   </div>
 </template>
 
 <script>
+import Icon from "@/components/dashboard/Icon";
 export default {
   name: "SquareButton",
   props: {
@@ -20,6 +21,9 @@ export default {
     icon: { type: String, required: true },
     href: { type: String, required: false },
     isEnabled: { type: Boolean, required: false }
+  },
+  components: {
+    Icon
   }
 };
 </script>
