@@ -7,7 +7,21 @@ const socket = io("wss://backend.xornet.cloud", {
     token: localStorage.getItem("token")
   }
 });
-socket.on("connect", () => console.log("%c[WS] [Connected]", "color: #ff4488; font-weight: bold;"));
-socket.on("disconnect", () => console.log("%c[WS] [Disconnected]", "color: #ff4488; font-weight: bold;"));
+socket.on("connect", () => {
+  console.log(
+    `%c[WS]` +
+    `%c [Connected]`, 
+    "color: black; background-color: #ff4488; padding: 2px; border-radius: 4px; font-weight: bold;", 
+    "color: #ff77aa;", 
+  )
+});
+socket.on("disconnect", () => {
+  console.log(
+    `%c[WS]` +
+    `%c [Disconnected]`, 
+    "color: black; background-color: #ff4488; padding: 2px; border-radius: 4px; font-weight: bold;", 
+    "color: #ff77aa;", 
+  )
+});
 
 export default socket;
