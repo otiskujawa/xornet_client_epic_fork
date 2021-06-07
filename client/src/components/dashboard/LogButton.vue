@@ -1,39 +1,60 @@
 <template>
-  <div class="log" @click="active = !active" :class="{active}">
+  <div class="log" @click="active = !active" :class="{ active }">
     <div class="heading">
       <Icon :icon="log.at.replace(/\s/g, '').toLowerCase()" default="warning" />
-      <p>{{timeago(log.timestamp)}}</p>
-      <p>{{log.at}}</p>
-      <p>{{log.message?.error || log.message}}</p>
+      <p>{{ timeago(log.timestamp) }}</p>
+      <p>{{ log.at }}</p>
+      <p class="summary">{{ log.summary || log.message?.error || log.message }}</p>
     </div>
     <div v-if="active" class="details">
-
+      <!-- <p>{{log.message?.error || log.message}}</p> -->
+      <div class="field" v-for="(value, key) of log.message" :key="key">
+        <h1>{{ key.toCapitalized() }}</h1>
+        <pre v-if="JSON.stringify(value).startsWith('{')">
+          <code v-html="format(value)" class="language-json hljs" ></code>
+        </pre>
+        <!-- <highlightjs v-if="JSON.stringify(value).startsWith('{')" language='json' :code="JSON.stringify(value)" /> -->
+        <p v-if="!JSON.stringify(value).startsWith('{')">{{ value }}</p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import hljs from "highlight.js/lib/core";
+import "highlight.js/styles/gradient-dark.css";
 import Icon from "@/components/misc/Icon";
 import timeago from "epoch-timeago";
+
 export default {
-  data(){
+  data() {
     return {
-      active: false,
-    }
+      active: false
+    };
   },
   props: {
-    log: {type: Object, required: true}
+    log: { type: Object, required: true }
   },
   components: {
-    Icon,
+    Icon
   },
   methods: {
-    timeago,
-  },
-}
+    format(string) {
+      return hljs.highlight(JSON.stringify(string, null, "   "), { language: "json" }).value;
+    },
+    timeago
+  }
+};
 </script>
 
 <style scoped>
+code {
+  white-space: pre;
+  display: block;
+  padding: 8px;
+  border-radius: 4px;
+  background: #151529;
+}
 
 .log {
   display: flex;
@@ -47,7 +68,8 @@ export default {
   width: 100%;
   text-align: left;
   white-space: nowrap;
-  font-family: 'Work Sans';
+  font-family: "Work Sans";
+  max-width: 1000px;
   font-style: normal;
   font-weight: 500;
   font-size: 11px;
@@ -57,13 +79,47 @@ export default {
 
 .log .heading {
   gap: 16px;
+  max-width: 1000px;
   display: flex;
   align-items: center;
 }
 
+.log .summary {
+  max-width: 100%;
+  width: fit-content;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.log .details {
+  height: 100%;
+  max-width: 100%;
+  white-space: normal;
+  width: 100%;
+  gap: 8px;
+  padding: 8px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.log .details .field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* .log .details .field .markdown {
+  height: 100%;
+  width: 100%;
+  background-color: var(--darkmode-border-color);
+  padding: 8px;
+  border-radius: 4px;
+} */
+
 .log.active {
-  height: 400px;
-  background-color:  var(--white);
+  height: fit-content;
+  background-color: var(--white);
 }
 
 .log:not(.active):hover {
@@ -71,7 +127,7 @@ export default {
 }
 
 .log.active:hover {
-  background-color: var(--dark-lighter);
+  /* background-color: var(--dark-lighter); */
 }
 
 .log img {
@@ -79,5 +135,4 @@ export default {
   height: 20px;
   filter: invert(var(--filter));
 }
-
 </style>

@@ -1,20 +1,19 @@
 <template>
   <div class="logs">
     <div class="list">
-      <LogButton v-for="log of logs" :key="log" :log="log"/>
+      <LogButton v-for="log of logs" :key="log" :log="log" />
     </div>
   </div>
 </template>
 <script>
-
 import LogButton from "@/components/dashboard/LogButton";
 
 export default {
   name: "Logs",
-  data(){
+  data() {
     return {
-      logs: [],
-    }
+      logs: []
+    };
   },
   components: {
     LogButton
@@ -26,17 +25,21 @@ export default {
 </script>
 
 <style scoped>
-
 .logs {
-  display: flex;
-  gap: 2px;
+  overflow-y: scroll;
   width: 100%;
-  align-items: center;
+  height: 100%;
+  padding: 8px;
+  display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .list {
   width: fit-content;
+  margin-bottom: 256px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
-
 </style>

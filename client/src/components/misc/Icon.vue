@@ -18,12 +18,12 @@ export default {
         var icon = require(`@/assets/icons/${this.isStroked ? "stroked" : "filled"}/${this.icon}.svg`);
       } catch (error) {
         try {
-          if (!icon) icon = require(`@/assets/icons/${this.isStroked ? "stroked" : "filled"}/${this.default}.svg`) 
+          if (!icon) icon = require(`@/assets/icons/${this.isStroked ? "stroked" : "filled"}/${this.default}.svg`);
         } catch (error) {
-          if (!icon) icon = require(`@/assets/icons/${this.isStroked ? "stroked" : "filled"}/missing.svg`) 
+          if (!icon) icon = require(`@/assets/icons/${this.isStroked ? "stroked" : "filled"}/missing.svg`);
         }
       }
-      return icon
+      return icon;
     }
   }
 };
