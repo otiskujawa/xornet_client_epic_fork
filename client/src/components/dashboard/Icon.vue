@@ -1,5 +1,5 @@
 <template>
-  <img name="icon" :src="require(`@/assets/icons/${isStroked ? 'stroked' : 'filled'}/${icon}.svg`)" :alt="icon" />
+  <img name="icon" :src="image" :alt="icon" />
 </template>
 
 <script>
@@ -8,17 +8,14 @@ export default {
   props: {
     icon: { type: String, required: true }
   },
-  components: {},
-  data: () => {},
   computed: {
     isStroked() {
-      return localStorage.getItem("isStroked") === true ? true : false;
+      return localStorage.getItem("isStroked") === "true" ? true : false;
+    },
+    image() {
+        return require(`@/assets/icons/${this.isStroked ? 'stroked' : 'filled'}/${this.icon}.svg`)
     }
   },
-  created() {},
-  mounted() {},
-  methods: {},
-  watch: {}
 };
 </script>
 
