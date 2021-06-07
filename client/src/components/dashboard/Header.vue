@@ -12,6 +12,8 @@
       <!-- <SquareButton icon="thin" v-if="currentRoute == 'machines' && !thinButtons"/> -->
     </div>
 
+    <SearchBar />
+
     <div class="account">
       <SquareButton icon="logout" @click.native="logout" />
 
@@ -25,11 +27,14 @@
 <script>
 import { isDark } from "@/services/theme.js";
 import SquareButton from "@/components/dashboard/SquareButton";
+import SearchBar from "@/components/dashboard/SearchBar";
+
 
 export default {
   name: "Header",
   components: {
-    SquareButton
+    SquareButton,
+    SearchBar
   },
   computed: {
     username: function() {
@@ -81,8 +86,26 @@ header {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: var(--background-color);
+  overflow: visible;
+}
+
+header .button {
+  padding: 16px;
+  background-color: var(--background-color);
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  transition: 100ms ease;
+  text-decoration: none;
+  user-select: none;
 }
 
 header .logo {
@@ -96,8 +119,18 @@ header .logo {
   min-width: 48px;
 }
 
+header .button.enabled {
+  filter: invert(1);
+  /* background-color: var(--rogue-red-border); */
+}
+
+header .button img {
+  width: 24px;
+  height: 24px;
+  filter: invert(var(--filter));
+}
+
 header .buttons {
-  width: 100%;
   align-items: center;
   display: flex;
 }
@@ -105,8 +138,10 @@ header .buttons {
 header .account {
   display: flex;
   align-items: center;
-  margin-right: 8px;
+  /* margin-right: 8px; */
   justify-content: center;
+  right: 8px;
+  position: fixed;
 }
 
 header .account img.profileImage {

@@ -262,7 +262,7 @@ class User extends API {
    * @param {String} user Either a Username or a UUID of a user
    */
   async search(user) {
-    return super.get(`/search/user/${user}`).data;
+    return (await super.get(`/search/user/${user}`)).data;
   }
 }
 
