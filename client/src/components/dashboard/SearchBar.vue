@@ -1,0 +1,173 @@
+<template>
+  <div class="search-container" :class="{onfocus: searchString.length != 0 && !searchPaused }">
+    <div class="search-bar">
+      <input v-model="searchString" class="inputField" :class="{active: searchString.length != 0 }" type="text" placeholder="Search " @keyup="typingTimer()" @keydown="clearTimer()" />
+      <img :src="searchString.length != 0 ? require('@/assets/icons/filled/x.svg') : require('@/assets/icons/filled/search.svg')" :class="{activeImg: searchString.length != 0 }" @click="clearSearchDrop()" />
+    </div>
+    <div v-if="searchRes">
+      <SearchResult v-for="user of searchRes" :key="user" :user="user" @click="clearSearchClicked()"/>
+      <h1 v-if="searchRes.length == 0 && searchString.length != 0"  class="noResultH1" >There were no users that match that query</h1>
+    </div>
+  </div>
+</template>
+
+<script>
+
+import SearchResult from "@/components/dashboard/SearchResult";
+
+export default {
+  name: "SearchBar",
+  components: {
+    SearchResult
+  },
+  computed: {},
+  watch:{
+    searchString(to, from){
+      if(to == ""){
+        this.clearSearchDrop();
+        this.searchRes = null;
+      }
+    }
+  },
+  data() {
+    return {
+      searchRes: null,
+      timer: null,
+      searchString: "",
+      searchPaused: true,
+    };
+  },
+  mounted() {},
+  methods: {
+    async doneTyping() {
+      if(this.searchString == "") return;
+      this.searchRes = await this.api.user.search(this.searchString.trim());
+      console.log(this.searchRes);
+
+    },
+    typingTimer() {
+      if (this.timer != null) clearTimeout(this.timer);
+      return (this.timer = setTimeout(this.doneTyping, 800));
+    },
+    clearTimer() {
+      this.searchPaused = false;
+      clearTimeout(this.timer);
+    },
+    clearSearchDrop(){      
+      this.searchRes = null;
+      this.searchPaused = true;
+      this.searchString = ""; 
+    },
+    clearSearchClicked(){
+      this.searchRes = null;
+      this.searchPaused = true;
+    }
+  }
+};
+</script>
+
+<style scoped>
+.search-container{
+  z-index: 10;
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  
+  gap: 8px;
+  width: fit-content;
+  padding: 8px;
+  margin-left: 8px;
+  background-color: #FFFFFF;
+  
+  border-radius: 4px;
+
+}
+
+.onfocus{
+  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.noResultH1{
+  font-family: Work Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 100%;
+  /* identical to box height, or 12px */
+
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+}
+
+.search-bar {
+  display: flex;
+  gap: 8px;
+  
+  
+
+  width: fit-content;
+
+  position: relative;
+
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+/*
+.search-bar {
+  outline: 2px solid var(--theme-color);
+}
+*/
+.search-bar .inputField:focus{ 
+  width: 500px !important;
+
+}
+.inputField.active{
+  width: 500px !important;
+}
+
+
+.search-bar .inputField {
+  width: 300px;
+  transition: 100ms ease;
+
+  border-radius: 3px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+
+  border: none;
+  background-color: #f8f8f8;
+  height: 32px;
+  padding: 6px 8px;
+
+  /*search icon background image */
+  /* background-image: url("../assets/icons/search");
+  background-repeat: no-repeat;
+  background-size: 24px;
+  background-position-x: calc(100% - 4px);
+  background-position-y: center; */
+}
+
+.search-bar img.activeImg{
+  cursor: pointer;
+}
+
+.search-bar img {
+  width: 16px;
+  height: 16px;
+
+  position: absolute;
+  right: 4px;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+}
+
+.search-bar .inputField::placeholder {
+  color: #c4c4c4;
+}
+</style>
