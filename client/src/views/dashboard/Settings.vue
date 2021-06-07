@@ -13,10 +13,10 @@ export default {
   created() {},
   mounted() {},
   methods: {
-      isStroked() {
-          const isStroked = localStorage.getItem("isStroked") === "true" ? "false" : "true";
-          localStorage.setItem("isStroked", isStroked);
-      },
+    isStroked() {
+      const isStroked = localStorage.getItem("isStroked") === "true" ? "false" : "true";
+      localStorage.setItem("isStroked", isStroked);
+    }
   },
   watch: {}
 };

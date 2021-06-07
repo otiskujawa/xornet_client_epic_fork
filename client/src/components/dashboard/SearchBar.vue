@@ -1,18 +1,17 @@
 <template>
-  <div class="search-container" :class="{onfocus: searchString.length != 0 && !searchPaused }">
+  <div class="search-container" :class="{ onfocus: searchString.length != 0 && !searchPaused }">
     <div class="search-bar">
-      <input v-model="searchString" class="inputField" :class="{active: searchString.length != 0 }" type="text" placeholder="Search " @keyup="typingTimer()" @keydown="clearTimer()" />
-      <img :src="searchString.length != 0 ? require('@/assets/icons/filled/x.svg') : require('@/assets/icons/filled/search.svg')" :class="{activeImg: searchString.length != 0 }" @click="clearSearchDrop()" />
+      <input v-model="searchString" class="inputField" :class="{ active: searchString.length != 0 }" type="text" placeholder="Search " @keyup="typingTimer()" @keydown="clearTimer()" />
+      <img :src="searchString.length != 0 ? require('@/assets/icons/filled/x.svg') : require('@/assets/icons/filled/search.svg')" :class="{ activeImg: searchString.length != 0 }" @click="clearSearchDrop()" />
     </div>
     <div v-if="searchRes">
-      <SearchResult v-for="user of searchRes" :key="user" :user="user" @click="clearSearchClicked()"/>
-      <h1 v-if="searchRes.length == 0 && searchString.length != 0"  class="noResultH1" >There were no users that match that query</h1>
+      <SearchResult v-for="user of searchRes" :key="user" :user="user" @click="clearSearchClicked()" />
+      <h1 v-if="searchRes.length == 0 && searchString.length != 0" class="noResultH1">There were no users that match that query</h1>
     </div>
   </div>
 </template>
 
 <script>
-
 import SearchResult from "@/components/dashboard/SearchResult";
 
 export default {
@@ -21,9 +20,9 @@ export default {
     SearchResult
   },
   computed: {},
-  watch:{
-    searchString(to, from){
-      if(to == ""){
+  watch: {
+    searchString(to, from) {
+      if (to == "") {
         this.clearSearchDrop();
         this.searchRes = null;
       }
@@ -34,16 +33,15 @@ export default {
       searchRes: null,
       timer: null,
       searchString: "",
-      searchPaused: true,
+      searchPaused: true
     };
   },
   mounted() {},
   methods: {
     async doneTyping() {
-      if(this.searchString == "") return;
+      if (this.searchString == "") return;
       this.searchRes = await this.api.user.search(this.searchString.trim());
       console.log(this.searchRes);
-
     },
     typingTimer() {
       if (this.timer != null) clearTimeout(this.timer);
@@ -53,12 +51,12 @@ export default {
       this.searchPaused = false;
       clearTimeout(this.timer);
     },
-    clearSearchDrop(){      
+    clearSearchDrop() {
       this.searchRes = null;
       this.searchPaused = true;
-      this.searchString = ""; 
+      this.searchString = "";
     },
-    clearSearchClicked(){
+    clearSearchClicked() {
       this.searchRes = null;
       this.searchPaused = true;
     }
@@ -67,27 +65,26 @@ export default {
 </script>
 
 <style scoped>
-.search-container{
+.search-container {
   z-index: 10;
   align-self: flex-start;
   display: flex;
   flex-direction: column;
-  
+
   gap: 8px;
   width: fit-content;
   padding: 8px;
   margin-left: 8px;
   background-color: var(--background-color);
-  
-  border-radius: 4px;
 
+  border-radius: 4px;
 }
 
-.onfocus{
+.onfocus {
   box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
 }
 
-.noResultH1{
+.noResultH1 {
   font-family: Work Sans;
   font-style: normal;
   font-weight: 600;
@@ -104,8 +101,6 @@ export default {
 .search-bar {
   display: flex;
   gap: 8px;
-  
-  
 
   width: fit-content;
 
@@ -120,14 +115,12 @@ export default {
   outline: 2px solid var(--theme-color);
 }
 */
-.search-bar .inputField:focus{ 
-  width: 500px !important;
-
-}
-.inputField.active{
+.search-bar .inputField:focus {
   width: 500px !important;
 }
-
+.inputField.active {
+  width: 500px !important;
+}
 
 .search-bar .inputField {
   width: 300px;
@@ -152,7 +145,7 @@ export default {
   background-position-y: center; */
 }
 
-.search-bar img.activeImg{
+.search-bar img.activeImg {
   cursor: pointer;
 }
 

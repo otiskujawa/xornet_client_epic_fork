@@ -13,7 +13,7 @@
 
       <section v-if="!isEditing && profile.username == username" @click="isEditing = !isEditing" class="shadowButton edit">
         <h1>Edit</h1>
-        <Icon icon="edit"/>
+        <Icon icon="edit" />
       </section>
 
       <section
@@ -25,7 +25,7 @@
         class="shadowButton edit"
       >
         <h1>Save</h1>
-        <Icon icon="save"/>
+        <Icon icon="save" />
       </section>
     </div>
     <SocialCard :add="add" v-if="isAddingSocial && isEditing" />
@@ -44,7 +44,7 @@
 
         <section class="shadowButton uuid" :class="{ didCopy: didCopy }" @click="copyUUID">
           <h1 id="profileID">{{ copyMessage || profile._id }}</h1>
-          <Icon icon="clipboard"/>
+          <Icon icon="clipboard" />
         </section>
 
         <section>
@@ -93,7 +93,7 @@
 
           <div class="shadowButton" @click="isAddingSocial = !isAddingSocial" v-if="isEditing" :class="{ isEditing: isEditing }">
             <h1 class="nameOnPlatform">Add</h1>
-            <Icon icon="add"/>
+            <Icon icon="add" />
           </div>
         </section>
 
@@ -131,7 +131,7 @@ import gsap from "gsap";
 import socket from "@/services/socket.js";
 import Gauge from "@/components/dashboard/Gauge";
 import InfoField from "@/components/dashboard/InfoField";
-import Icon from '@/components/misc/Icon'
+import Icon from "@/components/misc/Icon";
 
 import { millify } from "millify";
 

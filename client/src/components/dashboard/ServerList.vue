@@ -15,7 +15,7 @@
     </nav>
 
     <section v-if="!thinButtons">
-      <Icon icon="master"/>
+      <Icon icon="master" />
       <h1>Physical Machines</h1>
     </section>
 

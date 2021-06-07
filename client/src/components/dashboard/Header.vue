@@ -29,7 +29,6 @@ import { isDark } from "@/services/theme.js";
 import SquareButton from "@/components/dashboard/SquareButton";
 import SearchBar from "@/components/dashboard/SearchBar";
 
-
 export default {
   name: "Header",
   components: {

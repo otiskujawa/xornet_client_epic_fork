@@ -13,9 +13,9 @@ export default {
       return localStorage.getItem("isStroked") === "true" ? true : false;
     },
     image() {
-        return require(`@/assets/icons/${this.isStroked ? 'stroked' : 'filled'}/${this.icon}.svg`)
+      return require(`@/assets/icons/${this.isStroked ? "stroked" : "filled"}/${this.icon}.svg`);
     }
-  },
+  }
 };
 </script>
 

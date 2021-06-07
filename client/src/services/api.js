@@ -8,13 +8,7 @@ class API {
    * @private
    */
   log(method, ...messages) {
-    console.log(
-      `%c[API]` +
-      `%c [${method}]`, 
-      "color: black; background-color: #aa66ff; padding: 2px; border-radius: 4px; font-weight: bold;", 
-      "color: #cba1ff;", 
-      ...messages
-    );
+    console.log(`%c[API]` + `%c [${method}]`, "color: black; background-color: #aa66ff; padding: 2px; border-radius: 4px; font-weight: bold;", "color: #cba1ff;", ...messages);
   }
 
   /**
@@ -280,12 +274,7 @@ class Machine extends API {
   }
 }
 
-console.log(
-  `%c[API]` +
-  `%c [Class Loaded]`, 
-  "color: black; background-color: #aa66ff; padding: 2px; border-radius: 4px; font-weight: bold;", 
-  "color: #cba1ff;", 
-)
+console.log(`%c[API]` + `%c [Class Loaded]`, "color: black; background-color: #aa66ff; padding: 2px; border-radius: 4px; font-weight: bold;", "color: #cba1ff;");
 
 const api = {
   user: new User(),

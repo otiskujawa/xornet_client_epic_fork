@@ -4,17 +4,17 @@
       <img :src="route == 'home' ? require('@/assets/logos/logo.svg') : require('@/assets/logos/logo2.svg')" alt="Xornet" />
     </router-link>
     <div class="buttons">
-      <router-link class="button" :to="{ name: 'home', params: { page: 'about' } }"> <Icon icon="details"/> What is Xornet </router-link>
-      <a class="button" href="https://github.com/Geoxor/Xornet" target="_blank"> <Icon icon="repository"/> Repository </a>
-      <router-link class="button" :to="{ name: 'home', params: { page: 'downloads' } }"> <Icon icon="downloads"/> Downloads </router-link>
-      <router-link class="button" v-if="isLoggedIn" :to="{ name: 'machines' }"> <Icon icon="dashboard"/> Dashboard </router-link>
-      <router-link class="button" v-if="!isLoggedIn" :to="{ name: 'login' }"> <Icon icon="login"/> Login </router-link>
+      <router-link class="button" :to="{ name: 'home', params: { page: 'about' } }"> <Icon icon="details" /> What is Xornet </router-link>
+      <a class="button" href="https://github.com/Geoxor/Xornet" target="_blank"> <Icon icon="repository" /> Repository </a>
+      <router-link class="button" :to="{ name: 'home', params: { page: 'downloads' } }"> <Icon icon="downloads" /> Downloads </router-link>
+      <router-link class="button" v-if="isLoggedIn" :to="{ name: 'machines' }"> <Icon icon="dashboard" /> Dashboard </router-link>
+      <router-link class="button" v-if="!isLoggedIn" :to="{ name: 'login' }"> <Icon icon="login" /> Login </router-link>
     </div>
   </header>
 </template>
 
 <script>
-import Icon from '@/components/misc/Icon'
+import Icon from "@/components/misc/Icon";
 export default {
   name: "Header",
   components: {
