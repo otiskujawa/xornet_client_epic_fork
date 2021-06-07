@@ -4,11 +4,11 @@
       <img :src="route == 'home' ? require('@/assets/logos/logo.svg') : require('@/assets/logos/logo2.svg')" alt="Xornet" />
     </router-link>
     <div class="buttons">
-      <router-link class="button" :to="{ name: 'home', params: { page: 'about' } }"> <img :src="require('@/assets/icons/details.svg')" alt="details" /> What is Xornet </router-link>
-      <a class="button" href="https://github.com/Geoxor/Xornet" target="_blank"> <img :src="require('@/assets/icons/repository.svg')" alt="repository" /> Repository </a>
-      <router-link class="button" :to="{ name: 'home', params: { page: 'downloads' } }"> <img :src="require('@/assets/icons/downloads.svg')" alt="downloads" /> Downloads </router-link>
-      <router-link class="button" v-if="isLoggedIn" :to="{ name: 'machines' }"> <img :src="require('@/assets/icons/dashboard.svg')" alt="dash" /> Dashboard </router-link>
-      <router-link class="button" v-if="!isLoggedIn" :to="{ name: 'login' }"> <img :src="require('@/assets/icons/login.svg')" alt="login" /> Login </router-link>
+      <router-link class="button" :to="{ name: 'home', params: { page: 'about' } }"> <img :src="require('@/assets/icons/filled/details.svg')" alt="details" /> What is Xornet </router-link>
+      <a class="button" href="https://github.com/Geoxor/Xornet" target="_blank"> <img :src="require('@/assets/icons/filled/repository.svg')" alt="repository" /> Repository </a>
+      <router-link class="button" :to="{ name: 'home', params: { page: 'downloads' } }"> <img :src="require('@/assets/icons/filled/downloads.svg')" alt="downloads" /> Downloads </router-link>
+      <router-link class="button" v-if="isLoggedIn" :to="{ name: 'machines' }"> <img :src="require('@/assets/icons/filled/dashboard.svg')" alt="dash" /> Dashboard </router-link>
+      <router-link class="button" v-if="!isLoggedIn" :to="{ name: 'login' }"> <img :src="require('@/assets/icons/filled/login.svg')" alt="login" /> Login </router-link>
     </div>
   </header>
 </template>

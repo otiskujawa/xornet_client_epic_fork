@@ -15,7 +15,7 @@
     </nav>
 
     <section v-if="!thinButtons">
-      <img :src="require('@/assets/icons/master.svg')" alt="" />
+      <img :src="require('@/assets/icons/filled/master.svg')" alt="" />
       <h1>Physical Machines</h1>
     </section>
 
@@ -39,8 +39,8 @@ export default {
   },
   data() {
     return {
-      chevronUp: require("@/assets/icons/chevron-up.svg"),
-      chevronDown: require("@/assets/icons/chevron-down.svg"),
+      chevronUp: require("@/assets/icons/filled/chevron-up.svg"),
+      chevronDown: require("@/assets/icons/filled/chevron-down.svg"),
       thinButtons: true,
       showRogues: true,
       showDetails: false,

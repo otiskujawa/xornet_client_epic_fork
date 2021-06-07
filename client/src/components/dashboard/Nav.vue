@@ -1,10 +1,13 @@
 <template>
   <nav class="buttons">
-    <SquareButton icon="user" :to="{ name: 'profile', params: { username } }" />
-    <SquareButton icon="dashboard" :to="{ name: 'summary' }" />
-    <SquareButton icon="stack" :to="{ name: 'machines' }" />
-    <SquareButton icon="network" :to="{ name: 'network' }" />
-    <SquareButton icon="clipboard" :to="{ name: 'logs' }" />
+    <div class="top">
+      <SquareButton icon="user" :to="{ name: 'profile', params: { username } }" />
+      <SquareButton icon="dashboard" :to="{ name: 'summary' }" />
+      <SquareButton icon="stack" :to="{ name: 'machines' }" />
+      <SquareButton icon="network" :to="{ name: 'network' }" />
+      <SquareButton icon="clipboard" :to="{ name: 'logs' }" />
+    </div>
+    <SquareButton class="settings" icon="settings" :to="{ name: 'settings' }" />
   </nav>
 </template>
 
@@ -26,11 +29,13 @@ export default {
 
 <style scoped>
 nav {
-  height: 48px;
+  height: calc(100vh - 48px);
   width: 48px;
   display: flex;
   align-items: center;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  position: relative;
 }
 </style>

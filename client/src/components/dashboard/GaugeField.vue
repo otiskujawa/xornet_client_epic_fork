@@ -1,12 +1,12 @@
 <template>
   <fieldset class="machine">
     <legend>{{ machine.hostname }}</legend>
-    <Gauge :icon="require('@/assets/icons/cpu.svg')" suffix="%" :value="parseFloat(machine.cpu)" />
-    <Gauge v-if="machine.gpu" :icon="require('@/assets/icons/gpu.svg')" suffix="%" :value="parseFloat(machine.gpu.utilizationGpu)" />
-    <Gauge :icon="require('@/assets/icons/ram.svg')" suffix="r" :value="parseFloat(machine.ram.used)" :maxValue="parseFloat(machine.ram.total)" />
-    <Gauge :icon="require('@/assets/icons/upload.svg')" suffix="mbps" :value="parseFloat(machine.network.TxSec)" :maxValue="1000 * machine.network.totalInterfaces" />
-    <Gauge :icon="require('@/assets/icons/download.svg')" suffix="mbps" :value="parseFloat(machine.network.RxSec)" :maxValue="1000 * machine.network.totalInterfaces" />
-    <Gauge v-for="disk of machine.disks" :key="disk" :icon="require('@/assets/icons/hdd.svg')" suffix="%" :value="parseFloat(disk.use)" :driveLetter="disk.fs" :maxValue="100" />
+    <Gauge :icon="require('@/assets/icons/filled/cpu.svg')" suffix="%" :value="parseFloat(machine.cpu)" />
+    <Gauge v-if="machine.gpu" :icon="require('@/assets/icons/filled/gpu.svg')" suffix="%" :value="parseFloat(machine.gpu.utilizationGpu)" />
+    <Gauge :icon="require('@/assets/icons/filled/ram.svg')" suffix="r" :value="parseFloat(machine.ram.used)" :maxValue="parseFloat(machine.ram.total)" />
+    <Gauge :icon="require('@/assets/icons/filled/upload.svg')" suffix="mbps" :value="parseFloat(machine.network.TxSec)" :maxValue="1000 * machine.network.totalInterfaces" />
+    <Gauge :icon="require('@/assets/icons/filled/download.svg')" suffix="mbps" :value="parseFloat(machine.network.RxSec)" :maxValue="1000 * machine.network.totalInterfaces" />
+    <Gauge v-for="disk of machine.disks" :key="disk" :icon="require('@/assets/icons/filled/hdd.svg')" suffix="%" :value="parseFloat(disk.use)" :driveLetter="disk.fs" :maxValue="100" />
   </fieldset>
 </template>
 
