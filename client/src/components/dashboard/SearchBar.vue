@@ -47,7 +47,7 @@ export default {
     },
     typingTimer() {
       if (this.timer != null) clearTimeout(this.timer);
-      return (this.timer = setTimeout(this.doneTyping, 800));
+      return (this.timer = setTimeout(this.doneTyping, 500));
     },
     clearTimer() {
       this.searchPaused = false;
@@ -77,7 +77,7 @@ export default {
   width: fit-content;
   padding: 8px;
   margin-left: 8px;
-  background-color: #FFFFFF;
+  background-color: var(--background-color);
   
   border-radius: 4px;
 
@@ -98,7 +98,7 @@ export default {
   display: flex;
   align-items: center;
 
-  color: #000000;
+  color: var(--black);
 }
 
 .search-bar {
@@ -111,7 +111,7 @@ export default {
 
   position: relative;
 
-  background-color: #f8f8f8;
+  background-color: var(--background-color);
   border-radius: 3px;
 }
 
@@ -137,9 +137,10 @@ export default {
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   font-size: 12px;
+  color: var(--black);
 
   border: none;
-  background-color: #f8f8f8;
+  background-color: var(--white);
   height: 32px;
   padding: 6px 8px;
 
@@ -159,6 +160,8 @@ export default {
   width: 16px;
   height: 16px;
 
+  filter: invert(var(--filter));
+
   position: absolute;
   right: 4px;
 
@@ -168,6 +171,6 @@ export default {
 }
 
 .search-bar .inputField::placeholder {
-  color: #c4c4c4;
+  color: var(--slyColor);
 }
 </style>

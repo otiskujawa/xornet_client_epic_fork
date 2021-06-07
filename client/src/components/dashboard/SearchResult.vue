@@ -74,7 +74,7 @@ export default {
     align-items: flex-end;
 
     left:0px;
-    color: #000000;
+    color: var(--black);
 }
 
 .userPoints .points{
@@ -151,7 +151,7 @@ export default {
     display: flex;
     
 
-    color: #1A1A1A;
+    color: var(--black);
 }
 
 </style>
