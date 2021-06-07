@@ -1,10 +1,10 @@
 <template>
   <div class="log" @click="active = !active" :class="{active}">
     <div class="heading">
-      <Icon :icon="log.at.replace(/\s/g, '').toLowerCase()"/>
+      <Icon :icon="log.at.replace(/\s/g, '').toLowerCase()" default="warning" />
       <p>{{timeago(log.timestamp)}}</p>
       <p>{{log.at}}</p>
-      <p>{{log.message.error}}</p>
+      <p>{{log.message?.error || log.message}}</p>
     </div>
     <div v-if="active" class="details">
 
