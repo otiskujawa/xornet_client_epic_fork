@@ -114,6 +114,8 @@ export default {
     if (this.selectedMachine) this.getNetwork();
 
     socket.on("machines", machines => {
+      console.log(`%c[WS]` + `%c [Machines]`, "color: black; background-color: #ff4488; padding: 2px; border-radius: 4px; font-weight: bold;", "color: #ff77aa;", machines);
+
       Object.values(machines).forEach(machine => (machine.uuid ? this.machines.set(machine.uuid, machine) : null));
 
       // this.labels.push(`${new Date().getHours()}:${new Date().getMinutes()}`);

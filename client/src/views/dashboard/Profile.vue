@@ -171,6 +171,7 @@ export default {
   mounted() {
     socket.emit("getPoints", this.$route.params.username);
     socket.on("points", points => {
+      console.log(`%c[WS]` + `%c [Points]`, "color: black; background-color: #ff4488; padding: 2px; border-radius: 4px; font-weight: bold;", "color: #ff77aa;", points);
       this.points.number = points;
       gsap.to(this.points, { duration: 1, tweened: points });
     });

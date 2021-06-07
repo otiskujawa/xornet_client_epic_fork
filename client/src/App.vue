@@ -7,9 +7,10 @@
   /* Static colors that wont change */
   --dark: #151527;
   --dark-light: #0f0f1e;
-  --dark-lighter: #252547;
+  --dark-lighter: #18182c;
   --rogue-red-border: #f85149;
   --theme-color: #ff006b;
+  --bright-theme-color: #ff3a8c;
   --terminal-background: #0b0b15;
 
   /* Initial colors */

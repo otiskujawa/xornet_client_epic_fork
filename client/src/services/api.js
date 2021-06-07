@@ -229,6 +229,14 @@ class User extends API {
   }
 
   /**
+   * Returns the users logs, if admin they have access to admin logs for the backend
+   * @param {String} [machineUUID] The uuid of a specific machine you want to get logs for
+   */
+  async fetchLogs(machineUUID) {
+    return machineUUID ? (await super.get(`logs/${machineUUID}`)).data : (await super.get(`logs`)).data;
+  }
+
+  /**
    * Post signup credentials into backend and returns the result of signup process
    * @param {Object} profile profile object, which contains new desired user credentials
    * @param {Object} profileImage image object, which contains image class from the refs
