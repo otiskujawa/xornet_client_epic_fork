@@ -15,7 +15,7 @@
     </nav>
 
     <section v-if="!thinButtons">
-      <img :src="require('@/assets/icons/filled/master.svg')" alt="" />
+      <Icon icon="master"/>
       <h1>Physical Machines</h1>
     </section>
 
@@ -27,6 +27,7 @@
 
 <script>
 import ServerListButton from "@/components/dashboard/ServerListButton";
+import Icon from "@/components/misc/Icon";
 export default {
   name: "ServerList",
   computed: {
@@ -50,6 +51,7 @@ export default {
     };
   },
   components: {
+    Icon,
     ServerListButton
   },
   props: {

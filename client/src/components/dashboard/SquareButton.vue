@@ -1,19 +1,20 @@
 <template>
   <div @click="$emit('click')">
     <router-link @click="$emit('click')" v-if="to" :to="to" class="button" :class="{ isEnabled }">
-      <Icon :icon="icon" isStroked="" />
+      <Icon :icon="icon"/>
     </router-link>
     <div @click="$emit('click')" v-if="!to && !href" class="button" :class="{ isEnabled }">
-      <Icon :icon="icon" isStroked="" />
+      <Icon :icon="icon"/>
     </div>
     <a v-if="href" :href="href" target="_blank" @click="$emit('click')" class="button" :class="{ isEnabled }">
-      <Icon :icon="icon" isStroked="" />
+      <Icon :icon="icon"/>
     </a>
   </div>
 </template>
 
 <script>
-import Icon from "@/components/dashboard/Icon";
+import Icon from '@/components/misc/Icon'
+
 export default {
   name: "SquareButton",
   props: {
