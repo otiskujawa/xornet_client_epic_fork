@@ -104,9 +104,9 @@ class API {
         withCredentials: true,
         headers
       })
-      .catch(error => this.logError(`${method.toUpperCas()} ${route}`, error));
+      .catch(error => this.logError(`${method.toUpperCase()} ${route}`, error));
 
-    this.logResponse(`${method.toUpperCas()} ${route}`, response);
+    this.logResponse(`${method.toUpperCase()} ${route}`, response);
     return response;
   }
 }
