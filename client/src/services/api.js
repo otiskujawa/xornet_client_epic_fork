@@ -90,105 +90,26 @@ class API {
   }
 
   /**
-   * Creates a new POST request to the backend
+   * Creates a new request to the backend
+   * @param {String} method The type of HTTP method e.g. GET, POST, PATCH etc
    * @param {String} route The route you wanna make a request to e.g. channels/pin
-   * @param {String} params Any optional params the url should have e.g. channels/pin/:channel_uuid
-   * @param {Object} body An optional body object to send to the route
    * @param {Object} headers An optional headers object to send to the route
-   * @example const response = super.post('channels/group', undefined, body);
+   * @param {Object} body An optional body object to send to the route
+   * @param {String} params Any optional params the url should have e.g. channels/pin/:channel_uuid
+   * @example const response = super.request('post', 'channels/group', undefined, body);
    */
-  async post(route, params, body, headers) {
+  async request(method, route, headers, body, params) {
     return new Promise(async (resolve, reject) => {
       const response = await axios
-        .post(this.constructEndpoint(route, params), body || undefined, {
+        [method](this.constructEndpoint(route, params), body || undefined, {
           withCredentials: true,
           headers
         })
-        .catch(error => this.logError(`POST ${route}`, error));
+        .catch(error => reject(this.logError(`POST ${route}`, error)));
 
       this.logResponse(`POST ${route}`, response);
       resolve(response);
     });
-  }
-
-  /**
-   * Creates a new PATCH request to the backend
-   * @param {String} route The route you wanna make a request to e.g. channels/pin
-   * @param {String} params Any optional params the url should have e.g. channels/pin/:channel_uuid
-   * @param {Object} body An optional body object to send to the route
-   * @param {Object} headers An optional headers object to send to the route
-   * @example const response = super.patch('channels/group', undefined, body);
-   */
-  async patch(route, params, body, headers) {
-    return new Promise(async (resolve, reject) => {
-      const response = await axios
-        .patch(this.constructEndpoint(route, params), body || undefined, {
-          withCredentials: true,
-          headers
-        })
-        .catch(error => this.logError(`PATCH ${route}`, error));
-
-      this.logResponse(`PATCH ${route}`, response.data);
-      resolve(response.data);
-    });
-  }
-
-  /**
-   * Creates a new PUT request to the backend
-   * @param {String} route The route you wanna make a request to e.g. machine
-   * @param {String} params Any optional params the url should have e.g. machine/:machine_uuid
-   * @param {Object} body An optional body object to send to the route
-   * @param {Object} headers An optional headers object to send to the route
-   * @example const response = super.put('machine', undefined, body);
-   */
-  async put(route, params, body, headers) {
-    return new Promise(async (resolve, reject) => {
-      const response = await axios
-        .put(this.constructEndpoint(route, params), body || undefined, {
-          withCredentials: true,
-          headers
-        })
-        .catch(error => this.logError(`PUT ${route}`, error));
-
-      this.logResponse(`PUT ${route}`, response.data);
-      resolve(response.data);
-    });
-  }
-
-  /**
-   * Creates a new GET request to the backend
-   * @param {String} route The route you wanna make a request to e.g. channels/pin
-   * @param {String} params Any optional params the url should have e.g. channels/pin/:channel_uuid
-   * @param {Object} headers An optional headers object to send to the route
-   * @example const response = super.get('user');
-   */
-  async get(route, params, headers) {
-    const response = await axios
-      .get(this.constructEndpoint(route, params), {
-        withCredentials: true,
-        headers: headers
-      })
-      .catch(error => this.logError(`GET ${route}`, error));
-
-    this.logResponse(`GET ${route}`, response);
-    return response;
-  }
-
-  /**
-   * Creates a new DELETE request to the backend
-   * @param {String} route The route you wanna make a request to e.g. channels/group
-   * @param {String} params Any optional params the url should have e.g. channels/group/:channel_uuid
-   * @example const response = super.delete('channels/group', channelUuid);
-   */
-  async delete(route, params) {
-    const response = await axios
-      .delete(this.constructEndpoint(route, params), {
-        withCredentials: true
-      })
-      .catch(error => this.logError(`DELETE ${route}`, error));
-
-    this.logResponse(`DELETE ${route}`, response);
-    return response;
   }
 }
 
@@ -209,7 +130,7 @@ class User extends API {
     return new Promise(async (resolve, reject) => {
       try {
         const loginForm = { geolocation: await this.getGeolocation(), ...JSON.parse(json) };
-        const response = await super.post("login", undefined, loginForm, { "Content-Type": "application/json" });
+        const response = await super.request("post", "login", { "Content-Type": "application/json" }, loginForm);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("username", loginForm.username);
         super.log("Logged in successfully");
@@ -227,7 +148,7 @@ class User extends API {
    */
   async signup(json) {
     const signupForm = { geolocation: await this.getGeolocation(), ...json };
-    return super.post("signup", undefined, signupForm, { "Content-Type": "application/json" });
+    return super.request("post", "signup", { "Content-Type": "application/json" }, signupForm);
   }
 
   /**
@@ -235,14 +156,14 @@ class User extends API {
    * @param {String} the user to get
    */
   async fetchProfile(username) {
-    return (await super.get(`profile/${username}`)).data;
+    return (await super.request("get", `profile/${username}`)).data;
   }
 
   /**
    * Returns the user object of the logged in user, takes no input parameters
    */
   async fetchMe() {
-    return (await super.get(`profile/${localStorage.getItem("username")}`)).data;
+    return (await super.request("get", `profile/${localStorage.getItem("username")}`)).data;
   }
 
   /**
@@ -250,7 +171,7 @@ class User extends API {
    * @param {String} [machineUUID] The uuid of a specific machine you want to get logs for
    */
   async fetchLogs(machineUUID) {
-    return machineUUID ? (await super.get(`logs/${machineUUID}`)).data : (await super.get(`logs`)).data;
+    return machineUUID ? (await super.request("get", `logs/${machineUUID}`)).data : (await super.get(`logs`)).data;
   }
 
   /**
@@ -265,7 +186,7 @@ class User extends API {
     formData.append("image", profileImage);
     formData.append("banner", profileBanner);
 
-    return super.patch("profile", undefined, formData, { "Content-Type": "multipart/form-data" });
+    return super.request("patch", "profile", { "Content-Type": "multipart/form-data" }, formData);
   }
 
   /**
@@ -273,7 +194,7 @@ class User extends API {
    * @param {String} machineUUID The machine's uuid that you want to add
    */
   async addMachine(machineUUID) {
-    return super.put("profile/machine", undefined, { machine: machineUUID }, { "Content-Type": "application/json" });
+    return super.request("put", "profile/machine", { "Content-Type": "application/json" }, { machine: machineUUID });
   }
 
   /**
@@ -281,7 +202,7 @@ class User extends API {
    * @param {String} user Either a Username or a UUID of a user
    */
   async search(user) {
-    return (await super.get(`/search/user/${user}`)).data;
+    return (await super.request("get", `/search/user/${user}`)).data;
   }
 }
 
@@ -295,7 +216,7 @@ class Machine extends API {
   }
 
   async getNetwork(machineUUID) {
-    return (await super.get(`stats/network/${machineUUID}`)).data;
+    return (await super.request("get", `stats/network/${machineUUID}`)).data;
   }
 }
 
