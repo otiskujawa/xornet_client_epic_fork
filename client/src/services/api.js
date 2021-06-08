@@ -2,6 +2,10 @@ import axios from "axios";
 
 let ROOT_PATH = "https://backend.xornet.cloud";
 
+/**
+ * @copyright Geoxor 2021
+ */
+
 class API {
   /**
    * Custom log function with API suffix
@@ -67,12 +71,12 @@ class API {
   /**
    * Creates a backend URL with the provided paramaters
    * @private
+   * @param {String} route The main route
+   * @returns {String} https://backend.xornet.cloud/profile
+   * @example constructEndpoint('profile')
    */
-  constructEndpoint(route, params) {
-    let endpoint = `${ROOT_PATH}/${route}`;
-    if (params) endpoint = endpoint + `/${params}`;
-
-    return endpoint;
+  constructEndpoint(route) {
+    return `${ROOT_PATH}/${route}`;
   }
 
   /**
@@ -88,19 +92,18 @@ class API {
     };
     return geolocation;
   }
-
+  
   /**
    * Creates a new request to the backend
    * @param {String} method The type of HTTP method e.g. GET, POST, PATCH etc
    * @param {String} route The route you wanna make a request to e.g. channels/pin
    * @param {Object} headers An optional headers object to send to the route
    * @param {Object} body An optional body object to send to the route
-   * @param {String} params Any optional params the url should have e.g. channels/pin/:channel_uuid
    * @example const response = super.request('post', 'channels/group', undefined, body);
    */
-  async request(method, route, headers, body, params) {
+  async request(method, route, headers, body) {
     const response = await axios[method](
-      this.constructEndpoint(route, params),
+      this.constructEndpoint(route),
       body || {
         withCredentials: true,
         headers
@@ -112,9 +115,6 @@ class API {
   }
 }
 
-/**
- * Handles all the endpoint functions for User
- */
 class User extends API {
   constructor() {
     super();
@@ -205,9 +205,6 @@ class User extends API {
   }
 }
 
-/**
- * Handles all the endpoint functions for User
- */
 class Machine extends API {
   constructor() {
     super();
@@ -219,11 +216,11 @@ class Machine extends API {
   }
 }
 
-console.log(`%c[API]` + `%c [Class Loaded]`, "color: black; background-color: #aa66ff; padding: 2px; border-radius: 4px; font-weight: bold;", "color: #cba1ff;");
-
 const api = {
   user: new User(),
   machine: new Machine()
 };
+
+console.log(`%c[API]` + `%c [Class Loaded]`, "color: black; background-color: #aa66ff; padding: 2px; border-radius: 4px; font-weight: bold;", "color: #cba1ff;");
 
 export default api;
