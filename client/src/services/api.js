@@ -99,12 +99,13 @@ class API {
    * @example const response = super.request('post', 'channels/group', undefined, body);
    */
   async request(method, route, headers, body, params) {
-    const response = await axios
-      [method](this.constructEndpoint(route, params), body || {
+    const response = await axios[method](
+      this.constructEndpoint(route, params),
+      body || {
         withCredentials: true,
         headers
-      })
-      .catch(error => this.logError(`${method.toUpperCase()} ${route}`, error));
+      }
+    ).catch(error => this.logError(`${method.toUpperCase()} ${route}`, error));
 
     this.logResponse(`${method.toUpperCase()} ${route}`, response);
     return response;
