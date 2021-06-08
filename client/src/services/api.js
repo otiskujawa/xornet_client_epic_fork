@@ -99,17 +99,15 @@ class API {
    * @example const response = super.request('post', 'channels/group', undefined, body);
    */
   async request(method, route, headers, body, params) {
-    return new Promise(async (resolve, reject) => {
-      const response = await axios
-        [method](this.constructEndpoint(route, params), body || undefined, {
-          withCredentials: true,
-          headers
-        })
-        .catch(error => reject(this.logError(`POST ${route}`, error)));
+    const response = await axios
+      [method](this.constructEndpoint(route, params), body || {
+        withCredentials: true,
+        headers
+      })
+      .catch(error => this.logError(`${method.toUpperCas()} ${route}`, error));
 
-      this.logResponse(`POST ${route}`, response);
-      resolve(response);
-    });
+    this.logResponse(`${method.toUpperCas()} ${route}`, response);
+    return response;
   }
 }
 
@@ -171,7 +169,7 @@ class User extends API {
    * @param {String} [machineUUID] The uuid of a specific machine you want to get logs for
    */
   async fetchLogs(machineUUID) {
-    return machineUUID ? (await super.request("get", `logs/${machineUUID}`)).data : (await super.get(`logs`)).data;
+    return machineUUID ? (await super.request("get", `logs/${machineUUID}`)).data : (await super.request("get", `logs`)).data;
   }
 
   /**
