@@ -5,20 +5,63 @@ let ROOT_PATH = "https://backend.xornet.cloud";
 class API {
   /**
    * Custom log function with API suffix
+   * @param {String} method The API endpoint
+   * @param {String} messages Optional messages
    * @private
    */
   log(method, ...messages) {
-    console.log(`%c[API]` + `%c [${method}]`, "color: black; background-color: #aa66ff; padding: 2px; border-radius: 4px; font-weight: bold;", "color: #cba1ff;", ...messages);
+    // prettier-ignore
+    console.log(
+      `%c[API]` + 
+      `%c [${method}]`, 
+      "color: black; background-color: #aa66ff; padding: 2px; border-radius: 4px; font-weight: bold;", 
+      "color: #cba1ff;", 
+      ...messages
+    );
+  }
+
+  /**
+   * Custom log for errors with API suffix
+   * @param {String} method The API endpoint
+   * @param {String} messages Optional messages
+   * @private
+   */
+  error(method, ...messages) {
+    // prettier-ignore
+    console.log(
+      `%c[API]` + 
+      `%c [${method}]` + 
+      `%c ${messages}`, 
+      "color: black; background-color: #ff2424; padding: 2px; border-radius: 4px; font-weight: bold;", 
+      "color: #ff2424;", 
+      "color: #ff6363;", 
+    );
   }
 
   /**
    * Creates a pretty log for the API responses
+   * @param {String} method The API endpoint
+   * @param {String} messages Optional messages
    * @private
    */
   logResponse(method, response) {
+    if (!response) return;
     if (response.data?.message) this.log(method, response.data?.message);
     else if (response?.data) this.log(method, response?.data);
     else this.log(method, response);
+  }
+
+  /**
+   * Creates a pretty log for the API errors
+   * @param {String} method The API endpoint
+   * @param {String} messages Optional messages
+   * @private
+   */
+  logError(method, response) {
+    if (!response) return;
+    if (response.data?.message) this.error(method, response.data?.message);
+    else if (response?.data) this.error(method, response?.data);
+    else this.error(method, response);
   }
 
   /**
@@ -56,22 +99,15 @@ class API {
    */
   async post(route, params, body, headers) {
     return new Promise(async (resolve, reject) => {
-      if (headers) {
-        const response = await axios.post(this.constructEndpoint(route, params), body || undefined, {
+      const response = await axios
+        .post(this.constructEndpoint(route, params), body || undefined, {
           withCredentials: true,
           headers
-        });
+        })
+        .catch(error => this.logError(`POST ${route}`, error));
 
-        this.logResponse(`POST ${route}`, response);
-        resolve(response);
-      } else {
-        const response = await axios.post(this.constructEndpoint(route, params), body || undefined, {
-          withCredentials: true
-        });
-
-        this.logResponse(`POST ${route}`, response);
-        resolve(response);
-      }
+      this.logResponse(`POST ${route}`, response);
+      resolve(response);
     });
   }
 
@@ -85,22 +121,15 @@ class API {
    */
   async patch(route, params, body, headers) {
     return new Promise(async (resolve, reject) => {
-      if (headers) {
-        const response = await axios.patch(this.constructEndpoint(route, params), body || undefined, {
+      const response = await axios
+        .patch(this.constructEndpoint(route, params), body || undefined, {
           withCredentials: true,
           headers
-        });
+        })
+        .catch(error => this.logError(`PATCH ${route}`, error));
 
-        this.logResponse(`PATCH ${route}`, response.data);
-        resolve(response.data);
-      } else {
-        const response = await axios.patch(this.constructEndpoint(route, params), body || undefined, {
-          withCredentials: true
-        });
-
-        this.logResponse(`PATCH ${route}`, response.data);
-        resolve(response.data);
-      }
+      this.logResponse(`PATCH ${route}`, response.data);
+      resolve(response.data);
     });
   }
 
@@ -114,22 +143,15 @@ class API {
    */
   async put(route, params, body, headers) {
     return new Promise(async (resolve, reject) => {
-      if (headers) {
-        const response = await axios.put(this.constructEndpoint(route, params), body || undefined, {
+      const response = await axios
+        .put(this.constructEndpoint(route, params), body || undefined, {
           withCredentials: true,
           headers
-        });
+        })
+        .catch(error => this.logError(`PUT ${route}`, error));
 
-        this.logResponse(`PUT ${route}`, response.data);
-        resolve(response.data);
-      } else {
-        const response = await axios.put(this.constructEndpoint(route, params), body || undefined, {
-          withCredentials: true
-        });
-
-        this.logResponse(`PUT ${route}`, response.data);
-        resolve(response.data);
-      }
+      this.logResponse(`PUT ${route}`, response.data);
+      resolve(response.data);
     });
   }
 
@@ -141,22 +163,15 @@ class API {
    * @example const response = super.get('user');
    */
   async get(route, params, headers) {
-    if (headers) {
-      const response = await axios.get(this.constructEndpoint(route, params), {
+    const response = await axios
+      .get(this.constructEndpoint(route, params), {
         withCredentials: true,
         headers: headers
-      });
+      })
+      .catch(error => this.logError(`GET ${route}`, error));
 
-      this.logResponse(`GET ${route}`, response);
-      return response;
-    } else {
-      const response = await axios.get(this.constructEndpoint(route, params), {
-        withCredentials: true
-      });
-
-      this.logResponse(`GET ${route}`, response);
-      return response;
-    }
+    this.logResponse(`GET ${route}`, response);
+    return response;
   }
 
   /**
@@ -166,9 +181,11 @@ class API {
    * @example const response = super.delete('channels/group', channelUuid);
    */
   async delete(route, params) {
-    const response = await axios.delete(this.constructEndpoint(route, params), {
-      withCredentials: true
-    });
+    const response = await axios
+      .delete(this.constructEndpoint(route, params), {
+        withCredentials: true
+      })
+      .catch(error => this.logError(`DELETE ${route}`, error));
 
     this.logResponse(`DELETE ${route}`, response);
     return response;
@@ -199,7 +216,7 @@ class User extends API {
         resolve(response.status);
       } catch (error) {
         super.log(error);
-        reject(response.status);
+        reject(error.status);
       }
     });
   }
