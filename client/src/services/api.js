@@ -3,7 +3,13 @@ import axios from "axios";
 let ROOT_PATH = "https://backend.xornet.cloud";
 
 /**
- * @copyright Geoxor 2021
+ * Main API class that interfaces with the backend
+ * It contains functions and debugging logs to easily
+ * handle requests with the backend
+ * 
+ * Note: The data from here can be taken to create API docs in the future
+ * 
+ * @copyright George Tsotsos & Niko Huuskonen
  */
 
 class API {
