@@ -15,7 +15,6 @@
     "gsap": "^3.6.1",
     "highlight.js": "^11.0.1",
     "millify": "^4.0.0",
-    "socket.io": "^4.0.2",
     "socket.io-client": "^4.0.2",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
