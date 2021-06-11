@@ -1,9 +1,9 @@
 <template>
   <div class="datacenters">
-    <div class="datacenter">
+    <div class="datacenter" v-for="datacenter of datacenters" :key="datacenter">
       <div class="heading">
         <Icon icon="datacenter"/>
-        <h1>Xornet</h1>
+        <h1>{{datacenter.name}}</h1>
       </div>
     </div>
     <div class="datacenter">
@@ -23,6 +23,14 @@ export default {
   components: {
     Icon
   },
+  data() {
+    return {
+      datacenters: []
+    };
+  },
+  async mounted() {
+    this.datacenters = await this.api.datacenters.fetchAll();
+  }
 };
 </script>
 
@@ -39,7 +47,7 @@ export default {
   height: 224px;
   border: var(--dark-lighter) 2px solid;
   border-radius: 8px;
-  background-color: var(--dark-light);
+  background-color: var(--background-color);
   cursor: pointer;
   padding: 8px;
   transition: 100ms ease;

@@ -50,6 +50,9 @@
     <!-- Owner Column -->
     <router-link class="field owner" :to="{ name: 'profile', params: { username: machine?.owner?.username } }"><img :src="machine?.owner?.profileImage" :alt="machine?.owner?.username" />{{ machine.owner.username }}</router-link>
 
+    <!-- Datacenter Column -->
+    <div class="field datacenter">{{ machine.datacenter ? machine.datacenter.name : "Unassigned" }}</div>
+
     <!-- Platform Column -->
     <div class="platform">
       <img v-if="machine.platform == 'win32'" :src="require('@/assets/icons/filled/windows.svg')" alt="" />
@@ -241,6 +244,7 @@ export default {
   margin-right: 2px;
 }
 .button .field.owner {
+  min-width: 124px;
   gap: 8px;
 }
 
@@ -265,6 +269,7 @@ export default {
 .button .field.region {
   min-width: 66px;
 }
+
 
 .button .info .status {
   background: linear-gradient(110.78deg, rgb(118, 230, 80) -1.13%, rgb(249, 214, 73) 15.22%, rgb(240, 142, 53) 32.09%, rgb(236, 81, 87) 48.96%, rgb(255, 24, 189) 67.94%, rgb(26, 75, 255) 85.34%, rgb(98, 216, 249) 99.57%);

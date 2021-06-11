@@ -12,6 +12,7 @@
       <div @click="sort('ping')" class="field ping">ping <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'ping'" /></div>
       <div @click="sort('uptime')" class="field uptime">uptime <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'uptime'" /></div>
       <div @click="sort('owner')" class="field owner">owner <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'owner'" /></div>
+      <div @click="sort('datacenter')" class="field datacenter">datacenter <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'datacenter'" /></div>
     </nav>
 
     <section v-if="!thinButtons">
@@ -130,7 +131,12 @@ export default {
           if (a.owner.username < b.owner.username) return -1;
           if (a.owner.username > b.owner.username) return 1;
           return 0;
-        }
+        },
+        datacenter: (a, b) => {
+          if (a.datacenter < b.datacenter) return -1;
+          if (a.datacenter > b.datacenter) return 1;
+          return 0;
+        },
       };
 
       let sortedArray = this.machines.sort((a, b) => sortingAlgorithms[sortBy](a, b));
@@ -278,4 +284,9 @@ export default {
 .columns .field.uptime {
   min-width: 100px;
 }
+
+.columns  .field.owner {
+  min-width: 124px;
+}
+
 </style>

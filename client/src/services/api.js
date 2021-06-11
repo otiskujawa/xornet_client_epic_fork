@@ -127,6 +127,21 @@ class API {
   }
 }
 
+class Datacenter extends API {
+  constructor() {
+    super();
+    super.log("Initialized datacenter class");
+  }
+
+  /**
+   * Returns the user object of a user
+   * @param {String} the user to get
+   */
+  async fetchAll() {
+    return (await super.request("get", `datacenter/all`)).data;
+  }
+}
+
 class User extends API {
   constructor() {
     super();
@@ -230,7 +245,8 @@ class Machine extends API {
 
 const api = {
   user: new User(),
-  machine: new Machine()
+  machine: new Machine(),
+  datacenters: new Datacenter(),
 };
 
 console.log(`%c[API]` + `%c [Class Loaded]`, "color: black; background-color: #aa66ff; padding: 2px; border-radius: 4px; font-weight: bold;", "color: #cba1ff;");
