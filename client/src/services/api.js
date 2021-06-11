@@ -6,9 +6,9 @@ let ROOT_PATH = "https://backend.xornet.cloud";
  * Main API class that interfaces with the backend
  * It contains functions and debugging logs to easily
  * handle requests with the backend
- * 
+ *
  * Note: The data from here can be taken to create API docs in the future
- * 
+ *
  * @copyright George Tsotsos & Niko Huuskonen
  */
 
@@ -98,7 +98,7 @@ class API {
     };
     return geolocation;
   }
-  
+
   /**
    * Creates a new request to the backend
    * @param {String} method The type of HTTP method e.g. GET, POST, PATCH etc
@@ -108,13 +108,19 @@ class API {
    * @example const response = super.request('post', 'channels/group', undefined, body);
    */
   async request(method, route, headers, body) {
-    const response = await axios[method](
-      this.constructEndpoint(route),
-      body || {
+    if (method === 'get') {
+      var response = await axios[method](this.constructEndpoint(route), body || {
         withCredentials: true,
         headers
       }
-    ).catch(error => this.logError(`${method.toUpperCase()} ${route}`, error));
+      ).catch(error => this.logError(`${method.toUpperCase()} ${route}`, error));
+    } else {
+      var response = await axios[method](this.constructEndpoint(route), body || undefined, {
+        withCredentials: true,
+        headers
+      }
+      ).catch(error => this.logError(`${method.toUpperCase()} ${route}`, error));
+    }
 
     this.logResponse(`${method.toUpperCase()} ${route}`, response);
     return response;
