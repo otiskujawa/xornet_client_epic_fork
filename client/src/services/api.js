@@ -108,6 +108,7 @@ class API {
    * @example const response = super.request('post', 'channels/group', undefined, body);
    */
   async request(method, route, headers, body) {
+
     if (method === 'get') {
       var response = await axios[method](this.constructEndpoint(route), body || {
         withCredentials: true,
@@ -133,12 +134,17 @@ class Datacenter extends API {
     super.log("Initialized datacenter class");
   }
 
-  /**
-   * Returns the user object of a user
-   * @param {String} the user to get
-   */
+
   async fetchAll() {
     return (await super.request("get", `datacenter/all`)).data;
+  }
+
+  async fetch(datacenterUUID) {
+    return (await super.request("get", `datacenter/${datacenterUUID}`)).data;
+  }
+
+  async add(form) {
+    return (await super.request("post", `datacenter/new`, { "Content-Type": "application/json" }, form)).data;
   }
 }
 

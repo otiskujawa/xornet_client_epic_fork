@@ -5,27 +5,34 @@
         <Icon icon="datacenter"/>
         <h1>{{datacenter.name}}</h1>
       </div>
-    </div>
-    <div class="datacenter">
+      <img class="logo" :src="datacenter.logo" :alt="datacenter.name">
       <div class="heading">
+      </div>
+    </div>
+    <div class="datacenter" @click="isAddingNew = !isAddingNew">
+      <div class="heading">
+        <Icon icon="add"/>
         <h1>Create new</h1>
       </div>
-      <Icon icon="add"/>
     </div>
+    <DatacenterCard v-if="isAddingNew"/>
   </div>
 </template>
 
 <script>
 import Icon from "@/components/misc/Icon";
+import DatacenterCard from "@/components/misc/DatacenterCard";
 
 export default {
   name: "Datacenter",
   components: {
-    Icon
+    Icon,
+    DatacenterCard
   },
   data() {
     return {
-      datacenters: []
+      datacenters: [],
+      isAddingNew: false,
     };
   },
   async mounted() {
@@ -45,21 +52,28 @@ export default {
 .datacenter {
   width: 224px;
   height: 224px;
-  border: var(--dark-lighter) 2px solid;
+  border: var(--border-color) 2px solid;
   border-radius: 8px;
   background-color: var(--background-color);
   cursor: pointer;
   padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   transition: 100ms ease;
 }
 
 .datacenter:hover {
-  background-color: var(--dark-lighter);
-  border: var(--border-color) 2px solid;
+  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
 }
 
 .datacenter img {
   filter: invert(var(--filter));
+  }
+
+.datacenter .logo {
+  max-width: 80%;
 }
 
 .datacenter .heading  {
@@ -78,7 +92,8 @@ export default {
 
 .datacenter .heading h1 {
   color: var(--black);
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 </style>
