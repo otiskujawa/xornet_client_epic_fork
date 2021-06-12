@@ -69,6 +69,10 @@ export default {
   color: white;
 }
 
+.shadowButton.colored:hover img {
+  filter: invert(1);
+}
+
 .shadowButton:active {
   transform: translateY(1px);
 }

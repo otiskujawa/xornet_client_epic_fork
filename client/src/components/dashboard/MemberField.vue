@@ -6,7 +6,7 @@
         <img :src="member.profileImage?.url" :alt="member.username" />
         <h1>{{ member.username }}</h1>
       </div>
-      <ShadowButton v-if="isOwner" colored class="revoke" title="Revoke" textonly @click="revoke(member._id)" />
+      <ShadowButton v-if="isOwner" colored class="revoke" title="Revoke" icon="hammer" @click="revoke(member._id)" />
     </router-link>
     <ShadowButton v-if="isOwner" title="Add" icon="add" @click="showMemberCard = !showMemberCard" />
     <MemberCard v-if="showMemberCard" />
