@@ -24,7 +24,7 @@
             <ShadowButton class="revoke" v-else icon="save" title="Save" @click="isEditing = !isEditing; save();" />
           </div>
           <MemberField :isOwner="datacenter.owner === me._id || me.is_admin" :members="datacenter.members" />
-          <InfoField :icon="require('@/assets/icons/filled/stack.svg')" title="Servers Online" :value="machines.size || 0" />
+          <InfoField :icon="require('@/assets/icons/filled/stack.svg')" title="Servers Online" :value="`${machines.size || 0}/${stats.totalMachines || 0}`" />
           <InfoField :icon="require('@/assets/icons/filled/network.svg')" title="Network Health" :value="`${datacenter.networkHealth || 0}%`" />
           <InfoField :icon="require('@/assets/icons/filled/rj45.svg')" title="Current Bandiwdth" :value="`${stats.currentBandwidth.toFixed(2) || 0}Mbps`" />
           <InfoField :icon="require('@/assets/icons/filled/ram.svg')" title="Total RAM Usage" :value="`${stats.ramUsage?.current.toFixed(2) || 0}/${stats.ramUsage?.max.toFixed(2) || 0}GB`" />
@@ -83,12 +83,14 @@ export default {
       machines: new Map(),
       stats: {
         ramUsage: {},
-        currentBandwidth: 0
+        currentBandwidth: 0,
+        totalMachines: 0
       }
     };
   },
   async mounted() {
     this.datacenters = await this.api.datacenters.fetchAll();
+    this.stats.totalMachines = (await this.api.datacenters.fetchMachineCount(this.datacenter.name)).count;
 
     socket.on("machines", machines => {
       console.log(`%c[WS]` + `%c [Machines]`, "color: black; background-color: #ff4488; padding: 2px; border-radius: 4px; font-weight: bold;", "color: #ff77aa;", machines);
