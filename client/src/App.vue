@@ -62,8 +62,8 @@ export default {
 }
 
 *::selection {
-  background: black;
-  color: white;
+  background: var(--black);
+  color: var(--white);
 }
 
 html {
