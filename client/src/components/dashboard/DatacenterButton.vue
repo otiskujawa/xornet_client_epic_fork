@@ -4,7 +4,7 @@
       <Icon icon="datacenter"/>
       <h1>{{datacenter.name}}</h1>
     </div>
-    <img class="logo" :src="datacenter.logo" :alt="datacenter.name">
+    <img class="logo" :src="datacenter.logo || require('@/assets/icons/filled/stack.svg')" :alt="datacenter.name">
     <div class="heading">
     </div>
   </router-link>
@@ -37,7 +37,6 @@ export default {
 .datacenter {
   width: 224px;
   height: 224px;
-  border: var(--border-color) 2px solid;
   border-radius: 8px;
   background-color: var(--background-color);
   cursor: pointer;
@@ -47,10 +46,12 @@ export default {
   justify-content: space-between;
   align-items: center;
   transition: 100ms ease;
+  border: 1px solid var(--border-color);
+
 }
 
 .datacenter:hover {
-  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: rgb(0 0 0 / 10%) 0px 10px 20px;
   transform: translateY(-1px);
 }
 

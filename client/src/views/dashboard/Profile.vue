@@ -11,22 +11,9 @@
         <input type="file" id="profileBanner" ref="profileBanner" style="display: none" name="profileBanner" accept="image/*" />
       </form>
 
-      <section v-if="!isEditing && profile.username == username" @click="isEditing = !isEditing" class="shadowButton edit">
-        <h1>Edit</h1>
-        <Icon icon="edit" />
-      </section>
-
-      <section
-        v-if="isEditing && profile.username == username"
-        @click="
-          save();
-          isEditing = !isEditing;
-        "
-        class="shadowButton edit"
-      >
-        <h1>Save</h1>
-        <Icon icon="save" />
-      </section>
+      <ShadowButton title="Edit" icon="edit" v-if="!isEditing && profile.username == username" @click="isEditing = !isEditing" class="edit" />
+      <ShadowButton title="Save" icon="save" v-else @click="save(); isEditing = !isEditing;" class="edit" />
+  
     </div>
     <SocialCard :add="add" v-if="isAddingSocial && isEditing" />
 
@@ -91,10 +78,7 @@
             <img v-if="isEditing" :src="require(`@/assets/icons/filled/x.svg`)" />
           </div>
 
-          <div class="shadowButton" @click="isAddingSocial = !isAddingSocial" v-if="isEditing" :class="{ isEditing: isEditing }">
-            <h1 class="nameOnPlatform">Add</h1>
-            <Icon icon="add" />
-          </div>
+          <ShadowButton title="Add" icon="add"  @click="isAddingSocial = !isAddingSocial" v-if="isEditing" :class="{ isEditing: isEditing }" />
         </section>
 
         <div class="line" v-if="profile.socials?.length != 0 || isEditing"></div>
@@ -132,7 +116,7 @@ import socket from "@/services/socket.js";
 import Gauge from "@/components/dashboard/Gauge";
 import InfoField from "@/components/dashboard/InfoField";
 import Icon from "@/components/misc/Icon";
-
+import ShadowButton from "@/components/dashboard/ShadowButton";
 import { millify } from "millify";
 
 export default {
@@ -141,7 +125,8 @@ export default {
     SocialCard,
     InfoField,
     Icon,
-    Gauge
+    Gauge,
+    ShadowButton
   },
   data: () => {
     return {
@@ -245,7 +230,6 @@ export default {
         var successful = document.execCommand("copy");
         document.body.removeChild(temp);
         var msg = successful ? "successful" : "unsuccessful";
-
         this.didCopy = true;
         this.copyMessage = "UUID Copied!";
         setTimeout(() => {
@@ -268,7 +252,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .profilepage {
   min-width: 100%;
   min-height: 100%;
@@ -331,6 +315,42 @@ export default {
 .profilepage .heading .xornetBadge img {
   height: 8px;
   width: auto;
+}
+
+.shadowButton:not(.didCopy):not(.isEditing):hover {
+  filter: invert(1);
+}
+
+.shadowButton.isEditing:not(.didCopy):hover {
+  background-color: var(--theme-color);
+}
+
+.shadowButton.isEditing:not(.didCopy):hover h1 {
+  color: white;
+}
+
+.shadowButton.isEditing:not(.didCopy):hover img {
+  filter: invert(1);
+}
+
+.shadowButton.didCopy {
+  background-color: rgb(51, 255, 0) !important;
+}
+
+.shadowButton.edit {
+  width: min-content;
+  margin-bottom: 24px;
+  margin-left: 16px;
+}
+
+.shadowButton.edit h1 {
+  font-family: Work Sans;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: capitalize;
+
+  display: flex;
+  align-items: center;
 }
 
 .content {
@@ -422,78 +442,6 @@ export default {
 .profilepage .details .heading .location {
   height: 20px;
   user-select: none;
-}
-
-.shadowButton {
-  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
-  padding: 8px 12px;
-  display: flex;
-  align-items: center;
-  height: fit-content;
-  user-select: none;
-  cursor: pointer;
-  justify-content: space-between;
-
-  gap: 8px;
-  flex-direction: row;
-  border-radius: 200px;
-  transition: all 100ms;
-  background-color: var(--background-color);
-}
-
-.shadowButton:not(.didCopy):not(.isEditing):hover {
-  filter: invert(1);
-}
-
-.shadowButton.isEditing:not(.didCopy):hover {
-  background-color: var(--theme-color);
-}
-
-.shadowButton.isEditing:not(.didCopy):hover h1 {
-  color: white;
-}
-
-.shadowButton.isEditing:not(.didCopy):hover img {
-  filter: invert(1);
-}
-
-.shadowButton h1 {
-  font-family: "Roboto Mono", monospace;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 12px;
-  color: var(--black);
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  width: 100%;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.shadowButton img {
-  width: 20px;
-  filter: invert(var(--filter));
-}
-
-.shadowButton.didCopy {
-  background-color: rgb(51, 255, 0) !important;
-}
-
-.shadowButton.edit {
-  width: min-content;
-  margin-bottom: 24px;
-  margin-left: 16px;
-}
-
-.shadowButton.edit h1 {
-  font-family: Work Sans;
-  font-weight: 600;
-  font-size: 14px;
-  text-transform: capitalize;
-
-  display: flex;
-  align-items: center;
 }
 
 .profilepage .details .badges {

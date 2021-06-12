@@ -108,8 +108,7 @@ class API {
    * @example const response = super.request('post', 'channels/group', undefined, body);
    */
   async request(method, route, headers, body) {
-
-    if (method === 'get') {
+    if (method === 'get' || method === 'delete') {
       var response = await axios[method](this.constructEndpoint(route), body || {
         withCredentials: true,
         headers
@@ -139,8 +138,20 @@ class Datacenter extends API {
     return (await super.request("get", `datacenter/all`)).data;
   }
 
-  async fetch(datacenterUUID) {
-    return (await super.request("get", `datacenter/${datacenterUUID}`)).data;
+  async fetch(datacenter) {
+    return (await super.request("get", `datacenter/${datacenter}`)).data;
+  }
+
+  async revokeMember(datacenter, user) {
+    return (await super.request("delete", `datacenter/${datacenter}/user/${user}`)).data;
+  }
+
+  async addMember(datacenter, user) {
+    return (await super.request("put", `datacenter/${datacenter}/user/${user}`)).data;
+  }
+
+  async addMachine(datacenter, machine) {
+    return (await super.request("put", `datacenter/${datacenter}/machine/${machine}`)).data;
   }
 
   async add(form) {
@@ -165,6 +176,7 @@ class User extends API {
         const response = await super.request("post", "login", { "Content-Type": "application/json" }, loginForm);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("username", loginForm.username);
+        localStorage.setItem("me", JSON.stringify(response.data.me));
         super.log("Logged in successfully");
         resolve(response.status);
       } catch (error) {
