@@ -70,4 +70,8 @@ export default {
   color: white;
 }
 
+.shadowButton:active {
+  transform: translateY(1px);
+}
+
 </style>

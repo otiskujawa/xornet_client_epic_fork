@@ -12,13 +12,14 @@
       </div>
       <div class="bullshit">
         <div class="coolShit">
+          <ShadowButton class="revoke" icon="stack" title="Add server" @click="isShowingServerCard = !isShowingServerCard"/>
           <MemberField :isOwner="datacenter.owner === me._id || me.is_admin" :members="datacenter.members" />
           <InfoField :icon="require('@/assets/icons/filled/stack.svg')" title="Servers Online" :value="datacenter.totalServersOnline || 0"/>
           <InfoField :icon="require('@/assets/icons/filled/network.svg')" title="Network Health" :value="`${datacenter.networkHealth || 0}%`"/>
           <InfoField :icon="require('@/assets/icons/filled/rj45.svg')" title="Current Bandiwdth" :value="`${datacenter.currentBandwidth || 0}Mbps`"/>
           <InfoField :icon="require('@/assets/icons/filled/ram.svg')" title="Total RAM Usage" :value="`${datacenter.ramUsage?.current || 0}/${datacenter.ramUsage?.max || 0}GB`"/>
         </div>
-
+        <ServerCard v-if="isShowingServerCard"/>
         <ServerList v-if="machines.size !== 0" :machines="Array.from(machines.values())"/> 
       </div>
     </div>
@@ -29,18 +30,22 @@
 import Icon from "@/components/misc/Icon";
 import socket from "@/services/socket.js";
 import DatacenterCard from "@/components/misc/DatacenterCard";
+import ServerCard from "@/components/misc/ServerCard";
 import DatacenterButton from "@/components/dashboard/DatacenterButton";
 import ServerList from "@/components/dashboard/ServerList";
 import InfoField from "@/components/dashboard/InfoField";
 import MemberField from "@/components/dashboard/MemberField";
+import ShadowButton from "@/components/dashboard/ShadowButton";
 export default {
   name: "Datacenters",
   components: {
     Icon,
     ServerList,
     DatacenterButton,
+    ServerCard,
     DatacenterCard,    
     MemberField,
+    ShadowButton,
     InfoField,
   },
   computed: {
@@ -63,6 +68,7 @@ export default {
     return {
       datacenters: [],
       isAddingNew: false,
+      isShowingServerCard: false,
       machines: new Map(),
     };
   },
@@ -109,14 +115,17 @@ export default {
   width: 100%;
   justify-content: center;
   height: 224px;
+  min-height: 224px;
 }
 
 .datacenters .heading img {
   user-select: none;
+  max-height: 80%;
 }
 
 .datacenters .heading .banner {
   width: 100%;
+  min-height: 224px;
   height: 224px;
   position: absolute;
   top: 0;

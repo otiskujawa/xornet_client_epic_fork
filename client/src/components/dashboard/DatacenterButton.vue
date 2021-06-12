@@ -65,7 +65,8 @@ export default {
 
 .datacenter .logo {
   max-width: 80%;
-}
+  max-height: 60%;
+} 
 
 .datacenter .heading  {
   width: 100%;

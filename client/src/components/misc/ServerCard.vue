@@ -1,11 +1,13 @@
 <template>
   <div class="card">
-    <a href="https://cdn.discordapp.com/attachments/807448839346716683/853054616870322256/spaz.gif" target="_blank"><img src="https://cdn.discordapp.com/attachments/807448839346716683/853054616870322256/spaz.gif" alt=""/></a>
+    <a href="https://cdn.discordapp.com/attachments/807448839346716683/853054616870322256/spaz.gif" target="_blank">
+      <img src="https://cdn.discordapp.com/attachments/806300597338767450/853124043486134272/f23a88ed1cb21f394a560354c80026f6e4df643cr1-723-666v2_uhq.jpg" alt=""/>
+    </a>
     <div class="content">
       <form v-on:submit.prevent="!isLoading && !isFormValid ? add() : null">
         <div class="text">  
-          <h1>Add member to datacenter</h1>
-          <p>Type the users uuid</p>
+          <h1>Add server to datacenter</h1>
+          <p>Type the servers uuid</p>
         </div>
 
         <div class="fields">
@@ -21,7 +23,7 @@
 <script>
 
 export default {
-  name: "MemberCard",
+  name: "ServerCard",
   data() {
     return {
       form: {
@@ -32,7 +34,7 @@ export default {
   },
   computed: {
     isFormValid: function() {
-      const uuidRegex = /\b[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}\b/;
+      const uuidRegex = /\b([0-9a-f]{16})|([0-9a-f]{32})\b/;
       return Object.values(this.form).some(field => !uuidRegex.test(field.toLowerCase()));
     }
   },
@@ -40,7 +42,7 @@ export default {
     async add() {
       this.isLoading = true;
       try {
-        const status = await this.api.datacenters.addMember(this.$route.params.name, this.form.uuid);
+        const status = await this.api.datacenters.addMachine(this.$route.params.name, this.form.uuid);
         if (status == 200) {
           console.log("added");
         }

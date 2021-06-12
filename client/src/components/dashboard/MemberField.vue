@@ -61,7 +61,6 @@ export default {
   height: 24px;
   object-fit: cover;
   border-radius: 50px;
-  filter: invert(var(--filter));
 }
 
 .membersInfo h1 {

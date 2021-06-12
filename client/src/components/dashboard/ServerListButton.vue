@@ -278,6 +278,7 @@ export default {
 .button .field.datacenter img {
   width: 18px;
   height: 18px;
+  filter: invert(var(--filter));
 }
 
 .button .info .status {
