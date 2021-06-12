@@ -51,7 +51,7 @@
     <router-link class="field owner" :to="{ name: 'profile', params: { username: machine?.owner?.username } }"><img :src="machine?.owner?.profileImage" :alt="machine?.owner?.username" />{{ machine.owner.username }}</router-link>
 
     <!-- Datacenter Column -->
-    <div class="field datacenter">{{ machine.datacenter ? machine.datacenter.name : "Unassigned" }}</div>
+    <router-link class="field datacenter" :to="{ name: 'datacenters', params: { name: machine.datacenter?.name } }"><img :src="machine.datacenter?.logo ?? require('@/assets/icons/filled/missing.svg')" :alt="machine.datacenter?.name" />{{ machine.datacenter ? machine.datacenter.name : "Unassigned" }}</router-link>
 
     <!-- Platform Column -->
     <div class="platform">
@@ -270,6 +270,15 @@ export default {
   min-width: 66px;
 }
 
+.button .field.datacenter{
+  display: flex;
+  gap: 8px;
+}
+
+.button .field.datacenter img {
+  width: 18px;
+  height: 18px;
+}
 
 .button .info .status {
   background: linear-gradient(110.78deg, rgb(118, 230, 80) -1.13%, rgb(249, 214, 73) 15.22%, rgb(240, 142, 53) 32.09%, rgb(236, 81, 87) 48.96%, rgb(255, 24, 189) 67.94%, rgb(26, 75, 255) 85.34%, rgb(98, 216, 249) 99.57%);

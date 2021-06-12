@@ -133,8 +133,8 @@ export default {
           return 0;
         },
         datacenter: (a, b) => {
-          if (a.datacenter < b.datacenter) return -1;
-          if (a.datacenter > b.datacenter) return 1;
+          if (a.datacenter?.name < b.datacenter?.name || b.datacenter?.name == "" || !b.datacenter) return -1;
+          if (a.datacenter?.name > b.datacenter?.name) return 1;
           return 0;
         },
       };
