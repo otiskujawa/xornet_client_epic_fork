@@ -108,18 +108,19 @@ class API {
    * @example const response = super.request('post', 'channels/group', undefined, body);
    */
   async request(method, route, headers, body) {
-    if (method === 'get' || method === 'delete') {
-      var response = await axios[method](this.constructEndpoint(route), body || {
-        withCredentials: true,
-        headers
-      }
+    if (method === "get" || method === "delete") {
+      var response = await axios[method](
+        this.constructEndpoint(route),
+        body || {
+          withCredentials: true,
+          headers
+        }
       ).catch(error => this.logError(`${method.toUpperCase()} ${route}`, error));
     } else {
       var response = await axios[method](this.constructEndpoint(route), body || undefined, {
         withCredentials: true,
         headers
-      }
-      ).catch(error => this.logError(`${method.toUpperCase()} ${route}`, error));
+      }).catch(error => this.logError(`${method.toUpperCase()} ${route}`, error));
     }
 
     this.logResponse(`${method.toUpperCase()} ${route}`, response);
@@ -132,7 +133,6 @@ class Datacenter extends API {
     super();
     super.log("Initialized datacenter class");
   }
-
 
   async fetchAll() {
     return (await super.request("get", `datacenter/all`)).data;
@@ -264,7 +264,7 @@ class Machine extends API {
 const api = {
   user: new User(),
   machine: new Machine(),
-  datacenters: new Datacenter(),
+  datacenters: new Datacenter()
 };
 
 console.log(`%c[API]` + `%c [Class Loaded]`, "color: black; background-color: #aa66ff; padding: 2px; border-radius: 4px; font-weight: bold;", "color: #cba1ff;");
