@@ -2,6 +2,17 @@
   <router-view />
 </template>
 
+<script>
+import eventHandler from "@/services/eventHandler.js";
+export default {
+  async mounted() {
+    eventHandler.on('error', response => {
+      console.log('ERROR CAPTURED FROM EVENTHANDLER POG')
+    })
+  }
+}
+</script>>
+
 <style>
 :root {
   /* Static colors that wont change */

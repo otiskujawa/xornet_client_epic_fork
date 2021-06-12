@@ -26,8 +26,8 @@
           <MemberField :isOwner="datacenter.owner === me._id || me.is_admin" :members="datacenter.members" />
           <InfoField :icon="require('@/assets/icons/filled/stack.svg')" title="Servers Online" :value="`${machines.size || 0}/${stats.totalMachines || 0}`" />
           <InfoField :icon="require('@/assets/icons/filled/network.svg')" title="Network Health" :value="`${datacenter.networkHealth || 0}%`" />
-          <InfoField :icon="require('@/assets/icons/filled/rj45.svg')" title="Current Bandiwdth" :value="`${stats.currentBandwidth.toFixed(2) || 0}Mbps`" />
-          <InfoField :icon="require('@/assets/icons/filled/ram.svg')" title="Total RAM Usage" :value="`${stats.ramUsage?.current.toFixed(2) || 0}/${stats.ramUsage?.max.toFixed(2) || 0}GB`" />
+          <InfoField :icon="require('@/assets/icons/filled/rj45.svg')" title="Current Bandiwdth" :value="`${stats.currentBandwidth?.toFixed(2) || 0}Mbps`" />
+          <InfoField :icon="require('@/assets/icons/filled/ram.svg')" title="Total RAM Usage" :value="`${stats.ramUsage?.current?.toFixed(2) || 0}/${stats.ramUsage?.max?.toFixed(2) || 0}GB`" />
         </div>
         <ServerCard v-if="isShowingServerCard" />
         <ServerList v-if="machines.size !== 0" :machines="Array.from(machines.values())" />

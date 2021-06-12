@@ -1,4 +1,5 @@
 import axios from "axios";
+import eventHandler from "./eventHandler";
 
 let ROOT_PATH = "https://backend.xornet.cloud";
 
@@ -69,6 +70,7 @@ class API {
    */
   logError(method, response) {
     if (!response) return;
+    eventHandler.emit('error', response);
     if (response.data?.message) this.error(method, response.data?.message);
     else if (response?.data) this.error(method, response?.data);
     else this.error(method, response);
