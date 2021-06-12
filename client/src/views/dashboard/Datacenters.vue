@@ -10,12 +10,16 @@
         <img class="banner" :src="datacenter.banner || 'https://i.redd.it/cxrn0h5ksd131.jpg'" :alt="datacenter.name" />
         <img class="logo" :src="datacenter.logo || 'https://cdn.discordapp.com/attachments/807448839346716683/853054616870322256/spaz.gif'" :alt="datacenter.name" />
       </div>
-      <div class="coolShit">
-        <MemberField :isOwner="datacenter.owner === me._id || me.is_admin" :members="datacenter.members" />
-        <InfoField :icon="require('@/assets/icons/filled/stack.svg')" title="Servers Online" :value="datacenter.totalServersOnline || 0"/>
-        <InfoField :icon="require('@/assets/icons/filled/network.svg')" title="Network Health" :value="`${datacenter.networkHealth || 0}%`"/>
-        <InfoField :icon="require('@/assets/icons/filled/rj45.svg')" title="Current Bandiwdth" :value="`${datacenter.currentBandwidth || 0}Mbps`"/>
-        <InfoField :icon="require('@/assets/icons/filled/ram.svg')" title="Total RAM Usage" :value="`${datacenter.ramUsage?.current || 0}/${datacenter.ramUsage?.max || 0}GB`"/>
+      <div class="bullshit">
+        <div class="coolShit">
+          <MemberField :isOwner="datacenter.owner === me._id || me.is_admin" :members="datacenter.members" />
+          <InfoField :icon="require('@/assets/icons/filled/stack.svg')" title="Servers Online" :value="datacenter.totalServersOnline || 0"/>
+          <InfoField :icon="require('@/assets/icons/filled/network.svg')" title="Network Health" :value="`${datacenter.networkHealth || 0}%`"/>
+          <InfoField :icon="require('@/assets/icons/filled/rj45.svg')" title="Current Bandiwdth" :value="`${datacenter.currentBandwidth || 0}Mbps`"/>
+          <InfoField :icon="require('@/assets/icons/filled/ram.svg')" title="Total RAM Usage" :value="`${datacenter.ramUsage?.current || 0}/${datacenter.ramUsage?.max || 0}GB`"/>
+        </div>
+
+        <ServerList v-if="machines.size !== 0" :machines="Array.from(machines.values())"/> 
       </div>
     </div>
   </div>
@@ -23,14 +27,17 @@
 
 <script>
 import Icon from "@/components/misc/Icon";
+import socket from "@/services/socket.js";
 import DatacenterCard from "@/components/misc/DatacenterCard";
 import DatacenterButton from "@/components/dashboard/DatacenterButton";
+import ServerList from "@/components/dashboard/ServerList";
 import InfoField from "@/components/dashboard/InfoField";
 import MemberField from "@/components/dashboard/MemberField";
 export default {
   name: "Datacenters",
   components: {
     Icon,
+    ServerList,
     DatacenterButton,
     DatacenterCard,    
     MemberField,
@@ -47,14 +54,29 @@ export default {
       return JSON.parse(localStorage.getItem("me"));
     }
   },
+  watch: {
+    $route(to, from) {
+      if (to.name) this.machines.clear();
+    }
+  },
   data() {
     return {
       datacenters: [],
       isAddingNew: false,
+      machines: new Map(),
     };
   },
   async mounted() {
     this.datacenters = await this.api.datacenters.fetchAll();
+
+    socket.on("machines", machines => {
+      console.log(`%c[WS]` + `%c [Machines]`, "color: black; background-color: #ff4488; padding: 2px; border-radius: 4px; font-weight: bold;", "color: #ff77aa;", machines);
+
+      // Temp scuff way to quickly illustrate how datacenters will show machines from them
+      Object.values(machines).forEach(machine => {
+        machine.uuid && machine.datacenter?._id === this.datacenter._id ? this.machines.set(machine.uuid, machine) : null
+      });
+    });
   },
 };
 </script>
@@ -72,6 +94,12 @@ export default {
   display: flex;
   gap: 8px;
   flex-direction: column;
+}
+
+.datacenters .content .bullshit {
+  display: flex;
+  gap: 8px;
+  width: 100%;
 }
 
 .datacenters .heading {
@@ -106,6 +134,7 @@ export default {
 
 .datacenters .content .coolShit {
   width: 268px;
+  min-width: 268px;
   display: flex;
   flex-direction: column;
   gap: 8px;
