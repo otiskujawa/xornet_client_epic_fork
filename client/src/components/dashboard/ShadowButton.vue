@@ -36,7 +36,7 @@ export default {
   flex-direction: row;
   border-radius: 200px;
   transition: all 100ms;
-  background-color: var(--background-color);
+  background-color: var(--shadowButton-color);
 }
 
 .shadowButton h1 {

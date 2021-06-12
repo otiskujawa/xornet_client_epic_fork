@@ -126,6 +126,8 @@ export default {
 <style scoped>
 .datacenters {
   width: 100%;
+  height: 100vh;
+  overflow: scroll;
   padding: 8px;
 }
 .datacenters .buttons {

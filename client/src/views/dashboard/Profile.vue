@@ -1,9 +1,13 @@
 <template>
   <div class="profilepage" v-if="profile.username">
     <div class="heading">
-      <img class="profileBanner" @click="$refs.profileBanner.click()" :src="profile.profileBanner?.url || 'https://cdn.discordapp.com/attachments/806300597338767450/849668963033153606/Normal.gif'" :alt="profile.username" />
+      <div class="profileHeader">
+        <img class="profileBanner" @click="$refs.profileBanner.click()" :src="profile.profileBanner?.url || 'https://cdn.discordapp.com/attachments/806300597338767450/849668963033153606/Normal.gif'" :alt="profile.username" />
+        <Icon class="profileEdit" v-if="isEditing" icon="edit" />
+      </div>
       <div class="profileImage" @click="$refs.profileImage.click()" :class="{ border: profile.profileImage?.hasAlpha }" :style="{ 'background-image': `url(${profile.profileImage?.url ?? 'https://wallpapercave.com/wp/wp8846945.jpg'})` }">
         <div class="xornetBadge" v-if="profile.isDev"><img :src="require('@/assets/logos/logo.svg')" alt="Xornet Developer" /></div>
+        <Icon class="profileEdit" v-if="isEditing" icon="edit" />
       </div>
 
       <form v-if="isEditing">
@@ -264,8 +268,8 @@ export default {
 .profilepage {
   min-width: 100%;
   min-height: 100%;
+  height: 100vh;
   position: relative;
-  height: 100%;
   overflow: scroll;
 }
 
@@ -282,10 +286,18 @@ export default {
 .profilepage .heading .profileBanner {
   width: 100%;
   height: 300px;
-  position: absolute;
   top: 0;
   object-fit: cover;
   position: absolute;
+}
+
+.profilepage .heading .profileHeader .profileEdit {
+  width: 64px;
+  position: absolute;
+  top: 50%;
+  filter:invert(1);
+  left: 50%;
+  transform: translate(-50%, -60%);
 }
 
 .profilepage .heading .profileImage {
@@ -307,6 +319,15 @@ export default {
 
 .profilepage .heading .profileImage.border {
   border: 6px solid transparent;
+}
+
+.profilepage .heading .profileImage .profileEdit {
+  width: 64px;
+  position: absolute;
+  top: 50%;
+  filter:invert(1);
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .profilepage .heading .xornetBadge {

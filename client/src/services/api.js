@@ -143,7 +143,7 @@ class Datacenter extends API {
   }
 
   async fetchMachineCount(datacenter) {
-    return (await super.request("get", `datacenter/${datacenter}/machine/count`)).data;
+    if (datacenter) return (await super.request("get", `datacenter/${datacenter}/machine/count`)).data;
   }
 
   async fetch(datacenter) {

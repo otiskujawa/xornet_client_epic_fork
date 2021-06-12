@@ -4,6 +4,7 @@ import { ref, watch } from "vue";
 
 const darkStyle = {
   "--background-color": "var(--darkmode-background-color)",
+  "--shadowButton-color": "var(--darkmode-shadowButton-color)",
   "--white": "var(--darkmode-white)",
   "--black": "var(--darkmode-black)",
   "--slyColor": "var(--darkmode-slyColor)",
@@ -15,6 +16,7 @@ const darkStyle = {
 
 const lightStyle = {
   "--background-color": "#fff",
+  "--shadowButton-color": "#fff",
   "--white": "#f6f6f6",
   "--black": "#000",
   "--slyColor": "#414569",

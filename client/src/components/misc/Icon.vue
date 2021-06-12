@@ -29,4 +29,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+/* img{
+  filter:invert(var(--filter));
+} */
+</style>
