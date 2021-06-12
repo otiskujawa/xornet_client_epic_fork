@@ -1,31 +1,18 @@
 <template>
   <div>
-    <div id="popup birus">
-      <transition name="fade">
-        <p v-if="show">{{errorMessage}}</p>
-      </transition>
-    </div>
+    <Popup/>
     <router-view />
   </div>
 </template>
 
 <script>
-import eventHandler from "@/services/eventHandler.js";
+import Popup from "@/components/misc/Popup"
 export default {
-  data() {
-    return {
-      show: false,
-      errorMessage: 'null'
-    }
-  },
-  async mounted() {
-    eventHandler.on('error', response => {
-      this.show = true;
-      this.errorMessage = response;
-      setTimeout(() => this.show = false, 3000);
-    })
+  components: {
+    Popup
   }
 }
+
 </script>>
 
 <style>
