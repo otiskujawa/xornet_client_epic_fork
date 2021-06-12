@@ -1,14 +1,15 @@
 <template>
-  <div class="popup" v-if="show">
-    <div class="content">
-      <transition name="fade">
+  <transition name="bounce">
+    <div class="popup" v-if="show">
+      <div class="content">
+        <progress class="progressBar" :value="timeoutProgress" :max="timeoutLength / 1000"></progress>
         <div class="shit">
-          <p v-if="show">{{errorMessage[0].message}}</p>
+          <p ><strong>{{errorMethod}}</strong> - {{errorMessage}}</p>
           <Icon icon="x" class="xButton" @click="show = !show"/>
         </div>
-      </transition>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -24,13 +25,27 @@ export default {
     return {
       show: false,
       errorMessage: 'null',
+      errorMethod: 'null',
+      timeoutProgress: 0,
+      timeoutLength: 10000,
     }
   },
   async mounted() {
-    eventHandler.on('error', response => {
+    let sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+    eventHandler.on('error', async error => {
+      this.timeoutProgress = 0;
+      this.timeoutLength = 10000;
       this.show = true;
-      this.errorMessage = response;
-      setTimeout(() => this.show = false, 10000);
+      this.errorMessage = error.messages[0].response.data.message;
+      this.errorMethod = `${error.messages[0].response.status} ${error.method}`;
+      
+      for (let i = 0; i < this.timeoutLength / 1000; i++) {
+        this.timeoutProgress++;
+        await sleep(this.timeoutLength / 10);
+      }
+      
+      this.show = false;
     })
   }
 }
@@ -47,6 +62,8 @@ export default {
   align-items: center;
   width: 100%;
 
+  user-select: none;
+
   min-height: 48px;
   height: fit-content;
   z-index: 11000;
@@ -57,16 +74,34 @@ export default {
   background-color: var(--theme-color);
   box-shadow: rgb(0 0 0 / 10%) 0px 10px 20px;
   color: white;
-  
+
+  position: relative;
+  user-select: initial;
   padding: 8px;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  border-radius: 8px;
+  border-radius: 0px 0px 4px 4px;
   width: 75%;
   height: 100%;
+}
+
+.popup .content .progressBar {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  border: none;
+  height: 4px;
+}
+
+.popup .content .progressBar::-webkit-progress-bar {
+  background-color: transparent;
+}
+
+.popup .content .progressBar::-webkit-progress-value {
+  background-color: var(--bright-theme-color); 
 }
 
 .popup .content .shit {
@@ -76,11 +111,33 @@ export default {
   justify-content: space-between;
 }
 
+.popup .content .shit p {
+  font-size: 13px;
+}
+
 .popup .content .xButton {
   cursor: pointer;
   filter: invert(1);
   width: 24px;
   height: 24px;
+}
+
+.bounce-enter-active {
+  animation: bounce-in .4s ease-in-out;
+}
+.bounce-leave-active {
+  animation: bounce-in .4s reverse ease-in-out;
+}
+@keyframes bounce-in {
+  0% {
+    transform: translateY(-64px);
+  }
+  80% {
+    transform: translateY(8px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 

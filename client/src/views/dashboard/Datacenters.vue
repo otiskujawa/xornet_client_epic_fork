@@ -69,7 +69,7 @@ export default {
   },
   watch: {
     $route(to, from) {
-      if (to.name) this.machines.clear();
+      this.machines.clear();
     }
   },
   data() {
@@ -88,7 +88,7 @@ export default {
   },
   async mounted() {
     this.datacenters = await this.api.datacenters.fetchAll();
-    this.stats.totalMachines = (await this.api.datacenters.fetchMachineCount(this.datacenter.name)).count;
+    this.stats.totalMachines = (await this.api.datacenters.fetchMachineCount(this.datacenter?.name)).count;
 
     socket.on("machines", machines => {
       console.log(`%c[WS]` + `%c [Machines]`, "color: black; background-color: #ff4488; padding: 2px; border-radius: 4px; font-weight: bold;", "color: #ff77aa;", machines);
@@ -126,6 +126,7 @@ export default {
 <style scoped>
 .datacenters {
   width: 100%;
+  padding: 8px;
 }
 .datacenters .buttons {
   display: flex;

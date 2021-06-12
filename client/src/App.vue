@@ -23,7 +23,7 @@ export default {
   --dark-lighter: #18182c;
   --rogue-red-border: #f85149;
   --theme-color: #ff006b;
-  --bright-theme-color: #ff3a8c;
+  --bright-theme-color:  #ff81b5;
   --terminal-background: #0b0b15;
 
   /* Initial colors */
@@ -49,13 +49,6 @@ export default {
   /* This variable decides weither the images on the buttons will have their color inverted 
     it switches states if darkmode is on or off in serverList.vue */
   --filter: 0;
-}
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
 }
 
 * {

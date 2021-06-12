@@ -39,7 +39,7 @@ class API {
    * @private
    */
   error(method, ...messages) {
-    eventHandler.emit('error', messages);
+    eventHandler.emit('error', { method, messages });
 
     // prettier-ignore
     console.log(

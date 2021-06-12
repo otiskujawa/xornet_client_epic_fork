@@ -361,20 +361,20 @@ export default {
   align-items: center;
 }
 
-.content {
+.profilepage .content {
   display: flex;
   margin-top: 24px;
   gap: 64px;
 }
 
-.stats {
+.profilepage .stats {
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(4, 224px);
   grid-template-rows: repeat(4, 72px);
 }
 
-.speedtest {
+.profilepage .speedtest {
   width: 100%;
   padding: 16px 16px 20px 16px;
   border-radius: 8px;
@@ -388,12 +388,12 @@ export default {
   flex-direction: column;
 }
 
-.speedtest:hover {
+.profilepage .speedtest:hover {
   transform: translateY(-1px);
   box-shadow: rgb(0 0 0 / 10%) 0px 10px 20px;
 }
 
-.speedtest h1 {
+.profilepage .speedtest h1 {
   font-family: "Roboto Mono";
   font-style: normal;
   font-weight: bold;
@@ -403,13 +403,13 @@ export default {
   color: var(--black);
 }
 
-.speedtest h1 strong {
+.profilepage .speedtest h1 strong {
   font-family: "Roboto Mono";
   color: #c8c8c8;
   text-transform: lowercase;
 }
 
-.speedtest .gauges {
+.profilepage .speedtest .gauges {
   display: flex;
   gap: 16px;
 }
@@ -481,13 +481,13 @@ section h1 {
   color: #c8c8c8;
 }
 
-section.socials {
+.profilepage section.socials {
   display: grid;
   grid-template-columns: repeat(2, minmax(50px, 1fr));
   gap: 8px;
 }
 
-.points {
+.profilepage .points {
   background: linear-gradient(90deg, #db00ff 0%, #8000ff 31.77%, #00b2ff 64.06%, #00fff0 98.44%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -496,7 +496,7 @@ section.socials {
   font-size: 36px;
 }
 
-.descriptionText {
+.profilepage .descriptionText {
   font-family: Work Sans;
   font-style: normal;
   font-weight: 600;
@@ -510,13 +510,13 @@ section.socials {
   color: var(--black);
 }
 
-.textArea {
+.profilepage .textArea {
   border: none;
   resize: none;
   background: none;
 }
 
-.textArea.editing {
+.profilepage .textArea.editing {
   background-color: white;
   padding: 8px;
   border-radius: 8px;
@@ -524,7 +524,7 @@ section.socials {
   box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
 }
 
-.line {
+.profilepage .line {
   width: 100%;
   height: 1px;
   margin-top: 8px;
