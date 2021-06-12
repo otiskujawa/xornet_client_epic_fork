@@ -101,6 +101,7 @@ export default {
 .datacenters .heading .logo {
   z-index: 2;
   width: 224px;
+  filter: invert(var(--filter));
 }
 
 .datacenters .content .coolShit {

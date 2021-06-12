@@ -8,13 +8,13 @@
     </div>
     <div v-if="active" class="details">
       <!-- <p>{{log.message?.error || log.message}}</p> -->
-      <div class="field" v-for="(value, key) of log.message" :key="key">
-        <h1>{{ key.toCapitalized() }}</h1>
+      <div class="field" v-for="(value, key) of JSON.parse(log.message)" :key="key">
+        <h1>{{ key }}</h1>
         <pre v-if="JSON.stringify(value).startsWith('{')">
           <code v-html="format(value)" class="language-json hljs" ></code>
         </pre>
         <!-- <highlightjs v-if="JSON.stringify(value).startsWith('{')" language='json' :code="JSON.stringify(value)" /> -->
-        <p v-if="!JSON.stringify(value).startsWith('{')">{{ value }}</p>
+        <p v-else>{{ value }}</p>
       </div>
     </div>
   </div>

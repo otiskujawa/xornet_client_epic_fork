@@ -12,7 +12,7 @@
       </form>
 
       <ShadowButton title="Edit" icon="edit" v-if="!isEditing && profile.username == username" @click="isEditing = !isEditing" class="edit" />
-      <ShadowButton title="Save" icon="save" v-else @click="save(); isEditing = !isEditing;" class="edit" />
+      <ShadowButton title="Save" icon="save" v-else-if="profile.username == username" @click="save(); isEditing = !isEditing;" class="edit" />
   
     </div>
     <SocialCard :add="add" v-if="isAddingSocial && isEditing" />
