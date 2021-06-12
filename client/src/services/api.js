@@ -38,6 +38,8 @@ class API {
    * @private
    */
   error(method, ...messages) {
+    eventHandler.emit('error', messages);
+
     // prettier-ignore
     console.log(
       `%c[API]` + 
@@ -70,7 +72,6 @@ class API {
    */
   logError(method, response) {
     if (!response) return;
-    eventHandler.emit('error', response);
     if (response.data?.message) this.error(method, response.data?.message);
     else if (response?.data) this.error(method, response?.data);
     else this.error(method, response);

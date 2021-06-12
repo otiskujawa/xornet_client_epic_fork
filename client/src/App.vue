@@ -1,13 +1,28 @@
 <template>
-  <router-view />
+  <div>
+    <div id="popup birus">
+      <transition name="fade">
+        <p v-if="show">{{errorMessage}}</p>
+      </transition>
+    </div>
+    <router-view />
+  </div>
 </template>
 
 <script>
 import eventHandler from "@/services/eventHandler.js";
 export default {
+  data() {
+    return {
+      show: false,
+      errorMessage: 'null'
+    }
+  },
   async mounted() {
     eventHandler.on('error', response => {
-      console.log('ERROR CAPTURED FROM EVENTHANDLER POG')
+      this.show = true;
+      this.errorMessage = response;
+      setTimeout(() => this.show = false, 3000);
     })
   }
 }
@@ -47,6 +62,13 @@ export default {
   /* This variable decides weither the images on the buttons will have their color inverted 
     it switches states if darkmode is on or off in serverList.vue */
   --filter: 0;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 
 * {

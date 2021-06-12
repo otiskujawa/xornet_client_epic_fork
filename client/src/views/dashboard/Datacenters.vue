@@ -10,12 +10,6 @@
         <img class="banner" @click="$refs.banner.click()" :src="datacenter.banner || 'https://i.redd.it/cxrn0h5ksd131.jpg'" :alt="datacenter.name" />
         <img class="logo" @click="$refs.logo.click()" :src="datacenter.logo || 'https://cdn.discordapp.com/attachments/807448839346716683/853054616870322256/spaz.gif'" :alt="datacenter.name" />
       </div>
-
-      <form v-if="isEditing">
-        <input type="file" id="logo" ref="logo" style="display: none" name="logo" accept="image/svg+xml" />
-        <input type="file" id="banner" ref="banner" style="display: none" name="banner" accept="image/*" />
-      </form>
-
       <div class="bullshit">
         <div class="coolShit">
           <div class="buttons">
@@ -33,6 +27,10 @@
         <ServerList v-if="machines.size !== 0" :machines="Array.from(machines.values())" />
       </div>
     </div>
+    <form v-if="isEditing" style="display: none">
+      <input type="file" id="logo" ref="logo" name="logo" accept="image/svg+xml" />
+      <input type="file" id="banner" ref="banner" name="banner" accept="image/*" />
+    </form>
   </div>
 </template>
 
@@ -130,7 +128,6 @@ export default {
   width: 100%;
 }
 .datacenters .buttons {
-  padding: 8px;
   display: flex;
   gap: 8px;
 }
