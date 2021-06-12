@@ -2,12 +2,12 @@
   <div class="profilepage" v-if="profile.username">
     <div class="heading">
       <div class="profileHeader">
-        <img class="profileBanner" @click="$refs.profileBanner.click()" :src="profile.profileBanner?.url || 'https://cdn.discordapp.com/attachments/806300597338767450/849668963033153606/Normal.gif'" :alt="profile.username" />
-        <Icon class="profileEdit" v-if="isEditing" icon="edit" />
+        <img class="profileBanner" :src="profile.profileBanner?.url || 'https://cdn.discordapp.com/attachments/806300597338767450/849668963033153606/Normal.gif'" :alt="profile.username" />
+        <Icon class="profileEdit" @click="$refs.profileBanner.click()" v-if="isEditing" icon="edit" />
       </div>
-      <div class="profileImage" @click="$refs.profileImage.click()" :class="{ border: profile.profileImage?.hasAlpha }" :style="{ 'background-image': `url(${profile.profileImage?.url ?? 'https://wallpapercave.com/wp/wp8846945.jpg'})` }">
+      <div class="profileImage" :class="{ border: profile.profileImage?.hasAlpha }" :style="{ 'background-image': `url(${profile.profileImage?.url ?? 'https://wallpapercave.com/wp/wp8846945.jpg'})` }">
         <div class="xornetBadge" v-if="profile.isDev"><img :src="require('@/assets/logos/logo.svg')" alt="Xornet Developer" /></div>
-        <Icon class="profileEdit" v-if="isEditing" icon="edit" />
+        <Icon class="profileEdit" @click="$refs.profileImage.click()" v-if="isEditing" icon="edit" />
       </div>
 
       <form v-if="isEditing">
@@ -95,7 +95,8 @@
 
         <div class="line" v-if="profile.socials?.length != 0 || isEditing"></div>
 
-        <section>
+        <section class="descriptionSection">
+          <Icon class="profileEdit" v-if="isEditing" icon="edit" />
           <h1 class="descriptionHeading" v-if="profile.bio && !isEditing">Bio</h1>
           <textarea v-if="!isEditing" maxlength="256" class="descriptionText textArea" cols="30" rows="10" v-model="profile.bio" disabled></textarea>
           <textarea v-if="isEditing" maxlength="256" class="descriptionText textArea editing" cols="30" rows="10" v-model="profile.bio"></textarea>
@@ -292,12 +293,22 @@ export default {
 }
 
 .profilepage .heading .profileHeader .profileEdit {
-  width: 64px;
+  cursor: pointer;
+  transition: 100ms ease;
+  width: 128px;
   position: absolute;
-  top: 50%;
-  filter:invert(1);
+  top: 40%;
+  filter: invert(1);
   left: 50%;
-  transform: translate(-50%, -60%);
+  transform: translate(-50%, -50%);
+}
+
+.profilepage .heading .profileHeader .profileEdit:hover {
+  width: 144px;
+}
+
+.profilepage .heading .profileHeader .profileEdit:active {
+  width: 112px;
 }
 
 .profilepage .heading .profileImage {
@@ -322,12 +333,22 @@ export default {
 }
 
 .profilepage .heading .profileImage .profileEdit {
+  cursor: pointer;
+  transition: 100ms ease;
   width: 64px;
   position: absolute;
   top: 50%;
-  filter:invert(1);
+  filter: invert(1);
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.profilepage .heading .profileImage .profileEdit:hover {
+  width: 72px;
+}
+
+.profilepage .heading .profileImage .profileEdit:active {
+  width: 56px;
 }
 
 .profilepage .heading .xornetBadge {
@@ -528,7 +549,34 @@ section h1 {
   display: flex;
   align-items: center;
 
+  background-color: var(--background-color);
+
+  outline: none;
+
   color: var(--black);
+}
+
+.profilepage .descriptionSection {
+  position: relative;
+}
+
+.profilepage .descriptionSection .profileEdit {
+  cursor: pointer;
+  transition: 100ms ease;
+  width: 24px;
+  position: absolute;
+  filter: invert(1);
+  bottom: 20px;
+  right: 20px;
+  transform: translate(50%, 50%);
+  z-index: 999;
+}
+
+.profilepage .descriptionSection .profileEdit:hover {
+  width: 32px;
+}
+.profilepage .descriptionSection .profileEdit:active {
+  width: 16px;
 }
 
 .profilepage .textArea {
@@ -538,7 +586,6 @@ section h1 {
 }
 
 .profilepage .textArea.editing {
-  background-color: white;
   padding: 8px;
   border-radius: 8px;
   border: 2px var(--border-color) dashed;
