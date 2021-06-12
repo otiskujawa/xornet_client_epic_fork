@@ -8,7 +8,7 @@
       </div>
       <ShadowButton v-if="isOwner" colored class="revoke" title="Revoke" textonly @click="revoke(member._id)" />
     </router-link>
-    <ShadowButton v-if="isOwner" title="Add" textonly @click="showMemberCard = !showMemberCard" />
+    <ShadowButton v-if="isOwner" title="Add" icon="add" @click="showMemberCard = !showMemberCard" />
     <MemberCard v-if="showMemberCard" />
   </div>
 </template>

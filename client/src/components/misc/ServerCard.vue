@@ -11,7 +11,7 @@
         </div>
 
         <div class="fields">
-          <input v-model="form.uuid" class="inputField" type="text" placeholder="c478ea46-f8f6-467e-a497-e2ad5caaa976" />
+          <input v-model="form.uuid" class="inputField" type="text" placeholder="c478ea46f8f6467ea497e2ad5caaa976" />
         </div>
 
         <button type="submit" :class="{ disabled: isFormValid || isLoading }">Add<img v-if="isLoading" :src="require('@/assets/animations/loading.gif')" alt="" /></button>
@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     isFormValid: function() {
-      const uuidRegex = /\b([0-9a-f]{16})|([0-9a-f]{32})\b/;
+      const uuidRegex = /([0-9a-f]{16})|([0-9a-f]{32})/g;
       return Object.values(this.form).some(field => !uuidRegex.test(field.toLowerCase()));
     }
   },

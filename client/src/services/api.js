@@ -157,6 +157,19 @@ class Datacenter extends API {
   async add(form) {
     return (await super.request("post", `datacenter/new`, { "Content-Type": "application/json" }, form)).data;
   }
+
+  /**
+   * Post signup credentials into backend and returns the result of signup process
+   * @param {Blob} logo image Blob, which contains image class from the refs
+   * @param {Blob} banner image Blob, which contains image class from the refs
+   */
+  async save(datacenter, logo, banner) {
+    let formData = new FormData();
+    formData.append("logo", logo);
+    formData.append("banner", banner);
+
+    return super.request("patch", `datacenter/${datacenter}`, { "Content-Type": "multipart/form-data" }, formData);
+  }
 }
 
 class User extends API {
