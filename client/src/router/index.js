@@ -61,7 +61,7 @@ const routes = [
       },
       // Xornet Signup
       {
-        path: "/datacenters/:datacenter?",
+        path: "datacenters/:name?",
         name: "datacenters",
         component: () => import(/* webpackChunkName: "datacenters" */ "@/views/dashboard/Datacenters.vue"),
         meta: {
