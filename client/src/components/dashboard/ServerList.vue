@@ -136,7 +136,7 @@ export default {
           if (a.datacenter?.name < b.datacenter?.name || b.datacenter?.name == "" || !b.datacenter) return -1;
           if (a.datacenter?.name > b.datacenter?.name) return 1;
           return 0;
-        },
+        }
       };
 
       let sortedArray = this.machines.sort((a, b) => sortingAlgorithms[sortBy](a, b));
@@ -285,8 +285,7 @@ export default {
   min-width: 100px;
 }
 
-.columns  .field.owner {
+.columns .field.owner {
   min-width: 124px;
 }
-
 </style>

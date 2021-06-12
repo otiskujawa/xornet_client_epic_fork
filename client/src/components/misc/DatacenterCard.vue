@@ -3,7 +3,7 @@
     <a href="https://cdn.discordapp.com/attachments/714219928181276802/852445270301999124/VR_RAVE.mp4" target="_blank"><img src="https://cdn.discordapp.com/attachments/806300597338767450/853048913229643776/duck.gif" alt=""/></a>
     <div class="content">
       <form v-on:submit.prevent="!isLoading && !isFormValid ? add() : null">
-        <div class="text">  
+        <div class="text">
           <h1>Add datacenter</h1>
           <p>Type in a name for your datacenter</p>
         </div>
@@ -24,7 +24,7 @@ export default {
   data() {
     return {
       form: {
-        name: "",
+        name: ""
       },
       isLoading: false
     };

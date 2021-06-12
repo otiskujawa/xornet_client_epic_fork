@@ -1,6 +1,6 @@
 <template>
-  <div class="shadowButton" :class="{colored}">
-    <h1>{{title}}</h1>
+  <div class="shadowButton" :class="{ colored }">
+    <h1>{{ title }}</h1>
     <Icon v-if="!textonly" :icon="icon" />
   </div>
 </template>
@@ -10,15 +10,15 @@ import Icon from "@/components/misc/Icon";
 export default {
   name: "ShadowButton",
   props: {
-    title: {type: String},
-    icon: {type: String},
-    textonly: {type: Boolean},
-    colored: {type: Boolean},
+    title: { type: String },
+    icon: { type: String },
+    textonly: { type: Boolean },
+    colored: { type: Boolean }
   },
   components: {
-    Icon,
-  },
-}
+    Icon
+  }
+};
 </script>
 
 <style>
@@ -52,7 +52,6 @@ export default {
   text-align: center;
 }
 
-
 .shadowButton img {
   width: 20px;
   filter: invert(var(--filter));
@@ -73,5 +72,4 @@ export default {
 .shadowButton:active {
   transform: translateY(1px);
 }
-
 </style>

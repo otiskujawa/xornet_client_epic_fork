@@ -1,9 +1,11 @@
 <template>
   <div class="card">
-    <a href="https://cdn.discordapp.com/attachments/807448839346716683/853054616870322256/spaz.gif" target="_blank"><img src="https://cdn.discordapp.com/attachments/807448839346716683/853054616870322256/spaz.gif" alt=""/></a>
+    <a href="https://cdn.discordapp.com/attachments/807448839346716683/853054616870322256/spaz.gif" target="_blank">
+      <img src="https://cdn.discordapp.com/attachments/807448839346716683/853054616870322256/spaz.gif" alt="" />
+    </a>
     <div class="content">
       <form v-on:submit.prevent="!isLoading && !isFormValid ? add() : null">
-        <div class="text">  
+        <div class="text">
           <h1>Add member to datacenter</h1>
           <p>Type the users uuid</p>
         </div>
@@ -19,13 +21,12 @@
 </template>
 
 <script>
-
 export default {
   name: "MemberCard",
   data() {
     return {
       form: {
-        uuid: "",
+        uuid: ""
       },
       isLoading: false
     };

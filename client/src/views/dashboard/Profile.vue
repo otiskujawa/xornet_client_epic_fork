@@ -12,8 +12,16 @@
       </form>
 
       <ShadowButton title="Edit" icon="edit" v-if="!isEditing && profile.username == username" @click="isEditing = !isEditing" class="edit" />
-      <ShadowButton title="Save" icon="save" v-else-if="profile.username == username" @click="save(); isEditing = !isEditing;" class="edit" />
-  
+      <ShadowButton
+        title="Save"
+        icon="save"
+        v-else-if="profile.username == username"
+        @click="
+          save();
+          isEditing = !isEditing;
+        "
+        class="edit"
+      />
     </div>
     <SocialCard :add="add" v-if="isAddingSocial && isEditing" />
 
@@ -78,7 +86,7 @@
             <img v-if="isEditing" :src="require(`@/assets/icons/filled/x.svg`)" />
           </div>
 
-          <ShadowButton title="Add" icon="add"  @click="isAddingSocial = !isAddingSocial" v-if="isEditing" :class="{ isEditing: isEditing }" />
+          <ShadowButton title="Add" icon="add" @click="isAddingSocial = !isAddingSocial" v-if="isEditing" :class="{ isEditing: isEditing }" />
         </section>
 
         <div class="line" v-if="profile.socials?.length != 0 || isEditing"></div>

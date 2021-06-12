@@ -1,15 +1,15 @@
 <template>
   <div class="membersInfo">
     <h1 class="title">Members</h1>
-    <router-link :to="{name: 'profile', params: {username: member.username}}" class="member" v-for="member of members" :key="member">
+    <router-link :to="{ name: 'profile', params: { username: member.username } }" class="member" v-for="member of members" :key="member">
       <div class="user">
-        <img :src="member.profileImage?.url" :alt="member.username">
-        <h1>{{member.username}}</h1>
+        <img :src="member.profileImage?.url" :alt="member.username" />
+        <h1>{{ member.username }}</h1>
       </div>
-      <ShadowButton v-if="isOwner" colored class="revoke" title="Revoke" textonly @click="revoke(member._id)"/>
+      <ShadowButton v-if="isOwner" colored class="revoke" title="Revoke" textonly @click="revoke(member._id)" />
     </router-link>
-    <ShadowButton v-if="isOwner" title="Add" textonly @click="showMemberCard = !showMemberCard"/>
-    <MemberCard v-if="showMemberCard"/>
+    <ShadowButton v-if="isOwner" title="Add" textonly @click="showMemberCard = !showMemberCard" />
+    <MemberCard v-if="showMemberCard" />
   </div>
 </template>
 
@@ -18,25 +18,24 @@ import ShadowButton from "@/components/dashboard/ShadowButton";
 import MemberCard from "@/components/misc/MemberCard";
 export default {
   name: "MemberField",
-  data(){
+  data() {
     return {
-      showMemberCard: false,
-    }
+      showMemberCard: false
+    };
   },
   props: {
-    members: {type: Array, required: true},
-    isOwner: {type: Boolean, required: true},
+    members: { type: Array, required: true },
+    isOwner: { type: Boolean, required: true }
   },
   components: {
     ShadowButton,
-    MemberCard,    
+    MemberCard
   },
   methods: {
-    async revoke(user){
+    async revoke(user) {
       await this.api.datacenters.revokeMember(this.$route.params.name, user);
-    },
-
-  },
+    }
+  }
 };
 </script>
 
@@ -96,5 +95,4 @@ export default {
   gap: 8px;
   align-items: center;
 }
-
 </style>

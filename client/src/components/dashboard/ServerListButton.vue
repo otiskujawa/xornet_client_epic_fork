@@ -51,7 +51,9 @@
     <router-link class="field owner" :to="{ name: 'profile', params: { username: machine?.owner?.username } }"><img :src="machine?.owner?.profileImage" :alt="machine?.owner?.username" />{{ machine.owner.username }}</router-link>
 
     <!-- Datacenter Column -->
-    <router-link class="field datacenter" :to="{ name: 'datacenters', params: { name: machine.datacenter?.name } }"><img :src="machine.datacenter?.logo ?? require('@/assets/icons/filled/missing.svg')" :alt="machine.datacenter?.name" />{{ machine.datacenter ? machine.datacenter.name : "Unassigned" }}</router-link>
+    <router-link class="field datacenter" :to="{ name: 'datacenters', params: { name: machine.datacenter?.name } }"
+      ><img :src="machine.datacenter?.logo ?? require('@/assets/icons/filled/missing.svg')" :alt="machine.datacenter?.name" />{{ machine.datacenter ? machine.datacenter.name : "Unassigned" }}</router-link
+    >
 
     <!-- Platform Column -->
     <div class="platform">
@@ -270,7 +272,7 @@ export default {
   min-width: 66px;
 }
 
-.button .field.datacenter{
+.button .field.datacenter {
   display: flex;
   gap: 8px;
 }

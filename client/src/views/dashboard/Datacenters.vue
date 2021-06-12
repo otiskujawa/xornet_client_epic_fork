@@ -2,8 +2,8 @@
   <div class="datacenters">
     <div class="buttons" v-if="!route">
       <DatacenterButton class="datacenter" :datacenter="datacenter" v-for="datacenter of datacenters" :key="datacenter" />
-      <DatacenterButton :addButton="true" @click="isAddingNew = !isAddingNew"/>
-      <DatacenterCard v-if="isAddingNew"/>
+      <DatacenterButton :addButton="true" @click="isAddingNew = !isAddingNew" />
+      <DatacenterCard v-if="isAddingNew" />
     </div>
     <div v-else-if="datacenter" class="content">
       <div class="heading">
@@ -12,15 +12,15 @@
       </div>
       <div class="bullshit">
         <div class="coolShit">
-          <ShadowButton class="revoke" icon="stack" title="Add server" @click="isShowingServerCard = !isShowingServerCard"/>
+          <ShadowButton class="revoke" icon="stack" title="Add server" @click="isShowingServerCard = !isShowingServerCard" />
           <MemberField :isOwner="datacenter.owner === me._id || me.is_admin" :members="datacenter.members" />
-          <InfoField :icon="require('@/assets/icons/filled/stack.svg')" title="Servers Online" :value="datacenter.totalServersOnline || 0"/>
-          <InfoField :icon="require('@/assets/icons/filled/network.svg')" title="Network Health" :value="`${datacenter.networkHealth || 0}%`"/>
-          <InfoField :icon="require('@/assets/icons/filled/rj45.svg')" title="Current Bandiwdth" :value="`${datacenter.currentBandwidth || 0}Mbps`"/>
-          <InfoField :icon="require('@/assets/icons/filled/ram.svg')" title="Total RAM Usage" :value="`${datacenter.ramUsage?.current || 0}/${datacenter.ramUsage?.max || 0}GB`"/>
+          <InfoField :icon="require('@/assets/icons/filled/stack.svg')" title="Servers Online" :value="datacenter.totalServersOnline || 0" />
+          <InfoField :icon="require('@/assets/icons/filled/network.svg')" title="Network Health" :value="`${datacenter.networkHealth || 0}%`" />
+          <InfoField :icon="require('@/assets/icons/filled/rj45.svg')" title="Current Bandiwdth" :value="`${datacenter.currentBandwidth || 0}Mbps`" />
+          <InfoField :icon="require('@/assets/icons/filled/ram.svg')" title="Total RAM Usage" :value="`${datacenter.ramUsage?.current || 0}/${datacenter.ramUsage?.max || 0}GB`" />
         </div>
-        <ServerCard v-if="isShowingServerCard"/>
-        <ServerList v-if="machines.size !== 0" :machines="Array.from(machines.values())"/> 
+        <ServerCard v-if="isShowingServerCard" />
+        <ServerList v-if="machines.size !== 0" :machines="Array.from(machines.values())" />
       </div>
     </div>
   </div>
@@ -43,16 +43,16 @@ export default {
     ServerList,
     DatacenterButton,
     ServerCard,
-    DatacenterCard,    
+    DatacenterCard,
     MemberField,
     ShadowButton,
-    InfoField,
+    InfoField
   },
   computed: {
     route: function() {
       return this.$route.params.name;
     },
-    datacenter: function(){
+    datacenter: function() {
       return this.datacenters.filter(datacenter => datacenter.name == this.route)[0];
     },
     me: function() {
@@ -69,7 +69,7 @@ export default {
       datacenters: [],
       isAddingNew: false,
       isShowingServerCard: false,
-      machines: new Map(),
+      machines: new Map()
     };
   },
   async mounted() {
@@ -80,10 +80,10 @@ export default {
 
       // Temp scuff way to quickly illustrate how datacenters will show machines from them
       Object.values(machines).forEach(machine => {
-        machine.uuid && machine.datacenter?._id === this.datacenter._id ? this.machines.set(machine.uuid, machine) : null
+        machine.uuid && machine.datacenter?._id === this.datacenter._id ? this.machines.set(machine.uuid, machine) : null;
       });
     });
-  },
+  }
 };
 </script>
 
@@ -91,7 +91,7 @@ export default {
 .datacenters {
   width: 100%;
 }
-.datacenters .buttons{
+.datacenters .buttons {
   padding: 8px;
   display: flex;
   gap: 8px;
@@ -158,5 +158,4 @@ export default {
   border: 1px solid var(--border-color);
   border-radius: 8px;
 }
-
 </style>

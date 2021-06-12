@@ -1,16 +1,15 @@
 <template>
-  <router-link v-if="!addButton" class="datacenter" :to="{name: 'datacenters', params: {name: datacenter.name}}">
+  <router-link v-if="!addButton" class="datacenter" :to="{ name: 'datacenters', params: { name: datacenter.name } }">
     <div class="heading">
-      <Icon icon="datacenter"/>
-      <h1>{{datacenter.name}}</h1>
+      <Icon icon="datacenter" />
+      <h1>{{ datacenter.name }}</h1>
     </div>
-    <img class="logo" :src="datacenter.logo || require('@/assets/icons/filled/stack.svg')" :alt="datacenter.name">
-    <div class="heading">
-    </div>
+    <img class="logo" :src="datacenter.logo || require('@/assets/icons/filled/stack.svg')" :alt="datacenter.name" />
+    <div class="heading"></div>
   </router-link>
   <div v-else class="datacenter">
     <div class="heading">
-      <Icon icon="add"/>
+      <Icon icon="add" />
       <h1>Create new</h1>
     </div>
   </div>
@@ -23,17 +22,16 @@ import DatacenterButton from "@/components/dashboard/DatacenterButton";
 export default {
   name: "DatacenterButton",
   components: {
-    Icon,
+    Icon
   },
   props: {
-    datacenter: {type: Object, required: true},
-    addButton: {type: Boolean, required: true},
-  },
+    datacenter: { type: Object, required: true },
+    addButton: { type: Boolean, required: true }
+  }
 };
 </script>
 
 <style scoped>
-
 .datacenter {
   width: 224px;
   height: 224px;
@@ -47,7 +45,6 @@ export default {
   align-items: center;
   transition: 100ms ease;
   border: 1px solid var(--border-color);
-
 }
 
 .datacenter:hover {
@@ -66,9 +63,9 @@ export default {
 .datacenter .logo {
   max-width: 80%;
   max-height: 60%;
-} 
+}
 
-.datacenter .heading  {
+.datacenter .heading {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -88,5 +85,4 @@ export default {
   text-transform: uppercase;
   font-weight: bold;
 }
-
 </style>
