@@ -4,7 +4,7 @@
       <circle cx="50" cy="50" r="40"></circle>
       <circle class="progress" cx="50" cy="50" r="40" :style="{ stroke: color, 'stroke-dashoffset': 250 - (250 * value) / maxValue }"></circle>
     </svg>
-    <Icon colored :color="color" :icon="icon"/>
+    <Icon :color="color" :icon="icon"/>
   </div>
 </template>
 
@@ -38,7 +38,6 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
   position: absolute;
-
 }
 
 .gaugeDriveLetter {

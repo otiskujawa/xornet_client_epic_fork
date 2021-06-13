@@ -1,5 +1,5 @@
 <template>
-  <div v-if="colored" class="coloredIconContainer gaugeIcon" :style="{'background-color': `${color}33`}">
+  <div v-if="color" class="coloredIconContainer gaugeIcon" :style="{'background-color': `${color}33`}">
     <div class="coloredIcon" :style="{'mask-image': `url(https://xornet.cloud${image})`, 'background-color': color}"></div>
   </div>
   <img v-else name="icon" class="blackIcon" :src="image" :alt="icon" />
@@ -11,7 +11,6 @@ export default {
   props: {
     icon: { type: String, required: true },
     default: { type: String, required: false },
-    colored: {type: Boolean, required: false, default: false },
     color: { type: String, required: false },
   },
   computed: {
