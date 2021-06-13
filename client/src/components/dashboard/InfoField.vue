@@ -1,6 +1,6 @@
 <template>
   <div class="info">
-    <img v-if="icon" :src="icon" :alt="title" />
+    <Icon v-if="icon" :icon="icon"/>
     <div class="text">
       <h1 class="title">{{ title }}</h1>
       <h1 class="value">{{ value }}</h1>
@@ -9,8 +9,12 @@
 </template>
 
 <script>
+import Icon from "@/components/misc/Icon"
 export default {
   name: "InfoField",
+  components: {
+    Icon,
+  },
   props: {
     icon: { type: String },
     title: { type: String, required: true },

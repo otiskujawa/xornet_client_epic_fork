@@ -28,7 +28,7 @@ export default {
 .logs {
   overflow-y: scroll;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   padding: 8px;
   display: flex;
   flex-direction: column;
