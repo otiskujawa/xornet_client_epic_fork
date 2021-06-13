@@ -2,10 +2,10 @@
   <div class="profilePage" v-if="profile.username">
     <div class="heading">
       <div class="header">
-        <img class="banner" :src="profile.banner?.url || 'https://cdn.discordapp.com/attachments/806300597338767450/849668963033153606/Normal.gif'" :alt="profile.username" />
+        <img class="banner" :src="profile.profileBanner?.url || 'https://cdn.discordapp.com/attachments/806300597338767450/849668963033153606/Normal.gif'" :alt="profile.username" />
         <Icon class="edit" @click="$refs.banner.click()" v-if="isEditing" icon="edit" />
       </div>
-      <div class="pfp" :class="{ border: profile.pfp?.hasAlpha }" :style="{ 'background-image': `url(${profile.profileImage?.url ?? 'https://wallpapercave.com/wp/wp8846945.jpg'})` }">
+      <div class="pfp" :class="{ border: profile.profileImage?.hasAlpha }" :style="{ 'background-image': `url(${profile.profileImage?.url ?? 'https://wallpapercave.com/wp/wp8846945.jpg'})` }">
         <div class="xornetBadge" v-if="profile.isDev"><img :src="require('@/assets/logos/logo.svg')" alt="Xornet Developer" /></div>
         <Icon class="edit" @click="$refs.pfp.click()" v-if="isEditing" icon="edit" />
       </div>
@@ -114,9 +114,9 @@
           </div>
         </a>
 
-        <InfoField nogauge :icon="require('@/assets/icons/filled/stack.svg')" title="Total servers" :value="profile.machines.length" />
-        <InfoField nogauge :icon="require('@/assets/icons/filled/ram.svg')" title="Total ram" :value="`${Math.ceil(profile.totalRam / 1000 / 1000 / 1000)}GB`" />
-        <InfoField nogauge :icon="require('@/assets/icons/filled/cpu.svg')" title="Total shared cores" :value="profile.totalCores" />
+        <InfoField nogauge icon="stack" title="Total servers" :value="profile.machines.length" />
+        <InfoField nogauge icon="ram" title="Total ram" :value="`${Math.ceil(profile.totalRam / 1000 / 1000 / 1000)}GB`" />
+        <InfoField nogauge icon="cpu" title="Total shared cores" :value="profile.totalCores" />
       </div>
     </div>
   </div>
