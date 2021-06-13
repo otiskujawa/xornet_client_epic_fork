@@ -30,7 +30,7 @@
     <SocialCard :add="add" v-if="isAddingSocial && isEditing" />
 
     <div class="content">
-      <div class="details" :class="{ editing: isEditing }">
+      <div class="profiileDetails" :class="{ editing: isEditing }">
         <div class="heading">
           <!-- make this change to the user's selected badge -->
           <img v-if="profile.badges?.owned[profile.badges.selected]" :src="require(`@/assets/badges/${profile.badges?.owned[profile.badges.selected]}.svg`)" />
@@ -400,7 +400,7 @@ export default {
   display: flex;
   gap: 16px;
 }
-.profilePage .details {
+.profilePage .profiileDetails {
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -409,13 +409,13 @@ export default {
   margin-left: 10vw;
   margin-bottom: 128px;
 }
-.profilePage .details section:not(.uuid) {
+.profilePage .profiileDetails section:not(.uuid) {
   display: flex;
   flex-direction: column;
   gap: 8px;
   justify-content: space-between;
 }
-.profilePage .details section h1 {
+.profilePage .profiileDetails section h1 {
   font-family: Work Sans;
   font-weight: 600;
   font-size: 14px;
@@ -424,22 +424,22 @@ export default {
   align-items: center;
   color: #c8c8c8;
 }
-.profilePage .details section.socials {
+.profilePage .profiileDetails section.socials {
   display: grid;
   grid-template-columns: repeat(2, minmax(50px, 1fr));
   gap: 8px;
 }
-.profilePage .details .heading {
+.profilePage .profiileDetails .heading {
   display: flex;
   gap: 8px;
   align-items: center;
 }
-.profilePage .details .heading .container {
+.profilePage .profiileDetails .heading .container {
   display: flex;
   gap: 8px;
   align-items: flex-end;
 }
-.profilePage .details .heading .username {
+.profilePage .profiileDetails .heading .username {
   font-family: "Work Sans";
   font-style: normal;
   font-weight: 600;
@@ -449,16 +449,16 @@ export default {
 
   color: var(--black);
 }
-.profilePage .details .heading .location {
+.profilePage .profiileDetails .heading .location {
   height: 20px;
   user-select: none;
 }
-.profilePage .details .badges {
+.profilePage .profiileDetails .badges {
   display: flex;
   flex-direction: row;
   gap: 8px;
 }
-.profilePage .details .badges .badge {
+.profilePage .profiileDetails .badges .badge {
   width: 28px;
   height: 28px;
   user-select: none;

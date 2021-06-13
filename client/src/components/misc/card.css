@@ -1,48 +1,3 @@
-<template>
-  <div class="view forgotpage">
-    <Header />
-    <div class="content">
-      <ForgotCard :image="'https://cdn.discordapp.com/attachments/806300597338767450/849532306846908416/tenor.gif'" />
-    </div>
-  </div>
-</template>
-
-<script>
-import Header from "@/components/home/Header";
-import ForgotCard from "@/components/misc/ForgotCard";
-
-export default {
-  name: "Forgot",
-  components: {
-    ForgotCard,
-    Header
-  }
-};
-</script>
-
-<style>
-.forgotpage {
-  min-width: 100%;
-  min-height: 100%;
-
-  background: linear-gradient(0deg, #ffffff, #ffffff), url("https://media.discordapp.net/attachments/677741501752672258/819677738154852372/image0.jpg"), #bcbcbc;
-  background-blend-mode: color, screen, normal;
-  background-repeat: no-repeat;
-  background-position: top;
-  background-size: cover;
-
-  position: relative;
-  height: 100%;
-}
-
-.forgotpage .content {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
 .card {
   width: 280px;
   overflow: hidden;
@@ -52,7 +7,11 @@ export default {
   min-height: 400px;
   box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
-  transform: scale(1.25);
+  position: absolute;
+  z-index: 500;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1.25);
 }
 
 .card a img {
@@ -106,6 +65,7 @@ export default {
 
   font-weight: 600;
   font-size: 12px;
+  border-radius: 4px;
 
   border: none;
   background-color: #f8f8f8;
@@ -117,6 +77,7 @@ export default {
   color: #c4c4c4;
 }
 .card .details form .fields p {
+  font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
   font-size: 10px;
@@ -125,6 +86,7 @@ export default {
 }
 
 .card .details form .fields p a {
+  font-family: Montserrat;
   color: var(--theme-color);
   font-weight: bold;
   font-style: normal;
@@ -148,7 +110,6 @@ export default {
   display: flex;
   align-items: center;
   gap: 8px;
-  white-space: nowrap;
 }
 .card .details form button.disabled {
   cursor: not-allowed;
@@ -171,4 +132,3 @@ export default {
   width: 16px;
   height: 16px;
 }
-</style>

@@ -23,16 +23,6 @@ const routes = [
   },
   // Xornet Signup
   {
-    path: "/forgot",
-    name: "forgot",
-    component: () => import(/* webpackChunkName: "forgot" */ "@/views/home/Forgot.vue"),
-    meta: {
-      title: "Xornet | Reset Password",
-      guest: true
-    }
-  },
-  // Xornet Signup
-  {
     path: "/signup",
     name: "signup",
     component: () => import(/* webpackChunkName: "signup" */ "@/views/home/Signup.vue"),
