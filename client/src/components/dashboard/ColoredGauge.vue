@@ -4,7 +4,7 @@
       <circle cx="50" cy="50" r="40"></circle>
       <circle class="progress" cx="50" cy="50" r="40" :style="{ stroke: color, 'stroke-dashoffset': 250 - (250 * value) / maxValue }"></circle>
     </svg>
-    <Icon :icon="icon" class="gaugeIcon"/>
+    <Icon colored :color="color" :icon="icon" class="gaugeIcon"/>
   </div>
 </template>
 
@@ -15,8 +15,8 @@ export default {
     name: "ColoredGauge",
     props: {
       icon: { type: String },
-      value: { type: Number, required: true, default: 0 },
-      maxValue: { type: Number, required: true, default: 100 },
+      value: { type: [Number, String], required: true, default: 0 },
+      maxValue: { type: [Number, String], required: true, default: 100 },
       color: { type: String, required: true, default: "#ff00b6" }
     },
     components: {
@@ -40,7 +40,6 @@ export default {
   position: absolute;
   height: 50%;
   width: 50%;
-  filter: invert(var(--filter));
 }
 
 .gaugeDriveLetter {

@@ -30,7 +30,7 @@
           </div>
           <MemberField :isOwner="datacenter.owner === me._id || me.is_admin" :members="datacenter.members" />
           <InfoField icon="stack" title="Servers Online" color="#00FF67" :value="machines.size || 0" :maxValue="stats.totalMachines" />
-          <InfoField icon="network" title="Network Health" color="#FFA800" suffix="%" :value="datacenter.networkHealth || 0" :maxValue="100" />
+          <InfoField icon="network" title="Network Health" color="#FFA800" suffix="%" :value="datacenter.networkHealth || 0"/>
           <InfoField icon="rj45" title="Current Bandiwdth" color="#00F0FF" suffix="Mbps" :value="stats.currentBandwidth?.toFixed(2) || 0" />
           <InfoField icon="ram" title="Total RAM Usage" color="#7000FF" suffix="GB" :value="stats.ramUsage?.current?.toFixed(2) || 0" :maxValue="stats.ramUsage?.max?.toFixed(2)"/>
         </div>

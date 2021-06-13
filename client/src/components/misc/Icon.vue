@@ -1,5 +1,6 @@
-<template>
-  <img name="icon" :src="image" :alt="icon" />
+<template>  
+  <div v-if="colored" class="coloredIcon" :style="{'mask-image': `url(https://xornet.cloud${image})`, 'background-color': color}"></div>
+  <img v-else name="icon" class="blackIcon" :src="image" :alt="icon" />
 </template>
 
 <script>
@@ -7,7 +8,9 @@ export default {
   name: "Icon",
   props: {
     icon: { type: String, required: true },
-    default: { type: String, required: false }
+    default: { type: String, required: false },
+    colored: {type: Boolean, required: false, default: false },
+    color: { type: String, required: false },
   },
   computed: {
     isStroked() {
@@ -30,7 +33,12 @@ export default {
 </script>
 
 <style scoped>
-/* img{
-  filter:invert(var(--filter));
-} */
+.coloredIcon {
+  mask-position: center;
+  mask-size: contain;
+}
+
+.blackIcon {
+  filter: invert(var(--filter));
+}
 </style>

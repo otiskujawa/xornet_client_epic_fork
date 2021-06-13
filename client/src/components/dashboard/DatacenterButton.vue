@@ -5,7 +5,12 @@
       <h1>{{ datacenter.name }}</h1>
     </div>
     <img class="logo" :src="datacenter.logo || require('@/assets/icons/filled/stack.svg')" :alt="datacenter.name" />
-    <div class="heading"></div>
+    <div class="heading">
+      <!-- <ColoredGauge icon="stack" color="#00FF67" :value="machines.size || 0" :maxValue="stats.totalMachines" /> -->
+      <!-- <ColoredGauge icon="network" color="#FFA800"  :value="datacenter.networkHealth || 0" :maxValue="100" /> -->
+      <!-- <ColoredGauge icon="rj45" color="#00F0FF" :value="stats.currentBandwidth?.toFixed(2) || 0" /> -->
+      <!-- <ColoredGauge icon="ram" color="#7000FF" :value="stats.ramUsage?.current?.toFixed(2) || 0" :maxValue="stats.ramUsage?.max?.toFixed(2)"/> -->
+    </div>
   </router-link>
   <div v-else class="datacenter">
     <div class="heading">
@@ -18,16 +23,17 @@
 <script>
 import Icon from "@/components/misc/Icon";
 import DatacenterButton from "@/components/dashboard/DatacenterButton";
-
+import ColoredGauge from "@/components/dashboard/ColoredGauge"
 export default {
   name: "DatacenterButton",
   components: {
-    Icon
+    Icon,
+    ColoredGauge,
   },
   props: {
     datacenter: { type: Object, required: true },
     addButton: { type: Boolean, required: true }
-  }
+  },
 };
 </script>
 
