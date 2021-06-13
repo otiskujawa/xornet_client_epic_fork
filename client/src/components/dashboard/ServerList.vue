@@ -213,14 +213,11 @@ export default {
 }
 .serverList .columns .field,
 .serverList .columns .field strong {
-  font-weight: 500;
-  font-size: 11px;
+  font-weight: 400;
+  font-size: 10px;
   color: var(--slyColor);
-  opacity: 0.5;
   min-width: fit-content;
   text-align: left;
-}
-.serverList .columns .field strong {
 }
 .serverList .columns .field {
   text-align: center;

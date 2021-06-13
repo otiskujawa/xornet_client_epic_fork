@@ -115,6 +115,7 @@ export default {
 <style scoped>
 .machines {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  margin-bottom: 128px;
 }
 </style>

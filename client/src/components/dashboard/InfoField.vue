@@ -4,7 +4,8 @@
     <Icon v-else :icon="icon" />
     <div class="text">
       <h1 class="title">{{ title }}</h1>
-      <h1 class="value">{{ value }}/{{ maxValue }}{{ suffix }}</h1>
+      <h1 class="value" v-if="suffix || maxValue">{{ value }}/{{ maxValue }}{{ suffix }}</h1>
+      <h1 class="value" v-else>{{ value }}</h1>
     </div>
   </div>
 </template>
@@ -23,7 +24,7 @@ export default {
     title: { type: String, required: true },
     value: { type: [String, Number], required: true },
     suffix: { type: String, required: false },
-    maxValue: { type: [String, Number], required: false, default: 100 },
+    maxValue: { type: [String, Number], required: false },
     color: { type: String, required: false },
     nogauge: { type: Boolean }
   }
