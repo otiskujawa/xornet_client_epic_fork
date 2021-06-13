@@ -60,7 +60,7 @@ export default {
   /* stroke: var(--white); */
   stroke-width: 8px;
   stroke-linecap: round;
-  transition: 100ms ease;
+  transition: 500ms ease;
 }
 
 .gaugeTrack circle.progress {

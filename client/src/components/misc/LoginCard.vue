@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <a href="https://www.youtube.com/watch?v=mNunrdp_epM" target="_blank"><img :src="image" alt=""/></a>
-    <div class="content">
+    <div class="details">
       <form v-on:submit.prevent="!isLoading && !isFormValid ? login() : null">
         <div class="text">
           <h1>Welcome back</h1>

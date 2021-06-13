@@ -32,7 +32,7 @@ export default {
   background-size: cover;
 
   position: relative;
-  height: 100%;
+  height: 100vh;
 }
 
 .loginpage .content {
@@ -60,7 +60,7 @@ export default {
   height: auto;
 }
 
-.card .content {
+.card .details {
   padding: 16px 24px;
   overflow: hidden;
   display: flex;
@@ -69,7 +69,7 @@ export default {
   height: 100%;
 }
 
-.card .content form {
+.card .details form {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -78,30 +78,30 @@ export default {
   height: 100%;
 }
 
-.card .content form .text * {
+.card .details form .text * {
   font-style: normal;
   line-height: 175%;
 }
 
-.card .content form .text h1 {
+.card .details form .text h1 {
   font-weight: bold;
   font-size: 16px;
   color: #585858;
 }
 
-.card .content form .text p {
+.card .details form .text p {
   font-weight: 600;
   font-size: 12px;
   color: #8b8b8b;
 }
-.card .content form .fields {
+.card .details form .fields {
   display: flex;
   gap: 8px;
   width: 100%;
   flex-direction: column;
 }
 
-.card .content form .fields .inputField {
+.card .details form .fields .inputField {
   width: 100%;
 
   font-weight: 600;
@@ -113,10 +113,10 @@ export default {
   padding: 6px 8px;
 }
 
-.card .content form .fields .inputField::placeholder {
+.card .details form .fields .inputField::placeholder {
   color: #c4c4c4;
 }
-.card .content form .fields p {
+.card .details form .fields p {
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
@@ -125,14 +125,14 @@ export default {
   line-height: 175%;
 }
 
-.card .content form .fields p a {
+.card .details form .fields p a {
   font-family: Montserrat;
   color: var(--theme-color);
   font-weight: bold;
   font-style: normal;
 }
 
-.card .content form button {
+.card .details form button {
   color: white;
   border: none;
   background-color: var(--theme-color);
@@ -151,22 +151,22 @@ export default {
   align-items: center;
   gap: 8px;
 }
-.card .content form button.disabled {
+.card .details form button.disabled {
   cursor: not-allowed;
   user-select: none;
   filter: grayscale(1);
 }
 
-.card .content form button:hover {
+.card .details form button:hover {
   box-shadow: 0px 4px 12px rgba(67, 97, 238, 0.5);
   transform: translateY(-1px);
 }
 
-.card .content form button:active {
+.card .details form button:active {
   transform: translateY(1px);
 }
 
-.card .content form button img {
+.card .details form button img {
   filter: invert(1);
   mix-blend-mode: screen;
   width: 16px;

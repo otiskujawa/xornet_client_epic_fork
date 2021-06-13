@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <a href="https://www.youtube.com/watch?v=CH7FuFtpG68" target="_blank"><img :src="image" alt=""/></a>
-    <div class="content">
+    <div class="details">
       <form v-on:submit.prevent="!isLoading && !isFormValid ? signup() : null">
         <div class="text">
           <h1>Create account</h1>
@@ -47,11 +47,14 @@ export default {
   methods: {
     async signup() {
       this.isLoading = true;
-      console.log(this.form);
-      await this.api.user.signup(this.form);
-      const status = await this.api.user.login(JSON.stringify(this.form));
+      let response = await this.api.user.signup(this.form);
       this.isLoading = false;
-      if (status == 200) this.$router.push(`/dashboard/profile/${this.form.username}`);
+      if (response.status == 201) {
+        this.isLoading = true;
+        response = await this.api.user.login(JSON.stringify(this.form));
+        this.isLoading = false;
+        if (response == 200) this.$router.push(`/dashboard/profile/${this.form.username}`);
+      }
     }
   }
 };

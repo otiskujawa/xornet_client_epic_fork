@@ -31,8 +31,8 @@ export default {
     ColoredGauge,
   },
   props: {
-    datacenter: { type: Object, required: true },
-    addButton: { type: Boolean, required: true }
+    datacenter: { type: Object },
+    addButton: { type: Boolean }
   },
 };
 </script>

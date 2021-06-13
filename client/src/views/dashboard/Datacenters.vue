@@ -28,11 +28,11 @@
               "
             />
           </div>
+          <InfoField icon="stack" title="Servers Online" color="#8676FF" :value="machines.size || 0" :maxValue="stats.totalMachines" />
+          <InfoField icon="network" title="Network Health" color="#01F1E3" suffix="%" :value="datacenter.networkHealth || 0"/>
+          <InfoField icon="rj45" title="Current Bandiwdth" color="#FFBA69" suffix="Mbps" :value="stats.currentBandwidth?.toFixed(2) || 0" />
+          <InfoField icon="ram" title="Total RAM Usage" color="#FF718C" suffix="GB" :value="stats.ramUsage?.current?.toFixed(2) || 0" :maxValue="stats.ramUsage?.max?.toFixed(2)"/>
           <MemberField :isOwner="datacenter.owner === me._id || me.is_admin" :members="datacenter.members" />
-          <InfoField icon="stack" title="Servers Online" color="#00FF67" :value="machines.size || 0" :maxValue="stats.totalMachines" />
-          <InfoField icon="network" title="Network Health" color="#FFA800" suffix="%" :value="datacenter.networkHealth || 0"/>
-          <InfoField icon="rj45" title="Current Bandiwdth" color="#00F0FF" suffix="Mbps" :value="stats.currentBandwidth?.toFixed(2) || 0" />
-          <InfoField icon="ram" title="Total RAM Usage" color="#7000FF" suffix="GB" :value="stats.ramUsage?.current?.toFixed(2) || 0" :maxValue="stats.ramUsage?.max?.toFixed(2)"/>
         </div>
         <ServerCard v-if="isShowingServerCard" />
         <ServerList v-if="machines.size !== 0" :machines="Array.from(machines.values())" />
@@ -84,6 +84,7 @@ export default {
   watch: {
     $route(to, from) {
       this.machines.clear();
+      this.fetchData();
     }
   },
   data() {
@@ -100,31 +101,34 @@ export default {
       }
     };
   },
-  async mounted() {
-    this.datacenters = await this.api.datacenters.fetchAll();
-    this.stats.totalMachines = (await this.api.datacenters.fetchMachineCount(this.datacenter?.name)).count;
-
-    socket.on("machines", machines => {
-      console.log(`%c[WS]` + `%c [Machines]`, "color: black; background-color: #ff4488; padding: 2px; border-radius: 4px; font-weight: bold;", "color: #ff77aa;", machines);
-
-      // Temp scuff way to quickly illustrate how datacenters will show machines from them
-      Object.values(machines).forEach(machine => {
-        machine.uuid && machine.datacenter?._id === this.datacenter?._id ? this.machines.set(machine.uuid, machine) : null;
-      });
-
-      // Reset the values to zero :kekw:
-      this.stats.ramUsage.current = 0;
-      this.stats.ramUsage.max = 0;
-      this.stats.currentBandwidth = 0;
-      // Put the current values into variables
-      this.machines.forEach(machine => {
-        this.stats.ramUsage.current += machine.ram.used;
-        this.stats.ramUsage.max += machine.ram.total;
-        this.stats.currentBandwidth += machine.network.TxSec + machine.network.RxSec;
-      });
-    });
+  mounted() {
+    this.fetchData();
   },
   methods: {
+    async fetchData(){
+      this.datacenters = await this.api.datacenters.fetchAll();
+      this.stats.totalMachines = (await this.api.datacenters.fetchMachineCount(this.datacenter.name)).count;
+
+      socket.on("machines", machines => {
+        console.log(`%c[WS]` + `%c [Machines]`, "color: black; background-color: #ff4488; padding: 2px; border-radius: 4px; font-weight: bold;", "color: #ff77aa;", machines);
+
+        // Temp scuff way to quickly illustrate how datacenters will show machines from them
+        Object.values(machines).forEach(machine => {
+          machine.uuid && machine.datacenter?._id === this.datacenter?._id ? this.machines.set(machine.uuid, machine) : null;
+        });
+
+        // Reset the values to zero :kekw:
+        this.stats.ramUsage.current = 0;
+        this.stats.ramUsage.max = 0;
+        this.stats.currentBandwidth = 0;
+        // Put the current values into variables
+        this.machines.forEach(machine => {
+          this.stats.ramUsage.current += machine.ram.used;
+          this.stats.ramUsage.max += machine.ram.total;
+          this.stats.currentBandwidth += machine.network.TxSec + machine.network.RxSec;
+        });
+      });
+    },
     async save() {
       let response = await this.api.datacenters.save(this.$route.params.name, this.$refs.logo.files[0], this.$refs.banner.files[0]);
 
@@ -167,8 +171,8 @@ export default {
   align-items: center;
   width: 100%;
   justify-content: center;
-  height: 224px;
-  min-height: 224px;
+  height: 128px;
+  min-height: 128px;
 }
 
 .datacenters .heading img {
@@ -178,8 +182,8 @@ export default {
 
 .datacenters .heading .banner {
   width: 100%;
-  min-height: 224px;
-  height: 224px;
+  min-height: 128px;
+  height: 128px;
   position: absolute;
   top: 0;
   filter: grayscale(1);
@@ -249,7 +253,7 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  height: 224px;
+  height: 128px;
   border: 1px solid var(--border-color);
   border-radius: 8px;
 }

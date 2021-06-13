@@ -38,6 +38,7 @@ class API {
    * @private
    */
   error(method, ...messages) {
+    console.log(messages);
     eventHandler.emit("error", { method, messages });
 
     // prettier-ignore
@@ -212,7 +213,7 @@ class User extends API {
    */
   async signup(json) {
     const signupForm = { geolocation: await this.getGeolocation(), ...json };
-    return super.request("post", "signup", { "Content-Type": "application/json" }, signupForm);
+    return await super.request("post", "signup", { "Content-Type": "application/json" }, signupForm);
   }
 
   /**

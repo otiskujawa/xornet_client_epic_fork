@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <a href="https://cdn.discordapp.com/attachments/806300597338767450/833734391883759656/deskslam.mp4" target="_blank"><img :src="image" alt=""/></a>
-    <div class="content">
+    <div class="details">
       <form v-on:submit.prevent="!isLoading && !isFormValid ? login() : null">
         <div class="text">
           <h1>Wow! Good job</h1>
