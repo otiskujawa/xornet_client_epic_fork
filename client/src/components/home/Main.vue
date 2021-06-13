@@ -77,7 +77,7 @@ export default {
   width: 100%;
   padding: 8px 10vw;
   position: relative;
-  height: 100%;
+  height: 100vh;
   overflow: hidden scroll;
 }
 

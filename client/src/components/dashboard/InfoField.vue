@@ -42,14 +42,8 @@ export default {
   gap: 8px;
   color: var(--black);
   padding: 16px;
-  cursor: pointer;
   background-color: var(--background-color);
   transition: 100ms ease;
-}
-
-.info:hover {
-  transform: translateY(-1px);
-  box-shadow: rgb(0 0 0 / 10%) 0px 10px 20px;
 }
 
 .info img {
