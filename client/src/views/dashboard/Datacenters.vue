@@ -7,15 +7,26 @@
     </div>
     <div v-else-if="datacenter" class="content">
       <div class="heading">
-        <img class="banner" @click="$refs.banner.click()" :src="datacenter.banner || 'https://i.redd.it/cxrn0h5ksd131.jpg'" :alt="datacenter.name" />
-        <img class="logo" @click="$refs.logo.click()" :src="datacenter.logo || 'https://cdn.discordapp.com/attachments/807448839346716683/853054616870322256/spaz.gif'" :alt="datacenter.name" />
+        <img class="banner" :src="datacenter.banner || 'https://i.redd.it/cxrn0h5ksd131.jpg'" :alt="datacenter.name" />
+        <Icon class="datacenterEdit bannerPen" @click="$refs.banner.click()" v-if="isEditing" icon="edit" />
+        <img class="logo" :class="{isEditing}" :src="datacenter.logo || 'https://cdn.discordapp.com/attachments/807448839346716683/853054616870322256/spaz.gif'" :alt="datacenter.name" />
+        <Icon class="datacenterEdit logoPen" @click="$refs.logo.click()" v-if="isEditing" icon="edit" />
       </div>
       <div class="bullshit">
         <div class="coolShit">
           <div class="buttons">
             <ShadowButton class="revoke" icon="stack" title="Add server" @click="isShowingServerCard = !isShowingServerCard" />
             <ShadowButton class="revoke" v-if="!isEditing" icon="edit" title="Edit" @click="isEditing = !isEditing" />
-            <ShadowButton class="revoke" v-else icon="save" title="Save" @click="isEditing = !isEditing; save();" />
+            <ShadowButton
+              class="revoke"
+              v-else
+              icon="save"
+              title="Save"
+              @click="
+                isEditing = !isEditing;
+                save();
+              "
+            />
           </div>
           <MemberField :isOwner="datacenter.owner === me._id || me.is_admin" :members="datacenter.members" />
           <InfoField :icon="require('@/assets/icons/filled/stack.svg')" title="Servers Online" :value="`${machines.size || 0}/${stats.totalMachines || 0}`" />
@@ -44,6 +55,7 @@ import ServerList from "@/components/dashboard/ServerList";
 import InfoField from "@/components/dashboard/InfoField";
 import MemberField from "@/components/dashboard/MemberField";
 import ShadowButton from "@/components/dashboard/ShadowButton";
+
 export default {
   name: "Datacenters",
   components: {
@@ -106,8 +118,8 @@ export default {
       this.machines.forEach(machine => {
         this.stats.ramUsage.current += machine.ram.used;
         this.stats.ramUsage.max += machine.ram.total;
-        this.stats.currentBandwidth += (machine.network.TxSec + machine.network.RxSec);
-      })
+        this.stats.currentBandwidth += machine.network.TxSec + machine.network.RxSec;
+      });
     });
   },
   methods: {
@@ -118,7 +130,7 @@ export default {
       for (const [key, value] of Object.entries(response.profile)) {
         this.profile[key] = value;
       }
-    },
+    }
   }
 };
 </script>
@@ -158,7 +170,6 @@ export default {
 
 .datacenters .heading img {
   user-select: none;
-  filter: grayscale(1);
   max-height: 80%;
 }
 
@@ -176,7 +187,50 @@ export default {
 
 .datacenters .heading .logo {
   z-index: 2;
-  filter: invert(var(--filter)); 
+  filter: invert(var(--filter));
+}
+.datacenters .heading .logo.isEditing { 
+  opacity: 0.50;
+}
+
+.datacenters .heading .datacenterEdit {
+  cursor: pointer;
+  transition: 100ms ease;
+  position: absolute;
+  transform: translate(50%, -50%);
+  filter: invert(1);
+}
+
+.datacenters .heading .datacenterEdit.bannerPen {
+  width: 32px;
+  top: 24px;
+  right: 24px;
+}
+.datacenters .heading .datacenterEdit.bannerPen:hover {
+  width: 40px;
+}
+.datacenters .heading .datacenterEdit.bannerPen:active {
+  width: 28px;
+}
+.datacenters .heading .datacenterEdit.logoPen {
+  width: 64px;
+  z-index: 5000;
+  top: 50%;
+  right: 50%;
+}
+.datacenters .heading .datacenterEdit.logoPen:hover {
+  width: 72px;
+}
+.datacenters .heading .datacenterEdit.logoPen:active {
+  width: 56px;
+}
+
+.datacenters .content .coolShit {
+  width: 268px;
+  min-width: 268px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .datacenters .content .coolShit {
@@ -201,5 +255,4 @@ export default {
   display: flex;
   justify-content: space-between;
 }
-
 </style>

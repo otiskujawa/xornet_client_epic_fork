@@ -4,8 +4,10 @@
       <div class="content">
         <progress class="progressBar" :value="timeoutProgress" :max="timeoutLength / 1000"></progress>
         <div class="shit">
-          <p ><strong>{{errorMethod}}</strong> - {{errorMessage}}</p>
-          <Icon icon="x" class="xButton" @click="show = !show"/>
+          <p>
+            <strong>{{ errorMethod }}</strong> - {{ errorMessage }}
+          </p>
+          <Icon icon="x" class="xButton" @click="show = !show" />
         </div>
       </div>
     </div>
@@ -19,36 +21,36 @@ import Icon from "@/components/misc/Icon";
 export default {
   name: "Popup",
   components: {
-    Icon,
+    Icon
   },
   data() {
     return {
       show: false,
-      errorMessage: 'null',
-      errorMethod: 'null',
+      errorMessage: "null",
+      errorMethod: "null",
       timeoutProgress: 0,
-      timeoutLength: 10000,
-    }
+      timeoutLength: 10000
+    };
   },
   async mounted() {
     let sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-    eventHandler.on('error', async error => {
+    eventHandler.on("error", async error => {
       this.timeoutProgress = 0;
       this.timeoutLength = 10000;
       this.show = true;
       this.errorMessage = error.messages[0].response.data.message;
       this.errorMethod = `${error.messages[0].response.status} ${error.method}`;
-      
+
       for (let i = 0; i < this.timeoutLength / 1000; i++) {
         this.timeoutProgress++;
         await sleep(this.timeoutLength / 10);
       }
-      
+
       this.show = false;
-    })
+    });
   }
-}
+};
 </script>
 
 <style scoped>
@@ -101,7 +103,7 @@ export default {
 }
 
 .popup .content .progressBar::-webkit-progress-value {
-  background-color: var(--bright-theme-color); 
+  background-color: var(--bright-theme-color);
 }
 
 .popup .content .shit {
@@ -123,10 +125,10 @@ export default {
 }
 
 .bounce-enter-active {
-  animation: bounce-in .4s ease-in-out;
+  animation: bounce-in 0.4s ease-in-out;
 }
 .bounce-leave-active {
-  animation: bounce-in .4s reverse ease-in-out;
+  animation: bounce-in 0.4s reverse ease-in-out;
 }
 @keyframes bounce-in {
   0% {
@@ -139,6 +141,4 @@ export default {
     transform: translateY(0px);
   }
 }
-
-
 </style>

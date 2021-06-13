@@ -21,7 +21,6 @@ class API {
    * @private
    */
   log(method, ...messages) {
-
     // prettier-ignore
     console.log(
       `%c[API]` + 
@@ -39,7 +38,7 @@ class API {
    * @private
    */
   error(method, ...messages) {
-    eventHandler.emit('error', { method, messages });
+    eventHandler.emit("error", { method, messages });
 
     // prettier-ignore
     console.log(
