@@ -195,6 +195,7 @@ export default {
 }
 .serverList .list {
   flex-direction: column;
+  margin-bottom: 128px;
   display: flex;
   /* gap: 4px; */
 }
