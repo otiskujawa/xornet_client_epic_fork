@@ -114,9 +114,9 @@
           </div>
         </a>
 
-        <InfoField :icon="require('@/assets/icons/filled/stack.svg')" title="Total servers" :value="profile.machines.length" />
-        <InfoField :icon="require('@/assets/icons/filled/ram.svg')" title="Total ram" :value="`${Math.ceil(profile.totalRam / 1000 / 1000 / 1000)}GB`" />
-        <InfoField :icon="require('@/assets/icons/filled/cpu.svg')" title="Total shared cores" :value="profile.totalCores" />
+        <InfoField nogauge :icon="require('@/assets/icons/filled/stack.svg')" title="Total servers" :value="profile.machines.length" />
+        <InfoField nogauge :icon="require('@/assets/icons/filled/ram.svg')" title="Total ram" :value="`${Math.ceil(profile.totalRam / 1000 / 1000 / 1000)}GB`" />
+        <InfoField nogauge :icon="require('@/assets/icons/filled/cpu.svg')" title="Total shared cores" :value="profile.totalCores" />
       </div>
     </div>
   </div>

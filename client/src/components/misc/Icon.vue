@@ -1,5 +1,7 @@
-<template>  
-  <div v-if="colored" class="coloredIcon" :style="{'mask-image': `url(https://xornet.cloud${image})`, 'background-color': color}"></div>
+<template>
+  <div v-if="colored" class="coloredIconContainer gaugeIcon" :style="{'background-color': `${color}33`}">
+    <div class="coloredIcon" :style="{'mask-image': `url(https://xornet.cloud${image})`, 'background-color': color}"></div>
+  </div>
   <img v-else name="icon" class="blackIcon" :src="image" :alt="icon" />
 </template>
 
@@ -33,9 +35,23 @@ export default {
 </script>
 
 <style scoped>
+
+.coloredIconContainer {
+  padding: 4px;
+  border-radius: 12489px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .coloredIcon {
   mask-position: center;
   mask-size: contain;
+  mask-repeat: no-repeat;
+  width: inherit;
+  height: inherit;
 }
 
 .blackIcon {

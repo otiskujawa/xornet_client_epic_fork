@@ -11,7 +11,6 @@
 
 <script>
 import GaugeField from "@/components/dashboard/GaugeField";
-import InfoField from "@/components/dashboard/InfoField";
 import ServerList from "@/components/dashboard/ServerList";
 import LoadingScreen from "@/components/dashboard/LoadingScreen";
 import Chart from "@/components/dashboard/Chart";
