@@ -1,24 +1,31 @@
 <template>
   <div class="info">
-    <Icon v-if="icon" :icon="icon"/>
+    <ColoredGauge :icon="icon" :value="value" :maxValue="maxValue" :color="color" v-if="!nogauge"/>
+    <Icon v-else :icon="icon"/>
     <div class="text">
       <h1 class="title">{{ title }}</h1>
-      <h1 class="value">{{ value }}</h1>
+      <h1 class="value">{{ value }}/{{maxValue}}{{suffix}}</h1>
     </div>
   </div>
 </template>
 
 <script>
 import Icon from "@/components/misc/Icon"
+import ColoredGauge from "@/components/dashboard/ColoredGauge"
 export default {
   name: "InfoField",
   components: {
+    ColoredGauge,
     Icon,
   },
   props: {
     icon: { type: String },
     title: { type: String, required: true },
-    value: { type: [String, Number], required: true }
+    value: { type: [String, Number], required: true },
+    suffix: { type: String, required: false },
+    maxValue: { type: [String, Number], required: false, default: 100},
+    color: { type: String, required: false},
+    nogauge: { type: Boolean },
   }
 };
 </script>
@@ -54,6 +61,7 @@ export default {
   height: 100%;
   flex-direction: column;
   justify-content: space-between;
+  padding: 4px 0px;
 }
 
 .info h1 {
@@ -81,7 +89,12 @@ export default {
   display: flex;
   align-items: center;
   text-align: center;
-  text-transform: uppercase;
   color: var(--black);
 }
+
+.info .coloredGauge {
+  width: 48px;
+  height: 48px;
+}
+
 </style>

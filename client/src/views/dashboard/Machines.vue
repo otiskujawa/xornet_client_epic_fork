@@ -40,16 +40,6 @@
           }"
         />
       </div>
-
-      <!-- <Terminal/> -->
-
-      <!-- <div class="informatics">
-          <InfoField title="Total RAM" :value="totalRamUsed + 'GB / ' + totalRam + 'GB'"/>
-          <InfoField title="Total Upload Throughput" :value="totalUploadThroughput + 'mbps'"/>
-          <InfoField title="Total Download Throughput" :value="totalDownloadThroughput + 'mbps'"/>
-        </div> -->
-
-      <!-- Disabled temp due to it causing lag when developing -->
     </div>
   </div>
 </template>
@@ -57,7 +47,6 @@
 <script>
 import socket from "@/services/socket.js";
 import GaugeField from "@/components/dashboard/GaugeField";
-import InfoField from "@/components/dashboard/InfoField";
 import ServerList from "@/components/dashboard/ServerList";
 import LoadingScreen from "@/components/dashboard/LoadingScreen";
 import Chart from "@/components/dashboard/Chart";
@@ -68,7 +57,6 @@ import Nav from "@/components/dashboard/Nav";
 export default {
   name: "Machines",
   components: {
-    InfoField,
     GaugeField,
     Terminal,
     Nav,

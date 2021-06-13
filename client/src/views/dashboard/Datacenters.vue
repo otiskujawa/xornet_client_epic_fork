@@ -29,10 +29,10 @@
             />
           </div>
           <MemberField :isOwner="datacenter.owner === me._id || me.is_admin" :members="datacenter.members" />
-          <InfoField icon="stack" title="Servers Online" :value="`${machines.size || 0}/${stats.totalMachines || 0}`" />
-          <InfoField icon="network" title="Network Health" :value="`${datacenter.networkHealth || 0}%`" />
-          <InfoField icon="rj45" title="Current Bandiwdth" :value="`${stats.currentBandwidth?.toFixed(2) || 0}Mbps`" />
-          <InfoField icon="ram" title="Total RAM Usage" :value="`${stats.ramUsage?.current?.toFixed(2) || 0}/${stats.ramUsage?.max?.toFixed(2) || 0}GB`" />
+          <InfoField icon="stack" title="Servers Online" color="#00FF67" :value="machines.size || 0" :maxValue="stats.totalMachines" />
+          <InfoField icon="network" title="Network Health" color="#FFA800" suffix="%" :value="datacenter.networkHealth || 0" :maxValue="100" />
+          <InfoField icon="rj45" title="Current Bandiwdth" color="#00F0FF" suffix="Mbps" :value="stats.currentBandwidth?.toFixed(2) || 0" />
+          <InfoField icon="ram" title="Total RAM Usage" color="#7000FF" suffix="GB" :value="stats.ramUsage?.current?.toFixed(2) || 0" :maxValue="stats.ramUsage?.max?.toFixed(2)"/>
         </div>
         <ServerCard v-if="isShowingServerCard" />
         <ServerList v-if="machines.size !== 0" :machines="Array.from(machines.values())" />
@@ -55,12 +55,14 @@ import ServerList from "@/components/dashboard/ServerList";
 import InfoField from "@/components/dashboard/InfoField";
 import MemberField from "@/components/dashboard/MemberField";
 import ShadowButton from "@/components/dashboard/ShadowButton";
+import ColoredGauge from "@/components/dashboard/ColoredGauge";
 
 export default {
   name: "Datacenters",
   components: {
     Icon,
     ServerList,
+    ColoredGauge,
     DatacenterButton,
     ServerCard,
     DatacenterCard,
@@ -150,6 +152,7 @@ export default {
   display: flex;
   gap: 8px;
   flex-direction: column;
+  margin-bottom: 128px;
 }
 
 .datacenters .content .bullshit {
