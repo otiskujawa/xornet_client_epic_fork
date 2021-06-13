@@ -1,6 +1,6 @@
 <template>
-  <div v-if="color" class="coloredIconContainer gaugeIcon" :style="{'background-color': `${color}33`}">
-    <div class="coloredIcon" :style="{'mask-image': `url(https://xornet.cloud${image})`, 'background-color': color}"></div>
+  <div v-if="color" class="coloredIconContainer icon" :style="{ 'background-color': `${color}33` }">
+    <div class="coloredIcon" :style="{ 'mask-image': `url(https://xornet.cloud${image})`, 'background-color': color }"></div>
   </div>
   <img v-else name="icon" class="blackIcon" :src="image" :alt="icon" />
 </template>
@@ -11,7 +11,7 @@ export default {
   props: {
     icon: { type: String, required: true },
     default: { type: String, required: false },
-    color: { type: String, required: false },
+    color: { type: String, required: false }
   },
   computed: {
     isStroked() {
@@ -34,7 +34,6 @@ export default {
 </script>
 
 <style scoped>
-
 .coloredIconContainer {
   padding: 4px;
   border-radius: 12489px;

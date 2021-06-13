@@ -1,12 +1,12 @@
 <template>
-  <div class="search-container" :class="{ onfocus: searchString.length != 0 && !searchPaused }">
-    <div class="search-bar">
+  <div class="search" :class="{ onfocus: searchString.length != 0 && !searchPaused }">
+    <div class="bar">
       <input v-model="searchString" class="inputField" :class="{ active: searchString.length != 0 }" type="text" placeholder="Search " @keyup="typingTimer()" @keydown="clearTimer()" />
       <img :src="searchString.length != 0 ? require('@/assets/icons/filled/x.svg') : require('@/assets/icons/filled/search.svg')" :class="{ activeImg: searchString.length != 0 }" @click="clearSearchDrop()" />
     </div>
     <div v-if="searchRes">
       <SearchResult v-for="user of searchRes" :key="user" :user="user" @click="clearSearchClicked()" />
-      <h1 v-if="searchRes.length == 0 && searchString.length != 0" class="noResultH1">There were no users that match that query</h1>
+      <h1 v-if="searchRes.length == 0 && searchString.length != 0" class="noResult">There were no users that match that query</h1>
     </div>
   </div>
 </template>
@@ -65,7 +65,7 @@ export default {
 </script>
 
 <style scoped>
-.search-container {
+.search {
   z-index: 10;
   align-self: flex-start;
   display: flex;
@@ -80,90 +80,67 @@ export default {
   border-radius: 4px;
 }
 
-.onfocus {
+.search .onfocus {
   box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
 }
 
-.noResultH1 {
+.search .inputField.active {
+  width: 500px !important;
+}
+
+.search .noResult {
   font-family: Work Sans;
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
   line-height: 100%;
-  /* identical to box height, or 12px */
-
   display: flex;
   align-items: center;
-
   color: var(--black);
 }
 
-.search-bar {
+.search .bar {
   display: flex;
   gap: 8px;
-
   width: fit-content;
-
   position: relative;
-
   background-color: var(--background-color);
   border-radius: 3px;
 }
 
-/*
-.search-bar {
-  outline: 2px solid var(--theme-color);
-}
-*/
-.search-bar .inputField:focus {
-  width: 500px !important;
-}
-.inputField.active {
-  width: 500px !important;
-}
-
-.search-bar .inputField {
+.search .bar .inputField {
   width: 300px;
   transition: 100ms ease;
-
   border-radius: 3px;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   font-size: 12px;
   color: var(--black);
-
   border: none;
   background-color: var(--white);
   height: 32px;
   padding: 6px 8px;
-
-  /*search icon background image */
-  /* background-image: url("../assets/icons/search");
-  background-repeat: no-repeat;
-  background-size: 24px;
-  background-position-x: calc(100% - 4px);
-  background-position-y: center; */
 }
 
-.search-bar img.activeImg {
-  cursor: pointer;
+.search .bar .inputField:focus {
+  width: 500px !important;
 }
 
-.search-bar img {
+.search .bar img {
   width: 16px;
   height: 16px;
-
   filter: invert(var(--filter));
-
   position: absolute;
   right: 4px;
-
   top: 50%;
-
   transform: translateY(-50%);
 }
 
-.search-bar .inputField::placeholder {
+.search .bar img.activeImg {
+  cursor: pointer;
+}
+
+.search .bar .inputField::placeholder {
   color: var(--slyColor);
 }
 </style>

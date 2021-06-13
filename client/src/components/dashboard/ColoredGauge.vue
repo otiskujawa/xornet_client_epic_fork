@@ -1,10 +1,10 @@
 <template>
   <div class="coloredGauge">
-    <svg class="gaugeTrack" overflow="visible" viewBox="0 0 100 100">
+    <svg class="track" overflow="visible" viewBox="0 0 100 100">
       <circle cx="50" cy="50" r="40"></circle>
       <circle class="progress" cx="50" cy="50" r="40" :style="{ stroke: color, 'stroke-dashoffset': 250 - (250 * value) / maxValue }"></circle>
     </svg>
-    <Icon :color="color" :icon="icon"/>
+    <Icon :color="color" :icon="icon" />
   </div>
 </template>
 
@@ -12,17 +12,17 @@
 import Icon from "@/components/misc/Icon";
 
 export default {
-    name: "ColoredGauge",
-    props: {
-      icon: { type: String },
-      value: { type: [Number, String], required: true, default: 0 },
-      maxValue: { type: [Number, String], required: true, default: 100 },
-      color: { type: String, required: true, default: "#ff00b6" }
-    },
-    components: {
-        Icon
-    }
-}
+  name: "ColoredGauge",
+  props: {
+    icon: { type: String },
+    value: { type: [Number, String], required: true, default: 0 },
+    maxValue: { type: [Number, String], required: true, default: 100 },
+    color: { type: String, required: true, default: "#ff00b6" }
+  },
+  components: {
+    Icon
+  }
+};
 </script>
 
 <style scoped>
@@ -32,7 +32,7 @@ export default {
   height: 100px;
 }
 
-.gaugeIcon {
+.coloredGauge .icon {
   user-select: none;
   top: 50%;
   left: 50%;
@@ -40,18 +40,14 @@ export default {
   position: absolute;
 }
 
-.gaugeDriveLetter {
-  margin-top: 60px;
-}
-
-.gaugeTrack {
+.coloredGauge .track {
   display: flex;
   justify-content: center;
   transform: rotate(90deg);
   align-items: center;
 }
 
-.gaugeTrack circle {
+.coloredGauge .track circle {
   height: 100%;
   width: 100%;
   fill: none;
@@ -63,7 +59,7 @@ export default {
   transition: 500ms ease;
 }
 
-.gaugeTrack circle.progress {
+.coloredGauge .track circle.progress {
   stroke-dasharray: 250;
   stroke-width: 6px;
 }

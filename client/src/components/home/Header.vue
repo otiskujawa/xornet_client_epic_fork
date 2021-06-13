@@ -40,9 +40,13 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* background-color: var(--white); */
 }
-
+header.view-home {
+  padding: 8px 10vw;
+}
+header.view-login {
+  padding: 8px 4vw;
+}
 header .buttons {
   display: flex;
   height: 100%;
@@ -78,11 +82,5 @@ header .buttons .button img {
   filter: invert(1);
   width: 24px;
   height: 24px;
-}
-.view-home {
-  padding: 8px 10vw;
-}
-.view-login {
-  padding: 8px 4vw;
 }
 </style>

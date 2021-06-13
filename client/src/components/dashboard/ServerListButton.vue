@@ -102,45 +102,68 @@ export default {
   overflow: hidden;
   user-select: none;
 }
-
-.button.rogue {
-  background-color: var(--rogue-red);
-}
-
 .button:hover:not(.rogue) {
   border: 1px solid var(--white);
   background-color: var(--white);
-  /* transform: translateY(-1px); */
-  /* box-shadow: rgb(0 0 0 / 10%) 0px 10px 20px; */
 }
-
-.button.rogue:hover {
-  border: 1px solid var(--rogue-red-border);
-}
-
 .button:active {
   transform: translateY(-0px);
 }
-
 .button.router-link-active {
   background-color: var(--white);
 }
-
+.button.rogue {
+  background-color: var(--rogue-red);
+}
+.button.rogue:hover {
+  border: 1px solid var(--rogue-red-border);
+}
 .button.rogue.router-link-active {
   background-color: var(--rogue-red-active) !important;
 }
-
+.button.thin .info {
+  display: flex;
+  flex-direction: row;
+  min-width: 348px;
+}
+.button.thin .platform {
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 4px;
+}
+.button.thin .info .hostname,
+.button.thin .info .hostname strong {
+  font-weight: 500;
+  font-size: 11px;
+  min-width: 100px;
+}
+.button.thin .info .hostname strong {
+  color: var(--rogue-red-border);
+  margin-left: 4px;
+}
+.button.thin .info * {
+  text-align: center;
+  align-items: center;
+  display: flex;
+  gap: 2px;
+}
+.button.thin .info .status {
+  min-width: fit-content;
+  justify-content: flex-end;
+}
+.button.disconnected {
+  filter: grayscale(1);
+  background-color: var(--white);
+}
 .button img.machineType {
   width: 32px;
   height: 32px;
   filter: invert(var(--filter));
 }
-
 .button.thin img.machineType {
   width: 16px;
   height: 16px;
 }
-
 .button .infofield {
   display: flex;
   flex-direction: column;
@@ -149,7 +172,6 @@ export default {
   text-align: center;
   gap: 2px;
 }
-
 .button .info {
   min-width: 218px;
   width: 200px;
@@ -157,13 +179,6 @@ export default {
   justify-content: space-between;
   flex-direction: column;
 }
-
-.button.thin .info {
-  display: flex;
-  flex-direction: row;
-  min-width: 348px;
-}
-
 .button .info .hostname,
 .button .info .hostname strong {
   font-family: Work Sans;
@@ -175,30 +190,10 @@ export default {
   color: var(--black);
   text-align: left;
 }
-
-.button.thin .info .hostname,
-.button.thin .info .hostname strong {
-  font-weight: 500;
-  font-size: 11px;
-  min-width: 100px;
-}
-
-.button.thin .info .hostname strong {
-  color: var(--rogue-red-border);
-  margin-left: 4px;
-}
-
 .button .info * {
   width: 100%;
   white-space: nowrap;
 }
-.button.thin .info * {
-  text-align: center;
-  align-items: center;
-  display: flex;
-  gap: 2px;
-}
-
 .button .info .status,
 .button *,
 .button .platform h1 {
@@ -208,12 +203,6 @@ export default {
   color: var(--slyColor);
   text-align: left;
 }
-
-.button.thin .info .status {
-  min-width: fit-content;
-  justify-content: flex-end;
-}
-
 .button .field {
   text-align: center;
   white-space: nowrap;
@@ -221,7 +210,6 @@ export default {
   align-items: center;
   min-width: 72px;
 }
-
 .button .field strong,
 .button .field.invalid {
   opacity: 0.7;
@@ -230,7 +218,6 @@ export default {
   margin-left: 32px;
   min-width: 48px;
 }
-
 .button .field.region {
   min-width: 48px;
 }
@@ -238,7 +225,6 @@ export default {
   width: 22px;
   height: auto;
 }
-
 .button .field.uptime {
   min-width: 100px;
 }
@@ -249,47 +235,39 @@ export default {
   min-width: 124px;
   gap: 8px;
 }
-
 .button .field.owner img {
   width: 18px;
   height: 18px;
   object-fit: cover;
   border-radius: 100%;
 }
-
 .button .field.diskUsage {
   display: flex;
   flex-direction: column;
   min-width: 138px;
   align-items: flex-start;
 }
-
 .button .field.networkUsage {
   min-width: 86px;
 }
-
 .button .field.region {
   min-width: 66px;
 }
-
 .button .field.datacenter {
   display: flex;
   gap: 8px;
 }
-
 .button .field.datacenter img {
   width: 18px;
   height: 18px;
   filter: invert(var(--filter));
 }
-
 .button .info .status {
   background: linear-gradient(110.78deg, rgb(118, 230, 80) -1.13%, rgb(249, 214, 73) 15.22%, rgb(240, 142, 53) 32.09%, rgb(236, 81, 87) 48.96%, rgb(255, 24, 189) 67.94%, rgb(26, 75, 255) 85.34%, rgb(98, 216, 249) 99.57%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
   white-space: nowrap;
 }
-
 .button .platform {
   width: 100%;
   display: flex;
@@ -297,18 +275,6 @@ export default {
   justify-content: space-between;
   align-items: flex-end;
 }
-
-.button.thin .platform {
-  flex-direction: row;
-  justify-content: flex-end;
-  gap: 4px;
-}
-
-.button.disconnected {
-  filter: grayscale(1);
-  background-color: var(--white);
-}
-
 .button .platform img {
   width: auto;
   height: 13px;

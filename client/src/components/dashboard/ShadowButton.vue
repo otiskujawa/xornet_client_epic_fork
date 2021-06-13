@@ -39,6 +39,26 @@ export default {
   background-color: var(--shadowButton-color);
 }
 
+.shadowButton:not(.colored):hover {
+  filter: invert(1);
+}
+
+.shadowButton:active {
+  transform: translateY(1px);
+}
+
+.shadowButton.colored:hover {
+  background-color: var(--theme-color);
+}
+
+.shadowButton.colored:hover h1 {
+  color: white;
+}
+
+.shadowButton.colored:hover img {
+  filter: invert(1);
+}
+
 .shadowButton h1 {
   font-family: Work Sans;
   font-weight: 600;
@@ -55,25 +75,5 @@ export default {
 .shadowButton img {
   width: 20px;
   filter: invert(var(--filter));
-}
-
-.shadowButton:not(.colored):hover {
-  filter: invert(1);
-}
-
-.shadowButton.colored:hover {
-  background-color: var(--theme-color);
-}
-
-.shadowButton.colored:hover h1 {
-  color: white;
-}
-
-.shadowButton.colored:hover img {
-  filter: invert(1);
-}
-
-.shadowButton:active {
-  transform: translateY(1px);
 }
 </style>

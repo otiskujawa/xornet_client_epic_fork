@@ -46,6 +46,14 @@ export default {
   user-select: none;
 }
 
+.button:hover {
+  background-color: var(--theme-color);
+}
+
+.button:hover img {
+  filter: invert(1);
+}
+
 .button.router-link-active {
   background-color: var(--theme-color);
 }
@@ -58,17 +66,9 @@ export default {
   filter: invert(1);
 }
 
-.button:hover {
-  background-color: var(--theme-color);
-}
-
 .button img {
   width: 24px;
   height: 24px;
   filter: invert(var(--filter));
-}
-
-.button:hover img {
-  filter: invert(1);
 }
 </style>

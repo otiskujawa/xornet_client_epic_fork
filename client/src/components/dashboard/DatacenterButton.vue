@@ -23,17 +23,17 @@
 <script>
 import Icon from "@/components/misc/Icon";
 import DatacenterButton from "@/components/dashboard/DatacenterButton";
-import ColoredGauge from "@/components/dashboard/ColoredGauge"
+import ColoredGauge from "@/components/dashboard/ColoredGauge";
 export default {
   name: "DatacenterButton",
   components: {
     Icon,
-    ColoredGauge,
+    ColoredGauge
   },
   props: {
     datacenter: { type: Object },
     addButton: { type: Boolean }
-  },
+  }
 };
 </script>
 

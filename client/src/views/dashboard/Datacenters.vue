@@ -9,7 +9,7 @@
       <div class="heading">
         <img class="banner" :src="datacenter.banner || 'https://i.redd.it/cxrn0h5ksd131.jpg'" :alt="datacenter.name" />
         <Icon class="datacenterEdit bannerPen" @click="$refs.banner.click()" v-if="isEditing" icon="edit" />
-        <img class="logo" :class="{isEditing}" :src="datacenter.logo || 'https://cdn.discordapp.com/attachments/807448839346716683/853054616870322256/spaz.gif'" :alt="datacenter.name" />
+        <img class="logo" :class="{ isEditing }" :src="datacenter.logo || 'https://cdn.discordapp.com/attachments/807448839346716683/853054616870322256/spaz.gif'" :alt="datacenter.name" />
         <Icon class="datacenterEdit logoPen" @click="$refs.logo.click()" v-if="isEditing" icon="edit" />
       </div>
       <div class="bullshit">
@@ -29,9 +29,9 @@
             />
           </div>
           <InfoField icon="stack" title="Servers Online" color="#8676FF" :value="machines.size || 0" :maxValue="stats.totalMachines" />
-          <InfoField icon="network" title="Network Health" color="#01F1E3" suffix="%" :value="datacenter.networkHealth || 0"/>
+          <InfoField icon="network" title="Network Health" color="#01F1E3" suffix="%" :value="datacenter.networkHealth || 0" />
           <InfoField icon="rj45" title="Current Bandiwdth" color="#FFBA69" suffix="Mbps" :value="stats.currentBandwidth?.toFixed(2) || 0" />
-          <InfoField icon="ram" title="Total RAM Usage" color="#FF718C" suffix="GB" :value="stats.ramUsage?.current?.toFixed(2) || 0" :maxValue="stats.ramUsage?.max?.toFixed(2)"/>
+          <InfoField icon="ram" title="Total RAM Usage" color="#FF718C" suffix="GB" :value="stats.ramUsage?.current?.toFixed(2) || 0" :maxValue="stats.ramUsage?.max?.toFixed(2)" />
           <MemberField :isOwner="datacenter.owner === me._id || me.is_admin" :members="datacenter.members" />
         </div>
         <ServerCard v-if="isShowingServerCard" />
@@ -105,7 +105,7 @@ export default {
     this.fetchData();
   },
   methods: {
-    async fetchData(){
+    async fetchData() {
       this.datacenters = await this.api.datacenters.fetchAll();
       this.stats.totalMachines = (await this.api.datacenters.fetchMachineCount(this.datacenter.name)).count;
 
@@ -158,13 +158,31 @@ export default {
   flex-direction: column;
   margin-bottom: 128px;
 }
-
 .datacenters .content .bullshit {
   display: flex;
   gap: 8px;
   width: 100%;
 }
-
+.datacenters .content .bullshit .coolShit {
+  width: 268px;
+  min-width: 268px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.datacenters .content .bullshit .coolShit .members {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 128px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+.datacenters .content .bullshit .coolShit .buttons {
+  display: flex;
+  justify-content: space-between;
+}
 .datacenters .heading {
   display: flex;
   position: relative;
@@ -174,12 +192,10 @@ export default {
   height: 128px;
   min-height: 128px;
 }
-
 .datacenters .heading img {
   user-select: none;
   max-height: 80%;
 }
-
 .datacenters .heading .banner {
   width: 100%;
   min-height: 128px;
@@ -191,15 +207,13 @@ export default {
   object-fit: cover;
   position: absolute;
 }
-
 .datacenters .heading .logo {
   z-index: 2;
   filter: invert(var(--filter));
 }
-.datacenters .heading .logo.isEditing { 
-  opacity: 0.50;
+.datacenters .heading .logo.isEditing {
+  opacity: 0.5;
 }
-
 .datacenters .heading .datacenterEdit {
   cursor: pointer;
   transition: 100ms ease;
@@ -207,7 +221,6 @@ export default {
   transform: translate(50%, -50%);
   filter: invert(1);
 }
-
 .datacenters .heading .datacenterEdit.bannerPen {
   width: 32px;
   top: 24px;
@@ -230,36 +243,5 @@ export default {
 }
 .datacenters .heading .datacenterEdit.logoPen:active {
   width: 56px;
-}
-
-.datacenters .content .coolShit {
-  width: 268px;
-  min-width: 268px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.datacenters .content .coolShit {
-  width: 268px;
-  min-width: 268px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.datacenters .content .coolShit .members {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  height: 128px;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-}
-
-.datacenters .content .coolShit .buttons {
-  display: flex;
-  justify-content: space-between;
 }
 </style>

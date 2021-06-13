@@ -48,14 +48,6 @@ export default {
 </script>
 
 <style scoped>
-code {
-  white-space: pre;
-  display: block;
-  padding: 8px;
-  border-radius: 4px;
-  background: #151529;
-}
-
 .log {
   display: flex;
   background-color: var(--background-color);
@@ -75,6 +67,21 @@ code {
   font-size: 11px;
   line-height: 117.9%;
   flex-direction: column;
+}
+
+.log:not(.active):hover {
+  background-color: var(--theme-color);
+}
+
+.log.active {
+  height: fit-content;
+  background-color: var(--white);
+}
+
+.log img {
+  width: 20px;
+  height: 20px;
+  filter: invert(var(--filter));
 }
 
 .log .heading {
@@ -109,30 +116,11 @@ code {
   gap: 8px;
 }
 
-/* .log .details .field .markdown {
-  height: 100%;
-  width: 100%;
-  background-color: var(--darkmode-border-color);
+.log .details .field code {
+  white-space: pre;
+  display: block;
   padding: 8px;
   border-radius: 4px;
-} */
-
-.log.active {
-  height: fit-content;
-  background-color: var(--white);
-}
-
-.log:not(.active):hover {
-  background-color: var(--theme-color);
-}
-
-.log.active:hover {
-  /* background-color: var(--dark-lighter); */
-}
-
-.log img {
-  width: 20px;
-  height: 20px;
-  filter: invert(var(--filter));
+  background: #151529;
 }
 </style>

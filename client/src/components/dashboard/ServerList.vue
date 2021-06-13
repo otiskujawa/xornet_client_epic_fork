@@ -160,19 +160,16 @@ export default {
   transition: 200ms ease;
   overflow-x: hidden;
 }
-
 .serverList.small {
   width: 320px;
   min-width: 320px;
 }
-
 .serverList .heading {
   width: 100%;
   padding: 8px 0px;
   display: flex;
   justify-content: space-between;
 }
-
 .serverList section {
   height: 32px;
   width: 100%;
@@ -180,12 +177,10 @@ export default {
   padding: 8px;
   gap: 8px;
 }
-
 .serverList section img {
   height: 16px;
   filter: invert(var(--filter));
 }
-
 .serverList section h1 {
   text-transform: uppercase;
   font-family: Work Sans;
@@ -198,14 +193,12 @@ export default {
   text-align: center;
   color: var(--slyColor);
 }
-
 .serverList .list {
   flex-direction: column;
   display: flex;
   /* gap: 4px; */
 }
-
-.columns {
+.serverList .columns {
   padding: 8px;
   background-color: var(--background-color);
   border-radius: 4px;
@@ -218,16 +211,18 @@ export default {
   overflow: hidden;
   user-select: none;
 }
-.columns .field,
-.columns .field strong {
+.serverList .columns .field,
+.serverList .columns .field strong {
   font-weight: 500;
   font-size: 11px;
   color: var(--slyColor);
+  opacity: 0.5;
   min-width: fit-content;
   text-align: left;
 }
-
-.columns .field {
+.serverList .columns .field strong {
+}
+.serverList .columns .field {
   text-align: center;
   display: flex;
   align-items: center;
@@ -236,56 +231,43 @@ export default {
   font-weight: 600;
   text-transform: uppercase;
 }
-
-.columns .field:hover {
+.serverList .columns .field:hover {
   color: rgb(255, 0, 179);
 }
-
-.columns .field img {
+.serverList .columns .field img {
   width: 8px;
   filter: invert(var(--filter));
   margin-left: 8px;
 }
-
-.columns .field strong {
-  opacity: 0.5;
-}
-.columns .field.cpuUsage {
+.serverList .columns .field.cpuUsage {
   margin-left: 32px;
   min-width: 48px;
 }
-
-.columns .field.hostname {
+.serverList .columns .field.hostname {
   margin-left: 24px;
   min-width: 100px;
 }
-
-.columns .field.uuid {
+.serverList .columns .field.uuid {
   margin-left: 24px;
   min-width: 216px;
   justify-content: flex-end;
 }
-
-.columns .field.region {
+.serverList .columns .field.region {
   min-width: 48px;
 }
-
-.columns .field.disksUsage {
+.serverList .columns .field.disksUsage {
   min-width: 138px;
 }
-
-.columns .field.networkUsage {
+.serverList .columns .field.networkUsage {
   min-width: 86px;
 }
-
-.columns .field.region {
+.serverList .columns .field.region {
   min-width: 66px;
 }
-.columns .field.uptime {
+.serverList .columns .field.uptime {
   min-width: 100px;
 }
-
-.columns .field.owner {
+.serverList .columns .field.owner {
   min-width: 124px;
 }
 </style>

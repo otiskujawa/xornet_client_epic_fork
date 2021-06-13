@@ -4,7 +4,7 @@
       <circle cx="70" cy="70" r="40"></circle>
       <circle class="progress" cx="70" cy="70" r="40" :style="{ stroke: color, 'stroke-dashoffset': 250 - (250 * (((value >= maxValue ? maxValue - 0.01 : value) * 75) / ((maxValue * 100) / 100))) / 100 }"></circle>
     </svg>
-    <img class="gaugeIcon" :src="icon" alt="" />
+    <img class="icon" :src="icon" alt="" />
     <h1 v-if="driveLetter" class="gaugeText gaugeDriveLetter">{{ driveLetter }}</h1>
     <h1 class="gaugeText">{{ value + suffix }}</h1>
   </div>
@@ -31,7 +31,7 @@ export default {
   height: 100px;
 }
 
-.gaugeIcon {
+.icon {
   position: absolute;
   user-select: none;
   top: 50%;

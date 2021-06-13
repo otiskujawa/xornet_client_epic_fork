@@ -1,18 +1,18 @@
 <template>
-  <div class="profilepage" v-if="profile.username">
+  <div class="profilePage" v-if="profile.username">
     <div class="heading">
-      <div class="profileHeader">
-        <img class="profileBanner" :src="profile.profileBanner?.url || 'https://cdn.discordapp.com/attachments/806300597338767450/849668963033153606/Normal.gif'" :alt="profile.username" />
-        <Icon class="profileEdit" @click="$refs.profileBanner.click()" v-if="isEditing" icon="edit" />
+      <div class="header">
+        <img class="banner" :src="profile.banner?.url || 'https://cdn.discordapp.com/attachments/806300597338767450/849668963033153606/Normal.gif'" :alt="profile.username" />
+        <Icon class="edit" @click="$refs.banner.click()" v-if="isEditing" icon="edit" />
       </div>
-      <div class="profileImage" :class="{ border: profile.profileImage?.hasAlpha }" :style="{ 'background-image': `url(${profile.profileImage?.url ?? 'https://wallpapercave.com/wp/wp8846945.jpg'})` }">
+      <div class="pfp" :class="{ border: profile.pfp?.hasAlpha }" :style="{ 'background-image': `url(${profile.profileImage?.url ?? 'https://wallpapercave.com/wp/wp8846945.jpg'})` }">
         <div class="xornetBadge" v-if="profile.isDev"><img :src="require('@/assets/logos/logo.svg')" alt="Xornet Developer" /></div>
-        <Icon class="profileEdit" @click="$refs.profileImage.click()" v-if="isEditing" icon="edit" />
+        <Icon class="edit" @click="$refs.pfp.click()" v-if="isEditing" icon="edit" />
       </div>
 
       <form v-if="isEditing">
-        <input type="file" id="profileImage" ref="profileImage" style="display: none" name="profileImage" accept="image/*" />
-        <input type="file" id="profileBanner" ref="profileBanner" style="display: none" name="profileBanner" accept="image/*" />
+        <input type="file" id="pfp" ref="pfp" style="display: none" name="pfp" accept="image/*" />
+        <input type="file" id="banner" ref="banner" style="display: none" name="banner" accept="image/*" />
       </form>
 
       <ShadowButton title="Edit" icon="edit" v-if="!isEditing && profile.username == username" @click="isEditing = !isEditing" class="edit" />
@@ -96,7 +96,7 @@
         <div class="line" v-if="profile.socials?.length != 0 || isEditing"></div>
 
         <section class="descriptionSection">
-          <Icon class="profileEdit" v-if="isEditing" icon="edit" />
+          <Icon class="edit" v-if="isEditing" icon="edit" />
           <h1 class="descriptionHeading" v-if="profile.bio && !isEditing">Bio</h1>
           <textarea v-if="!isEditing" maxlength="256" class="descriptionText textArea" cols="30" rows="10" v-model="profile.bio" disabled></textarea>
           <textarea v-if="isEditing" maxlength="256" class="descriptionText textArea editing" cols="30" rows="10" v-model="profile.bio"></textarea>
@@ -226,9 +226,9 @@ export default {
       window.open(url, "_blank");
     },
     async save() {
-      let response = await this.api.user.save(Object.assign({}, this.profile), this.$refs.profileImage.files[0], this.$refs.profileBanner.files[0]);
+      let response = await this.api.user.save(Object.assign({}, this.profile), this.$refs.pfp.files[0], this.$refs.banner.files[0]);
 
-      // this.profile.profileImage = response.profile.profileImage;
+      // this.profile.pfp = response.profile.pfp;
       for (const [key, value] of Object.entries(response.profile)) {
         this.profile[key] = value;
       }
@@ -266,33 +266,29 @@ export default {
 </script>
 
 <style>
-.profilepage {
+.profilePage {
   min-width: 100%;
   min-height: 100%;
   height: 100vh;
   position: relative;
   overflow: scroll;
 }
-
-.profilepage .heading {
+.profilePage .heading {
   display: flex;
   position: relative;
   align-items: flex-end;
 }
-
-.profilepage .heading img {
+.profilePage .heading img {
   user-select: none;
 }
-
-.profilepage .heading .profileBanner {
+.profilePage .heading .banner {
   width: 100%;
   height: 300px;
   top: 0;
   object-fit: cover;
   position: absolute;
 }
-
-.profilepage .heading .profileHeader .profileEdit {
+.profilePage .heading .header .edit {
   cursor: pointer;
   transition: 100ms ease;
   width: 128px;
@@ -302,16 +298,13 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
-.profilepage .heading .profileHeader .profileEdit:hover {
+.profilePage .heading .header .edit:hover {
   width: 144px;
 }
-
-.profilepage .heading .profileHeader .profileEdit:active {
+.profilePage .heading .header .edit:active {
   width: 112px;
 }
-
-.profilepage .heading .profileImage {
+.profilePage .heading .pfp {
   transform: translate(-6px);
   width: 180px;
   box-sizing: content-box;
@@ -327,12 +320,10 @@ export default {
   position: relative;
   object-fit: cover;
 }
-
-.profilepage .heading .profileImage.border {
+.profilePage .heading .pfp.border {
   border: 6px solid transparent;
 }
-
-.profilepage .heading .profileImage .profileEdit {
+.profilePage .heading .pfp .edit {
   cursor: pointer;
   transition: 100ms ease;
   width: 64px;
@@ -342,16 +333,13 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
-.profilepage .heading .profileImage .profileEdit:hover {
+.profilePage .heading .pfp .edit:hover {
   width: 72px;
 }
-
-.profilepage .heading .profileImage .profileEdit:active {
+.profilePage .heading .pfp .edit:active {
   width: 56px;
 }
-
-.profilepage .heading .xornetBadge {
+.profilePage .heading .xornetBadge {
   background: linear-gradient(90deg, #db00ff 0%, #8000ff 31.77%, #00b2ff 64.06%, #00fff0 98.44%);
   transform: translate(-6px);
   border: 6px solid var(--background-color);
@@ -362,61 +350,22 @@ export default {
   position: absolute;
   bottom: 0px;
 }
-.profilepage .heading .xornetBadge img {
+.profilePage .heading .xornetBadge img {
   height: 8px;
   width: auto;
 }
-
-.shadowButton:not(.didCopy):not(.isEditing):hover {
-  filter: invert(1);
-}
-
-.shadowButton.isEditing:not(.didCopy):hover {
-  background-color: var(--theme-color);
-}
-
-.shadowButton.isEditing:not(.didCopy):hover h1 {
-  color: white;
-}
-
-.shadowButton.isEditing:not(.didCopy):hover img {
-  filter: invert(1);
-}
-
-.shadowButton.didCopy {
-  background-color: rgb(51, 255, 0) !important;
-}
-
-.shadowButton.edit {
-  width: min-content;
-  margin-bottom: 24px;
-  margin-left: 16px;
-}
-
-.shadowButton.edit h1 {
-  font-family: Work Sans;
-  font-weight: 600;
-  font-size: 14px;
-  text-transform: capitalize;
-
-  display: flex;
-  align-items: center;
-}
-
-.profilepage .content {
+.profilePage .content {
   display: flex;
   margin-top: 24px;
   gap: 64px;
 }
-
-.profilepage .stats {
+.profilePage .stats {
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(4, 224px);
   grid-template-rows: repeat(4, 72px);
 }
-
-.profilepage .speedtest {
+.profilePage .speedtest {
   width: 100%;
   padding: 16px 16px 20px 16px;
   border-radius: 8px;
@@ -429,13 +378,11 @@ export default {
   height: fit-content;
   flex-direction: column;
 }
-
-.profilepage .speedtest:hover {
+.profilePage .speedtest:hover {
   transform: translateY(-1px);
   box-shadow: rgb(0 0 0 / 10%) 0px 10px 20px;
 }
-
-.profilepage .speedtest h1 {
+.profilePage .speedtest h1 {
   font-family: "Roboto Mono";
   font-style: normal;
   font-weight: bold;
@@ -444,19 +391,16 @@ export default {
   line-height: 117.9%;
   color: var(--black);
 }
-
-.profilepage .speedtest h1 strong {
+.profilePage .speedtest h1 strong {
   font-family: "Roboto Mono";
   color: #c8c8c8;
   text-transform: lowercase;
 }
-
-.profilepage .speedtest .gauges {
+.profilePage .speedtest .gauges {
   display: flex;
   gap: 16px;
 }
-
-.profilepage .details {
+.profilePage .details {
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -465,20 +409,37 @@ export default {
   margin-left: 10vw;
   margin-bottom: 128px;
 }
+.profilePage .details section:not(.uuid) {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: space-between;
+}
+.profilePage .details section h1 {
+  font-family: Work Sans;
+  font-weight: 600;
+  font-size: 14px;
 
-.profilepage .details .heading {
+  display: flex;
+  align-items: center;
+  color: #c8c8c8;
+}
+.profilePage .details section.socials {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(50px, 1fr));
+  gap: 8px;
+}
+.profilePage .details .heading {
   display: flex;
   gap: 8px;
   align-items: center;
 }
-
-.profilepage .details .heading .container {
+.profilePage .details .heading .container {
   display: flex;
   gap: 8px;
   align-items: flex-end;
 }
-
-.profilepage .details .heading .username {
+.profilePage .details .heading .username {
   font-family: "Work Sans";
   font-style: normal;
   font-weight: 600;
@@ -488,48 +449,21 @@ export default {
 
   color: var(--black);
 }
-
-.profilepage .details .heading .location {
+.profilePage .details .heading .location {
   height: 20px;
   user-select: none;
 }
-
-.profilepage .details .badges {
+.profilePage .details .badges {
   display: flex;
   flex-direction: row;
   gap: 8px;
 }
-
-.profilepage .details .badges .badge {
+.profilePage .details .badges .badge {
   width: 28px;
   height: 28px;
   user-select: none;
 }
-
-section {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  justify-content: space-between;
-}
-
-section h1 {
-  font-family: Work Sans;
-  font-weight: 600;
-  font-size: 14px;
-
-  display: flex;
-  align-items: center;
-  color: #c8c8c8;
-}
-
-.profilepage section.socials {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(50px, 1fr));
-  gap: 8px;
-}
-
-.profilepage .points {
+.profilePage .points {
   background: linear-gradient(90deg, #db00ff 0%, #8000ff 31.77%, #00b2ff 64.06%, #00fff0 98.44%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -537,8 +471,7 @@ section h1 {
   font-weight: 600;
   font-size: 36px;
 }
-
-.profilepage .descriptionText {
+.profilePage .descriptionText {
   font-family: Work Sans;
   font-style: normal;
   font-weight: 600;
@@ -555,12 +488,10 @@ section h1 {
 
   color: var(--black);
 }
-
-.profilepage .descriptionSection {
+.profilePage .descriptionSection {
   position: relative;
 }
-
-.profilepage .descriptionSection .profileEdit {
+.profilePage .descriptionSection .edit {
   cursor: pointer;
   transition: 100ms ease;
   width: 24px;
@@ -571,31 +502,56 @@ section h1 {
   transform: translate(50%, 50%);
   z-index: 999;
 }
-
-.profilepage .descriptionSection .profileEdit:hover {
+.profilePage .descriptionSection .edit:hover {
   width: 32px;
 }
-.profilepage .descriptionSection .profileEdit:active {
+.profilePage .descriptionSection .edit:active {
   width: 16px;
 }
-
-.profilepage .textArea {
+.profilePage .textArea {
   border: none;
   resize: none;
   background: none;
 }
-
-.profilepage .textArea.editing {
+.profilePage .textArea.editing {
   padding: 8px;
   border-radius: 8px;
   border: 2px var(--border-color) dashed;
   box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
 }
-
-.profilepage .line {
+.profilePage .line {
   width: 100%;
   height: 1px;
   margin-top: 8px;
   background-color: var(--border-color);
+}
+.shadowButton:not(.didCopy):not(.isEditing):hover {
+  filter: invert(1);
+}
+.shadowButton.isEditing:not(.didCopy):hover {
+  background-color: var(--theme-color);
+}
+.shadowButton.isEditing:not(.didCopy):hover h1 {
+  color: white;
+}
+.shadowButton.isEditing:not(.didCopy):hover img {
+  filter: invert(1);
+}
+.shadowButton.didCopy {
+  background-color: rgb(51, 255, 0) !important;
+}
+.shadowButton.edit {
+  width: min-content;
+  margin-bottom: 24px;
+  margin-left: 16px;
+}
+.shadowButton.edit h1 {
+  font-family: Work Sans;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: capitalize;
+
+  display: flex;
+  align-items: center;
 }
 </style>

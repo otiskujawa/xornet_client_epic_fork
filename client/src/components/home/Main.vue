@@ -127,6 +127,10 @@ export default {
   color: white;
 }
 
+.main .coolShit h1 {
+  z-index: 2;
+}
+
 .main .coolShit .textField {
   transform: translateY(160px);
   z-index: 2;
@@ -153,9 +157,5 @@ export default {
   z-index: 1;
   background: #151527;
   transform: rotate(-4.71deg) translateX(-25vw);
-}
-
-.main .coolShit h1 {
-  z-index: 2;
 }
 </style>

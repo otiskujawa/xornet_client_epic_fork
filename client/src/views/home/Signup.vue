@@ -26,7 +26,7 @@ export default {
         repeatPassword: null
       }
     };
-  },
+  }
 };
 </script>
 

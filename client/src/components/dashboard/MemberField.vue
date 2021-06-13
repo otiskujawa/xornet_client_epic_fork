@@ -63,7 +63,8 @@ export default {
 }
 
 .membersInfo h1 {
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: 600;
   white-space: nowrap;
 }
 

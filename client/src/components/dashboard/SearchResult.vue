@@ -53,48 +53,44 @@ export default {
   box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
 }
 
-.userPoints {
+.searchResult .userPoints {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.userPoints .p {
+.searchResult .userPoints .p {
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
   font-size: 13px;
   line-height: 100%;
-  /* identical to box height, or 13px */
-
   display: flex;
   align-items: flex-end;
-
   left: 0px;
   color: var(--black);
 }
 
-.userPoints .points {
+.searchResult .userPoints .points {
   background: linear-gradient(90deg, #db00ff 0%, #8000ff 31.77%, #00b2ff 64.06%, #00fff0 98.44%);
   background-clip: border-box;
   -webkit-background-clip: text;
-  background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
   font-family: Work Sans;
   font-weight: 600;
   font-size: 16px;
-
   left: 0px;
 }
 
-.searchResult .profile {
+.searchResult .searchResult .profile {
   display: flex;
   flex-direction: row;
   width: 40%;
   gap: 8px;
 }
 
-.username {
+.searchResult .username {
   display: flex;
   flex-direction: row;
   gap: 8px;
@@ -102,12 +98,12 @@ export default {
   align-items: center;
 }
 
-.username img {
+.searchResult .username img {
   height: 13px;
   border-radius: 2px;
 }
 
-.badges {
+.searchResult .badges {
   display: flex;
   flex-direction: row;
   gap: 8px;
@@ -115,7 +111,7 @@ export default {
   bottom: 4px;
 }
 
-.badge {
+.searchResult .badges .badge {
   height: 16px;
   width: 16px;
 }
@@ -124,7 +120,6 @@ export default {
   width: 48px;
   height: 48px;
   border-radius: 135.5px;
-
   object-fit: cover;
 }
 
@@ -141,10 +136,8 @@ export default {
   font-weight: 600;
   font-size: 13px;
   line-height: 100%;
-  /* identical to box height, or 13px */
 
   display: flex;
-
   color: var(--black);
 }
 </style>
