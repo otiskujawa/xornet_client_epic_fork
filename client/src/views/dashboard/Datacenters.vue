@@ -28,10 +28,12 @@
               "
             />
           </div>
-          <InfoField icon="stack" title="Servers Online" color="#8676FF" :value="machines.size || 0" :maxValue="stats.totalMachines" />
-          <InfoField icon="network" title="Network Health" color="#01F1E3" suffix="%" :value="datacenter.networkHealth || 0" />
-          <InfoField icon="rj45" title="Current Bandiwdth" color="#FFBA69" suffix="Mbps" :value="stats.currentBandwidth?.toFixed(2) || 0" :maxValue="100" />
-          <InfoField icon="ram" title="Total RAM Usage" color="#FF718C" suffix="GB" :value="stats.ramUsage?.current?.toFixed(2) || 0" :maxValue="stats.ramUsage?.max?.toFixed(2)" />
+          <div class="infoFields">
+            <InfoField icon="stack" title="Servers Online" color="#8676FF" :value="machines.size || 0" :maxValue="stats.totalMachines" />
+            <InfoField icon="network" title="Network Health" color="#01F1E3" suffix="%" :value="datacenter.networkHealth || 0" />
+            <InfoField icon="rj45" title="Current Bandiwdth" color="#FFBA69" suffix="Mbps" :value="stats.currentBandwidth?.toFixed(2) || 0" :maxValue="100" />
+            <InfoField icon="ram" title="Total RAM Usage" color="#FF718C" suffix="GB" :value="stats.ramUsage?.current?.toFixed(2) || 0" :maxValue="stats.ramUsage?.max?.toFixed(2)" />
+          </div>
           <MemberField :isOwner="datacenter.owner === me._id || me.is_admin" :members="datacenter.members" />
         </div>
         <ServerCard v-if="isShowingServerCard" />
@@ -142,6 +144,7 @@ export default {
 </script>
 
 <style scoped>
+
 .datacenters {
   width: 100%;
   height: 100vh;
@@ -149,9 +152,12 @@ export default {
   padding: 8px;
 }
 .datacenters .buttons {
-  display: flex;
+  display: grid;
   gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  grid-template-rows: repeat(auto-fit, 1fr);
 }
+
 .datacenters .content {
   display: flex;
   gap: 8px;
@@ -170,6 +176,13 @@ export default {
   flex-direction: column;
   gap: 8px;
 }
+
+.datacenters .content .bullshit .coolShit .infoFields {
+  display: grid;
+  grid-template-columns: 100%;
+  gap: 8px;
+}
+
 .datacenters .content .bullshit .coolShit .members {
   width: 100%;
   display: flex;

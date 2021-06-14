@@ -39,8 +39,7 @@ export default {
 
 <style scoped>
 .datacenter {
-  width: 224px;
-  height: 224px;
+  aspect-ratio: 1;
   border-radius: 8px;
   background-color: var(--background-color);
   cursor: pointer;

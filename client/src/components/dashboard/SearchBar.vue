@@ -72,7 +72,7 @@ export default {
   flex-direction: column;
 
   gap: 8px;
-  width: fit-content;
+  max-width: 300px;
   padding: 8px;
   margin-left: 8px;
   background-color: var(--background-color);
@@ -101,15 +101,15 @@ export default {
 
 .search .bar {
   display: flex;
+  width: 100%;
   gap: 8px;
-  width: fit-content;
   position: relative;
   background-color: var(--background-color);
   border-radius: 3px;
 }
 
 .search .bar .inputField {
-  width: 300px;
+  width: 100%;
   transition: 100ms ease;
   border-radius: 3px;
   font-family: "Montserrat", sans-serif;

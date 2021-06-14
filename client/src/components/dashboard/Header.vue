@@ -1,18 +1,20 @@
 <template>
   <header>
-    <div class="logo">
-      <img :src="require('@/assets/logos/logoHeader.svg')" alt="Xornet" />
-    </div>
+    <div class="left">
+      <div class="logo">
+        <img :src="require('@/assets/logos/logoHeader.svg')" alt="Xornet" />
+      </div>
 
-    <div class="buttons">
-      <SquareButton icon="repository" href="https://github.com/Geoxor/Xornet/releases" />
-      <SquareButton icon="darkmode" @click="toggleDarkmode" />
-      <!-- <SquareButton icon="details" v-if="currentRoute == 'machines'" @click="isShowingDetails = !isShowingDetails" :isEnabled="isShowingDetails" /> -->
-      <!-- <SquareButton icon="thick" v-if="currentRoute == 'machines' && thinButtons"/> -->
-      <!-- <SquareButton icon="thin" v-if="currentRoute == 'machines' && !thinButtons"/> -->
-    </div>
+      <div class="buttons">
+        <SquareButton icon="repository" href="https://github.com/Geoxor/Xornet/releases" />
+        <SquareButton icon="darkmode" @click="toggleDarkmode" />
+        <!-- <SquareButton icon="details" v-if="currentRoute == 'machines'" @click="isShowingDetails = !isShowingDetails" :isEnabled="isShowingDetails" /> -->
+        <!-- <SquareButton icon="thick" v-if="currentRoute == 'machines' && thinButtons"/> -->
+        <!-- <SquareButton icon="thin" v-if="currentRoute == 'machines' && !thinButtons"/> -->
+      </div>
 
-    <SearchBar />
+      <SearchBar />
+    </div>
 
     <div class="account">
       <SquareButton icon="logout" @click.native="logout" />
@@ -85,9 +87,13 @@ header {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   background-color: var(--background-color);
   overflow: visible;
+}
+
+header .left {
+  display: flex;
 }
 
 header .button {
@@ -120,7 +126,6 @@ header .logo {
 
 header .button.enabled {
   filter: invert(1);
-  /* background-color: var(--rogue-red-border); */
 }
 
 header .button img {
@@ -137,10 +142,13 @@ header .buttons {
 header .account {
   display: flex;
   align-items: center;
-  /* margin-right: 8px; */
   justify-content: center;
-  right: 8px;
-  position: fixed;
+}
+
+header .account a {
+  width: 32px;
+  height: 32px;
+  margin: 8px;
 }
 
 header .account img.profileImage {

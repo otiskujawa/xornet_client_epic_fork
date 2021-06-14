@@ -9,7 +9,7 @@ let ROOT_PATH = "https://backend.xornet.cloud";
  * handle requests with the backend
  *
  * Note: The data from here can be taken to create API docs in the future
- *
+ * @private
  * @copyright George Tsotsos & Niko Huuskonen
  */
 
@@ -38,7 +38,6 @@ class API {
    * @private
    */
   error(method, ...messages) {
-    console.log(messages);
     eventHandler.emit("error", { method, messages });
 
     // prettier-ignore
@@ -109,7 +108,7 @@ class API {
    * @param {String} route The route you wanna make a request to e.g. channels/pin
    * @param {Object} headers An optional headers object to send to the route
    * @param {Object} body An optional body object to send to the route
-   * @example const response = super.request('post', 'channels/group', undefined, body);
+   * @example const response = await super.request('post', 'channels/group', undefined, body);
    */
   async request(method, route, headers, body) {
     if (method === "get" || method === "delete") {
@@ -287,6 +286,8 @@ const api = {
   machine: new Machine(),
   datacenters: new Datacenter()
 };
+
+
 
 console.log(`%c[API]` + `%c [Class Loaded]`, "color: black; background-color: #aa66ff; padding: 2px; border-radius: 4px; font-weight: bold;", "color: #cba1ff;");
 
