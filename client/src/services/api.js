@@ -21,6 +21,7 @@ class API {
    * @private
    */
   log(method, ...messages) {
+    
     // prettier-ignore
     console.log(
       `%c[API]` + 

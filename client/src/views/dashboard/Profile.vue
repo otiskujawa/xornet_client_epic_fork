@@ -167,6 +167,7 @@ export default {
     this.points.tweened = this.profile.points;
   },
   mounted() {
+    socket.off("points");
     socket.emit("getPoints", this.$route.params.username);
     socket.on("points", points => {
       console.log(`%c[WS]` + `%c [Points]`, "color: black; background-color: #ff4488; padding: 2px; border-radius: 4px; font-weight: bold;", "color: #ff77aa;", points);

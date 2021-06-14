@@ -95,12 +95,14 @@ export default {
     }
   },
   async mounted() {
+
     if (this.$route.query.newMachine) {
       this.api.user.addMachine(this.$route.query.newMachine);
     }
 
     if (this.selectedMachine) this.getNetwork();
 
+    socket.off("machines");
     socket.on("machines", machines => {
       console.log(`%c[WS]` + `%c [Machines]`, "color: black; background-color: #ff4488; padding: 2px; border-radius: 4px; font-weight: bold;", "color: #ff77aa;", machines);
 
@@ -108,6 +110,7 @@ export default {
 
       // this.labels.push(`${new Date().getHours()}:${new Date().getMinutes()}`);
     });
+    socket.emit("getMachines");
   }
 };
 </script>

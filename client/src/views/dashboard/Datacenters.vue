@@ -108,9 +108,11 @@ export default {
   },
   methods: {
     async fetchData() {
+
       this.datacenters = await this.api.datacenters.fetchAll();
       this.stats.totalMachines = (await this.api.datacenters.fetchMachineCount(this.datacenter.name)).count;
 
+      socket.off("machines");
       socket.on("machines", machines => {
         console.log(`%c[WS]` + `%c [Machines]`, "color: black; background-color: #ff4488; padding: 2px; border-radius: 4px; font-weight: bold;", "color: #ff77aa;", machines);
 
@@ -130,6 +132,7 @@ export default {
           this.stats.currentBandwidth += machine.network.TxSec + machine.network.RxSec;
         });
       });
+      socket.emit("getMachines");
     },
     async save() {
       let response = await this.api.datacenters.save(this.$route.params.name, this.$refs.logo.files[0], this.$refs.banner.files[0]);
