@@ -64,16 +64,17 @@ export default {
 }
 
 .shadowButton h1 {
-  font-family: Work Sans;
-  font-weight: 600;
-  font-size: 14px;
-  text-transform: capitalize;
-  color: var(--black);
+  font-family: Roboto Mono,monospace;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  color: #000;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
   width: 100%;
   text-align: center;
+  text-transform: uppercase;
 }
 
 .shadowButton img {

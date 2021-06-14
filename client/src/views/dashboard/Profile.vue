@@ -383,7 +383,7 @@ export default {
   transform: translateY(-1px);
   box-shadow: rgb(0 0 0 / 10%) 0px 10px 20px;
 }
-.profilePage .speedtest h1 {
+.profilePage .speedtest > h1 {
   font-family: "Roboto Mono";
   font-style: normal;
   font-weight: bold;
@@ -392,7 +392,7 @@ export default {
   line-height: 117.9%;
   color: var(--black);
 }
-.profilePage .speedtest h1 strong {
+.profilePage .speedtest > h1 strong {
   font-family: "Roboto Mono";
   color: #c8c8c8;
   text-transform: lowercase;
@@ -418,9 +418,6 @@ export default {
   justify-content: space-between;
 }
 .profilePage .profiileDetails section h1:not(#profileID) {
-  font-family: Work Sans;
-  font-weight: 600;
-  font-size: 14px;
   display: flex;
   align-items: center;
 }
@@ -474,6 +471,9 @@ export default {
 
 .profilePage .descriptionHeading {
   color: #c7c7c7;
+  font-family: Work Sans;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 .profilePage .descriptionText {

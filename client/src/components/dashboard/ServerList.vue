@@ -214,7 +214,8 @@ export default {
 .serverList .columns .field,
 .serverList .columns .field strong {
   font-weight: 400;
-  font-size: 10px;
+  font-size: 11px;
+  font-family: Work Sans,sans-serif;
   color: var(--slyColor);
   min-width: fit-content;
   text-align: left;
