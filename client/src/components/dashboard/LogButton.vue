@@ -91,6 +91,10 @@ export default {
   align-items: center;
 }
 
+.log .heading * {
+  color: var(--black);
+}
+
 .log .summary {
   max-width: 100%;
   width: fit-content;

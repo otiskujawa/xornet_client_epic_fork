@@ -6,12 +6,6 @@
       <DatacenterCard v-if="isAddingNew" />
     </div>
     <div v-else-if="datacenter" class="content">
-      <div class="heading">
-        <img class="banner" :src="datacenter.banner || 'https://i.redd.it/cxrn0h5ksd131.jpg'" :alt="datacenter.name" />
-        <Icon class="datacenterEdit bannerPen" @click="$refs.banner.click()" v-if="isEditing" icon="edit" />
-        <img class="logo" :class="{ isEditing }" :src="datacenter.logo || 'https://cdn.discordapp.com/attachments/807448839346716683/853054616870322256/spaz.gif'" :alt="datacenter.name" />
-        <Icon class="datacenterEdit logoPen" @click="$refs.logo.click()" v-if="isEditing" icon="edit" />
-      </div>
       <div class="bullshit">
         <div class="coolShit">
           <div class="buttons">
@@ -27,6 +21,12 @@
                 save();
               "
             />
+          </div>
+          <div class="heading">
+            <img class="banner" :src="datacenter.banner || 'https://i.redd.it/cxrn0h5ksd131.jpg'" :alt="datacenter.name" />
+            <Icon class="datacenterEdit bannerPen" @click="$refs.banner.click()" v-if="isEditing" icon="edit" />
+            <img class="logo" :class="{ isEditing }" :src="datacenter.logo || 'https://cdn.discordapp.com/attachments/807448839346716683/853054616870322256/spaz.gif'" :alt="datacenter.name" />
+            <Icon class="datacenterEdit logoPen" @click="$refs.logo.click()" v-if="isEditing" icon="edit" />
           </div>
           <div class="infoFields">
             <InfoField icon="stack" title="Servers Online" color="#8676FF" :value="machines.size || 0" :maxValue="stats.totalMachines" />
@@ -152,9 +152,9 @@ export default {
   width: 100%;
   height: 100vh;
   overflow: scroll;
-  padding: 8px;
 }
-.datacenters .buttons {
+.datacenters > .buttons {
+  padding: 8px;
   display: grid;
   gap: 8px;
   grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
@@ -170,6 +170,7 @@ export default {
 .datacenters .content .bullshit {
   display: flex;
   gap: 8px;
+  padding: 8px;
   width: 100%;
 }
 .datacenters .content .bullshit .coolShit {
@@ -203,6 +204,8 @@ export default {
   display: flex;
   position: relative;
   align-items: center;
+  border-radius: 4px;
+  overflow: hidden;
   width: 100%;
   justify-content: center;
   height: 128px;

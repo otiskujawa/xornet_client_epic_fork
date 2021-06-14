@@ -1,13 +1,13 @@
 <template>
   <div class="membersInfo">
     <h1 class="title">Members</h1>
-    <router-link :to="{ name: 'profile', params: { username: member.username } }" class="member" v-for="member of members" :key="member">
-      <div class="user">
+    <div class="member" v-for="member of members" :key="member">
+      <router-link class="user" :to="{ name: 'profile', params: { username: member.username } }">
         <img :src="member.profileImage?.url" :alt="member.username" />
         <h1>{{ member.username }}</h1>
-      </div>
+      </router-link>
       <ShadowButton v-if="isOwner" colored class="revoke" title="Revoke" icon="hammer" @click="revoke(member._id)" />
-    </router-link>
+    </div>
     <ShadowButton v-if="isOwner" title="Add" icon="add" @click="showMemberCard = !showMemberCard" />
     <MemberCard v-if="showMemberCard" />
   </div>

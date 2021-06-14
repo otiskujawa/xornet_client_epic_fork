@@ -151,11 +151,10 @@ export default {
 <style scoped>
 .serverList {
   width: 100%;
-  min-width: 100%;
+  border-radius: 4px;
   height: 100%;
   flex-direction: column;
   font-family: "Roboto Mono";
-  padding: 0px 8px;
   background-color: var(--background-color);
   transition: 200ms ease;
   overflow-x: hidden;

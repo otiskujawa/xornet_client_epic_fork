@@ -59,6 +59,14 @@ export default {
   font-family: "Montserrat", sans-serif;
   box-sizing: border-box;
   text-decoration: none;
+  color: var(--black);
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 *::selection {

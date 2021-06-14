@@ -471,6 +471,11 @@ export default {
   font-weight: 600;
   font-size: 36px;
 }
+
+.profilePage .descriptionHeading {
+  color: #c7c7c7;
+}
+
 .profilePage .descriptionText {
   font-family: Work Sans;
   font-style: normal;

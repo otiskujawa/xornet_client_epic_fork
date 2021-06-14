@@ -120,5 +120,6 @@ export default {
   width: 100%;
   height: 100vh;
   margin-bottom: 128px;
+  padding: 0px 8px;
 }
 </style>
