@@ -1,47 +1,40 @@
 <template>
   <div class="view dashboard">
-    <LoadingScreen :isLoaded="!isLoading"/>
-    <Header/>
+    <LoadingScreen :isLoaded="!isLoading" />
+    <Header />
     <div class="main">
-      <Nav/>
+      <Nav />
       <router-view></router-view>
     </div>
   </div>
 </template>
 
 <script>
-import socket from        '@/services/socket.js';
-import GaugeField from    '@/components/dashboard/GaugeField';
-import InfoField from     '@/components/dashboard/InfoField';
-import ServerList from    '@/components/dashboard/ServerList';
-import LoadingScreen from '@/components/dashboard/LoadingScreen';
-import Chart from         '@/components/dashboard/Chart';
-import Terminal from      '@/components/dashboard/Terminal';
-import Header from        '@/components/dashboard/Header';
-import Nav from           '@/components/dashboard/Nav';
+import GaugeField from "@/components/dashboard/GaugeField";
+import ServerList from "@/components/dashboard/ServerList";
+import LoadingScreen from "@/components/dashboard/LoadingScreen";
+import Chart from "@/components/dashboard/Chart";
+import Terminal from "@/components/dashboard/Terminal";
+import Header from "@/components/dashboard/Header";
+import Nav from "@/components/dashboard/Nav";
 
 export default {
-  name: 'Dashboard',
+  name: "Dashboard",
   components: {
     Nav,
     Header,
-    LoadingScreen,
+    LoadingScreen
   },
   computed: {
-    isLoading: function(){
+    isLoading: function() {
       // return this.machines.size > 0 ? false : true;
-      return false
+      return false;
     }
-  },
-  data: () => {
-    return {
-    }
-  },
-}
+  }
+};
 </script>
 
 <style scoped>
-
 .dashboard {
   align-items: flex-start;
   display: flex;
@@ -53,7 +46,7 @@ export default {
   align-items: flex-start;
   display: flex;
   width: 100%;
-  height: 100%;
+  height: 100vh;
 }
 
 .content {
@@ -69,15 +62,14 @@ export default {
   border-radius: 4px 0px 0px 0px;
 }
 
-.machines, .informatics {
+.machines,
+.informatics {
   display: flex;
   width: fit-content;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .informatics {
   gap: 8px;
 }
-
 </style>
-

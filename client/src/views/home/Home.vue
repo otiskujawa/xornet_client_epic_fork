@@ -1,35 +1,30 @@
 <template>
   <div class="view home">
-    <Header/>
-    <Main/>
+    <Header />
+    <Main />
   </div>
 </template>
 
 <script>
-import Header from '@/components/home/Header';
-import Main from   '@/components/home/Main';
+import Header from "@/components/home/Header";
+import Main from "@/components/home/Main";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
     Main,
     Header
   },
-  computed: {
-  },
+  computed: {},
   data: () => {
-    return {
-    }
+    return {};
   },
-  created(){
-  },
-  mounted(){
-  },
-}
+  created() {},
+  mounted() {}
+};
 </script>
 
-<style scoped>
-
+<style>
 .home {
   min-width: 100%;
   min-height: 100%;
@@ -38,5 +33,7 @@ export default {
   height: 100%;
 }
 
+.home * {
+  font-family: "Comfortaa", cursive;
+}
 </style>
-

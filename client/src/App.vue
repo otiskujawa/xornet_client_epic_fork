@@ -1,46 +1,54 @@
 <template>
-  <router-view/>
+  <div>
+    <Popup />
+    <router-view />
+  </div>
 </template>
 
 <script>
+import Popup from "@/components/misc/Popup";
 export default {
-  created() {
-    if (!localStorage.settings) localStorage.setItem('settings', JSON.stringify({
-      darkmode: false
-    }));
+  components: {
+    Popup
   }
-}
+};
 </script>
+>
 
 <style>
-
 :root {
-
   /* Static colors that wont change */
   --dark: #151527;
-  --dark-light: #0F0F1E;
-  --dark-lighter: #252547;
+  --dark-light: #0f0f1e;
+  --dark-lighter: #18182c;
   --rogue-red-border: #f85149;
-  --theme-main: #FF006B;
-  --terminal-background: #0B0B15;
+  --theme-color: #ff006b;
+  --bright-theme-color: #ff81b5;
+  --terminal-background: #0b0b15;
 
   /* Initial colors */
   --background-color: #ffffff;
   --white: #f6f6f6;
-  --black: #0B0B15;
+  --black: #0b0b15;
+  --gray: #c7c7c7;
   --slyColor: #414569;
   --rogue-red: #ffeef0;
-  --rogue-red-active:#fdaeb7;
-    
+  --rogue-red-active: #fdaeb7;
+  --border-color: #e7e7e7;
+  --shadowButton-color: #ffffff;
+
   /* Darkmode colors */
-  --darkmode-background-color: #0B0B15;
-  --darkmode-white:#0F0F1E;
-  --darkmode-black:#fff;
+  --darkmode-background-color: #0b0b15;
+  --darkmode-white: #0f0f1e;
+  --darkmode-black: #fff;
+  --darkmode-border-color: #26293f;
   --darkmode-slyColor: #fff;
   --darkmode-rogue-red: rgba(218, 54, 51, 0.2);
   --darkmode-rogue-red-active: #8e1519;
+  --darkmode-gray: #c7c7c7;
+  --darkmode-shadowButton-color: #0f0f1e;
 
- /* This variable decides weither the images on the buttons will have their color inverted 
+  /* This variable decides weither the images on the buttons will have their color inverted 
     it switches states if darkmode is on or off in serverList.vue */
   --filter: 0;
 }
@@ -48,8 +56,22 @@ export default {
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Comfortaa', cursive;
+  font-family: "Montserrat", sans-serif;
   box-sizing: border-box;
+  text-decoration: none;
+  color: var(--black);
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+*::selection {
+  background: var(--black);
+  color: var(--white);
 }
 
 html {
@@ -79,5 +101,4 @@ html {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
-
 </style>

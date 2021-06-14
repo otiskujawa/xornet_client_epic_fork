@@ -1,42 +1,38 @@
 <template>
-  <header class="view">
-    <router-link :to="{ name: 'home'}"><img :src="require('@/assets/logos/logo.svg')" alt="Xornet"></router-link>
+  <header :class="route == 'home' ? 'view-home' : 'view-login'">
+    <router-link :to="{ name: 'home' }">
+      <img :src="route == 'home' ? require('@/assets/logos/logo.svg') : require('@/assets/logos/logo2.svg')" alt="Xornet" />
+    </router-link>
     <div class="buttons">
-      <router-link :to="{ name: 'home', params: {page: 'about'}}">What is Xornet</router-link>
-      <a href="https://github.com/Geoxor/Xornet" target="_blank">Repository</a>
-      <router-link class="fancy" :to="{ name: 'home', params: {page: 'downloads'}}">Downloads</router-link>
-      <router-link class="fancy" v-if="isLoggedIn" :to="{ name: 'dashboard'}">Dashboard</router-link>
-      <router-link class="fancy" v-if="!isLoggedIn" :to="{ name: 'login'}">Login</router-link>
+      <router-link class="button" :to="{ name: 'home', params: { page: 'about' } }"> <Icon icon="details" /> What is Xornet </router-link>
+      <a class="button" href="https://github.com/Geoxor/Xornet" target="_blank"> <Icon icon="repository" /> Repository </a>
+      <router-link class="button" :to="{ name: 'home', params: { page: 'downloads' } }"> <Icon icon="downloads" /> Downloads </router-link>
+      <router-link class="button" v-if="isLoggedIn" :to="{ name: 'machines' }"> <Icon icon="dashboard" /> Dashboard </router-link>
+      <router-link class="button" v-if="!isLoggedIn" :to="{ name: 'login' }"> <Icon icon="login" /> Login </router-link>
     </div>
-  </header> 
+  </header>
 </template>
 
 <script>
+import Icon from "@/components/misc/Icon";
 export default {
-  name: 'Header',
+  name: "Header",
   components: {
+    Icon
   },
   computed: {
-    isLoggedIn: function(){
-      return localStorage.getItem('token') == null ? false : true;
+    isLoggedIn: function() {
+      return localStorage.getItem("token") == null ? false : true;
+    },
+    route: function() {
+      return this.$route.name;
     }
-  },
-  data: () => {
-    return {
-    }
-  },
-  created(){
-  },
-  mounted(){
-  },
-}
+  }
+};
 </script>
 
 <style scoped>
-
-
 header {
-
   z-index: 1000;
   position: fixed;
   height: 56px;
@@ -44,40 +40,47 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 10vw;
-  /* background-color: var(--white); */
 }
-
+header.view-home {
+  padding: 8px 10vw;
+}
+header.view-login {
+  padding: 8px 4vw;
+}
 header .buttons {
   display: flex;
   height: 100%;
-  gap: 16px;
+  gap: 8px;
 }
-
-header .buttons * {
-  white-space: nowrap;
-  height: fit-content;
+header .buttons .button {
   color: white;
+  border: none;
+  background-color: #4361ee;
+  width: min-content;
+  padding: 4px 12px;
+  border-radius: 4px;
+
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
   cursor: pointer;
+  line-height: 175%;
+  transition: 100ms ease;
   display: flex;
   align-items: center;
-  height: 100%;
-  font-size: 14px;
-  font-weight: bold;
-  text-decoration: none;
+  gap: 8px;
+  white-space: nowrap;
 }
-
-header .buttons *:not(.fancy):hover {
-  text-decoration: underline;
+header .buttons .button:hover {
+  box-shadow: 0px 4px 12px #4361ee80;
+  transform: translateY(-1px);
 }
-
-
-header .buttons *.fancy {
-  background: linear-gradient(300.05deg, #DB00FF 8.32%, #4D9FFF 89.64%);
-  border-radius: 4px;
-  padding: 12px;
+header .buttons .button:active {
+  transform: translateY(1px);
 }
-
-
+header .buttons .button img {
+  filter: invert(1);
+  width: 24px;
+  height: 24px;
+}
 </style>
-

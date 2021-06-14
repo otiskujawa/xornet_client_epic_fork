@@ -1,203 +1,299 @@
-import axios from 'axios'
+import axios from "axios";
+import eventHandler from "./eventHandler";
 
-let ROOT_PATH = 'https://backend.xornet.cloud';
-
-class API {
-
-    /**
-     * Custom log function with API suffix
-     * @private
-     */
-    log(...messages) {
-        console.log("%c[API]", 'color: #ff0066; font-weight: bold;', ...messages);
-    }
-
-    /**
-     * Creates a pretty log for the API responses
-     * @private
-     */
-    logResponse(response){
-        if(response.data?.message) this.log(response.data?.message);
-        else if(response?.data) this.log(response?.data);
-        else this.log(response)
-    }
-
-    /**
-     * Creates a backend URL with the provided paramaters
-     * @private
-     */
-    constructEndpoint(route, params){
-        let endpoint = `${ROOT_PATH}/${route}`;
-        if (params) endpoint = endpoint + `/${params}`;
-
-        return endpoint 
-    }
-
-    /**
-     * Creates a new POST request to the backend
-     * @param {String} route The route you wanna make a request to e.g. channels/pin
-     * @param {String} params Any optional params the url should have e.g. channels/pin/:channel_uuid
-     * @param {Object} body An optional body object to send to the route
-     * @param {Object} headers An optional headers object to send to the route
-     * @example const response = super.post('channels/group', undefined, body);
-     */
-    async post(route, params, body, headers){
-        return new Promise (async (resolve, reject) => {
-            console.log(headers);
-            if(headers) {
-                const response = await axios.post(this.constructEndpoint(route, params), body || undefined, {
-                    withCredentials: true,
-                    headers,
-                });
-
-                this.logResponse(response);
-                resolve(response);
-            } else {
-                const response = await axios.post(this.constructEndpoint(route, params), body || undefined, {
-                    withCredentials: true
-                });
-
-                this.logResponse(response);
-                resolve(response);
-            }
-        });
-    }
-
-    /**
-     * Creates a new PATCH request to the backend
-     * @param {String} route The route you wanna make a request to e.g. channels/pin
-     * @param {String} params Any optional params the url should have e.g. channels/pin/:channel_uuid
-     * @param {Object} body An optional body object to send to the route
-     * @param {Object} headers An optional headers object to send to the route
-     * @example const response = super.patch('channels/group', undefined, body);
-     */
-    async patch(route, params, body, headers){
-        return new Promise (async (resolve, reject) => {
-            console.log(headers);
-            if(headers) {
-                const response = await axios.patch(this.constructEndpoint(route, params), body || undefined, {
-                    withCredentials: true,
-                    headers,
-                });
-
-                this.logResponse(response.data);
-                resolve(response.data);
-            } else {
-                const response = await axios.patch(this.constructEndpoint(route, params), body || undefined, {
-                    withCredentials: true
-                });
-
-                this.logResponse(response.data);
-                resolve(response.data);
-            }
-        });
-    }
-
-    /**
-     * Creates a new GET request to the backend
-     * @param {String} route The route you wanna make a request to e.g. channels/pin
-     * @param {String} params Any optional params the url should have e.g. channels/pin/:channel_uuid
-     * @param {Object} headers An optional headers object to send to the route
-     * @example const response = super.get('user');
-     */
-    async get(route, params, headers){
-        if(headers) {
-            const response = await axios.get(this.constructEndpoint(route, params), {
-                withCredentials: true,
-                headers: headers
-            });
-
-            this.logResponse(response);
-            return response;
-        } else {
-            const response = await axios.get(this.constructEndpoint(route, params), {
-                withCredentials: true
-            });
-
-            this.logResponse(response);
-            return response;
-        }
-    }
-
-    /**
-     * Creates a new DELETE request to the backend
-     * @param {String} route The route you wanna make a request to e.g. channels/group
-     * @param {String} params Any optional params the url should have e.g. channels/group/:channel_uuid
-     * @example const response = super.delete('channels/group', channelUuid);
-     */
-    async delete(route, params){
-        const response = await axios.delete(this.constructEndpoint(route, params), {
-            withCredentials: true
-        });
-
-        this.logResponse(response);
-        return response;
-    }
-};
-
+let ROOT_PATH = "https://backend.xornet.cloud";
 
 /**
- * Handles all the endpoint functions for User
+ * Main API class that interfaces with the backend
+ * It contains functions and debugging logs to easily
+ * handle requests with the backend
+ *
+ * Note: The data from here can be taken to create API docs in the future
+ * @private
+ * @copyright George Tsotsos & Niko Huuskonen
  */
-class User extends API {
-    constructor() {
-        super();
-        super.log('Initialized user class');
+
+class API {
+  /**
+   * Custom log function with API suffix
+   * @param {String} method The API endpoint
+   * @param {String} messages Optional messages
+   * @private
+   */
+  log(method, ...messages) {
+    // prettier-ignore
+    console.log(
+      `%c[API]` + 
+      `%c [${method}]`, 
+      "color: black; background-color: #aa66ff; padding: 2px; border-radius: 4px; font-weight: bold;", 
+      "color: #cba1ff;", 
+      ...messages
+    );
+  }
+
+  /**
+   * Custom log for errors with API suffix
+   * @param {String} method The API endpoint
+   * @param {String} messages Optional messages
+   * @private
+   */
+  error(method, ...messages) {
+    eventHandler.emit("error", { method, messages });
+
+    // prettier-ignore
+    console.log(
+      `%c[API]` + 
+      `%c [${method}]` + 
+      `%c ${messages}`, 
+      "color: black; background-color: #ff2424; padding: 2px; border-radius: 4px; font-weight: bold;", 
+      "color: #ff2424;", 
+      "color: #ff6363;", 
+    );
+  }
+
+  /**
+   * Creates a pretty log for the API responses
+   * @param {String} method The API endpoint
+   * @param {String} messages Optional messages
+   * @private
+   */
+  logResponse(method, response) {
+    if (!response) return;
+    if (response.data?.message) this.log(method, response.data?.message);
+    else if (response?.data) this.log(method, response?.data);
+    else this.log(method, response);
+  }
+
+  /**
+   * Creates a pretty log for the API errors
+   * @param {String} method The API endpoint
+   * @param {String} messages Optional messages
+   * @private
+   */
+  logError(method, response) {
+    if (!response) return;
+    if (response.data?.message) this.error(method, response.data?.message);
+    else if (response?.data) this.error(method, response?.data);
+    else this.error(method, response);
+  }
+
+  /**
+   * Creates a backend URL with the provided paramaters
+   * @private
+   * @param {String} route The main route
+   * @returns {String} https://backend.xornet.cloud/profile
+   * @example constructEndpoint('profile')
+   */
+  constructEndpoint(route) {
+    return `${ROOT_PATH}/${route}`;
+  }
+
+  /**
+   * Gets the geolocation of the client
+   * @private
+   */
+  async getGeolocation() {
+    const location = (await axios.get(`https://ipwhois.app/json/`)).data;
+    const geolocation = {
+      location: location.country,
+      countryCode: location.country_code,
+      isp: location.isp
+    };
+    return geolocation;
+  }
+
+  /**
+   * Creates a new request to the backend
+   * @param {String} method The type of HTTP method e.g. GET, POST, PATCH etc
+   * @param {String} route The route you wanna make a request to e.g. channels/pin
+   * @param {Object} headers An optional headers object to send to the route
+   * @param {Object} body An optional body object to send to the route
+   * @example const response = await super.request('post', 'channels/group', undefined, body);
+   */
+  async request(method, route, headers, body) {
+    if (method === "get" || method === "delete") {
+      var response = await axios[method](
+        this.constructEndpoint(route),
+        body || {
+          withCredentials: true,
+          headers
+        }
+      ).catch(error => this.logError(`${method.toUpperCase()} ${route}`, error));
+    } else {
+      var response = await axios[method](this.constructEndpoint(route), body || undefined, {
+        withCredentials: true,
+        headers
+      }).catch(error => this.logError(`${method.toUpperCase()} ${route}`, error));
     }
 
-    /**
-     * Post login credentials into backend and returns the login token on successful login
-     * @param {Object} json Json object, which contains login credentials
-     */
-    async login(json){
-        return new Promise(async (resolve, reject) => {
-            try {
-                const response = await super.post('login', undefined, json, {'Content-Type': 'application/json'});
-                localStorage.setItem('token', response.data.token);
-                super.log('Logged in successfully');
-                resolve(response.status);
-            } catch (error) {
-                super.log(error);
-                reject(response.status);
-            }
-        });
-    }
-
-    /**
-     * Post signup credentials into backend and returns the result of signup process
-     * @param {Object} json Json object, which contains signup credentials
-     */
-     async signup(json){ 
-        return super.post('signup', undefined, json, {'Content-Type': 'application/json'});
-    }
-
-    /**
-     * Returns the user object of the logged in user, takes no input parameters
-     */
-    async fetchMe(){
-        return (await super.get('profile')).data;
-    }
-
-    /**
-     * Post signup credentials into backend and returns the result of signup process
-     * @param {Object} profile profile object, which contains new desired user credentials
-     * @param {Object} profileImage profileImage object, which contains image class from the refs
-     */
-    async save(profile, profileImage){ 
-        let formData = new FormData();
-        formData.append('json', JSON.stringify(profile));
-        formData.append('image', profileImage);
-
-        return super.patch('profile', undefined, formData, {'Content-Type': 'multipart/form-data'});
-    }
+    this.logResponse(`${method.toUpperCase()} ${route}`, response);
+    return response;
+  }
 }
 
+class Datacenter extends API {
+  constructor() {
+    super();
+    super.log("Initialized datacenter class");
+  }
 
-console.log("[API] Class Loaded");
+  async fetchAll() {
+    return (await super.request("get", `datacenter/all`)).data;
+  }
+
+  async fetchMachineCount(datacenter) {
+    if (datacenter) return (await super.request("get", `datacenter/${datacenter}/machine/count`)).data;
+  }
+
+  async fetch(datacenter) {
+    return (await super.request("get", `datacenter/${datacenter}`)).data;
+  }
+
+  async revokeMember(datacenter, user) {
+    return (await super.request("delete", `datacenter/${datacenter}/user/${user.toLowerCase()}`)).data;
+  }
+
+  async addMember(datacenter, user) {
+    return (await super.request("put", `datacenter/${datacenter}/user/${user.toLowerCase()}`)).data;
+  }
+
+  async addMachine(datacenter, machine) {
+    return (await super.request("put", `datacenter/${datacenter}/machine/${machine.toLowerCase()}`)).data;
+  }
+
+  async add(form) {
+    return (await super.request("post", `datacenter/new`, { "Content-Type": "application/json" }, form)).data;
+  }
+
+  /**
+   * Post signup credentials into backend and returns the result of signup process
+   * @param {Blob} logo image Blob, which contains image class from the refs
+   * @param {Blob} banner image Blob, which contains image class from the refs
+   */
+  async save(datacenter, logo, banner) {
+    let formData = new FormData();
+    formData.append("logo", logo);
+    formData.append("banner", banner);
+
+    return super.request("patch", `datacenter/${datacenter}`, { "Content-Type": "multipart/form-data" }, formData);
+  }
+}
+
+class User extends API {
+  constructor() {
+    super();
+    super.log("Initialized user class");
+  }
+
+  /**
+   * Post login credentials into backend and returns the login token on successful login
+   * @param {Object} json Json object, which contains login credentials
+   */
+  async login(json) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const loginForm = { geolocation: await this.getGeolocation(), ...JSON.parse(json) };
+        const response = await super.request("post", "login", { "Content-Type": "application/json" }, loginForm);
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("username", loginForm.username);
+        localStorage.setItem("me", JSON.stringify(response.data.me));
+        super.log("Logged in successfully");
+        resolve(response.status);
+      } catch (error) {
+        super.log(error);
+        reject(error.status);
+      }
+    });
+  }
+
+  /**
+   * Post signup credentials into backend and returns the result of signup process
+   * @param {Object} json Json object, which contains signup credentials
+   */
+  async signup(json) {
+    const signupForm = { geolocation: await this.getGeolocation(), ...json };
+
+    // This doesn't return just the .data on purpose unlike the others because
+    // i needed the status codes to decide wether the frontend will
+    // redirect to logging in or not if the request succeeded
+    return await super.request("post", "signup", { "Content-Type": "application/json" }, signupForm);
+  }
+
+  /**
+   * Returns the user object of a user
+   * @param {String} the user to get
+   */
+  async fetchProfile(username) {
+    return (await super.request("get", `profile/${username}`)).data;
+  }
+
+  /**
+   * Returns the user object of the logged in user, takes no input parameters
+   */
+  async fetchMe() {
+    return (await super.request("get", `profile/${localStorage.getItem("username")}`)).data;
+  }
+
+  /**
+   * Returns the users logs, if admin they have access to admin logs for the backend
+   * @param {String} [machineUUID] The uuid of a specific machine you want to get logs for
+   */
+  async fetchLogs(machineUUID) {
+    return machineUUID ? (await super.request("get", `logs/${machineUUID}`)).data : (await super.request("get", `logs`)).data;
+  }
+
+  /**
+   * Post signup credentials into backend and returns the result of signup process
+   * @param {Object} profile profile object, which contains new desired user credentials
+   * @param {Object} profileImage image object, which contains image class from the refs
+   * @param {Object} profileBanner image object, which contains image class from the refs
+   */
+  async save(profile, profileImage, profileBanner) {
+    let formData = new FormData();
+
+    const { bio, socials, badges, email } = profile;
+
+    formData.append("json", JSON.stringify({ bio, socials, badges, email }));
+    formData.append("image", profileImage);
+    formData.append("banner", profileBanner);
+
+    return (await super.request("patch", "profile", { "Content-Type": "multipart/form-data" }, formData)).data;
+  }
+
+  /**
+   * Puts a new machine to the users database
+   * @param {String} machineUUID The machine's uuid that you want to add
+   */
+  async addMachine(machineUUID) {
+    return (await super.request("put", "profile/machine", { "Content-Type": "application/json" }, { machine: machineUUID })).data;
+  }
+
+  /**
+   * Searches the database for users
+   * @param {String} user Either a Username or a UUID of a user
+   */
+  async search(user) {
+    return (await super.request("get", `/search/user/${user}`)).data;
+  }
+}
+
+class Machine extends API {
+  constructor() {
+    super();
+    super.log("Initialized machine class");
+  }
+
+  async getNetwork(machineUUID) {
+    return (await super.request("get", `stats/network/${machineUUID}`)).data;
+  }
+}
+
 const api = {
-    user: new User,
-}; 
+  user: new User(),
+  machine: new Machine(),
+  datacenters: new Datacenter()
+};
 
-console.log(api);
+console.log(`%c[API]` + `%c [Class Loaded]`, "color: black; background-color: #aa66ff; padding: 2px; border-radius: 4px; font-weight: bold;", "color: #cba1ff;");
 
 export default api;

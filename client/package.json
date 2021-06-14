@@ -4,12 +4,17 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "prettify": "npx prettier --write \"./**/*.vue\" && npx prettier --write \"./**/*.js\""
   },
   "dependencies": {
+    "@highlightjs/vue-plugin": "github:highlightjs/vue-plugin",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
-    "socket.io": "^4.0.2",
+    "epoch-timeago": "^1.1.9",
+    "gsap": "^3.6.1",
+    "highlight.js": "^11.0.1",
+    "millify": "^4.0.0",
     "socket.io-client": "^4.0.2",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",

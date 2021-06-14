@@ -2,11 +2,11 @@
   <div class="gauge">
     <svg class="gaugeTrack" overflow="visible" viewBox="0 0 100 100">
       <circle cx="70" cy="70" r="40"></circle>
-      <circle class="progress" cx="70" cy="70" r="40" :style="{'stroke-dashoffset': 250 - (250 * ((value * 75) / ((maxValue * 100) / 100))) / 100}"></circle>
+      <circle class="progress" cx="70" cy="70" r="40" :style="{ stroke: color, 'stroke-dashoffset': 250 - (250 * (((value >= maxValue ? maxValue - 0.01 : value) * 75) / ((maxValue * 100) / 100))) / 100 }"></circle>
     </svg>
-    <img class="gaugeIcon" :src="icon" alt="">
-    <h1 v-if="driveLetter" class="gaugeText gaugeDriveLetter">{{driveLetter}}</h1>
-    <h1 class="gaugeText">{{value + suffix}}</h1>
+    <img class="icon" :src="icon" alt="" />
+    <h1 v-if="driveLetter" class="gaugeText gaugeDriveLetter">{{ driveLetter }}</h1>
+    <h1 class="gaugeText">{{ value + suffix }}</h1>
   </div>
 </template>
 
@@ -16,22 +16,22 @@ export default {
   props: {
     icon: { type: String, required: true },
     value: { type: Number, required: true },
-    maxValue: { type: Number, default: 100},
-    suffix: { type: String, required: true},
-    driveLetter: { type: String, required: false },
-  },
-}
+    maxValue: { type: Number, default: 100 },
+    suffix: { type: String, required: true },
+    color: { type: String, default: "#4d9fff" },
+    driveLetter: { type: String, required: false }
+  }
+};
 </script>
 
 <style scoped>
-
 .gauge {
   position: relative;
   width: 100px;
   height: 100px;
 }
 
-.gaugeIcon {
+.icon {
   position: absolute;
   user-select: none;
   top: 50%;
@@ -43,11 +43,11 @@ export default {
 }
 
 .gaugeText {
-  font-family: 'Courier Prime', monospace;
+  font-family: "Courier Prime", monospace;
   color: var(--black);
   font-size: 13px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 100;
   line-height: 12px;
   letter-spacing: -0.04em;
   text-align: center;
@@ -93,7 +93,5 @@ export default {
 .gaugeTrack circle.progress {
   stroke-dasharray: 250;
   stroke-width: 10px;
-  stroke: #4D9FFF;
 }
-
 </style>
