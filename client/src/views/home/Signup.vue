@@ -62,7 +62,6 @@ export default {
   min-height: 400px;
   box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
-  transform: scale(1.25);
 }
 
 .card a img {

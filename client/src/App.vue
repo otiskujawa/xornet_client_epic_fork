@@ -1,19 +1,19 @@
 <template>
   <div>
-    <Popup/>
+    <Popup />
     <router-view />
   </div>
 </template>
 
 <script>
-import Popup from "@/components/misc/Popup"
+import Popup from "@/components/misc/Popup";
 export default {
   components: {
     Popup
   }
-}
-
-</script>>
+};
+</script>
+>
 
 <style>
 :root {
@@ -23,7 +23,7 @@ export default {
   --dark-lighter: #18182c;
   --rogue-red-border: #f85149;
   --theme-color: #ff006b;
-  --bright-theme-color:  #ff81b5;
+  --bright-theme-color: #ff81b5;
   --terminal-background: #0b0b15;
 
   /* Initial colors */
@@ -82,9 +82,9 @@ html {
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; 
+  -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50; 
+  color: #2c3e50;
   height: 100vh;
 }
 

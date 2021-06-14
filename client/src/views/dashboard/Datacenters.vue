@@ -108,7 +108,6 @@ export default {
   },
   methods: {
     async fetchData() {
-
       this.datacenters = await this.api.datacenters.fetchAll();
       this.stats.totalMachines = (await this.api.datacenters.fetchMachineCount(this.datacenter.name)).count;
 
@@ -147,7 +146,6 @@ export default {
 </script>
 
 <style scoped>
-
 .datacenters {
   width: 100%;
   height: 100vh;
@@ -158,7 +156,6 @@ export default {
   display: grid;
   gap: 8px;
   grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
-  grid-template-rows: repeat(auto-fit, 1fr);
 }
 
 .datacenters .content {

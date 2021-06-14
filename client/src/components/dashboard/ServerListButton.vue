@@ -97,8 +97,6 @@ export default {
   gap: 8px;
   align-items: center;
   cursor: pointer;
-  /* transition: 100ms ease; */
-
   overflow: hidden;
   user-select: none;
 }

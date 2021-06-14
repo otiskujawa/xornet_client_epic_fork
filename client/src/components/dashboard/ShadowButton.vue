@@ -39,7 +39,7 @@ export default {
   background-color: var(--shadowButton-color);
 }
 
-.shadowButton:not(.colored):hover {
+.shadowButton:not(.colored):not(.didCopy):hover {
   filter: invert(1);
 }
 
@@ -57,6 +57,10 @@ export default {
 
 .shadowButton.colored:hover img {
   filter: invert(1);
+}
+
+.shadowButton.didCopy {
+  background-color: rgb(51, 255, 0) !important;
 }
 
 .shadowButton h1 {

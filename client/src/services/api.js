@@ -21,7 +21,6 @@ class API {
    * @private
    */
   log(method, ...messages) {
-    
     // prettier-ignore
     console.log(
       `%c[API]` + 
@@ -151,15 +150,15 @@ class Datacenter extends API {
   }
 
   async revokeMember(datacenter, user) {
-    return (await super.request("delete", `datacenter/${datacenter}/user/${user}`)).data;
+    return (await super.request("delete", `datacenter/${datacenter}/user/${user.toLowerCase()}`)).data;
   }
 
   async addMember(datacenter, user) {
-    return (await super.request("put", `datacenter/${datacenter}/user/${user}`)).data;
+    return (await super.request("put", `datacenter/${datacenter}/user/${user.toLowerCase()}`)).data;
   }
 
   async addMachine(datacenter, machine) {
-    return (await super.request("put", `datacenter/${datacenter}/machine/${machine}`)).data;
+    return (await super.request("put", `datacenter/${datacenter}/machine/${machine.toLowerCase()}`)).data;
   }
 
   async add(form) {
@@ -214,9 +213,9 @@ class User extends API {
   async signup(json) {
     const signupForm = { geolocation: await this.getGeolocation(), ...json };
 
-    // This doesn't return just the .data on purpose unlike the others because 
-    // i needed the status codes to decide wether the frontend will 
-    // redirect to logging in or not if the request succeeded 
+    // This doesn't return just the .data on purpose unlike the others because
+    // i needed the status codes to decide wether the frontend will
+    // redirect to logging in or not if the request succeeded
     return await super.request("post", "signup", { "Content-Type": "application/json" }, signupForm);
   }
 
@@ -252,9 +251,9 @@ class User extends API {
   async save(profile, profileImage, profileBanner) {
     let formData = new FormData();
 
-    const {bio, socials, badges, email} = profile;
+    const { bio, socials, badges, email } = profile;
 
-    formData.append("json", JSON.stringify({bio, socials, badges, email}));
+    formData.append("json", JSON.stringify({ bio, socials, badges, email }));
     formData.append("image", profileImage);
     formData.append("banner", profileBanner);
 
@@ -294,8 +293,6 @@ const api = {
   machine: new Machine(),
   datacenters: new Datacenter()
 };
-
-
 
 console.log(`%c[API]` + `%c [Class Loaded]`, "color: black; background-color: #aa66ff; padding: 2px; border-radius: 4px; font-weight: bold;", "color: #cba1ff;");
 

@@ -64,8 +64,6 @@ export default {
   align-items: center;
   width: 100%;
 
-  user-select: none;
-
   min-height: 48px;
   height: fit-content;
   z-index: 11000;
@@ -115,6 +113,10 @@ export default {
 
 .popup .content .shit p {
   font-size: 13px;
+  color: white;
+}
+.popup .content .shit p strong {
+  color: white;
 }
 
 .popup .content .xButton {

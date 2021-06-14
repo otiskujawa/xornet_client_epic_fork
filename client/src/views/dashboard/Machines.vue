@@ -95,7 +95,6 @@ export default {
     }
   },
   async mounted() {
-
     if (this.$route.query.newMachine) {
       this.api.user.addMachine(this.$route.query.newMachine);
     }

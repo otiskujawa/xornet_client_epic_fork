@@ -39,5 +39,4 @@ export default {
 };
 </script>
 
-<style scoped src="@/components/misc/card.css">
-</style>
+<style scoped src="@/components/misc/card.css"></style>

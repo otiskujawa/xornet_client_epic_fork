@@ -530,21 +530,7 @@ export default {
   margin-top: 8px;
   background-color: var(--border-color);
 }
-.shadowButton:not(.didCopy):not(.isEditing):hover {
-  filter: invert(1);
-}
-.shadowButton.isEditing:not(.didCopy):hover {
-  background-color: var(--theme-color);
-}
-.shadowButton.isEditing:not(.didCopy):hover h1 {
-  color: white;
-}
-.shadowButton.isEditing:not(.didCopy):hover img {
-  filter: invert(1);
-}
-.shadowButton.didCopy {
-  background-color: rgb(51, 255, 0) !important;
-}
+
 .shadowButton.edit {
   width: min-content;
   margin-bottom: 24px;
