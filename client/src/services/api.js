@@ -212,6 +212,10 @@ class User extends API {
    */
   async signup(json) {
     const signupForm = { geolocation: await this.getGeolocation(), ...json };
+
+    // This doesn't return just the .data on purpose unlike the others because 
+    // i needed the status codes to decide wether the frontend will 
+    // redirect to logging in or not if the request succeeded 
     return await super.request("post", "signup", { "Content-Type": "application/json" }, signupForm);
   }
 
@@ -246,14 +250,14 @@ class User extends API {
    */
   async save(profile, profileImage, profileBanner) {
     let formData = new FormData();
-    
+
     const {bio, socials, badges, email} = profile;
 
     formData.append("json", JSON.stringify({bio, socials, badges, email}));
     formData.append("image", profileImage);
     formData.append("banner", profileBanner);
 
-    return super.request("patch", "profile", { "Content-Type": "multipart/form-data" }, formData);
+    return (await super.request("patch", "profile", { "Content-Type": "multipart/form-data" }, formData)).data;
   }
 
   /**
@@ -261,7 +265,7 @@ class User extends API {
    * @param {String} machineUUID The machine's uuid that you want to add
    */
   async addMachine(machineUUID) {
-    return super.request("put", "profile/machine", { "Content-Type": "application/json" }, { machine: machineUUID });
+    return (await super.request("put", "profile/machine", { "Content-Type": "application/json" }, { machine: machineUUID })).data;
   }
 
   /**
