@@ -246,7 +246,10 @@ class User extends API {
    */
   async save(profile, profileImage, profileBanner) {
     let formData = new FormData();
-    formData.append("json", JSON.stringify(profile));
+    
+    const {bio, socials, badges, email} = profile;
+
+    formData.append("json", JSON.stringify({bio, socials, badges, email}));
     formData.append("image", profileImage);
     formData.append("banner", profileBanner);
 

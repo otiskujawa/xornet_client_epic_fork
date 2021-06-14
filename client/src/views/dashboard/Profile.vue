@@ -412,17 +412,16 @@ export default {
 .profilePage .profiileDetails section:not(.uuid) {
   display: flex;
   flex-direction: column;
+  color: #c8c8c8;
   gap: 8px;
   justify-content: space-between;
 }
-.profilePage .profiileDetails section h1 {
+.profilePage .profiileDetails section h1:not(#profileID) {
   font-family: Work Sans;
   font-weight: 600;
   font-size: 14px;
-
   display: flex;
   align-items: center;
-  color: #c8c8c8;
 }
 .profilePage .profiileDetails section.socials {
   display: grid;
@@ -548,9 +547,7 @@ export default {
 .shadowButton.edit h1 {
   font-family: Work Sans;
   font-weight: 600;
-  font-size: 14px;
   text-transform: capitalize;
-
   display: flex;
   align-items: center;
 }
