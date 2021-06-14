@@ -80,7 +80,7 @@ export default {
   border-radius: 4px;
 }
 
-.search .onfocus {
+.search.onfocus {
   box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
 }
 

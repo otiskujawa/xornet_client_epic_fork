@@ -86,7 +86,7 @@ header {
   height: 48px;
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   background-color: var(--background-color);
   overflow: visible;
@@ -94,6 +94,7 @@ header {
 
 header .left {
   display: flex;
+  align-items: flex-start;
 }
 
 header .button {
