@@ -22,8 +22,8 @@ export default {
   --dark-light: #0f0f1e;
   --dark-lighter: #18182c;
   --rogue-red-border: #f85149;
-  --theme-color: #ff006b;
-  --bright-theme-color: #ff81b5;
+  --theme-color: #8676FF;
+  --bright-theme-color: #aca3f5;
   --terminal-background: #0b0b15;
 
   /* Initial colors */

@@ -72,7 +72,7 @@ export default {
 }
 
 .searchResult .userPoints .points {
-  background: linear-gradient(90deg, #db00ff 0%, #8000ff 31.77%, #00b2ff 64.06%, #00fff0 98.44%);
+  background: linear-gradient(90deg, #8676FF 0%, #516DFF 33.33%, #32B5FF 69.27%, #4ADEFF 100%);
   background-clip: border-box;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

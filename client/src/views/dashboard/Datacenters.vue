@@ -30,9 +30,9 @@
           </div>
           <div class="infoFields">
             <InfoField icon="stack" title="Servers Online" color="#8676FF" :value="machines.size || 0" :maxValue="stats.totalMachines" />
-            <InfoField icon="network" title="Network Health" color="#01F1E3" suffix="%" :value="datacenter.networkHealth || 0" />
-            <InfoField icon="rj45" title="Current Bandiwdth" color="#FFBA69" suffix="Mbps" :value="stats.currentBandwidth?.toFixed(2) || 0" :maxValue="100" />
-            <InfoField icon="ram" title="Total RAM Usage" color="#FF718C" suffix="GB" :value="stats.ramUsage?.current?.toFixed(2) || 0" :maxValue="stats.ramUsage?.max?.toFixed(2)" />
+            <InfoField icon="network" title="Average Ping" color="#516DFF" suffix="ms" :value="Array.from(machines.values()).reduce((a, b) => a + b.ping, 0) / Array.from(machines.values()).length || 0" />
+            <InfoField icon="rj45" title="Current Bandiwdth" color="#32B5FF" suffix="Mbps" :value="stats.currentBandwidth?.toFixed(2) || 0" :maxValue="100" />
+            <InfoField icon="ram" title="Total RAM Usage" color="#4ADEFF" suffix="GB" :value="stats.ramUsage?.current?.toFixed(2) || 0" :maxValue="stats.ramUsage?.max?.toFixed(2)" />
           </div>
           <MemberField :isOwner="datacenter.owner === me._id || me.is_admin" :members="datacenter.members" />
         </div>
