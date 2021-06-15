@@ -97,7 +97,6 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  color: white;
 }
 
 .main .textFields section h1 {
@@ -107,6 +106,7 @@ export default {
   z-index: 2;
   font-style: normal;
   font-weight: bold;
+  color: var(--white);
 }
 
 .main .textFields section p {
@@ -116,6 +116,7 @@ export default {
   text-align: left;
   vertical-align: top;
   max-width: 900px;
+  color: var(--white);
   letter-spacing: -4%;
 }
 
@@ -138,6 +139,7 @@ export default {
 }
 
 .main .coolShit .textField h1 {
+  color: var(--white);
   font-size: 48px;
   text-align: left;
 }
