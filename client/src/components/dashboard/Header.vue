@@ -1,22 +1,26 @@
 <template>
   <header>
     <div class="left">
-      <div class="logo" @click="incrementSuperclass()">
+
+      <div v-if="!showSearchBar && searchToggled" @click="searchToggled = false;" >
+        <SquareButton icon="chevron-left" alt="" />
+      </div>
+      <div class="logo" v-if="!searchToggled">
         <img :src="require('@/assets/logos/logoHeader.svg')" alt="Xornet" />
       </div>
 
-      <div class="buttons">
-        <SquareButton class="firstButton" icon="repository" href="https://github.com/Geoxor/Xornet/releases" />
+      <div class="buttons" v-if="!searchToggled">
+        <SquareButton icon="repository" href="https://github.com/Geoxor/Xornet/releases" />
         <SquareButton icon="darkmode" @click="toggleDarkmode" />
         <!-- <SquareButton icon="details" v-if="currentRoute == 'machines'" @click="isShowingDetails = !isShowingDetails" :isEnabled="isShowingDetails" /> -->
         <!-- <SquareButton icon="thick" v-if="currentRoute == 'machines' && thinButtons"/> -->
         <!-- <SquareButton icon="thin" v-if="currentRoute == 'machines' && !thinButtons"/> -->
       </div>
-
-      <SearchBar />
+      <SquareButton v-if="(!showSearchBar && !searchToggled)" icon="search" @click="searchBTN()" />
+      <SearchBar v-if="showSearchBar || searchToggled" @unClicked="searchToggled = false;" :isFocused="searchToggled"/>
     </div>
 
-    <div class="account">
+    <div class="account" v-if="!searchToggled">
       <SquareButton icon="logout" @click.native="logout" />
 
       <router-link :to="{ name: 'profile', params: { username } }">
@@ -45,13 +49,17 @@ export default {
   data: () => {
     return {
       profile: null,
-      superclass: 0,
-      currentRoute: null
+      currentRoute: null,
+      searchToggled: false,
+      showSearchBar: true,
+      windowWidth: window.innerWidth,
     };
   },
   async created() {
     this.profile = await this.api.user.fetchMe();
     this.currentRoute = this.$route.name;
+
+    this.showSearchBar = (this.windowWidth > 360);
   },
   methods: {
     incrementSuperclass(){
@@ -79,6 +87,11 @@ export default {
     },
     toggleDarkmode() {
       isDark.value = !isDark.value;
+    },
+
+    searchBTN(){
+      this.searchToggled = true;
+      //console.log(this.$refs.SearchBarRef.$el)
     }
   },
   watch: {
