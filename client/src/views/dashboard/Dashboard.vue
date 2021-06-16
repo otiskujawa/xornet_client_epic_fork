@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import GaugeField from "@/components/dashboard/GaugeField";
 import ServerList from "@/components/dashboard/ServerList";
 import LoadingScreen from "@/components/dashboard/LoadingScreen";
 import Chart from "@/components/dashboard/Chart";

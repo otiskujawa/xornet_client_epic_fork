@@ -101,4 +101,23 @@ html {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+@media only screen and (max-width: 600px) {
+  #desktop {
+    display: none;
+  }
+  #mobile {
+    display: flex;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  #desktop {
+    display: flex;
+  }
+  #mobile {
+    display: none;
+  }
+}
+
 </style>

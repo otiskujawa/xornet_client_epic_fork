@@ -29,10 +29,28 @@
             <Icon class="datacenterEdit logoPen" @click="$refs.logo.click()" v-if="isEditing" icon="edit" />
           </div>
           <div class="infoFields">
-            <InfoField icon="stack" title="Servers Online" color="#8676FF" :value="machines.size || 0" :maxValue="stats.totalMachines" />
-            <InfoField icon="network" title="Average Ping" color="#516DFF" suffix="ms" :value="Array.from(machines.values()).reduce((a, b) => a + b.ping, 0) / Array.from(machines.values()).length || 0" />
-            <InfoField icon="rj45" title="Current Bandiwdth" color="#32B5FF" suffix="Mbps" :value="stats.currentBandwidth?.toFixed(2) || 0" :maxValue="100" />
-            <InfoField icon="ram" title="Total RAM Usage" color="#4ADEFF" suffix="GB" :value="stats.ramUsage?.current?.toFixed(2) || 0" :maxValue="stats.ramUsage?.max?.toFixed(2)" />
+
+            <MultiGauge 
+              :logo="datacenter.logo" 
+              :colors="['#8676FF', '#516DFF', '#32B5FF', '#4ADEFF']" 
+              :values="[
+                machines.size || 0,
+                (Array.from(machines.values()).reduce((a, b) => a + b.ping, 0) / Array.from(machines.values()).length).toFixed(2) || 0,
+                stats.ramUsage?.current?.toFixed(2) || 0,
+                stats.currentBandwidth?.toFixed(2) || 0,
+              ]" 
+              :maxValues="[
+                stats.totalMachines,
+                100,
+                stats.ramUsage?.max?.toFixed(2),
+                50,
+              ]" 
+            />
+
+            <InfoField borderless icon="stack" title="Servers Online" color="#8676FF" :value="machines.size || 0" :maxValue="stats.totalMachines" />
+            <InfoField borderless icon="network" title="Average Ping" color="#516DFF" suffix="ms" :value="(Array.from(machines.values()).reduce((a, b) => a + b.ping, 0) / Array.from(machines.values()).length).toFixed(2) || 0" />
+            <InfoField borderless icon="rj45" title="Current Bandiwdth" color="#32B5FF" suffix="Mbps" :value="stats.currentBandwidth?.toFixed(2) || 0" :maxValue="100" />
+            <InfoField borderless icon="ram" title="Total RAM Usage" color="#4ADEFF" suffix="GB" :value="stats.ramUsage?.current?.toFixed(2) || 0" :maxValue="stats.ramUsage?.max?.toFixed(2)" />
           </div>
           <MemberField :isOwner="datacenter.owner === me._id || me.is_admin" :members="datacenter.members" />
         </div>
@@ -57,20 +75,20 @@ import ServerList from "@/components/dashboard/ServerList";
 import InfoField from "@/components/dashboard/InfoField";
 import MemberField from "@/components/dashboard/MemberField";
 import ShadowButton from "@/components/dashboard/ShadowButton";
-import ColoredGauge from "@/components/dashboard/ColoredGauge";
+import MultiGauge from "@/components/dashboard/MultiGauge";
 
 export default {
   name: "Datacenters",
   components: {
     Icon,
     ServerList,
-    ColoredGauge,
     DatacenterButton,
     ServerCard,
     DatacenterCard,
     MemberField,
     ShadowButton,
-    InfoField
+    InfoField,
+    MultiGauge
   },
   computed: {
     route: function() {
@@ -185,8 +203,13 @@ export default {
 
 .datacenters .content .bullshit .coolShit .infoFields {
   display: grid;
+  justify-items: center;
   grid-template-columns: 100%;
   gap: 8px;
+}
+
+.datacenters .content .bullshit .coolShit .infoFields .info {
+  width: 100%;
 }
 
 .datacenters .content .bullshit .coolShit .members {

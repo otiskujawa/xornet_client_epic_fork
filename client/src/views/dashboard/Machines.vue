@@ -1,9 +1,8 @@
 <template>
   <div class="machines">
     <ServerList :machines="Array.from(machines.values())" />
-    <div class="content">
+    <!-- <div class="content">
       <div class="machines">
-        <GaugeField v-if="machines.get(selectedMachine)" :machine="machines.get(selectedMachine)" />
 
         <Chart
           v-if="uploadGraph.length != 0"
@@ -40,13 +39,12 @@
           }"
         />
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
 import socket from "@/services/socket.js";
-import GaugeField from "@/components/dashboard/GaugeField";
 import ServerList from "@/components/dashboard/ServerList";
 import LoadingScreen from "@/components/dashboard/LoadingScreen";
 import Chart from "@/components/dashboard/Chart";
@@ -57,7 +55,6 @@ import Nav from "@/components/dashboard/Nav";
 export default {
   name: "Machines",
   components: {
-    GaugeField,
     Terminal,
     Nav,
     Header,
@@ -119,6 +116,6 @@ export default {
   width: 100%;
   height: 100vh;
   margin-bottom: 128px;
-  padding: 0px 8px;
+  padding: 8px;
 }
 </style>
