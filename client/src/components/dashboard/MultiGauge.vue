@@ -21,7 +21,7 @@
         }">
       </circle>
     </svg>
-    <img :src="color" alt="">
+    <img class="logo" :src="logo" alt="">
   </div>
 </template>
 
@@ -71,8 +71,10 @@ export default {
   height: 200px;
 }
 
-.multiGauge .icon {
+.multiGauge .logo {
   user-select: none;
+  filter: invert(var(--filter));
+  width: 35%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

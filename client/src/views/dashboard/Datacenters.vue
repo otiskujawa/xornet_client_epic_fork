@@ -29,26 +29,25 @@
             <Icon class="datacenterEdit logoPen" @click="$refs.logo.click()" v-if="isEditing" icon="edit" />
           </div>
           <div class="infoFields">
-
             <MultiGauge 
               :logo="datacenter.logo" 
               :colors="['#8676FF', '#516DFF', '#32B5FF', '#4ADEFF']" 
               :values="[
                 machines.size || 0,
-                (Array.from(machines.values()).reduce((a, b) => a + b.ping, 0) / Array.from(machines.values()).length).toFixed(2) || 0,
-                stats.ramUsage?.current?.toFixed(2) || 0,
-                stats.currentBandwidth?.toFixed(2) || 0,
+                machines.size !== 0 ? (Array.from(machines.values()).reduce((a, b) => a + b.ping, 0) / Array.from(machines.values()).length).toFixed(2) : 0,
+                parseFloat(stats.ramUsage?.current?.toFixed(2)) || 0,
+                parseFloat(stats.currentBandwidth?.toFixed(2)) || 0,
               ]" 
               :maxValues="[
-                stats.totalMachines,
+                stats.totalMachines || 100,
                 100,
-                stats.ramUsage?.max?.toFixed(2),
+                parseFloat(stats.ramUsage?.max?.toFixed(2)) || 100,
                 50,
               ]" 
             />
 
             <InfoField borderless icon="stack" title="Servers Online" color="#8676FF" :value="machines.size || 0" :maxValue="stats.totalMachines" />
-            <InfoField borderless icon="network" title="Average Ping" color="#516DFF" suffix="ms" :value="(Array.from(machines.values()).reduce((a, b) => a + b.ping, 0) / Array.from(machines.values()).length).toFixed(2) || 0" />
+            <InfoField borderless icon="network" title="Average Ping" color="#516DFF" suffix="ms" :value="machines.size !== 0 ? (Array.from(machines.values()).reduce((a, b) => a + b.ping, 0) / Array.from(machines.values()).length).toFixed(2) : 0" />
             <InfoField borderless icon="rj45" title="Current Bandiwdth" color="#32B5FF" suffix="Mbps" :value="stats.currentBandwidth?.toFixed(2) || 0" :maxValue="100" />
             <InfoField borderless icon="ram" title="Total RAM Usage" color="#4ADEFF" suffix="GB" :value="stats.ramUsage?.current?.toFixed(2) || 0" :maxValue="stats.ramUsage?.max?.toFixed(2)" />
           </div>
