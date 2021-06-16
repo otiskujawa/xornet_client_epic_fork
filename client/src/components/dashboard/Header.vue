@@ -6,7 +6,7 @@
       </div>
 
       <div class="buttons">
-        <SquareButton icon="repository" href="https://github.com/Geoxor/Xornet/releases" />
+        <SquareButton class="firstButton" icon="repository" href="https://github.com/Geoxor/Xornet/releases" />
         <SquareButton icon="darkmode" @click="toggleDarkmode" />
         <!-- <SquareButton icon="details" v-if="currentRoute == 'machines'" @click="isShowingDetails = !isShowingDetails" :isEnabled="isShowingDetails" /> -->
         <!-- <SquareButton icon="thick" v-if="currentRoute == 'machines' && thinButtons"/> -->
@@ -123,6 +123,7 @@ header .logo {
   height: 48px;
   min-height: 48px;
   width: 48px;
+  border-radius: 0px 0px 8px 0px;
   min-width: 48px;
 }
 
@@ -139,6 +140,8 @@ header .button img {
 header .buttons {
   align-items: center;
   display: flex;
+  border-radius: 0px 0px 0px 8px;
+  overflow: hidden;
 }
 
 header .account {

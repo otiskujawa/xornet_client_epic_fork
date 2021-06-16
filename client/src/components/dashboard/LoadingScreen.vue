@@ -44,7 +44,7 @@ export default {
 
 <style scoped>
 .loadingScreen {
-  background: white;
+  background: var(--background-color);
   width: 100%;
   height: 100%;
   position: absolute;

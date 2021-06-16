@@ -1,7 +1,7 @@
 <template>
   <nav class="buttons">
     <div class="top">
-      <SquareButton boxless icon="user" :to="{ name: 'profile', params: { username } }" />
+      <SquareButton boxless class="firstButton" icon="user" :to="{ name: 'profile', params: { username } }" />
       <!-- <SquareButton icon="dashboard" :to="{ name: 'summary' }" /> -->
       <SquareButton boxless icon="stack" :to="{ name: 'machines' }" />
       <SquareButton boxless icon="datacenter" :to="{ name: 'datacenters' }" />
@@ -57,6 +57,11 @@ nav {
   flex-direction: column;
   justify-content: space-between;
   position: relative;
+}
+
+nav:not(#mobileNav) .top .firstButton {
+  border-radius: 0px 8px 0px 0px ;
+  overflow: hidden;
 }
 
 nav#mobileNav .top {

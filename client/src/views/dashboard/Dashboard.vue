@@ -1,7 +1,7 @@
 <template>
   <div class="view dashboard">
     <LoadingScreen :isLoaded="!isLoading" />
-    <Header />
+    <Header v-if="!isLoading"/>
     <div class="main">
       <Nav id="desktopNav" />
       <router-view></router-view>
@@ -27,7 +27,6 @@ export default {
   },
   computed: {
     isLoading: function() {
-      // return this.machines.size > 0 ? false : true;
       return false;
     }
   }

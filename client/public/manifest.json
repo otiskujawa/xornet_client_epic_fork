@@ -41,8 +41,13 @@
   "icons": [
     {
       "src": "icons/logo.svg",
-      "sizes": "193x193",
+      "sizes": "256x256",
       "purpose": "maskable"
+    },
+    {
+        "src": "icons/logo.png",
+        "sizes": "256x256",
+        "purpose": "maskable"
     },
     {
       "src": "icons/windows10/SmallTile.scale-100.png",
