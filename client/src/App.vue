@@ -22,7 +22,7 @@ export default {
   --dark-light: #0f0f1e;
   --dark-lighter: #18182c;
   --rogue-red-border: #f85149;
-  --theme-color: #8676FF;
+  --theme-color: #8676ff;
   --bright-theme-color: #aca3f5;
   --terminal-background: #0b0b15;
 
@@ -119,5 +119,4 @@ html {
     display: none;
   }
 }
-
 </style>

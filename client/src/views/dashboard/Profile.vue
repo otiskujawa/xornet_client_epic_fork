@@ -341,7 +341,7 @@ export default {
   width: 56px;
 }
 .profilePage .heading .xornetBadge {
-  background: linear-gradient(90deg, #8676FF 0%, #516DFF 33.33%, #32B5FF 69.27%, #4ADEFF 100%);
+  background: linear-gradient(90deg, #8676ff 0%, #516dff 33.33%, #32b5ff 69.27%, #4adeff 100%);
   transform: translate(-6px);
   border: 6px solid var(--background-color);
   width: fit-content;
@@ -461,7 +461,7 @@ export default {
   user-select: none;
 }
 .profilePage .points {
-  background: linear-gradient(90deg, #8676FF 0%, #516DFF 33.33%, #32B5FF 69.27%, #4ADEFF 100%);
+  background: linear-gradient(90deg, #8676ff 0%, #516dff 33.33%, #32b5ff 69.27%, #4adeff 100%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
   font-family: Work Sans;

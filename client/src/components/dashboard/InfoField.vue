@@ -1,9 +1,9 @@
 <template>
-  <div class="info" :class="{borderless}">
+  <div class="info" :class="{ borderless }">
     <ColoredGauge :icon="icon" :value="value" :maxValue="maxValue" :color="color" v-if="!nogauge" />
     <Icon v-else :icon="icon" />
     <div class="text">
-      <h1 class="title" :style="{color: `${color}`}" >{{ title }}</h1>
+      <h1 class="title" :style="{ color: `${color}` }">{{ title }}</h1>
       <h1 class="value" v-if="suffix && !maxValue">{{ value }}{{ suffix }}</h1>
       <h1 class="value" v-else-if="maxValue || suffix">{{ value }}/{{ maxValue }}{{ suffix }}</h1>
       <h1 class="value" v-else>{{ value }}</h1>
@@ -45,7 +45,7 @@ export default {
   transition: 100ms ease;
 }
 
-.info:not(.borderless){
+.info:not(.borderless) {
   border: 1px solid var(--border-color);
   padding: 16px;
 }

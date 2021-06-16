@@ -17,7 +17,7 @@
               icon="save"
               title="Save"
               @click="
-                isEditing = !isEditing;
+                isEditing = !isEditing; 
                 save();
               "
             />
@@ -29,21 +29,16 @@
             <Icon class="datacenterEdit logoPen" @click="$refs.logo.click()" v-if="isEditing" icon="edit" />
           </div>
           <div class="infoFields">
-            <MultiGauge 
-              :logo="datacenter.logo" 
-              :colors="['#8676FF', '#516DFF', '#32B5FF', '#4ADEFF']" 
+            <MultiGauge
+              :logo="datacenter.logo"
+              :colors="['#8676FF', '#516DFF', '#32B5FF', '#4ADEFF']"
               :values="[
                 machines.size || 0,
                 machines.size !== 0 ? (Array.from(machines.values()).reduce((a, b) => a + b.ping, 0) / Array.from(machines.values()).length).toFixed(2) : 0,
                 parseFloat(stats.ramUsage?.current?.toFixed(2)) || 0,
-                parseFloat(stats.currentBandwidth?.toFixed(2)) || 0,
-              ]" 
-              :maxValues="[
-                stats.totalMachines || 100,
-                100,
-                parseFloat(stats.ramUsage?.max?.toFixed(2)) || 100,
-                50,
-              ]" 
+                parseFloat(stats.currentBandwidth?.toFixed(2)) || 0
+              ]"
+              :maxValues="[stats.totalMachines || 100, 100, parseFloat(stats.ramUsage?.max?.toFixed(2)) || 100, 50]"
             />
 
             <InfoField borderless icon="stack" title="Servers Online" color="#8676FF" :value="machines.size || 0" :maxValue="stats.totalMachines" />

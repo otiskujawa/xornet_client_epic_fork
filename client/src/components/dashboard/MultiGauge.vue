@@ -1,34 +1,36 @@
 <template>
   <div class="multiGauge">
     <svg class="track" overflow="visible" viewBox="0 0 100 100" v-for="(color, index) of colors" :key="color">
-      <circle 
-        class="road" 
-        cx="50" 
-        cy="50" 
-        :r="radius - index * spacingMultiplier" 
-        :style="{ 
-          'stroke-dasharray':  calculateCircumference(radius - index * spacingMultiplier), 
-          'stroke-dashoffset':  calculateCircumference(radius - index * spacingMultiplier) - (calculateCircumference(radius - index * spacingMultiplier) * ((25 * circleDegreePercentage))) / 100 
-        }">
-      </circle>
-      <circle 
-        class="progress" 
-        cx="50" 
-        cy="50" 
-        :r="radius - index * spacingMultiplier" 
-        :style="{ 
-          stroke: color, 'stroke-dasharray': calculateCircumference(radius - index * spacingMultiplier), 'stroke-dashoffset': calculateProgress(values[index], maxValues[index], radius - index * spacingMultiplier) 
-        }">
-      </circle>
+      <circle
+        class="road"
+        cx="50"
+        cy="50"
+        :r="radius - index * spacingMultiplier"
+        :style="{
+          'stroke-dasharray': calculateCircumference(radius - index * spacingMultiplier),
+          'stroke-dashoffset': calculateCircumference(radius - index * spacingMultiplier) - (calculateCircumference(radius - index * spacingMultiplier) * (25 * circleDegreePercentage)) / 100
+        }"
+      ></circle>
+      <circle
+        class="progress"
+        cx="50"
+        cy="50"
+        :r="radius - index * spacingMultiplier"
+        :style="{
+          stroke: color,
+          'stroke-dasharray': calculateCircumference(radius - index * spacingMultiplier),
+          'stroke-dashoffset': calculateProgress(values[index], maxValues[index], radius - index * spacingMultiplier)
+        }"
+      ></circle>
     </svg>
-    <img class="logo" :src="logo" alt="">
+    <img class="logo" :src="logo" alt="" />
   </div>
 </template>
 
 <script>
 export default {
   name: "MultiGauge",
-  data(){
+  data() {
     return {
       // The starting radius
       radius: 48,
@@ -38,29 +40,29 @@ export default {
 
       // This is the percentage of 360deg of the circle
       // for example 75% would be 270deg,
-      circleDegreePercentage: 75,
-    }
+      circleDegreePercentage: 75
+    };
   },
   methods: {
-    calculateCircumference(radius){
+    calculateCircumference(radius) {
       return 2 * 3.1415927 * radius;
     },
-    calculateProgress(value, maxValue, radius){
+    calculateProgress(value, maxValue, radius) {
       const PERCENT = 100;
       const CIRCUMFERENCE = this.calculateCircumference(radius);
       const normalizedValue = value >= maxValue ? maxValue - 0.01 : value;
 
-      const offset = CIRCUMFERENCE - (CIRCUMFERENCE * ((normalizedValue * this.circleDegreePercentage) / maxValue)) / PERCENT 
+      const offset = CIRCUMFERENCE - (CIRCUMFERENCE * ((normalizedValue * this.circleDegreePercentage) / maxValue)) / PERCENT;
 
       return offset;
-    },
+    }
   },
   props: {
     logo: { type: String },
-    values: { type: Array, required: true, default: [0, 0, 0, 0]},
+    values: { type: Array, required: true, default: [0, 0, 0, 0] },
     maxValues: { type: Array, required: true, default: [100, 100, 100, 100] },
     colors: { type: Array, required: true }
-  },
+  }
 };
 </script>
 

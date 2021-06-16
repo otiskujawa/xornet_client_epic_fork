@@ -21,7 +21,7 @@
     </section>
 
     <div class="list">
-      <MachineButton id="mobile" :machine="machine" v-for="machine of showRogues ? sortedMachines : sortedMachines.filter(machine => !machine.rogue)" :key="machine"/>
+      <MachineButton id="mobile" :machine="machine" v-for="machine of showRogues ? sortedMachines : sortedMachines.filter(machine => !machine.rogue)" :key="machine" />
       <ServerListButton id="desktop" :thin="thinButtons" :showDetails="showDetails" :machine="machine" v-for="machine of showRogues ? sortedMachines : sortedMachines.filter(machine => !machine.rogue)" :key="machine" />
     </div>
   </nav>
@@ -218,7 +218,7 @@ export default {
 .serverList .columns .field strong {
   font-weight: 400;
   font-size: 11px;
-  font-family: Work Sans,sans-serif;
+  font-family: Work Sans, sans-serif;
   color: var(--slyColor);
   min-width: fit-content;
   text-align: left;

@@ -29,7 +29,6 @@ export default {
 </script>
 
 <style scoped>
-
 @media only screen and (max-width: 600px) {
   nav#desktopNav {
     display: none;
@@ -38,7 +37,6 @@ export default {
     display: flex;
     width: 100%;
   }
-
 }
 
 @media only screen and (min-width: 600px) {
@@ -67,6 +65,4 @@ nav#mobileNav .top {
   justify-content: space-between;
   padding: 0px 48px;
 }
-
-
 </style>

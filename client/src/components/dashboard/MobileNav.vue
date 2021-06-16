@@ -47,5 +47,4 @@ nav .top {
   justify-content: space-between;
   padding: 0px 48px;
 }
-
 </style>

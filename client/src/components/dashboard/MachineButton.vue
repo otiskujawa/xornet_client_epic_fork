@@ -17,12 +17,11 @@
         -
         <h1 id="trx">{{ (machine.network?.TxSec + machine.network?.RxSec).toFixed(2) }}Mbps</h1>
       </div>
-
     </div>
     <div class="bars">
-      <div id="cpu"><div class="progress" :style="{'width': `${machine.cpu}%`}"></div></div>
-      <div id="ram"><div class="progress" :style="{'width': `${(100 * (machine.ram.used / machine.ram.total))}%`}"></div></div>
-      <div id="trx"><div class="progress" :style="{'width': `${(100 * ((machine.network?.TxSec + machine.network?.RxSec).toFixed(2) / 1000))}%`}"></div></div>
+      <div id="cpu"><div class="progress" :style="{ width: `${machine.cpu}%` }"></div></div>
+      <div id="ram"><div class="progress" :style="{ width: `${100 * (machine.ram.used / machine.ram.total)}%` }"></div></div>
+      <div id="trx"><div class="progress" :style="{ width: `${100 * ((machine.network?.TxSec + machine.network?.RxSec).toFixed(2) / 1000)}%` }"></div></div>
     </div>
   </router-link>
 </template>
@@ -36,13 +35,12 @@ export default {
     }
   },
   props: {
-    machine: { type: Object, required: true },
+    machine: { type: Object, required: true }
   }
 };
 </script>
 
 <style scoped>
-
 .machineButton {
   padding: 8px;
   display: flex;
@@ -90,14 +88,22 @@ export default {
   display: flex;
   gap: 4px;
 }
-.coloredText h1 { 
-  font-size: 12px; 
-  font-weight: 500; 
+.coloredText h1 {
+  font-size: 12px;
+  font-weight: 500;
 }
-.coloredText { color: var(--white); }
-.coloredText #cpu { color: #8676FF; }
-.coloredText #ram { color: #516DFF; }
-.coloredText #trx { color: #32B5FF; }
+.coloredText {
+  color: var(--white);
+}
+.coloredText #cpu {
+  color: #8676ff;
+}
+.coloredText #ram {
+  color: #516dff;
+}
+.coloredText #trx {
+  color: #32b5ff;
+}
 
 .bars {
   display: flex;
@@ -114,13 +120,17 @@ export default {
 }
 
 .bars .progress {
-  transition: 500ms ease;  
-  height: 6px;  
+  transition: 500ms ease;
+  height: 6px;
 }
 
-.bars #cpu .progress { background-color: #8676FF; }
-.bars #ram .progress { background-color: #516DFF; }
-.bars #trx .progress { background-color: #32B5FF; }
-
-
+.bars #cpu .progress {
+  background-color: #8676ff;
+}
+.bars #ram .progress {
+  background-color: #516dff;
+}
+.bars #trx .progress {
+  background-color: #32b5ff;
+}
 </style>

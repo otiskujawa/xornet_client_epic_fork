@@ -3,10 +3,10 @@
     <LoadingScreen :isLoaded="!isLoading" />
     <Header />
     <div class="main">
-      <Nav id="desktopNav"/>
+      <Nav id="desktopNav" />
       <router-view></router-view>
     </div>
-    <Nav id="mobileNav"/>
+    <Nav id="mobileNav" />
   </div>
 </template>
 
@@ -35,7 +35,6 @@ export default {
 </script>
 
 <style scoped>
-
 .dashboard {
   align-items: flex-start;
   display: flex;
@@ -55,7 +54,6 @@ export default {
     height: calc(100vh - 96px);
   }
 }
-
 
 .content {
   box-sizing: border-box;

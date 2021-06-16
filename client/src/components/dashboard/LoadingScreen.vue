@@ -76,7 +76,7 @@ export default {
 }
 
 .loadingScreen progress::-webkit-progress-value {
-  background: linear-gradient(90deg, #8676FF 0%, #516DFF 33.33%, #32B5FF 69.27%, #4ADEFF 100%);
+  background: linear-gradient(90deg, #8676ff 0%, #516dff 33.33%, #32b5ff 69.27%, #4adeff 100%);
   transition: 100ms ease;
   border-radius: 4px;
 }
