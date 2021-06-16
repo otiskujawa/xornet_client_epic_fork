@@ -42,14 +42,14 @@ export default {
   align-items: center;
   padding: 8px;
   border-radius: 4px;
+  justify-content: space-between;
   gap: 8px;
   text-align: left;
-
-  transition: 300ms ease;
 }
 
 .searchResult:hover {
   /* Shadow */
+  background-color: var(--white);
   box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
 }
 
@@ -57,6 +57,7 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  text-align: right;
 }
 
 .searchResult .userPoints .p {
@@ -67,6 +68,7 @@ export default {
   line-height: 100%;
   display: flex;
   align-items: flex-end;
+  justify-content: flex-end;
   left: 0px;
   color: var(--black);
 }
@@ -115,6 +117,10 @@ export default {
   height: 16px;
   width: 16px;
 }
+.searchResult .profile {
+  display: flex;
+  gap: 8px;
+}
 
 .searchResult .profile .profileImg {
   width: 48px;
@@ -130,6 +136,7 @@ export default {
   align-items: flex-start;
   padding: 4px 0px;
   width: 40%;
+  min-width: 128px;
 
   font-family: Montserrat;
   font-style: normal;

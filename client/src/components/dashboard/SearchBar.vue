@@ -4,7 +4,7 @@
       <input v-model="searchString" class="inputField" :class="{ active: searchString.length != 0 }" type="text" placeholder="Search " @keyup="typingTimer()" @keydown="clearTimer()" />
       <img :src="searchString.length != 0 ? require('@/assets/icons/filled/x.svg') : require('@/assets/icons/filled/search.svg')" :class="{ activeImg: searchString.length != 0 }" @click="clearSearchDrop()" />
     </div>
-    <div v-if="searchRes">
+    <div v-if="searchRes !== null">
       <SearchResult v-for="user of searchRes" :key="user" :user="user" @click="clearSearchClicked()" />
       <h1 v-if="searchRes.length == 0 && searchString.length != 0" class="noResult">There were no users that match that query</h1>
     </div>
@@ -73,10 +73,11 @@ export default {
 
   gap: 8px;
   max-width: 300px;
+  overflow: scroll;
+  max-height: 600px;
   padding: 8px;
   margin-left: 8px;
   background-color: var(--background-color);
-
   border-radius: 4px;
 }
 
@@ -88,7 +89,7 @@ export default {
   width: 500px !important;
 }
 
-.search .noResult {
+.search h1.noResult {
   font-family: Work Sans;
   font-style: normal;
   font-weight: 600;
@@ -109,6 +110,7 @@ export default {
 }
 
 .search .bar .inputField {
+  outline: none;
   width: 100%;
   transition: 100ms ease;
   border-radius: 3px;
