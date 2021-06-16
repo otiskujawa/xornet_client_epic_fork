@@ -50,7 +50,7 @@ export default {
       const CIRCUMFERENCE = this.calculateCircumference(radius);
       const normalizedValue = value >= maxValue ? maxValue - 0.01 : value;
 
-      const offset = CIRCUMFERENCE - (CIRCUMFERENCE * ((normalizedValue * this.circleDegreePercentage) / ((maxValue * PERCENT) / PERCENT))) / PERCENT 
+      const offset = CIRCUMFERENCE - (CIRCUMFERENCE * ((normalizedValue * this.circleDegreePercentage) / maxValue)) / PERCENT 
 
       return offset;
     },
