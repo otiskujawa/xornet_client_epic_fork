@@ -19,7 +19,7 @@
         :style="{
           stroke: color,
           'stroke-dasharray': calculateCircumference(radius - index * spacingMultiplier),
-          'stroke-dashoffset': calculateProgress(values[index], maxValues[index], radius - index * spacingMultiplier)
+          'stroke-dashoffset': calculateProgress(values[index], maxValues[index], radius - index * spacingMultiplier )
         }"
       ></circle>
     </svg>
@@ -50,7 +50,7 @@ export default {
     calculateProgress(value, maxValue, radius) {
       const PERCENT = 100;
       const CIRCUMFERENCE = this.calculateCircumference(radius);
-      const normalizedValue = value >= maxValue ? maxValue - 0.01 : value;
+      const normalizedValue = value >= maxValue ? maxValue : value;
 
       const offset = CIRCUMFERENCE - (CIRCUMFERENCE * ((normalizedValue * this.circleDegreePercentage) / maxValue)) / PERCENT;
 

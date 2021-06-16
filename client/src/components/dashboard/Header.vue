@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="left">
-      <div class="logo">
+      <div class="logo" @click="incrementSuperclass()">
         <img :src="require('@/assets/logos/logoHeader.svg')" alt="Xornet" />
       </div>
 
@@ -45,6 +45,7 @@ export default {
   data: () => {
     return {
       profile: null,
+      superclass: 0,
       currentRoute: null
     };
   },
@@ -53,6 +54,13 @@ export default {
     this.currentRoute = this.$route.name;
   },
   methods: {
+    incrementSuperclass(){
+      this.superclass++;
+      if (this.superclass % 10 == 9){
+        var superclass = new Audio('https://cdn.discordapp.com/attachments/851974319370010655/854730571389730826/superclass.mp3');
+        superclass.play();
+      }
+    },
     logout() {
       function deleteAllCookies() {
         var cookies = document.cookie.split(";");
