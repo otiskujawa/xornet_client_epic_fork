@@ -35,11 +35,17 @@ export default {
 </script>
 
 <style scoped>
+
+@media screen and (max-width: 600px) {
+  .dashboard .main {
+    flex-direction: column-reverse;
+  }
+}
 .dashboard {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
 }
 
 .dashboard .main {

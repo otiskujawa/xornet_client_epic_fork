@@ -89,5 +89,7 @@ export default {
   font-size: 12px;
   text-transform: uppercase;
   font-weight: bold;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 </style>

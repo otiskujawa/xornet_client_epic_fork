@@ -86,6 +86,7 @@ header {
   height: 48px;
   width: 100%;
   display: flex;
+  z-index: 400;
   align-items: flex-start;
   justify-content: space-between;
   background-color: var(--background-color);
@@ -155,6 +156,7 @@ header .account a {
 header .account img.profileImage {
   width: 32px;
   height: 32px;
+  user-select: none;
   object-fit: cover;
   cursor: pointer;
   border-radius: 8px;

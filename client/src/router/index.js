@@ -111,4 +111,9 @@ const router = createRouter({
 // Frontend redirecting
 router.beforeEach(auth);
 
+router.beforeEach(function(to, from, next) {
+  if (Object.values(to.params)[0]) document.title = `Xornet | ${Object.values(to.params)[0]}`;
+  next();
+});
+
 export default router;
