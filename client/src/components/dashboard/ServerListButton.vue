@@ -60,11 +60,6 @@
       <img v-if="machine.platform == 'win32'" :src="require('@/assets/icons/filled/windows.svg')" alt="" />
       <img v-if="machine.platform == 'darwin'" :src="require('@/assets/icons/filled/macos.svg')" alt="" />
       <img v-if="machine.platform == 'linux'" :src="require('@/assets/icons/filled/linux.svg')" alt="" />
-      <!-- <img v-if="machine.static.system.manufacturer.startsWith('Raspberry Pi')" :src="require('@/assets/icons/filled/raspberry.svg')" alt="">
-            <img v-if="machine.static.system.manufacturer.startsWith('Dell')" style="height: 10px" :src="require('@/assets/icons/filled/dell.svg')" alt="">
-            <img v-if="machine.static.system.manufacturer.startsWith('Hewlett-Packard')" :src="require('@/assets/icons/filled/hp.svg')" alt="">
-            <img v-if="machine.static.system.manufacturer.startsWith('Gigabyte')" style="height: 7px" :src="require('@/assets/icons/filled/gigabyte.svg')" alt="">
-            <img v-if="machine.static.system.manufacturer.startsWith('Asus')" style="height: 7px" :src="require('@/assets/icons/filled/asus.svg')" alt=""> -->
       <h1 v-if="machine.reporterVersion">v{{ machine.reporterVersion }}</h1>
     </div>
   </router-link>
@@ -88,7 +83,7 @@ export default {
 
 <style scoped>
 .button {
-  padding: 8px;
+  padding: 2px 8px;
   background-color: var(--background-color);
   border-radius: 4px;
   box-sizing: border-box;
