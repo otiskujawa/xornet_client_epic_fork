@@ -3,9 +3,10 @@
     <LoadingScreen :isLoaded="!isLoading" />
     <Header />
     <div class="main">
-      <Nav />
+      <Nav id="desktopNav"/>
       <router-view></router-view>
     </div>
+    <Nav id="mobileNav"/>
   </div>
 </template>
 
@@ -36,11 +37,6 @@ export default {
 
 <style scoped>
 
-@media screen and (max-width: 600px) {
-  .dashboard .main {
-    flex-direction: column-reverse;
-  }
-}
 .dashboard {
   align-items: flex-start;
   display: flex;
@@ -52,8 +48,15 @@ export default {
   align-items: flex-start;
   display: flex;
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 48px);
 }
+
+@media only screen and (max-width: 600px) {
+  .dashboard .main {
+    height: calc(100vh - 96px);
+  }
+}
+
 
 .content {
   box-sizing: border-box;

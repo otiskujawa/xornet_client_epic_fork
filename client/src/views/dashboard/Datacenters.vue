@@ -87,6 +87,11 @@ export default {
     $route(to, from) {
       this.machines.clear();
       this.fetchData();
+      this.stats = {
+        ramUsage: {},
+        currentBandwidth: 0,
+        totalMachines: 0
+      };
     }
   },
   data() {
@@ -148,7 +153,7 @@ export default {
 <style scoped>
 .datacenters {
   width: 100%;
-  height: calc(100vh - 96px);
+  height: 100%;
   overflow: scroll;
 }
 .datacenters > .buttons {
