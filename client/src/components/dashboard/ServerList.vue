@@ -1,5 +1,5 @@
 <template>
-  <nav class="serverList" :class="{ small: isSmall }">
+  <nav class="serverList">
     <nav v-if="thinButtons" id="desktop" class="columns" :class="{ thin: thinButtons }">
       <div @click="sort('hostname')" class="field hostname">hostname <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'hostname'" /></div>
       <div @click="sort('uuid')" class="field uuid">uuid <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'uuid'" /></div>

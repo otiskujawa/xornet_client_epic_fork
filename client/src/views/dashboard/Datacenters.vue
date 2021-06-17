@@ -9,11 +9,16 @@
       <div class="bullshit">
         <div class="coolShit">
           <div class="left">
-            
             <div class="datacenterTitle" style="display: flex; gap: 8px;">
               <Icon icon="datacenter" style="width: 24px;"/>
-              <h1 class="datacenterName" style="font-size: 24px;">{{datacenter.name}}</h1>
+              <h1 class="datacenterName" style="font-size: 20px;">{{datacenter.name}}</h1>
             </div>
+          <div class="heading">
+            <img class="banner" :src="datacenter.banner || 'https://i.redd.it/cxrn0h5ksd131.jpg'" :alt="datacenter.name" />
+            <Icon class="datacenterEdit bannerPen" @click="$refs.banner.click()" v-if="isEditing" icon="edit" />
+            <img class="logo" :class="{ isEditing }" :src="datacenter.logo || 'https://cdn.discordapp.com/attachments/807448839346716683/853054616870322256/spaz.gif'" :alt="datacenter.name" />
+            <Icon class="datacenterEdit logoPen" @click="$refs.logo.click()" v-if="isEditing" icon="edit" />
+          </div>
             <div class="buttons">
               <ShadowButton class="revoke" icon="stack" title="Add server" @click="isShowingServerCard = !isShowingServerCard" />
               <ShadowButton class="revoke" v-if="!isEditing" icon="edit" title="Edit" @click="isEditing = !isEditing" />
@@ -29,12 +34,7 @@
               />
             </div>
           </div>
-          <div class="heading">
-            <img class="banner" :src="datacenter.banner || 'https://i.redd.it/cxrn0h5ksd131.jpg'" :alt="datacenter.name" />
-            <Icon class="datacenterEdit bannerPen" @click="$refs.banner.click()" v-if="isEditing" icon="edit" />
-            <img class="logo" :class="{ isEditing }" :src="datacenter.logo || 'https://cdn.discordapp.com/attachments/807448839346716683/853054616870322256/spaz.gif'" :alt="datacenter.name" />
-            <Icon class="datacenterEdit logoPen" @click="$refs.logo.click()" v-if="isEditing" icon="edit" />
-          </div>
+
           <div class="infoFields">
             <MultiGauge
               :logo="datacenter.logo"
@@ -207,6 +207,12 @@ export default {
   gap: 8px;
 }
 
+.datacenters .content .bullshit .coolShit .left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .datacenters .content .bullshit .coolShit .infoFields {
   display: grid;
   justify-items: center;
@@ -228,6 +234,7 @@ export default {
   border-radius: 8px;
 }
 .datacenters .content .bullshit .coolShit .buttons {
+  gap: 8px;
   display: flex;
   justify-content: space-between;
 }
@@ -295,6 +302,14 @@ export default {
   width: 56px;
 }
 
+.primary {
+  padding: 2px 6px;
+  background-color: #8171ff66;
+  border-radius: 167px;
+  color: var(--theme-color);
+  border: 2px solid var(--theme-color);
+  font-size: 10px;
+}
 
 
 @media only screen and (max-width: 600px) {
@@ -324,5 +339,7 @@ export default {
     display: none;
   }
 }
+
+
 
 </style>

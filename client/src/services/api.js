@@ -162,7 +162,7 @@ class Datacenter extends API {
   }
 
   async add(form) {
-    return (await super.request("post", `datacenter/new`, { "Content-Type": "application/json" }, form)).data;
+    return await super.request("post", `datacenter/new`, { "Content-Type": "application/json" }, form);
   }
 
   /**

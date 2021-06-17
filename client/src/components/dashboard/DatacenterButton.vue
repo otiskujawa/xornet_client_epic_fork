@@ -5,7 +5,9 @@
       <h1>{{ datacenter.name }}</h1>
     </div>
     <img class="logo" :src="datacenter.logo || require('@/assets/icons/filled/stack.svg')" :alt="datacenter.name" />
-    <div class="heading">
+    <div class="footer">
+      <h1 v-if="datacenter.owner === me._id" class="primary">Primary</h1>
+
       <!-- <ColoredGauge icon="stack" color="#00FF67" :value="machines.size || 0" :maxValue="stats.totalMachines" /> -->
       <!-- <ColoredGauge icon="network" color="#FFA800"  :value="datacenter.networkHealth || 0" :maxValue="100" /> -->
       <!-- <ColoredGauge icon="rj45" color="#00F0FF" :value="stats.currentBandwidth?.toFixed(2) || 0" /> -->
@@ -33,7 +35,12 @@ export default {
   props: {
     datacenter: { type: Object },
     addButton: { type: Boolean }
-  }
+  },
+  computed: {
+    me: function() {
+      return JSON.parse(localStorage.getItem("me"));
+    }
+  },
 };
 </script>
 
@@ -70,7 +77,8 @@ export default {
   max-height: 60%;
 }
 
-.datacenter .heading {
+.datacenter .heading,
+.datacenter .footer {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -92,4 +100,16 @@ export default {
   text-overflow: ellipsis;
   overflow: hidden;
 }
+
+.primary {
+  padding: 2px 6px;
+  background-color: #8171ff44;
+  border-radius: 167px;
+  color: var(--theme-color) !important;
+  border: 2px solid var(--theme-color);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
 </style>
