@@ -55,7 +55,7 @@ header .buttons {
 header .buttons .button {
   color: white;
   border: none;
-  background-color: #4361ee;
+  background-color: var(--theme-color);
   width: min-content;
   padding: 4px 12px;
   border-radius: 4px;
@@ -72,7 +72,7 @@ header .buttons .button {
   white-space: nowrap;
 }
 header .buttons .button:hover {
-  box-shadow: 0px 4px 12px #4361ee80;
+  box-shadow: 0px 4px 12px var(--theme-color);
   transform: translateY(-1px);
 }
 header .buttons .button:active {
