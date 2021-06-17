@@ -8,9 +8,7 @@
           <img class="location" :src="user.geolocation?.countryCode ? require(`@/assets/flags/${user.geolocation.countryCode}.png`) : require('@/assets/flags/__.png')" alt="Country Flag" />
         </div>
         <div class="badges">
-          <img class="badge" v-if="user.badges?.owned?.includes('developer')" :src="require(`@/assets/badges/developer.svg`)" />
-          <img class="badge" v-if="user.badges?.owned?.includes('designer')" :src="require(`@/assets/badges/designer.svg`)" />
-          <img class="badge" v-if="user.badges?.owned?.includes('contributor')" :src="require(`@/assets/badges/contributor.svg`)" />
+          <img class="badge" v-for="badge of user.badges?.owned" :key="badge" :src="require(`@/assets/badges/${badge}.svg`)" />
         </div>
       </div>
     </div>

@@ -167,6 +167,7 @@ class Datacenter extends API {
 
   /**
    * Post signup credentials into backend and returns the result of signup process
+   * @param {String} datacenter The name of the datacenter
    * @param {Blob} logo image Blob, which contains image class from the refs
    * @param {Blob} banner image Blob, which contains image class from the refs
    */
@@ -174,6 +175,8 @@ class Datacenter extends API {
     let formData = new FormData();
     formData.append("logo", logo);
     formData.append("banner", banner);
+
+    datacenter = datacenter.trim();
 
     return super.request("patch", `datacenter/${datacenter}`, { "Content-Type": "multipart/form-data" }, formData);
   }

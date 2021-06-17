@@ -1,6 +1,6 @@
 <template>
   <div class="machines">
-    <ServerList :machines="Array.from(machines.values())" />
+    <ServerList :machines="machineArray" />
     <!-- <div class="content">
       <div class="machines">
 
@@ -65,7 +65,10 @@ export default {
   computed: {
     selectedMachine: function() {
       return this.$route.params.machine;
-    }
+    },
+    machineArray: function(){
+      return Array.from(this.machines.values());
+    },
   },
   data: () => {
     return {

@@ -57,9 +57,7 @@
           <h1 class="descriptionHeading">Badges</h1>
 
           <div class="badges">
-            <img class="badge" v-if="profile.badges?.owned?.includes('developer')" :src="require(`@/assets/badges/developer.svg`)" />
-            <img class="badge" v-if="profile.badges?.owned?.includes('designer')" :src="require(`@/assets/badges/designer.svg`)" />
-            <img class="badge" v-if="profile.badges?.owned?.includes('contributor')" :src="require(`@/assets/badges/contributor.svg`)" />
+            <img class="badge" v-for="badge of profile.badges.owned" :key="badge" :src="require(`@/assets/badges/${badge}.svg`)" />
           </div>
 
           <div class="line"></div>

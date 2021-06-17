@@ -302,16 +302,6 @@ export default {
   width: 56px;
 }
 
-.primary {
-  padding: 2px 6px;
-  background-color: #8171ff66;
-  border-radius: 167px;
-  color: var(--theme-color);
-  border: 2px solid var(--theme-color);
-  font-size: 10px;
-}
-
-
 @media only screen and (max-width: 600px) {
 
   .datacenters .content .bullshit  {

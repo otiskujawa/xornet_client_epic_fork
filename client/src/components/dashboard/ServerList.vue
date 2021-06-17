@@ -39,7 +39,7 @@ export default {
     },
     settings: function() {
       if (localStorage.settings) return JSON.parse(localStorage.settings);
-    }
+    },
   },
   data() {
     return {
