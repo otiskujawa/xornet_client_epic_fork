@@ -1,5 +1,5 @@
 <template>
-  <div class="search" :class="{ onfocus: searchString.length != 0 && !searchPaused }">
+  <div class="search" :class="{ focused: searchString.length != 0 && !searchPaused }">
     <div class="bar">
       <input v-model="searchString" class="inputField" :class="{ active: searchString.length != 0 }" type="text" placeholder="Search " @keyup="typingTimer()" @keydown="clearTimer()" @click="onClickSearchBar()" @blur="onBlurSearchBar()" />
       <img :src="searchString.length != 0 ? require('@/assets/icons/filled/x.svg') : require('@/assets/icons/filled/search.svg')" :class="{ activeImg: searchString.length != 0 }" @click="clearSearchDrop()" />
@@ -69,7 +69,6 @@ export default {
     onBlurSearchBar(event){
       if (this.searchString.length == 0) this.$emit('unClicked', 'someValue')
     }
-
   }
 };
 </script>
@@ -88,20 +87,24 @@ export default {
   z-index: 10;
   align-self: flex-start;
   display: flex;
+  width: 256px;
   flex-direction: column;
-  max-width: 300px;
   gap: 8px;
   max-width: 80%;
   overflow: scroll;
   max-height: 600px;
   padding: 8px;
-  margin-left: 8px;
+  transition: 200ms ease;
   background-color: var(--background-color);
   border-radius: 4px;
 }
 
-.search.onfocus {
-  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
+.search:focus-within {
+  width: 400px;
+}
+
+.search.focused {
+  width: 400px;
 }
 
 .search .inputField.active {
@@ -141,10 +144,6 @@ export default {
   background-color: var(--white);
   height: 32px;
   padding: 6px 8px;
-}
-
-.search .bar .inputField:focus {
-  width: 500px !important;
 }
 
 .search .bar img {

@@ -5,7 +5,7 @@
       <div v-if="!showSearchBar && searchToggled" @click="searchToggled = false;" >
         <SquareButton icon="chevron-left" alt="" />
       </div>
-      <div class="logo" v-if="!searchToggled">
+      <div class="logo" v-if="!searchToggled" @click="incrementSuperclass()">
         <img :src="require('@/assets/logos/logoHeader.svg')" alt="Xornet" />
       </div>
 
@@ -50,6 +50,7 @@ export default {
     return {
       profile: null,
       currentRoute: null,
+      superclass: 0,
       searchToggled: false,
       showSearchBar: true,
       windowWidth: window.innerWidth,
@@ -59,7 +60,7 @@ export default {
     this.profile = await this.api.user.fetchMe();
     this.currentRoute = this.$route.name;
 
-    this.showSearchBar = (this.windowWidth > 360);
+    this.showSearchBar = (this.windowWidth > 460);
   },
   methods: {
     incrementSuperclass(){
@@ -116,6 +117,7 @@ header {
 
 header .left {
   display: flex;
+  width: 100%;
   align-items: flex-start;
 }
 
@@ -137,6 +139,7 @@ header .button {
 }
 
 header .logo {
+  user-select: none;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -148,9 +151,10 @@ header .logo {
   min-width: 48px;
 }
 
-header .button.enabled {
-  filter: invert(1);
-}
+header .logo img { transition: 100ms ease; }
+header .logo img:hover { width: 40px; }
+header .logo img:active { width: 32px; }
+header .button.enabled { filter: invert(1); }
 
 header .button img {
   width: 24px;

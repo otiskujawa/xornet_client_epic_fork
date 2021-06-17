@@ -9,7 +9,7 @@
         </div>
 
         <div class="fields">
-          <input v-model="form.username" class="inputField" type="text" placeholder="Username" />
+          <input v-model="form.username" class="inputField" type="text" placeholder="Username" autocomplete="username"/>
           <input v-model="form.password" class="inputField" type="password" placeholder="Password" />
           <p>Don’t have an account? <router-link :to="{ name: 'signup' }">Click here</router-link></p>
           <!-- <p>Forgot your password? <router-link :to="{ name: 'forgot' }">Click here</router-link></p> -->

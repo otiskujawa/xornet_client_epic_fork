@@ -115,7 +115,6 @@ export default {
 
   font-weight: 600;
   font-size: 12px;
-  color: var(--black);
   border: none;
   background-color: #f8f8f8;
   height: 32px;

@@ -70,7 +70,7 @@ export default {
 }
 
 *::selection {
-  background: var(--black);
+  background: var(--black) !important;
   color: var(--white);
 }
 
