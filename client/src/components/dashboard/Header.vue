@@ -24,7 +24,7 @@
       <SquareButton icon="logout" @click.native="logout" />
 
       <router-link :to="{ name: 'profile', params: { username } }">
-        <img :src="profile?.profileImage?.url" class="profileImage" alt="profileImage" />
+        <img :src="profile?.profileImage?.url ?? 'https://wallpapercave.com/wp/wp8846945.jpg'" class="profileImage" alt="profileImage" />
       </router-link>
     </div>
   </header>

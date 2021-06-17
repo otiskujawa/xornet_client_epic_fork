@@ -95,7 +95,7 @@ export default {
 .card .details form .text h1 {
   font-weight: bold;
   font-size: 16px;
-  color: var(--white);
+  color: var(--black);
 }
 
 .card .details form .text p {
@@ -122,14 +122,14 @@ export default {
 }
 
 .card .details form .fields .inputField::placeholder {
-  color: var(--white);
+  color: var(--gray);
 }
 .card .details form .fields p {
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
   font-size: 10px;
-  color: var(--white);
+  color: var(--black);
   line-height: 175%;
 }
 
