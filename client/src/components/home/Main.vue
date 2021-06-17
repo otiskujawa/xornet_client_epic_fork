@@ -110,8 +110,6 @@ export default {
   color: var(--white);
 }
 
-
-
 .main .textFields section p {
   font-size: 14px;
   line-height: 20px;
