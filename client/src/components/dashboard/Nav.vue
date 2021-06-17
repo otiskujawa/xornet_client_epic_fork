@@ -1,14 +1,14 @@
 <template>
   <nav class="buttons">
     <div class="top">
-      <SquareButton icon="user" :to="{ name: 'profile', params: { username } }" />
+      <SquareButton boxless class="firstButton" icon="user" :to="{ name: 'profile', params: { username } }" />
       <!-- <SquareButton icon="dashboard" :to="{ name: 'summary' }" /> -->
-      <SquareButton icon="stack" :to="{ name: 'machines' }" />
-      <SquareButton icon="datacenter" :to="{ name: 'datacenters' }" />
+      <SquareButton boxless icon="stack" :to="{ name: 'machines' }" />
+      <SquareButton boxless icon="datacenter" :to="{ name: 'datacenters' }" />
       <!-- <SquareButton icon="network" :to="{ name: 'network' }" /> -->
-      <SquareButton icon="clipboard" :to="{ name: 'logs' }" />
+      <SquareButton boxless icon="clipboard" :to="{ name: 'logs' }" />
+      <SquareButton boxless class="settings" icon="settings" :to="{ name: 'settings' }" />
     </div>
-    <SquareButton class="settings" icon="settings" :to="{ name: 'settings' }" />
   </nav>
 </template>
 
@@ -16,7 +16,7 @@
 import SquareButton from "@/components/dashboard/SquareButton";
 
 export default {
-  name: "Nav",
+  name: "MobileNav",
   components: {
     SquareButton
   },
@@ -29,14 +29,45 @@ export default {
 </script>
 
 <style scoped>
+@media only screen and (max-width: 600px) {
+  nav#desktopNav {
+    display: none;
+  }
+  nav#mobileNav {
+    display: flex;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  nav#desktopNav {
+    display: flex;
+  }
+  nav#mobileNav {
+    display: none;
+  }
+}
+
 nav {
-  height: calc(100vh - 48px);
-  width: 48px;
-  display: flex;
+  height: 48px;
+  display: none;
   align-items: center;
   display: flex;
+  background-color: var(--background-color);
   flex-direction: column;
   justify-content: space-between;
   position: relative;
+}
+
+nav:not(#mobileNav) .top .firstButton {
+  border-radius: 0px 8px 0px 0px ;
+  overflow: hidden;
+}
+
+nav#mobileNav .top {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0px 48px;
 }
 </style>

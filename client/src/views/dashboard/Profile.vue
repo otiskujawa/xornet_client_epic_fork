@@ -57,9 +57,7 @@
           <h1 class="descriptionHeading">Badges</h1>
 
           <div class="badges">
-            <img class="badge" v-if="profile.badges?.owned?.includes('developer')" :src="require(`@/assets/badges/developer.svg`)" />
-            <img class="badge" v-if="profile.badges?.owned?.includes('designer')" :src="require(`@/assets/badges/designer.svg`)" />
-            <img class="badge" v-if="profile.badges?.owned?.includes('contributor')" :src="require(`@/assets/badges/contributor.svg`)" />
+            <img class="badge" v-for="badge of profile.badges.owned" :key="badge" :src="require(`@/assets/badges/${badge}.svg`)" />
           </div>
 
           <div class="line"></div>
@@ -341,7 +339,7 @@ export default {
   width: 56px;
 }
 .profilePage .heading .xornetBadge {
-  background: linear-gradient(90deg, #db00ff 0%, #8000ff 31.77%, #00b2ff 64.06%, #00fff0 98.44%);
+  background: linear-gradient(90deg, #8676ff 0%, #516dff 33.33%, #32b5ff 69.27%, #4adeff 100%);
   transform: translate(-6px);
   border: 6px solid var(--background-color);
   width: fit-content;
@@ -461,7 +459,7 @@ export default {
   user-select: none;
 }
 .profilePage .points {
-  background: linear-gradient(90deg, #db00ff 0%, #8000ff 31.77%, #00b2ff 64.06%, #00fff0 98.44%);
+  background: linear-gradient(90deg, #8676ff 0%, #516dff 33.33%, #32b5ff 69.27%, #4adeff 100%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
   font-family: Work Sans;

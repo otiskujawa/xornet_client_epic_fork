@@ -8,31 +8,55 @@
     <div v-else-if="datacenter" class="content">
       <div class="bullshit">
         <div class="coolShit">
-          <div class="buttons">
-            <ShadowButton class="revoke" icon="stack" title="Add server" @click="isShowingServerCard = !isShowingServerCard" />
-            <ShadowButton class="revoke" v-if="!isEditing" icon="edit" title="Edit" @click="isEditing = !isEditing" />
-            <ShadowButton
-              class="revoke"
-              v-else
-              icon="save"
-              title="Save"
-              @click="
-                isEditing = !isEditing;
-                save();
-              "
-            />
-          </div>
+          <div class="left">
+            <div class="datacenterTitle" style="display: flex; gap: 8px;">
+              <Icon icon="datacenter" style="width: 24px;"/>
+              <h1 class="datacenterName" style="font-size: 20px;">{{datacenter.name}}</h1>
+            </div>
           <div class="heading">
             <img class="banner" :src="datacenter.banner || 'https://i.redd.it/cxrn0h5ksd131.jpg'" :alt="datacenter.name" />
             <Icon class="datacenterEdit bannerPen" @click="$refs.banner.click()" v-if="isEditing" icon="edit" />
             <img class="logo" :class="{ isEditing }" :src="datacenter.logo || 'https://cdn.discordapp.com/attachments/807448839346716683/853054616870322256/spaz.gif'" :alt="datacenter.name" />
             <Icon class="datacenterEdit logoPen" @click="$refs.logo.click()" v-if="isEditing" icon="edit" />
           </div>
+            <div class="buttons">
+              <ShadowButton class="revoke" icon="stack" title="Add server" @click="isShowingServerCard = !isShowingServerCard" />
+              <ShadowButton class="revoke" v-if="!isEditing" icon="edit" title="Edit" @click="isEditing = !isEditing" />
+              <ShadowButton
+                class="revoke"
+                v-else
+                icon="save"
+                title="Save"
+                @click="
+                  isEditing = !isEditing; 
+                  save();
+                "
+              />
+            </div>
+          </div>
+
           <div class="infoFields">
-            <InfoField icon="stack" title="Servers Online" color="#8676FF" :value="machines.size || 0" :maxValue="stats.totalMachines" />
-            <InfoField icon="network" title="Network Health" color="#01F1E3" suffix="%" :value="datacenter.networkHealth || 0" />
-            <InfoField icon="rj45" title="Current Bandiwdth" color="#FFBA69" suffix="Mbps" :value="stats.currentBandwidth?.toFixed(2) || 0" :maxValue="100" />
-            <InfoField icon="ram" title="Total RAM Usage" color="#FF718C" suffix="GB" :value="stats.ramUsage?.current?.toFixed(2) || 0" :maxValue="stats.ramUsage?.max?.toFixed(2)" />
+            <MultiGauge
+              :logo="datacenter.logo"
+              :colors="['#8676FF', '#516DFF', '#32B5FF', '#4ADEFF']"
+              :values="[
+                machines.size || 0,
+                machines.size !== 0 ? (Array.from(machines.values()).reduce((a, b) => a + b.ping, 0) / Array.from(machines.values()).length).toFixed(2) : 0,
+                parseFloat(stats.ramUsage?.current?.toFixed(2)) || 0,
+                parseFloat(stats.currentBandwidth?.toFixed(2)) || 0,
+              ]"
+              :maxValues="[
+                stats.totalMachines || 100, 
+                100, 
+                parseFloat(stats.ramUsage?.max?.toFixed(2)) || 100, 
+                50,
+              ]"
+            />
+
+            <InfoField borderless icon="stack" title="Servers Online" color="#8676FF" :value="machines.size || 0" :maxValue="stats.totalMachines" />
+            <InfoField borderless icon="network" title="Average Ping" color="#516DFF" suffix="ms" :value="machines.size !== 0 ? (Array.from(machines.values()).reduce((a, b) => a + b.ping, 0) / Array.from(machines.values()).length).toFixed(2) : 0" />
+            <InfoField borderless icon="ram" title="Total RAM Usage" color="#32B5FF" suffix="GB" :value="stats.ramUsage?.current?.toFixed(2) || 0" :maxValue="stats.ramUsage?.max?.toFixed(2)" />
+            <InfoField borderless icon="rj45" title="Current Bandiwdth" color="#4ADEFF" suffix="Mbps" :value="stats.currentBandwidth?.toFixed(2) || 0" :maxValue="100" />
           </div>
           <MemberField :isOwner="datacenter.owner === me._id || me.is_admin" :members="datacenter.members" />
         </div>
@@ -57,20 +81,20 @@ import ServerList from "@/components/dashboard/ServerList";
 import InfoField from "@/components/dashboard/InfoField";
 import MemberField from "@/components/dashboard/MemberField";
 import ShadowButton from "@/components/dashboard/ShadowButton";
-import ColoredGauge from "@/components/dashboard/ColoredGauge";
+import MultiGauge from "@/components/dashboard/MultiGauge";
 
 export default {
   name: "Datacenters",
   components: {
     Icon,
     ServerList,
-    ColoredGauge,
     DatacenterButton,
     ServerCard,
     DatacenterCard,
     MemberField,
     ShadowButton,
-    InfoField
+    InfoField,
+    MultiGauge
   },
   computed: {
     route: function() {
@@ -87,6 +111,11 @@ export default {
     $route(to, from) {
       this.machines.clear();
       this.fetchData();
+      this.stats = {
+        ramUsage: {},
+        currentBandwidth: 0,
+        totalMachines: 0
+      };
     }
   },
   data() {
@@ -148,14 +177,14 @@ export default {
 <style scoped>
 .datacenters {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   overflow: scroll;
 }
 .datacenters > .buttons {
   padding: 8px;
   display: grid;
   gap: 8px;
-  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
 }
 
 .datacenters .content {
@@ -178,10 +207,21 @@ export default {
   gap: 8px;
 }
 
+.datacenters .content .bullshit .coolShit .left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .datacenters .content .bullshit .coolShit .infoFields {
   display: grid;
+  justify-items: center;
   grid-template-columns: 100%;
   gap: 8px;
+}
+
+.datacenters .content .bullshit .coolShit .infoFields .info {
+  width: 100%;
 }
 
 .datacenters .content .bullshit .coolShit .members {
@@ -194,6 +234,7 @@ export default {
   border-radius: 8px;
 }
 .datacenters .content .bullshit .coolShit .buttons {
+  gap: 8px;
   display: flex;
   justify-content: space-between;
 }
@@ -260,4 +301,35 @@ export default {
 .datacenters .heading .datacenterEdit.logoPen:active {
   width: 56px;
 }
+
+@media only screen and (max-width: 600px) {
+
+  .datacenters .content .bullshit  {
+    padding: 16px;
+  }
+  
+  .datacenters .content .bullshit .coolShit {
+    width: 100vw;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .datacenters .content .bullshit .coolShit .buttons {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .datacenters .content .bullshit .coolShit   .heading {
+    display: none;
+  }
+  .datacenters .content .bullshit .serverList {
+    display: none;
+  }
+  .datacenters .content .bullshit .membersInfo {
+    display: none;
+  }
+}
+
+
+
 </style>

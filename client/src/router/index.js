@@ -81,8 +81,19 @@ const routes = [
         component: () => import(/* webpackChunkName: "machines" */ "@/views/dashboard/Machines.vue"),
         meta: {
           title: "Xornet | Machines"
-        }
+        },
+        children: [
+          {
+            path: "specs",
+            name: "specs",
+            component: () => import(/* webpackChunkName: "specs" */ "@/views/dashboard/MachineSpecs.vue"),
+            meta: {
+              title: "Xornet | Machine Specification"
+            }
+          }
+        ]
       },
+      
       {
         path: "profile/:username?",
         name: "profile",
@@ -110,5 +121,10 @@ const router = createRouter({
 
 // Frontend redirecting
 router.beforeEach(auth);
+
+router.beforeEach(function(to, from, next) {
+  if (Object.values(to.params)[0]) document.title = `Xornet | ${Object.values(to.params)[0]}`;
+  next();
+});
 
 export default router;

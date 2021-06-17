@@ -8,9 +8,7 @@
           <img class="location" :src="user.geolocation?.countryCode ? require(`@/assets/flags/${user.geolocation.countryCode}.png`) : require('@/assets/flags/__.png')" alt="Country Flag" />
         </div>
         <div class="badges">
-          <img class="badge" v-if="user.badges?.owned?.includes('developer')" :src="require(`@/assets/badges/developer.svg`)" />
-          <img class="badge" v-if="user.badges?.owned?.includes('designer')" :src="require(`@/assets/badges/designer.svg`)" />
-          <img class="badge" v-if="user.badges?.owned?.includes('contributor')" :src="require(`@/assets/badges/contributor.svg`)" />
+          <img class="badge" v-for="badge of user.badges?.owned" :key="badge" :src="require(`@/assets/badges/${badge}.svg`)" />
         </div>
       </div>
     </div>
@@ -42,14 +40,14 @@ export default {
   align-items: center;
   padding: 8px;
   border-radius: 4px;
+  justify-content: space-between;
   gap: 8px;
   text-align: left;
-
-  transition: 300ms ease;
 }
 
 .searchResult:hover {
   /* Shadow */
+  background-color: var(--white);
   box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
 }
 
@@ -57,6 +55,7 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  text-align: right;
 }
 
 .searchResult .userPoints .p {
@@ -67,12 +66,13 @@ export default {
   line-height: 100%;
   display: flex;
   align-items: flex-end;
+  justify-content: flex-end;
   left: 0px;
   color: var(--black);
 }
 
 .searchResult .userPoints .points {
-  background: linear-gradient(90deg, #db00ff 0%, #8000ff 31.77%, #00b2ff 64.06%, #00fff0 98.44%);
+  background: linear-gradient(90deg, #8676ff 0%, #516dff 33.33%, #32b5ff 69.27%, #4adeff 100%);
   background-clip: border-box;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -115,6 +115,10 @@ export default {
   height: 16px;
   width: 16px;
 }
+.searchResult .profile {
+  display: flex;
+  gap: 8px;
+}
 
 .searchResult .profile .profileImg {
   width: 48px;
@@ -130,6 +134,7 @@ export default {
   align-items: flex-start;
   padding: 4px 0px;
   width: 40%;
+  min-width: 128px;
 
   font-family: Montserrat;
   font-style: normal;

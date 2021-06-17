@@ -1,12 +1,12 @@
 <template>
   <div @click="$emit('click')">
-    <router-link @click="$emit('click')" v-if="to" :to="to" class="button" :class="{ isEnabled }">
+    <router-link @click="$emit('click')" v-if="to" :to="to" class="button" :class="{ isEnabled, boxless }">
       <Icon :icon="icon" />
     </router-link>
-    <div @click="$emit('click')" v-if="!to && !href" class="button" :class="{ isEnabled }">
+    <div @click="$emit('click')" v-if="!to && !href" class="button" :class="{ isEnabled, boxless }">
       <Icon :icon="icon" />
     </div>
-    <a v-if="href" :href="href" target="_blank" @click="$emit('click')" class="button" :class="{ isEnabled }">
+    <a v-if="href" :href="href" target="_blank" @click="$emit('click')" class="button" :class="{ isEnabled, boxless }">
       <Icon :icon="icon" />
     </a>
   </div>
@@ -21,7 +21,8 @@ export default {
     to: { type: Object, required: false },
     icon: { type: String, required: true },
     href: { type: String, required: false },
-    isEnabled: { type: Boolean, required: false }
+    isEnabled: { type: Boolean, required: false },
+    boxless: { type: Boolean, required: false }
   },
   components: {
     Icon

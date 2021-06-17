@@ -1,16 +1,16 @@
 <template>
-  <div class="search" :class="{ onfocus: searchString.length != 0 && !searchPaused }">
+  <div class="search" :class="{ focused: searchString.length != 0 && !searchPaused }">
     <div class="bar">
-      <input v-model="searchString" class="inputField" :class="{ active: searchString.length != 0 }" type="text" placeholder="Search " @keyup="typingTimer()" @keydown="clearTimer()" />
+      <input v-model="searchString" class="inputField" :class="{ active: searchString.length != 0 }" type="text" placeholder="Search " @keyup="typingTimer()" @keydown="clearTimer()" @click="onClickSearchBar()" @blur="onBlurSearchBar()" />
       <img :src="searchString.length != 0 ? require('@/assets/icons/filled/x.svg') : require('@/assets/icons/filled/search.svg')" :class="{ activeImg: searchString.length != 0 }" @click="clearSearchDrop()" />
     </div>
-    <div v-if="searchRes">
+    <div v-if="searchRes !== null">
       <SearchResult v-for="user of searchRes" :key="user" :user="user" @click="clearSearchClicked()" />
       <h1 v-if="searchRes.length == 0 && searchString.length != 0" class="noResult">There were no users that match that query</h1>
     </div>
   </div>
 </template>
-
+<!-- onClickSearchBar() onBlurSearchBar() -->
 <script>
 import SearchResult from "@/components/dashboard/SearchResult";
 
@@ -18,6 +18,8 @@ export default {
   name: "SearchBar",
   components: {
     SearchResult
+  },
+  props: {
   },
   computed: {},
   watch: {
@@ -59,36 +61,56 @@ export default {
     clearSearchClicked() {
       this.searchRes = null;
       this.searchPaused = true;
+    },
+
+    onClickSearchBar(event){
+      this.$emit('clicked', 'someValue')
+    },
+    onBlurSearchBar(event){
+      if (this.searchString.length == 0) this.$emit('unClicked', 'someValue')
     }
   }
 };
 </script>
 
 <style scoped>
+
+@media only screen and (max-width: 360px) {
+  .search {
+    width: 84vw;
+    margin-right: 8px;
+    max-width: 80%;
+  }
+}
+
 .search {
   z-index: 10;
   align-self: flex-start;
   display: flex;
+  width: 256px;
   flex-direction: column;
-
   gap: 8px;
-  max-width: 300px;
+  max-width: 50%;
+  overflow: scroll;
+  max-height: 600px;
   padding: 8px;
-  margin-left: 8px;
+  transition: 200ms ease;
   background-color: var(--background-color);
-
-  border-radius: 4px;
 }
 
-.search.onfocus {
-  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
+.search:focus-within {
+  width: 400px;
+}
+
+.search.focused {
+  width: 400px;
 }
 
 .search .inputField.active {
   width: 500px !important;
 }
 
-.search .noResult {
+.search h1.noResult {
   font-family: Work Sans;
   font-style: normal;
   font-weight: 600;
@@ -109,9 +131,10 @@ export default {
 }
 
 .search .bar .inputField {
+  outline: none;
   width: 100%;
   transition: 100ms ease;
-  border-radius: 3px;
+  border-radius: 4px;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   font-size: 12px;
@@ -120,10 +143,6 @@ export default {
   background-color: var(--white);
   height: 32px;
   padding: 6px 8px;
-}
-
-.search .bar .inputField:focus {
-  width: 500px !important;
 }
 
 .search .bar img {
@@ -143,4 +162,9 @@ export default {
 .search .bar .inputField::placeholder {
   color: var(--slyColor);
 }
+
+.search:focus-within .inputField{
+  outline: 3px solid var(--theme-color);
+}
+
 </style>

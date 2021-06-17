@@ -64,11 +64,11 @@ export default {
 }
 
 .shadowButton h1 {
-  font-family: Roboto Mono,monospace;
+  font-family: Roboto Mono, monospace;
   font-style: normal;
   font-weight: 700;
   font-size: 12px;
-  color: #000;
+  color: var(--black);
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;

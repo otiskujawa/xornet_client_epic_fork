@@ -1,14 +1,24 @@
 <template>
   <header :class="route == 'home' ? 'view-home' : 'view-login'">
-    <router-link :to="{ name: 'home' }">
+    <router-link :to="{ name: 'home' }" class="logoWrapper">
       <img :src="route == 'home' ? require('@/assets/logos/logo.svg') : require('@/assets/logos/logo2.svg')" alt="Xornet" />
     </router-link>
     <div class="buttons">
-      <router-link class="button" :to="{ name: 'home', params: { page: 'about' } }"> <Icon icon="details" /> What is Xornet </router-link>
-      <a class="button" href="https://github.com/Geoxor/Xornet" target="_blank"> <Icon icon="repository" /> Repository </a>
-      <router-link class="button" :to="{ name: 'home', params: { page: 'downloads' } }"> <Icon icon="downloads" /> Downloads </router-link>
-      <router-link class="button" v-if="isLoggedIn" :to="{ name: 'machines' }"> <Icon icon="dashboard" /> Dashboard </router-link>
-      <router-link class="button" v-if="!isLoggedIn" :to="{ name: 'login' }"> <Icon icon="login" /> Login </router-link>
+      <router-link class="button" :to="{ name: 'home', params: { page: 'about' } }"> <Icon icon="details" /> 
+        <p> What is Xornet </p> 
+      </router-link>
+      <a class="button" href="https://github.com/Geoxor/Xornet" target="_blank"> <Icon icon="repository" /> 
+        <p> Repository </p>
+      </a>
+      <router-link class="button" :to="{ name: 'home', params: { page: 'downloads' } }"> <Icon icon="downloads" /> 
+        <p> Downloads </p>
+      </router-link>
+      <router-link class="button" v-if="isLoggedIn" :to="{ name: 'machines' }"> <Icon icon="dashboard" /> 
+        <p> Dashboard </p>
+      </router-link>
+      <router-link class="button" v-if="!isLoggedIn" :to="{ name: 'login' }"> <Icon icon="login" /> 
+        <p> Login </p>
+      </router-link>
     </div>
   </header>
 </template>
@@ -42,7 +52,7 @@ header {
   align-items: center;
 }
 header.view-home {
-  padding: 8px 10vw;
+  padding: 8px 4vw;
 }
 header.view-login {
   padding: 8px 4vw;
@@ -53,34 +63,53 @@ header .buttons {
   gap: 8px;
 }
 header .buttons .button {
-  color: white;
   border: none;
-  background-color: #4361ee;
+  background-color: var(--theme-color);
   width: min-content;
   padding: 4px 12px;
   border-radius: 4px;
-
-  font-style: normal;
-  font-weight: 600;
-  font-size: 13px;
   cursor: pointer;
-  line-height: 175%;
   transition: 100ms ease;
-  display: flex;
   align-items: center;
   gap: 8px;
-  white-space: nowrap;
+  display: flex;
 }
 header .buttons .button:hover {
-  box-shadow: 0px 4px 12px #4361ee80;
+  box-shadow: 0px 4px 12px var(--theme-color);
   transform: translateY(-1px);
 }
 header .buttons .button:active {
   transform: translateY(1px);
 }
+
+header .logoWrapper {
+  height: 20px;
+}
+
 header .buttons .button img {
   filter: invert(1);
   width: 24px;
   height: 24px;
 }
+
+header .buttons .button p {
+  color: var(--white);
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 175%;
+  white-space: nowrap;
+}
+
+@media only screen and (max-width: 768px) {
+  header.view-home {
+    padding: 8px;
+  }
+  header .buttons .button p {
+    display: none;
+  }
+}
+
+
 </style>

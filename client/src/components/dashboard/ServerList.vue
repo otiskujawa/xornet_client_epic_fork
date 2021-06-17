@@ -1,6 +1,6 @@
 <template>
-  <nav class="serverList" :class="{ small: isSmall }">
-    <nav v-if="thinButtons" class="columns" :class="{ thin: thinButtons }">
+  <nav class="serverList">
+    <nav v-if="thinButtons" id="desktop" class="columns" :class="{ thin: thinButtons }">
       <div @click="sort('hostname')" class="field hostname">hostname <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'hostname'" /></div>
       <div @click="sort('uuid')" class="field uuid">uuid <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'uuid'" /></div>
       <div @click="sort('cpu')" class="field cpuUsage">cpu <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'cpu'" /></div>
@@ -21,13 +21,15 @@
     </section>
 
     <div class="list">
-      <ServerListButton :thin="thinButtons" :showDetails="showDetails" :machine="machine" v-for="machine of showRogues ? sortedMachines : sortedMachines.filter(machine => !machine.rogue)" :key="machine" />
+      <MachineButton id="mobile" :machine="machine" v-for="machine of showRogues ? sortedMachines : sortedMachines.filter(machine => !machine.rogue)" :key="machine" />
+      <ServerListButton id="desktop" :thin="thinButtons" :showDetails="showDetails" :machine="machine" v-for="machine of showRogues ? sortedMachines : sortedMachines.filter(machine => !machine.rogue)" :key="machine" />
     </div>
   </nav>
 </template>
 
 <script>
 import ServerListButton from "@/components/dashboard/ServerListButton";
+import MachineButton from "@/components/dashboard/MachineButton";
 import Icon from "@/components/misc/Icon";
 export default {
   name: "ServerList",
@@ -37,7 +39,7 @@ export default {
     },
     settings: function() {
       if (localStorage.settings) return JSON.parse(localStorage.settings);
-    }
+    },
   },
   data() {
     return {
@@ -53,6 +55,7 @@ export default {
   },
   components: {
     Icon,
+    MachineButton,
     ServerListButton
   },
   props: {
@@ -196,7 +199,7 @@ export default {
   flex-direction: column;
   margin-bottom: 128px;
   display: flex;
-  /* gap: 4px; */
+  gap: 2px;
 }
 .serverList .columns {
   padding: 8px;
@@ -215,7 +218,7 @@ export default {
 .serverList .columns .field strong {
   font-weight: 400;
   font-size: 11px;
-  font-family: Work Sans,sans-serif;
+  font-family: Work Sans, sans-serif;
   color: var(--slyColor);
   min-width: fit-content;
   text-align: left;
@@ -230,7 +233,7 @@ export default {
   text-transform: uppercase;
 }
 .serverList .columns .field:hover {
-  color: rgb(255, 0, 179);
+  color: var(--theme-color);
 }
 .serverList .columns .field img {
   width: 8px;

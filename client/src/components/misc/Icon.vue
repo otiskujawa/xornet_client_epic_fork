@@ -1,5 +1,5 @@
 <template>
-  <div v-if="color" class="coloredIconContainer icon" :style="{ 'background-color': `${color}33` }">
+  <div v-if="color" class="coloredIconContainer icon" :style="{ 'background-color': `${color}1f` }">
     <div class="coloredIcon" :style="{ 'mask-image': `url(https://xornet.cloud${image})`, 'background-color': color }"></div>
   </div>
   <img v-else name="icon" class="blackIcon" :src="image" :alt="icon" />

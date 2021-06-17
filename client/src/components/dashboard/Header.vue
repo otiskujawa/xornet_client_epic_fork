@@ -1,26 +1,30 @@
 <template>
   <header>
     <div class="left">
-      <div class="logo">
-        <img :src="require('@/assets/logos/logoHeader.svg')" alt="Xornet" />
+      <div v-if="!showSearchBar && searchToggled" @click="searchToggled = false;" >
+        <SquareButton icon="left-arrow" alt="" />
+      </div>
+      <div class="logo" v-if="!searchToggled" :class="{clickable: !isNestedRoute}" @click="isNestedRoute ? incrementSuperclass() : $router.go(-1);">
+        <img v-if="isNestedRoute" :src="require('@/assets/logos/logoHeader.svg')" alt="Xornet"/>
+        <Icon v-else icon="left-arrow" style="width: 24px; filter: invert(1);"/>
       </div>
 
-      <div class="buttons">
+      <div class="buttons" v-if="!searchToggled">
         <SquareButton icon="repository" href="https://github.com/Geoxor/Xornet/releases" />
         <SquareButton icon="darkmode" @click="toggleDarkmode" />
         <!-- <SquareButton icon="details" v-if="currentRoute == 'machines'" @click="isShowingDetails = !isShowingDetails" :isEnabled="isShowingDetails" /> -->
         <!-- <SquareButton icon="thick" v-if="currentRoute == 'machines' && thinButtons"/> -->
         <!-- <SquareButton icon="thin" v-if="currentRoute == 'machines' && !thinButtons"/> -->
       </div>
-
-      <SearchBar />
+      <SquareButton v-if="(!showSearchBar && !searchToggled)" icon="search" @click="searchBTN()" />
+      <SearchBar v-if="showSearchBar || searchToggled" @unClicked="searchToggled = false;" :isFocused="searchToggled"/>
     </div>
 
-    <div class="account">
+    <div class="account" v-if="!searchToggled">
       <SquareButton icon="logout" @click.native="logout" />
 
       <router-link :to="{ name: 'profile', params: { username } }">
-        <img :src="profile?.profileImage?.url" class="profileImage" alt="profileImage" />
+        <img :src="profile?.profileImage?.url ?? 'https://wallpapercave.com/wp/wp8846945.jpg'" class="profileImage" alt="profileImage" />
       </router-link>
     </div>
   </header>
@@ -30,29 +34,46 @@
 import { isDark } from "@/services/theme.js";
 import SquareButton from "@/components/dashboard/SquareButton";
 import SearchBar from "@/components/dashboard/SearchBar";
+import Icon from "@/components/misc/Icon";
 
 export default {
   name: "Header",
   components: {
     SquareButton,
+    Icon,
     SearchBar
   },
   computed: {
     username: function() {
       return localStorage.getItem("username");
+    },
+    isNestedRoute: function(){
+      return Object.values(this.$route.params)[0] == undefined || Object.values(this.$route.params)[0] === '';
     }
   },
   data: () => {
     return {
       profile: null,
-      currentRoute: null
+      currentRoute: null,
+      superclass: 0,
+      searchToggled: false,
+      showSearchBar: true,
+      windowWidth: window.innerWidth,
     };
   },
   async created() {
     this.profile = await this.api.user.fetchMe();
     this.currentRoute = this.$route.name;
+    this.showSearchBar = (this.windowWidth > 460);
   },
   methods: {
+    incrementSuperclass(){
+      this.superclass++;
+      if (this.superclass % 10 == 9){
+        var superclass = new Audio('https://cdn.discordapp.com/attachments/851974319370010655/854730571389730826/superclass.mp3');
+        superclass.play();
+      }
+    },
     logout() {
       function deleteAllCookies() {
         var cookies = document.cookie.split(";");
@@ -71,11 +92,17 @@ export default {
     },
     toggleDarkmode() {
       isDark.value = !isDark.value;
+    },
+
+    searchBTN(){
+      this.searchToggled = true;
+      //console.log(this.$refs.SearchBarRef.$el)
     }
   },
   watch: {
     $route(to, from) {
       if (to.name) this.currentRoute = to.name;
+      console.log(Object.values(this.$route.params)[0]);
     }
   }
 };
@@ -86,14 +113,17 @@ header {
   height: 48px;
   width: 100%;
   display: flex;
+  z-index: 400;
   align-items: flex-start;
   justify-content: space-between;
   background-color: var(--background-color);
   overflow: visible;
 }
 
+
 header .left {
   display: flex;
+  width: 100%;
   align-items: flex-start;
 }
 
@@ -115,6 +145,7 @@ header .button {
 }
 
 header .logo {
+  user-select: none;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -122,12 +153,14 @@ header .logo {
   height: 48px;
   min-height: 48px;
   width: 48px;
+  border-radius: 0px 0px 8px 0px;
   min-width: 48px;
 }
 
-header .button.enabled {
-  filter: invert(1);
-}
+header .logo img { transition: 100ms ease; }
+header .logo img:hover { width: 40px; }
+header .logo img:active { width: 32px; }
+header .button.enabled { filter: invert(1); }
 
 header .button img {
   width: 24px;
@@ -138,6 +171,8 @@ header .button img {
 header .buttons {
   align-items: center;
   display: flex;
+  border-radius: 0px 0px 0px 8px;
+  overflow: hidden;
 }
 
 header .account {
@@ -155,8 +190,13 @@ header .account a {
 header .account img.profileImage {
   width: 32px;
   height: 32px;
+  user-select: none;
   object-fit: cover;
   cursor: pointer;
   border-radius: 8px;
 }
+header .clickable {
+  cursor: pointer;
+}
+
 </style>

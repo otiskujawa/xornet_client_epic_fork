@@ -1,9 +1,9 @@
 <template>
-  <div class="info">
+  <div class="info" :class="{ borderless }">
     <ColoredGauge :icon="icon" :value="value" :maxValue="maxValue" :color="color" v-if="!nogauge" />
     <Icon v-else :icon="icon" />
     <div class="text">
-      <h1 class="title">{{ title }}</h1>
+      <h1 class="title" :style="{ color: `${color}` }">{{ title }}</h1>
       <h1 class="value" v-if="suffix && !maxValue">{{ value }}{{ suffix }}</h1>
       <h1 class="value" v-else-if="maxValue || suffix">{{ value }}/{{ maxValue }}{{ suffix }}</h1>
       <h1 class="value" v-else>{{ value }}</h1>
@@ -27,7 +27,8 @@ export default {
     suffix: { type: String, required: false },
     maxValue: { type: [String, Number], required: false },
     color: { type: String, required: false },
-    nogauge: { type: Boolean }
+    nogauge: { type: Boolean },
+    borderless: { type: Boolean }
   }
 };
 </script>
@@ -35,15 +36,18 @@ export default {
 <style scoped>
 .info {
   display: flex;
-  border: 1px solid var(--border-color);
   border-radius: 4px;
   flex-direction: row;
   text-align: left;
   gap: 8px;
   color: var(--black);
-  padding: 16px;
   background-color: var(--background-color);
   transition: 100ms ease;
+}
+
+.info:not(.borderless) {
+  border: 1px solid var(--border-color);
+  padding: 16px;
 }
 
 .info img {
@@ -71,7 +75,6 @@ export default {
   text-transform: uppercase;
   font-size: 12px;
   line-height: 117.9%;
-  color: var(--black);
 }
 
 .info .value {

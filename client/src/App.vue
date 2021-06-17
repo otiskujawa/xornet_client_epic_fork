@@ -22,8 +22,8 @@ export default {
   --dark-light: #0f0f1e;
   --dark-lighter: #18182c;
   --rogue-red-border: #f85149;
-  --theme-color: #ff006b;
-  --bright-theme-color: #ff81b5;
+  --theme-color: #8676ff;
+  --bright-theme-color: #aca3f5;
   --terminal-background: #0b0b15;
 
   /* Initial colors */
@@ -70,7 +70,7 @@ export default {
 }
 
 *::selection {
-  background: var(--black);
+  background: var(--black) !important;
   color: var(--white);
 }
 
@@ -100,5 +100,23 @@ html {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+@media only screen and (max-width: 600px) {
+  #desktop {
+    display: none;
+  }
+  #mobile {
+    display: flex;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  #desktop {
+    display: flex;
+  }
+  #mobile {
+    display: none;
+  }
 }
 </style>

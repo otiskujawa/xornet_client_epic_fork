@@ -47,7 +47,7 @@ export default {
   color: var(--black);
   font-size: 13px;
   font-style: normal;
-  font-weight: 100;
+  font-weight: 400;
   line-height: 12px;
   letter-spacing: -0.04em;
   text-align: center;

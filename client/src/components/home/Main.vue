@@ -84,6 +84,7 @@ export default {
 .main img {
   z-index: 2;
   margin-top: 156px;
+  max-width: 90%;
 }
 
 .main .textFields {
@@ -97,7 +98,6 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  color: white;
 }
 
 .main .textFields section h1 {
@@ -107,7 +107,10 @@ export default {
   z-index: 2;
   font-style: normal;
   font-weight: bold;
+  color: var(--white);
 }
+
+
 
 .main .textFields section p {
   font-size: 14px;
@@ -116,10 +119,12 @@ export default {
   text-align: left;
   vertical-align: top;
   max-width: 900px;
+  color: var(--white);
   letter-spacing: -4%;
 }
 
 .main .coolShit {
+  gap: 16px;
   display: flex;
   margin-top: 64px;
   justify-content: space-between;
@@ -138,6 +143,7 @@ export default {
 }
 
 .main .coolShit .textField h1 {
+  color: var(--white);
   font-size: 48px;
   text-align: left;
 }
@@ -157,5 +163,14 @@ export default {
   z-index: 1;
   background: #151527;
   transform: rotate(-4.71deg) translateX(-25vw);
+}
+
+@media only screen and (max-width: 768px) {
+  .main .textFields section h1 {
+    font-size: 32px;
+  }
+  .main .coolShit .textField h1 {
+    font-size: 32px;
+  }
 }
 </style>

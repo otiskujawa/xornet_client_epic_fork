@@ -1,16 +1,16 @@
 <template>
   <div class="view dashboard">
     <LoadingScreen :isLoaded="!isLoading" />
-    <Header />
+    <Header v-if="!isLoading"/>
     <div class="main">
-      <Nav />
+      <Nav id="desktopNav" />
       <router-view></router-view>
     </div>
+    <Nav id="mobileNav" />
   </div>
 </template>
 
 <script>
-import GaugeField from "@/components/dashboard/GaugeField";
 import ServerList from "@/components/dashboard/ServerList";
 import LoadingScreen from "@/components/dashboard/LoadingScreen";
 import Chart from "@/components/dashboard/Chart";
@@ -27,7 +27,6 @@ export default {
   },
   computed: {
     isLoading: function() {
-      // return this.machines.size > 0 ? false : true;
       return false;
     }
   }
@@ -39,14 +38,20 @@ export default {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
 }
 
 .dashboard .main {
   align-items: flex-start;
   display: flex;
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 48px);
+}
+
+@media only screen and (max-width: 600px) {
+  .dashboard .main {
+    height: calc(100vh - 96px);
+  }
 }
 
 .content {

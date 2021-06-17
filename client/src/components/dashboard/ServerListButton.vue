@@ -48,7 +48,7 @@
     <div class="field uptime">{{ machine.uptime.formatted.d }}:{{ machine.uptime.formatted.h }}:{{ machine.uptime.formatted.m }}:{{ machine.uptime.formatted.s }}</div>
 
     <!-- Owner Column -->
-    <router-link class="field owner" :to="{ name: 'profile', params: { username: machine?.owner?.username } }"><img :src="machine?.owner?.profileImage" :alt="machine?.owner?.username" />{{ machine.owner.username }}</router-link>
+    <router-link class="field owner" :to="{ name: 'profile', params: { username: machine?.owner?.username } }"><img :src="machine?.owner?.profileImage ?? 'https://wallpapercave.com/wp/wp8846945.jpg'" :alt="machine?.owner?.username" />{{ machine.owner.username }}</router-link>
 
     <!-- Datacenter Column -->
     <router-link class="field datacenter" :to="{ name: 'datacenters', params: { name: machine.datacenter?.name } }"
@@ -60,11 +60,6 @@
       <img v-if="machine.platform == 'win32'" :src="require('@/assets/icons/filled/windows.svg')" alt="" />
       <img v-if="machine.platform == 'darwin'" :src="require('@/assets/icons/filled/macos.svg')" alt="" />
       <img v-if="machine.platform == 'linux'" :src="require('@/assets/icons/filled/linux.svg')" alt="" />
-      <!-- <img v-if="machine.static.system.manufacturer.startsWith('Raspberry Pi')" :src="require('@/assets/icons/filled/raspberry.svg')" alt="">
-            <img v-if="machine.static.system.manufacturer.startsWith('Dell')" style="height: 10px" :src="require('@/assets/icons/filled/dell.svg')" alt="">
-            <img v-if="machine.static.system.manufacturer.startsWith('Hewlett-Packard')" :src="require('@/assets/icons/filled/hp.svg')" alt="">
-            <img v-if="machine.static.system.manufacturer.startsWith('Gigabyte')" style="height: 7px" :src="require('@/assets/icons/filled/gigabyte.svg')" alt="">
-            <img v-if="machine.static.system.manufacturer.startsWith('Asus')" style="height: 7px" :src="require('@/assets/icons/filled/asus.svg')" alt=""> -->
       <h1 v-if="machine.reporterVersion">v{{ machine.reporterVersion }}</h1>
     </div>
   </router-link>
@@ -88,7 +83,7 @@ export default {
 
 <style scoped>
 .button {
-  padding: 8px;
+  padding: 2px 8px;
   background-color: var(--background-color);
   border-radius: 4px;
   box-sizing: border-box;
@@ -261,7 +256,7 @@ export default {
   filter: invert(var(--filter));
 }
 .button .info .status {
-  background: linear-gradient(110.78deg, rgb(118, 230, 80) -1.13%, rgb(249, 214, 73) 15.22%, rgb(240, 142, 53) 32.09%, rgb(236, 81, 87) 48.96%, rgb(255, 24, 189) 67.94%, rgb(26, 75, 255) 85.34%, rgb(98, 216, 249) 99.57%);
+  background: linear-gradient(90deg, #8676ff 0%, #516dff 33.33%, #32b5ff 69.27%, #4adeff 100%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
   white-space: nowrap;
