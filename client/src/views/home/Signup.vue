@@ -115,7 +115,7 @@ export default {
 
   font-weight: 600;
   font-size: 12px;
-
+  color: var(--black);
   border: none;
   background-color: #f8f8f8;
   height: 32px;
@@ -148,7 +148,6 @@ export default {
   width: min-content;
   padding: 4px 16px;
   border-radius: 4px;
-  /* box-shadow: 0px 4px 12px rgba(67, 97, 238, 0.5); */
 
   font-style: normal;
   font-weight: 600;
@@ -167,7 +166,7 @@ export default {
 }
 
 .card .details form button:hover {
-  box-shadow: 0px 4px 12px rgba(67, 97, 238, 0.5);
+  box-shadow: 0px 4px 12px var(--theme-color);
   transform: translateY(-1px);
 }
 

@@ -233,7 +233,7 @@ export default {
   text-transform: uppercase;
 }
 .serverList .columns .field:hover {
-  color: rgb(255, 0, 179);
+  color: var(--theme-color);
 }
 .serverList .columns .field img {
   width: 8px;

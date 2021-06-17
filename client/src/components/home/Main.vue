@@ -84,6 +84,7 @@ export default {
 .main img {
   z-index: 2;
   margin-top: 156px;
+  max-width: 90%;
 }
 
 .main .textFields {
@@ -109,6 +110,8 @@ export default {
   color: var(--white);
 }
 
+
+
 .main .textFields section p {
   font-size: 14px;
   line-height: 20px;
@@ -121,6 +124,7 @@ export default {
 }
 
 .main .coolShit {
+  gap: 16px;
   display: flex;
   margin-top: 64px;
   justify-content: space-between;
@@ -159,5 +163,14 @@ export default {
   z-index: 1;
   background: #151527;
   transform: rotate(-4.71deg) translateX(-25vw);
+}
+
+@media only screen and (max-width: 768px) {
+  .main .textFields section h1 {
+    font-size: 32px;
+  }
+  .main .coolShit .textField h1 {
+    font-size: 32px;
+  }
 }
 </style>
