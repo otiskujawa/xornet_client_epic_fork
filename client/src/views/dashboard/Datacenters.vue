@@ -8,19 +8,26 @@
     <div v-else-if="datacenter" class="content">
       <div class="bullshit">
         <div class="coolShit">
-          <div class="buttons">
-            <ShadowButton class="revoke" icon="stack" title="Add server" @click="isShowingServerCard = !isShowingServerCard" />
-            <ShadowButton class="revoke" v-if="!isEditing" icon="edit" title="Edit" @click="isEditing = !isEditing" />
-            <ShadowButton
-              class="revoke"
-              v-else
-              icon="save"
-              title="Save"
-              @click="
-                isEditing = !isEditing; 
-                save();
-              "
-            />
+          <div class="left">
+            
+            <div class="datacenterTitle" style="display: flex; gap: 8px;">
+              <Icon icon="datacenter" style="width: 24px;"/>
+              <h1 class="datacenterName" style="font-size: 24px;">{{datacenter.name}}</h1>
+            </div>
+            <div class="buttons">
+              <ShadowButton class="revoke" icon="stack" title="Add server" @click="isShowingServerCard = !isShowingServerCard" />
+              <ShadowButton class="revoke" v-if="!isEditing" icon="edit" title="Edit" @click="isEditing = !isEditing" />
+              <ShadowButton
+                class="revoke"
+                v-else
+                icon="save"
+                title="Save"
+                @click="
+                  isEditing = !isEditing; 
+                  save();
+                "
+              />
+            </div>
           </div>
           <div class="heading">
             <img class="banner" :src="datacenter.banner || 'https://i.redd.it/cxrn0h5ksd131.jpg'" :alt="datacenter.name" />
@@ -177,7 +184,7 @@ export default {
   padding: 8px;
   display: grid;
   gap: 8px;
-  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
 }
 
 .datacenters .content {
@@ -287,4 +294,35 @@ export default {
 .datacenters .heading .datacenterEdit.logoPen:active {
   width: 56px;
 }
+
+
+
+@media only screen and (max-width: 600px) {
+
+  .datacenters .content .bullshit  {
+    padding: 16px;
+  }
+  
+  .datacenters .content .bullshit .coolShit {
+    width: 100vw;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .datacenters .content .bullshit .coolShit .buttons {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .datacenters .content .bullshit .coolShit   .heading {
+    display: none;
+  }
+  .datacenters .content .bullshit .serverList {
+    display: none;
+  }
+  .datacenters .content .bullshit .membersInfo {
+    display: none;
+  }
+}
+
 </style>

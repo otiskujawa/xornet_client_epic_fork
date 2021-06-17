@@ -2,7 +2,7 @@
   "theme_color": "#0b0b15",
   "background_color": "#0b0b15",
   "display": "standalone",
-  "orientation": "portrait",
+  "orientation": "any",
   "scope": "/",
   "start_url": "/dashboard/machines",
   "name": "Xornet",

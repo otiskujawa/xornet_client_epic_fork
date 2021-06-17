@@ -1,12 +1,12 @@
 <template>
   <header>
     <div class="left">
-
       <div v-if="!showSearchBar && searchToggled" @click="searchToggled = false;" >
-        <SquareButton icon="chevron-left" alt="" />
+        <SquareButton icon="left-arrow" alt="" />
       </div>
-      <div class="logo" v-if="!searchToggled" @click="incrementSuperclass()">
-        <img :src="require('@/assets/logos/logoHeader.svg')" alt="Xornet" />
+      <div class="logo" v-if="!searchToggled" :class="{clickable: !isNestedRoute}" @click="isNestedRoute ? incrementSuperclass() : $router.go(-1);">
+        <img v-if="isNestedRoute" :src="require('@/assets/logos/logoHeader.svg')" alt="Xornet"/>
+        <Icon v-else icon="left-arrow" style="width: 24px; filter: invert(1);"/>
       </div>
 
       <div class="buttons" v-if="!searchToggled">
@@ -34,16 +34,21 @@
 import { isDark } from "@/services/theme.js";
 import SquareButton from "@/components/dashboard/SquareButton";
 import SearchBar from "@/components/dashboard/SearchBar";
+import Icon from "@/components/misc/Icon";
 
 export default {
   name: "Header",
   components: {
     SquareButton,
+    Icon,
     SearchBar
   },
   computed: {
     username: function() {
       return localStorage.getItem("username");
+    },
+    isNestedRoute: function(){
+      return Object.values(this.$route.params)[0] == undefined || Object.values(this.$route.params)[0] === '';
     }
   },
   data: () => {
@@ -59,7 +64,6 @@ export default {
   async created() {
     this.profile = await this.api.user.fetchMe();
     this.currentRoute = this.$route.name;
-
     this.showSearchBar = (this.windowWidth > 460);
   },
   methods: {
@@ -98,6 +102,7 @@ export default {
   watch: {
     $route(to, from) {
       if (to.name) this.currentRoute = to.name;
+      console.log(Object.values(this.$route.params)[0]);
     }
   }
 };
@@ -114,6 +119,7 @@ header {
   background-color: var(--background-color);
   overflow: visible;
 }
+
 
 header .left {
   display: flex;
@@ -189,4 +195,8 @@ header .account img.profileImage {
   cursor: pointer;
   border-radius: 8px;
 }
+header .clickable {
+  cursor: pointer;
+}
+
 </style>
