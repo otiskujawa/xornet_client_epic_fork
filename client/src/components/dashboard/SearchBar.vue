@@ -90,13 +90,12 @@ export default {
   width: 256px;
   flex-direction: column;
   gap: 8px;
-  max-width: 80%;
+  max-width: 50%;
   overflow: scroll;
   max-height: 600px;
   padding: 8px;
   transition: 200ms ease;
   background-color: var(--background-color);
-  border-radius: 4px;
 }
 
 .search:focus-within {
@@ -135,7 +134,7 @@ export default {
   outline: none;
   width: 100%;
   transition: 100ms ease;
-  border-radius: 3px;
+  border-radius: 4px;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   font-size: 12px;
@@ -163,4 +162,9 @@ export default {
 .search .bar .inputField::placeholder {
   color: var(--slyColor);
 }
+
+.search:focus-within .inputField{
+  outline: 3px solid var(--theme-color);
+}
+
 </style>
