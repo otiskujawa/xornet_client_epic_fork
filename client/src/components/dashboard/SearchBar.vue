@@ -1,7 +1,7 @@
 <template>
   <div class="search" :class="{ onfocus: searchString.length != 0 && !searchPaused }">
     <div class="bar">
-      <input v-model="searchString" class="inputField" :class="{ active: searchString.length != 0 }" type="text" placeholder="Search " @keyup="typingTimer()" @keydown="clearTimer()" />
+      <input v-model="searchString" class="inputField" :class="{ active: searchString.length != 0 }" type="text" placeholder="Search " @keyup="typingTimer()" @keydown="clearTimer()" @click="onClickSearchBar()" @blur="onBlurSearchBar()" />
       <img :src="searchString.length != 0 ? require('@/assets/icons/filled/x.svg') : require('@/assets/icons/filled/search.svg')" :class="{ activeImg: searchString.length != 0 }" @click="clearSearchDrop()" />
     </div>
     <div v-if="searchRes !== null">
@@ -10,7 +10,7 @@
     </div>
   </div>
 </template>
-
+<!-- onClickSearchBar() onBlurSearchBar() -->
 <script>
 import SearchResult from "@/components/dashboard/SearchResult";
 
@@ -18,6 +18,8 @@ export default {
   name: "SearchBar",
   components: {
     SearchResult
+  },
+  props: {
   },
   computed: {},
   watch: {
@@ -59,20 +61,37 @@ export default {
     clearSearchClicked() {
       this.searchRes = null;
       this.searchPaused = true;
+    },
+
+    onClickSearchBar(event){
+      this.$emit('clicked', 'someValue')
+    },
+    onBlurSearchBar(event){
+      if (this.searchString.length == 0) this.$emit('unClicked', 'someValue')
     }
+
   }
 };
 </script>
 
 <style scoped>
+
+@media only screen and (max-width: 360px) {
+  .search {
+    width: 84vw;
+    margin-right: 8px;
+    max-width: 80%;
+  }
+}
+
 .search {
   z-index: 10;
   align-self: flex-start;
   display: flex;
   flex-direction: column;
-
-  gap: 8px;
   max-width: 300px;
+  gap: 8px;
+  max-width: 80%;
   overflow: scroll;
   max-height: 600px;
   padding: 8px;
