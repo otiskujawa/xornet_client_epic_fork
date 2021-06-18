@@ -43,7 +43,7 @@
       </div>
 
       <h1>Binaries</h1>
-      <div class="downloadArea grid grid-cols-1 gap-4 md:grid-cols-3">
+      <div class="downloadArea grid grid-cols-2 gap-4 md:grid-cols-3">
         <div class="platform">
           <img :src="require('@/assets/logos/windows.svg')" alt="Windows Binaries" class="w-64 md:w-32">
           <h1>Windows</h1>

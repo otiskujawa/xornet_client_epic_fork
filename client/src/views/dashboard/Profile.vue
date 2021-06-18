@@ -5,7 +5,7 @@
         <img class="banner" :src="profile.profileBanner?.url || 'https://cdn.discordapp.com/attachments/806300597338767450/849668963033153606/Normal.gif'" :alt="profile.username" />
         <Icon class="edit" @click="$refs.banner.click()" v-if="isEditing" icon="edit" />
       </div>
-      <div class="pfp" :class="{ border: profile.profileImage?.hasAlpha }" :style="{ 'background-image': `url(${profile.profileImage?.url ?? 'https://wallpapercave.com/wp/wp8846945.jpg'})` }">
+      <div class="pfp" :class="{ border: profile.profileImage?.hasAlpha }" :style="{ 'background-image': `url(${profile.profileImage?.url ?? 'https://cdn.discordapp.com/attachments/816028632269979668/855437868825444372/unknown.png'})` }">
         <div class="xornetBadge" v-if="profile.isDev"><img :src="require('@/assets/logos/logo.svg')" alt="Xornet Developer" /></div>
         <Icon class="edit" @click="$refs.pfp.click()" v-if="isEditing" icon="edit" />
       </div>

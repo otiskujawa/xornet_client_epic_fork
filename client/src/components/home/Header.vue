@@ -92,7 +92,7 @@ header .buttons .button img {
 }
 
 header .buttons .button p {
-  color: var(--white);
+  color: white;
   font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: 600;
