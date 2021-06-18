@@ -91,18 +91,15 @@ const routes = [
         meta: {
           title: "Xornet | Machines"
         },
-        children: [
-          {
-            path: "specs",
-            name: "specs",
-            component: () => import(/* webpackChunkName: "specs" */ "@/views/dashboard/MachineSpecs.vue"),
-            meta: {
-              title: "Xornet | Machine Specification"
-            }
-          }
-        ]
       },
-      
+      {
+        path: "machines/:machine?/specs",
+        name: "specs",
+        component: () => import(/* webpackChunkName: "specs" */ "@/views/dashboard/MachineSpecs.vue"),
+        meta: {
+          title: "Xornet | Machine Specification"
+        }
+      },
       {
         path: "profile/:username?",
         name: "profile",

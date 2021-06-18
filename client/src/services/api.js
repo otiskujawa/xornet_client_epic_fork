@@ -289,6 +289,10 @@ class Machine extends API {
   async getNetwork(machineUUID) {
     return (await super.request("get", `stats/network/${machineUUID}`)).data;
   }
+  
+  async getMachineSpecs(machineUUID) {
+    return (await super.request("get", `stats/machine/${machineUUID}`)).data;
+  }
 }
 
 const api = {
