@@ -32,7 +32,6 @@ export default {
 
 <style scoped>
 .button {
-  padding: 16px;
   background-color: var(--background-color);
   box-sizing: border-box;
   border: 1px solid transparent;

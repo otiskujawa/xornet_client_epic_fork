@@ -18,7 +18,7 @@ export default {
 <style>
 :root {
   /* Static colors that wont change */
-  --dark: #151527;
+  --dark: #0B0B15;
   --dark-light: #0f0f1e;
   --dark-lighter: #18182c;
   --rogue-red-border: #f85149;
