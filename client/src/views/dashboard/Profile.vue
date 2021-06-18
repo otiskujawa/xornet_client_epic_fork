@@ -15,7 +15,7 @@
         <input type="file" id="banner" ref="banner" style="display: none" name="banner" accept="image/*" />
       </form>
 
-      <ShadowButton title="Edit" icon="edit" v-if="!isEditing && profile.username == username" @click="isEditing = !isEditing" class="edit" />
+      <ShadowButton title="Edit" icon="edit" v-if="!isEditing && profile.username == username" @click="isEditing = !isEditing" class="edit " />
       <ShadowButton
         title="Save"
         icon="save"
@@ -343,7 +343,7 @@ export default {
   transform: translate(-6px);
   border: 6px solid var(--background-color);
   width: fit-content;
-  padding: 4px 8px;
+  padding: 8px 8px;
   border-radius: 100px;
   height: fit-content;
   position: absolute;

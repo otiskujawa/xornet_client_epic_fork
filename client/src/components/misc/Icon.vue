@@ -53,6 +53,7 @@ export default {
 }
 
 .blackIcon {
+  max-width: initial;
   filter: invert(var(--filter));
 }
 </style>

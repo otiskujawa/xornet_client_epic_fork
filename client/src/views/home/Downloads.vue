@@ -2,10 +2,12 @@
   <div class="view downloads">
     <Header />
     <div class="downloadContent" v-if="releases">
-      <div class="reporterTitle">
-        <Logo />
-        <h1 class="reporterLogo">Reporter</h1>
-        <h1 class="version">{{releases.tag_name}}</h1>
+      <div class="reporterTitle flex-col md:flex-row">
+        <Logo class="max-w-full" />
+        <div class="flex bottom items-start md:items-end">
+          <h1 class="reporterLogo">Reporter</h1>
+          <h1 class="version">{{releases.tag_name}}</h1>
+        </div>
       </div>
 
       <h1>The Xornet Reporter easily lets you connect your computer to the platform</h1>
@@ -14,7 +16,7 @@
 
       <img class="previewImage" src="https://cdn.discordapp.com/attachments/755597803102928966/855248964206985257/unknown.png" alt="">
 
-      <div class="lists">
+      <div class="lists gap-4 md:gap-32">
         <ul>
           <p>With it you can remotely:</p>
           <li>View CPU usage</li>
@@ -41,34 +43,33 @@
       </div>
 
       <h1>Binaries</h1>
-      <div class="downloadArea">
+      <div class="downloadArea grid grid-cols-1 gap-4 md:grid-cols-3">
         <div class="platform">
-          <img :src="require('@/assets/logos/windows.svg')" alt="Windows Binaries">
+          <img :src="require('@/assets/logos/windows.svg')" alt="Windows Binaries" class="w-64 md:w-32">
           <h1>Windows</h1>
           <a :href="downloadLinks.win" target="_blank">
             <ShadowButton title="Download EXE" icon="downloads"/>
           </a>
         </div>
         <div class="platform">
-          <img :src="require('@/assets/logos/linux.svg')" alt="Linux Binaries">
+          <img :src="require('@/assets/logos/linux.svg')" alt="Linux Binaries" class="w-64 md:w-32">
           <h1>Linux</h1>
           <a :href="downloadLinks.linux" target="_blank">
             <ShadowButton title="Download Binary" icon="downloads"/>
           </a>
         </div>
         <div class="platform">
-          <img :src="require('@/assets/logos/apple.svg')" alt="MacOS Binaries">
+          <img :src="require('@/assets/logos/apple.svg')" alt="MacOS Binaries" class="w-64 md:w-32">
           <h1>MacOS</h1>
           <a :href="downloadLinks.macos" target="_blank">
             <ShadowButton title="Download DMG" icon="downloads"/>
           </a>
         </div>
       </div>
-
-      <div class="installationSteps">
-        <div class="step">
+      <div class="installationSteps flex-col md:flex-row">
+        <div class="step flex flex-col gap-4">
           <h1>Linux Service Installation Steps</h1>
-          <div class="cockBlock">
+          <div class="cockBlock p-4 max-w-full rounded-md">
             <h2><strong># Linux install steps</strong></h2>
             <h2><strong># Download & Install script</strong></h2>
             <h2><strong>$</strong> sudo wget xornet.cloud/reporter/install.sh</h2>
@@ -76,9 +77,9 @@
             <h2><strong>$</strong> sudo ./install.sh</h2>
           </div>
         </div>
-        <div class="step">
+        <div class="step flex flex-col gap-4">
           <h1>MacOS Binary Execution Steps</h1>
-          <div class="cockBlock">
+          <div class="cockBlock p-4 max-w-full rounded-md">
             <h2><strong># MacOS execution steps</strong></h2>
             <h2><strong># Download & Run</strong></h2>
             <h2><strong>$</strong> wget xornet.cloud/reporter/xornet-reporter-macos</h2>
@@ -142,7 +143,7 @@ export default {
 }
 
 .downloadContent {
-  padding: 96px 10vw 0px;
+  padding: 96px 10% 10%;
   gap: 32px;
   position: relative;
   height: 100vh;
@@ -171,6 +172,12 @@ export default {
   z-index: 0;
 }
 
+@media only screen and (max-width: 800px) {
+  .previewImage {
+    display: none;
+  }
+}
+
 .reporterTitle {
   display: flex;
   align-items: flex-end;
@@ -196,7 +203,6 @@ export default {
 
 .lists {
   display: flex;
-  gap: 128px;
 }
 
 .lists li {
@@ -216,11 +222,7 @@ export default {
 }
 
 .cockBlock {
-  padding: 16px;
   background-color: #111122;
-  width: 100%;
-  border-radius: 4px;
-  margin-bottom: 128px;
 }
 
 .cockBlock * {
@@ -237,10 +239,6 @@ export default {
 }
 
 .downloadArea {
-  display: flex;
-  gap: 32px;
-  padding: 0px 128px;
-  justify-content: space-between;
   width: 100%;
 }
 
@@ -250,10 +248,6 @@ export default {
   gap: 32px;
   align-items: center;
   justify-content: center;
-}
-
-.downloadArea > .platform > img {
-  width: 128px;
 }
 
 .downloadArea > .platform > h1 {
