@@ -95,7 +95,7 @@ const routes = [
       {
         path: "machines/:machine?/specs",
         name: "specs",
-        component: () => import(/* webpackChunkName: "specs" */ "@/views/dashboard/MachineSpecs.vue"),
+        component: () => import(/* webpackChunkName: "specs" */ "@/views/dashboard/Specs.vue"),
         meta: {
           title: "Xornet | Machine Specification"
         }

@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{ name: 'machines', params: { machine: machine.uuid } }" class="button" :class="{ thin: thin, rogue: machine.rogue, disconnected: Date.now() > machine.timestamp + 15000 }">
+  <router-link :to="{ name: 'specs', params: { machine: machine.uuid } }" class="button" :class="{ thin: thin, rogue: machine.rogue, disconnected: Date.now() > machine.timestamp + 15000 }">
     <!-- Icons Column -->
     <img v-if="!machine.rogue && Date.now() < machine.timestamp + 15000" class="machineType" :src="require(`@/assets/icons/filled/${type}.svg`)" alt="" />
     <img v-if="machine.rogue && Date.now() < machine.timestamp + 15000" class="machineType" :src="require(`@/assets/icons/filled/warning.svg`)" alt="" />
