@@ -10,7 +10,7 @@
       <a class="button" href="https://github.com/Geoxor/Xornet" target="_blank"> <Icon icon="repository" /> 
         <p> Repository </p>
       </a>
-      <router-link class="button" :to="{ name: 'home', params: { page: 'downloads' } }"> <Icon icon="downloads" /> 
+      <router-link class="button" :to="{ name: 'downloads' }"> <Icon icon="downloads" /> 
         <p> Downloads </p>
       </router-link>
       <router-link class="button" v-if="isLoggedIn" :to="{ name: 'machines' }"> <Icon icon="dashboard" /> 
@@ -65,7 +65,6 @@ header .buttons {
 header .buttons .button {
   border: none;
   background-color: var(--theme-color);
-  width: min-content;
   padding: 4px 12px;
   border-radius: 4px;
   cursor: pointer;
@@ -93,7 +92,7 @@ header .buttons .button img {
 }
 
 header .buttons .button p {
-  color: var(--white);
+  color: white;
   font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: 600;

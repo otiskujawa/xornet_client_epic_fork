@@ -7,6 +7,7 @@ import hljsVuePlugin from "@highlightjs/vue-plugin";
 
 import javascript from "highlight.js/lib/languages/javascript";
 import json from "highlight.js/lib/languages/json";
+import 'windi.css'
 
 String.prototype.toCapitalized = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);

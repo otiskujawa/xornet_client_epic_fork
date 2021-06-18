@@ -1,7 +1,7 @@
 <template>
   <router-link class="searchResult" :to="{ name: 'profile', params: { username: user.username } }">
     <div class="profile">
-      <img class="profileImg" :src="user.profileImage?.url ?? 'https://wallpapercave.com/wp/wp8846945.jpg'" alt="user profile image" />
+      <img class="profileImg" :src="user.profileImage?.url ?? 'https://cdn.discordapp.com/attachments/816028632269979668/855437868825444372/unknown.png'" alt="user profile image" />
       <div class="user">
         <div class="username">
           <p>{{ user.username }}</p>

@@ -31,6 +31,15 @@ const routes = [
       guest: true
     }
   },
+  // Xornet Signup
+  {
+    path: "/downloads",
+    name: "downloads",
+    component: () => import(/* webpackChunkName: "downloads" */ "@/views/home/Downloads.vue"),
+    meta: {
+      title: "Xornet | Downloads",
+    }
+  },
   // Xornet Dashboard
   {
     path: "/dashboard",
@@ -82,18 +91,15 @@ const routes = [
         meta: {
           title: "Xornet | Machines"
         },
-        children: [
-          {
-            path: "specs",
-            name: "specs",
-            component: () => import(/* webpackChunkName: "specs" */ "@/views/dashboard/MachineSpecs.vue"),
-            meta: {
-              title: "Xornet | Machine Specification"
-            }
-          }
-        ]
       },
-      
+      {
+        path: "machines/:machine?/specs",
+        name: "specs",
+        component: () => import(/* webpackChunkName: "specs" */ "@/views/dashboard/Specs.vue"),
+        meta: {
+          title: "Xornet | Machine Specification"
+        }
+      },
       {
         path: "profile/:username?",
         name: "profile",

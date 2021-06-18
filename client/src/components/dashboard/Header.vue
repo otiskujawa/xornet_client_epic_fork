@@ -24,7 +24,7 @@
       <SquareButton icon="logout" @click.native="logout" />
 
       <router-link :to="{ name: 'profile', params: { username } }">
-        <img :src="profile?.profileImage?.url ?? 'https://wallpapercave.com/wp/wp8846945.jpg'" class="profileImage" alt="profileImage" />
+        <img :src="profile?.profileImage?.url ?? 'https://cdn.discordapp.com/attachments/816028632269979668/855437868825444372/unknown.png'" class="profileImage" alt="profileImage" />
       </router-link>
     </div>
   </header>

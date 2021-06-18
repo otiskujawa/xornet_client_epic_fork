@@ -62,6 +62,7 @@ export default {
 .datacenter:hover {
   box-shadow: rgb(0 0 0 / 10%) 0px 10px 20px;
   transform: translateY(-1px);
+  border: 1px solid var(--theme-color);
 }
 
 .datacenter:active {
@@ -69,7 +70,7 @@ export default {
 }
 
 .datacenter img {
-  filter: invert(var(--filter));
+  filter: invert(var(--filter)) grayscale(1);
 }
 
 .datacenter .logo {
@@ -106,7 +107,7 @@ export default {
   background-color: #8171ff44;
   border-radius: 167px;
   color: var(--theme-color) !important;
-  border: 2px solid var(--theme-color);
+  border: 1px solid var(--theme-color);
   font-weight: 600;
   text-transform: uppercase;
   font-size: 10px;

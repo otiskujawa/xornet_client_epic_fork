@@ -4,13 +4,14 @@ import eventHandler from "./eventHandler";
 let ROOT_PATH = "https://backend.xornet.cloud";
 
 /**
+ * @author Geoxor & Niko Huuskonen
+
  * Main API class that interfaces with the backend
  * It contains functions and debugging logs to easily
  * handle requests with the backend
  *
  * Note: The data from here can be taken to create API docs in the future
  * @private
- * @copyright George Tsotsos & Niko Huuskonen
  */
 
 class API {
@@ -288,6 +289,10 @@ class Machine extends API {
 
   async getNetwork(machineUUID) {
     return (await super.request("get", `stats/network/${machineUUID}`)).data;
+  }
+
+  async getMachineSpecs(machineUUID) {
+    return (await super.request("get", `stats/machine/${machineUUID}`)).data;
   }
 }
 
