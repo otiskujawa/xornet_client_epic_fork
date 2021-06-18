@@ -12,6 +12,8 @@
 
       <p>The reporter uses the NodeJS runtime enviroment and is compiled to run natively on most common operating systems</p>
 
+      <img class="previewImage" src="https://cdn.discordapp.com/attachments/755597803102928966/855248964206985257/unknown.png" alt="">
+
       <div class="lists">
         <ul>
           <p>With it you can remotely:</p>
@@ -127,6 +129,7 @@ export default {
   background-color: var(--dark);
   height: 100%;
   width: 100%;
+  position: relative;
 }
 
 .downloads * {
@@ -139,8 +142,9 @@ export default {
 }
 
 .downloadContent {
-  padding: 96px 15vw 0px;
+  padding: 96px 10vw 0px;
   gap: 32px;
+  position: relative;
   height: 100vh;
   width: 100%;
   overflow: scroll;
@@ -149,19 +153,33 @@ export default {
   flex-direction: column;
 }
 
+.downloadContent *:not(.previewImage) {
+  z-index: 20;
+}
+
 .downloadContent p {
   font-size: 18px;
   max-width: 920px;
   color: white;
 }
 
+.previewImage {
+  position: absolute;
+  height: 465px;
+  width: auto;
+  right: 10vw;
+  z-index: 0;
+}
+
 .reporterTitle {
   display: flex;
+  align-items: flex-end;
   justify-content: flex-start;
+  gap: 8px;
 }
 
 .reporterTitle * {
-  line-height: 100%;
+  line-height: 82%;
 }
 
 .reporterLogo {

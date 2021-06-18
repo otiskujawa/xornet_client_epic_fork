@@ -69,10 +69,10 @@ export default {
   scrollbar-width: none; /* Firefox */
 }
 
-*::selection {
+/* *::selection {
   background: var(--black) !important;
   color: var(--white);
-}
+} */
 
 html {
   overflow: hidden;
