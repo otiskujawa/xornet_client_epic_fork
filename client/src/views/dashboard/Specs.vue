@@ -1,36 +1,33 @@
 <template>
   <div class="machineSpecsPage">
     <h1>Details</h1>
-    <div class="specs" v-if="specs">
+    <div class="specs block md:grid" v-if="specs">
       <!-- we dont talk about this - cimok -->
       <div :class="outerKey" v-for="(category, outerKey) of specs" :key="outerKey">
-        <h2>{{ outerKey }}</h2>
-        <div v-if="isObject(category)">
+        <div class="flex gap-1 items-center">
+          <Icon color="#8676ff" class="mt-0.5 w-6 min-w-6" :icon="outerKey"/>
+          <h2 class="title">{{ outerKey }}</h2>
+        </div>
+        <div class="ml-2" v-if="isObject(category)">
           <div v-if="isObject(category)">
             <div v-if="Array.isArray(value)">
               <div v-for="(item, key) of category" :key="key">
-                <p v-for="(value, key) of category" :key="key">
-                  <strong>{{ key }}:</strong> {{ value }}
-                </p>
+                <SpecProperty v-for="(value, key) of category" :key="key" :prop="key" :value="value"/>
               </div>
             </div>
             <div v-else v-for="(value, key) of category" :key="key">
               <div v-if="isObject(value)">
                 <h3>{{key}}</h3>
-                <div class="inMost" v-for="(item, key) of value" :key="key">
+                <div class="ml-2" v-for="(item, key) of value" :key="key">
                   <div v-if="isObject(item)">
-                    <p v-for="(property, key) of item" :key="key">
-                      <strong>{{ key }}:</strong> {{ property }}
-                    </p>
+                    <div class="flex items-start gap-1"  v-for="(property, key) of item" :key="key" >
+                    <SpecProperty :prop="key" :value="property"/>
+                    </div>
                   </div>
-                  <p v-else>
-                    <strong>{{ key }}:</strong> {{ item }}
-                  </p>
+                  <SpecProperty v-else :prop="key" :value="item"/>
                 </div>
               </div>
-              <p v-else>
-                <strong>{{ key }}:</strong> {{ value }}
-              </p>
+              <SpecProperty v-else :prop="key" :value="value"/>
             </div>
           </div>
           <p v-else>
@@ -43,8 +40,14 @@
 </template>
 
 <script>
+import SpecProperty from "@/components/misc/SpecProperty";
+import Icon from "@/components/misc/Icon";
 export default {
   name: "Specs",
+  components: {
+    SpecProperty,
+    Icon
+  },
   async created() {
     this.specs = await this.api.machine.getMachineSpecs(this.$route.params.machine);
   },
@@ -75,7 +78,6 @@ export default {
 
 .machineSpecsPage::-webkit-scrollbar-thumb {
     background: var(--black);
-    border: 0.5ex solid var(--white);
     -webkit-border-radius: 1ex;
     -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
 }
@@ -90,7 +92,6 @@ export default {
 }
 
 .machineSpecsPage .specs {
-  display: grid;
   gap: 8px;
   grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
 }
@@ -98,13 +99,8 @@ export default {
 .machineSpecsPage .specs > * {
   border-radius: 4px;
   font-size: 12px;
-  background: var(--white);
-  padding: 16px;
+  padding: 0px 16px;
   text-align: left;
-}
-
-.machineSpecsPage .specs > * .inMost{
-  margin-left: 16px;
 }
 
 .machineSpecsPage h1 {
@@ -122,7 +118,17 @@ export default {
 }
 
 .machineSpecsPage strong {
+  opacity: 25%;
+  font-weight: 500;
   text-transform: capitalize;
+}
+
+.machineSpecsPage .title {
+    background: linear-gradient(90deg, #8676ff 0%, #516dff 33.33%, #32b5ff 69.27%, #4adeff 100%);
+  background-clip: border-box;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 </style>
