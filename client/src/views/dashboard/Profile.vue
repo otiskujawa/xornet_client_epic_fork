@@ -2,7 +2,7 @@
   <div class="profilePage" v-if="profile.username">
     <div class="heading">
       <div class="header">
-        <img class="banner" :src="profile.profileBanner?.url || 'https://cdn.discordapp.com/attachments/806300597338767450/849668963033153606/Normal.gif'" :alt="profile.username" />
+        <img class="banner" :src="profile.profileBanner?.url || 'https://cdn.discordapp.com/attachments/806300597338767450/855757714806407188/unknown.png'" :alt="profile.username" />
         <Icon class="edit" @click="$refs.banner.click()" v-if="isEditing" icon="edit" />
       </div>
       <div class="pfp" :class="{ border: profile.profileImage?.hasAlpha }" :style="{ 'background-image': `url(${profile.profileImage?.url ?? 'https://cdn.discordapp.com/attachments/816028632269979668/855437868825444372/unknown.png'})` }">
@@ -48,7 +48,7 @@
 
         <section>
           <h1 class="descriptionHeading">Points</h1>
-          <p class="points" @mouseenter="showFullPoints = true" @mouseleave="showFullPoints = false">{{ showFullPoints ? Math.floor(points.tweened) : millify(points.number) || "0" }}</p>
+          <p class="points" @mouseenter="showFullPoints = true" @mouseleave="showFullPoints = false">{{ showFullPoints ? ~~points.tweened : millify(points.number) || "0" }}</p>
         </section>
 
         <div class="line"></div>
@@ -170,7 +170,7 @@ export default {
     socket.on("points", points => {
       console.log(`%c[WS]` + `%c [Points]`, "color: black; background-color: #ff4488; padding: 2px; border-radius: 4px; font-weight: bold;", "color: #ff77aa;", points);
       this.points.number = points;
-      gsap.to(this.points, { duration: 1, tweened: points });
+      gsap.to(this.points, { duration: 0.5, tweened: points });
     });
   },
   methods: {
@@ -435,14 +435,15 @@ export default {
   align-items: flex-end;
 }
 .profilePage .profiileDetails .heading .username {
-  font-family: "Work Sans";
-  font-style: normal;
+font-family: "Work Sans";
+    font-style: normal;
   font-weight: 600;
-  font-size: 36px;
+  max-width: 100%;
+  font-size: 28px;
   line-height: 68%;
-  /* or 42px */
-
   color: var(--black);
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .profilePage .profiileDetails .heading .location {
   height: 20px;

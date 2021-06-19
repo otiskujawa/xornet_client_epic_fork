@@ -72,7 +72,7 @@
           <div class="cockBlock p-4 max-w-full rounded-md">
             <h2><strong># Linux install steps</strong></h2>
             <h2><strong># Download & Install script</strong></h2>
-            <h2><strong>$</strong> sudo wget xornet.cloud/reporter/install.sh</h2>
+            <h2><strong>$</strong> sudo wget https://github.com/Geoxor/Xornet/releases/download/{{ releases.tag_name }}/install.sh</h2>
             <h2><strong>$</strong> sudo chmod +x ./install.sh</h2>
             <h2><strong>$</strong> sudo ./install.sh</h2>
           </div>

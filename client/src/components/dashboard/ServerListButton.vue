@@ -1,9 +1,9 @@
 <template>
   <router-link :to="{ name: 'specs', params: { machine: machine.uuid } }" class="button" :class="{ thin: thin, rogue: machine.rogue, disconnected: Date.now() > machine.timestamp + 15000 }">
     <!-- Icons Column -->
-    <img v-if="!machine.rogue && Date.now() < machine.timestamp + 15000" class="machineType" :src="require(`@/assets/icons/filled/${type}.svg`)" alt="" />
-    <img v-if="machine.rogue && Date.now() < machine.timestamp + 15000" class="machineType" :src="require(`@/assets/icons/filled/warning.svg`)" alt="" />
-    <img v-if="Date.now() > machine.timestamp + 15000" class="machineType" :src="require(`@/assets/icons/filled/disconnected.svg`)" alt="" />
+    <Icon :icon="type" v-if="!machine.rogue && Date.now() < machine.timestamp + 15000" class="machineType"/>
+    <Icon icon="warning" v-if="machine.rogue && Date.now() < machine.timestamp + 15000" class="machineType"/>
+    <Icon icon="disconnected" v-if="Date.now() > machine.timestamp + 15000" class="machineType"/>
 
     <!-- UUID Column -->
     <div class="info">
@@ -68,8 +68,12 @@
 </template>
 
 <script>
+import Icon from "@/components/misc/Icon";
 export default {
   name: "ServerListButton",
+  components: {
+    Icon
+  },
   computed: {
     type: function() {
       return this.machine.isVirtual ? "slave" : "master";

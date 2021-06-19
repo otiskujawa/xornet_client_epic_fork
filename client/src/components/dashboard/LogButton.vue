@@ -52,7 +52,7 @@ export default {
   display: flex;
   background-color: var(--background-color);
   color: var(--black);
-  padding: 4px;
+  padding: 2px 4px;
   cursor: pointer;
   border-radius: 4px;
   justify-content: space-between;

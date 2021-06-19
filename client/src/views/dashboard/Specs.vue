@@ -118,7 +118,7 @@ export default {
 }
 
 .machineSpecsPage strong {
-  opacity: 25%;
+  opacity: 35%;
   font-weight: 500;
   text-transform: capitalize;
 }

@@ -14,7 +14,7 @@
     </div>
     <div class="userPoints">
       <p class="p">Points</p>
-      <p class="points">{{ user.points }}</p>
+      <p class="points">{{ ~~user.points }}</p>
     </div>
   </router-link>
 </template>

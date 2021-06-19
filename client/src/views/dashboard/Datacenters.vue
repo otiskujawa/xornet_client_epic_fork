@@ -16,7 +16,8 @@
             <div class="heading">
               <img class="banner" :src="datacenter.banner || 'https://i.redd.it/cxrn0h5ksd131.jpg'" :alt="datacenter.name" />
               <Icon class="datacenterEdit bannerPen" @click="$refs.banner.click()" v-if="isEditing" icon="edit" />
-              <img class="logo" :class="{ isEditing }" :src="datacenter.logo || 'https://cdn.discordapp.com/attachments/807448839346716683/853054616870322256/spaz.gif'" :alt="datacenter.name" />
+              <img v-if="datacenter.logo" class="logo" :class="{ isEditing }" :src="datacenter.logo" :alt="datacenter.name" />
+              <Icon v-else class="logo" :class="{ isEditing }" icon="datacenter" />
               <Icon class="datacenterEdit logoPen" @click="$refs.logo.click()" v-if="isEditing" icon="edit" />
             </div>
             <div class="buttons">

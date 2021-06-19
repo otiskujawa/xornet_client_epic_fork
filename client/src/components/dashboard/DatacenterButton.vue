@@ -4,7 +4,8 @@
       <Icon icon="datacenter" />
       <h1>{{ datacenter.name }}</h1>
     </div>
-    <img class="logo" :src="datacenter.logo || require('@/assets/icons/filled/stack.svg')" :alt="datacenter.name" />
+    <Icon v-if="!datacenter.logo" icon="datacenter" class="logo" />
+    <img v-else class="logo" :src="datacenter.logo" :alt="datacenter.name" />
     <div class="footer">
       <h1 v-if="datacenter.owner === me._id" class="primary">Primary</h1>
 
@@ -47,6 +48,7 @@ export default {
 <style scoped>
 .datacenter {
   aspect-ratio: 1;
+  max-height: 256px;
   border-radius: 8px;
   background-color: var(--background-color);
   cursor: pointer;
