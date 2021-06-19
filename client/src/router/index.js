@@ -37,7 +37,7 @@ const routes = [
     name: "downloads",
     component: () => import(/* webpackChunkName: "downloads" */ "@/views/home/Downloads.vue"),
     meta: {
-      title: "Xornet | Downloads",
+      title: "Xornet | Downloads"
     }
   },
   // Xornet Dashboard
@@ -90,7 +90,7 @@ const routes = [
         component: () => import(/* webpackChunkName: "machines" */ "@/views/dashboard/Machines.vue"),
         meta: {
           title: "Xornet | Machines"
-        },
+        }
       },
       {
         path: "machines/:machine?/specs",

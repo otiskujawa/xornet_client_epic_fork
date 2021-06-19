@@ -10,15 +10,15 @@
         <div class="coolShit">
           <div class="left">
             <div class="datacenterTitle" style="display: flex; gap: 8px;">
-              <Icon icon="datacenter" style="width: 24px;"/>
-              <h1 class="datacenterName" style="font-size: 20px;">{{datacenter.name}}</h1>
+              <Icon icon="datacenter" style="width: 24px;" />
+              <h1 class="datacenterName" style="font-size: 20px;">{{ datacenter.name }}</h1>
             </div>
-          <div class="heading">
-            <img class="banner" :src="datacenter.banner || 'https://i.redd.it/cxrn0h5ksd131.jpg'" :alt="datacenter.name" />
-            <Icon class="datacenterEdit bannerPen" @click="$refs.banner.click()" v-if="isEditing" icon="edit" />
-            <img class="logo" :class="{ isEditing }" :src="datacenter.logo || 'https://cdn.discordapp.com/attachments/807448839346716683/853054616870322256/spaz.gif'" :alt="datacenter.name" />
-            <Icon class="datacenterEdit logoPen" @click="$refs.logo.click()" v-if="isEditing" icon="edit" />
-          </div>
+            <div class="heading">
+              <img class="banner" :src="datacenter.banner || 'https://i.redd.it/cxrn0h5ksd131.jpg'" :alt="datacenter.name" />
+              <Icon class="datacenterEdit bannerPen" @click="$refs.banner.click()" v-if="isEditing" icon="edit" />
+              <img class="logo" :class="{ isEditing }" :src="datacenter.logo || 'https://cdn.discordapp.com/attachments/807448839346716683/853054616870322256/spaz.gif'" :alt="datacenter.name" />
+              <Icon class="datacenterEdit logoPen" @click="$refs.logo.click()" v-if="isEditing" icon="edit" />
+            </div>
             <div class="buttons">
               <ShadowButton class="revoke" icon="stack" title="Add server" @click="isShowingServerCard = !isShowingServerCard" />
               <ShadowButton class="revoke" v-if="!isEditing" icon="edit" title="Edit" @click="isEditing = !isEditing" />
@@ -28,7 +28,7 @@
                 icon="save"
                 title="Save"
                 @click="
-                  isEditing = !isEditing; 
+                  isEditing = !isEditing;
                   save();
                 "
               />
@@ -43,14 +43,9 @@
                 machines.size || 0,
                 machines.size !== 0 ? (Array.from(machines.values()).reduce((a, b) => a + b.ping, 0) / Array.from(machines.values()).length).toFixed(2) : 0,
                 parseFloat(stats.ramUsage?.current?.toFixed(2)) || 0,
-                parseFloat(stats.currentBandwidth?.toFixed(2)) || 0,
+                parseFloat(stats.currentBandwidth?.toFixed(2)) || 0
               ]"
-              :maxValues="[
-                stats.totalMachines || 100, 
-                100, 
-                parseFloat(stats.ramUsage?.max?.toFixed(2)) || 100, 
-                50,
-              ]"
+              :maxValues="[stats.totalMachines || 100, 100, parseFloat(stats.ramUsage?.max?.toFixed(2)) || 100, 50]"
             />
 
             <InfoField borderless icon="stack" title="Servers Online" color="#8676FF" :value="machines.size || 0" :maxValue="stats.totalMachines" />
@@ -303,11 +298,10 @@ export default {
 }
 
 @media only screen and (max-width: 600px) {
-
-  .datacenters .content .bullshit  {
+  .datacenters .content .bullshit {
     padding: 16px;
   }
-  
+
   .datacenters .content .bullshit .coolShit {
     width: 100vw;
     flex-direction: row;
@@ -319,7 +313,7 @@ export default {
     flex-direction: column;
   }
 
-  .datacenters .content .bullshit .coolShit   .heading {
+  .datacenters .content .bullshit .coolShit .heading {
     display: none;
   }
   .datacenters .content .bullshit .serverList {
@@ -329,7 +323,4 @@ export default {
     display: none;
   }
 }
-
-
-
 </style>

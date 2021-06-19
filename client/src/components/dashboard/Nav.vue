@@ -61,7 +61,7 @@ nav {
 }
 
 nav:not(#mobileNav) .top .firstButton {
-  border-radius: 0px 8px 0px 0px ;
+  border-radius: 0px 8px 0px 0px;
   overflow: hidden;
 }
 

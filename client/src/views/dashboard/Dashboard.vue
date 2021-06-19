@@ -1,7 +1,7 @@
 <template>
   <div class="view dashboard">
     <LoadingScreen :isLoaded="!isLoading" />
-    <Header v-if="!isLoading"/>
+    <Header v-if="!isLoading" />
     <div class="main">
       <Nav id="desktopNav" />
       <router-view></router-view>

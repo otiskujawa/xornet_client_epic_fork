@@ -1,12 +1,12 @@
 <template>
   <header>
     <div class="left">
-      <div v-if="!showSearchBar && searchToggled" @click="searchToggled = false;" >
+      <div v-if="!showSearchBar && searchToggled" @click="searchToggled = false">
         <SquareButton icon="left-arrow" alt="" />
       </div>
-      <div class="logo" v-if="!searchToggled" :class="{clickable: !isNestedRoute}" @click="isNestedRoute ? incrementSuperclass() : $router.go(-1);">
-        <img v-if="isNestedRoute" :src="require('@/assets/logos/logoHeader.svg')" alt="Xornet"/>
-        <Icon v-else icon="left-arrow" style="width: 24px; filter: invert(1);"/>
+      <div class="logo" v-if="!searchToggled" :class="{ clickable: !isNestedRoute }" @click="isNestedRoute ? incrementSuperclass() : $router.go(-1)">
+        <img v-if="isNestedRoute" :src="require('@/assets/logos/logoHeader.svg')" alt="Xornet" />
+        <Icon v-else icon="left-arrow" style="width: 24px; filter: invert(1);" />
       </div>
 
       <div class="buttons" v-if="!searchToggled">
@@ -16,8 +16,8 @@
         <!-- <SquareButton icon="thick" v-if="currentRoute == 'machines' && thinButtons"/> -->
         <!-- <SquareButton icon="thin" v-if="currentRoute == 'machines' && !thinButtons"/> -->
       </div>
-      <SquareButton v-if="(!showSearchBar && !searchToggled)" icon="search" @click="searchBTN()" />
-      <SearchBar v-if="showSearchBar || searchToggled" @unClicked="searchToggled = false;" :isFocused="searchToggled"/>
+      <SquareButton v-if="!showSearchBar && !searchToggled" icon="search" @click="searchBTN()" />
+      <SearchBar v-if="showSearchBar || searchToggled" @unClicked="searchToggled = false" :isFocused="searchToggled" />
     </div>
 
     <div class="account" v-if="!searchToggled">
@@ -47,8 +47,8 @@ export default {
     username: function() {
       return localStorage.getItem("username");
     },
-    isNestedRoute: function(){
-      return Object.values(this.$route.params)[0] == undefined || Object.values(this.$route.params)[0] === '';
+    isNestedRoute: function() {
+      return Object.values(this.$route.params)[0] == undefined || Object.values(this.$route.params)[0] === "";
     }
   },
   data: () => {
@@ -58,19 +58,19 @@ export default {
       superclass: 0,
       searchToggled: false,
       showSearchBar: true,
-      windowWidth: window.innerWidth,
+      windowWidth: window.innerWidth
     };
   },
   async created() {
     this.profile = await this.api.user.fetchMe();
     this.currentRoute = this.$route.name;
-    this.showSearchBar = (this.windowWidth > 460);
+    this.showSearchBar = this.windowWidth > 460;
   },
   methods: {
-    incrementSuperclass(){
+    incrementSuperclass() {
       this.superclass++;
-      if (this.superclass % 10 == 9){
-        var superclass = new Audio('https://cdn.discordapp.com/attachments/851974319370010655/854730571389730826/superclass.mp3');
+      if (this.superclass % 10 == 9) {
+        var superclass = new Audio("https://cdn.discordapp.com/attachments/851974319370010655/854730571389730826/superclass.mp3");
         superclass.play();
       }
     },
@@ -94,7 +94,7 @@ export default {
       isDark.value = !isDark.value;
     },
 
-    searchBTN(){
+    searchBTN() {
       this.searchToggled = true;
       //console.log(this.$refs.SearchBarRef.$el)
     }
@@ -119,7 +119,6 @@ header {
   background-color: var(--background-color);
   overflow: visible;
 }
-
 
 header .left {
   display: flex;
@@ -157,10 +156,18 @@ header .logo {
   min-width: 48px;
 }
 
-header .logo img { transition: 100ms ease; }
-header .logo img:hover { width: 40px; }
-header .logo img:active { width: 32px; }
-header .button.enabled { filter: invert(1); }
+header .logo img {
+  transition: 100ms ease;
+}
+header .logo img:hover {
+  width: 40px;
+}
+header .logo img:active {
+  width: 32px;
+}
+header .button.enabled {
+  filter: invert(1);
+}
 
 header .button img {
   width: 24px;
@@ -198,5 +205,4 @@ header .account img.profileImage {
 header .clickable {
   cursor: pointer;
 }
-
 </style>

@@ -5,29 +5,29 @@
       <!-- we dont talk about this - cimok -->
       <div :class="outerKey" v-for="(category, outerKey) of specs" :key="outerKey">
         <div class="flex gap-1 items-center">
-          <Icon color="#8676ff" class="mt-0.5 w-6 min-w-6" :icon="outerKey"/>
+          <Icon color="#8676ff" class="mt-0.5 w-6 min-w-6" :icon="outerKey" />
           <h2 class="title">{{ outerKey }}</h2>
         </div>
         <div class="ml-2" v-if="isObject(category)">
           <div v-if="isObject(category)">
             <div v-if="Array.isArray(value)">
               <div v-for="(item, key) of category" :key="key">
-                <SpecProperty v-for="(value, key) of category" :key="key" :prop="key" :value="value"/>
+                <SpecProperty v-for="(value, key) of category" :key="key" :prop="key" :value="value" />
               </div>
             </div>
             <div v-else v-for="(value, key) of category" :key="key">
               <div v-if="isObject(value)">
-                <h3>{{key}}</h3>
+                <h3>{{ key }}</h3>
                 <div class="ml-2" v-for="(item, key) of value" :key="key">
                   <div v-if="isObject(item)">
-                    <div class="flex items-start gap-1"  v-for="(property, key) of item" :key="key" >
-                    <SpecProperty :prop="key" :value="property"/>
+                    <div class="flex items-start gap-1" v-for="(property, key) of item" :key="key">
+                      <SpecProperty :prop="key" :value="property" />
                     </div>
                   </div>
-                  <SpecProperty v-else :prop="key" :value="item"/>
+                  <SpecProperty v-else :prop="key" :value="item" />
                 </div>
               </div>
-              <SpecProperty v-else :prop="key" :value="value"/>
+              <SpecProperty v-else :prop="key" :value="value" />
             </div>
           </div>
           <p v-else>
@@ -57,7 +57,7 @@ export default {
     };
   },
   methods: {
-    isObject(prop){
+    isObject(prop) {
       return prop instanceof Object;
     }
   }
@@ -77,13 +77,13 @@ export default {
 }
 
 .machineSpecsPage::-webkit-scrollbar-thumb {
-    background: var(--black);
-    -webkit-border-radius: 1ex;
-    -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+  background: var(--black);
+  -webkit-border-radius: 1ex;
+  -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
 }
 
 .machineSpecsPage::-webkit-scrollbar-corner {
-    background: #000;
+  background: #000;
 }
 
 .machineSpecsPage {
@@ -124,11 +124,10 @@ export default {
 }
 
 .machineSpecsPage .title {
-    background: linear-gradient(90deg, #8676ff 0%, #516dff 33.33%, #32b5ff 69.27%, #4adeff 100%);
+  background: linear-gradient(90deg, #8676ff 0%, #516dff 33.33%, #32b5ff 69.27%, #4adeff 100%);
   background-clip: border-box;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
 </style>
