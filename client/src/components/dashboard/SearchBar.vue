@@ -19,8 +19,7 @@ export default {
   components: {
     SearchResult
   },
-  props: {
-  },
+  props: {},
   computed: {},
   watch: {
     searchString(to, from) {
@@ -63,18 +62,17 @@ export default {
       this.searchPaused = true;
     },
 
-    onClickSearchBar(event){
-      this.$emit('clicked', 'someValue')
+    onClickSearchBar(event) {
+      this.$emit("clicked", "someValue");
     },
-    onBlurSearchBar(event){
-      if (this.searchString.length == 0) this.$emit('unClicked', 'someValue')
+    onBlurSearchBar(event) {
+      if (this.searchString.length == 0) this.$emit("unClicked", "someValue");
     }
   }
 };
 </script>
 
 <style scoped>
-
 @media only screen and (max-width: 360px) {
   .search {
     width: 84vw;
@@ -163,8 +161,7 @@ export default {
   color: var(--slyColor);
 }
 
-.search:focus-within .inputField{
+.search:focus-within .inputField {
   outline: 3px solid var(--theme-color);
 }
-
 </style>

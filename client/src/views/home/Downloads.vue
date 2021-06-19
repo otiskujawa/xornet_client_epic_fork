@@ -6,7 +6,7 @@
         <Logo class="max-w-full" />
         <div class="flex bottom items-start md:items-end">
           <h1 class="reporterLogo">Reporter</h1>
-          <h1 class="version">{{releases.tag_name}}</h1>
+          <h1 class="version">{{ releases.tag_name }}</h1>
         </div>
       </div>
 
@@ -14,7 +14,7 @@
 
       <p>The reporter uses the NodeJS runtime enviroment and is compiled to run natively on most common operating systems</p>
 
-      <img class="previewImage" src="https://cdn.discordapp.com/attachments/755597803102928966/855248964206985257/unknown.png" alt="">
+      <img class="previewImage" src="https://cdn.discordapp.com/attachments/755597803102928966/855248964206985257/unknown.png" alt="" />
 
       <div class="lists gap-4 md:gap-32">
         <ul>
@@ -45,24 +45,24 @@
       <h1>Binaries</h1>
       <div class="downloadArea grid grid-cols-2 gap-4 md:grid-cols-3">
         <div class="platform">
-          <img :src="require('@/assets/logos/windows.svg')" alt="Windows Binaries" class="w-64 md:w-32">
+          <img :src="require('@/assets/logos/windows.svg')" alt="Windows Binaries" class="w-64 md:w-32" />
           <h1>Windows</h1>
           <a :href="downloadLinks.win" target="_blank">
-            <ShadowButton title="Download EXE" icon="downloads"/>
+            <ShadowButton title="Download EXE" icon="downloads" />
           </a>
         </div>
         <div class="platform">
-          <img :src="require('@/assets/logos/linux.svg')" alt="Linux Binaries" class="w-64 md:w-32">
+          <img :src="require('@/assets/logos/linux.svg')" alt="Linux Binaries" class="w-64 md:w-32" />
           <h1>Linux</h1>
           <a :href="downloadLinks.linux" target="_blank">
-            <ShadowButton title="Download Binary" icon="downloads"/>
+            <ShadowButton title="Download Binary" icon="downloads" />
           </a>
         </div>
         <div class="platform">
-          <img :src="require('@/assets/logos/apple.svg')" alt="MacOS Binaries" class="w-64 md:w-32">
+          <img :src="require('@/assets/logos/apple.svg')" alt="MacOS Binaries" class="w-64 md:w-32" />
           <h1>MacOS</h1>
           <a :href="downloadLinks.macos" target="_blank">
-            <ShadowButton title="Download DMG" icon="downloads"/>
+            <ShadowButton title="Download DMG" icon="downloads" />
           </a>
         </div>
       </div>
@@ -103,25 +103,25 @@ export default {
   components: {
     Logo,
     Header,
-    ShadowButton,
+    ShadowButton
   },
-  computed:{
-    downloadLinks: function(){
+  computed: {
+    downloadLinks: function() {
       return {
-        win: this.releases.assets.filter(asset => asset.name.includes('win'))[0].browser_download_url,
-        macos: this.releases.assets.filter(asset => asset.name.includes('macos'))[0].browser_download_url,
-        linux: this.releases.assets.filter(asset => asset.name.includes('linux'))[0].browser_download_url,
-      }
-    },
-  },
-  data(){
-    return {
-      releases: null
+        win: this.releases.assets.filter(asset => asset.name.includes("win"))[0].browser_download_url,
+        macos: this.releases.assets.filter(asset => asset.name.includes("macos"))[0].browser_download_url,
+        linux: this.releases.assets.filter(asset => asset.name.includes("linux"))[0].browser_download_url
+      };
     }
   },
-  async mounted() {
-    this.releases = (await axios.get('https://api.github.com/repos/Geoxor/Xornet/releases/latest')).data;
+  data() {
+    return {
+      releases: null
+    };
   },
+  async mounted() {
+    this.releases = (await axios.get("https://api.github.com/repos/Geoxor/Xornet/releases/latest")).data;
+  }
 };
 </script>
 
@@ -258,5 +258,4 @@ export default {
   font-size: 36px;
   line-height: 68%;
 }
-
 </style>

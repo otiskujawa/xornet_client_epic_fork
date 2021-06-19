@@ -19,7 +19,7 @@
         :style="{
           stroke: color,
           'stroke-dasharray': calculateCircumference(radius - index * spacingMultiplier),
-          'stroke-dashoffset': calculateProgress(values[index], maxValues[index], radius - index * spacingMultiplier )
+          'stroke-dashoffset': calculateProgress(values[index], maxValues[index], radius - index * spacingMultiplier)
         }"
       ></circle>
     </svg>

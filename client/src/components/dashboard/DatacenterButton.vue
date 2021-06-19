@@ -40,7 +40,7 @@ export default {
     me: function() {
       return JSON.parse(localStorage.getItem("me"));
     }
-  },
+  }
 };
 </script>
 
@@ -112,5 +112,4 @@ export default {
   text-transform: uppercase;
   font-size: 10px;
 }
-
 </style>

@@ -66,9 +66,9 @@ export default {
     selectedMachine: function() {
       return this.$route.params.machine;
     },
-    machineArray: function(){
+    machineArray: function() {
       return Array.from(this.machines.values());
-    },
+    }
   },
   data: () => {
     return {
