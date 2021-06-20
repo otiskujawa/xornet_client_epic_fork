@@ -1,6 +1,6 @@
 <template>
-  <div class="shadowButton" :id="allowCopy ? 'shadowButton' : null" :class="{ colored, didCopy, iconOnly: !title, tiny}" @click="allowCopy ? copyText() : null">
-    <h1 v-if="title">{{copyMessage || title }}</h1>
+  <div class="shadowButton" :id="allowCopy ? 'shadowButton' : null" :class="{ colored, didCopy, iconOnly: !title, tiny }" @click="allowCopy ? copyText() : null">
+    <h1 v-if="title">{{ copyMessage || title }}</h1>
     <Icon v-if="!textonly" :icon="icon" />
   </div>
 </template>
@@ -20,11 +20,11 @@ export default {
   components: {
     Icon
   },
-  data(){
+  data() {
     return {
       didCopy: false,
-      copyMessage: null,
-    }
+      copyMessage: null
+    };
   },
   methods: {
     copyText() {
@@ -46,7 +46,7 @@ export default {
       } catch {
         console.log("Oops, unable to copy");
       }
-    },
+    }
   }
 };
 </script>
@@ -126,5 +126,4 @@ export default {
 .shadowButton.tiny img {
   width: 16px;
 }
-
 </style>

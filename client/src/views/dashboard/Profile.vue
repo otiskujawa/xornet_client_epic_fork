@@ -42,7 +42,7 @@
           </div>
         </div>
 
-        <ShadowButton class="uuid" icon="clipboard" :title="profile._id" allowCopy/>
+        <ShadowButton class="uuid" icon="clipboard" :title="profile._id" allowCopy />
 
         <section>
           <h1 class="descriptionHeading">Points</h1>
