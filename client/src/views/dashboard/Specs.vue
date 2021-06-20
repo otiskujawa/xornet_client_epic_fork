@@ -91,39 +91,39 @@ export default {
   scrollbar-width: initial; /* Firefox */
 }
 
-.machineSpecsPage .specs {
+.specs {
   gap: 8px;
   grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
 }
 
-.machineSpecsPage .specs > * {
+.specs > * {
   border-radius: 4px;
   font-size: 12px;
   padding: 0px 16px;
   text-align: left;
 }
 
-.machineSpecsPage h1 {
+h1 {
   font-size: 35px;
 }
 
-.machineSpecsPage h2 {
+h2 {
   text-transform: uppercase;
   font-size: 25px;
 }
 
-.machineSpecsPage h3 {
+h3 {
   font-size: 16px;
   text-transform: capitalize;
 }
 
-.machineSpecsPage strong {
+strong {
   opacity: 35%;
   font-weight: 500;
   text-transform: capitalize;
 }
 
-.machineSpecsPage .title {
+.title {
   background: linear-gradient(90deg, #8676ff 0%, #516dff 33.33%, #32b5ff 69.27%, #4adeff 100%);
   background-clip: border-box;
   -webkit-background-clip: text;
