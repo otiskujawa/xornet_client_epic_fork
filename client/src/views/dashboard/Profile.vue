@@ -57,7 +57,9 @@
           <h1 class="descriptionHeading">Badges</h1>
 
           <div class="badges">
-            <img class="badge" v-for="badge of profile.badges.owned" :key="badge" :src="require(`@/assets/badges/${badge}.svg`)" />
+            <Tooltip v-for="badge of profile.badges.owned" :key="badge" v-bind:text=badge>
+              <img class="badge" :src="require(`@/assets/badges/${badge}.svg`)" />
+            </Tooltip>
           </div>
 
           <div class="line"></div>
@@ -129,6 +131,7 @@ import InfoField from "@/components/dashboard/InfoField";
 import Icon from "@/components/misc/Icon";
 import ShadowButton from "@/components/dashboard/ShadowButton";
 import { millify } from "millify";
+import Tooltip from '../../components/dashboard/Tooltip.vue';
 
 export default {
   name: "Profile",
@@ -137,7 +140,8 @@ export default {
     InfoField,
     Icon,
     Gauge,
-    ShadowButton
+    ShadowButton,
+    Tooltip
   },
   data: () => {
     return {
@@ -437,11 +441,12 @@ export default {
 .profilePage .profiileDetails .heading .username {
 font-family: "Work Sans";
     font-style: normal;
-font-weight: 600;
+  font-weight: 600;
   max-width: 100%;
   font-size: 28px;
   line-height: 68%;
   color: var(--black);
+  overflow: hidden;
   text-overflow: ellipsis;
 }
 .profilePage .profiileDetails .heading .location {
