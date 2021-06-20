@@ -30,7 +30,7 @@
     <SocialCard :add="add" v-if="isAddingSocial && isEditing" />
 
     <div class="content">
-      <div class="profiileDetails" :class="{ editing: isEditing }">
+      <div class="profileDetails" :class="{ editing: isEditing }">
         <div class="heading">
           <!-- make this change to the user's selected badge -->
           <Tooltip v-if="profile.badges?.owned[profile.badges.selected]" :text="profile.badges?.owned[profile.badges.selected]">
@@ -270,7 +270,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .profilePage {
   min-width: 100%;
   min-height: 100%;
@@ -278,22 +278,22 @@ export default {
   position: relative;
   overflow: scroll;
 }
-.profilePage .heading {
+.heading {
   display: flex;
   position: relative;
   align-items: flex-end;
 }
-.profilePage .heading img {
+.heading img {
   user-select: none;
 }
-.profilePage .heading .banner {
+.banner {
   width: 100%;
   height: 300px;
   top: 0;
   object-fit: cover;
   position: absolute;
 }
-.profilePage .heading .header .edit {
+.header .edit {
   cursor: pointer;
   transition: 100ms ease;
   width: 128px;
@@ -303,13 +303,13 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.profilePage .heading .header .edit:hover {
+.header .edit:hover {
   width: 144px;
 }
-.profilePage .heading .header .edit:active {
+.header .edit:active {
   width: 112px;
 }
-.profilePage .heading .pfp {
+.pfp {
   transform: translate(-6px);
   width: 180px;
   box-sizing: content-box;
@@ -325,10 +325,10 @@ export default {
   position: relative;
   object-fit: cover;
 }
-.profilePage .heading .pfp.border {
+.pfp.border {
   border: 6px solid transparent;
 }
-.profilePage .heading .pfp .edit {
+.pfp .edit {
   cursor: pointer;
   transition: 100ms ease;
   width: 64px;
@@ -338,13 +338,13 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.profilePage .heading .pfp .edit:hover {
+.pfp .edit:hover {
   width: 72px;
 }
-.profilePage .heading .pfp .edit:active {
+.pfp .edit:active {
   width: 56px;
 }
-.profilePage .heading .xornetBadge {
+.xornetBadge {
   background: linear-gradient(90deg, #8676ff 0%, #516dff 33.33%, #32b5ff 69.27%, #4adeff 100%);
   transform: translate(-6px);
   border: 6px solid var(--background-color);
@@ -355,22 +355,22 @@ export default {
   position: absolute;
   bottom: 0px;
 }
-.profilePage .heading .xornetBadge img {
+.xornetBadge img {
   height: 8px;
   width: auto;
 }
-.profilePage .content {
+.content {
   display: flex;
   margin-top: 24px;
   gap: 64px;
 }
-.profilePage .stats {
+.stats {
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(4, 224px);
   grid-template-rows: repeat(4, 72px);
 }
-.profilePage .speedtest {
+.speedtest {
   width: 100%;
   padding: 16px 16px 20px 16px;
   border-radius: 8px;
@@ -383,11 +383,11 @@ export default {
   height: fit-content;
   flex-direction: column;
 }
-.profilePage .speedtest:hover {
+.speedtest:hover {
   transform: translateY(-1px);
   box-shadow: rgb(0 0 0 / 10%) 0px 10px 20px;
 }
-.profilePage .speedtest > h1 {
+.speedtest > h1 {
   font-family: "Roboto Mono";
   font-style: normal;
   font-weight: bold;
@@ -396,16 +396,16 @@ export default {
   line-height: 117.9%;
   color: var(--black);
 }
-.profilePage .speedtest > h1 strong {
+.speedtest > h1 strong {
   font-family: "Roboto Mono";
   color: #c8c8c8;
   text-transform: lowercase;
 }
-.profilePage .speedtest .gauges {
+.speedtest .gauges {
   display: flex;
   gap: 16px;
 }
-.profilePage .profiileDetails {
+.profileDetails {
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -414,33 +414,33 @@ export default {
   margin-left: 10vw;
   margin-bottom: 128px;
 }
-.profilePage .profiileDetails section:not(.uuid) {
+.profileDetails section:not(.uuid) {
   display: flex;
   flex-direction: column;
   color: #c8c8c8;
   gap: 8px;
   justify-content: space-between;
 }
-.profilePage .profiileDetails section h1:not(#profileID) {
+.profileDetails section h1:not(#profileID) {
   display: flex;
   align-items: center;
 }
-.profilePage .profiileDetails section.socials {
+.profileDetails section.socials {
   display: grid;
   grid-template-columns: repeat(2, minmax(50px, 1fr));
   gap: 8px;
 }
-.profilePage .profiileDetails .heading {
+.profileDetails .heading {
   display: flex;
   gap: 8px;
   align-items: center;
 }
-.profilePage .profiileDetails .heading .container {
+.profileDetails .heading .container {
   display: flex;
   gap: 8px;
   align-items: flex-end;
 }
-.profilePage .profiileDetails .heading .username {
+.profileDetails .heading .username {
   font-family: "Work Sans";
   font-style: normal;
   font-weight: 600;
@@ -451,34 +451,34 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.profilePage .profiileDetails .heading .location {
+.profileDetails .heading .location {
   height: 20px;
   user-select: none;
 }
-.profilePage .profiileDetails .badges {
+.badges {
   display: flex;
   flex-direction: row;
   gap: 8px;
 }
-.profilePage .profiileDetails .badges .badge {
+.badge {
   width: 36px;
   height: 36px;
   padding: 4px;
   user-select: none;
   transition: 100ms ease;
 }
-.profilePage .profiileDetails .badges .badge.isEditing:hover {
+.badge.isEditing:hover {
   transform: scale(1.35) rotate(20deg);
   cursor: pointer;
 }
-.profilePage .profiileDetails .badges .badge.isEditing:active {
+.badge.isEditing:active {
   transform: scale(0.9) rotate(-360deg);
 }
-.profilePage .profiileDetails .badges .badge.isEditing.selectedBadge {
+.badge.isEditing.selectedBadge {
   background-color: var(--green);
   border-radius: 500px;
 }
-.profilePage .points {
+.points {
   background: linear-gradient(90deg, #8676ff 0%, #516dff 33.33%, #32b5ff 69.27%, #4adeff 100%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -487,14 +487,14 @@ export default {
   font-size: 36px;
 }
 
-.profilePage .descriptionHeading {
+.descriptionHeading {
   color: #c7c7c7;
   font-family: Work Sans;
   font-weight: 600;
   font-size: 14px;
 }
 
-.profilePage .descriptionText {
+.descriptionText {
   font-family: Work Sans;
   font-style: normal;
   font-weight: 600;
@@ -511,10 +511,10 @@ export default {
 
   color: var(--black);
 }
-.profilePage .descriptionSection {
+.descriptionSection {
   position: relative;
 }
-.profilePage .descriptionSection .edit {
+.descriptionSection .edit {
   cursor: pointer;
   transition: 100ms ease;
   width: 24px;
@@ -525,24 +525,24 @@ export default {
   transform: translate(50%, 50%);
   z-index: 999;
 }
-.profilePage .descriptionSection .edit:hover {
+.descriptionSection .edit:hover {
   width: 32px;
 }
-.profilePage .descriptionSection .edit:active {
+.descriptionSection .edit:active {
   width: 16px;
 }
-.profilePage .textArea {
+.textArea {
   border: none;
   resize: none;
   background: none;
 }
-.profilePage .textArea.editing {
+.textArea.editing {
   padding: 8px;
   border-radius: 8px;
   border: 2px var(--border-color) dashed;
   box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
 }
-.profilePage .line {
+.line {
   width: 100%;
   height: 1px;
   margin-top: 8px;
