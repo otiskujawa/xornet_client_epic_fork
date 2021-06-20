@@ -131,7 +131,7 @@ import InfoField from "@/components/dashboard/InfoField";
 import Icon from "@/components/misc/Icon";
 import ShadowButton from "@/components/dashboard/ShadowButton";
 import { millify } from "millify";
-import Tooltip from "@components/dashboard/Tooltip";
+import Tooltip from "@/components/dashboard/Tooltip";
 
 export default {
   name: "Profile",
