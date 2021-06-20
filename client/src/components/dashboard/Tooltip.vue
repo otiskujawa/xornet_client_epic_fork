@@ -31,21 +31,31 @@ export default {
 .tooltip {
   color: #ffffff;
   text-align: center;
-  padding: 5px 0;
-  border-radius: 2px;
+  padding: 8px 4px;
+  border-radius: 4px;
 
   width: 120px;
   bottom: 100%;
   left: 50%;
   margin-left: -60px;
+  margin-bottom: 8px;
 
   opacity: 0;
-  transition: opacity 1s;
+  transition: opacity 100ms ease;
 
   position: absolute;
   z-index: 1;
 
-  background: #a782e8;
+  font-family: Roboto Mono, monospace;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  background: var(--theme-color);
+}
+
+.text {
+  color: white;
+  text-transform: capitalize;
 }
 
 .text::after {
@@ -53,9 +63,10 @@ export default {
   position: absolute;
   top: 100%;
   left: 50%;
+
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: #a782e8 transparent transparent transparent;
+  border-color: var(--theme-color) transparent transparent transparent;
 }
 </style>
