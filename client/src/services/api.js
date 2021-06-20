@@ -294,6 +294,10 @@ class Machine extends API {
   async getMachineSpecs(machineUUID) {
     return (await super.request("get", `stats/machine/${machineUUID}`)).data;
   }
+
+  async getProcesses(machineUUID) {
+    return (await super.request("get", `stats/processes/${machineUUID}`)).data;
+  }
 }
 
 const api = {
