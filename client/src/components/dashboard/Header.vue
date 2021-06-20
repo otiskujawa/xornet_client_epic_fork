@@ -120,13 +120,13 @@ header {
   overflow: visible;
 }
 
-header .left {
+.left {
   display: flex;
   width: 100%;
   align-items: flex-start;
 }
 
-header .button {
+.button {
   padding: 16px;
   background-color: var(--background-color);
   box-sizing: border-box;
@@ -143,7 +143,7 @@ header .button {
   user-select: none;
 }
 
-header .logo {
+.logo {
   user-select: none;
   display: flex;
   justify-content: center;
@@ -156,45 +156,45 @@ header .logo {
   min-width: 48px;
 }
 
-header .logo img {
+.logo img {
   transition: 100ms ease;
 }
-header .logo img:hover {
+.logo img:hover {
   width: 40px;
 }
-header .logo img:active {
+.logo img:active {
   width: 32px;
 }
-header .button.enabled {
+.button.enabled {
   filter: invert(1);
 }
 
-header .button img {
+.button img {
   width: 24px;
   height: 24px;
   filter: invert(var(--filter));
 }
 
-header .buttons {
+.buttons {
   align-items: center;
   display: flex;
   border-radius: 0px 0px 0px 8px;
   overflow: hidden;
 }
 
-header .account {
+.account {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-header .account a {
+.account a {
   width: 32px;
   height: 32px;
   margin: 8px;
 }
 
-header .account img.profileImage {
+.account img.profileImage {
   width: 32px;
   height: 32px;
   user-select: none;
@@ -202,7 +202,7 @@ header .account img.profileImage {
   cursor: pointer;
   border-radius: 8px;
 }
-header .clickable {
+.clickable {
   cursor: pointer;
 }
 </style>

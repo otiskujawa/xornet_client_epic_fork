@@ -119,18 +119,18 @@ export default {
   border-radius: 64px;
 }
 
-.bars .progress {
+.progress {
   transition: 500ms ease;
   height: 6px;
 }
 
-.bars #cpu .progress {
+#cpu .progress {
   background-color: #8676ff;
 }
-.bars #ram .progress {
+#ram .progress {
   background-color: #516dff;
 }
-.bars #trx .progress {
+#trx .progress {
   background-color: #32b5ff;
 }
 </style>

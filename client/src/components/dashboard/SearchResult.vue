@@ -51,14 +51,14 @@ export default {
   box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
 }
 
-.searchResult .userPoints {
+.userPoints {
   display: flex;
   flex-direction: column;
   gap: 12px;
   text-align: right;
 }
 
-.searchResult .userPoints .p {
+.userPoints .p {
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
@@ -71,7 +71,7 @@ export default {
   color: var(--black);
 }
 
-.searchResult .userPoints .points {
+.points {
   background: linear-gradient(90deg, #8676ff 0%, #516dff 33.33%, #32b5ff 69.27%, #4adeff 100%);
   background-clip: border-box;
   -webkit-background-clip: text;
@@ -83,14 +83,14 @@ export default {
   left: 0px;
 }
 
-.searchResult .searchResult .profile {
+.profile {
   display: flex;
   flex-direction: row;
   width: 40%;
   gap: 8px;
 }
 
-.searchResult .username {
+.username {
   display: flex;
   flex-direction: row;
   gap: 8px;
@@ -98,12 +98,12 @@ export default {
   align-items: center;
 }
 
-.searchResult .username img {
+.username img {
   height: 13px;
   border-radius: 2px;
 }
 
-.searchResult .badges {
+.badges {
   display: flex;
   flex-direction: row;
   gap: 8px;
@@ -111,23 +111,23 @@ export default {
   bottom: 4px;
 }
 
-.searchResult .badges .badge {
+.badges .badge {
   height: 16px;
   width: 16px;
 }
-.searchResult .profile {
+.profile {
   display: flex;
   gap: 8px;
 }
 
-.searchResult .profile .profileImg {
+.profile .profileImg {
   width: 48px;
   height: 48px;
   border-radius: 135.5px;
   object-fit: cover;
 }
 
-.searchResult .profile .user {
+.profile .user {
   display: flex;
   flex-direction: column;
   justify-content: space-between;

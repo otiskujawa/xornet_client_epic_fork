@@ -70,7 +70,7 @@ export default {
   padding: 8px;
 }
 
-.popup .content {
+.content {
   background-color: var(--theme-color);
   box-shadow: rgb(0 0 0 / 10%) 0px 10px 20px;
   color: white;
@@ -88,7 +88,7 @@ export default {
   height: 100%;
 }
 
-.popup .content .progressBar {
+.progressBar {
   position: absolute;
   top: 0px;
   width: 100%;
@@ -96,30 +96,30 @@ export default {
   height: 4px;
 }
 
-.popup .content .progressBar::-webkit-progress-bar {
+.progressBar::-webkit-progress-bar {
   background-color: transparent;
 }
 
-.popup .content .progressBar::-webkit-progress-value {
+.progressBar::-webkit-progress-value {
   background-color: var(--bright-theme-color);
 }
 
-.popup .content .shit {
+.shit {
   width: 100%;
   align-items: center;
   display: flex;
   justify-content: space-between;
 }
 
-.popup .content .shit p {
+.shit p {
   font-size: 13px;
   color: white;
 }
-.popup .content .shit p strong {
+.shit p strong {
   color: white;
 }
 
-.popup .content .xButton {
+.xButton {
   cursor: pointer;
   filter: invert(1);
   width: 24px;

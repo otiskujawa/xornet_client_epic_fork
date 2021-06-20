@@ -87,20 +87,20 @@ export default {
   max-width: 90%;
 }
 
-.main .textFields {
+.textFields {
   display: flex;
   flex-direction: column;
   gap: 32px;
   margin-top: 48px;
 }
 
-.main .textFields section {
+section {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 
-.main .textFields section h1 {
+section h1 {
   font-size: 48px;
   width: fit-content;
   line-height: 54px;
@@ -110,7 +110,7 @@ export default {
   color: var(--white);
 }
 
-.main .textFields section p {
+section p {
   font-size: 14px;
   line-height: 20px;
   z-index: 2;
@@ -121,7 +121,7 @@ export default {
   letter-spacing: -4%;
 }
 
-.main .coolShit {
+.coolShit {
   gap: 16px;
   display: flex;
   margin-top: 64px;
@@ -130,28 +130,28 @@ export default {
   color: white;
 }
 
-.main .coolShit h1 {
+.coolShit h1 {
   z-index: 2;
 }
 
-.main .coolShit .textField {
+.textField {
   transform: translateY(160px);
   z-index: 2;
   position: relative;
 }
 
-.main .coolShit .textField h1 {
+.textField h1 {
   color: var(--white);
   font-size: 48px;
   text-align: left;
 }
 
-.main .coolShit .textField p {
+.textField p {
   color: rgba(141, 153, 174, 1);
   text-align: left;
 }
 
-.main .coolShit .backgroundRectangle {
+.backgroundRectangle {
   width: calc(120vw + 200px);
   height: 328px;
   position: absolute;
@@ -164,10 +164,10 @@ export default {
 }
 
 @media only screen and (max-width: 768px) {
-  .main .textFields section h1 {
+  section h1 {
     font-size: 32px;
   }
-  .main .coolShit .textField h1 {
+  .textField h1 {
     font-size: 32px;
   }
 }

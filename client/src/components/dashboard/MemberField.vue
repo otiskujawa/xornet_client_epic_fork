@@ -55,20 +55,20 @@ export default {
   transition: 100ms ease;
 }
 
-.membersInfo img {
+img {
   width: 24px;
   height: 24px;
   object-fit: cover;
   border-radius: 50px;
 }
 
-.membersInfo h1 {
+h1 {
   font-size: 12px;
   font-weight: 600;
   white-space: nowrap;
 }
 
-.membersInfo .title {
+.title {
   font-family: "Roboto Mono";
   font-style: normal;
   font-weight: bold;
@@ -78,7 +78,7 @@ export default {
   color: var(--black);
 }
 
-.membersInfo .member {
+.member {
   font-family: Roboto Mono;
   font-style: normal;
   font-weight: bold;
@@ -91,7 +91,7 @@ export default {
   color: var(--black);
 }
 
-.membersInfo .member .user {
+.user {
   display: flex;
   gap: 8px;
   align-items: center;

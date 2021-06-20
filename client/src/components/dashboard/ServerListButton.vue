@@ -171,15 +171,15 @@ export default {
   text-align: center;
   gap: 2px;
 }
-.button .info {
+.info {
   min-width: 218px;
   width: 200px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
 }
-.button .info .hostname,
-.button .info .hostname strong {
+.hostname,
+.hostname strong {
   font-family: Work Sans;
   font-style: normal;
   font-weight: 500;
@@ -189,92 +189,92 @@ export default {
   color: var(--black);
   text-align: left;
 }
-.button .info * {
+.info * {
   width: 100%;
   white-space: nowrap;
 }
-.button .info .status,
+.status,
 .button *,
-.button .platform h1 {
+.platform h1 {
   font-weight: 500;
   font-size: 11px;
   font-family: "Work Sans", sans-serif;
   color: var(--slyColor);
   text-align: left;
 }
-.button .field {
+.field {
   text-align: center;
   white-space: nowrap;
   display: flex;
   align-items: center;
   min-width: 72px;
 }
-.button .field strong,
-.button .field.invalid {
+.field strong,
+.field.invalid {
   opacity: 0.7;
 }
-.button .field.cpuUsage {
+.field.cpuUsage {
   margin-left: 32px;
   min-width: 48px;
 }
-.button .field.region {
+.field.region {
   min-width: 48px;
 }
-.button .field.region img {
+.field.region img {
   width: 22px;
   height: auto;
 }
-.button .field.uptime {
+.field.uptime {
   min-width: 100px;
 }
-.button .field.uptime strong {
+.field.uptime strong {
   margin-right: 2px;
 }
-.button .field.owner {
+.field.owner {
   min-width: 124px;
   gap: 8px;
 }
-.button .field.owner img {
+.field.owner img {
   width: 18px;
   height: 18px;
   object-fit: cover;
   border-radius: 100%;
 }
-.button .field.diskUsage {
+.field.diskUsage {
   display: flex;
   flex-direction: column;
   min-width: 138px;
   align-items: flex-start;
 }
-.button .field.networkUsage {
+.field.networkUsage {
   min-width: 86px;
 }
-.button .field.region {
+.field.region {
   min-width: 66px;
 }
-.button .field.datacenter {
+.field.datacenter {
   display: flex;
   gap: 8px;
 }
-.button .field.datacenter img {
+.field.datacenter img {
   width: 18px;
   height: 18px;
   filter: invert(var(--filter));
 }
-.button .info .status {
+.status {
   background: linear-gradient(90deg, #8676ff 0%, #516dff 33.33%, #32b5ff 69.27%, #4adeff 100%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
   white-space: nowrap;
 }
-.button .platform {
+.platform {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
 }
-.button .platform img {
+.platform img {
   width: auto;
   height: 13px;
   filter: invert(var(--filter));

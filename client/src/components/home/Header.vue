@@ -62,12 +62,12 @@ header.view-home {
 header.view-login {
   padding: 8px 4vw;
 }
-header .buttons {
+.buttons {
   display: flex;
   height: 100%;
   gap: 8px;
 }
-header .buttons .button {
+.button {
   border: none;
   background-color: var(--theme-color);
   padding: 4px 12px;
@@ -78,25 +78,25 @@ header .buttons .button {
   gap: 8px;
   display: flex;
 }
-header .buttons .button:hover {
+.button:hover {
   box-shadow: 0px 4px 12px var(--theme-color);
   transform: translateY(-1px);
 }
-header .buttons .button:active {
+.button:active {
   transform: translateY(1px);
 }
 
-header .logoWrapper {
+.logoWrapper {
   height: 20px;
 }
 
-header .buttons .button img {
+.button img {
   filter: invert(1);
   width: 24px;
   height: 24px;
 }
 
-header .buttons .button p {
+.button p {
   color: white;
   font-family: "Montserrat", sans-serif;
   font-style: normal;
@@ -110,7 +110,7 @@ header .buttons .button p {
   header.view-home {
     padding: 8px;
   }
-  header .buttons .button p {
+  .button p {
     display: none;
   }
 }

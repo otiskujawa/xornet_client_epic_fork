@@ -56,12 +56,12 @@ export default {
   gap: 16px;
 }
 
-.loadingScreen .logo {
+.logo {
   width: 256px;
   height: auto;
 }
 
-.loadingScreen progress {
+progress {
   -webkit-appearance: none;
   appearance: none;
 
@@ -71,11 +71,11 @@ export default {
   overflow: hidden;
 }
 
-.loadingScreen progress::-webkit-progress-bar {
+progress::-webkit-progress-bar {
   background-color: var(--white);
 }
 
-.loadingScreen progress::-webkit-progress-value {
+progress::-webkit-progress-value {
   background: linear-gradient(90deg, #8676ff 0%, #516dff 33.33%, #32b5ff 69.27%, #4adeff 100%);
   transition: 100ms ease;
   border-radius: 4px;

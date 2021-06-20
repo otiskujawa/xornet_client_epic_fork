@@ -75,13 +75,13 @@ export default {
   filter: invert(var(--filter));
 }
 
-.datacenter .logo {
+.logo {
   max-width: 80%;
   max-height: 60%;
 }
 
-.datacenter .heading,
-.datacenter .footer {
+.heading,
+.footer {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -89,13 +89,13 @@ export default {
   align-items: center;
 }
 
-.datacenter .heading img {
+.heading img {
   filter: invert(var(--filter));
   width: 24px;
   height: 24px;
 }
 
-.datacenter .heading h1 {
+.heading h1 {
   color: var(--black);
   font-size: 12px;
   text-transform: uppercase;

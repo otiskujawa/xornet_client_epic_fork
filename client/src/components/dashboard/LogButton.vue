@@ -78,31 +78,31 @@ export default {
   background-color: var(--white);
 }
 
-.log img {
+img {
   width: 20px;
   height: 20px;
   filter: invert(var(--filter));
 }
 
-.log .heading {
+.heading {
   gap: 16px;
   max-width: 1000px;
   display: flex;
   align-items: center;
 }
 
-.log .heading * {
+.heading * {
   color: var(--black);
 }
 
-.log .summary {
+.summary {
   max-width: 100%;
   width: fit-content;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.log .details {
+.details {
   height: 100%;
   max-width: 100%;
   white-space: normal;
@@ -113,14 +113,14 @@ export default {
   grid-template-columns: repeat(2, 1fr);
 }
 
-.log .details .field {
+.field {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.log .details .field code {
+code {
   white-space: pre;
   display: block;
   padding: 8px;

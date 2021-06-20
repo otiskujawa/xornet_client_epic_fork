@@ -32,7 +32,7 @@ export default {
   height: 100px;
 }
 
-.coloredGauge .icon {
+.icon {
   user-select: none;
   top: 50%;
   left: 50%;
@@ -40,14 +40,14 @@ export default {
   position: absolute;
 }
 
-.coloredGauge .track {
+.track {
   display: flex;
   justify-content: center;
   transform: rotate(90deg);
   align-items: center;
 }
 
-.coloredGauge .track circle {
+circle {
   height: 100%;
   width: 100%;
   fill: none;
@@ -59,7 +59,7 @@ export default {
   transition: 500ms ease;
 }
 
-.coloredGauge .track circle.progress {
+circle.progress {
   stroke-dasharray: 250;
   stroke-width: 6px;
 }

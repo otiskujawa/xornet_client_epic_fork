@@ -50,13 +50,13 @@ export default {
   padding: 16px;
 }
 
-.info img {
+img {
   width: auto;
   height: 40px;
   filter: invert(var(--filter));
 }
 
-.info .text {
+.text {
   display: flex;
   height: 100%;
   flex-direction: column;
@@ -64,11 +64,11 @@ export default {
   padding: 4px 0px;
 }
 
-.info h1 {
+h1 {
   white-space: nowrap;
 }
 
-.info .title {
+.title {
   font-family: "Roboto Mono";
   font-style: normal;
   font-weight: bold;
@@ -77,7 +77,7 @@ export default {
   line-height: 117.9%;
 }
 
-.info .value {
+.value {
   font-family: Roboto Mono;
   font-style: normal;
   font-weight: bold;
@@ -91,7 +91,7 @@ export default {
   color: var(--black);
 }
 
-.info .coloredGauge {
+.coloredGauge {
   width: 48px;
   height: 48px;
 }

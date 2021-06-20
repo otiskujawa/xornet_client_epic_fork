@@ -166,24 +166,24 @@ export default {
   width: 320px;
   min-width: 320px;
 }
-.serverList .heading {
+.heading {
   width: 100%;
   padding: 8px 0px;
   display: flex;
   justify-content: space-between;
 }
-.serverList section {
+section {
   height: 32px;
   width: 100%;
   display: flex;
   padding: 8px;
   gap: 8px;
 }
-.serverList section img {
+section img {
   height: 16px;
   filter: invert(var(--filter));
 }
-.serverList section h1 {
+section h1 {
   text-transform: uppercase;
   font-family: Work Sans;
   font-style: normal;
@@ -195,13 +195,13 @@ export default {
   text-align: center;
   color: var(--slyColor);
 }
-.serverList .list {
+.list {
   flex-direction: column;
   margin-bottom: 128px;
   display: flex;
   gap: 2px;
 }
-.serverList .columns {
+.columns {
   padding: 8px;
   background-color: var(--background-color);
   border-radius: 4px;
@@ -214,8 +214,8 @@ export default {
   overflow: hidden;
   user-select: none;
 }
-.serverList .columns .field,
-.serverList .columns .field strong {
+.field,
+.field strong {
   font-weight: 400;
   font-size: 11px;
   font-family: Work Sans, sans-serif;
@@ -223,7 +223,7 @@ export default {
   min-width: fit-content;
   text-align: left;
 }
-.serverList .columns .field {
+.field {
   text-align: center;
   display: flex;
   align-items: center;
@@ -232,43 +232,43 @@ export default {
   font-weight: 600;
   text-transform: uppercase;
 }
-.serverList .columns .field:hover {
+.field:hover {
   color: var(--theme-color);
 }
-.serverList .columns .field img {
+.field img {
   width: 8px;
   filter: invert(var(--filter));
   margin-left: 8px;
 }
-.serverList .columns .field.cpuUsage {
+.field.cpuUsage {
   margin-left: 32px;
   min-width: 48px;
 }
-.serverList .columns .field.hostname {
+.field.hostname {
   margin-left: 24px;
   min-width: 100px;
 }
-.serverList .columns .field.uuid {
+.field.uuid {
   margin-left: 24px;
   min-width: 216px;
   justify-content: flex-end;
 }
-.serverList .columns .field.region {
+.field.region {
   min-width: 48px;
 }
-.serverList .columns .field.disksUsage {
+.field.disksUsage {
   min-width: 138px;
 }
-.serverList .columns .field.networkUsage {
+.field.networkUsage {
   min-width: 86px;
 }
-.serverList .columns .field.region {
+.field.region {
   min-width: 66px;
 }
-.serverList .columns .field.uptime {
+.field.uptime {
   min-width: 100px;
 }
-.serverList .columns .field.owner {
+.field.owner {
   min-width: 124px;
 }
 </style>

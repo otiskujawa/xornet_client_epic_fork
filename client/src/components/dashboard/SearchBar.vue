@@ -104,11 +104,11 @@ export default {
   width: 400px;
 }
 
-.search .inputField.active {
+.inputField.active {
   width: 500px !important;
 }
 
-.search h1.noResult {
+h1.noResult {
   font-family: Work Sans;
   font-style: normal;
   font-weight: 600;
@@ -119,7 +119,7 @@ export default {
   color: var(--black);
 }
 
-.search .bar {
+.bar {
   display: flex;
   width: 100%;
   gap: 8px;
@@ -128,7 +128,7 @@ export default {
   border-radius: 3px;
 }
 
-.search .bar .inputField {
+.inputField {
   outline: none;
   width: 100%;
   transition: 100ms ease;
@@ -143,7 +143,7 @@ export default {
   padding: 6px 8px;
 }
 
-.search .bar img {
+img {
   width: 16px;
   height: 16px;
   filter: invert(var(--filter));
@@ -153,11 +153,11 @@ export default {
   transform: translateY(-50%);
 }
 
-.search .bar img.activeImg {
+img.activeImg {
   cursor: pointer;
 }
 
-.search .bar .inputField::placeholder {
+.inputField::placeholder {
   color: var(--slyColor);
 }
 

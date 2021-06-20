@@ -41,7 +41,7 @@ nav {
   position: relative;
 }
 
-nav .top {
+.top {
   display: flex;
   width: 100%;
   justify-content: space-between;

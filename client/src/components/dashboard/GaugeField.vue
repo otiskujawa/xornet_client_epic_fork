@@ -37,7 +37,7 @@ export default {
   transition: 100ms ease;
 }
 
-.machine legend {
+legend {
   left: 24px;
   color: var(--black);
   text-transform: lowercase;

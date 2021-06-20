@@ -76,7 +76,7 @@ export default {
   transform: translate(-14px, -51px) rotate(135deg);
 }
 
-.gaugeTrack circle {
+circle {
   height: 100%;
   width: 100%;
   fill: none;
@@ -90,7 +90,7 @@ export default {
   transform: translate(6px, 3px);
 }
 
-.gaugeTrack circle.progress {
+circle.progress {
   stroke-dasharray: 250;
   stroke-width: 10px;
 }

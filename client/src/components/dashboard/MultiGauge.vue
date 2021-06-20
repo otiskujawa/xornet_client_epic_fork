@@ -73,7 +73,7 @@ export default {
   height: 200px;
 }
 
-.multiGauge .logo {
+.logo {
   user-select: none;
   filter: invert(var(--filter));
   width: 35%;
@@ -84,7 +84,7 @@ export default {
   position: absolute;
 }
 
-.multiGauge .track {
+.track {
   position: absolute;
   overflow: visible;
   top: 0;
@@ -95,7 +95,7 @@ export default {
   align-items: center;
 }
 
-.multiGauge .track circle {
+circle {
   height: 100%;
   width: 100%;
   fill: none;
@@ -104,12 +104,12 @@ export default {
   transition: 500ms ease;
 }
 
-.multiGauge .track circle.road {
+circle.road {
   stroke: var(--white);
   stroke-width: 3px;
 }
 
-.multiGauge .track circle.progress {
+circle.progress {
   stroke-width: 4px;
 }
 </style>
