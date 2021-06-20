@@ -33,8 +33,9 @@
       <div class="profiileDetails" :class="{ editing: isEditing }">
         <div class="heading">
           <!-- make this change to the user's selected badge -->
-          <img v-if="profile.badges?.owned[profile.badges.selected]" :src="require(`@/assets/badges/${profile.badges?.owned[profile.badges.selected]}.svg`)" />
-
+          <Tooltip v-if="profile.badges?.owned[profile.badges.selected]" :text="profile.badges?.owned[profile.badges.selected]">
+              <img :src="require(`@/assets/badges/${profile.badges?.owned[profile.badges.selected]}.svg`)" />
+          </Tooltip>
           <div class="container">
             <h1 class="username">{{ profile.username }}</h1>
             <img class="location" :src="profile.geolocation?.countryCode ? require(`@/assets/flags/${profile.geolocation.countryCode}.png`) : require('@/assets/flags/__.png')" alt="Country Flag" />

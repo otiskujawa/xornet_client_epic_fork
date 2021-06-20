@@ -44,7 +44,7 @@ export default {
   transition: opacity 100ms ease;
 
   position: absolute;
-  z-index: 1;
+  z-index: 400;
 
   font-family: Roboto Mono, monospace;
   font-style: normal;
