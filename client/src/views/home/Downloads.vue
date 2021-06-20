@@ -1,22 +1,22 @@
 <template>
-  <div class="view downloads">
+  <div class="view downloads relative w-full h-full">
     <Header />
-    <div class="downloadContent" v-if="releases">
-      <div class="reporterTitle flex-col md:flex-row">
+    <div class="downloadContent flex flex-col overflow-scroll justify-start relative w-full h-100vh gap-8 py-24 px-10vw" v-if="releases">
+      <div class="reporterTitle flex items-end justify-start gap-2 flex-col md:flex-row">
         <Logo class="max-w-full" />
         <div class="flex bottom items-start md:items-end">
-          <h1 class="reporterLogo">Reporter</h1>
-          <h1 class="version">{{ releases.tag_name }}</h1>
+          <h1 class="reporterLogo text-4xl uppercase font-normal">Reporter</h1>
+          <h1 class="version text-xs">{{ releases.tag_name }}</h1>
         </div>
       </div>
 
-      <h1>The Xornet Reporter easily lets you connect your computer to the platform</h1>
+      <h1 class="text-2xl font-bold">The Xornet Reporter easily lets you connect your computer to the platform</h1>
 
       <p>The reporter uses the NodeJS runtime enviroment and is compiled to run natively on most common operating systems</p>
 
-      <img class="previewImage" src="https://cdn.discordapp.com/attachments/755597803102928966/855248964206985257/unknown.png" alt="" />
+      <img class="previewImage hidden md:flex absolute h-465px w-auto right-10vw z-0" src="https://cdn.discordapp.com/attachments/755597803102928966/855248964206985257/unknown.png" alt="" />
 
-      <div class="lists gap-4 md:gap-32">
+      <div class="lists flex gap-4 md:gap-32">
         <ul>
           <p>With it you can remotely:</p>
           <li>View CPU usage</li>
@@ -36,14 +36,14 @@
           <li>Manjaro</li>
           <li>Arch</li>
           <li>HiveOS</li>
-          <li>Windows 7/8/10/11</li>
+          <li>Windows 8/10/11</li>
           <li>Windows Server 2019</li>
           <li>MacOS</li>
         </ul>
       </div>
 
       <h1>Binaries</h1>
-      <div class="downloadArea grid grid-cols-2 gap-4 md:grid-cols-3">
+      <div class="downloadArea w-full grid grid-cols-2 gap-4 md:grid-cols-3">
         <div class="platform">
           <img :src="require('@/assets/logos/windows.svg')" alt="Windows Binaries" class="w-64 md:w-32" />
           <h1>Windows</h1>
@@ -66,8 +66,8 @@
           </a>
         </div>
       </div>
-      <div class="installationSteps flex-col md:flex-row">
-        <div class="step flex flex-col gap-4">
+      <div class="installationSteps flex gap-4 flex-col md:flex-row">
+        <div class="step w-full flex flex-col gap-4">
           <h1>Linux Service Installation Steps</h1>
           <div class="cockBlock p-4 max-w-full rounded-md">
             <h2><strong># Linux install steps</strong></h2>
@@ -77,7 +77,7 @@
             <h2><strong>$</strong> sudo ./install.sh</h2>
           </div>
         </div>
-        <div class="step flex flex-col gap-4">
+        <div class="step w-full flex flex-col gap-4">
           <h1>MacOS Binary Execution Steps</h1>
           <div class="cockBlock p-4 max-w-full rounded-md">
             <h2><strong># MacOS execution steps</strong></h2>
@@ -125,100 +125,32 @@ export default {
 };
 </script>
 
-<style>
-.downloads {
-  background-color: var(--dark);
-  height: 100%;
-  width: 100%;
-  position: relative;
-}
+<style lang='postcss'>
 
-.downloads * {
-  color: white;
-  font-weight: normal;
-  font-family: "Tomorrow", sans-serif;
-  font-size: 24px;
-  line-height: 175%;
-  text-align: left;
-}
-
-.downloadContent {
-  padding: 96px 10% 10%;
-  gap: 32px;
-  position: relative;
-  height: 100vh;
-  width: 100%;
-  overflow: scroll;
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
+.lists li {
+  @apply list-disc list-inside text-left text-sm leading-relaxed;
 }
 
 .downloadContent *:not(.previewImage) {
-  z-index: 20;
+  @apply z-20;
+}
+
+.downloads {
+  background-color: var(--dark);
+}
+
+.downloads * {
+  @apply leading-normal text-2xl text-left font-normal;
+  color: white;
+  font-family: "Tomorrow", sans-serif;
 }
 
 .downloadContent p {
-  font-size: 18px;
-  max-width: 920px;
-  color: white;
-}
-
-.previewImage {
-  position: absolute;
-  height: 465px;
-  width: auto;
-  right: 10vw;
-  z-index: 0;
-}
-
-@media only screen and (max-width: 800px) {
-  .previewImage {
-    display: none;
-  }
-}
-
-.reporterTitle {
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-  gap: 8px;
+  @apply text-lg max-w-920px;
 }
 
 .reporterTitle * {
   line-height: 82%;
-}
-
-.reporterLogo {
-  font-size: 48px;
-  text-transform: uppercase;
-  font-weight: 400;
-}
-
-.version {
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 12px;
-}
-
-.lists {
-  display: flex;
-}
-
-.lists li {
-  font-size: 14px;
-  line-height: 25px;
-  list-style: inside;
-  text-align: left;
-}
-
-.installationSteps {
-  display: flex;
-  gap: 16px;
-}
-
-.installationSteps .step {
-  width: 100%;
 }
 
 .cockBlock {
@@ -236,10 +168,6 @@ export default {
 }
 .cockBlock * strong {
   color: #222244;
-}
-
-.downloadArea {
-  width: 100%;
 }
 
 .downloadArea > .platform {
