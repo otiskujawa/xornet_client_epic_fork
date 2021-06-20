@@ -183,19 +183,19 @@ export default {
   grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
 }
 
-.datacenters .content {
+.content {
   display: flex;
   gap: 8px;
   flex-direction: column;
   margin-bottom: 128px;
 }
-.datacenters .content .bullshit {
+.bullshit {
   display: flex;
   gap: 8px;
   padding: 8px;
   width: 100%;
 }
-.datacenters .content .bullshit .coolShit {
+.coolShit {
   width: 268px;
   min-width: 268px;
   display: flex;
@@ -203,24 +203,24 @@ export default {
   gap: 8px;
 }
 
-.datacenters .content .bullshit .coolShit .left {
+.left {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.datacenters .content .bullshit .coolShit .infoFields {
+.infoFields {
   display: grid;
   justify-items: center;
   grid-template-columns: 100%;
   gap: 8px;
 }
 
-.datacenters .content .bullshit .coolShit .infoFields .info {
+.infoFields .info {
   width: 100%;
 }
 
-.datacenters .content .bullshit .coolShit .members {
+.members {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -229,12 +229,12 @@ export default {
   border: 1px solid var(--border-color);
   border-radius: 8px;
 }
-.datacenters .content .bullshit .coolShit .buttons {
+.buttons {
   gap: 8px;
   display: flex;
   justify-content: space-between;
 }
-.datacenters .heading {
+.heading {
   display: flex;
   position: relative;
   align-items: center;
@@ -246,11 +246,11 @@ export default {
   padding: 8px;
   min-height: 128px;
 }
-.datacenters .heading img {
+.heading img {
   user-select: none;
   max-height: 80%;
 }
-.datacenters .heading .banner {
+.banner {
   width: 100%;
   min-height: 128px;
   height: 128px;
@@ -261,67 +261,67 @@ export default {
   object-fit: cover;
   position: absolute;
 }
-.datacenters .heading .logo {
+.logo {
   z-index: 2;
   filter: invert(var(--filter));
 }
-.datacenters .heading .logo.isEditing {
+.logo.isEditing {
   opacity: 0.5;
 }
-.datacenters .heading .datacenterEdit {
+.datacenterEdit {
   cursor: pointer;
   transition: 100ms ease;
   position: absolute;
   transform: translate(50%, -50%);
   filter: invert(1);
 }
-.datacenters .heading .datacenterEdit.bannerPen {
+.datacenterEdit.bannerPen {
   width: 32px;
   top: 24px;
   right: 24px;
 }
-.datacenters .heading .datacenterEdit.bannerPen:hover {
+.datacenterEdit.bannerPen:hover {
   width: 40px;
 }
-.datacenters .heading .datacenterEdit.bannerPen:active {
+.datacenterEdit.bannerPen:active {
   width: 28px;
 }
-.datacenters .heading .datacenterEdit.logoPen {
+.datacenterEdit.logoPen {
   width: 64px;
   z-index: 5000;
   top: 50%;
   right: 50%;
 }
-.datacenters .heading .datacenterEdit.logoPen:hover {
+.datacenterEdit.logoPen:hover {
   width: 72px;
 }
-.datacenters .heading .datacenterEdit.logoPen:active {
+.datacenterEdit.logoPen:active {
   width: 56px;
 }
 
 @media only screen and (max-width: 600px) {
-  .datacenters .content .bullshit {
+  .bullshit {
     padding: 16px;
   }
 
-  .datacenters .content .bullshit .coolShit {
+  .coolShit {
     width: 100vw;
     flex-direction: row;
     justify-content: space-between;
   }
 
-  .datacenters .content .bullshit .coolShit .buttons {
+  .buttons {
     display: flex;
     flex-direction: column;
   }
 
-  .datacenters .content .bullshit .coolShit .heading {
+  .heading {
     display: none;
   }
-  .datacenters .content .bullshit .serverList {
+  .serverList {
     display: none;
   }
-  .datacenters .content .bullshit .membersInfo {
+  .membersInfo {
     display: none;
   }
 }
