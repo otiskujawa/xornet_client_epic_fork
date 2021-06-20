@@ -1,9 +1,9 @@
 <template>
   <router-link :to="{ name: 'specs', params: { machine: machine.uuid } }" class="button" :class="{ thin: thin, rogue: machine.rogue, disconnected: Date.now() > machine.timestamp + 15000 }">
     <!-- Icons Column -->
-    <Icon :icon="type" v-if="!machine.rogue && Date.now() < machine.timestamp + 15000" class="machineType"/>
-    <Icon icon="warning" v-if="machine.rogue && Date.now() < machine.timestamp + 15000" class="machineType"/>
-    <Icon icon="disconnected" v-if="Date.now() > machine.timestamp + 15000" class="machineType"/>
+    <Icon :icon="type" v-if="!machine.rogue && Date.now() < machine.timestamp + 15000" class="machineType" />
+    <Icon icon="warning" v-if="machine.rogue && Date.now() < machine.timestamp + 15000" class="machineType" />
+    <Icon icon="disconnected" v-if="Date.now() > machine.timestamp + 15000" class="machineType" />
 
     <!-- UUID Column -->
     <div class="info">

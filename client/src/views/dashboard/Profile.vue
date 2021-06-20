@@ -34,7 +34,7 @@
         <div class="heading">
           <!-- make this change to the user's selected badge -->
           <Tooltip v-if="profile.badges?.owned[profile.badges.selected]" :text="profile.badges?.owned[profile.badges.selected]">
-              <img :src="require(`@/assets/badges/${profile.badges?.owned[profile.badges.selected]}.svg`)" />
+            <img :src="require(`@/assets/badges/${profile.badges?.owned[profile.badges.selected]}.svg`)" />
           </Tooltip>
           <div class="container">
             <h1 class="username">{{ profile.username }}</h1>
@@ -58,7 +58,7 @@
           <h1 class="descriptionHeading">Badges</h1>
 
           <div class="badges">
-            <Tooltip v-for="badge of profile.badges.owned" :key="badge" v-bind:text=badge>
+            <Tooltip v-for="badge of profile.badges.owned" :key="badge" :text="badge">
               <img class="badge" :src="require(`@/assets/badges/${badge}.svg`)" />
             </Tooltip>
           </div>
@@ -206,18 +206,11 @@ export default {
 
       if (url.endsWith("/")) url = url.substring(0, url.length - 1);
 
-      let sites = ([
-        "youtube", "twitch", "discord",
-        "reddit", "github", "facebook",
-        "steam", "instagram", "tiktok",
-        "tumblr", "vk"
-      ])
-      
-      sites.forEach((element) => {
+      let sites = ["youtube", "twitch", "discord", "reddit", "github", "facebook", "steam", "instagram", "tiktok", "tumblr", "vk"];
+
+      sites.forEach(element => {
         if (url.includes(element)) name = element;
-      })
-
-
+      });
 
       url = {
         name,
@@ -440,8 +433,8 @@ export default {
   align-items: flex-end;
 }
 .profilePage .profiileDetails .heading .username {
-font-family: "Work Sans";
-    font-style: normal;
+  font-family: "Work Sans";
+  font-style: normal;
   font-weight: 600;
   max-width: 100%;
   font-size: 28px;

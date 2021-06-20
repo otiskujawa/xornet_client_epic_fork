@@ -42,7 +42,7 @@
         </ul>
       </div>
 
-      <h1>Binaries</h1>
+      <h1 class="section">Binaries</h1>
       <div class="downloadArea w-full grid grid-cols-2 gap-4 md:grid-cols-3">
         <div class="platform">
           <img :src="require('@/assets/logos/windows.svg')" alt="Windows Binaries" class="w-64 md:w-32" />
@@ -68,7 +68,7 @@
       </div>
       <div class="installationSteps flex gap-4 flex-col md:flex-row">
         <div class="step w-full flex flex-col gap-4">
-          <h1>Linux Service Installation Steps</h1>
+          <h1 class="section">Linux Service Installation Steps</h1>
           <div class="cockBlock p-4 max-w-full rounded-md">
             <h2><strong># Linux install steps</strong></h2>
             <h2><strong># Download & Install script</strong></h2>
@@ -78,7 +78,7 @@
           </div>
         </div>
         <div class="step w-full flex flex-col gap-4">
-          <h1>MacOS Binary Execution Steps</h1>
+          <h1 class="section">MacOS Binary Execution Steps</h1>
           <div class="cockBlock p-4 max-w-full rounded-md">
             <h2><strong># MacOS execution steps</strong></h2>
             <h2><strong># Download & Run</strong></h2>
@@ -125,52 +125,48 @@ export default {
 };
 </script>
 
-<style lang='postcss'>
-
+<style lang="postcss">
 .lists li {
   @apply list-disc list-inside text-left text-sm leading-relaxed;
 }
-
 .downloadContent *:not(.previewImage) {
   @apply z-20;
 }
-
 .downloads {
   background-color: var(--dark);
+}
+.downloadContent p {
+  @apply text-lg max-w-920px;
+}
+.reporterTitle * {
+  line-height: 82%;
+}
+.cockBlock {
+  background-color: #111122;
+}
+.cockBlock * strong {
+  color: #474769;
+}
+.downloadArea > .platform {
+  @apply flex flex-col items-center content-center gap-8;
+}
+.section {
+  @apply text-2xl;
 }
 
 .downloads * {
   color: white;
   font-family: "Tomorrow", sans-serif;
-  @apply leading-normal text-2xl text-left font-normal;
-}
-
-.downloadContent p {
-  @apply text-lg max-w-920px;
-}
-
-.reporterTitle * {
-  line-height: 82%;
-}
-
-.cockBlock {
-  background-color: #111122;
+  @apply leading-normal text-left font-normal;
 }
 
 .cockBlock * {
   font-family: Roboto Mono;
-  @apply font-bold text-sm font-semibold text-left
-}
-.cockBlock * strong {
-  color: #474769;
-}
-
-.downloadArea > .platform {
-  @apply flex flex-col items-center content-center gap-8;
+  @apply font-bold text-sm font-semibold text-left;
 }
 
 .downloadArea > .platform > h1 {
   font-family: Work Sans;
-  @apply text-center font-medium text-3xl
+  @apply text-center font-medium text-3xl;
 }
 </style>
