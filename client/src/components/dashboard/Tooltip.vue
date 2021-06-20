@@ -69,4 +69,5 @@ export default {
   border-style: solid;
   border-color: var(--theme-color) transparent transparent transparent;
 }
+
 </style>

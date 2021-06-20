@@ -2,7 +2,7 @@
   <div v-if="color" class="coloredIconContainer icon" :style="{ 'background-color': `${color}1f` }">
     <div class="coloredIcon" :style="{ 'mask-image': `url(https://xornet.cloud${image})`, 'background-color': color }"></div>
   </div>
-  <img v-else name="icon" class="blackIcon" :src="image" :alt="icon" />
+  <img v-else name="icon" :class="{app}" class="blackIcon" :src="image" :alt="icon" />
 </template>
 
 <script>
@@ -54,7 +54,7 @@ export default {
   height: inherit;
 }
 
-.blackIcon {
+.blackIcon:not(.app) {
   max-width: initial;
   filter: invert(var(--filter));
 }

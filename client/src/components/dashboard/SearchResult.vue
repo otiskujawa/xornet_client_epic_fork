@@ -122,6 +122,7 @@ export default {
 
 .profile .profileImg {
   width: 48px;
+  min-width: 48px;
   height: 48px;
   border-radius: 135.5px;
   object-fit: cover;
