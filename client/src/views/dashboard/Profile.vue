@@ -206,18 +206,18 @@ export default {
 
       if (url.endsWith("/")) url = url.substring(0, url.length - 1);
 
-      if (url.includes("youtube")) name = "youtube";
-      if (url.includes("twitch")) name = "twitch";
-      if (url.includes("twitter")) name = "twitter";
-      if (url.includes("discord")) name = "discord";
-      if (url.includes("reddit")) name = "reddit";
-      if (url.includes("github")) name = "github";
-      if (url.includes("facebook")) name = "facebook";
-      if (url.includes("steam")) name = "steam";
-      if (url.includes("instagram")) name = "instagram";
-      if (url.includes("tiktok")) name = "tiktok";
-      if (url.includes("tumblr")) name = "tumblr";
-      if (url.includes("vk")) name = "vk";
+      let sites = ([
+        "youtube", "twitch", "discord",
+        "reddit", "github", "facebook",
+        "steam", "instagram", "tiktok",
+        "tumblr", "vk"
+      ])
+      
+      sites.forEach((element) => {
+        if (url.includes(element)) name = element;
+      })
+
+
 
       url = {
         name,
