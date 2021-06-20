@@ -6,14 +6,14 @@
       <DatacenterCard v-if="isAddingNew" />
     </div>
     <div v-else-if="datacenter" class="content">
-      <div class="bullshit">
+      <div class="bullshit flex-col md:flex-row">
         <div class="coolShit">
           <div class="left">
             <div class="datacenterTitle" style="display: flex; gap: 8px;">
               <Icon icon="datacenter" style="width: 24px;" />
               <h1 class="datacenterName" style="font-size: 20px;">{{ datacenter.name }}</h1>
             </div>
-            <div class="heading">
+            <div class="heading hidden md:flex">
               <img class="banner" :src="datacenter.banner || 'https://i.redd.it/cxrn0h5ksd131.jpg'" :alt="datacenter.name" />
               <Icon class="datacenterEdit bannerPen" @click="$refs.banner.click()" v-if="isEditing" icon="edit" />
               <img v-if="datacenter.logo" class="logo" :class="{ isEditing }" :src="datacenter.logo" :alt="datacenter.name" />
@@ -49,12 +49,12 @@
               :maxValues="[stats.totalMachines || 100, 100, parseFloat(stats.ramUsage?.max?.toFixed(2)) || 100, 50]"
             />
 
-            <InfoField borderless icon="stack" title="Servers Online" color="#8676FF" :value="machines.size || 0" :maxValue="stats.totalMachines" />
-            <InfoField borderless icon="network" title="Average Ping" color="#516DFF" suffix="ms" :value="machines.size !== 0 ? (Array.from(machines.values()).reduce((a, b) => a + b.ping, 0) / Array.from(machines.values()).length).toFixed(2) : 0" />
-            <InfoField borderless icon="ram" title="Total RAM Usage" color="#32B5FF" suffix="GB" :value="stats.ramUsage?.current?.toFixed(2) || 0" :maxValue="stats.ramUsage?.max?.toFixed(2)" />
-            <InfoField borderless icon="rj45" title="Current Bandiwdth" color="#4ADEFF" suffix="Mbps" :value="stats.currentBandwidth?.toFixed(2) || 0" :maxValue="100" />
+            <!-- <InfoField borderless icon="stack" title="Servers Online" color="#8676FF" :value="machines.size || 0" :maxValue="stats.totalMachines" /> -->
+            <!-- <InfoField borderless icon="network" title="Average Ping" color="#516DFF" suffix="ms" :value="machines.size !== 0 ? (Array.from(machines.values()).reduce((a, b) => a + b.ping, 0) / Array.from(machines.values()).length).toFixed(2) : 0" /> -->
+            <!-- <InfoField borderless icon="ram" title="Total RAM Usage" color="#32B5FF" suffix="GB" :value="stats.ramUsage?.current?.toFixed(2) || 0" :maxValue="stats.ramUsage?.max?.toFixed(2)" /> -->
+            <!-- <InfoField borderless icon="rj45" title="Current Bandiwdth" color="#4ADEFF" suffix="Mbps" :value="stats.currentBandwidth?.toFixed(2) || 0" :maxValue="100" /> -->
           </div>
-          <MemberField :isOwner="datacenter.owner === me._id || me.is_admin" :members="datacenter.members" />
+          <MemberField class=" hidden md:flex" :isOwner="datacenter.owner === me._id || me.is_admin" :members="datacenter.members" />
         </div>
         <ServerCard v-if="isShowingServerCard" />
         <ServerList v-if="machines.size !== 0" :machines="Array.from(machines.values())" />
@@ -204,7 +204,6 @@ export default {
 }
 
 .left {
-  display: flex;
   flex-direction: column;
   gap: 8px;
 }
@@ -235,7 +234,6 @@ export default {
   justify-content: space-between;
 }
 .heading {
-  display: flex;
   position: relative;
   align-items: center;
   border-radius: 4px;
@@ -299,30 +297,4 @@ export default {
   width: 56px;
 }
 
-@media only screen and (max-width: 600px) {
-  .bullshit {
-    padding: 16px;
-  }
-
-  .coolShit {
-    width: 100vw;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .buttons {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .heading {
-    display: none;
-  }
-  .serverList {
-    display: none;
-  }
-  .membersInfo {
-    display: none;
-  }
-}
 </style>

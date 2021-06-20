@@ -102,6 +102,7 @@ export default {
   font-weight: 700;
   font-size: 12px;
   color: var(--black);
+  max-width: 128px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;

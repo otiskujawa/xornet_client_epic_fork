@@ -41,7 +41,6 @@ export default {
 
 <style scoped>
 .membersInfo {
-  display: flex;
   border: 1px solid var(--border-color);
   border-radius: 4px;
   flex-direction: column;
