@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{ name: 'specs', params: { machine: machine.uuid } }" class="button" :class="{ thin: thin, rogue: machine.rogue, disconnected: Date.now() > machine.timestamp + 15000 }">
+  <router-link :to="{ name: 'machine', params: { machine: machine.uuid } }" class="button" :class="{ thin: thin, rogue: machine.rogue, disconnected: Date.now() > machine.timestamp + 15000 }">
     <!-- Icons Column -->
     <Icon :icon="type" v-if="!machine.rogue && Date.now() < machine.timestamp + 15000" class="machineType" />
     <Icon icon="warning" v-if="machine.rogue && Date.now() < machine.timestamp + 15000" class="machineType" />
@@ -8,17 +8,17 @@
     <!-- UUID Column -->
     <div class="info">
       <h1 v-if="!machine.rogue" class="hostname">{{ machine.hostname }}</h1>
-      <h1 v-if="machine.rogue" class="hostname">{{ machine.hostname }} <strong>(rogue)</strong></h1>
+      <h1 v-else class="hostname">{{ machine.hostname }} <strong>(rogue)</strong></h1>
       <h1 class="status">{{ machine.uuid }}</h1>
     </div>
 
     <!-- CPU Column -->
     <div class="field cpuUsage" v-if="machine.cpu == null"><strong>Unknown</strong></div>
-    <div class="field cpuUsage" v-if="machine.cpu != null">{{ machine.cpu }}<strong>%</strong></div>
+    <div class="field cpuUsage" v-else>{{ machine.cpu }}<strong>%</strong></div>
 
     <!-- RAM Column -->
     <div class="field ramUsage" v-if="Object.values(machine.ram).some(field => field != null)">{{ machine.ram.used }}/{{ machine.ram.total > 1 ? Math.ceil(machine.ram.total) : machine.ram.total }}<strong>GB</strong></div>
-    <div class="field ramUsage" v-if="Object.values(machine.ram).some(field => field == null)"><strong>Unknown</strong></div>
+    <div class="field ramUsage" v-else><strong>Unknown</strong></div>
 
     <!-- Disks Column -->
     <div class="field diskUsage">
@@ -42,7 +42,7 @@
 
     <!-- Ping Column -->
     <div class="field ping" v-if="machine.ping != null">{{ machine.ping }}<strong>ms</strong></div>
-    <div class="field ping" v-if="machine.ping == null"><strong>Unknown</strong></div>
+    <div class="field ping" v-else><strong>Unknown</strong></div>
 
     <!-- Uptime Column -->
     <div class="field uptime">{{ machine.uptime.formatted.d }}:{{ machine.uptime.formatted.h }}:{{ machine.uptime.formatted.m }}:{{ machine.uptime.formatted.s }}</div>

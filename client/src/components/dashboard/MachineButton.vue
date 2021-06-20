@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{ name: 'specs', params: { machine: machine.uuid } }" class="machineButton" :class="{ rogue: machine.rogue, disconnected: Date.now() > machine.timestamp + 15000 }">
+  <router-link :to="{ name: 'machine', params: { machine: machine.uuid } }" class="machineButton" :class="{ rogue: machine.rogue, disconnected: Date.now() > machine.timestamp + 15000 }">
     <div class="heading">
       <div class="left">
         <!-- Icons Column -->

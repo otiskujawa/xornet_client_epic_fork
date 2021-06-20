@@ -1,6 +1,6 @@
 <template>
-  <div class="shadowButton" :class="{ colored }">
-    <h1>{{ title }}</h1>
+  <div class="shadowButton" :class="{ colored, iconOnly: !title}">
+    <h1 v-if="title">{{ title }}</h1>
     <Icon v-if="!textonly" :icon="icon" />
   </div>
 </template>
@@ -39,12 +39,16 @@ export default {
   background-color: var(--shadowButton-color);
 }
 
+.shadowButton.iconOnly {
+  padding: 8px;
+}
+
 .shadowButton:not(.colored):not(.didCopy):hover {
   filter: invert(1);
 }
 
 .shadowButton:active {
-  transform: translateY(1px);
+  transform: translateY(2px);
 }
 
 .shadowButton.colored:hover {
