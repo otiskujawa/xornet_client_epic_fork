@@ -216,7 +216,7 @@ export default {
   gap: 8px;
 }
 
-.infoFields .info {
+.info {
   width: 100%;
 }
 
