@@ -1,5 +1,5 @@
 <template>
-  <div class="tooltip-box">
+  <div class="toolTipBox">
     <slot />
     <div class="tooltip">
       <span class="text">{{ text }}</span>
@@ -19,12 +19,12 @@ export default {
 </script>
 
 <style scoped>
-.tooltip-box {
+.toolTipBox {
   position: relative;
   display: inline-block;
 }
 
-.tooltip-box:hover .tooltip {
+.toolTipBox:hover .tooltip {
   opacity: 1;
 }
 
