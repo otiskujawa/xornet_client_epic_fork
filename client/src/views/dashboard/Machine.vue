@@ -46,6 +46,13 @@ export default {
       this.machine = Object.values(machines).filter(machine => machine.uuid == this.$route.params.machine)[0];
     });
     socket.emit('getMachines');
+
+    this.processes = await this.api.machine.getProcesses(this.$route.params.machine);
+  },
+  data: () => {
+    return {
+      processes: null,
+    }
   },
   computed: {
     type: function() {
