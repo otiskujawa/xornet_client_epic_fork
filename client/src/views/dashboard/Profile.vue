@@ -270,7 +270,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .profilePage {
   min-width: 100%;
   min-height: 100%;
@@ -359,7 +359,7 @@ export default {
   height: 8px;
   width: auto;
 }
-.content {
+.profilePage .content {
   display: flex;
   margin-top: 24px;
   gap: 64px;
@@ -414,18 +414,18 @@ export default {
   margin-left: 10vw;
   margin-bottom: 128px;
 }
-.profileDetails section:not(.uuid) {
+section:not(.uuid) {
   display: flex;
   flex-direction: column;
   color: #c8c8c8;
   gap: 8px;
   justify-content: space-between;
 }
-.profileDetails section h1:not(#profileID) {
+section h1:not(#profileID) {
   display: flex;
   align-items: center;
 }
-.profileDetails section.socials {
+section.socials {
   display: grid;
   grid-template-columns: repeat(2, minmax(50px, 1fr));
   gap: 8px;
