@@ -41,7 +41,7 @@ export default {
   height: 100vh;
 }
 
-.dashboard .main {
+.main {
   align-items: flex-start;
   display: flex;
   width: 100%;
@@ -49,7 +49,7 @@ export default {
 }
 
 @media only screen and (max-width: 600px) {
-  .dashboard .main {
+  .main {
     height: calc(100vh - 96px);
   }
 }
