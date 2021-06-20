@@ -25,6 +25,7 @@ export default {
   --theme-color: #8676ff;
   --bright-theme-color: #aca3f5;
   --terminal-background: #0b0b15;
+  --green: #00ff6672;
 
   /* Initial colors */
   --background-color: #ffffff;
