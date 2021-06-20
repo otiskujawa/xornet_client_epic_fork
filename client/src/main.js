@@ -2,7 +2,6 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import api from "@/services/api.js";
-import hljs from "highlight.js/lib/common";
 import hljsVuePlugin from "@highlightjs/vue-plugin";
 
 import javascript from "highlight.js/lib/languages/javascript";
