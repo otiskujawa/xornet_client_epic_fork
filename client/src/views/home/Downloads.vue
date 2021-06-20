@@ -140,9 +140,9 @@ export default {
 }
 
 .downloads * {
-  @apply leading-normal text-2xl text-left font-normal;
   color: white;
   font-family: "Tomorrow", sans-serif;
+  @apply leading-normal text-2xl text-left font-normal;
 }
 
 .downloadContent p {
@@ -159,31 +159,18 @@ export default {
 
 .cockBlock * {
   font-family: Roboto Mono;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 21px;
-  letter-spacing: 0em;
-  text-align: left;
+  @apply font-bold text-sm font-semibold text-left
 }
 .cockBlock * strong {
-  color: #222244;
+  color: #474769;
 }
 
 .downloadArea > .platform {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  align-items: center;
-  justify-content: center;
+  @apply flex flex-col items-center content-center gap-8;
 }
 
 .downloadArea > .platform > h1 {
-  text-align: center;
   font-family: Work Sans;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 36px;
-  line-height: 68%;
+  @apply text-center font-medium text-3xl
 }
 </style>
