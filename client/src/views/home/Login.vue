@@ -54,7 +54,7 @@ export default {
   border-radius: 8px;
 }
 
-a img {
+.card a img {
   width: 280px;
   height: auto;
 }
