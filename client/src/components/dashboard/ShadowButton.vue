@@ -1,6 +1,6 @@
 <template>
-  <div class="shadowButton" :class="{ colored, iconOnly: !title, tiny}">
-    <h1 v-if="title">{{ title }}</h1>
+  <div class="shadowButton" :id="allowCopy ? 'shadowButton' : null" :class="{ colored, didCopy, iconOnly: !title, tiny}" @click="allowCopy ? copyText() : null">
+    <h1 v-if="title">{{copyMessage || title }}</h1>
     <Icon v-if="!textonly" :icon="icon" />
   </div>
 </template>
@@ -14,10 +14,39 @@ export default {
     icon: { type: String },
     textonly: { type: Boolean },
     colored: { type: Boolean },
+    allowCopy: { type: Boolean },
     tiny: { type: Boolean }
   },
   components: {
     Icon
+  },
+  data(){
+    return {
+      didCopy: false,
+      copyMessage: null,
+    }
+  },
+  methods: {
+    copyText() {
+      let toCopy = document.querySelector("#shadowButton");
+      var temp = document.createElement("textarea");
+      document.body.appendChild(temp);
+      temp.value = toCopy.innerText.toLowerCase();
+      temp.select();
+      try {
+        var successful = document.execCommand("copy");
+        document.body.removeChild(temp);
+        var msg = successful ? "successful" : "unsuccessful";
+        this.didCopy = true;
+        this.copyMessage = "UUID Copied!";
+        setTimeout(() => {
+          this.didCopy = false;
+          this.copyMessage = null;
+        }, 3000);
+      } catch {
+        console.log("Oops, unable to copy");
+      }
+    },
   }
 };
 </script>

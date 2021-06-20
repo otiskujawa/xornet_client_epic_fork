@@ -17,16 +17,17 @@
         <router-link :to="{ name: 'specs', params: { machine: machine.uuid } }">
           <ShadowButton title="details" icon="details"/>  
         </router-link>
-        <Tooltip flipped text="Restart Machine">
+        <!-- <Tooltip flipped text="Restart Machine">
           <ShadowButton icon="restart"/>
         </Tooltip>
         <Tooltip flipped text="Shutdown Machine">
           <ShadowButton icon="shutdown"/>
-        </Tooltip>
+        </Tooltip> -->
         <Tooltip flipped text="Trash Machine">
           <ShadowButton icon="trash"/>
         </Tooltip>
       </div>
+      <ShadowButton icon="clipboard" :title="machine.uuid" allowCopy/>
     </div>
     <div v-if="processes" class="processList h-full overflow-scroll">
       <div class="ml-24px header px-1 py-0.5 flex items-center gap-2">
@@ -45,7 +46,7 @@
         <h1 class="min-w-64px max-w-64px" >{{process.mem.toFixed(2)}}MB</h1>
         <h1 class="min-w-128px max-w-128px" >{{process.started}}</h1>
         <h1 class="min-w-128px max-w-128px" >{{process.user || 'unknown'}}</h1>
-        <ShadowButton tiny icon="trash"/>
+        <!-- <ShadowButton tiny icon="trash"/> -->
       </div>
     </div>
   </div>

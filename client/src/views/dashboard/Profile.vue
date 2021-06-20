@@ -42,10 +42,7 @@
           </div>
         </div>
 
-        <section class="shadowButton uuid" :class="{ didCopy: didCopy }" @click="copyUUID">
-          <h1 id="profileID">{{ copyMessage || profile._id }}</h1>
-          <Icon icon="clipboard" />
-        </section>
+        <ShadowButton class="uuid" icon="clipboard" :title="profile._id" allowCopy/>
 
         <section>
           <h1 class="descriptionHeading">Points</h1>
@@ -153,9 +150,7 @@ export default {
         number: 0,
         tweened: 0
       },
-      didCopy: false,
       showFullPoints: false,
-      copyMessage: null,
       isEditing: false,
       isAddingSocial: false
     };
@@ -229,26 +224,6 @@ export default {
       // this.profile.pfp = response.profile.pfp;
       for (const [key, value] of Object.entries(response.profile)) {
         this.profile[key] = value;
-      }
-    },
-    copyUUID() {
-      let toCopy = document.querySelector("#profileID");
-      var temp = document.createElement("textarea");
-      document.body.appendChild(temp);
-      temp.value = toCopy.innerText;
-      temp.select();
-      try {
-        var successful = document.execCommand("copy");
-        document.body.removeChild(temp);
-        var msg = successful ? "successful" : "unsuccessful";
-        this.didCopy = true;
-        this.copyMessage = "UUID Copied!";
-        setTimeout(() => {
-          this.didCopy = false;
-          this.copyMessage = null;
-        }, 3000);
-      } catch {
-        console.log("Oops, unable to copy");
       }
     },
     /**
