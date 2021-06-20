@@ -72,7 +72,7 @@ export default {
 }
 
 .datacenter img {
-  filter: invert(var(--filter)) grayscale(1);
+  filter: invert(var(--filter));
 }
 
 .datacenter .logo {

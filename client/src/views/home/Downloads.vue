@@ -23,10 +23,10 @@
           <li>View RAM usage</li>
           <li>View TRX usage</li>
           <li>View DISK usage</li>
-          <li>View network usages</li>
-          <li>Restart or Shutdown your machine</li>
-          <li>SSH into your machine through the WebUI</li>
-          <li>View & Kill processes</li>
+          <li>View network usages & many more</li>
+          <li>Restart or Shutdown your machine strong</li>
+          <li>SSH into your machine through the WebUI strong</li>
+          <li>View & Kill processes strong</li>
           <li>Gain points to flex on your friends</li>
         </ul>
         <ul>

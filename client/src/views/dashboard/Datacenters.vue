@@ -243,6 +243,7 @@ export default {
   width: 100%;
   justify-content: center;
   height: 128px;
+  padding: 8px;
   min-height: 128px;
 }
 .datacenters .heading img {

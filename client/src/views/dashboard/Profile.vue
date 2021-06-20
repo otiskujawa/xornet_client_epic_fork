@@ -437,12 +437,11 @@ export default {
 .profilePage .profiileDetails .heading .username {
 font-family: "Work Sans";
     font-style: normal;
-  font-weight: 600;
+font-weight: 600;
   max-width: 100%;
   font-size: 28px;
   line-height: 68%;
   color: var(--black);
-  overflow: hidden;
   text-overflow: ellipsis;
 }
 .profilePage .profiileDetails .heading .location {

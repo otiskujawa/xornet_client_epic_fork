@@ -18,11 +18,11 @@
         <h1 id="trx">{{ (machine.network?.TxSec + machine.network?.RxSec).toFixed(2) }}Mbps</h1>
       </div>
     </div>
-    <div class="bars">
+    <!-- <div class="bars">
       <div id="cpu"><div class="progress" :style="{ width: `${machine.cpu}%` }"></div></div>
       <div id="ram"><div class="progress" :style="{ width: `${100 * (machine.ram.used / machine.ram.total)}%` }"></div></div>
       <div id="trx"><div class="progress" :style="{ width: `${100 * ((machine.network?.TxSec + machine.network?.RxSec).toFixed(2) / 1000)}%` }"></div></div>
-    </div>
+    </div> -->
   </router-link>
 </template>
 
@@ -42,7 +42,7 @@ export default {
 
 <style scoped>
 .machineButton {
-  padding: 8px;
+  padding: 2px 8px;
   display: flex;
   flex-direction: column;
   gap: 8px;
