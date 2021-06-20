@@ -45,7 +45,7 @@ export default {
   height: 100%;
 }
 
-.signuppage .content {
+.content {
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -69,7 +69,7 @@ export default {
   height: auto;
 }
 
-.card .details {
+.details {
   padding: 16px 24px;
   overflow: hidden;
   display: flex;
@@ -78,7 +78,7 @@ export default {
   height: 100%;
 }
 
-.card .details form {
+form {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -87,30 +87,30 @@ export default {
   height: 100%;
 }
 
-.card .details form .text * {
+form .text * {
   font-style: normal;
   line-height: 175%;
 }
 
-.card .details form .text h1 {
+form .text h1 {
   font-weight: bold;
   font-size: 16px;
   color: var(--black);
 }
 
-.card .details form .text p {
+form .text p {
   font-weight: 600;
   font-size: 12px;
   color: var(--black);
 }
-.card .details form .fields {
+form .fields {
   display: flex;
   gap: 8px;
   width: 100%;
   flex-direction: column;
 }
 
-.card .details form .fields .inputField {
+form .fields .inputField {
   width: 100%;
 
   font-weight: 600;
@@ -121,10 +121,10 @@ export default {
   padding: 6px 8px;
 }
 
-.card .details form .fields .inputField::placeholder {
+form .fields .inputField::placeholder {
   color: var(--gray);
 }
-.card .details form .fields p {
+form .fields p {
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
@@ -133,14 +133,14 @@ export default {
   line-height: 175%;
 }
 
-.card .details form .fields p a {
+form .fields p a {
   font-family: Montserrat;
   color: var(--theme-color);
   font-weight: bold;
   font-style: normal;
 }
 
-.card .details form button {
+form button {
   color: white;
   border: none;
   background-color: var(--theme-color);
@@ -158,22 +158,22 @@ export default {
   align-items: center;
   gap: 8px;
 }
-.card .details form button.disabled {
+form button.disabled {
   cursor: not-allowed;
   user-select: none;
   filter: grayscale(1);
 }
 
-.card .details form button:hover {
+form button:hover {
   box-shadow: 0px 4px 12px var(--theme-color);
   transform: translateY(-1px);
 }
 
-.card .details form button:active {
+form button:active {
   transform: translateY(1px);
 }
 
-.card .details form button img {
+form button img {
   filter: invert(1);
   mix-blend-mode: screen;
   width: 16px;
