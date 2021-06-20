@@ -85,11 +85,19 @@ const routes = [
         }
       },
       {
-        path: "machines/:machine?",
+        path: "machines",
         name: "machines",
         component: () => import(/* webpackChunkName: "machines" */ "@/views/dashboard/Machines.vue"),
         meta: {
           title: "Xornet | Machines"
+        }
+      },
+      {
+        path: "machines/:machine",
+        name: "machine",
+        component: () => import(/* webpackChunkName: "machine" */ "@/views/dashboard/Machine.vue"),
+        meta: {
+          title: "Xornet | Machine"
         }
       },
       {
