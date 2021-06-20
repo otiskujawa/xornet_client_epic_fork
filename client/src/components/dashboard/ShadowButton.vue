@@ -1,5 +1,5 @@
 <template>
-  <div class="shadowButton" :class="{ colored, iconOnly: !title}">
+  <div class="shadowButton" :class="{ colored, iconOnly: !title, tiny}">
     <h1 v-if="title">{{ title }}</h1>
     <Icon v-if="!textonly" :icon="icon" />
   </div>
@@ -13,7 +13,8 @@ export default {
     title: { type: String },
     icon: { type: String },
     textonly: { type: Boolean },
-    colored: { type: Boolean }
+    colored: { type: Boolean },
+    tiny: { type: Boolean }
   },
   components: {
     Icon
@@ -23,7 +24,6 @@ export default {
 
 <style>
 .shadowButton {
-  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
   padding: 8px 12px;
   display: flex;
   align-items: center;
@@ -39,8 +39,8 @@ export default {
   background-color: var(--shadowButton-color);
 }
 
-.shadowButton.iconOnly {
-  padding: 8px;
+.shadowButton:not(.tiny) {
+  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
 }
 
 .shadowButton:not(.colored):not(.didCopy):hover {
@@ -85,4 +85,17 @@ export default {
   width: 20px;
   filter: invert(var(--filter));
 }
+
+.shadowButton.iconOnly {
+  padding: 8px;
+}
+
+.shadowButton.tiny {
+  padding: 2px;
+}
+
+.shadowButton.tiny img {
+  width: 16px;
+}
+
 </style>

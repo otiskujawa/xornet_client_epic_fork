@@ -1,23 +1,47 @@
 <template>
-  <div v-if="machine" class="machine p-2 w-full h-full flex flex-col gap-4">
-    <div class="heading flex gap-4 items-center">
-      <Icon class="w-32px" :icon="type" v-if="!machine.rogue && Date.now() < machine.timestamp + 15000"/>
-      <h1 class="text-2xl font-bold">{{machine.hostname}}</h1>
-      <img class="w-32px" :src="machine.geolocation?.countryCode ? require(`@/assets/flags/${machine.geolocation.countryCode}.png`) : require('@/assets/flags/__.png')" alt="Country Flag" />
-      <div class="flex gap-2 items-center">
-        <ShadowButton icon="restart"/>
-        <ShadowButton icon="shutdown"/>
-        <ShadowButton icon="trash"/>
-        <router-link :to="{ name: 'specs', params: { machine: machine.uuid } }">
-          <ShadowButton title="details" icon="details"/>  
-        </router-link>
+  <div v-if="machine" class="machine overflow-scroll p-2 w-full h-full flex gap-4">
+    <div class="div flex gap-4 flex-col">
+      <div class="heading flex gap-4 items-center">
+        <Icon class="w-32px" :icon="type" v-if="!machine.rogue && Date.now() < machine.timestamp + 15000"/>
+        <h1 class="text-2xl font-bold">{{machine.hostname}}</h1>
+        <img class="w-32px" :src="machine.geolocation?.countryCode ? require(`@/assets/flags/${machine.geolocation.countryCode}.png`) : require('@/assets/flags/__.png')" alt="Country Flag" />
+        <div class="flex gap-2 items-center">
+          <ShadowButton icon="restart"/>
+          <ShadowButton icon="shutdown"/>
+          <ShadowButton icon="trash"/>
+          <router-link :to="{ name: 'specs', params: { machine: machine.uuid } }">
+            <ShadowButton title="details" icon="details"/>  
+          </router-link>
+        </div>
+      </div>
+      <div class="flex gap-2 flex-col">
+        <InfoField borderless icon="cpu" title="CPU Usage" color="#8676FF" suffix="%" :value="machine.cpu" />
+        <InfoField borderless icon="network" title="Ping" color="#516DFF" suffix="ms" :value="machine.ping" />
+        <InfoField borderless icon="ram" title="Total RAM Usage" color="#32B5FF" suffix="GB" :value="machine.ram.used" :maxValue="machine.ram.total" />
+        <InfoField borderless icon="rj45" title="Upload Bandiwdth" color="#4ADEFF" suffix="Mbps" :value="`${machine.network.TxSec}/${machine.network.RxSec}`"/>
       </div>
     </div>
-    <div class="flex gap-2 flex-col">
-      <InfoField borderless icon="cpu" title="CPU Usage" color="#8676FF" suffix="%" :value="machine.cpu" />
-      <InfoField borderless icon="network" title="Ping" color="#516DFF" suffix="ms" :value="machine.ping" />
-      <InfoField borderless icon="ram" title="Total RAM Usage" color="#32B5FF" suffix="GB" :value="machine.ram.used" :maxValue="machine.ram.total" />
-      <InfoField borderless icon="rj45" title="Upload Bandiwdth" color="#4ADEFF" suffix="Mbps" :value="`${machine.network.TxSec}/${machine.network.RxSec}`"/>
+    <div v-if="processes" class="processList h-full overflow-scroll">
+      <div class="ml-24px header px-1 py-0.5 flex items-center gap-2">
+        <h1 class="min-w-48px max-w-48px" >Pid</h1>
+        <h1 class="min-w-256px max-w-128px" >Name</h1>
+        <h1 class="min-w-256px max-w-128px" >Icon</h1>
+        <h1 class="min-w-64px max-w-64px" >Cpu</h1>
+        <h1 class="min-w-64px max-w-64px" >Mem</h1>
+        <h1 class="min-w-128px max-w-128px" >Started</h1>
+        <h1 class="min-w-128px max-w-128px" >User</h1>
+      </div>
+      <div class="process cursor-pointer border border-transparent rounded-4px px-1 py-0.5 flex items-center gap-2" v-for="process of processes" :key="process">
+        <Icon app class="w-16px min-w-16px h-16px" :icon="process.name.split('.').splice(process.name.split('.').length -2, 1).join('')" default="process"/> 
+        <h1 class="min-w-48px max-w-48px" >{{process.pid}}</h1>
+        <h1 class="min-w-256px max-w-128px" >{{process.name}}</h1>
+        <h1 class="min-w-256px max-w-128px" >{{process.name.split('.').splice(process.name.split('.').length -2, 1).join('')}}</h1>
+        <h1 class="min-w-64px max-w-64px" >{{process.cpus.toFixed(2)}}%</h1>
+        <h1 class="min-w-64px max-w-64px" >{{process.mem.toFixed(2)}}MB</h1>
+        <h1 class="min-w-128px max-w-128px" >{{process.started}}</h1>
+        <h1 class="min-w-128px max-w-128px" >{{process.user || 'unknown'}}</h1>
+        <ShadowButton tiny icon="trash"/>
+      </div>
     </div>
   </div>
 </template>
@@ -33,6 +57,7 @@ export default {
   data(){
     return {
       machine: null,
+      processes: null,
     }
   },
   components: {
@@ -47,12 +72,7 @@ export default {
     });
     socket.emit('getMachines');
 
-    this.processes = await this.api.machine.getProcesses(this.$route.params.machine);
-  },
-  data: () => {
-    return {
-      processes: null,
-    }
+    this.processes = (await this.api.machine.getProcesses(this.$route.params.machine)).list.sort((a, b) => (a.name < b.name) ? 1 : -1);
   },
   computed: {
     type: function() {
@@ -62,6 +82,19 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="postcss">
+.processList h1 {
+  @apply text-sm overflow-ellipsis overflow-hidden text-left;
+  font-family: Work Sans, sans-serif;
+  font-size: 11px;
+}
 
+.processList .header h1 {
+  @apply uppercase font-medium
+}
+
+.process:hover {
+  border: 1px solid var(--white);
+  background-color: var(--white);
+}
 </style>

@@ -11,6 +11,7 @@ export default {
   props: {
     icon: { type: String, required: true },
     default: { type: String, required: false },
+    app: { type: Boolean, required: false },
     color: { type: String, required: false }
   },
   computed: {
@@ -19,7 +20,8 @@ export default {
     },
     image() {
       try {
-        var icon = require(`@/assets/icons/${this.isStroked ? "stroked" : "filled"}/${this.icon}.svg`);
+        if (this.app) var icon = require(`@/assets/icons/apps/${this.icon}.svg`);
+        else var icon = require(`@/assets/icons/${this.isStroked ? "stroked" : "filled"}/${this.icon}.svg`);
       } catch (error) {
         try {
           if (!icon) icon = require(`@/assets/icons/${this.isStroked ? "stroked" : "filled"}/${this.default}.svg`);
