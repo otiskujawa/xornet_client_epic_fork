@@ -35,7 +35,7 @@ export default {
   height: 100vh;
 }
 
-.loginpage .content {
+.content {
   height: 100%;
   display: flex;
   justify-content: center;
@@ -54,12 +54,12 @@ export default {
   border-radius: 8px;
 }
 
-.card a img {
+a img {
   width: 280px;
   height: auto;
 }
 
-.card .details {
+.details {
   padding: 16px 24px;
   overflow: hidden;
   display: flex;
@@ -68,7 +68,7 @@ export default {
   height: 100%;
 }
 
-.card .details form {
+form {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -77,30 +77,30 @@ export default {
   height: 100%;
 }
 
-.card .details form .text * {
+.text * {
   font-style: normal;
   line-height: 175%;
 }
 
-.card .details form .text h1 {
+.text h1 {
   font-weight: bold;
   font-size: 16px;
   color: var(--black);
 }
 
-.card .details form .text p {
+.text p {
   font-weight: 600;
   font-size: 12px;
   color: var(--black);
 }
-.card .details form .fields {
+.fields {
   display: flex;
   gap: 8px;
   width: 100%;
   flex-direction: column;
 }
 
-.card .details form .fields .inputField {
+.inputField {
   width: 100%;
 
   font-weight: 600;
@@ -112,10 +112,10 @@ export default {
   padding: 6px 8px;
 }
 
-.card .details form .fields .inputField::placeholder {
+.inputField::placeholder {
   color: var(--gray);
 }
-.card .details form .fields p {
+.fields p {
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
@@ -124,14 +124,14 @@ export default {
   line-height: 175%;
 }
 
-.card .details form .fields p a {
+.fields p a {
   font-family: Montserrat;
   color: var(--theme-color);
   font-weight: bold;
   font-style: normal;
 }
 
-.card .details form button {
+button {
   color: white;
   border: none;
   background-color: var(--theme-color);
@@ -150,22 +150,22 @@ export default {
   align-items: center;
   gap: 8px;
 }
-.card .details form button.disabled {
+button.disabled {
   cursor: not-allowed;
   user-select: none;
   filter: grayscale(1);
 }
 
-.card .details form button:hover {
+button:hover {
   box-shadow: 0px 4px 12px rgba(67, 97, 238, 0.5);
   transform: translateY(-1px);
 }
 
-.card .details form button:active {
+button:active {
   transform: translateY(1px);
 }
 
-.card .details form button img {
+button img {
   filter: invert(1);
   mix-blend-mode: screen;
   width: 16px;
