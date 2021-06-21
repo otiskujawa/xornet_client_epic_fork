@@ -5,7 +5,8 @@
         <img
           class="banner"
           :src="
-            profile.profileBanner?.url ||
+            newBanner ||
+              profile.profileBanner?.url ||
               'https://cdn.discordapp.com/attachments/806300597338767450/855757714806407188/unknown.png'
           "
           :alt="profile.username"
@@ -29,8 +30,8 @@
       </div>
 
       <form v-if="isEditing">
-        <input type="file" id="pfp" ref="pfp" style="display: none" name="pfp" accept="image/*" />
-        <input type="file" id="banner" ref="banner" style="display: none" name="banner" accept="image/*" />
+        <input type="file" @change="onPFPSelected" id="pfp" ref="pfp" class="hidden" name="pfp" accept="image/*" />
+        <input type="file" id="banner" @change="onBannerSelected" ref="banner" class="hidden" name="banner" accept="image/*" />
       </form>
 
       <ShadowButton
@@ -258,6 +259,7 @@ export default {
         tweened: 0
       },
       newPFP: undefined,
+      newBanner: undefined,
       showFullPoints: false,
       isEditing: false,
       isAddingSocial: false
@@ -291,6 +293,20 @@ export default {
     millify,
     remove(index) {
       this.profile.socials.splice(index, 1);
+    },
+    onPFPSelected() {
+      if (this.newPFP) {
+        URL.revokeObjectURL(this.newPFP);
+      }
+      const targetFile = data.target.files[0];
+      this.newPFP = URL.createObjectURL(targetFile);
+    },
+    onBannerSelected(data) {
+      if (this.newBanner) {
+        URL.revokeObjectURL(this.newBanner);
+      }
+      const targetFile = data.target.files[0];
+      this.newBanner = URL.createObjectURL(targetFile);
     },
     add(url) {
       let name = extractHostname(url);
