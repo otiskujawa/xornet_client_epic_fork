@@ -29,8 +29,8 @@
       </div>
 
       <form v-if="isEditing">
-        <input type="file" id="pfp" ref="pfp" style="display: none" name="pfp" accept="image/*" />
-        <input type="file" id="banner" ref="banner" style="display: none" name="banner" accept="image/*" />
+        <input type="file" @change="onFileSelected" id="pfp" ref="pfp" class="hidden" name="pfp" accept="image/*" />
+        <input type="file" id="banner" ref="banner" class="hidden" name="banner" accept="image/*" />
       </form>
 
       <ShadowButton
@@ -291,6 +291,13 @@ export default {
     millify,
     remove(index) {
       this.profile.socials.splice(index, 1);
+    },
+    onFileSelected(data) {
+      if (this.newPFP) {
+        URL.revokeObjectURL(this.newPFP);
+      }
+      const targetFile = data.target.files[0];
+      this.newPFP = URL.createObjectURL(targetFile);
     },
     add(url) {
       let name = extractHostname(url);
