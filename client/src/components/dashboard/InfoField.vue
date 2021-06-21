@@ -94,5 +94,6 @@ h1 {
 .coloredGauge {
   width: 48px;
   height: 48px;
+  min-width: 48px;
 }
 </style>

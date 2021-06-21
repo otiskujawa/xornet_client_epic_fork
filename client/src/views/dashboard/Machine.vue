@@ -34,9 +34,9 @@
     <div v-if="processes" class="processList w-full h-full overflow-scroll ">
       <div class="ml-24px header px-1 py-0.5 flex items-center gap-2 justify-start">
         <h1 class="w-full max-w-48px" @click="sort('pid')">Pid</h1>
-        <h1 class="w-full max-w-128px" @click="sort('name')">Name</h1>
+        <h1 class="w-full max-w-168px" @click="sort('name')">Name</h1>
         <h1 class="w-full max-w-64px" @click="sort('cpu')">Cpu</h1>
-        <h1 class="w-full max-w-64px" @click="sort('mem')">Mem</h1>
+        <h1 class="w-full max-w-64px" @click="sort('memRss')">Mem</h1>
         <h1 class="w-full max-w-256px hidden md:inline" @click="sort('started')">Started</h1>
         <h1 class="w-full max-w-128px hidden md:inline" @click="sort('user')">User</h1>
       </div>
@@ -67,9 +67,9 @@
           default="process"
         />
         <h1 class="w-full max-w-48px">{{ process.pid }}</h1>
-        <h1 class="w-full max-w-128px">{{ process.name }}</h1>
+        <h1 class="w-full max-w-168px">{{ process.name }}</h1>
         <h1 class="w-full max-w-64px">{{ process.cpus.toFixed(2) }}%</h1>
-        <h1 class="w-full max-w-64px">{{ process.mem.toFixed(2) }}MB</h1>
+        <h1 class="w-full max-w-64px">{{ (process.memRss / 1000).toFixed(2) }}MB</h1>
         <h1 class="w-full max-w-256px hidden md:inline">{{ process.started }}</h1>
         <h1 class="w-full max-w-128px hidden md:inline">{{ process.user || "unknown" }}</h1>
         <!-- <ShadowButton tiny icon="trash"/> -->
