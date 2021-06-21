@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "prettify": "npx prettier --write \"./**/*.vue\" && npx prettier --write \"./**/*.js\""
+    "prettify": "npx prettier --write \"./**/*.vue\" && npx prettier --write \"./**/*.js\" && npx prettier --parser html --write \"./**/*.svg\""
   },
   "dependencies": {
     "@highlightjs/vue-plugin": "github:highlightjs/vue-plugin",

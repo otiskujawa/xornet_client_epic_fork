@@ -8,7 +8,7 @@
     <div v-else-if="datacenter" class="content">
       <div class="bullshit flex-col md:flex-row">
         <div class="coolShit">
-          <div class="left">
+          <div class="left flex gap-2">
             <div class="datacenterTitle" style="display: flex; gap: 8px;">
               <Icon icon="datacenter" style="width: 24px;" />
               <h1 class="datacenterName" style="font-size: 20px;">{{ datacenter.name }}</h1>
@@ -296,5 +296,4 @@ export default {
 .datacenterEdit.logoPen:active {
   width: 56px;
 }
-
 </style>
