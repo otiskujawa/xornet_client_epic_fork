@@ -294,7 +294,7 @@ export default {
     remove(index) {
       this.profile.socials.splice(index, 1);
     },
-    onPFPSelected() {
+    onPFPSelected(data) {
       if (this.newPFP) {
         URL.revokeObjectURL(this.newPFP);
       }
