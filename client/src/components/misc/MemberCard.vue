@@ -14,7 +14,9 @@
           <input v-model="form.uuid" class="inputField" type="text" placeholder="c478ea46-f8f6-467e-a497-e2ad5caaa976" />
         </div>
 
-        <button type="submit" :class="{ disabled: isFormValid || isLoading }">Add<img v-if="isLoading" :src="require('@/assets/animations/loading.gif')" alt="" /></button>
+        <button type="submit" :class="{ disabled: isFormValid || isLoading }">
+          Add<img v-if="isLoading" :src="require('@/assets/animations/loading.gif')" alt="" />
+        </button>
       </form>
     </div>
   </div>

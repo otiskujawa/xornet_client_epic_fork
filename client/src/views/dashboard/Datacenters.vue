@@ -21,7 +21,12 @@
               <Icon class="datacenterEdit logoPen" @click="$refs.logo.click()" v-if="isEditing" icon="edit" />
             </div>
             <div class="buttons">
-              <ShadowButton class="revoke" icon="stack" title="Add server" @click="isShowingServerCard = !isShowingServerCard" />
+              <ShadowButton
+                class="revoke"
+                icon="stack"
+                title="Add server"
+                @click="isShowingServerCard = !isShowingServerCard"
+              />
               <ShadowButton class="revoke" v-if="!isEditing" icon="edit" title="Edit" @click="isEditing = !isEditing" />
               <ShadowButton
                 class="revoke"
@@ -42,19 +47,63 @@
               :colors="['#8676FF', '#516DFF', '#32B5FF', '#4ADEFF']"
               :values="[
                 machines.size || 0,
-                machines.size !== 0 ? (Array.from(machines.values()).reduce((a, b) => a + b.ping, 0) / Array.from(machines.values()).length).toFixed(2) : 0,
+                machines.size !== 0
+                  ? (
+                      Array.from(machines.values()).reduce((a, b) => a + b.ping, 0) / Array.from(machines.values()).length
+                    ).toFixed(2)
+                  : 0,
                 parseFloat(stats.ramUsage?.current?.toFixed(2)) || 0,
                 parseFloat(stats.currentBandwidth?.toFixed(2)) || 0
               ]"
               :maxValues="[stats.totalMachines || 100, 100, parseFloat(stats.ramUsage?.max?.toFixed(2)) || 100, 50]"
             />
 
-            <InfoField borderless icon="stack" title="Servers Online" color="#8676FF" :value="machines.size || 0" :maxValue="stats.totalMachines" />
-            <InfoField borderless icon="network" title="Average Ping" color="#516DFF" suffix="ms" :value="machines.size !== 0 ? (Array.from(machines.values()).reduce((a, b) => a + b.ping, 0) / Array.from(machines.values()).length).toFixed(2) : 0" />
-            <InfoField borderless icon="ram" title="Total RAM Usage" color="#32B5FF" suffix="GB" :value="stats.ramUsage?.current?.toFixed(2) || 0" :maxValue="stats.ramUsage?.max?.toFixed(2)" />
-            <InfoField borderless icon="rj45" title="Current Bandiwdth" color="#4ADEFF" suffix="Mbps" :value="stats.currentBandwidth?.toFixed(2) || 0" :maxValue="100" />
+            <InfoField
+              borderless
+              icon="stack"
+              title="Servers Online"
+              color="#8676FF"
+              :value="machines.size || 0"
+              :maxValue="stats.totalMachines"
+            />
+            <InfoField
+              borderless
+              icon="network"
+              title="Average Ping"
+              color="#516DFF"
+              suffix="ms"
+              :value="
+                machines.size !== 0
+                  ? (
+                      Array.from(machines.values()).reduce((a, b) => a + b.ping, 0) / Array.from(machines.values()).length
+                    ).toFixed(2)
+                  : 0
+              "
+            />
+            <InfoField
+              borderless
+              icon="ram"
+              title="Total RAM Usage"
+              color="#32B5FF"
+              suffix="GB"
+              :value="stats.ramUsage?.current?.toFixed(2) || 0"
+              :maxValue="stats.ramUsage?.max?.toFixed(2)"
+            />
+            <InfoField
+              borderless
+              icon="rj45"
+              title="Current Bandiwdth"
+              color="#4ADEFF"
+              suffix="Mbps"
+              :value="stats.currentBandwidth?.toFixed(2) || 0"
+              :maxValue="100"
+            />
           </div>
-          <MemberField class=" hidden md:flex" :isOwner="datacenter.owner === me._id || me.is_admin" :members="datacenter.members" />
+          <MemberField
+            class=" hidden md:flex"
+            :isOwner="datacenter.owner === me._id || me.is_admin"
+            :members="datacenter.members"
+          />
         </div>
         <ServerCard v-if="isShowingServerCard" />
         <ServerList v-if="machines.size !== 0" :machines="Array.from(machines.values())" />
@@ -138,7 +187,12 @@ export default {
 
       socket.off("machines");
       socket.on("machines", machines => {
-        console.log(`%c[WS]` + `%c [Machines]`, "color: black; background-color: #ff4488; padding: 2px; border-radius: 4px; font-weight: bold;", "color: #ff77aa;", machines);
+        console.log(
+          `%c[WS]` + `%c [Machines]`,
+          "color: black; background-color: #ff4488; padding: 2px; border-radius: 4px; font-weight: bold;",
+          "color: #ff77aa;",
+          machines
+        );
 
         // Temp scuff way to quickly illustrate how datacenters will show machines from them
         Object.values(machines).forEach(machine => {
@@ -159,7 +213,11 @@ export default {
       socket.emit("getMachines");
     },
     async save() {
-      let response = await this.api.datacenters.save(this.$route.params.name, this.$refs.logo.files[0], this.$refs.banner.files[0]);
+      let response = await this.api.datacenters.save(
+        this.$route.params.name,
+        this.$refs.logo.files[0],
+        this.$refs.banner.files[0]
+      );
 
       // this.profile.profileImage = response.profile.profileImage;
       for (const [key, value] of Object.entries(response.profile)) {

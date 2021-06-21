@@ -6,7 +6,8 @@
       <section>
         <h1>Our Goal</h1>
         <p>
-          We are XORNET this is a fun little project started by Geoxor for people who have servers and don’t have shit to do with them<br />
+          We are XORNET this is a fun little project started by Geoxor for people who have servers and don’t have shit to do
+          with them<br />
           Our goal is to make a platform for people to manage their servers!<br />
           <br />
           As an individual: you can contact us to get a VM to host your websites, discord bots, and so on!<br />
@@ -19,8 +20,9 @@
           We have servers around the world interconnected and managed through XORNET<br />
           Anyone who whos willing can lend their servers for us to grow our network and become bigger<br />
           <br />
-          The main idea is that if you have a server sitting around, idling 90% of the time and you have decent bandwidth you can share your server with us and others can use it, that way you get your satisfaction of someone using your machine for
-          something actually useful.
+          The main idea is that if you have a server sitting around, idling 90% of the time and you have decent bandwidth you
+          can share your server with us and others can use it, that way you get your satisfaction of someone using your machine
+          for something actually useful.
         </p>
       </section>
     </div>

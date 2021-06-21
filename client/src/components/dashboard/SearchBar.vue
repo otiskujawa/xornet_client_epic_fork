@@ -1,12 +1,28 @@
 <template>
   <div class="search" :class="{ focused: searchString.length != 0 && !searchPaused }">
     <div class="bar">
-      <input v-model="searchString" class="inputField" :class="{ active: searchString.length != 0 }" type="text" placeholder="Search " @keyup="typingTimer()" @keydown="clearTimer()" @click="onClickSearchBar()" @blur="onBlurSearchBar()" />
-      <img :src="searchString.length != 0 ? require('@/assets/icons/filled/x.svg') : require('@/assets/icons/filled/search.svg')" :class="{ activeImg: searchString.length != 0 }" @click="clearSearchDrop()" />
+      <input
+        v-model="searchString"
+        class="inputField"
+        :class="{ active: searchString.length != 0 }"
+        type="text"
+        placeholder="Search "
+        @keyup="typingTimer()"
+        @keydown="clearTimer()"
+        @click="onClickSearchBar()"
+        @blur="onBlurSearchBar()"
+      />
+      <img
+        :src="searchString.length != 0 ? require('@/assets/icons/filled/x.svg') : require('@/assets/icons/filled/search.svg')"
+        :class="{ activeImg: searchString.length != 0 }"
+        @click="clearSearchDrop()"
+      />
     </div>
     <div v-if="searchRes !== null">
       <SearchResult v-for="user of searchRes" :key="user" :user="user" @click="clearSearchClicked()" />
-      <h1 v-if="searchRes.length == 0 && searchString.length != 0" class="noResult">There were no users that match that query</h1>
+      <h1 v-if="searchRes.length == 0 && searchString.length != 0" class="noResult">
+        There were no users that match that query
+      </h1>
     </div>
   </div>
 </template>

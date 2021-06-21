@@ -2,7 +2,17 @@
   <div class="gauge">
     <svg class="gaugeTrack" overflow="visible" viewBox="0 0 100 100">
       <circle cx="70" cy="70" r="40"></circle>
-      <circle class="progress" cx="70" cy="70" r="40" :style="{ stroke: color, 'stroke-dashoffset': 250 - (250 * (((value >= maxValue ? maxValue - 0.01 : value) * 75) / ((maxValue * 100) / 100))) / 100 }"></circle>
+      <circle
+        class="progress"
+        cx="70"
+        cy="70"
+        r="40"
+        :style="{
+          stroke: color,
+          'stroke-dashoffset':
+            250 - (250 * (((value >= maxValue ? maxValue - 0.01 : value) * 75) / ((maxValue * 100) / 100))) / 100
+        }"
+      ></circle>
     </svg>
     <img class="icon" :src="icon" alt="" />
     <h1 v-if="driveLetter" class="gaugeText gaugeDriveLetter">{{ driveLetter }}</h1>

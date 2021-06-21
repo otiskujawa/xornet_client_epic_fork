@@ -1,5 +1,10 @@
 <template>
-  <div class="shadowButton" :id="allowCopy ? 'shadowButton' : null" :class="{ colored, didCopy, iconOnly: !title, tiny }" @click="allowCopy ? copyText() : null">
+  <div
+    class="shadowButton"
+    :id="allowCopy ? 'shadowButton' : null"
+    :class="{ colored, didCopy, iconOnly: !title, tiny }"
+    @click="allowCopy ? copyText() : null"
+  >
     <h1 v-if="title">{{ copyMessage || title }}</h1>
     <Icon v-if="!textonly" :icon="icon" />
   </div>

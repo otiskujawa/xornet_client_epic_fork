@@ -50,8 +50,20 @@
     </rdf:RDF>
   </metadata>
   <g inkscape:label="Ebene 1" inkscape:groupmode="layer" id="layer1" transform="translate(-127.3742,-575.1707)">
-    <path inkscape:connector-curvature="0" id="path2141" class="ps02" d="m 127.46498,575.17115 0,46.93711 119.83938,-0.0908 0,273.27013 55.01719,0 0,-273.27013 825.07585,0 0,-46.84625" style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none" />
-    <path inkscape:connector-curvature="0" id="path2143" class="ps02" d="m 127.46498,972.9107 999.93242,0 0,-47.93571 -1000.0232,0" style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none" />
+    <path
+      inkscape:connector-curvature="0"
+      id="path2141"
+      class="ps02"
+      d="m 127.46498,575.17115 0,46.93711 119.83938,-0.0908 0,273.27013 55.01719,0 0,-273.27013 825.07585,0 0,-46.84625"
+      style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+    />
+    <path
+      inkscape:connector-curvature="0"
+      id="path2143"
+      class="ps02"
+      d="m 127.46498,972.9107 999.93242,0 0,-47.93571 -1000.0232,0"
+      style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+    />
     <path
       inkscape:connector-curvature="0"
       id="path2145"

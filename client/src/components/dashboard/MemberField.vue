@@ -3,7 +3,13 @@
     <h1 class="title">Members</h1>
     <div class="member" v-for="member of members" :key="member">
       <router-link class="user" :to="{ name: 'profile', params: { username: member.username } }">
-        <img :src="member.profileImage?.url ?? 'https://cdn.discordapp.com/attachments/816028632269979668/855437868825444372/unknown.png'" :alt="member.username" />
+        <img
+          :src="
+            member.profileImage?.url ??
+              'https://cdn.discordapp.com/attachments/816028632269979668/855437868825444372/unknown.png'
+          "
+          :alt="member.username"
+        />
         <h1>{{ member.username }}</h1>
       </router-link>
       <ShadowButton v-if="isOwner" colored class="revoke" title="Revoke" icon="hammer" @click="revoke(member._id)" />

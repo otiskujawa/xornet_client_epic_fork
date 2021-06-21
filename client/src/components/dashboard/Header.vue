@@ -4,7 +4,12 @@
       <div v-if="!showSearchBar && searchToggled" @click="searchToggled = false">
         <SquareButton icon="left-arrow" alt="" />
       </div>
-      <div class="logo" v-if="!searchToggled" :class="{ clickable: !isNestedRoute }" @click="isNestedRoute ? incrementSuperclass() : $router.go(-1)">
+      <div
+        class="logo"
+        v-if="!searchToggled"
+        :class="{ clickable: !isNestedRoute }"
+        @click="isNestedRoute ? incrementSuperclass() : $router.go(-1)"
+      >
         <img v-if="isNestedRoute" :src="require('@/assets/logos/logoHeader.svg')" alt="Xornet" />
         <Icon v-else icon="left-arrow" style="width: 24px; filter: invert(1);" />
       </div>
@@ -24,7 +29,14 @@
       <SquareButton icon="logout" @click.native="logout" />
 
       <router-link :to="{ name: 'profile', params: { username } }">
-        <img :src="profile?.profileImage?.url ?? 'https://cdn.discordapp.com/attachments/816028632269979668/855437868825444372/unknown.png'" class="profileImage" alt="profileImage" />
+        <img
+          :src="
+            profile?.profileImage?.url ??
+              'https://cdn.discordapp.com/attachments/816028632269979668/855437868825444372/unknown.png'
+          "
+          class="profileImage"
+          alt="profileImage"
+        />
       </router-link>
     </div>
   </header>
@@ -70,7 +82,9 @@ export default {
     incrementSuperclass() {
       this.superclass++;
       if (this.superclass % 10 == 9) {
-        var superclass = new Audio("https://cdn.discordapp.com/attachments/851974319370010655/854730571389730826/superclass.mp3");
+        var superclass = new Audio(
+          "https://cdn.discordapp.com/attachments/851974319370010655/854730571389730826/superclass.mp3"
+        );
         superclass.play();
       }
     },

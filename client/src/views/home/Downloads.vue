@@ -1,7 +1,10 @@
 <template>
   <div class="view downloads relative w-full h-full">
     <Header />
-    <div class="downloadContent flex flex-col overflow-scroll justify-start relative w-full h-100vh gap-8 py-24 px-10vw" v-if="releases">
+    <div
+      class="downloadContent flex flex-col overflow-scroll justify-start relative w-full h-100vh gap-8 py-24 px-10vw"
+      v-if="releases"
+    >
       <div class="reporterTitle flex items-end justify-start gap-2 flex-col md:flex-row">
         <Logo class="max-w-full" />
         <div class="flex bottom items-start md:items-end">
@@ -14,7 +17,11 @@
 
       <p>The reporter uses the NodeJS runtime enviroment and is compiled to run natively on most common operating systems</p>
 
-      <img class="previewImage hidden md:flex absolute h-465px w-auto right-10vw z-0" src="https://cdn.discordapp.com/attachments/755597803102928966/855248964206985257/unknown.png" alt="" />
+      <img
+        class="previewImage hidden md:flex absolute h-465px w-auto right-10vw z-0"
+        src="https://cdn.discordapp.com/attachments/755597803102928966/855248964206985257/unknown.png"
+        alt=""
+      />
 
       <div class="lists flex gap-4 md:gap-32">
         <ul>
@@ -72,7 +79,9 @@
           <div class="cockBlock p-4 max-w-full rounded-md">
             <h2><strong># Linux install steps</strong></h2>
             <h2><strong># Download & Install script</strong></h2>
-            <h2><strong>$</strong> sudo wget https://github.com/Geoxor/Xornet/releases/download/{{ releases.tag_name }}/install.sh</h2>
+            <h2>
+              <strong>$</strong> sudo wget https://github.com/Geoxor/Xornet/releases/download/{{ releases.tag_name }}/install.sh
+            </h2>
             <h2><strong>$</strong> sudo chmod +x ./install.sh</h2>
             <h2><strong>$</strong> sudo ./install.sh</h2>
           </div>
