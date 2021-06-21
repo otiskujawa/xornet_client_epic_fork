@@ -35,7 +35,8 @@ export default {
   min-width: 100%;
   min-height: 100%;
 
-  background: linear-gradient(0deg, #ffffff, #ffffff), url("https://cdn.discordapp.com/attachments/806300597338767450/849089973431959594/wallhaven-lmkoqp.png"), #bcbcbc;
+  background: linear-gradient(0deg, #ffffff, #ffffff),
+    url("https://cdn.discordapp.com/attachments/806300597338767450/849089973431959594/wallhaven-lmkoqp.png"), #bcbcbc;
   background-blend-mode: color, screen, normal;
   background-repeat: no-repeat;
   background-position: top;

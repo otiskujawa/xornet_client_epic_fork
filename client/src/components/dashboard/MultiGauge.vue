@@ -8,7 +8,9 @@
         :r="radius - index * spacingMultiplier"
         :style="{
           'stroke-dasharray': calculateCircumference(radius - index * spacingMultiplier),
-          'stroke-dashoffset': calculateCircumference(radius - index * spacingMultiplier) - (calculateCircumference(radius - index * spacingMultiplier) * (25 * circleDegreePercentage)) / 100
+          'stroke-dashoffset':
+            calculateCircumference(radius - index * spacingMultiplier) -
+            (calculateCircumference(radius - index * spacingMultiplier) * (25 * circleDegreePercentage)) / 100
         }"
       ></circle>
       <circle

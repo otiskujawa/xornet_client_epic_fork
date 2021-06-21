@@ -269,7 +269,8 @@ class User extends API {
    * @param {String} machineUUID The machine's uuid that you want to add
    */
   async addMachine(machineUUID) {
-    return (await super.request("put", "profile/machine", { "Content-Type": "application/json" }, { machine: machineUUID })).data;
+    return (await super.request("put", "profile/machine", { "Content-Type": "application/json" }, { machine: machineUUID }))
+      .data;
   }
 
   /**
@@ -306,6 +307,10 @@ const api = {
   datacenters: new Datacenter()
 };
 
-console.log(`%c[API]` + `%c [Class Loaded]`, "color: black; background-color: #aa66ff; padding: 2px; border-radius: 4px; font-weight: bold;", "color: #cba1ff;");
+console.log(
+  `%c[API]` + `%c [Class Loaded]`,
+  "color: black; background-color: #aa66ff; padding: 2px; border-radius: 4px; font-weight: bold;",
+  "color: #cba1ff;"
+);
 
 export default api;

@@ -15,7 +15,9 @@
           <!-- <p>Forgot your password? <router-link :to="{ name: 'forgot' }">Click here</router-link></p> -->
         </div>
 
-        <button type="submit" :class="{ disabled: isFormValid || isLoading }">Login <img v-if="isLoading" :src="require('@/assets/animations/loading.gif')" alt="" /></button>
+        <button type="submit" :class="{ disabled: isFormValid || isLoading }">
+          Login <img v-if="isLoading" :src="require('@/assets/animations/loading.gif')" alt="" />
+        </button>
       </form>
     </div>
   </div>

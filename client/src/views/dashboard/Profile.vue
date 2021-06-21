@@ -2,11 +2,29 @@
   <div class="profilePage" v-if="profile.username">
     <div class="heading">
       <div class="header">
-        <img class="banner" :src="profile.profileBanner?.url || 'https://cdn.discordapp.com/attachments/806300597338767450/855757714806407188/unknown.png'" :alt="profile.username" />
+        <img
+          class="banner"
+          :src="
+            profile.profileBanner?.url ||
+              'https://cdn.discordapp.com/attachments/806300597338767450/855757714806407188/unknown.png'
+          "
+          :alt="profile.username"
+        />
         <Icon class="edit" @click="$refs.banner.click()" v-if="isEditing" icon="edit" />
       </div>
-      <div class="pfp" :class="{ border: profile.profileImage?.hasAlpha }" :style="{ 'background-image': `url(${profile.profileImage?.url ?? 'https://cdn.discordapp.com/attachments/816028632269979668/855437868825444372/unknown.png'})` }">
-        <div class="xornetBadge" v-if="profile.isDev"><img :src="require('@/assets/logos/logo.svg')" alt="Xornet Developer" /></div>
+      <div
+        class="pfp"
+        :class="{ border: profile.profileImage?.hasAlpha }"
+        :style="{
+          'background-image': `url(
+            ${newPFP ||
+              profile.profileImage?.url ||
+              'https://cdn.discordapp.com/attachments/816028632269979668/855437868825444372/unknown.png'})`
+        }"
+      >
+        <div class="xornetBadge" v-if="profile.isDev">
+          <img :src="require('@/assets/logos/logo.svg')" alt="Xornet Developer" />
+        </div>
         <Icon class="edit" @click="$refs.pfp.click()" v-if="isEditing" icon="edit" />
       </div>
 
@@ -15,7 +33,13 @@
         <input type="file" id="banner" ref="banner" style="display: none" name="banner" accept="image/*" />
       </form>
 
-      <ShadowButton title="Edit" icon="edit" v-if="!isEditing && profile.username == username" @click="isEditing = !isEditing" class="edit " />
+      <ShadowButton
+        title="Edit"
+        icon="edit"
+        v-if="!isEditing && profile.username == username"
+        @click="isEditing = !isEditing"
+        class="edit "
+      />
       <ShadowButton
         title="Save"
         icon="save"
@@ -38,7 +62,15 @@
           </Tooltip>
           <div class="container">
             <h1 class="username">{{ profile.username }}</h1>
-            <img class="location" :src="profile.geolocation?.countryCode ? require(`@/assets/flags/${profile.geolocation.countryCode}.png`) : require('@/assets/flags/__.png')" alt="Country Flag" />
+            <img
+              class="location"
+              :src="
+                profile.geolocation?.countryCode
+                  ? require(`@/assets/flags/${profile.geolocation.countryCode}.png`)
+                  : require('@/assets/flags/__.png')
+              "
+              alt="Country Flag"
+            />
           </div>
         </div>
 
@@ -46,7 +78,9 @@
 
         <section>
           <h1 class="descriptionHeading">Points</h1>
-          <p class="points" @mouseenter="showFullPoints = true" @mouseleave="showFullPoints = false">{{ showFullPoints ? ~~points.tweened : millify(points.number) || "0" }}</p>
+          <p class="points" @mouseenter="showFullPoints = true" @mouseleave="showFullPoints = false">
+            {{ showFullPoints ? ~~points.tweened : millify(points.number) || "0" }}
+          </p>
         </section>
 
         <div class="line"></div>
@@ -57,7 +91,15 @@
           <div class="badges">
             <Tooltip v-for="(badge, index) of profile.badges.owned" :key="badge" :text="badge">
               <!--  [ is this true ? if so do this : otherwise do this ] -->
-              <img class="badge" :class="{ isEditing, selectedBadge: index == profile.badges.selected }" @click="isEditing ? changeBadge(index) : null" :src="require(`@/assets/badges/${badge}.svg`)" />
+              <img
+                class="badge"
+                :class="{
+                  isEditing,
+                  selectedBadge: index == profile.badges.selected
+                }"
+                @click="isEditing ? changeBadge(index) : null"
+                :src="require(`@/assets/badges/${badge}.svg`)"
+              />
             </Tooltip>
           </div>
 
@@ -76,40 +118,92 @@
 
         <section v-if="profile.created_at">
           <h1 class="descriptionHeading">Created</h1>
-          <p class="descriptionText">{{ new Date(profile.created_at).toLocaleString() }}</p>
+          <p class="descriptionText">
+            {{ new Date(profile.created_at).toLocaleString() }}
+          </p>
         </section>
 
         <div class="line"></div>
 
         <section class="socials" v-if="profile.socials?.length != 0 || isEditing">
-          <div v-for="(platform, index) of profile.socials" :key="platform" @click="isEditing ? remove(index) : open(platform.url)" class="shadowButton" :class="{ isEditing: isEditing }">
-            <h1 v-if="platforms.includes(platform.name)" class="nameOnPlatform">@{{ platform.url.split("/")[platform.url.split("/").length - 1] }}</h1>
-            <h1 v-if="!platforms.includes(platform.name)" class="nameOnPlatform">{{ platform.name }}</h1>
-            <img :src="platform.name != null && platforms.includes(platform.name) ? require(`@/assets/icons/filled/${platform.name}.svg`) : require(`@/assets/icons/filled/globe.svg`)" />
+          <div
+            v-for="(platform, index) of profile.socials"
+            :key="platform"
+            @click="isEditing ? remove(index) : open(platform.url)"
+            class="shadowButton"
+            :class="{ isEditing: isEditing }"
+          >
+            <h1 v-if="platforms.includes(platform.name)" class="nameOnPlatform">
+              @{{ platform.url.split("/")[platform.url.split("/").length - 1] }}
+            </h1>
+            <h1 v-if="!platforms.includes(platform.name)" class="nameOnPlatform">
+              {{ platform.name }}
+            </h1>
+            <img
+              :src="
+                platform.name != null && platforms.includes(platform.name)
+                  ? require(`@/assets/icons/filled/${platform.name}.svg`)
+                  : require(`@/assets/icons/filled/globe.svg`)
+              "
+            />
             <img v-if="isEditing" :src="require(`@/assets/icons/filled/x.svg`)" />
           </div>
 
-          <ShadowButton title="Add" icon="add" @click="isAddingSocial = !isAddingSocial" v-if="isEditing" :class="{ isEditing: isEditing }" />
+          <ShadowButton
+            title="Add"
+            icon="add"
+            @click="isAddingSocial = !isAddingSocial"
+            v-if="isEditing"
+            :class="{ isEditing: isEditing }"
+          />
         </section>
 
         <div class="line" v-if="profile.socials?.length != 0 || isEditing"></div>
 
         <section class="descriptionSection">
           <Icon class="edit" v-if="isEditing" icon="edit" />
-          <h1 class="descriptionHeading" v-if="profile.bio && !isEditing">Bio</h1>
-          <textarea v-if="!isEditing" maxlength="256" class="descriptionText textArea" cols="30" rows="10" v-model="profile.bio" disabled></textarea>
-          <textarea v-if="isEditing" maxlength="256" class="descriptionText textArea editing" cols="30" rows="10" v-model="profile.bio"></textarea>
+          <h1 class="descriptionHeading" v-if="profile.bio && !isEditing">
+            Bio
+          </h1>
+          <textarea
+            v-if="!isEditing"
+            maxlength="256"
+            class="descriptionText textArea"
+            cols="30"
+            rows="10"
+            v-model="profile.bio"
+            disabled
+          ></textarea>
+          <textarea
+            v-if="isEditing"
+            maxlength="256"
+            class="descriptionText textArea editing"
+            cols="30"
+            rows="10"
+            v-model="profile.bio"
+          ></textarea>
         </section>
       </div>
 
       <div class="stats">
         <a :href="profile.speedtest.result.url" target="_blank" class="speedtest" v-if="profile.speedtest">
           <h1>
-            Internet Speedtest <strong>{{ new Date(Date.now() - new Date(profile.speedtest.timestamp).valueOf()).getMinutes() }}m ago</strong>
+            Internet Speedtest
+            <strong>{{ new Date(Date.now() - new Date(profile.speedtest.timestamp).valueOf()).getMinutes() }}m ago</strong>
           </h1>
           <div class="gauges">
-            <Gauge :icon="require('@/assets/icons/filled/download.svg')" suffix="mbps" :value="parseFloat((profile.speedtest.download.bandwidth / 100000).toFixed(2))" color="#000" />
-            <Gauge :icon="require('@/assets/icons/filled/upload.svg')" suffix="mbps" :value="parseFloat((profile.speedtest.upload.bandwidth / 100000).toFixed(2))" color="#000" />
+            <Gauge
+              :icon="require('@/assets/icons/filled/download.svg')"
+              suffix="mbps"
+              :value="parseFloat((profile.speedtest.download.bandwidth / 100000).toFixed(2))"
+              color="#000"
+            />
+            <Gauge
+              :icon="require('@/assets/icons/filled/upload.svg')"
+              suffix="mbps"
+              :value="parseFloat((profile.speedtest.upload.bandwidth / 100000).toFixed(2))"
+              color="#000"
+            />
           </div>
         </a>
 
@@ -144,12 +238,26 @@ export default {
   },
   data: () => {
     return {
-      platforms: ["youtube", "twitch", "twitter", "discord", "reddit", "facebook", "github", "steam", "instagram", "tiktok", "tumblr", "vk"],
+      platforms: [
+        "youtube",
+        "twitch",
+        "twitter",
+        "discord",
+        "reddit",
+        "facebook",
+        "github",
+        "steam",
+        "instagram",
+        "tiktok",
+        "tumblr",
+        "vk"
+      ],
       profile: {},
       points: {
         number: 0,
         tweened: 0
       },
+      newPFP: undefined,
       showFullPoints: false,
       isEditing: false,
       isAddingSocial: false
@@ -169,7 +277,12 @@ export default {
     socket.off("points");
     socket.emit("getPoints", this.$route.params.username);
     socket.on("points", points => {
-      console.log(`%c[WS]` + `%c [Points]`, "color: black; background-color: #ff4488; padding: 2px; border-radius: 4px; font-weight: bold;", "color: #ff77aa;", points);
+      console.log(
+        `%c[WS]` + `%c [Points]`,
+        "color: black; background-color: #ff4488; padding: 2px; border-radius: 4px; font-weight: bold;",
+        "color: #ff77aa;",
+        points
+      );
       this.points.number = points;
       gsap.to(this.points, { duration: 0.5, tweened: points });
     });
@@ -202,7 +315,19 @@ export default {
 
       if (url.endsWith("/")) url = url.substring(0, url.length - 1);
 
-      let sites = ["youtube", "twitch", "discord", "reddit", "github", "facebook", "steam", "instagram", "tiktok", "tumblr", "vk"];
+      let sites = [
+        "youtube",
+        "twitch",
+        "discord",
+        "reddit",
+        "github",
+        "facebook",
+        "steam",
+        "instagram",
+        "tiktok",
+        "tumblr",
+        "vk"
+      ];
 
       sites.forEach(element => {
         if (url.includes(element)) name = element;
@@ -219,7 +344,11 @@ export default {
       window.open(url, "_blank");
     },
     async save() {
-      let response = await this.api.user.save(Object.assign({}, this.profile), this.$refs.pfp.files[0], this.$refs.banner.files[0]);
+      let response = await this.api.user.save(
+        Object.assign({}, this.profile),
+        this.$refs.pfp.files[0],
+        this.$refs.banner.files[0]
+      );
 
       // this.profile.pfp = response.profile.pfp;
       for (const [key, value] of Object.entries(response.profile)) {

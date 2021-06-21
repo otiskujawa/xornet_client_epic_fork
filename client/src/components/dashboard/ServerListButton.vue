@@ -1,5 +1,9 @@
 <template>
-  <router-link :to="{ name: 'machine', params: { machine: machine.uuid } }" class="button" :class="{ thin: thin, rogue: machine.rogue, disconnected: Date.now() > machine.timestamp + 15000 }">
+  <router-link
+    :to="{ name: 'machine', params: { machine: machine.uuid } }"
+    class="button"
+    :class="{ thin: thin, rogue: machine.rogue, disconnected: Date.now() > machine.timestamp + 15000 }"
+  >
     <!-- Icons Column -->
     <Icon :icon="type" v-if="!machine.rogue && Date.now() < machine.timestamp + 15000" class="machineType" />
     <Icon icon="warning" v-if="machine.rogue && Date.now() < machine.timestamp + 15000" class="machineType" />
@@ -17,7 +21,9 @@
     <div class="field cpuUsage" v-else>{{ machine.cpu }}<strong>%</strong></div>
 
     <!-- RAM Column -->
-    <div class="field ramUsage" v-if="Object.values(machine.ram).some(field => field != null)">{{ machine.ram.used }}/{{ machine.ram.total > 1 ? Math.ceil(machine.ram.total) : machine.ram.total }}<strong>GB</strong></div>
+    <div class="field ramUsage" v-if="Object.values(machine.ram).some(field => field != null)">
+      {{ machine.ram.used }}/{{ machine.ram.total > 1 ? Math.ceil(machine.ram.total) : machine.ram.total }}<strong>GB</strong>
+    </div>
     <div class="field ramUsage" v-else><strong>Unknown</strong></div>
 
     <!-- Disks Column -->
@@ -26,7 +32,11 @@
         <strong>
           {{ disk?.fs }}
         </strong>
-        {{ disk?.size > 1000 ? `${(disk?.used / 1000).toFixed(2)}/${(disk?.size / 1000).toFixed(2)}` : `${disk?.used}/${disk?.size}` }}
+        {{
+          disk?.size > 1000
+            ? `${(disk?.used / 1000).toFixed(2)}/${(disk?.size / 1000).toFixed(2)}`
+            : `${disk?.used}/${disk?.size}`
+        }}
         <strong>
           {{ disk?.size > 1000 ? "TB" : "GB" }}
         </strong>
@@ -38,23 +48,44 @@
     <div class="field networkUsage">{{ machine.network?.RxSec }}<strong>mbps</strong></div>
 
     <!-- Region Column -->
-    <div class="field region"><img :src="machine.geolocation?.countryCode ? require(`@/assets/flags/${machine.geolocation.countryCode}.png`) : require('@/assets/flags/__.png')" alt="Country Flag" /></div>
+    <div class="field region">
+      <img
+        :src="
+          machine.geolocation?.countryCode
+            ? require(`@/assets/flags/${machine.geolocation.countryCode}.png`)
+            : require('@/assets/flags/__.png')
+        "
+        alt="Country Flag"
+      />
+    </div>
 
     <!-- Ping Column -->
     <div class="field ping" v-if="machine.ping != null">{{ machine.ping }}<strong>ms</strong></div>
     <div class="field ping" v-else><strong>Unknown</strong></div>
 
     <!-- Uptime Column -->
-    <div class="field uptime">{{ machine.uptime.formatted.d }}:{{ machine.uptime.formatted.h }}:{{ machine.uptime.formatted.m }}:{{ machine.uptime.formatted.s }}</div>
+    <div class="field uptime">
+      {{ machine.uptime.formatted.d }}:{{ machine.uptime.formatted.h }}:{{ machine.uptime.formatted.m }}:{{
+        machine.uptime.formatted.s
+      }}
+    </div>
 
     <!-- Owner Column -->
     <router-link class="field owner" :to="{ name: 'profile', params: { username: machine?.owner?.username } }"
-      ><img :src="machine?.owner?.profileImage ?? 'https://cdn.discordapp.com/attachments/816028632269979668/855437868825444372/unknown.png'" :alt="machine?.owner?.username" />{{ machine.owner.username }}</router-link
+      ><img
+        :src="
+          machine?.owner?.profileImage ??
+            'https://cdn.discordapp.com/attachments/816028632269979668/855437868825444372/unknown.png'
+        "
+        :alt="machine?.owner?.username"
+      />{{ machine.owner.username }}</router-link
     >
 
     <!-- Datacenter Column -->
     <router-link class="field datacenter" :to="{ name: 'datacenters', params: { name: machine.datacenter?.name } }"
-      ><img :src="machine.datacenter?.logo ?? require('@/assets/icons/filled/missing.svg')" :alt="machine.datacenter?.name" />{{ machine.datacenter ? machine.datacenter.name : "Unassigned" }}</router-link
+      ><img :src="machine.datacenter?.logo ?? require('@/assets/icons/filled/missing.svg')" :alt="machine.datacenter?.name" />{{
+        machine.datacenter ? machine.datacenter.name : "Unassigned"
+      }}</router-link
     >
 
     <!-- Platform Column -->

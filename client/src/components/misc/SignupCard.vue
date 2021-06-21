@@ -16,7 +16,9 @@
           <p>Have an account? <router-link :to="{ name: 'login' }">Click here</router-link></p>
         </div>
 
-        <button type="submit" :class="{ disabled: isFormValid || isLoading }">Signup <img v-if="isLoading" :src="require('@/assets/animations/loading.gif')" alt="" /></button>
+        <button type="submit" :class="{ disabled: isFormValid || isLoading }">
+          Signup <img v-if="isLoading" :src="require('@/assets/animations/loading.gif')" alt="" />
+        </button>
       </form>
     </div>
   </div>

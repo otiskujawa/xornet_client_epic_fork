@@ -1,18 +1,42 @@
 <template>
   <nav class="serverList">
     <nav v-if="thinButtons" id="desktop" class="columns" :class="{ thin: thinButtons }">
-      <div @click="sort('hostname')" class="field hostname">hostname <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'hostname'" /></div>
-      <div @click="sort('uuid')" class="field uuid">uuid <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'uuid'" /></div>
-      <div @click="sort('cpu')" class="field cpuUsage">cpu <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'cpu'" /></div>
-      <div @click="sort('ram')" class="field ramUsage">ram <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'ram'" /></div>
-      <div @click="sort('disks')" class="field disksUsage">disks <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'disks'" /></div>
-      <div @click="sort('upload')" class="field networkUsage">Upload <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'upload'" /></div>
-      <div @click="sort('download')" class="field networkUsage">Download <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'download'" /></div>
-      <div @click="sort('region')" class="field region">Region <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'region'" /></div>
-      <div @click="sort('ping')" class="field ping">ping <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'ping'" /></div>
-      <div @click="sort('uptime')" class="field uptime">uptime <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'uptime'" /></div>
-      <div @click="sort('owner')" class="field owner">owner <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'owner'" /></div>
-      <div @click="sort('datacenter')" class="field datacenter">datacenter <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'datacenter'" /></div>
+      <div @click="sort('hostname')" class="field hostname">
+        hostname <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'hostname'" />
+      </div>
+      <div @click="sort('uuid')" class="field uuid">
+        uuid <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'uuid'" />
+      </div>
+      <div @click="sort('cpu')" class="field cpuUsage">
+        cpu <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'cpu'" />
+      </div>
+      <div @click="sort('ram')" class="field ramUsage">
+        ram <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'ram'" />
+      </div>
+      <div @click="sort('disks')" class="field disksUsage">
+        disks <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'disks'" />
+      </div>
+      <div @click="sort('upload')" class="field networkUsage">
+        Upload <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'upload'" />
+      </div>
+      <div @click="sort('download')" class="field networkUsage">
+        Download <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'download'" />
+      </div>
+      <div @click="sort('region')" class="field region">
+        Region <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'region'" />
+      </div>
+      <div @click="sort('ping')" class="field ping">
+        ping <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'ping'" />
+      </div>
+      <div @click="sort('uptime')" class="field uptime">
+        uptime <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'uptime'" />
+      </div>
+      <div @click="sort('owner')" class="field owner">
+        owner <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'owner'" />
+      </div>
+      <div @click="sort('datacenter')" class="field datacenter">
+        datacenter <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'datacenter'" />
+      </div>
     </nav>
 
     <section v-if="!thinButtons">
@@ -21,8 +45,20 @@
     </section>
 
     <div class="list">
-      <MachineButton id="mobile" :machine="machine" v-for="machine of showRogues ? sortedMachines : sortedMachines.filter(machine => !machine.rogue)" :key="machine" />
-      <ServerListButton id="desktop" :thin="thinButtons" :showDetails="showDetails" :machine="machine" v-for="machine of showRogues ? sortedMachines : sortedMachines.filter(machine => !machine.rogue)" :key="machine" />
+      <MachineButton
+        id="mobile"
+        :machine="machine"
+        v-for="machine of showRogues ? sortedMachines : sortedMachines.filter(machine => !machine.rogue)"
+        :key="machine"
+      />
+      <ServerListButton
+        id="desktop"
+        :thin="thinButtons"
+        :showDetails="showDetails"
+        :machine="machine"
+        v-for="machine of showRogues ? sortedMachines : sortedMachines.filter(machine => !machine.rogue)"
+        :key="machine"
+      />
     </div>
   </nav>
 </template>

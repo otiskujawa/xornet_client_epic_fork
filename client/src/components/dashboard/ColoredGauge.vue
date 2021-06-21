@@ -2,7 +2,13 @@
   <div class="coloredGauge">
     <svg class="track" overflow="visible" viewBox="0 0 100 100">
       <circle cx="50" cy="50" r="40"></circle>
-      <circle class="progress" cx="50" cy="50" r="40" :style="{ stroke: color, 'stroke-dashoffset': 250 - (250 * value) / maxValue }"></circle>
+      <circle
+        class="progress"
+        cx="50"
+        cy="50"
+        r="40"
+        :style="{ stroke: color, 'stroke-dashoffset': 250 - (250 * value) / maxValue }"
+      ></circle>
     </svg>
     <Icon :color="color" :icon="icon" />
   </div>

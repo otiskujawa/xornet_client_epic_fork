@@ -1,11 +1,30 @@
 <template>
-  <router-link :to="{ name: 'machine', params: { machine: machine.uuid } }" class="machineButton" :class="{ rogue: machine.rogue, disconnected: Date.now() > machine.timestamp + 15000 }">
+  <router-link
+    :to="{ name: 'machine', params: { machine: machine.uuid } }"
+    class="machineButton"
+    :class="{ rogue: machine.rogue, disconnected: Date.now() > machine.timestamp + 15000 }"
+  >
     <div class="heading">
       <div class="left">
         <!-- Icons Column -->
-        <img v-if="!machine.rogue && Date.now() < machine.timestamp + 15000" class="machineType" :src="require(`@/assets/icons/filled/${type}.svg`)" alt="" />
-        <img v-if="machine.rogue && Date.now() < machine.timestamp + 15000" class="machineType" :src="require(`@/assets/icons/filled/warning.svg`)" alt="" />
-        <img v-if="Date.now() > machine.timestamp + 15000" class="machineType" :src="require(`@/assets/icons/filled/disconnected.svg`)" alt="" />
+        <img
+          v-if="!machine.rogue && Date.now() < machine.timestamp + 15000"
+          class="machineType"
+          :src="require(`@/assets/icons/filled/${type}.svg`)"
+          alt=""
+        />
+        <img
+          v-if="machine.rogue && Date.now() < machine.timestamp + 15000"
+          class="machineType"
+          :src="require(`@/assets/icons/filled/warning.svg`)"
+          alt=""
+        />
+        <img
+          v-if="Date.now() > machine.timestamp + 15000"
+          class="machineType"
+          :src="require(`@/assets/icons/filled/disconnected.svg`)"
+          alt=""
+        />
 
         <h1 v-if="!machine.rogue" class="hostname">{{ machine.hostname }}</h1>
       </div>
@@ -13,7 +32,9 @@
       <div class="coloredText">
         <h1 id="cpu">{{ machine.cpu }}%</h1>
         -
-        <h1 id="ram">{{ machine.ram.used }}/{{ machine.ram.total > 1 ? Math.ceil(machine.ram.total) : machine.ram.total }}GB</h1>
+        <h1 id="ram">
+          {{ machine.ram.used }}/{{ machine.ram.total > 1 ? Math.ceil(machine.ram.total) : machine.ram.total }}GB
+        </h1>
         -
         <h1 id="trx">{{ (machine.network?.TxSec + machine.network?.RxSec).toFixed(2) }}Mbps</h1>
       </div>

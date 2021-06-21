@@ -1,6 +1,8 @@
 <template>
   <div class="card">
-    <a href="https://cdn.discordapp.com/attachments/714219928181276802/852445270301999124/VR_RAVE.mp4" target="_blank"><img src="https://cdn.discordapp.com/attachments/806300597338767450/853048913229643776/duck.gif" alt=""/></a>
+    <a href="https://cdn.discordapp.com/attachments/714219928181276802/852445270301999124/VR_RAVE.mp4" target="_blank"
+      ><img src="https://cdn.discordapp.com/attachments/806300597338767450/853048913229643776/duck.gif" alt=""
+    /></a>
     <div class="details">
       <form v-on:submit.prevent="!isLoading && !isFormValid ? add() : null">
         <div class="text">
@@ -12,7 +14,9 @@
           <input v-model="form.name" class="inputField" type="text" placeholder="My uwu datacenter" />
         </div>
 
-        <button type="submit" :class="{ disabled: isFormValid || isLoading }">Create <img v-if="isLoading" :src="require('@/assets/animations/loading.gif')" alt="" /></button>
+        <button type="submit" :class="{ disabled: isFormValid || isLoading }">
+          Create <img v-if="isLoading" :src="require('@/assets/animations/loading.gif')" alt="" />
+        </button>
       </form>
     </div>
   </div>

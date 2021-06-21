@@ -4,13 +4,36 @@
       <div class="heading flex gap-4 items-center">
         <Icon class="w-32px" :icon="type" v-if="!machine.rogue && Date.now() < machine.timestamp + 15000" />
         <h1 class="text-2xl font-bold">{{ machine.hostname }}</h1>
-        <img class="w-32px" :src="machine.geolocation?.countryCode ? require(`@/assets/flags/${machine.geolocation.countryCode}.png`) : require('@/assets/flags/__.png')" alt="Country Flag" />
+        <img
+          class="w-32px"
+          :src="
+            machine.geolocation?.countryCode
+              ? require(`@/assets/flags/${machine.geolocation.countryCode}.png`)
+              : require('@/assets/flags/__.png')
+          "
+          alt="Country Flag"
+        />
       </div>
       <div class="grid gap-2 grid-cols-2">
         <InfoField borderless icon="cpu" title="CPU Usage" color="#8676FF" suffix="%" :value="machine.cpu" />
         <InfoField borderless icon="network" title="Ping" color="#516DFF" suffix="ms" :value="machine.ping" />
-        <InfoField borderless icon="ram" title="Total RAM Usage" color="#32B5FF" suffix="GB" :value="machine.ram.used" :maxValue="machine.ram.total" />
-        <InfoField borderless icon="rj45" title="Upload Bandiwdth" color="#4ADEFF" suffix="Mbps" :value="(machine.network.TxSec + machine.network.RxSec).toFixed(2)" />
+        <InfoField
+          borderless
+          icon="ram"
+          title="Total RAM Usage"
+          color="#32B5FF"
+          suffix="GB"
+          :value="machine.ram.used"
+          :maxValue="machine.ram.total"
+        />
+        <InfoField
+          borderless
+          icon="rj45"
+          title="Upload Bandiwdth"
+          color="#4ADEFF"
+          suffix="Mbps"
+          :value="(machine.network.TxSec + machine.network.RxSec).toFixed(2)"
+        />
       </div>
       <div class="flex gap-2 justify-between items-center">
         <div class="flex gap-2 items-center">
@@ -108,7 +131,9 @@ export default {
     });
     socket.emit("getMachines");
 
-    this.processes = (await this.api.machine.getProcesses(this.$route.params.machine)).list.sort((a, b) => (a.name < b.name ? 1 : -1));
+    this.processes = (await this.api.machine.getProcesses(this.$route.params.machine)).list.sort((a, b) =>
+      a.name < b.name ? 1 : -1
+    );
   },
   methods: {
     sort(by) {
