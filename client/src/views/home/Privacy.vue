@@ -1,5 +1,5 @@
 <template>
-  <div class="view privacypage h-100vh overflow-scroll">
+  <div class="view privacypage h-100vh overflow-scroll bg-xorblack">
     <Header />
     <div class="content flex justify-center h-full items-center p-6 text-left">
         <div class="textFields flex flex-col gap-2rem md:w-max-1/2 w-full p-4">
@@ -15,10 +15,10 @@
             </section>
             <section>
                 <h3 class="text-2xl font-bold">Where does my data go?</h3>
-                <p>
-                Your data is transferred to a centralized server which is then displayed on the site.<br />
-                Your data is transferred using websockets and other technologies to prevent loss of data.
-                </p>
+                <ul class="list-disc list-inside">
+                    <li>Your data is transferred to a centralized server which is then displayed on the site.</li>
+                    <li>Your data is transferred using websockets and other technologies to prevent loss of data.</li>
+                </ul>
             </section>
         </div>
     </div>
@@ -36,6 +36,12 @@ export default {
 }
 </script>
 
-<style>
+<style lang="postcss">
+.privacypage {
+    @apply bg-xorblack;
+}
 
+.privacypage * {
+    @apply text-xorwhite;
+}
 </style>
