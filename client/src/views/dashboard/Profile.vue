@@ -484,7 +484,7 @@ export default {
   margin-top: 24px;
   gap: 64px;
 }
-.stats {
+.profilePage .stats {
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(4, 224px);
