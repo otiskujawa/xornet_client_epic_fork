@@ -8,6 +8,10 @@
         <Icon icon="details" />
         <p>What is Xornet</p>
       </router-link>
+      <router-link class="button" :to="{ name: 'privacy' }">
+        <Icon icon="privacy" />
+        <p>Privacy</p>
+      </router-link>
       <a class="button" href="https://github.com/Geoxor/Xornet" target="_blank">
         <Icon icon="repository" />
         <p>Repository</p>
