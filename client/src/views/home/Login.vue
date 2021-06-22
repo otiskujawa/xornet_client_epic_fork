@@ -35,7 +35,7 @@ export default {
   height: 100vh;
 }
 
-.content {
+.loginpage .content {
   height: 100%;
   display: flex;
   justify-content: center;
@@ -43,7 +43,7 @@ export default {
   flex-direction: column;
 }
 
-.card {
+.loginpage .card {
   width: 280px;
   overflow: hidden;
   display: flex;
@@ -54,12 +54,12 @@ export default {
   border-radius: 8px;
 }
 
-.card a img {
+.loginpage .card a img {
   width: 280px;
   height: auto;
 }
 
-.details {
+.loginpage .details {
   padding: 16px 24px;
   overflow: hidden;
   display: flex;
@@ -68,7 +68,7 @@ export default {
   height: 100%;
 }
 
-form {
+.loginpage form {
   display: flex;
   flex-direction: column;
   gap: 16px;
