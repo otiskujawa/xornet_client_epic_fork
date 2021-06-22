@@ -1,16 +1,16 @@
 <template>
-  <div class="coloredGauge">
-    <svg class="track" overflow="visible" viewBox="0 0 100 100">
-      <circle cx="50" cy="50" r="40"></circle>
+  <div class="coloredGauge w-100px h-100px relative">
+    <svg class="flex justify-center items-center transform rotate-90" overflow="visible" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="40" class="duration-500 ease h-full w-full fill-none stroke-dash-250 stroke-8 stroke-none "></circle>
       <circle
-        class="progress"
+        class="duration-500 ease stroke-6 stroke-dash-250 fill-none stroke-cap-round"
         cx="50"
         cy="50"
         r="40"
         :style="{ stroke: color, 'stroke-dashoffset': 250 - (250 * value) / maxValue }"
       ></circle>
     </svg>
-    <Icon :color="color" :icon="icon" />
+    <Icon class="select-none absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" :color="color" :icon="icon" />
   </div>
 </template>
 
@@ -30,43 +30,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.coloredGauge {
-  position: relative;
-  width: 100px;
-  height: 100px;
-}
-
-.icon {
-  user-select: none;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  position: absolute;
-}
-
-.track {
-  display: flex;
-  justify-content: center;
-  transform: rotate(90deg);
-  align-items: center;
-}
-
-circle {
-  height: 100%;
-  width: 100%;
-  fill: none;
-  stroke-dasharray: 250;
-
-  /* stroke: var(--white); */
-  stroke-width: 8px;
-  stroke-linecap: round;
-  transition: 500ms ease;
-}
-
-circle.progress {
-  stroke-dasharray: 250;
-  stroke-width: 6px;
-}
-</style>
