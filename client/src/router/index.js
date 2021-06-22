@@ -31,13 +31,21 @@ const routes = [
       guest: true
     }
   },
-  // Xornet Signup
+  // Xornet Downloads
   {
     path: "/downloads",
     name: "downloads",
     component: () => import(/* webpackChunkName: "downloads" */ "@/views/home/Downloads.vue"),
     meta: {
       title: "Xornet | Downloads"
+    }
+  },
+  {
+    path: "/privacy",
+    name: "privacy",
+    component: () => import(/* webpackChunkName: "privacy" */ "@/views/home/Privacy.vue"),
+    meta: { 
+      title: "Xornet | Privacy"
     }
   },
   // Xornet Dashboard
