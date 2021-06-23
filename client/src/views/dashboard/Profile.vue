@@ -505,7 +505,7 @@ export default {
 }
 .speedtest:hover {
   transform: translateY(-1px);
-  box-shadow: rgb(0 0 0 / 10%) 0px 10px 20px;
+  box-shadow: var(--shadowColor) 0px 10px 20px;
 }
 .speedtest > h1 {
   font-family: "Roboto Mono";

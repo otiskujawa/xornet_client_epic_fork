@@ -85,7 +85,7 @@ export default {
 
 .content {
   background-color: var(--theme-color);
-  box-shadow: rgb(0 0 0 / 10%) 0px 10px 20px;
+  box-shadow: var(--shadowColor) 0px 10px 20px;
   color: white;
 
   position: relative;

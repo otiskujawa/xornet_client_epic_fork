@@ -33,7 +33,7 @@ export default {
     };
   },
   props: {
-    add: { type }
+    add: { type: Function }
   },
   computed: {
     isFormValid() {
