@@ -7,7 +7,7 @@
     <Icon v-if="!datacenter.logo" icon="datacenter" class="logo" />
     <img v-else class="logo" :src="datacenter.logo" :alt="datacenter.name" />
     <div class="footer">
-      <h1 v-if="datacenter.owner === me._id" class="primary">Primary</h1>
+      <h1 v-if="datacenter.owner === me._id" class="Owned">Owned</h1>
 
       <!-- <ColoredGauge icon="stack" color="#00FF67" :value="machines.size || 0" :maxValue="stats.totalMachines" /> -->
       <!-- <ColoredGauge icon="network" color="#FFA800"  :value="datacenter.networkHealth || 0" :maxValue="100" /> -->
@@ -38,7 +38,7 @@ export default {
     addButton: { type: Boolean }
   },
   computed: {
-    me: function() {
+    me() {
       return JSON.parse(localStorage.getItem("me"));
     }
   }
@@ -104,7 +104,7 @@ export default {
   overflow: hidden;
 }
 
-.primary {
+.Owned {
   padding: 2px 6px;
   background-color: #8171ff44;
   border-radius: 167px;

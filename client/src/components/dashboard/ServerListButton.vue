@@ -106,7 +106,7 @@ export default {
     Icon
   },
   computed: {
-    type: function() {
+    type() {
       return this.machine.isVirtual ? "slave" : "master";
     }
   },

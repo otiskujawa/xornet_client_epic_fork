@@ -56,10 +56,10 @@ export default {
     SearchBar
   },
   computed: {
-    username: function() {
+    username() {
       return localStorage.getItem("username");
     },
-    isNestedRoute: function() {
+    isNestedRoute() {
       return Object.values(this.$route.params)[0] == undefined || Object.values(this.$route.params)[0] === "";
     }
   },

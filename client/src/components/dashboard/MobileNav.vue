@@ -21,7 +21,7 @@ export default {
     SquareButton
   },
   computed: {
-    username: function() {
+    username() {
       return localStorage.getItem("username");
     }
   }

@@ -37,7 +37,7 @@ export default {
     };
   },
   computed: {
-    isFormValid: function() {
+    isFormValid() {
       const uuidRegex = /([0-9a-f]{16})|([0-9a-f]{32})/g;
       return Object.values(this.form).some(field => !uuidRegex.test(field.toLowerCase()));
     }

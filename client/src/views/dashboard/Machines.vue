@@ -63,10 +63,10 @@ export default {
     ServerList
   },
   computed: {
-    selectedMachine: function() {
+    selectedMachine() {
       return this.$route.params.machine;
     },
-    machineArray: function() {
+    machineArray() {
       return Array.from(this.machines.values());
     }
   },

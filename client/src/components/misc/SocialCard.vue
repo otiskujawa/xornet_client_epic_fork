@@ -33,10 +33,10 @@ export default {
     };
   },
   props: {
-    add: { type: Function }
+    add: { type }
   },
   computed: {
-    isFormValid: function() {
+    isFormValid() {
       return Object.values(this.form).some(field => field == "");
     }
   }

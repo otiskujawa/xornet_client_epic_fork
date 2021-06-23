@@ -26,7 +26,7 @@ export default {
     LoadingScreen
   },
   computed: {
-    isLoading: function() {
+    isLoading() {
       return false;
     }
   }

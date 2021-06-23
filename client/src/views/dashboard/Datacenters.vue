@@ -1,9 +1,41 @@
 <template>
   <div class="datacenters">
-    <div class="buttons" v-if="!route">
-      <DatacenterButton class="datacenter" :datacenter="datacenter" v-for="datacenter of datacenters" :key="datacenter" />
-      <DatacenterButton :addButton="true" @click="isAddingNew = !isAddingNew" />
-      <DatacenterCard v-if="isAddingNew" />
+    <div class="datacenterButtons flex w-full flex-col h-full" v-if="!route">
+      <h1 class="text-left font-bold p-2 text-2xl">My Datacenters</h1>
+      <div class="buttons w-full">
+        <DatacenterButton class="datacenter" :datacenter="datacenter" v-for="datacenter of myDatacenters" :key="datacenter" />
+        <DatacenterButton :addButton="true" @click="isAddingNew = !isAddingNew" />
+        <DatacenterCard v-if="isAddingNew" />
+        <!-- nanahira pls help us fix the stupid grid this is cancer -->
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <h1 class="text-left font-bold p-2 text-2xl">Shared Datacenters</h1>
+      <div class="buttons w-full">
+        <DatacenterButton class="datacenter" :datacenter="datacenter" v-for="datacenter of sharedDatacenters" :key="datacenter" />
+        <!-- nanahira pls help us fix the stupid grid this is cancer -->
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <h1 class="text-left font-bold p-2 text-2xl" v-if="me.is_admin">Other Datacenters</h1>
+      <div class="buttons w-full">
+        <DatacenterButton class="datacenter" :datacenter="datacenter" v-for="datacenter of otherDatacenters" :key="datacenter" />
+        <!-- nanahira pls help us fix the stupid grid this is cancer -->
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
     <div v-else-if="datacenter" class="content">
       <div class="bullshit flex-col md:flex-row">
@@ -142,15 +174,24 @@ export default {
     MultiGauge
   },
   computed: {
-    route: function() {
+    route() {
       return this.$route.params.name;
     },
-    datacenter: function() {
+    datacenter() {
       return this.datacenters.filter(datacenter => datacenter.name == this.route)[0];
     },
-    me: function() {
+    me() {
       return JSON.parse(localStorage.getItem("me"));
-    }
+    },
+    myDatacenters(){
+      return this.datacenters.filter(datacenter => datacenter.owner === this.me._id);
+    },
+    sharedDatacenters(){
+      return this.datacenters.filter(datacenter => datacenter.members.map(member => member._id).includes(this.me._id) && datacenter.owner !== this.me._id)
+    },
+    otherDatacenters(){
+      return this.datacenters.filter(datacenter => !datacenter.members.map(member => member._id).includes(this.me._id) && datacenter.owner !== this.me._id)
+    },
   },
   watch: {
     $route(to, from) {
@@ -234,7 +275,7 @@ export default {
   height: 100%;
   overflow: scroll;
 }
-.datacenters > .buttons {
+.datacenters .buttons {
   padding: 8px;
   display: grid;
   gap: 8px;

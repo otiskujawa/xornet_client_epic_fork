@@ -36,7 +36,7 @@ export default {
     };
   },
   computed: {
-    isFormValid: function() {
+    isFormValid() {
       return Object.values(this.form).some(field => field == "");
     }
   },

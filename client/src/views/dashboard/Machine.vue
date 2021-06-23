@@ -140,10 +140,10 @@ export default {
     }
   },
   computed: {
-    type: function() {
+    type() {
       return this.machine.isVirtual ? "slave" : "master";
     },
-    me: function() {
+    me() {
       return JSON.parse(localStorage.getItem("me"));
     }
   }

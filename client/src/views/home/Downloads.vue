@@ -115,7 +115,7 @@ export default {
     ShadowButton
   },
   computed: {
-    downloadLinks: function() {
+    downloadLinks() {
       return {
         win: this.releases.assets.filter(asset => asset.name.includes("win"))[0].browser_download_url,
         macos: this.releases.assets.filter(asset => asset.name.includes("macos"))[0].browser_download_url,

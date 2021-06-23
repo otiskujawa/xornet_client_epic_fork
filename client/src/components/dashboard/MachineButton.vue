@@ -51,7 +51,7 @@
 export default {
   name: "MachineButton",
   computed: {
-    type: function() {
+    type() {
       return this.machine.isVirtual ? "slave" : "master";
     }
   },

@@ -22,7 +22,7 @@ class API {
    * @private
    */
   log(method, ...messages) {
-    eventHandler.emit("show", { method, messages, type: "ok" });
+    // eventHandler.emit("show", { method, messages, type: "ok" });
 
     // prettier-ignore
     console.log(

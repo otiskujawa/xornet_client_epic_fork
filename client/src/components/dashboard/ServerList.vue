@@ -70,10 +70,10 @@ import Icon from "@/components/misc/Icon";
 export default {
   name: "ServerList",
   computed: {
-    isSmall: function() {
+    isSmall() {
       return this.$route.params.machine ? true : false;
     },
-    settings: function() {
+    settings() {
       if (localStorage.settings) return JSON.parse(localStorage.settings);
     }
   },

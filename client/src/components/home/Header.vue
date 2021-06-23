@@ -40,10 +40,10 @@ export default {
     Icon
   },
   computed: {
-    isLoggedIn: function() {
+    isLoggedIn() {
       return localStorage.getItem("token") == null ? false : true;
     },
-    route: function() {
+    route() {
       return this.$route.name;
     }
   }
