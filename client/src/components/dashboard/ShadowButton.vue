@@ -62,6 +62,7 @@ export default {
   display: flex;
   align-items: center;
   height: fit-content;
+  border: 1px solid transparent;
   user-select: none;
   cursor: pointer;
   justify-content: space-between;
