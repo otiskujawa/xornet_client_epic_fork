@@ -57,7 +57,7 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  transition: 100ms ease;
+  transition: transform 100ms ease;
   border: 1px solid var(--border-color);
 }
 
@@ -117,9 +117,9 @@ export default {
 }
 
 .primary {
-  color: #00ffae;
-  border: 1px solid #00ffae;
-  background-color: #00ffae44;
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  background-color: var(--blue-transparent);
 }
 
 </style>

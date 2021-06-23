@@ -108,7 +108,7 @@ export default {
   overflow: scroll;
   max-height: 600px;
   padding: 8px;
-  transition: 200ms ease;
+  transition: width 200ms ease;
   background-color: var(--background-color);
 }
 
@@ -147,7 +147,7 @@ h1.noResult {
 .inputField {
   outline: none;
   width: 100%;
-  transition: 100ms ease;
+  transition: width 100ms ease;
   border-radius: 4px;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;

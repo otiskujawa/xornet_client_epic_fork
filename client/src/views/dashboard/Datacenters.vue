@@ -71,7 +71,7 @@
                 "
               />
               <ShadowButton class="revoke" icon="bookmark" v-if="datacenter._id !== me.primaryDatacenter" title="Make Primary" @click="setPrimary()"/>
-              <ShadowButton class="revoke primary" textonly v-else title="Primary"/>
+              <ShadowButton class="revoke primary" icon="bookmark" v-else title="Primary"/>
               <ShadowButton class="revoke delete" icon="trash" title="Delete Datacenter" @click="deleteDatacenter()"/>
             </div>
           </div>

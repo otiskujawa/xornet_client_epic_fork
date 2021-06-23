@@ -195,7 +195,7 @@ export default {
   flex-direction: column;
   font-family: "Roboto Mono";
   background-color: var(--background-color);
-  transition: 200ms ease;
+  transition: width 200ms ease;
   overflow-x: hidden;
 }
 .serverList.small {
@@ -245,8 +245,6 @@ section h1 {
   border: 1px solid transparent;
   display: flex;
   gap: 8px;
-  transition: 100ms ease;
-
   overflow: hidden;
   user-select: none;
 }

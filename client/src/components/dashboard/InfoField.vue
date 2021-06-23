@@ -42,7 +42,6 @@ export default {
   gap: 8px;
   color: var(--black);
   background-color: var(--background-color);
-  transition: 100ms ease;
 }
 
 .info:not(.borderless) {

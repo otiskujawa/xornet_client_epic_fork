@@ -133,9 +133,9 @@ export default {
 }
 
 .shadowButton.primary {
-  color: #00ffae;
-  border: 1px solid #00ffae;
-  background-color: #00ffae44;
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  background-color: var(--blue-transparent);
   cursor: not-allowed;
 }
 

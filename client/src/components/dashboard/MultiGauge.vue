@@ -103,6 +103,9 @@ circle {
   fill: none;
   stroke-width: 8px;
   stroke-linecap: round;
+}
+
+circle:not(.road){
   transition: 500ms ease;
 }
 

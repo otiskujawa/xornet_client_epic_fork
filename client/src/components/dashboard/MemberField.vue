@@ -57,7 +57,6 @@ export default {
   padding: 16px;
   cursor: pointer;
   background-color: var(--background-color);
-  transition: 100ms ease;
 }
 
 img {

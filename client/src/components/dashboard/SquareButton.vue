@@ -42,7 +42,6 @@ export default {
   width: 48px;
   height: 48px;
   cursor: pointer;
-  transition: 100ms ease;
   user-select: none;
 }
 
