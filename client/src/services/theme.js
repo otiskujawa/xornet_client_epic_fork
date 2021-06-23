@@ -11,6 +11,7 @@ const darkStyle = {
   "--rogue-red": "var(--darkmode-rogue-red)",
   "--rogue-red-active": "var(--darkmode-rogue-red-active)",
   "--border-color": "var(--darkmode-border-color)",
+  "--shadowColor": "var(--darkmode-shadowColor)",
   "--filter": 1
 };
 
@@ -23,6 +24,7 @@ const lightStyle = {
   "--rogue-red": "#ffeef0",
   "--rogue-red-active": "#fdaeb7",
   "--border-color": "#E7E7E7",
+  "--shadowColor": "#0000001f",
   "--filter": 0
 };
 

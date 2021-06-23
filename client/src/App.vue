@@ -37,6 +37,7 @@ export default {
   --rogue-red-active: #fdaeb7;
   --border-color: #e7e7e7;
   --shadowButton-color: #ffffff;
+  --shadowColor: #0000001f;
 
   /* Darkmode colors */
   --darkmode-background-color: #0b0b15;
@@ -48,6 +49,8 @@ export default {
   --darkmode-rogue-red-active: #8e1519;
   --darkmode-gray: #c7c7c7;
   --darkmode-shadowButton-color: #0f0f1e;
+  --darkmode-shadowColor: #8676ff50;
+
 
   /* This variable decides weither the images on the buttons will have their color inverted 
     it switches states if darkmode is on or off in serverList.vue */

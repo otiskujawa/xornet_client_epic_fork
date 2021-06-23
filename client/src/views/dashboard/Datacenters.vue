@@ -14,7 +14,7 @@
         <div></div>
         <div></div>
       </div>
-      <h1 class="text-left font-bold p-2 text-2xl">Shared Datacenters</h1>
+      <h1 class="text-left font-bold p-2 text-2xl" v-if="sharedDatacenters">Shared Datacenters</h1>
       <div class="buttons w-full">
         <DatacenterButton class="datacenter" :datacenter="datacenter" v-for="datacenter of sharedDatacenters" :key="datacenter" />
         <!-- nanahira pls help us fix the stupid grid this is cancer -->

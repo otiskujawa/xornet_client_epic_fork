@@ -2,7 +2,7 @@
   <router-link v-if="!addButton" class="datacenter" :to="{ name: 'datacenters', params: { name: datacenter.name } }">
     <div class="heading">
       <Icon icon="datacenter" />
-      <h1>{{ datacenter.name }}</h1>
+      <h1 class="whitespace-nowrap">{{ datacenter.name }}</h1>
     </div>
     <Icon v-if="!datacenter.logo" icon="datacenter" class="logo" />
     <img v-else class="logo" :src="datacenter.logo" :alt="datacenter.name" />
@@ -48,9 +48,8 @@ export default {
 <style scoped>
 .datacenter {
   aspect-ratio: 1;
-  max-height: 256px;
   border-radius: 8px;
-  background-color: var(--background-color);
+  background-color: var(--white);
   cursor: pointer;
   padding: 8px;
   display: flex;
@@ -62,7 +61,7 @@ export default {
 }
 
 .datacenter:hover {
-  box-shadow: rgb(0 0 0 / 10%) 0px 10px 20px;
+  box-shadow: var(--shadowColor) 0px 10px 20px;
   transform: translateY(-1px);
   border: 1px solid var(--theme-color);
 }
