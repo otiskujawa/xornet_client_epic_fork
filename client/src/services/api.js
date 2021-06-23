@@ -18,7 +18,7 @@ class API {
   /**
    * Custom log function with API suffix
    * @param {String} method The API endpoint
-   * @param {String} messages Optional messages
+   * @param {String} [messages] Optional messages
    * @private
    */
   log(method, ...messages) {
@@ -35,7 +35,7 @@ class API {
   /**
    * Custom log for errors with API suffix
    * @param {String} method The API endpoint
-   * @param {String} messages Optional messages
+   * @param {String} [messages] Optional messages
    * @private
    */
   error(method, ...messages) {
@@ -55,7 +55,7 @@ class API {
   /**
    * Creates a pretty log for the API responses
    * @param {String} method The API endpoint
-   * @param {String} messages Optional messages
+   * @param {String} [messages] Optional messages
    * @private
    */
   logResponse(method, response) {
@@ -68,7 +68,7 @@ class API {
   /**
    * Creates a pretty log for the API errors
    * @param {String} method The API endpoint
-   * @param {String} messages Optional messages
+   * @param {String} [messages] Optional messages
    * @private
    */
   logError(method, response) {
@@ -92,6 +92,7 @@ class API {
   /**
    * Gets the geolocation of the client
    * @private
+   * @returns {object} object
    */
   async getGeolocation() {
     const location = (await axios.get(`https://ipwhois.app/json/`)).data;
@@ -105,11 +106,17 @@ class API {
 
   /**
    * Creates a new request to the backend
-   * @param {String} method The type of HTTP method e.g. GET, POST, PATCH etc
-   * @param {String} route The route you wanna make a request to e.g. channels/pin
-   * @param {Object} headers An optional headers object to send to the route
-   * @param {Object} body An optional body object to send to the route
-   * @example const response = await super.request('post', 'channels/group', undefined, body);
+   * @param {string} method The type of HTTP method e.g. GET, POST, PATCH etc
+   * @param {string} route The route you wanna make a request to e.g. channels/pin
+   * @param {object} headers An optional headers object to send to the route
+   * @param {object} body An optional body object to send to the route
+   * @example 
+   * const response = await super.request("get", `datacenter/${datacenter}`);
+   * const response = await super.request("put", `datacenter/${datacenter}/user/${user.toLowerCase()}`);
+   * const response = await super.request("post", `datacenter/new`, { "Content-Type": "application/json" }, form);
+   * const response = await super.request("delete", `datacenter/${datacenter}/user/${user.toLowerCase()}`);
+   * @returns {Promise<void>} A promise of the response
+   * @author Geoxor
    */
   async request(method, route, headers, body) {
     if (method === "get" || method === "delete") {
@@ -132,43 +139,84 @@ class API {
   }
 }
 
+/**
+ * Contains functions for the datacenter routes in the backends
+ * @author Geoxor
+ */
 class Datacenter extends API {
   constructor() {
     super();
     super.log("Initialized datacenter class");
   }
 
+  /**
+   * Get all of the user's datacenters
+   * @returns {object}
+   */
   async fetchAll() {
     return (await super.request("get", `datacenter/all`)).data;
   }
 
+  /**
+   * Get the total amount of machines in a given datacenter
+   * @param {string} datacenter the datacenter's UUID
+   * @returns {object} containing the data
+   */
   async fetchMachineCount(datacenter) {
     if (datacenter) return (await super.request("get", `datacenter/${datacenter}/machine/count`)).data;
   }
 
+  /**
+   * Gets all details of a datacenter
+   * @param {string} datacenter the datacenter's UUID
+   * @returns {object} containing the data
+   */
   async fetch(datacenter) {
     return (await super.request("get", `datacenter/${datacenter}`)).data;
   }
 
+  /**
+   * Removes a user from a datacenter
+   * @param {string} datacenter the datacenter's UUID
+   * @param {string} user the user's UUID
+   * @returns {object} the updated datacenter without the user
+   */
   async revokeMember(datacenter, user) {
     return (await super.request("delete", `datacenter/${datacenter}/user/${user.toLowerCase()}`)).data;
   }
 
+  /**
+   * Adds a user to a datacenter
+   * @param {string} datacenter the datacenter's UUID
+   * @param {string} user the user's UUID
+   * @returns {object} the updated datacenter with the added user
+   */
   async addMember(datacenter, user) {
     return (await super.request("put", `datacenter/${datacenter}/user/${user.toLowerCase()}`)).data;
   }
 
+  /**
+   * Adds a machine to a datacenter
+   * @param {string} datacenter the datacenter's UUID
+   * @param {string} machine the machine's UUID
+   * @returns {object} the updated datacenter with the added machine
+   */
   async addMachine(datacenter, machine) {
     return (await super.request("put", `datacenter/${datacenter}/machine/${machine.toLowerCase()}`)).data;
   }
 
+  /**
+   * Creates a new datacenter
+   * @param {object} form a form containing the name of the datacenter
+   * @returns {object} the new datacenter
+   */
   async add(form) {
     return await super.request("post", `datacenter/new`, { "Content-Type": "application/json" }, form);
   }
 
   /**
    * Post signup credentials into backend and returns the result of signup process
-   * @param {String} datacenter The name of the datacenter
+   * @param {string} datacenter The name of the datacenter
    * @param {Blob} logo image Blob, which contains image class from the refs
    * @param {Blob} banner image Blob, which contains image class from the refs
    */
@@ -191,7 +239,8 @@ class User extends API {
 
   /**
    * Post login credentials into backend and returns the login token on successful login
-   * @param {Object} json Json object, which contains login credentials
+   * @param {object} json Json object, which contains login credentials
+   * @returns {number} of the response's status, e.g. 200 if successful
    */
   async login(json) {
     return new Promise(async (resolve, reject) => {
@@ -212,7 +261,8 @@ class User extends API {
 
   /**
    * Post signup credentials into backend and returns the result of signup process
-   * @param {Object} json Json object, which contains signup credentials
+   * @param {object} json Json object, which contains signup credentials
+   * @returns {AxiosResponse} of the request
    */
   async signup(json) {
     const signupForm = { geolocation: await this.getGeolocation(), ...json };
@@ -224,15 +274,17 @@ class User extends API {
   }
 
   /**
-   * Returns the user object of a user
-   * @param {String} the user to get
+   * Gets the user object of a user
+   * @param {string} username the user's UUID to get
+   * @returns {object} of the user's profile
    */
   async fetchProfile(username) {
     return (await super.request("get", `profile/${username}`)).data;
   }
 
   /**
-   * Returns the user object of the logged in user, takes no input parameters
+   * Gets the logged in user's object
+   * @returns {object} of the user's profile
    */
   async fetchMe() {
     return (await super.request("get", `profile/${localStorage.getItem("username")}`)).data;
@@ -240,7 +292,8 @@ class User extends API {
 
   /**
    * Returns the users logs, if admin they have access to admin logs for the backend
-   * @param {String} [machineUUID] The uuid of a specific machine you want to get logs for
+   * @param {string} machineUUID The uuid of a specific machine you want to get logs for
+   * @returns {object} of the logs
    */
   async fetchLogs(machineUUID) {
     return machineUUID ? (await super.request("get", `logs/${machineUUID}`)).data : (await super.request("get", `logs`)).data;
@@ -248,9 +301,9 @@ class User extends API {
 
   /**
    * Post signup credentials into backend and returns the result of signup process
-   * @param {Object} profile profile object, which contains new desired user credentials
-   * @param {Object} profileImage image object, which contains image class from the refs
-   * @param {Object} profileBanner image object, which contains image class from the refs
+   * @param {object} profile profile object, which contains new desired user credentials
+   * @param {object} profileImage image object, which contains image class from the refs
+   * @param {object} profileBanner image object, which contains image class from the refs
    */
   async save(profile, profileImage, profileBanner) {
     let formData = new FormData();
@@ -266,7 +319,7 @@ class User extends API {
 
   /**
    * Puts a new machine to the users database
-   * @param {String} machineUUID The machine's uuid that you want to add
+   * @param {string} machineUUID The machine's uuid that you want to add
    */
   async addMachine(machineUUID) {
     return (await super.request("put", "profile/machine", { "Content-Type": "application/json" }, { machine: machineUUID }))
@@ -275,7 +328,7 @@ class User extends API {
 
   /**
    * Searches the database for users
-   * @param {String} user Either a Username or a UUID of a user
+   * @param {string} user Either a Username or a UUID of a user
    */
   async search(user) {
     return (await super.request("get", `/search/user/${user}`)).data;
