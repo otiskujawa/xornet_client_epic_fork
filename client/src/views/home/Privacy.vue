@@ -8,7 +8,7 @@
             <section>
                 <h3 class="text-2xl font-bold">What is collected?</h3>
                 <ul class="list-disc list-inside">
-                    <li>Your geolocation</li>
+                    <li>Your Country</li>
                     <li>Other data such as CPU and Network is collected every second</li>
                     <li>Your computer's specifications when you first add it</li>
                 </ul>

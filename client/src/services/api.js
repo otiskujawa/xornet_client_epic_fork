@@ -352,6 +352,14 @@ class Machine extends API {
   async getProcesses(machineUUID) {
     return (await super.request("get", `stats/processes/${machineUUID}`)).data;
   }
+
+  async shutdown(machineUUID) {
+    return (await super.request("post", `machine/${machineUUID}/shutdown`)).data;
+  }
+
+  async restart(machineUUID) {
+    return (await super.request("post", `machine/${machineUUID}/restart`)).data;
+  }
 }
 
 const api = {

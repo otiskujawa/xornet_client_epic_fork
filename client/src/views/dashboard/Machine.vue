@@ -43,13 +43,13 @@
           <ShadowButton icon="clipboard" :title="machine.uuid" allowCopy />
         </div>
 
-        <!-- <Tooltip flipped text="Restart Machine">
-          <ShadowButton icon="restart"/>
+        <Tooltip v-if="me.machines.includes(machine.uuid)" text="Restart Machine">
+          <ShadowButton icon="restart" @click="api.machine.restart(machine.uuid)"/>
         </Tooltip>
-        <Tooltip flipped text="Shutdown Machine">
-          <ShadowButton icon="shutdown"/>
-        </Tooltip> -->
-        <Tooltip flipped text="Trash Machine">
+        <Tooltip v-if="me.machines.includes(machine.uuid)" text="Shutdown Machine">
+          <ShadowButton icon="shutdown" @click="api.machine.shutdown(machine.uuid)"/>
+        </Tooltip>
+        <Tooltip text="Trash Machine">
           <ShadowButton icon="trash" />
         </Tooltip>
       </div>
@@ -142,6 +142,9 @@ export default {
   computed: {
     type: function() {
       return this.machine.isVirtual ? "slave" : "master";
+    },
+    me: function() {
+      return JSON.parse(localStorage.getItem("me"));
     }
   }
 };
