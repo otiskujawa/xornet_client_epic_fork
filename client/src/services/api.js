@@ -17,8 +17,8 @@ let ROOT_PATH = "https://backend.xornet.cloud";
 class API {
   /**
    * Custom log function with API suffix
-   * @param {String} method The API endpoint
-   * @param {String} [messages] Optional messages
+   * @param {string} method The API endpoint
+   * @param {string} [messages] Optional messages
    * @private
    */
   log(method, ...messages) {
@@ -34,8 +34,8 @@ class API {
 
   /**
    * Custom log for errors with API suffix
-   * @param {String} method The API endpoint
-   * @param {String} [messages] Optional messages
+   * @param {string} method The API endpoint
+   * @param {string} [messages] Optional messages
    * @private
    */
   error(method, ...messages) {
@@ -54,8 +54,8 @@ class API {
 
   /**
    * Creates a pretty log for the API responses
-   * @param {String} method The API endpoint
-   * @param {String} [messages] Optional messages
+   * @param {string} method The API endpoint
+   * @param {string} [messages] Optional messages
    * @private
    */
   logResponse(method, response) {
@@ -67,8 +67,8 @@ class API {
 
   /**
    * Creates a pretty log for the API errors
-   * @param {String} method The API endpoint
-   * @param {String} [messages] Optional messages
+   * @param {string} method The API endpoint
+   * @param {string} [messages] Optional messages
    * @private
    */
   logError(method, response) {
@@ -81,8 +81,8 @@ class API {
   /**
    * Creates a backend URL with the provided paramaters
    * @private
-   * @param {String} route The main route
-   * @returns {String} https://backend.xornet.cloud/profile
+   * @param {string} route The main route
+   * @returns {string} https://backend.xornet.cloud/profile
    * @example constructEndpoint('profile')
    */
   constructEndpoint(route) {
