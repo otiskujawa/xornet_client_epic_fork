@@ -77,7 +77,7 @@ export default {
   box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
 }
 
-.shadowButton:not(.colored):not(.didCopy):hover {
+.shadowButton:not(.colored):not(.didCopy):not(.primary):not(.delete):hover {
   filter: invert(1);
 }
 
@@ -131,4 +131,18 @@ export default {
 .shadowButton.tiny img {
   width: 16px;
 }
+
+.shadowButton.primary {
+  color: #00ffae;
+  border: 1px solid #00ffae;
+  background-color: #00ffae44;
+  cursor: not-allowed;
+}
+
+.shadowButton.delete {
+  color: #d00000;
+  border: 1px solid #d00000;
+  background-color: #d0000044;
+}
+
 </style>

@@ -25,7 +25,7 @@
         <div></div>
         <div></div>
       </div>
-      <h1 class="text-left font-bold p-2 text-2xl" v-if="me.is_admin">Other Datacenters</h1>
+      <h1 class="text-left font-bold p-2 text-2xl" v-if="me?.is_admin">Other Datacenters</h1>
       <div class="buttons w-full">
         <DatacenterButton class="datacenter" :datacenter="datacenter" v-for="datacenter of otherDatacenters" :key="datacenter" />
         <!-- nanahira pls help us fix the stupid grid this is cancer -->
@@ -70,6 +70,9 @@
                   save();
                 "
               />
+              <ShadowButton class="revoke" icon="bookmark" v-if="datacenter._id !== me.primaryDatacenter" title="Make Primary" @click="setPrimary()"/>
+              <ShadowButton class="revoke primary" textonly v-else title="Primary"/>
+              <ShadowButton class="revoke delete" icon="trash" title="Delete Datacenter" @click="deleteDatacenter()"/>
             </div>
           </div>
 
@@ -133,7 +136,7 @@
           </div>
           <MemberField
             class=" hidden md:flex"
-            :isOwner="datacenter.owner === me._id || me.is_admin"
+            :isOwner="datacenter.owner === me._id || me?.is_admin"
             :members="datacenter.members"
           />
         </div>
@@ -180,9 +183,6 @@ export default {
     datacenter() {
       return this.datacenters.filter(datacenter => datacenter.name == this.route)[0];
     },
-    me() {
-      return JSON.parse(localStorage.getItem("me"));
-    },
     myDatacenters(){
       return this.datacenters.filter(datacenter => datacenter.owner === this.me._id);
     },
@@ -206,6 +206,7 @@ export default {
   },
   data() {
     return {
+      me: null,
       datacenters: [],
       isAddingNew: false,
       isEditing: false,
@@ -215,16 +216,18 @@ export default {
         ramUsage: {},
         currentBandwidth: 0,
         totalMachines: 0
-      }
+      },
+      isPrimary: false,
     };
   },
   mounted() {
     this.fetchData();
+    this.me = JSON.parse(localStorage.getItem("me"));
   },
   methods: {
     async fetchData() {
       this.datacenters = await this.api.datacenters.fetchAll();
-      this.stats.totalMachines = (await this.api.datacenters.fetchMachineCount(this.datacenter.name)).count;
+      this.stats.totalMachines = (await this.api.datacenters.fetchMachineCount(this.datacenter._id)).count;
 
       socket.off("machines");
       socket.on("machines", machines => {
@@ -264,7 +267,16 @@ export default {
       for (const [key, value] of Object.entries(response.profile)) {
         this.profile[key] = value;
       }
-    }
+    },
+    async setPrimary() {
+      await this.api.user.setPrimaryDatacenter(this.datacenter._id);
+      this.datacenters = await this.api.datacenters.fetchAll();
+      this.me = JSON.parse(localStorage.getItem("me"));
+    },
+    async deleteDatacenter() {
+      const response = await this.api.datacenters.remove(this.datacenter._id);
+      if (response.status == 200) this.$router.push(`/dashboard/datacenters`);
+    },
   }
 };
 </script>

@@ -216,6 +216,15 @@ class Datacenter extends API {
     return await super.request("post", `datacenter/new`, { "Content-Type": "application/json" }, form);
   }
 
+  
+  /**
+   * Creates a new datacenter
+   * @param {string} datacenter the name or uuid of the datacenter to remove
+   */
+  async remove(datacenter) {
+    return await super.request("delete", `datacenter/${datacenter}`);
+  }
+
   /**
    * Post signup credentials into backend and returns the result of signup process
    * @param {string} datacenter The name of the datacenter
@@ -251,7 +260,7 @@ class User extends API {
         const response = await super.request("post", "login", { "Content-Type": "application/json" }, loginForm);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("username", loginForm.username);
-        localStorage.setItem("me", JSON.stringify(response.data.me));
+        this.updateLocalStorage(response.data.me);
         super.log("Logged in successfully");
         resolve(response.status);
       } catch (error) {
@@ -259,6 +268,14 @@ class User extends API {
         reject(error.status);
       }
     });
+  }
+
+  /**
+   * Caches the user's properties in the local storage so the site knows how to style different pages based on who the user is
+   * @param {object} userObject the me object u get from a request from the backend
+   */
+  updateLocalStorage(userObject){
+    localStorage.setItem("me", JSON.stringify(userObject));
   }
 
   /**
@@ -334,6 +351,12 @@ class User extends API {
    */
   async search(user) {
     return (await super.request("get", `/search/user/${user}`)).data;
+  }
+
+  async setPrimaryDatacenter(datacenter) {
+    const response = await super.request("patch", `datacenter/primary/${datacenter}`);
+    this.updateLocalStorage(response.data.me);
+    return response.data;
   }
 }
 
