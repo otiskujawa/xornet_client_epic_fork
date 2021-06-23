@@ -68,7 +68,6 @@
         process 
         cursor-pointer 
         border 
-        border-transparent 
         rounded-4px 
         px-1 
         py-0.5 
@@ -157,6 +156,10 @@ export default {
 
 .processList .header h1 {
   @apply uppercase font-medium;
+}
+
+.process {
+  border: 1px solid var(--background-color);
 }
 
 .process:hover {

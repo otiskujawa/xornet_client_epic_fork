@@ -28,19 +28,19 @@
     </div>
 
     <div v-if="totalMachines" class="coolShit">
-      <div class="textField">
+      <div class="textField ">
         <h1>{{ totalMachines }}</h1>
         <p>Total Machines</p>
       </div>
-      <div class="textField">
+      <div class="textField ">
         <h1>{{ totalTraffic }}GB</h1>
         <p>Total Daily Traffic</p>
       </div>
-      <div class="textField">
+      <div class="textField ">
         <h1>{{ totalCores }}</h1>
         <p>Total Shared Cores</p>
       </div>
-      <div class="textField">
+      <div class="textField ">
         <h1>{{ totalRam }}GB</h1>
         <p>Total RAM</p>
       </div>

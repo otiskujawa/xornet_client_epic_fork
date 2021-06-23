@@ -8,16 +8,16 @@
             <section>
                 <h3 class="text-2xl font-bold">What is collected?</h3>
                 <ul class="list-disc list-inside">
-                    <li>Static data is collected once when the Reporter is executed.</li>
-                    <li>Other data such as CPU and Network is collected every second.</li>
-                    <li>Which allows you as a user to view your hardwares realtime usage.</li>
+                    <li>Your geolocation</li>
+                    <li>Other data such as CPU and Network is collected every second</li>
+                    <li>Your computer's specifications when you first add it</li>
                 </ul>
             </section>
             <section>
                 <h3 class="text-2xl font-bold">Where does my data go?</h3>
                 <ul class="list-disc list-inside">
-                    <li>Your data is transferred to a centralized server which is then displayed on the site.</li>
-                    <li>Your data is transferred using websockets and other technologies to prevent loss of data.</li>
+                    <li>Your data is transferred to a centralized server which is then displayed on the site to users you select</li>
+                    <li>Your data is transferred using websockets and other technologies to prevent loss of data</li>
                 </ul>
             </section>
         </div>
