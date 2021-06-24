@@ -42,7 +42,7 @@ export default {
     async add() {
       this.isLoading = true;
       try {
-        const response = await this.api.datacenters.add(JSON.stringify(this.form));
+        const response = await this.api.datacenter.add(JSON.stringify(this.form));
         if (response.status == 201) {
           await this.api.user.syncLocalStorage();
           this.$router.push(`/dashboard/datacenters/${this.form.name}`)

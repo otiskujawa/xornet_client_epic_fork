@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     async revoke(user) {
-      await this.api.datacenters.revokeMember(this.$route.params.name, user);
+      await this.api.datacenter.revokeMember(this.$route.params.name, user);
     }
   }
 };

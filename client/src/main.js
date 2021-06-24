@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
-import api from "@/services/api.js";
+import api from "@/services/api/index.js";
 // This is actually used, ignore your syntax highlighting
 import hljs from "highlight.js/lib/common";
 import hljsVuePlugin from "@highlightjs/vue-plugin";

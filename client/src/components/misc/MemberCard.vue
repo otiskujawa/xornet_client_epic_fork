@@ -43,7 +43,7 @@ export default {
     async add() {
       this.isLoading = true;
       try {
-        const status = await this.api.datacenters.addMember(this.$route.params.name, this.form.uuid);
+        const status = await this.api.datacenter.addMember(this.$route.params.name, this.form.uuid);
         if (status == 200) {
           console.log("added");
         }

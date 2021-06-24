@@ -227,8 +227,8 @@ export default {
   },
   methods: {
     async fetchData() {
-      this.datacenters = await this.api.datacenters.fetchAll();
-      this.stats.totalMachines = (await this.api.datacenters.fetchMachineCount(this.datacenter._id)).count;
+      this.datacenters = await this.api.datacenter.fetchAll();
+      this.stats.totalMachines = (await this.api.datacenter.fetchMachineCount(this.datacenter._id)).count;
 
       socket.off("machines");
       socket.on("machines", machines => {
@@ -258,7 +258,7 @@ export default {
       socket.emit("getMachines");
     },
     async save() {
-      let response = await this.api.datacenters.save(
+      let response = await this.api.datacenter.save(
         this.$route.params.name,
         this.$refs.logo.files[0],
         this.$refs.banner.files[0]
@@ -271,11 +271,11 @@ export default {
     },
     async setPrimary() {
       await this.api.user.setPrimaryDatacenter(this.datacenter._id);
-      this.datacenters = await this.api.datacenters.fetchAll();
+      this.datacenters = await this.api.datacenter.fetchAll();
       this.me = JSON.parse(localStorage.getItem("me"));
     },
     async deleteDatacenter() {
-      const response = await this.api.datacenters.remove(this.datacenter._id);
+      const response = await this.api.datacenter.remove(this.datacenter._id);
       if (response.status == 200) this.$router.push(`/dashboard/datacenters`);
     },
   }

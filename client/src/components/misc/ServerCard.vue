@@ -46,7 +46,7 @@ export default {
     async add() {
       this.isLoading = true;
       try {
-        const status = await this.api.datacenters.addMachine(this.$route.params.name, this.form.uuid);
+        const status = await this.api.datacenter.addMachine(this.$route.params.name, this.form.uuid);
         if (status == 200) {
           console.log("added");
         }
