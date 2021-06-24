@@ -92,6 +92,14 @@ class API {
   }
 
   /**
+   * Caches the user's properties in the local storage so the site knows how to style different pages based on who the user is
+   * @param {object} userObject the me object u get from a request from the backend
+   */
+  updateLocalStorage(userObject){
+    localStorage.setItem("me", JSON.stringify(userObject));
+  }
+
+   /**
    * Gets the geolocation of the client
    * @private
    * @returns {object} object
@@ -260,7 +268,7 @@ class User extends API {
         const response = await super.request("post", "login", { "Content-Type": "application/json" }, loginForm);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("username", loginForm.username);
-        this.updateLocalStorage(response.data.me);
+        super.updateLocalStorage(response.data.me);
         super.log("Logged in successfully");
         resolve(response.status);
       } catch (error) {
@@ -270,13 +278,7 @@ class User extends API {
     });
   }
 
-  /**
-   * Caches the user's properties in the local storage so the site knows how to style different pages based on who the user is
-   * @param {object} userObject the me object u get from a request from the backend
-   */
-  updateLocalStorage(userObject){
-    localStorage.setItem("me", JSON.stringify(userObject));
-  }
+
 
   /**
    * Post signup credentials into backend and returns the result of signup process
@@ -307,6 +309,13 @@ class User extends API {
    */
   async fetchMe() {
     return (await super.request("get", `profile/${localStorage.getItem("username")}`)).data;
+  }
+
+  /**
+   * Syncs the localStorage with the database from the backend
+   */
+  async syncLocalStorage(){
+    super.updateLocalStorage(await this.fetchMe());
   }
 
   /**
@@ -355,7 +364,7 @@ class User extends API {
 
   async setPrimaryDatacenter(datacenter) {
     const response = await super.request("patch", `datacenter/primary/${datacenter}`);
-    this.updateLocalStorage(response.data.me);
+    super.updateLocalStorage(response.data.me);
     return response.data;
   }
 }

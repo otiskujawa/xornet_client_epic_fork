@@ -195,6 +195,7 @@ export default {
   },
   watch: {
     $route(to, from) {
+      this.me = JSON.parse(localStorage.getItem("me"));
       this.machines.clear();
       this.fetchData();
       this.stats = {
