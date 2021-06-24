@@ -1,6 +1,6 @@
-import API from "./Base";
+import Base from "./Base";
 
-export default class Machine extends API {
+export default class Machine extends Base {
   constructor() {
     super();
     super.log("Initialized machine class");

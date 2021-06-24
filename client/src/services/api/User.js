@@ -1,7 +1,6 @@
-import API from "./Base";
+import Base from "./Base";
 
-
-export default class User extends API {
+export default class User extends Base {
   constructor() {
     super();
     super.log("Initialized user class");

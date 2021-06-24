@@ -1,3 +1,6 @@
+import axios from "axios";
+let ROOT_PATH = "https://backend.xornet.cloud";
+
 /**
  * @author Geoxor & Niko Huuskonen
 
@@ -8,7 +11,7 @@
  * Note: The data from here can be taken to create API docs in the future
  * @private
  */
-class Base {
+export default class Base {
   /**
    * Custom log function with API suffix
    * @param {string} method The API endpoint

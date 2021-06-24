@@ -1,10 +1,10 @@
-import API from "./Base";
+import Base from "./Base";
 
 /**
  * Contains functions for the datacenter routes in the backends
  * @author Geoxor
  */
-export default class Datacenter extends API {
+export default class Datacenter extends Base {
   constructor() {
     super();
     super.log("Initialized datacenter class");

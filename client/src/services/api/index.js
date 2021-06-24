@@ -1,6 +1,3 @@
-
-let ROOT_PATH = "https://backend.xornet.cloud";
-
 import User from "./User.js";
 import Machine from "./Machine.js";
 import Datacenter from "./Datacenter.js";
