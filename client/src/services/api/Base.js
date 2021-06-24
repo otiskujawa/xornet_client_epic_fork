@@ -77,6 +77,21 @@ export default class Base {
     else this.error(method, response);
   }
 
+   /**
+   * Gets the geolocation of the client
+   * @private
+   * @returns {object} object
+   */
+    async getGeolocation() {
+      const location = (await axios.get(`https://ipwhois.app/json/`)).data;
+      const geolocation = {
+        location: location.country,
+        countryCode: location.country_code,
+        isp: location.isp
+      };
+      return geolocation;
+    }
+
   /**
    * Creates a backend URL with the provided paramaters
    * @private

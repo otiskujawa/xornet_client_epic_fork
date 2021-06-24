@@ -6,22 +6,6 @@ export default class User extends Base {
     super.log("Initialized user class");
   }
 
-
-   /**
-   * Gets the geolocation of the client
-   * @private
-   * @returns {object} object
-   */
-  async getGeolocation() {
-    const location = (await axios.get(`https://ipwhois.app/json/`)).data;
-    const geolocation = {
-      location: location.country,
-      countryCode: location.country_code,
-      isp: location.isp
-    };
-    return geolocation;
-  }
-
   /**
    * Post login credentials into backend and returns the login token on successful login
    * @param {object} json Json object, which contains login credentials
@@ -30,7 +14,7 @@ export default class User extends Base {
   async login(json) {
     return new Promise(async (resolve, reject) => {
       try {
-        const loginForm = { geolocation: await this.getGeolocation(), ...JSON.parse(json) };
+        const loginForm = { geolocation: await super.getGeolocation(), ...JSON.parse(json) };
         const response = await super.request("post", "login", { "Content-Type": "application/json" }, loginForm);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("username", loginForm.username);
@@ -50,7 +34,7 @@ export default class User extends Base {
    * @returns {AxiosResponse} of the request
    */
   async signup(json) {
-    const signupForm = { geolocation: await this.getGeolocation(), ...json };
+    const signupForm = { geolocation: await super.getGeolocation(), ...json };
 
     // This doesn't return just the .data on purpose unlike the others because
     // i needed the status codes to decide wether the frontend will
