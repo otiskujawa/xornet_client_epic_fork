@@ -127,11 +127,12 @@
         <div class="line"></div>
 
         <section class="socials" v-if="profile.socials?.length != 0 || isEditing">
-          <div
+          <ShadowButton
             v-for="(platform, index) of profile.socials"
             :key="platform"
             @click="isEditing ? remove(index) : open(platform.url)"
-            class="shadowButton"
+            :title="platform.name"
+            :icon="platform.name"
             :class="{ isEditing: isEditing }"
           >
             <h1 v-if="platforms.includes(platform.name)" class="nameOnPlatform">
@@ -148,7 +149,7 @@
               "
             />
             <img v-if="isEditing" :src="require(`@/assets/icons/filled/x.svg`)" />
-          </div>
+          </ShadowButton>
 
           <ShadowButton
             title="Add"

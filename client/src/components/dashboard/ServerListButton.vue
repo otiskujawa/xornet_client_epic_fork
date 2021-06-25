@@ -118,7 +118,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="postcss" scoped>
 .button {
   padding: 2px 8px;
   border-radius: 4px;
@@ -132,14 +132,13 @@ export default {
   user-select: none;
 }
 .button:hover:not(.rogue) {
-  border: 1px solid var(--white);
-  background-color: var(--white);
+  @apply bg-gray-400 border border-gray-500;
 }
 .button:active {
   transform: translateY(-0px);
 }
 .button.router-link-active {
-  background-color: var(--white);
+  @apply bg-gray-400;
 }
 .button.rogue {
   background-color: var(--rogue-red);

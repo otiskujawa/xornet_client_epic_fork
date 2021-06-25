@@ -33,15 +33,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="postcss" scoped>
 .info {
-  display: flex;
-  border-radius: 4px;
-  flex-direction: row;
-  text-align: left;
-  gap: 8px;
-  color: var(--black);
-  background-color: var(--background-color);
+  @apply flex rounded-4px flex-row text-left gap-2 text-white;
 }
 
 .info:not(.borderless) {
@@ -91,8 +85,6 @@ h1 {
 }
 
 .coloredGauge {
-  width: 48px;
-  height: 48px;
-  min-width: 48px;
+  @apply w-12 h-12 min-w-12;
 }
 </style>

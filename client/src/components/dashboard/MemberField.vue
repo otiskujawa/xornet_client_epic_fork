@@ -45,18 +45,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="postcss"  scoped>
 .membersInfo {
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  flex-direction: column;
-  text-align: left;
-  gap: 8px;
-  width: 100%;
-  color: var(--black);
-  padding: 16px;
-  cursor: pointer;
-  background-color: var(--background-color);
+  @apply border border-gray-500 rounded-4px flex-col text-left gap-2 p-4 cursor-pointer w-full;
 }
 
 img {

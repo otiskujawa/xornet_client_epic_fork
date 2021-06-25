@@ -16,7 +16,7 @@
 
       <div class="buttons items-center flex overflow-hidden" v-if="!searchToggled">
         <SquareButton icon="repository" href="https://github.com/Geoxor/Xornet/releases" />
-        <SquareButton icon="darkmode" @click="toggleDarkmode" />
+        <!-- <SquareButton icon="darkmode" @click="toggleDarkmode" /> -->
         <!-- <SquareButton icon="details" v-if="currentRoute == 'machines'" @click="isShowingDetails = !isShowingDetails" :isEnabled="isShowingDetails" /> -->
         <!-- <SquareButton icon="thick" v-if="currentRoute == 'machines' && thinButtons"/> -->
         <!-- <SquareButton icon="thin" v-if="currentRoute == 'machines' && !thinButtons"/> -->
