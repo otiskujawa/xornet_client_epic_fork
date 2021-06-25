@@ -68,41 +68,21 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="postcss"  scoped>
 .multiGauge {
-  position: relative;
-  width: 200px;
-  height: 200px;
+  @apply relative w-200px h-200px;
 }
 
 .logo {
-  user-select: none;
-  filter: invert(var(--filter));
-  width: 35%;
-  max-height: 35%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  position: absolute;
+  @apply filter invert select-none w-35/100 max-w-35/100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 absolute;
 }
 
 .track {
-  position: absolute;
-  overflow: visible;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  transform: rotate(90deg);
-  align-items: center;
+  @apply absolute overflow-visible top-0 left-0 flex justify-center transform rotate-90 items-center;
 }
 
 circle {
-  height: 100%;
-  width: 100%;
-  fill: none;
-  stroke-width: 8px;
-  stroke-linecap: round;
+  @apply h-full w-full fill-none stroke-8 stroke-cap-round
 }
 
 circle:not(.road){
@@ -110,11 +90,10 @@ circle:not(.road){
 }
 
 circle.road {
-  stroke: var(--white);
-  stroke-width: 3px;
+  @apply stroke-3 stroke-gray-400;
 }
 
 circle.progress {
-  stroke-width: 4px;
+  @apply stroke-4
 }
 </style>
