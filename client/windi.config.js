@@ -27,7 +27,7 @@ module.exports = {
         200: '#0E0F10',
         300: '#151718',
         400: '#252525',
-        500: '#424448',
+        500: '#323337',
         600: '#767981',
         700: '#90939B',
       },
@@ -49,5 +49,10 @@ module.exports = {
       // borderStateDisabled: module.exports.alpha[70],
       // borderAccent: module.exports.primary[200],
     }
-  }
+  },
+  extend: {
+    transitionProperty: {
+        'width': 'width'
+    },
+  },
 }

@@ -76,7 +76,7 @@
       <div class="installationSteps flex gap-4 flex-col md:flex-row">
         <div class="step w-full flex flex-col gap-4">
           <h1 class="section">Linux Service Installation Steps</h1>
-          <div class="cockBlock p-4 max-w-full rounded-md">
+          <div class="cockBlock p-4 max-w-full rounded-4px">
             <h2><strong># Linux install steps</strong></h2>
             <h2><strong># Download & Install script</strong></h2>
             <h2>
@@ -88,7 +88,7 @@
         </div>
         <div class="step w-full flex flex-col gap-4">
           <h1 class="section">MacOS Binary Execution Steps</h1>
-          <div class="cockBlock p-4 max-w-full rounded-md">
+          <div class="cockBlock p-4 max-w-full rounded-4px">
             <h2><strong># MacOS execution steps</strong></h2>
             <h2><strong># Download & Run</strong></h2>
             <h2><strong>$</strong> wget xornet.cloud/reporter/xornet-reporter-macos</h2>

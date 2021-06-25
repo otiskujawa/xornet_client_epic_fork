@@ -88,7 +88,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="postcss" scoped>
 @media only screen and (max-width: 360px) {
   .search {
     width: 84vw;
@@ -98,26 +98,12 @@ export default {
 }
 
 .search {
-  z-index: 10;
-  align-self: flex-start;
-  display: flex;
-  width: 256px;
-  flex-direction: column;
-  gap: 8px;
-  max-width: 50%;
-  overflow: scroll;
-  max-height: 600px;
-  padding: 8px;
-  transition: width 200ms ease;
-  background-color: var(--background-color);
+  @apply z-10 self-start flex w-72 flex-col gap-2 bg-gray-200 overflow-scroll max-h-600px p-2 transition-width duration-200 ease;
 }
 
-.search:focus-within {
-  width: 400px;
-}
-
+.search:focus-within,
 .search.focused {
-  width: 400px;
+  @apply w-400px ;
 }
 
 .inputField.active {
@@ -136,37 +122,16 @@ h1.noResult {
 }
 
 .bar {
-  display: flex;
-  width: 100%;
-  gap: 8px;
-  position: relative;
-  background-color: var(--background-color);
-  border-radius: 3px;
+  @apply flex w-full h-full items-center justify-center gap-2 relative bg-gray-300 rounded-4px;
 }
 
 .inputField {
-  outline: none;
-  width: 100%;
-  transition: width 100ms ease;
-  border-radius: 4px;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 600;
-  font-size: 12px;
-  color: var(--black);
-  border: none;
-  background-color: var(--white);
-  height: 32px;
-  padding: 6px 8px;
+  @apply bg-gray-500 outline-none w-full h-full box-content transition transition-width duration-100 ease rounded-4px font-medium text-12px text-white border-none px-6px py-2;
+  font-family: "Work Sans", sans-serif;
 }
 
 img {
-  width: 16px;
-  height: 16px;
-  filter: invert(var(--filter));
-  position: absolute;
-  right: 4px;
-  top: 50%;
-  transform: translateY(-50%);
+  @apply w-4 h-4 absolute right-4px top-1/2 filter invert opacity-30 transform -translate-y-1/2;
 }
 
 img.activeImg {
@@ -174,10 +139,7 @@ img.activeImg {
 }
 
 .inputField::placeholder {
-  color: var(--slyColor);
+  @apply text-alpha-60;
 }
 
-.search:focus-within .inputField {
-  outline: 3px solid var(--theme-color);
-}
 </style>
