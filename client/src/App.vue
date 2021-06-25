@@ -22,12 +22,12 @@ export default {
   --dark-light: #0f0f1e;
   --dark-lighter: #18182c;
   --rogue-red-border: #f85149;
-  --theme-color: #8676ff;
+  --theme-color: #6142ff;
   --bright-theme-color: #aca3f5;
   --terminal-background: #0b0b15;
   --green: #00ff6672;
-  --blue: #4ADEFF;
-  --blue-transparent: #4ADEFF44;
+  --blue: #4adeff;
+  --blue-transparent: #4adeff44;
 
   /* Initial colors */
   --background-color: #0b0b15;

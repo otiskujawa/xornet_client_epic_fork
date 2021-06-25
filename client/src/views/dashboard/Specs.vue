@@ -124,7 +124,7 @@ export default {
 }
 
 .specs .title {
-  background: linear-gradient(90deg, #8676ff 0%, #516dff 33.33%, #32b5ff 69.27%, #4adeff 100%);
+  background: linear-gradient(90deg, #8676ff 0%, #4221ee 34.9%, #6142ff 100%);
   background-clip: border-box;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
