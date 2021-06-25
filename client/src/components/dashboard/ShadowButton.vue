@@ -1,6 +1,6 @@
 <template>
   <div
-    class="shadowButton"
+    class="shadowButton py-2 px-3 flex items-center h-min border border-bg-alpha-0 select-none cursor-pointer justify-between gap-2 flex-row rounded-full duration-100 bg-gray-400"
     :id="allowCopy ? 'shadowButton' : null"
     :class="{ colored, didCopy, iconOnly: !title, tiny }"
     @click="allowCopy ? copyText() : null"
@@ -56,24 +56,7 @@ export default {
 };
 </script>
 
-<style>
-.shadowButton {
-  padding: 8px 12px;
-  display: flex;
-  align-items: center;
-  height: fit-content;
-  border: 1px solid transparent;
-  user-select: none;
-  cursor: pointer;
-  justify-content: space-between;
-
-  gap: 8px;
-  flex-direction: row;
-  border-radius: 200px;
-  transition: all 100ms;
-  background-color: var(--shadowButton-color);
-}
-
+<style lang="postcss" scoped>
 .shadowButton:not(.tiny) {
   box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
 }
