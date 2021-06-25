@@ -1,5 +1,5 @@
 <template>
-  <nav class="buttons bg-gray-200">
+  <nav class="buttons bg-gray-200 h-full items-center flex flex-col content-between relative">
     <div class="top">
       <SquareButton boxless class="firstButton" icon="user" :to="{ name: 'profile', params: { username } }" />
       <!-- <SquareButton icon="dashboard" :to="{ name: 'summary' }" /> -->
@@ -29,7 +29,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="postcss" scoped>
 @media only screen and (max-width: 600px) {
   nav#desktopNav {
     display: none;
@@ -49,18 +49,7 @@ export default {
   }
 }
 
-nav {
-  height: 100%;
-  display: none;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-}
-
 nav:not(#mobileNav) .top .firstButton {
-  border-radius: 0px 8px 0px 0px;
   overflow: hidden;
 }
 
