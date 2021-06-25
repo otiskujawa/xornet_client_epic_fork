@@ -82,7 +82,6 @@ export default {
 
 html {
   overflow: hidden;
-  background-color: var(--background-color);
 }
 
 #app {

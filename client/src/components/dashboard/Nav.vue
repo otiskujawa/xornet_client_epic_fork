@@ -1,5 +1,5 @@
 <template>
-  <nav class="buttons">
+  <nav class="buttons bg-gray-200">
     <div class="top">
       <SquareButton boxless class="firstButton" icon="user" :to="{ name: 'profile', params: { username } }" />
       <!-- <SquareButton icon="dashboard" :to="{ name: 'summary' }" /> -->
@@ -50,11 +50,10 @@ export default {
 }
 
 nav {
-  height: 48px;
+  height: 100%;
   display: none;
   align-items: center;
   display: flex;
-  background-color: var(--background-color);
   flex-direction: column;
   justify-content: space-between;
   position: relative;

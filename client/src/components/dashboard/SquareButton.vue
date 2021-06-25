@@ -1,13 +1,13 @@
 <template>
   <div @click="$emit('click')">
     <router-link @click="$emit('click')" v-if="to" :to="to" class="button" :class="{ isEnabled, boxless }">
-      <Icon :icon="icon" />
+      <Icon :icon="icon"/>
     </router-link>
     <div @click="$emit('click')" v-if="!to && !href" class="button" :class="{ isEnabled, boxless }">
-      <Icon :icon="icon" />
+      <Icon :icon="icon"/>
     </div>
     <a v-if="href" :href="href" target="_blank" @click="$emit('click')" class="button" :class="{ isEnabled, boxless }">
-      <Icon :icon="icon" />
+      <Icon :icon="icon"/>
     </a>
   </div>
 </template>
@@ -30,44 +30,28 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="postcss" scoped>
 .button {
-  background-color: var(--background-color);
-  box-sizing: border-box;
-  border: 1px solid transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 48px;
-  height: 48px;
-  cursor: pointer;
-  user-select: none;
+  @apply gap-2 flex items-center justify-center select-none cursor-pointer w-12 h-12 box-border border-solid border-1 border-none;
+}
+
+.button:not(.router-link-active) img {
+  @apply opacity-25;
 }
 
 .button:hover {
-  background-color: var(--theme-color);
+  @apply bg-primary-100;
 }
 
-.button:hover img {
-  filter: invert(1);
+.button:hover:not(.router-link-active) img {
+  @apply opacity-80;
 }
 
 .button.router-link-active {
-  background-color: var(--theme-color);
-}
-
-.button.router-link-active img {
-  filter: invert(1);
-}
-
-.button.isEnabled {
-  filter: invert(1);
+  @apply bg-primary-200;
 }
 
 .button img {
-  width: 24px;
-  height: 24px;
-  filter: invert(var(--filter));
+  @apply w-6 h-6 opacity-100;
 }
 </style>

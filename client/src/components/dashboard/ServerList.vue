@@ -194,7 +194,6 @@ export default {
   height: 100%;
   flex-direction: column;
   font-family: "Roboto Mono";
-  background-color: var(--background-color);
   transition: width 200ms ease;
   overflow-x: hidden;
 }
@@ -239,7 +238,6 @@ section h1 {
 }
 .columns {
   padding: 8px;
-  background-color: var(--background-color);
   border-radius: 4px;
   box-sizing: border-box;
   border: 1px solid transparent;

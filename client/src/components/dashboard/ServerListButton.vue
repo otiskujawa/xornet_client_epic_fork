@@ -121,7 +121,6 @@ export default {
 <style scoped>
 .button {
   padding: 2px 8px;
-  background-color: var(--background-color);
   border-radius: 4px;
   box-sizing: border-box;
   border: 1px solid transparent;

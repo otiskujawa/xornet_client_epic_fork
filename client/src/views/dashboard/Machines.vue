@@ -1,5 +1,5 @@
 <template>
-  <div class="machines">
+  <div class="machines p-2 h-100vh mb-128px">
     <ServerList :machines="machineArray" />
     <!-- <div class="content">
       <div class="machines">
@@ -122,8 +122,5 @@ export default {
 <style scoped>
 .machines {
   width: 100%;
-  height: 100vh;
-  margin-bottom: 128px;
-  padding: 8px;
 }
 </style>

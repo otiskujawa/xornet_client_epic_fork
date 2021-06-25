@@ -1,20 +1,20 @@
 <template>
-  <header>
-    <div class="left">
+  <header class="h-12 w-full flex z-400 items-start justify-between bg-gray-200 overflow-visible">
+    <div class="left flex w-full items-start">
       <div v-if="!showSearchBar && searchToggled" @click="searchToggled = false">
         <SquareButton icon="left-arrow" alt="" />
       </div>
       <div
-        class="logo"
+        class="logo select-none flex justify-center items-center bg-primary-200 h-12 min-h-12 w-12 min-w-12"
         v-if="!searchToggled"
         :class="{ clickable: !isNestedRoute }"
         @click="isNestedRoute ? incrementSuperclass() : $router.go(-1)"
       >
-        <img v-if="isNestedRoute" :src="require('@/assets/logos/logoHeader.svg')" alt="Xornet" />
+        <img class="transition duration-100 ease hover:w-10 active:w-8" v-if="isNestedRoute" :src="require('@/assets/logos/logoHeader.svg')" alt="Xornet" />
         <Icon v-else icon="left-arrow" style="width: 24px; filter: invert(1);" />
       </div>
 
-      <div class="buttons" v-if="!searchToggled">
+      <div class="buttons items-center flex overflow-hidden" v-if="!searchToggled">
         <SquareButton icon="repository" href="https://github.com/Geoxor/Xornet/releases" />
         <SquareButton icon="darkmode" @click="toggleDarkmode" />
         <!-- <SquareButton icon="details" v-if="currentRoute == 'machines'" @click="isShowingDetails = !isShowingDetails" :isEnabled="isShowingDetails" /> -->
@@ -25,16 +25,16 @@
       <SearchBar v-if="showSearchBar || searchToggled" @unClicked="searchToggled = false" :isFocused="searchToggled" />
     </div>
 
-    <div class="account" v-if="!searchToggled">
+    <div class="account flex items-center content-center" v-if="!searchToggled">
       <SquareButton icon="logout" @click.native="logout" />
 
-      <router-link :to="{ name: 'profile', params: { username } }">
+      <router-link class="w-8 h-8 m-2" :to="{ name: 'profile', params: { username } }">
         <img
           :src="
             profile?.profileImage?.url ??
               'https://cdn.discordapp.com/attachments/816028632269979668/855437868825444372/unknown.png'
           "
-          class="profileImage"
+          class="profileImage select-none object-cover cursor-pointer rounded-lg"
           alt="profileImage"
         />
       </router-link>
@@ -122,101 +122,8 @@ export default {
 };
 </script>
 
-<style scoped>
-header {
-  height: 48px;
-  width: 100%;
-  display: flex;
-  z-index: 400;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--background-color);
-  overflow: visible;
-}
-
-.left {
-  display: flex;
-  width: 100%;
-  align-items: flex-start;
-}
-
-.button {
-  padding: 16px;
-  background-color: var(--background-color);
-  box-sizing: border-box;
-  border: 1px solid transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 48px;
-  height: 48px;
-  cursor: pointer;
-  transition: 100ms ease;
-  text-decoration: none;
-  user-select: none;
-}
-
-.logo {
-  user-select: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--theme-color);
-  height: 48px;
-  min-height: 48px;
-  width: 48px;
-  border-radius: 0px 0px 8px 0px;
-  min-width: 48px;
-}
-
-.logo img {
-  transition: 100ms ease;
-}
-.logo img:hover {
-  width: 40px;
-}
-.logo img:active {
-  width: 32px;
-}
-.button.enabled {
-  filter: invert(1);
-}
-
-.button img {
-  width: 24px;
-  height: 24px;
-  filter: invert(var(--filter));
-}
-
-.buttons {
-  align-items: center;
-  display: flex;
-  border-radius: 0px 0px 0px 8px;
-  overflow: hidden;
-}
-
-.account {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.account a {
-  width: 32px;
-  height: 32px;
-  margin: 8px;
-}
-
-.account img.profileImage {
-  width: 32px;
-  height: 32px;
-  user-select: none;
-  object-fit: cover;
-  cursor: pointer;
-  border-radius: 8px;
-}
+<style lang="postcss" scoped>
 .clickable {
-  cursor: pointer;
+  @apply cursor-pointer
 }
 </style>

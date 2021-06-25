@@ -1,7 +1,8 @@
 <template>
-  <div v-if="color" class="coloredIconContainer icon" :style="{ 'background-color': `${color}1f` }">
+  <div v-if="!borderless && color" class="coloredIconContainer icon" :style="{ 'background-color': `${color}1f` }">
     <div class="coloredIcon" :style="{ 'mask-image': `url(https://xornet.cloud${image})`, 'background-color': color }"></div>
   </div>
+  <div v-else-if="borderless && color" class="coloredIcon" :style="{ 'mask-image': `url(https://xornet.cloud${image})`, 'background-color': color }"></div>
   <img v-else name="icon" :class="{ app }" class="blackIcon" :src="image" :alt="icon" />
 </template>
 
@@ -12,7 +13,8 @@ export default {
     icon: { type: String, required: true },
     default: { type: String, required: false },
     app: { type: Boolean, required: false },
-    color: { type: String, required: false }
+    color: { type: String, required: false },
+    borderless: { type: Boolean, required: false },
   },
   computed: {
     isStroked() {

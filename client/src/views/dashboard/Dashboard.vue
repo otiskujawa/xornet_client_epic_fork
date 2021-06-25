@@ -1,5 +1,5 @@
 <template>
-  <div class="view dashboard">
+  <div class="view bg-gray-300 dashboard">
     <LoadingScreen :isLoaded="!isLoading" />
     <Header v-if="!isLoading" />
     <div class="main">
@@ -56,7 +56,6 @@ export default {
 
 .content {
   box-sizing: border-box;
-  background-color: var(--white);
   padding: 8px;
   height: 100%;
   width: 100%;
