@@ -46,19 +46,10 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="postcss" scoped>
 .datacenter {
+  @apply rounded-8px border border-gray-500 bg-gray-300 cursor-pointer p-2 flex flex-col justify-between items-center transition duration-200 ease;
   aspect-ratio: 1;
-  border-radius: 8px;
-  background-color: var(--white);
-  cursor: pointer;
-  padding: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  transition: transform 100ms ease;
-  border: 1px solid var(--border-color);
 }
 
 .datacenter:hover {
