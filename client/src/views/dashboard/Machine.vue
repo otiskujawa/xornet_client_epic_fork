@@ -44,10 +44,10 @@
         </div>
 
         <Tooltip v-if="me.machines.includes(machine.uuid)" text="Restart Machine">
-          <ShadowButton icon="restart" @click="api.machine.restart(machine.uuid)"/>
+          <ShadowButton icon="restart" @click="api.machine.restart(machine.uuid)" />
         </Tooltip>
         <Tooltip v-if="me.machines.includes(machine.uuid)" text="Shutdown Machine">
-          <ShadowButton icon="shutdown" @click="api.machine.shutdown(machine.uuid)"/>
+          <ShadowButton icon="shutdown" @click="api.machine.shutdown(machine.uuid)" />
         </Tooltip>
         <Tooltip text="Trash Machine">
           <ShadowButton icon="trash" />

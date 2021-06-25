@@ -45,7 +45,7 @@ export default {
 };
 </script>
 
-<style lang="postcss"  scoped>
+<style lang="postcss" scoped>
 .membersInfo {
   @apply border border-gray-500 rounded-4px flex-col text-left gap-2 p-4 cursor-pointer w-full;
 }

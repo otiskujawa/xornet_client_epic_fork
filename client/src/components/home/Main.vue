@@ -6,7 +6,8 @@
       <section>
         <h1>Our Goal</h1>
         <p>
-          We are XORNET this is a fun little project started by Geoxor for people who have servers and wanna be able to manage them remotely<br />
+          We are XORNET this is a fun little project started by Geoxor for people who have servers and wanna be able to manage
+          them remotely<br />
           Our goal is to make a platform for people to manage their servers!<br />
           <br />
         </p>

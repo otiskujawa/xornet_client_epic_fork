@@ -112,5 +112,4 @@ export default {
   border: 1px solid var(--blue);
   background-color: var(--blue-transparent);
 }
-
 </style>

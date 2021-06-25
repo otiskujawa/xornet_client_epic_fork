@@ -1,5 +1,8 @@
 <template>
-  <router-link class="searchResult flex flex-row items-center p-2 rounded justify-between gap-2 text-left" :to="{ name: 'profile', params: { username: user.username } }">
+  <router-link
+    class="searchResult flex flex-row items-center p-2 rounded justify-between gap-2 text-left"
+    :to="{ name: 'profile', params: { username: user.username } }"
+  >
     <div class="profile">
       <img
         class="profileImg"
@@ -48,7 +51,6 @@ export default {
 </script>
 
 <style scoped>
-
 .searchResult:hover {
   /* Shadow */
   background-color: var(--white);
@@ -69,7 +71,7 @@ export default {
 }
 
 .points {
-  background: linear-gradient(90deg, #8676ff 0%, #516dff 33.33%, #32b5ff 69.27%, #4adeff 100%);
+  background: linear-gradient(90deg, #8676ff 0%, #4221ee 34.9%, #6142ff 100%);
   background-clip: border-box;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

@@ -62,7 +62,7 @@ export default class User extends Base {
   /**
    * Syncs the localStorage with the database from the backend
    */
-  async syncLocalStorage(){
+  async syncLocalStorage() {
     super.updateLocalStorage(await this.fetchMe());
   }
 

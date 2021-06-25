@@ -16,7 +16,12 @@
       </div>
       <h1 class="text-left font-bold p-2 text-2xl" v-if="sharedDatacenters">Shared Datacenters</h1>
       <div class="buttons w-full">
-        <DatacenterButton class="datacenter" :datacenter="datacenter" v-for="datacenter of sharedDatacenters" :key="datacenter" />
+        <DatacenterButton
+          class="datacenter"
+          :datacenter="datacenter"
+          v-for="datacenter of sharedDatacenters"
+          :key="datacenter"
+        />
         <!-- nanahira pls help us fix the stupid grid this is cancer -->
         <div></div>
         <div></div>
@@ -27,7 +32,12 @@
       </div>
       <h1 class="text-left font-bold p-2 text-2xl" v-if="me?.is_admin">Other Datacenters</h1>
       <div class="buttons w-full">
-        <DatacenterButton class="datacenter" :datacenter="datacenter" v-for="datacenter of otherDatacenters" :key="datacenter" />
+        <DatacenterButton
+          class="datacenter"
+          :datacenter="datacenter"
+          v-for="datacenter of otherDatacenters"
+          :key="datacenter"
+        />
         <!-- nanahira pls help us fix the stupid grid this is cancer -->
         <div></div>
         <div></div>
@@ -70,9 +80,15 @@
                   save();
                 "
               />
-              <ShadowButton class="revoke" icon="bookmark" v-if="datacenter._id !== me.primaryDatacenter" title="Make Primary" @click="setPrimary()"/>
-              <ShadowButton class="revoke primary" icon="bookmark" v-else title="Primary"/>
-              <ShadowButton class="revoke delete" icon="trash" title="Delete Datacenter" @click="deleteDatacenter()"/>
+              <ShadowButton
+                class="revoke"
+                icon="bookmark"
+                v-if="datacenter._id !== me.primaryDatacenter"
+                title="Make Primary"
+                @click="setPrimary()"
+              />
+              <ShadowButton class="revoke primary" icon="bookmark" v-else title="Primary" />
+              <ShadowButton class="revoke delete" icon="trash" title="Delete Datacenter" @click="deleteDatacenter()" />
             </div>
           </div>
 
@@ -183,15 +199,19 @@ export default {
     datacenter() {
       return this.datacenters.filter(datacenter => datacenter.name == this.route)[0];
     },
-    myDatacenters(){
+    myDatacenters() {
       return this.datacenters.filter(datacenter => datacenter.owner === this.me._id);
     },
-    sharedDatacenters(){
-      return this.datacenters.filter(datacenter => datacenter.members.map(member => member._id).includes(this.me._id) && datacenter.owner !== this.me._id)
+    sharedDatacenters() {
+      return this.datacenters.filter(
+        datacenter => datacenter.members.map(member => member._id).includes(this.me._id) && datacenter.owner !== this.me._id
+      );
     },
-    otherDatacenters(){
-      return this.datacenters.filter(datacenter => !datacenter.members.map(member => member._id).includes(this.me._id) && datacenter.owner !== this.me._id)
-    },
+    otherDatacenters() {
+      return this.datacenters.filter(
+        datacenter => !datacenter.members.map(member => member._id).includes(this.me._id) && datacenter.owner !== this.me._id
+      );
+    }
   },
   watch: {
     $route(to, from) {
@@ -218,7 +238,7 @@ export default {
         currentBandwidth: 0,
         totalMachines: 0
       },
-      isPrimary: false,
+      isPrimary: false
     };
   },
   mounted() {
@@ -277,7 +297,7 @@ export default {
     async deleteDatacenter() {
       const response = await this.api.datacenter.remove(this.datacenter._id);
       if (response.status == 200) this.$router.push(`/dashboard/datacenters`);
-    },
+    }
   }
 };
 </script>

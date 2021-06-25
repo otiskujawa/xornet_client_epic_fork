@@ -291,7 +291,7 @@ export default {
   filter: invert(var(--filter));
 }
 .status {
-  background: linear-gradient(90deg, #8676ff 0%, #516dff 33.33%, #32b5ff 69.27%, #4adeff 100%);
+  background: linear-gradient(90deg, #8676ff 0%, #4221ee 34.9%, #6142ff 100%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
   white-space: nowrap;

@@ -75,7 +75,6 @@ export default class Datacenter extends Base {
     return await super.request("post", `datacenter/new`, { "Content-Type": "application/json" }, form);
   }
 
-  
   /**
    * Creates a new datacenter
    * @param {string} datacenter the name or uuid of the datacenter to remove

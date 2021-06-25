@@ -44,7 +44,7 @@ const routes = [
     path: "/privacy",
     name: "privacy",
     component: () => import(/* webpackChunkName: "privacy" */ "@/views/home/Privacy.vue"),
-    meta: { 
+    meta: {
       title: "Xornet | Privacy"
     }
   },

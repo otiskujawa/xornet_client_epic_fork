@@ -45,8 +45,8 @@ export default {
         const response = await this.api.datacenter.add(JSON.stringify(this.form));
         if (response.status == 201) {
           await this.api.user.syncLocalStorage();
-          this.$router.push(`/dashboard/datacenters/${this.form.name}`)
-        };
+          this.$router.push(`/dashboard/datacenters/${this.form.name}`);
+        }
       } catch (error) {
         console.log(error);
       }

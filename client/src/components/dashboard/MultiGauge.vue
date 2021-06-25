@@ -68,7 +68,7 @@ export default {
 };
 </script>
 
-<style lang="postcss"  scoped>
+<style lang="postcss" scoped>
 .multiGauge {
   @apply relative w-200px h-200px;
 }
@@ -82,10 +82,10 @@ export default {
 }
 
 circle {
-  @apply h-full w-full fill-none stroke-8 stroke-cap-round
+  @apply h-full w-full fill-none stroke-8 stroke-cap-round;
 }
 
-circle:not(.road){
+circle:not(.road) {
   transition: 500ms ease;
 }
 
@@ -94,6 +94,6 @@ circle.road {
 }
 
 circle.progress {
-  @apply stroke-4
+  @apply stroke-4;
 }
 </style>

@@ -128,5 +128,4 @@ export default {
   border: 1px solid #d00000;
   background-color: #d0000044;
 }
-
 </style>

@@ -25,6 +25,7 @@ export default {
 }
 
 .toolTipBox:hover .tooltip {
+  pointer-events: initial;
   opacity: 1;
 }
 
@@ -33,6 +34,8 @@ export default {
   text-align: center;
   padding: 8px 4px;
   border-radius: 4px;
+
+  pointer-events: none;
 
   width: 120px;
   bottom: 100%;

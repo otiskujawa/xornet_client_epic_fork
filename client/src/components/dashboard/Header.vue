@@ -10,7 +10,12 @@
         :class="{ clickable: !isNestedRoute }"
         @click="isNestedRoute ? incrementSuperclass() : $router.go(-1)"
       >
-        <img class="transition duration-100 ease hover:w-10 active:w-8" v-if="isNestedRoute" :src="require('@/assets/logos/logoHeader.svg')" alt="Xornet" />
+        <img
+          class="transition duration-100 ease hover:w-10 active:w-8"
+          v-if="isNestedRoute"
+          :src="require('@/assets/logos/logoHeader.svg')"
+          alt="Xornet"
+        />
         <Icon v-else icon="left-arrow" style="width: 24px; filter: invert(1);" />
       </div>
 
@@ -124,6 +129,6 @@ export default {
 
 <style lang="postcss" scoped>
 .clickable {
-  @apply cursor-pointer
+  @apply cursor-pointer;
 }
 </style>

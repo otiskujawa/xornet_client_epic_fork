@@ -1,7 +1,7 @@
 <template>
   <transition name="bounce">
     <div class="popup" v-if="show">
-      <div class="content" :class="{type}">
+      <div class="content" :class="{ type }">
         <progress class="progressBar" :value="timeoutProgress" :max="timeoutLength / 1000"></progress>
         <div class="shit">
           <p>
@@ -38,21 +38,21 @@ export default {
 
     eventHandler.on("show", async params => {
       this.type = params.type;
-      switch(params.type) {
+      switch (params.type) {
         case "ok":
           this.timeoutProgress = 0;
           this.timeoutLength = 5000;
           this.show = true;
           this.apiMethod = `${params.method}`;
-          this.apiMessage = 'Success'
-        break;
+          this.apiMessage = "Success";
+          break;
         default:
           this.timeoutProgress = 0;
           this.timeoutLength = 10000;
           this.show = true;
           this.apiMessage = params.messages[0].response.data.message;
           this.apiMethod = `${params.messages[0].response.status} ${params.method}`;
-        break;
+          break;
       }
 
       for (let i = 0; i < this.timeoutLength / 1000; i++) {
@@ -128,8 +128,6 @@ export default {
 .progressBar::-webkit-progress-value {
   background-color: var(--bright-theme-color);
 }
-
-
 
 .shit {
   width: 100%;

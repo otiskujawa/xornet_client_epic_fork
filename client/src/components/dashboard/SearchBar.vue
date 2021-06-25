@@ -98,12 +98,12 @@ export default {
 }
 
 .search {
-  @apply z-10 self-start flex w-72 flex-col gap-2 bg-gray-200 overflow-scroll max-h-600px p-2 transition-width duration-200 ease;
+  @apply z-10 self-start flex w-72 flex-col gap-2 overflow-scroll max-h-600px p-2 transition-width duration-200 ease;
 }
 
 .search:focus-within,
 .search.focused {
-  @apply w-400px ;
+  @apply w-400px;
 }
 
 .inputField.active {
@@ -141,5 +141,4 @@ img.activeImg {
 .inputField::placeholder {
   @apply text-alpha-60;
 }
-
 </style>
