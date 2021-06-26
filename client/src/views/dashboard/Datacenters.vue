@@ -5,6 +5,7 @@
       <div class="buttons w-full">
         <DatacenterButton class="datacenter" :datacenter="datacenter" v-for="datacenter of myDatacenters" :key="datacenter" />
         <DatacenterButton :addButton="true" @click="isAddingNew = !isAddingNew" />
+        <Dialog />
         <DatacenterCard v-if="isAddingNew" />
         <!-- nanahira pls help us fix the stupid grid this is cancer -->
         <div></div>
@@ -178,6 +179,7 @@ import InfoField from "@/components/dashboard/InfoField";
 import MemberField from "@/components/dashboard/MemberField";
 import ShadowButton from "@/components/dashboard/ShadowButton";
 import MultiGauge from "@/components/dashboard/MultiGauge";
+import Dialog from "@/components/library/Dialog.vue";
 
 export default {
   name: "Datacenters",
@@ -190,6 +192,7 @@ export default {
     MemberField,
     ShadowButton,
     InfoField,
+    Dialog,
     MultiGauge
   },
   computed: {
