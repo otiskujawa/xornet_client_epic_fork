@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="main bg-dark-300 ">
     <img :src="require('@/assets/logos/logoColored.svg')" alt="Xornet" />
 
     <div class="textFields">

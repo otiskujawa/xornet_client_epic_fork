@@ -13,7 +13,6 @@ export default {
   }
 };
 </script>
->
 
 <style>
 :root {
@@ -64,7 +63,6 @@ export default {
   font-family: "Montserrat", sans-serif;
   box-sizing: border-box;
   text-decoration: none;
-  color: var(--black);
 }
 *::-webkit-scrollbar {
   display: none;
@@ -73,11 +71,6 @@ export default {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
-
-/* *::selection {
-  background: var(--black) !important;
-  color: var(--white);
-} */
 
 html {
   overflow: hidden;
@@ -88,22 +81,8 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: white;
   height: 100vh;
-}
-
-#nav {
-  padding: 30px;
-  position: absolute;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
 }
 
 @media only screen and (max-width: 600px) {

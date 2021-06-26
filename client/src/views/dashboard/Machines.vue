@@ -1,7 +1,7 @@
 <template>
   <div class="machines flex flex-col gap-4 p-6 w-full h-100vh mb-128px">
-    <div class="heading flex items-center gap-4">
-      <h1 class="text-32px font-semibold">Machines</h1>
+    <div class="flex items-center gap-4">
+      <h1 class="text-32px font-semibold text-white">Machines</h1>
       <input
         type="text"
         v-model="filter"
@@ -26,6 +26,9 @@
         </Tooltip>
         <Tooltip text=">100Mbps Traffic">
           <div class="filterButton" @click="tags.network = !tags.network" :class="{ enabled: tags.network }">High Network</div>
+        </Tooltip>
+        <Tooltip text=">150ms Ping">
+          <div class="filterButton" @click="tags.ping = !tags.ping" :class="{ enabled: tags.ping }">High Ping</div>
         </Tooltip>
       </div>
     </div>
@@ -101,7 +104,8 @@ export default {
         macos: false,
         cpu: false,
         ram: false,
-        network: false
+        network: false,
+        ping: false,
       },
       machines: new Map(),
       downloadGraph: [],
@@ -119,6 +123,7 @@ export default {
         if (this.tags.cpu && machine.cpu >= 50) return machine;
         if (this.tags.ram && 100 - (100 * machine.ram.used) / machine.ram.total < 30) return machine;
         if (this.tags.network && machine.network.TxSec + machine.network.RxSec > 100) return machine;
+        if (this.tags.ping && machine.ping > 150) return machine;
         // else return machine;
       });
     },

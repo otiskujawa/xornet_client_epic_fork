@@ -98,7 +98,7 @@ export default {
 }
 
 .search {
-  @apply z-10 self-start flex w-72 flex-col gap-2 overflow-scroll max-h-600px p-2 transition-width duration-200 ease;
+  @apply z-10 self-start flex w-72 flex-col bg-gray-200 gap-2 overflow-scroll max-h-600px p-2 transition-width duration-200 ease;
 }
 
 .search:focus-within,

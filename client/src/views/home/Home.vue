@@ -1,5 +1,5 @@
 <template>
-  <div class="view home">
+  <div class="view home w-full h-full relative bg-dark-200">
     <Header />
     <Main />
   </div>
@@ -25,14 +25,6 @@ export default {
 </script>
 
 <style>
-.home {
-  min-width: 100%;
-  min-height: 100%;
-  background-color: var(--black);
-  position: relative;
-  height: 100%;
-}
-
 .home * {
   font-family: "Comfortaa", cursive;
 }
