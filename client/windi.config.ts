@@ -1,6 +1,12 @@
-module.exports = {
+const colors = require("windicss/colors");
+
+export default {
   theme: {
+    transitionProperty: {
+      width: "width"
+    },
     colors: {
+      ...colors,
       xorblack: "var(--black)",
       xorwhite: "var(--white)",
       primary: {
@@ -22,6 +28,7 @@ module.exports = {
         400: "#5ECFFF"
       },
       black: "#000000",
+      white: "#FFFFFF",
       gray: {
         100: "#090909",
         200: "#0E0F10",
@@ -31,7 +38,6 @@ module.exports = {
         600: "#767981",
         700: "#90939B"
       },
-      white: "#FFFFFF",
       alpha: {
         100: "rgba(255, 255, 255, 1.00)",
         90: "rgba(255, 255, 255, 0.88)",
@@ -43,16 +49,11 @@ module.exports = {
         30: "rgba(255, 255, 255, 0.15)",
         20: "rgba(255, 255, 255, 0.12)",
         10: "rgba(255, 255, 255, 0.08)",
-        05: "rgba(255, 255, 255, 0.04)",
-        00: "rgba(255, 255, 255, 0.02)"
+        0o5: "rgba(255, 255, 255, 0.04)",
+        0o0: "rgba(255, 255, 255, 0.02)"
       }
       // borderStateDisabled: module.exports.alpha[70],
       // borderAccent: module.exports.primary[200],
-    }
-  },
-  extend: {
-    transitionProperty: {
-      width: "width"
     }
   }
 };

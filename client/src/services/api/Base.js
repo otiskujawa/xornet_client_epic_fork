@@ -1,4 +1,5 @@
 import axios from "axios";
+import eventHandler from "@/services/eventHandler";
 let ROOT_PATH = "https://backend.xornet.cloud";
 
 /**
