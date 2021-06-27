@@ -6,14 +6,7 @@
         <DatacenterButton class="datacenter" :datacenter="datacenter" v-for="datacenter of myDatacenters" :key="datacenter" />
         <DatacenterButton :addButton="true" @click="isAddingNew = !isAddingNew" />
         <Dialog v-model="isAddingNew">
-          <Card>
-            <template #image>
-              <h1 class="text-xl">UwU this is the iamge</h1>
-            </template>
-            <template #body>
-              <p>This is the body</p>
-            </template>
-          </Card>
+          <AddDatacenter />
         </Dialog>
         <!-- nanahira pls help us fix the stupid grid this is cancer -->
         <div></div>
@@ -73,14 +66,14 @@
             </div>
             <div class="buttons">
               <ShadowButton
-                class="revoke"
+                
                 icon="stack"
                 title="Add server"
                 @click="isShowingServerCard = !isShowingServerCard"
               />
-              <ShadowButton class="revoke" v-if="!isEditing" icon="edit" title="Edit" @click="isEditing = !isEditing" />
+              <ShadowButton  v-if="!isEditing" icon="edit" title="Edit" @click="isEditing = !isEditing" />
               <ShadowButton
-                class="revoke"
+                
                 v-else
                 icon="save"
                 title="Save"
@@ -90,14 +83,14 @@
                 "
               />
               <ShadowButton
-                class="revoke"
+                
                 icon="bookmark"
                 v-if="datacenter._id !== me.primaryDatacenter"
                 title="Make Primary"
                 @click="setPrimary()"
               />
-              <ShadowButton class="revoke primary" icon="bookmark" v-else title="Primary" />
-              <ShadowButton class="revoke delete" icon="trash" title="Delete Datacenter" @click="deleteDatacenter()" />
+              <ShadowButton class="primary" icon="bookmark" v-else title="Primary" />
+              <ShadowButton class="delete" icon="trash" title="Delete Datacenter" @click="deleteDatacenter()" />
             </div>
           </div>
 
@@ -179,7 +172,6 @@
 <script>
 import Icon from "@/components/misc/Icon";
 import socket from "@/services/socket.js";
-import DatacenterCard from "@/components/misc/DatacenterCard";
 import ServerCard from "@/components/misc/ServerCard";
 import DatacenterButton from "@/components/dashboard/DatacenterButton";
 import ServerList from "@/components/dashboard/ServerList";
@@ -189,15 +181,17 @@ import ShadowButton from "@/components/dashboard/ShadowButton";
 import MultiGauge from "@/components/dashboard/MultiGauge";
 import Dialog from "@/components/library/Dialog.vue";
 import Card from "@/components/library/Card.vue";
+import AddDatacenter from "@/components/dashboard/AddDatacenter.vue";
+import { appState } from "@/states/appState";
 
 export default {
   name: "Datacenters",
   components: {
     Icon,
+    AddDatacenter,
     ServerList,
     DatacenterButton,
     ServerCard,
-    DatacenterCard,
     MemberField,
     ShadowButton,
     InfoField,
@@ -228,7 +222,7 @@ export default {
   },
   watch: {
     $route(to, from) {
-      this.me = JSON.parse(localStorage.getItem("me"));
+      this.me = appState.getMe();
       this.machines.clear();
       this.fetchData();
       this.stats = {
@@ -256,7 +250,7 @@ export default {
   },
   mounted() {
     this.fetchData();
-    this.me = JSON.parse(localStorage.getItem("me"));
+    this.me = appState.getMe();
   },
   methods: {
     async fetchData() {
@@ -305,7 +299,7 @@ export default {
     async setPrimary() {
       await this.api.user.setPrimaryDatacenter(this.datacenter._id);
       this.datacenters = await this.api.datacenter.fetchAll();
-      this.me = JSON.parse(localStorage.getItem("me"));
+      this.me = appState.getMe();
     },
     async deleteDatacenter() {
       const response = await this.api.datacenter.remove(this.datacenter._id);

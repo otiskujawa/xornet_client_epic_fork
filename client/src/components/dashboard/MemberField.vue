@@ -12,7 +12,7 @@
         />
         <h1>{{ member.username }}</h1>
       </router-link>
-      <ShadowButton v-if="isOwner" colored class="revoke" title="Revoke" icon="hammer" @click="revoke(member._id)" />
+      <ShadowButton v-if="isOwner && member._id !== me._id" colored class="revoke" title="Revoke" icon="hammer" @click="revoke(member._id)" />
     </div>
     <ShadowButton v-if="isOwner" title="Add" icon="add" @click="showMemberCard = !showMemberCard" />
     <MemberCard v-if="showMemberCard" />
@@ -22,12 +22,19 @@
 <script>
 import ShadowButton from "@/components/dashboard/ShadowButton";
 import MemberCard from "@/components/misc/MemberCard";
+import { appState } from "@/states/appState";
+
 export default {
   name: "MemberField",
   data() {
     return {
       showMemberCard: false
     };
+  },
+  computed: {
+    me() {
+      return appState.getMe();
+    }
   },
   props: {
     members: { type: Array, required: true },

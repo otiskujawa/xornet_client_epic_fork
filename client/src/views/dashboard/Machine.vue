@@ -109,6 +109,7 @@ import ShadowButton from "@/components/dashboard/ShadowButton";
 import socket from "@/services/socket.js";
 import InfoField from "@/components/dashboard/InfoField";
 import Tooltip from "@/components/dashboard/Tooltip";
+import { appState } from "@/states/appState";
 export default {
   name: "Machine",
   data() {
@@ -144,7 +145,7 @@ export default {
       return this.machine.isVirtual ? "slave" : "master";
     },
     me() {
-      return JSON.parse(localStorage.getItem("me"));
+      return appState.getMe();
     }
   }
 };
