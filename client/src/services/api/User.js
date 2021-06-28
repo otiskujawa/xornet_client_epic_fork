@@ -52,17 +52,9 @@ export default class User extends Base {
   }
 
   /**
-   * Gets the logged in user's object
-   * @returns {object} of the user's profile
-   */
-  async fetchMe() {
-    return (await super.request("get", `profile/${localStorage.getItem("username")}`)).data;
-  }
-
-  /**
    * Syncs the localStorage with the database from the backend
    */
-  async syncLocalStorage() {
+  async syncMe() {
     super.updateLocalStorage(await this.fetchMe());
   }
 

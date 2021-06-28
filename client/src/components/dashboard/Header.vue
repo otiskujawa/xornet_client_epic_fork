@@ -52,6 +52,7 @@ import { isDark } from "@/services/theme.js";
 import SquareButton from "@/components/dashboard/SquareButton";
 import SearchBar from "@/components/dashboard/SearchBar";
 import Icon from "@/components/misc/Icon";
+import { appState } from "@/states/appState";
 
 export default {
   name: "Header",
@@ -79,7 +80,7 @@ export default {
     };
   },
   async created() {
-    this.profile = await this.api.user.fetchMe();
+    this.profile = appState.getMe();
     this.currentRoute = this.$route.name;
     this.showSearchBar = this.windowWidth > 460;
   },

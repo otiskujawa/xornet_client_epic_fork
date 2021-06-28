@@ -200,7 +200,6 @@ export default {
   },
   data() {
     return {
-      me: null,
       datacenters: [],
       isAddingNew: false,
       isEditing: false,
@@ -255,7 +254,6 @@ export default {
   },
   async mounted() {
     this.datacenters = await this.api.datacenter.fetchAll();
-    this.me = appState.getMe();
   },
   methods: {
     async save() {
@@ -272,8 +270,8 @@ export default {
     },
     async setPrimary() {
       await this.api.user.setPrimaryDatacenter(this.datacenter._id);
+      await this.api.user.syncMe();
       this.datacenters = await this.api.datacenter.fetchAll();
-      this.me = appState.getMe();
     },
     async deleteDatacenter() {
       const response = await this.api.datacenter.remove(this.datacenter._id);
