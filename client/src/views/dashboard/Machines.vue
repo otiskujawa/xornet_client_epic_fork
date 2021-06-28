@@ -122,7 +122,7 @@ export default {
 };
 </script>
 
-<style lang="postcss" scoped>
+<style lang="postcss" scoped> 
 .filterButton {
   @apply cursor-pointer 
   select-none 
