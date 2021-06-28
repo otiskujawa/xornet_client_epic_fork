@@ -71,7 +71,7 @@ const routes = [
         }
       },
       {
-        path: "machines",
+        path: "machines/:view",
         name: "machines",
         component: () => import(/* webpackChunkName: "machines" */ "@/views/dashboard/Machines.vue"),
         meta: {
@@ -79,7 +79,7 @@ const routes = [
         }
       },
       {
-        path: "machines/:machine",
+        path: "machines/machine/:machine",
         name: "machine",
         component: () => import(/* webpackChunkName: "machine" */ "@/views/dashboard/Machine.vue"),
         meta: {
@@ -87,7 +87,7 @@ const routes = [
         }
       },
       {
-        path: "machines/:machine?/specs",
+        path: "machines/machine/:machine?/specs",
         name: "specs",
         component: () => import(/* webpackChunkName: "specs" */ "@/views/dashboard/Specs.vue"),
         meta: {

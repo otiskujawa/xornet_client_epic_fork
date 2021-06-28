@@ -1,5 +1,5 @@
 <template>
-  <div class="toolTipBox" :class="{sideways}">
+  <div class="toolTipBox" :class="{ sideways }">
     <slot />
     <div class="tooltip">
       <span class="text">{{ text }}</span>
@@ -16,7 +16,7 @@ export default {
     },
     sideways: {
       type: Boolean,
-      required: false,
+      required: false
     }
   }
 };
@@ -64,7 +64,6 @@ export default {
   bottom: 0;
   left: 100%;
   margin-left: 8px;
-  
 }
 
 .text {
@@ -90,5 +89,4 @@ export default {
   margin-left: -9px;
   transform: rotate(90deg) translateX(-50%);
 }
-
 </style>

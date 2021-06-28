@@ -3,7 +3,7 @@
     <div class="top">
       <SquareButton icon="user" :to="{ name: 'profile', params: { username } }" />
       <!-- <SquareButton icon="dashboard" :to="{ name: 'summary' }" /> -->
-      <SquareButton icon="stack" :to="{ name: 'machines' }" />
+      <SquareButton icon="stack" :to="{ name: 'machines' , params: { view: 'all'}}" />
       <SquareButton icon="datacenter" :to="{ name: 'datacenters' }" />
       <!-- <SquareButton icon="network" :to="{ name: 'network' }" /> -->
       <SquareButton icon="clipboard" :to="{ name: 'logs' }" />

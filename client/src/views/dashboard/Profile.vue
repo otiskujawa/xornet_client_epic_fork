@@ -392,7 +392,6 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-
 .line {
   @apply bg-dark-200 w-full h-1px mt-2;
 }
@@ -424,13 +423,13 @@ export default {
 }
 .pfp .edit {
   transition: 100ms ease;
-  @apply cursor-pointer w-16 absolute top-1/2 filter invert left-1/2 transform -translate-x-1/2 -translate-y-1/2
+  @apply cursor-pointer w-16 absolute top-1/2 filter invert left-1/2 transform -translate-x-1/2 -translate-y-1/2;
 }
 .pfp .edit:hover {
-  @apply w-20
+  @apply w-20;
 }
 .pfp .edit:active {
-  @apply w-14
+  @apply w-14;
 }
 .xornetBadge {
   @apply p-2 rounded-full h-max bottom-0 absolute w-max border-6 border-gray-200;
@@ -629,4 +628,4 @@ section.socials {
   display: flex;
   align-items: center;
 }
-</style >
+</style>

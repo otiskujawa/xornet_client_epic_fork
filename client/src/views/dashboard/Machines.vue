@@ -30,9 +30,31 @@
         <Tooltip text=">150ms Ping">
           <div class="filterButton" @click="tags.ping = !tags.ping" :class="{ enabled: tags.ping }">High Ping</div>
         </Tooltip>
+        <Tooltip text="Host OS">
+          <div class="filterButton" @click="tags.hypervisor = !tags.hypervisor" :class="{ enabled: tags.hypervisor }">Hypervisors</div>
+        </Tooltip>
+        <Tooltip text="Virtual Machines">
+          <div class="filterButton" @click="tags.vm = !tags.vm" :class="{ enabled: tags.vm }">VMs</div>
+        </Tooltip>
       </div>
     </div>
-    <div class="w-full h-1px bg-gray-500"></div>
+    <div class="flex flex-col">
+      <div class="tabs flex gap-4">
+        <router-link :to="{ name: 'machines', params: {view: 'all'}}">
+          <Icon icon="view-all"/> All
+        </router-link>
+        <router-link :to="{ name: 'machines', params: {view: 'owned'}}">
+          <Icon icon="crown"/> Your Machines
+        </router-link >
+        <router-link :to="{ name: 'machines', params: {view: 'shared'}}">
+          <Icon icon="shared"/> Shared Machines
+        </router-link>
+        <router-link :to="{ name: 'machines', params: {view: 'offline'}}">
+          <Icon icon="dead"/> Offline
+        </router-link>
+      </div>
+      <div class="w-full h-1px transform -translate-y-1px bg-gray-500"></div>
+    </div>
     <ServerList :machines="taggedMachines" />
   </div>
 </template>
@@ -43,6 +65,7 @@ import LoadingScreen from "@/components/dashboard/LoadingScreen";
 import Chart from "@/components/dashboard/Chart";
 import Terminal from "@/components/dashboard/Terminal";
 import Header from "@/components/dashboard/Header";
+import Icon from "@/components/misc/Icon";
 import Nav from "@/components/dashboard/Nav";
 import Tooltip from "@/components/dashboard/Tooltip";
 import { appState } from "@/states/appState";
@@ -52,6 +75,7 @@ export default {
     Terminal,
     Nav,
     Header,
+    Icon,
     Chart,
     LoadingScreen,
     Tooltip,
@@ -66,18 +90,24 @@ export default {
         cpu: false,
         ram: false,
         network: false,
-        ping: false
+        ping: false,
+        hypervisor: false,
+        vm: false,
       },
       machines: appState.getMachines(),
       downloadGraph: [],
       filter: "",
       uploadGraph: [],
-      labels: []
+      labels: [],
+      me: appState.getMe(),
+      activeTab: "all",
     };
   },
   computed: {
     taggedMachines() {
       if (!Object.values(this.tags).some(tag => tag == true)) return this.machineArray;
+      // Im sure theres a way better way of writting this
+      // Take it uppon yourself to improve it
       return this.machineArray.filter(machine => {
         if (this.tags.windows && machine.platform == "win32") return machine;
         if (this.tags.linux && machine.platform == "linux") return machine;
@@ -86,15 +116,22 @@ export default {
         if (this.tags.ram && 100 - (100 * machine.ram.used) / machine.ram.total < 30) return machine;
         if (this.tags.network && machine.network.TxSec + machine.network.RxSec > 100) return machine;
         if (this.tags.ping && machine.ping > 150) return machine;
+        if (this.tags.hypervisor && !machine.isVirtual) return machine;
+        if (this.tags.vm && machine.isVirtual) return machine;
       });
+    },
+    machineArray() {
+      let allMachines = Array.from(this.machines.values());
+      allMachines = this.filter !== ""
+        ? allMachines.filter(machine => machine.hostname.toLowerCase().includes(this.filter.toLowerCase()))
+        : allMachines;
+      if (this.activeTab === 'owned') allMachines = allMachines.filter(machine => machine.owner.username === this.me.username);
+      if (this.activeTab === 'shared') allMachines = allMachines.filter(machine => machine.owner.username !== this.me.username);
+      if (this.activeTab !== 'offline') return allMachines;
     },
     selectedMachine() {
       return this.$route.params.machine;
     },
-    machineArray() {
-      const allMachines = Array.from(this.machines.values());
-      return this.filter !== "" ? allMachines.filter(machine => machine.hostname.toLowerCase().includes(this.filter.toLowerCase())) : allMachines;
-    }
   },
   methods: {
     async getNetwork() {
@@ -108,6 +145,9 @@ export default {
     }
   },
   watch: {
+    $route(to, from) {
+      if (to.params.view) this.activeTab = to.params.view;
+    },
     selectedMachine: async function() {
       if (this.selectedMachine) this.getNetwork();
     }
@@ -121,7 +161,7 @@ export default {
 };
 </script>
 
-<style lang="postcss" scoped> 
+<style lang="postcss" scoped>
 .filterButton {
   @apply cursor-pointer 
   select-none 
@@ -140,8 +180,23 @@ export default {
 }
 
 .filterButton.enabled {
-  @apply bg-primary-100 border border-primary-300 text-primary-400;
+  @apply bg-tertiary-100 border border-tertiary-300 text-tertiary-400;
+}
+.tabs {
+  font-family: 'Work Sans';
+}
+.tabs a{
+  @apply border-b-2 border-t-2 opacity-50 border-none select-none text-11px font-semibold flex gap-2 pb-2 z-10 items-center px-1 whitespace-nowrap outline-none;
+}
+.tabs a:hover {
+  @apply text-secondary-300 opacity-100;
+}
+.tabs a.router-link-active {
+  @apply border-solid opacity-100 border-b-secondary-400 text-secondary-400;
 }
 
+.tabs a .icon {
+  @apply w-5;
+}
 
 </style>

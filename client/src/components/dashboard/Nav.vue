@@ -3,23 +3,23 @@
     <Tooltip sideways text="Profile">
       <SquareButton boxless class="firstButton" icon="user" :to="{ name: 'profile', params: { username } }" />
     </Tooltip>
-    
+
     <Tooltip sideways text="Machines">
-      <SquareButton boxless icon="stack" :to="{ name: 'machines' }" />
+      <SquareButton boxless icon="stack" :to="{ name: 'machines' , params: { view: 'all'}}" />
     </Tooltip>
-    
+
     <Tooltip sideways text="Datacenters">
       <SquareButton boxless icon="datacenter" :to="{ name: 'datacenters' }" />
     </Tooltip>
-    
+
     <Tooltip sideways text="Logs">
       <SquareButton boxless icon="clipboard" :to="{ name: 'logs' }" />
     </Tooltip>
-    
+
     <Tooltip sideways text="Downloads">
       <SquareButton boxless icon="downloads" :to="{ name: 'downloads' }" />
     </Tooltip>
-    
+
     <Tooltip sideways text="Settings">
       <SquareButton boxless class="settings" icon="settings" :to="{ name: 'settings' }" />
     </Tooltip>

@@ -20,7 +20,7 @@
         <Icon icon="downloads" />
         <p>Downloads</p>
       </router-link>
-      <router-link class="button" v-if="isLoggedIn" :to="{ name: 'machines' }">
+      <router-link class="button" v-if="isLoggedIn" :to="{ name: 'machines' , params: { view: 'all'}}">
         <Icon icon="dashboard" />
         <p>Dashboard</p>
       </router-link>
