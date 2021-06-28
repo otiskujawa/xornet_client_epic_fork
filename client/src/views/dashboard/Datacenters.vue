@@ -1,8 +1,8 @@
 <template>
-  <div class="datacenters">
+  <div class="datacenters p-2 w-full h-full overflow-scroll">
     <div class="datacenterButtons flex w-full flex-col h-full" v-if="!route">
       <h1 class="text-left font-bold p-2 text-2xl">My Datacenters</h1>
-      <div class="buttons w-full">
+      <div class="buttons p-2 grid gap-2 w-full">
         <DatacenterButton class="datacenter" :datacenter="datacenter" v-for="datacenter of myDatacenters" :key="datacenter" />
         <DatacenterButton :addButton="true" @click="isAddingNew = !isAddingNew" />
         <Dialog v-model="isAddingNew">
@@ -49,10 +49,10 @@
         <div></div>
       </div>
     </div>
-    <div v-else-if="datacenter" class="content">
-      <div class="bullshit flex-col md:flex-row">
-        <div class="coolShit">
-          <div class="left flex gap-2">
+    <div v-else-if="datacenter" class="flex gap-2 flex-col mb-32">
+      <div class="flex gap-2 p-2 w-full flex-col md:flex-row">
+        <div class="w-268px min-w-268px flex flex-col gap-2">
+          <div class="flex flex-col gap-2">
             <div class="datacenterTitle" style="display: flex; gap: 8px;">
               <Icon icon="datacenter" style="width: 24px;" />
               <h1 class="datacenterName" style="font-size: 20px;">{{ datacenter.name }}</h1>
@@ -94,15 +94,15 @@
             </div>
           </div>
 
-          <div class="infoFields">
+          <div class="infoFields grid justify-items-center gap-2">
             <MultiGauge
               :logo="datacenter.logo"
               :colors="['#8676FF', '#516DFF', '#32B5FF', '#4ADEFF']"
               :values="[
-                machines.size || 0,
-                machines.size !== 0
+                machines.length || 0,
+                machines.length !== 0
                   ? (
-                      Array.from(machines.values()).reduce((a, b) => a + b.ping, 0) / Array.from(machines.values()).length
+                      machines.reduce((a, b) => a + b.ping, 0) / machines.length
                     ).toFixed(2)
                   : 0,
                 parseFloat(stats.ramUsage?.current?.toFixed(2)) || 0,
@@ -116,7 +116,7 @@
               icon="stack"
               title="Servers Online"
               color="#8676FF"
-              :value="machines.size || 0"
+              :value="machines.length || 0"
               :maxValue="stats.totalMachines"
             />
             <InfoField
@@ -126,9 +126,9 @@
               color="#516DFF"
               suffix="ms"
               :value="
-                machines.size !== 0
+                machines.length !== 0
                   ? (
-                      Array.from(machines.values()).reduce((a, b) => a + b.ping, 0) / Array.from(machines.values()).length
+                      machines.reduce((a, b) => a + b.ping, 0) / machines.length
                     ).toFixed(2)
                   : 0
               "
@@ -159,7 +159,7 @@
           />
         </div>
         <ServerCard v-if="isShowingServerCard" />
-        <ServerList v-if="machines.size !== 0" :machines="Array.from(machines.values())" />
+        <ServerList v-if="machines.length !== 0" :machines="machines" />
       </div>
     </div>
     <form v-if="isEditing" style="display: none">
@@ -204,7 +204,6 @@ export default {
       isAddingNew: false,
       isEditing: false,
       isShowingServerCard: false,
-      machines: appState.getMachines(),
       totalMachines: 0,
       isPrimary: false
     };
@@ -215,6 +214,10 @@ export default {
     },
     route() {
       return this.$route.params.name;
+    },
+    machines(){
+      const machines = Array.from(appState.getMachines().values());
+      return this.route ? machines.filter(machine => machine.datacenter?.name == this.route) : machines;
     },
     datacenter() {
       return this.datacenters.filter(datacenter => datacenter.name == this.route)[0];
@@ -247,7 +250,6 @@ export default {
   watch: {
     async $route(to, from) {
       this.me = appState.getMe();
-      this.machines.clear();
       this.datacenters = await this.api.datacenter.fetchAll();
       this.datacenter ? this.totalMachines = (await this.api.datacenter.fetchMachineCount(this.datacenter._id)).count : null;
     }
@@ -282,43 +284,20 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-.datacenters {
-  @apply w-full h-full overflow-scroll;
-}
+
 .datacenters .buttons {
-  @apply p-2 grid gap-2;
+  @apply grid gap-2;
   grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
 }
 
-.content {
-  @apply flex gap-2 flex-col mb-32;
-}
-.bullshit {
-  @apply flex gap-2 p-2 w-full;
-}
-.coolShit {
-  @apply w-268px min-w-268px flex flex-col gap-2;
-}
-
-.left {
-  @apply flex-col gap-2;
-}
-
 .infoFields {
-  @apply grid justify-items-center gap-2;
   grid-template-columns: 100%;
 }
 
-.info {
-  @apply w-full;
-}
-
-.members {
-  @apply w-full flex flex-col gap-2 h-32 border border-gray-400 rounded-8px;
-}
 .buttons {
   @apply gap-2 flex content-between;
 }
+
 .heading {
   @apply relative items-center rounded overflow-hidden w-full justify-center h-32 p-2 min-h-32;
 }
