@@ -34,45 +34,6 @@
     </div>
     <div class="w-full h-1px bg-gray-500"></div>
     <ServerList :machines="taggedMachines" />
-    <!-- <div class="content">
-      <div class="machines">
-
-        <Chart
-          v-if="uploadGraph.length != 0"
-          :key="labels[2]"
-          :identity="labels[2]"
-          :type="'line'"
-          :data="{
-            labels: labels,
-            datasets: [
-              {
-                label: 'Download',
-                data: downloadGraph,
-                borderColor: '#00c8ff',
-                backgroundColor: '#52daffaa'
-              }
-            ]
-          }"
-        />
-        <Chart
-          v-if="uploadGraph.length != 0"
-          :key="labels[2] + 'up'"
-          :identity="labels[2] + 'up'"
-          :type="'line'"
-          :data="{
-            labels: labels,
-            datasets: [
-              {
-                label: 'Upload',
-                data: uploadGraph,
-                borderColor: '#ff0062',
-                backgroundColor: '#ff458caa'
-              }
-            ]
-          }"
-        />
-      </div>
-    </div> -->
   </div>
 </template>
 
@@ -85,6 +46,7 @@ import Terminal from "@/components/dashboard/Terminal";
 import Header from "@/components/dashboard/Header";
 import Nav from "@/components/dashboard/Nav";
 import Tooltip from "@/components/dashboard/Tooltip";
+import { appState } from "@/states/appState";
 export default {
   name: "Machines",
   components: {
@@ -107,16 +69,17 @@ export default {
         network: false,
         ping: false,
       },
-      machines: new Map(),
+      machines: appState.getMachines(),
       downloadGraph: [],
+      filter: '',
       uploadGraph: [],
       labels: []
     };
   },
   computed: {
     taggedMachines() {
-      if (!Object.values(this.tags).some(tag => tag == true)) return Array.from(this.machines.values());
-      return Array.from(this.machines.values()).filter(machine => {
+      if (!Object.values(this.tags).some(tag => tag == true)) return this.machineArray;
+      return this.machineArray.filter(machine => {
         if (this.tags.windows && machine.platform == "win32") return machine;
         if (this.tags.linux && machine.platform == "linux") return machine;
         if (this.tags.macos && machine.platform == "darwin") return machine;
@@ -124,14 +87,14 @@ export default {
         if (this.tags.ram && 100 - (100 * machine.ram.used) / machine.ram.total < 30) return machine;
         if (this.tags.network && machine.network.TxSec + machine.network.RxSec > 100) return machine;
         if (this.tags.ping && machine.ping > 150) return machine;
-        // else return machine;
       });
     },
     selectedMachine() {
       return this.$route.params.machine;
     },
     machineArray() {
-      return Array.from(this.machines.values());
+      const allMachines = Array.from(this.machines.values());
+      return this.filter !== '' ? allMachines.filter(machine => machine.hostname.startsWith(this.filter)) : allMachines;
     }
   },
   methods: {
@@ -154,23 +117,7 @@ export default {
     if (this.$route.query.newMachine) {
       this.api.user.addMachine(this.$route.query.newMachine);
     }
-
     if (this.selectedMachine) this.getNetwork();
-
-    socket.off("machines");
-    socket.on("machines", machines => {
-      console.log(
-        `%c[WS]` + `%c [Machines]`,
-        "color: black; background-color: #ff4488; padding: 2px; border-radius: 4px; font-weight: bold;",
-        "color: #ff77aa;",
-        machines
-      );
-
-      Object.values(machines).forEach(machine => (machine.uuid ? this.machines.set(machine.uuid, machine) : null));
-
-      // this.labels.push(`${new Date().getHours()}:${new Date().getMinutes()}`);
-    });
-    socket.emit("getMachines");
   }
 };
 </script>

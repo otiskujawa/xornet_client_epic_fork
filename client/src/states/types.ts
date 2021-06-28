@@ -1,3 +1,4 @@
+// User Types
 export interface Social {
   name: string;
   url: string;
@@ -83,7 +84,6 @@ export interface MeObject {
   primaryDatacenter: string;
   _id: string;
   username: string;
-  email: string;
   profileImage: ProfileImage;
   geolocation: Geolocation;
   isDev: string;
@@ -91,4 +91,81 @@ export interface MeObject {
   bio: string;
   speedtest: Speedtest;
   profileBanner: ProfileBanner;
+}
+
+// Machine Types
+export interface Ram {
+  total: number;
+  free: number;
+  used: number;
+}
+
+export interface Network {
+  totalInterfaces: number;
+  TxSec: number;
+  RxSec: number;
+}
+
+export interface Disk {
+  fs: string;
+  type: string;
+  size: number;
+  used: number;
+  available: number;
+  use: number;
+  mount: string;
+}
+
+export interface FormattedDate {
+  d: number;
+  h: number;
+  m: number;
+  s: number;
+}
+
+export interface Uptime {
+  pure: number;
+  formatted: FormattedDate;
+}
+
+export interface Owner {
+  username: string;
+  profileImage: string;
+}
+
+export interface Datacenter {
+  machines: string[];
+  members: string[];
+  logo: string;
+  banner?: any;
+  _id: string;
+  owner: string;
+  name: string;
+  created_at: number;
+}
+
+export interface Geolocation {
+  location: string;
+  countryCode: string;
+  isp: string;
+}
+
+export interface MachineObject {
+  uuid: string;
+  isVirtual: boolean;
+  hostname: string;
+  platform: string;
+  ram: Ram;
+  cpu: number;
+  network: Network;
+  disks: Disk[];
+  reporterVersion: string;
+  uptime: Uptime;
+  reporterUptime: number;
+  timestamp: number;
+  owner: Owner;
+  datacenter: Datacenter;
+  geolocation: Geolocation;
+  rogue: boolean;
+  ping: number;
 }

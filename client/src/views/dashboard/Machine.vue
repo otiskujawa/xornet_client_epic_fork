@@ -112,28 +112,19 @@ import Tooltip from "@/components/dashboard/Tooltip";
 import { appState } from "@/states/appState";
 export default {
   name: "Machine",
-  data() {
-    return {
-      machine: null,
-      processes: null
-    };
-  },
   components: {
     ShadowButton,
     Icon,
     InfoField,
     Tooltip
   },
+  data() {
+    return {
+      processList: []
+    };
+  },
   async created() {
-    socket.off("machines");
-    socket.on("machines", machines => {
-      this.machine = Object.values(machines).filter(machine => machine.uuid == this.$route.params.machine)[0];
-    });
-    socket.emit("getMachines");
-
-    this.processes = (await this.api.machine.getProcesses(this.$route.params.machine)).list.sort((a, b) =>
-      a.name < b.name ? 1 : -1
-    );
+    this.processList = (await this.api.machine.getProcesses(this.$route.params.machine)).list;
   },
   methods: {
     sort(by) {
@@ -141,6 +132,12 @@ export default {
     }
   },
   computed: {
+    machine(){
+      return appState.getMachines().get(this.$route.params.machine);
+    },
+    processes(){
+      return this.processList.sort((a, b) => a.name < b.name ? 1 : -1);
+    },
     type() {
       return this.machine.isVirtual ? "slave" : "master";
     },

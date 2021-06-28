@@ -1,4 +1,5 @@
 import io from "socket.io-client";
+import { appState } from "../states/appState";
 
 const socket = io("wss://backend.xornet.cloud", {
   reconnect: true,
@@ -21,5 +22,6 @@ socket.on("disconnect", () => {
     "color: #ff77aa;"
   );
 });
+socket.on("machines", machines => appState.setMachines(machines));
 
 export default socket;
