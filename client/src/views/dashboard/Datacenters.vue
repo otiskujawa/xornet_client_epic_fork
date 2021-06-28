@@ -171,7 +171,6 @@
 
 <script>
 import Icon from "@/components/misc/Icon";
-import socket from "@/services/socket.js";
 import ServerCard from "@/components/misc/ServerCard";
 import DatacenterButton from "@/components/dashboard/DatacenterButton";
 import ServerList from "@/components/dashboard/ServerList";
@@ -199,7 +198,22 @@ export default {
     MultiGauge,
     Card
   },
+  data() {
+    return {
+      me: null,
+      datacenters: [],
+      isAddingNew: false,
+      isEditing: false,
+      isShowingServerCard: false,
+      machines: appState.getMachines(),
+      totalMachines: 0,
+      isPrimary: false
+    };
+  },
   computed: {
+    me() {
+      return appState.getMe();
+    },
     route() {
       return this.$route.params.name;
     },
@@ -218,72 +232,32 @@ export default {
       return this.datacenters.filter(
         datacenter => !datacenter.members.map(member => member._id).includes(this.me._id) && datacenter.owner !== this.me._id
       );
+    },
+    stats(){
+      const machines = Array.from(this.machines.values()).filter(machine => machine.datacenter?._id === this.datacenter?._id);
+      return {
+        ramUsage: {
+          current: machines.reduce((acc, machine) => acc + machine.ram.used, 0),          
+          max: machines.reduce((acc, machine) => acc + machine.ram.total, 0),
+        },
+        currentBandwidth: machines.reduce((acc, machine) => acc + (machine.network.TxSec + machine.network.RxSec), 0),
+        totalMachines: this.totalMachines,
+      }
     }
   },
   watch: {
-    $route(to, from) {
+    async $route(to, from) {
       this.me = appState.getMe();
       this.machines.clear();
-      this.fetchData();
-      this.stats = {
-        ramUsage: {},
-        currentBandwidth: 0,
-        totalMachines: 0
-      };
+      this.datacenters = await this.api.datacenter.fetchAll();
+      this.datacenter ? this.totalMachines = (await this.api.datacenter.fetchMachineCount(this.datacenter._id)).count : null;
     }
   },
-  data() {
-    return {
-      me: null,
-      datacenters: [],
-      isAddingNew: false,
-      isEditing: false,
-      isShowingServerCard: false,
-      machines: new Map(),
-      stats: {
-        ramUsage: {},
-        currentBandwidth: 0,
-        totalMachines: 0
-      },
-      isPrimary: false
-    };
-  },
-  mounted() {
-    this.fetchData();
+  async mounted() {
+    this.datacenters = await this.api.datacenter.fetchAll();
     this.me = appState.getMe();
   },
   methods: {
-    async fetchData() {
-      this.datacenters = await this.api.datacenter.fetchAll();
-      this.stats.totalMachines = (await this.api.datacenter.fetchMachineCount(this.datacenter._id)).count;
-
-      socket.off("machines");
-      socket.on("machines", machines => {
-        console.log(
-          `%c[WS]` + `%c [Machines]`,
-          "color: black; background-color: #ff4488; padding: 2px; border-radius: 4px; font-weight: bold;",
-          "color: #ff77aa;",
-          machines
-        );
-
-        // Temp scuff way to quickly illustrate how datacenters will show machines from them
-        Object.values(machines).forEach(machine => {
-          machine.uuid && machine.datacenter?._id === this.datacenter?._id ? this.machines.set(machine.uuid, machine) : null;
-        });
-
-        // Reset the values to zero :kekw:
-        this.stats.ramUsage.current = 0;
-        this.stats.ramUsage.max = 0;
-        this.stats.currentBandwidth = 0;
-        // Put the current values into variables
-        this.machines.forEach(machine => {
-          this.stats.ramUsage.current += machine.ram.used;
-          this.stats.ramUsage.max += machine.ram.total;
-          this.stats.currentBandwidth += machine.network.TxSec + machine.network.RxSec;
-        });
-      });
-      socket.emit("getMachines");
-    },
     async save() {
       let response = await this.api.datacenter.save(
         this.$route.params.name,
@@ -291,7 +265,7 @@ export default {
         this.$refs.banner.files[0]
       );
 
-      // this.profile.profileImage = response.profile.profileImage;
+      // Update profile changes
       for (const [key, value] of Object.entries(response.profile)) {
         this.profile[key] = value;
       }
