@@ -6,7 +6,7 @@
         type="text"
         v-model="filter"
         placeholder="Filter machines"
-        class="text-11px font-semibold placeholder-alpha-50 outline-none p-2 bg-gray-500 rounded-4px"
+        class="text-11px font-semibold placeholder-alpha-60 outline-none p-2 bg-gray-400 rounded-4px"
       />
       <div class="buttons flex gap-2">
         <Tooltip text="Windows Machines">

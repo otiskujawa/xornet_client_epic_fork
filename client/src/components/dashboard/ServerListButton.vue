@@ -132,13 +132,13 @@ export default {
   user-select: none;
 }
 .button:hover:not(.rogue) {
-  @apply bg-gray-400 border border-gray-500;
+  @apply bg-gray-300 border border-gray-500;
 }
 .button:active {
   transform: translateY(-0px);
 }
 .button.router-link-active {
-  @apply bg-gray-400;
+  @apply bg-gray-300;
 }
 .button.rogue {
   background-color: var(--rogue-red);

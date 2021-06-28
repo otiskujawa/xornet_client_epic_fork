@@ -1,5 +1,5 @@
 <template>
-  <div class="view bg-gray-300 dashboard flex items-start flex-col h-100vh">
+  <div class="view bg-gray-200 dashboard flex items-start flex-col h-100vh">
     <LoadingScreen :isLoaded="!isLoading" />
     <Header v-if="!isLoading" />
     <div class="main">

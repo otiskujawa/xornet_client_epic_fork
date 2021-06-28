@@ -35,16 +35,8 @@ export default {
   @apply gap-2 flex items-center justify-center select-none cursor-pointer w-12 h-12 box-border border-solid border-1 border-none;
 }
 
-.button:not(.router-link-active) img {
-  @apply opacity-25;
-}
-
 .button:hover {
   @apply bg-primary-100;
-}
-
-.button:hover:not(.router-link-active) img {
-  @apply opacity-80;
 }
 
 .button.router-link-active {

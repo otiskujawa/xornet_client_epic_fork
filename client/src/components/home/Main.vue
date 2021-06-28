@@ -1,5 +1,5 @@
 <template>
-  <div class="main bg-dark-300 ">
+  <div class="main bg-gray-200 color-white">
     <img :src="require('@/assets/logos/logoColored.svg')" alt="Xornet" />
 
     <div class="textFields">
@@ -105,7 +105,6 @@ section h1 {
   z-index: 2;
   font-style: normal;
   font-weight: bold;
-  color: var(--white);
 }
 
 section p {
@@ -115,7 +114,6 @@ section p {
   text-align: left;
   vertical-align: top;
   max-width: 900px;
-  color: var(--white);
   letter-spacing: -4%;
 }
 

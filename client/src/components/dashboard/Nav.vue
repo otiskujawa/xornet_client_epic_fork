@@ -1,5 +1,5 @@
 <template>
-  <nav class="buttons bg-gray-200 h-full max-w-min items-center flex flex-col content-between relative">
+  <nav class="buttons bg-gray-300 h-full max-w-min items-center flex flex-col content-between relative">
     <div class="top">
       <Tooltip sideways text="Profile">
         <SquareButton boxless class="firstButton" icon="user" :to="{ name: 'profile', params: { username } }" />

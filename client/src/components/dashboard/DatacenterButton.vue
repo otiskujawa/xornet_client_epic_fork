@@ -49,7 +49,7 @@ export default {
 
 <style lang="postcss" scoped>
 .datacenter {
-  @apply rounded-8px border border-gray-500 bg-gray-300 cursor-pointer p-2 flex flex-col justify-between items-center transition duration-200 ease;
+  @apply rounded-8px border border-gray-500 bg-gray-200 cursor-pointer p-2 flex flex-col justify-between items-center transition duration-200 ease;
   aspect-ratio: 1;
 }
 

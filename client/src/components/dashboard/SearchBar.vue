@@ -98,7 +98,7 @@ export default {
 }
 
 .search {
-  @apply z-10 self-start flex w-72 flex-col bg-gray-200 gap-2 overflow-scroll max-h-600px p-2 transition-width duration-200 ease;
+  @apply z-10 self-start flex w-72 flex-col bg-gray-300 gap-2 overflow-scroll max-h-600px p-2 transition-width duration-200 ease;
 }
 
 .search:focus-within,
@@ -122,11 +122,11 @@ h1.noResult {
 }
 
 .bar {
-  @apply flex w-full h-full items-center justify-center gap-2 relative bg-gray-300 rounded-4px;
+  @apply flex w-full h-full items-center justify-center gap-2 relative bg-gray-200 rounded-4px;
 }
 
 .inputField {
-  @apply bg-gray-500 outline-none w-full h-full box-content transition transition-width duration-100 ease rounded-4px font-medium text-12px text-white border-none px-6px py-2;
+  @apply bg-gray-100 outline-none w-full h-full box-content transition transition-width duration-100 ease rounded-4px font-medium text-12px text-white border-none px-6px py-2;
   font-family: "Work Sans", sans-serif;
 }
 

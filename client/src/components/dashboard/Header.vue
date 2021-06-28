@@ -1,5 +1,5 @@
 <template>
-  <header class="h-12 w-full flex z-400 items-start justify-between bg-gray-200 overflow-visible">
+  <header class="h-12 w-full flex z-400 items-start justify-between bg-gray-300 overflow-visible">
     <div class="left flex h-full w-full items-end">
       <div v-if="!showSearchBar && searchToggled" @click="searchToggled = false">
         <SquareButton icon="left-arrow" alt="" />
