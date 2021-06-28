@@ -24,7 +24,6 @@
       <Tooltip sideways text="Settings">
         <SquareButton boxless class="settings" icon="settings" :to="{ name: 'settings' }" />
       </Tooltip>
-      
     </div>
   </nav>
 </template>

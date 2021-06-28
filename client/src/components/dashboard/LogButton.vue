@@ -10,19 +10,13 @@
       <!-- <p>{{log.message?.error || log.message}}</p> -->
       <div class="field" v-for="(value, key) of JSON.parse(log.message)" :key="key">
         <h1>{{ key }}</h1>
-        <pre v-if="JSON.stringify(value).startsWith('{')">
-          <code v-html="format(value)" class="language-json hljs" ></code>
-        </pre>
-        <!-- <highlightjs v-if="JSON.stringify(value).startsWith('{')" language='json' :code="JSON.stringify(value)" /> -->
-        <p v-else>{{ value }}</p>
+        <p>{{ value }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import hljs from "highlight.js/lib/core";
-import "highlight.js/styles/gradient-dark.css";
 import Icon from "@/components/misc/Icon";
 import timeago from "epoch-timeago";
 
@@ -39,9 +33,6 @@ export default {
     Icon
   },
   methods: {
-    format(string) {
-      return hljs.highlight(JSON.stringify(string, null, "   "), { language: "json" }).value;
-    },
     timeago
   }
 };
