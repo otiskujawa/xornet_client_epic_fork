@@ -417,7 +417,7 @@ export default {
   @apply w-28;
 }
 .pfp {
-  @apply transform -translate-x-6px w-48 h-48 content-box border-gray-300 bg-no-repeat bg-center bg-cover border-6 rounded-full z-2 cursor-pointer relative object-cover mt-50 ml-10vw;
+  @apply transform -translate-x-6px w-48 h-48 content-box border-gray-200 bg-no-repeat bg-center bg-cover border-6 rounded-full z-2 cursor-pointer relative object-cover mt-50 ml-10vw;
 }
 .pfp.border {
   @apply border-transparent;
@@ -433,7 +433,7 @@ export default {
   @apply w-14
 }
 .xornetBadge {
-  @apply p-2 rounded-full h-max bottom-0 absolute w-max border-6 border-gray-300;
+  @apply p-2 rounded-full h-max bottom-0 absolute w-max border-6 border-gray-200;
   background: linear-gradient(90deg, #8676ff 0%, #4221ee 34.9%, #6142ff 100%);
 }
 .xornetBadge img {

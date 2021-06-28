@@ -9,6 +9,15 @@ export default {
       ...colors,
       xorblack: "var(--black)",
       xorwhite: "var(--white)",
+      rainbow: {
+        green: 'rgb(118, 230, 80)',
+        yellow: 'rgb(249, 214, 73)',
+        orange: 'rgb(240, 142, 53)',
+        red: 'rgb(236, 81, 87)',
+        pink: 'rgb(255, 24, 189)',
+        blue: 'rgb(26, 75, 255)',
+        cyan: 'rgb(98, 216, 249)',
+      },
       primary: {
         100: "#271485",
         200: "#4221EE",

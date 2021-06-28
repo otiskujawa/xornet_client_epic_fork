@@ -93,7 +93,7 @@ export default {
     },
     machineArray() {
       const allMachines = Array.from(this.machines.values());
-      return this.filter !== "" ? allMachines.filter(machine => machine.hostname.startsWith(this.filter)) : allMachines;
+      return this.filter !== "" ? allMachines.filter(machine => machine.hostname.toLowerCase().includes(this.filter.toLowerCase())) : allMachines;
     }
   },
   methods: {
@@ -142,4 +142,6 @@ export default {
 .filterButton.enabled {
   @apply bg-primary-100 border border-primary-300 text-primary-400;
 }
+
+
 </style>
