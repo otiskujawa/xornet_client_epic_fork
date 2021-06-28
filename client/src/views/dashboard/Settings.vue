@@ -11,7 +11,7 @@ export default {
       const isStroked = localStorage.getItem("isStroked") === "true" ? "false" : "true";
       localStorage.setItem("isStroked", isStroked);
     }
-  },
+  }
 };
 </script>
 

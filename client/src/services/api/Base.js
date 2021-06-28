@@ -1,6 +1,6 @@
 import axios from "axios";
 import eventHandler from "@/services/eventHandler";
-import { appState } from '@/states/appState';
+import { appState } from "@/states/appState";
 let ROOT_PATH = "https://backend.xornet.cloud";
 
 /**

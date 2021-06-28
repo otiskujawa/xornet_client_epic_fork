@@ -67,11 +67,11 @@ export default {
         cpu: false,
         ram: false,
         network: false,
-        ping: false,
+        ping: false
       },
       machines: appState.getMachines(),
       downloadGraph: [],
-      filter: '',
+      filter: "",
       uploadGraph: [],
       labels: []
     };
@@ -94,7 +94,7 @@ export default {
     },
     machineArray() {
       const allMachines = Array.from(this.machines.values());
-      return this.filter !== '' ? allMachines.filter(machine => machine.hostname.startsWith(this.filter)) : allMachines;
+      return this.filter !== "" ? allMachines.filter(machine => machine.hostname.startsWith(this.filter)) : allMachines;
     }
   },
   methods: {

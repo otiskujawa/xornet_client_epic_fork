@@ -132,11 +132,11 @@ export default {
     }
   },
   computed: {
-    machine(){
+    machine() {
       return appState.getMachines().get(this.$route.params.machine);
     },
-    processes(){
-      return this.processList.sort((a, b) => a.name < b.name ? 1 : -1);
+    processes() {
+      return this.processList.sort((a, b) => (a.name < b.name ? 1 : -1));
     },
     type() {
       return this.machine.isVirtual ? "slave" : "master";

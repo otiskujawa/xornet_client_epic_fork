@@ -43,7 +43,7 @@ export default {
     me() {
       return appState.getMe();
     }
-  },
+  }
 };
 </script>
 

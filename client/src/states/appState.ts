@@ -1,3 +1,4 @@
+import { Socket } from 'socket.io-client';
 import { Store } from "./state";
 import { MachineObject, MeObject } from './types';
 
@@ -14,7 +15,7 @@ class AppState extends Store<IAppState> {
     return this.state.me;
   }
   setMachines(machines: Array<MachineObject>){
-    Object.values(machines).forEach(machine => (machine.uuid ? this.state.machines.set(machine.uuid, machine) : null));
+    Object.values(machines).forEach(machine => this.state.machines.set(machine.uuid, machine));
   }
   getMachines(){
     return this.state.machines;

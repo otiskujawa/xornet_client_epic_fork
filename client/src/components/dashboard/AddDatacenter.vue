@@ -10,5 +10,5 @@
 </template>
 
 <script lang="ts" setup>
-import Card from '@/components/library/Card.vue';
+import Card from "@/components/library/Card.vue";
 </script>

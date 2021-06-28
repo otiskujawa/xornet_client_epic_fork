@@ -9,7 +9,7 @@
           <AddDatacenter />
         </Dialog>
         <!-- nanahira pls help us fix the stupid grid this is cancer -->
-        <div v-for="i in [...Array(10).keys()]"></div >
+        <div v-for="i in [...Array(10).keys()]"></div>
       </div>
       <h1 class="text-left font-bold p-2 text-2xl" v-if="sharedDatacenters">Shared Datacenters</h1>
       <div class="buttons w-full">
@@ -20,7 +20,7 @@
           :key="datacenter"
         />
         <!-- nanahira pls help us fix the stupid grid this is cancer -->
-        <div v-for="i in [...Array(10).keys()]"></div >
+        <div v-for="i in [...Array(10).keys()]"></div>
       </div>
       <h1 class="text-left font-bold p-2 text-2xl" v-if="me?.is_admin">Other Datacenters</h1>
       <div class="buttons w-full">
@@ -31,7 +31,7 @@
           :key="datacenter"
         />
         <!-- nanahira pls help us fix the stupid grid this is cancer -->
-        <div v-for="i in [...Array(10).keys()]"></div >
+        <div v-for="i in [...Array(10).keys()]"></div>
       </div>
     </div>
     <div v-else-if="datacenter" class="flex gap-2 flex-col mb-32">
@@ -50,15 +50,9 @@
               <Icon class="datacenterEdit logoPen" @click="$refs.logo.click()" v-if="isEditing" icon="edit" />
             </div>
             <div class="buttons">
+              <ShadowButton icon="stack" title="Add server" @click="isShowingServerCard = !isShowingServerCard" />
+              <ShadowButton v-if="!isEditing" icon="edit" title="Edit" @click="isEditing = !isEditing" />
               <ShadowButton
-                
-                icon="stack"
-                title="Add server"
-                @click="isShowingServerCard = !isShowingServerCard"
-              />
-              <ShadowButton  v-if="!isEditing" icon="edit" title="Edit" @click="isEditing = !isEditing" />
-              <ShadowButton
-                
                 v-else
                 icon="save"
                 title="Save"
@@ -68,7 +62,6 @@
                 "
               />
               <ShadowButton
-                
                 icon="bookmark"
                 v-if="datacenter._id !== me.primaryDatacenter"
                 title="Make Primary"
@@ -86,11 +79,7 @@
               :colors="['#8676FF', '#516DFF', '#32B5FF', '#4ADEFF']"
               :values="[
                 machines.length || 0,
-                machines.length !== 0
-                  ? (
-                      machines.reduce((a, b) => a + b.ping, 0) / machines.length
-                    ).toFixed(2)
-                  : 0,
+                machines.length !== 0 ? (machines.reduce((a, b) => a + b.ping, 0) / machines.length).toFixed(2) : 0,
                 parseFloat(stats.ramUsage?.current?.toFixed(2)) || 0,
                 parseFloat(stats.currentBandwidth?.toFixed(2)) || 0
               ]"
@@ -111,13 +100,7 @@
               title="Average Ping"
               color="#516DFF"
               suffix="ms"
-              :value="
-                machines.length !== 0
-                  ? (
-                      machines.reduce((a, b) => a + b.ping, 0) / machines.length
-                    ).toFixed(2)
-                  : 0
-              "
+              :value="machines.length !== 0 ? (machines.reduce((a, b) => a + b.ping, 0) / machines.length).toFixed(2) : 0"
             />
             <InfoField
               borderless
@@ -201,7 +184,7 @@ export default {
     route() {
       return this.$route.params.name;
     },
-    machines(){
+    machines() {
       const machines = Array.from(appState.getMachines().values());
       return this.route ? machines.filter(machine => machine.datacenter?.name == this.route) : machines;
     },
@@ -221,23 +204,23 @@ export default {
         datacenter => !datacenter.members.map(member => member._id).includes(this.me._id) && datacenter.owner !== this.me._id
       );
     },
-    stats(){
+    stats() {
       const machines = Array.from(this.machines.values()).filter(machine => machine.datacenter?._id === this.datacenter?._id);
       return {
         ramUsage: {
-          current: machines.reduce((acc, machine) => acc + machine.ram.used, 0),          
-          max: machines.reduce((acc, machine) => acc + machine.ram.total, 0),
+          current: machines.reduce((acc, machine) => acc + machine.ram.used, 0),
+          max: machines.reduce((acc, machine) => acc + machine.ram.total, 0)
         },
         currentBandwidth: machines.reduce((acc, machine) => acc + (machine.network.TxSec + machine.network.RxSec), 0),
-        totalMachines: this.totalMachines,
-      }
+        totalMachines: this.totalMachines
+      };
     }
   },
   watch: {
     async $route(to, from) {
       this.me = appState.getMe();
       this.datacenters = await this.api.datacenter.fetchAll();
-      this.datacenter ? this.totalMachines = (await this.api.datacenter.fetchMachineCount(this.datacenter._id)).count : null;
+      this.datacenter ? (this.totalMachines = (await this.api.datacenter.fetchMachineCount(this.datacenter._id)).count) : null;
     }
   },
   async mounted() {
@@ -270,7 +253,6 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-
 .datacenters .buttons {
   @apply grid gap-2;
   grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
