@@ -1,25 +1,43 @@
 <template>
-  <nav class="buttons bg-gray-200 h-full items-center flex flex-col content-between relative">
+  <nav class="buttons bg-gray-200 h-full max-w-min items-center flex flex-col content-between relative">
     <div class="top">
-      <SquareButton boxless class="firstButton" icon="user" :to="{ name: 'profile', params: { username } }" />
-      <!-- <SquareButton icon="dashboard" :to="{ name: 'summary' }" /> -->
-      <SquareButton boxless icon="stack" :to="{ name: 'machines' }" />
-      <SquareButton boxless icon="datacenter" :to="{ name: 'datacenters' }" />
-      <!-- <SquareButton icon="network" :to="{ name: 'network' }" /> -->
-      <SquareButton boxless icon="clipboard" :to="{ name: 'logs' }" />
-      <SquareButton boxless icon="downloads" :to="{ name: 'downloads' }" />
-      <SquareButton boxless class="settings" icon="settings" :to="{ name: 'settings' }" />
+      <Tooltip sideways text="Profile">
+        <SquareButton boxless class="firstButton" icon="user" :to="{ name: 'profile', params: { username } }" />
+      </Tooltip>
+      
+      <Tooltip sideways text="Machines">
+        <SquareButton boxless icon="stack" :to="{ name: 'machines' }" />
+      </Tooltip>
+      
+      <Tooltip sideways text="Datacenters">
+        <SquareButton boxless icon="datacenter" :to="{ name: 'datacenters' }" />
+      </Tooltip>
+      
+      <Tooltip sideways text="Logs">
+        <SquareButton boxless icon="clipboard" :to="{ name: 'logs' }" />
+      </Tooltip>
+      
+      <Tooltip sideways text="Downloads">
+        <SquareButton boxless icon="downloads" :to="{ name: 'downloads' }" />
+      </Tooltip>
+      
+      <Tooltip sideways text="Settings">
+        <SquareButton boxless class="settings" icon="settings" :to="{ name: 'settings' }" />
+      </Tooltip>
+      
     </div>
   </nav>
 </template>
 
 <script>
 import SquareButton from "@/components/dashboard/SquareButton";
+import Tooltip from "@/components/dashboard/Tooltip.vue";
 
 export default {
   name: "MobileNav",
   components: {
-    SquareButton
+    SquareButton,
+    Tooltip
   },
   computed: {
     username() {

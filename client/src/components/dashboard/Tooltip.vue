@@ -1,5 +1,5 @@
 <template>
-  <div class="toolTipBox">
+  <div class="toolTipBox" :class="{sideways}">
     <slot />
     <div class="tooltip">
       <span class="text">{{ text }}</span>
@@ -13,6 +13,10 @@ export default {
     text: {
       type: String,
       required: true
+    },
+    sideways: {
+      type: Boolean,
+      required: false,
     }
   }
 };
@@ -56,6 +60,13 @@ export default {
   background: var(--theme-color);
 }
 
+.toolTipBox.sideways .tooltip {
+  bottom: 0;
+  left: 100%;
+  margin-left: 8px;
+  
+}
+
 .text {
   color: white;
   text-transform: capitalize;
@@ -72,4 +83,12 @@ export default {
   border-style: solid;
   border-color: var(--theme-color) transparent transparent transparent;
 }
+
+.toolTipBox.sideways .text::after {
+  top: 52%;
+  left: 0%;
+  margin-left: -9px;
+  transform: rotate(90deg) translateX(-50%);
+}
+
 </style>
