@@ -1,5 +1,5 @@
 <template>
-  <div class="profilePage" v-if="profile.username">
+  <div class="profilePage min-w-full min-h-full h-100vh relative overflow-scroll" v-if="profile.username">
     <div class="heading">
       <div class="header">
         <img
@@ -391,103 +391,59 @@ export default {
 };
 </script>
 
-<style>
-.profilePage {
-  min-width: 100%;
-  min-height: 100%;
-  height: 100vh;
-  position: relative;
-  overflow: scroll;
+<style lang="postcss" scoped>
+
+.line {
+  @apply bg-dark-200 w-full h-1px mt-2;
 }
+
 .heading {
-  display: flex;
-  position: relative;
-  align-items: flex-end;
+  @apply flex relative items-end;
 }
 .heading img {
-  user-select: none;
+  @apply select-none;
 }
 .banner {
-  width: 100%;
-  height: 300px;
-  top: 0;
-  object-fit: cover;
-  position: absolute;
+  @apply w-full h-80 top-0 object-cover absolute;
 }
 .header .edit {
-  cursor: pointer;
+  @apply cursor-pointer w-32 transition duration-100 ease absolute top-40/100 filter invert left-1/2 transform -translate-x-1/2 -translate-y-1/2;
   transition: 100ms ease;
-  width: 128px;
-  position: absolute;
-  top: 40%;
-  filter: invert(1);
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 .header .edit:hover {
-  width: 144px;
+  @apply w-36;
 }
 .header .edit:active {
-  width: 112px;
+  @apply w-28;
 }
 .pfp {
-  transform: translate(-6px);
-  width: 180px;
-  box-sizing: content-box;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  height: 180px;
-  margin: 200px 0px 0px 10vw;
-  border: 6px solid var(--background-color);
-  border-radius: 50%;
-  z-index: 2;
-  cursor: pointer;
-  position: relative;
-  object-fit: cover;
+  @apply transform -translate-x-6px w-48 h-48 content-box border-gray-300 bg-no-repeat bg-center bg-cover border-6 rounded-full z-2 cursor-pointer relative object-cover mt-50 ml-10vw;
 }
 .pfp.border {
-  border: 6px solid transparent;
+  @apply border-transparent;
 }
 .pfp .edit {
-  cursor: pointer;
   transition: 100ms ease;
-  width: 64px;
-  position: absolute;
-  top: 50%;
-  filter: invert(1);
-  left: 50%;
-  transform: translate(-50%, -50%);
+  @apply cursor-pointer w-16 absolute top-1/2 filter invert left-1/2 transform -translate-x-1/2 -translate-y-1/2
 }
 .pfp .edit:hover {
-  width: 72px;
+  @apply w-20
 }
 .pfp .edit:active {
-  width: 56px;
+  @apply w-14
 }
 .xornetBadge {
+  @apply p-2 rounded-full h-max bottom-0 absolute w-max border-6 border-gray-300;
   background: linear-gradient(90deg, #8676ff 0%, #4221ee 34.9%, #6142ff 100%);
-  transform: translate(-6px);
-  border: 6px solid var(--background-color);
-  width: fit-content;
-  padding: 8px 8px;
-  border-radius: 100px;
-  height: fit-content;
-  position: absolute;
-  bottom: 0px;
 }
 .xornetBadge img {
-  height: 8px;
-  width: auto;
+  @apply h-2 w-auto;
 }
 .profilePage .content {
-  display: flex;
-  margin-top: 24px;
-  gap: 64px;
+  @apply flex mt-6 gap-16;
 }
 .profilePage .stats {
-  display: grid;
-  gap: 16px;
+  @apply grid gap-4;
   grid-template-columns: repeat(4, 224px);
   grid-template-rows: repeat(4, 72px);
 }
@@ -626,8 +582,6 @@ section.socials {
   display: flex;
   align-items: center;
 
-  background-color: var(--background-color);
-
   outline: none;
 
   color: var(--black);
@@ -663,13 +617,6 @@ section.socials {
   border: 2px var(--border-color) dashed;
   box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
 }
-.line {
-  width: 100%;
-  height: 1px;
-  margin-top: 8px;
-  background-color: var(--border-color);
-}
-
 .shadowButton.edit {
   width: min-content;
   margin-bottom: 24px;
@@ -682,4 +629,4 @@ section.socials {
   display: flex;
   align-items: center;
 }
-</style>
+</style >
