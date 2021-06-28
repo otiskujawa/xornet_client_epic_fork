@@ -281,130 +281,80 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="postcss" scoped>
 .datacenters {
-  width: 100%;
-  height: 100%;
-  overflow: scroll;
+  @apply w-full h-full overflow-scroll;
 }
 .datacenters .buttons {
-  padding: 8px;
-  display: grid;
-  gap: 8px;
+  @apply p-2 grid gap-2;
   grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
 }
 
 .content {
-  display: flex;
-  gap: 8px;
-  flex-direction: column;
-  margin-bottom: 128px;
+  @apply flex gap-2 flex-col mb-32;
 }
 .bullshit {
-  display: flex;
-  gap: 8px;
-  padding: 8px;
-  width: 100%;
+  @apply flex gap-2 p-2 w-full;
 }
 .coolShit {
-  width: 268px;
-  min-width: 268px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  @apply w-268px min-w-268px flex flex-col gap-2;
 }
 
 .left {
-  flex-direction: column;
-  gap: 8px;
+  @apply flex-col gap-2;
 }
 
 .infoFields {
-  display: grid;
-  justify-items: center;
+  @apply grid justify-items-center gap-2;
   grid-template-columns: 100%;
-  gap: 8px;
 }
 
 .info {
-  width: 100%;
+  @apply w-full;
 }
 
 .members {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  height: 128px;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
+  @apply w-full flex flex-col gap-2 h-32 border border-gray-400 rounded-8px;
 }
 .buttons {
-  gap: 8px;
-  display: flex;
-  justify-content: space-between;
+  @apply gap-2 flex content-between;
 }
 .heading {
-  position: relative;
-  align-items: center;
-  border-radius: 4px;
-  overflow: hidden;
-  width: 100%;
-  justify-content: center;
-  height: 128px;
-  padding: 8px;
-  min-height: 128px;
+  @apply relative items-center rounded overflow-hidden w-full justify-center h-32 p-2 min-h-32;
 }
 .heading img {
-  user-select: none;
-  max-height: 80%;
+  @apply select-none max-h-80/100;
 }
 .banner {
-  width: 100%;
-  min-height: 128px;
-  height: 128px;
-  position: absolute;
-  top: 0;
-  filter: grayscale(1);
-  opacity: 15%;
-  object-fit: cover;
-  position: absolute;
+  @apply w-full min-h-32 h-32 absolute top-0 filter grayscale-1 opacity-15 object-cover;
 }
 .logo {
-  z-index: 2;
+  @apply z-2;
   filter: invert(var(--filter));
 }
 .logo.isEditing {
-  opacity: 0.5;
+  @apply opacity-50;
 }
 .datacenterEdit {
-  cursor: pointer;
-  transition: 100ms ease;
-  position: absolute;
-  transform: translate(50%, -50%);
-  filter: invert(1);
+  @apply cursor-pointer transition duration-100 ease absolute transform translate-x-1/2 -translate-y-1/2 filter invert;
 }
 .datacenterEdit.bannerPen {
-  width: 32px;
-  top: 24px;
-  right: 24px;
+  @apply w-8 top-6 right-6;
 }
 .datacenterEdit.bannerPen:hover {
-  width: 40px;
+  @apply w-10;
 }
 .datacenterEdit.bannerPen:active {
-  width: 28px;
+  @apply w-7;
 }
 .datacenterEdit.logoPen {
-  width: 64px;
-  z-index: 5000;
-  top: 50%;
-  right: 50%;
+  @apply w-16 z-5000 top-1/2 right-1/2;
 }
 .datacenterEdit.logoPen:hover {
+  @apply w-20;
   width: 72px;
 }
 .datacenterEdit.logoPen:active {
-  width: 56px;
+  @apply w-14;
 }
 </style>
