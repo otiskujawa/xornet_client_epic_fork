@@ -9,12 +9,7 @@
           <AddDatacenter />
         </Dialog>
         <!-- nanahira pls help us fix the stupid grid this is cancer -->
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div v-for="i in [...Array(10).keys()]"></div >
       </div>
       <h1 class="text-left font-bold p-2 text-2xl" v-if="sharedDatacenters">Shared Datacenters</h1>
       <div class="buttons w-full">
@@ -25,12 +20,7 @@
           :key="datacenter"
         />
         <!-- nanahira pls help us fix the stupid grid this is cancer -->
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div v-for="i in [...Array(10).keys()]"></div >
       </div>
       <h1 class="text-left font-bold p-2 text-2xl" v-if="me?.is_admin">Other Datacenters</h1>
       <div class="buttons w-full">
@@ -41,12 +31,7 @@
           :key="datacenter"
         />
         <!-- nanahira pls help us fix the stupid grid this is cancer -->
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div v-for="i in [...Array(10).keys()]"></div >
       </div>
     </div>
     <div v-else-if="datacenter" class="flex gap-2 flex-col mb-32">
@@ -94,8 +79,9 @@
             </div>
           </div>
 
-          <div class="infoFields grid justify-items-center gap-2">
+          <div class="infoFields grid gap-2">
             <MultiGauge
+              class="justify-self-center"
               :logo="datacenter.logo"
               :colors="['#8676FF', '#516DFF', '#32B5FF', '#4ADEFF']"
               :values="[
