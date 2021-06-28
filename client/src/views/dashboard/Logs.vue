@@ -1,6 +1,6 @@
 <template>
-  <div class="logs">
-    <div class="list">
+  <div class="logs overflow-scroll w-full h-100vh p-2 flex flex-col">
+    <div class="list w-min mb-64 flex flex-col gap-1">
       <LogButton v-for="log of logs" :key="log" :log="log" />
     </div>
   </div>
@@ -23,22 +23,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.logs {
-  overflow-y: scroll;
-  width: 100%;
-  height: 100vh;
-  padding: 8px;
-  display: flex;
-  flex-direction: column;
-}
-
-.list {
-  width: fit-content;
-  margin-bottom: 256px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-</style>

@@ -50,7 +50,6 @@ export default {
 <style scoped>
 .log {
   display: flex;
-  background-color: var(--background-color);
   color: var(--black);
   padding: 2px 4px;
   cursor: pointer;
