@@ -38,7 +38,6 @@
 </template>
 
 <script>
-import socket from "@/services/socket.js";
 import ServerList from "@/components/dashboard/ServerList";
 import LoadingScreen from "@/components/dashboard/LoadingScreen";
 import Chart from "@/components/dashboard/Chart";
