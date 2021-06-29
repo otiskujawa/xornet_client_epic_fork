@@ -39,7 +39,7 @@
       </div>
     </div>
     <div class="flex flex-col">
-      <div class="tabs flex gap-4">
+      <div class="tabs flex gap-4 justify-between md:justify-start">
         <router-link :to="{ name: 'machines', params: {view: 'all'}}">
           <Icon icon="view-all"/> All
         </router-link>
@@ -53,7 +53,7 @@
           <Icon icon="dead"/> Offline
         </router-link>
       </div>
-      <div class="w-full h-1px transform -translate-y-1px bg-gray-500"></div>
+      <div class="w-full h-1px bg-gray-500"></div>
     </div>
     <ServerList :machines="taggedMachines" />
   </div>
@@ -186,13 +186,14 @@ export default {
   font-family: 'Work Sans';
 }
 .tabs a{
-  @apply border-b-2 border-t-2 opacity-50 border-none select-none text-11px font-semibold flex gap-2 pb-2 z-10 items-center px-1 whitespace-nowrap outline-none;
+  transition: 100ms ease;
+  @apply opacity-50 select-none border-gray-500 text-11px font-semibold flex gap-2 pb-2 z-10 items-center px-1 whitespace-nowrap outline-none;
 }
 .tabs a:hover {
-  @apply text-secondary-300 opacity-100;
+  @apply opacity-75;
 }
 .tabs a.router-link-active {
-  @apply border-solid opacity-100 border-b-secondary-400 text-secondary-400;
+  @apply opacity-100 border-b-2 border-b-secondary-400 ;
 }
 
 .tabs a .icon {
