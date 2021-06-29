@@ -1,9 +1,9 @@
 <template>
-  <div v-if="machine" class="machine overflow-scroll p-4 md:p-2 w-full h-full flex-col md:flex-row flex gap-4">
+  <div v-if="machine" class="machine overflow-scroll p-2 md:p-6 w-full h-full flex-col flex gap-4">
     <div class="div flex gap-4 flex-col">
-      <div class="heading flex gap-4 items-center">
+      <div class="heading flex gap-2 items-center">
         <Icon class="w-32px" :icon="type" v-if="!machine.rogue && Date.now() < machine.timestamp + 15000" />
-        <h1 class="text-2xl font-bold">{{ machine.hostname }}</h1>
+        <h1 class="text-32px font-semibold text-white">{{ machine.hostname }}</h1>
         <img
           class="w-32px"
           :src="
@@ -14,6 +14,12 @@
           alt="Country Flag"
         />
       </div>
+      <Tabs 
+        :currentRoute="$route.name" 
+        :routes="['dashboard', 'processes', 'stats', 'details']" 
+        :titles="['Dashboard', 'Processes', 'Statistics', 'Details']" 
+        :icons="['dashboard', 'process-tree', 'bars', 'details']"
+      />
       <div class="grid gap-2 grid-cols-2">
         <InfoField borderless icon="cpu" title="CPU Usage" color="#8676FF" suffix="%" :value="machine.cpu" />
         <InfoField borderless icon="network" title="Ping" color="#516DFF" suffix="ms" :value="machine.ping" />
@@ -108,12 +114,14 @@ import Icon from "@/components/misc/Icon";
 import ShadowButton from "@/components/dashboard/ShadowButton";
 import socket from "@/services/socket.js";
 import InfoField from "@/components/dashboard/InfoField";
+import Tabs from "@/components/dashboard/Tabs";
 import Tooltip from "@/components/dashboard/Tooltip";
 import { appState } from "@/states/appState";
 export default {
   name: "Machine",
   components: {
     ShadowButton,
+    Tabs,
     Icon,
     InfoField,
     Tooltip

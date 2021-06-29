@@ -158,13 +158,4 @@ section p {
   background: #151527;
   transform: rotate(-4.71deg) translateX(-25vw);
 }
-
-@media only screen and (max-width: 768px) {
-  section h1 {
-    font-size: 32px;
-  }
-  .textField h1 {
-    font-size: 32px;
-  }
-}
 </style>

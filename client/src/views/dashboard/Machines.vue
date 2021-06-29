@@ -38,23 +38,12 @@
         </Tooltip>
       </div>
     </div>
-    <div class="flex flex-col">
-      <div class="tabs flex gap-4 justify-between md:justify-start">
-        <router-link :to="{ name: 'machines', params: {view: 'all'}}">
-          <Icon icon="view-all"/> All
-        </router-link>
-        <router-link :to="{ name: 'machines', params: {view: 'owned'}}">
-          <Icon icon="crown"/> Your Machines
-        </router-link >
-        <router-link :to="{ name: 'machines', params: {view: 'shared'}}">
-          <Icon icon="shared"/> Shared Machines
-        </router-link>
-        <router-link :to="{ name: 'machines', params: {view: 'offline'}}">
-          <Icon icon="dead"/> Offline
-        </router-link>
-      </div>
-      <div class="w-full h-1px bg-gray-500"></div>
-    </div>
+    <Tabs 
+      :currentRoute="$route.name" 
+      :routes="['all', 'owned', 'shared', 'offline']" 
+      :titles="['All', 'Your Machines', 'Shared Machines', 'Offline']" 
+      :icons="['view-all', 'crown', 'shared', 'dead']"
+    />
     <ServerList :machines="taggedMachines" />
   </div>
 </template>
@@ -67,12 +56,14 @@ import Terminal from "@/components/dashboard/Terminal";
 import Header from "@/components/dashboard/Header";
 import Icon from "@/components/misc/Icon";
 import Nav from "@/components/dashboard/Nav";
+import Tabs from "@/components/dashboard/Tabs";
 import Tooltip from "@/components/dashboard/Tooltip";
 import { appState } from "@/states/appState";
 export default {
   name: "Machines",
   components: {
     Terminal,
+    Tabs,
     Nav,
     Header,
     Icon,
@@ -182,22 +173,4 @@ export default {
 .filterButton.enabled {
   @apply bg-tertiary-100 border border-tertiary-300 text-tertiary-400;
 }
-.tabs {
-  font-family: 'Work Sans';
-}
-.tabs a{
-  transition: 100ms ease;
-  @apply opacity-50 select-none border-gray-500 text-11px font-semibold flex gap-2 pb-2 z-10 items-center px-1 whitespace-nowrap outline-none;
-}
-.tabs a:hover {
-  @apply opacity-75;
-}
-.tabs a.router-link-active {
-  @apply opacity-100 border-b-2 border-b-secondary-400 ;
-}
-
-.tabs a .icon {
-  @apply w-5;
-}
-
 </style>
