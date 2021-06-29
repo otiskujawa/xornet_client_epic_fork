@@ -10,31 +10,31 @@
       />
       <div class="buttons flex gap-2">
         <Tooltip text="Windows Machines">
-          <div class="filterButton" @click="tags.windows = !tags.windows" :class="{ enabled: tags.windows }">Windows</div>
+          <div class="filterButton" @click="tags.windows = !tags.windows" :class="{ enabled: tags.windows }"> Windows</div>
         </Tooltip>
         <Tooltip text="Linux Machines">
-          <div class="filterButton" @click="tags.linux = !tags.linux" :class="{ enabled: tags.linux }">Linux</div>
+          <div class="filterButton" @click="tags.linux = !tags.linux" :class="{ enabled: tags.linux }"> Linux</div>
         </Tooltip>
         <Tooltip text="Darwin Machines">
-          <div class="filterButton" @click="tags.macos = !tags.macos" :class="{ enabled: tags.macos }">MacOS</div>
+          <div class="filterButton" @click="tags.macos = !tags.macos" :class="{ enabled: tags.macos }"> MacOS</div>
         </Tooltip>
         <Tooltip text=">50% CPU">
-          <div class="filterButton" @click="tags.cpu = !tags.cpu" :class="{ enabled: tags.cpu }">High CPU Usage</div>
+          <div class="filterButton" @click="tags.cpu = !tags.cpu" :class="{ enabled: tags.cpu }"> High CPU Usage</div>
         </Tooltip>
         <Tooltip text=">70% RAM">
-          <div class="filterButton" @click="tags.ram = !tags.ram" :class="{ enabled: tags.ram }">High RAM Usage</div>
+          <div class="filterButton" @click="tags.ram = !tags.ram" :class="{ enabled: tags.ram }"> High RAM Usage</div>
         </Tooltip>
         <Tooltip text=">100Mbps Traffic">
-          <div class="filterButton" @click="tags.network = !tags.network" :class="{ enabled: tags.network }">High Network</div>
+          <div class="filterButton" @click="tags.network = !tags.network" :class="{ enabled: tags.network }"> High Network</div>
         </Tooltip>
         <Tooltip text=">150ms Ping">
-          <div class="filterButton" @click="tags.ping = !tags.ping" :class="{ enabled: tags.ping }">High Ping</div>
+          <div class="filterButton" @click="tags.ping = !tags.ping" :class="{ enabled: tags.ping }"> High Ping</div>
         </Tooltip>
         <Tooltip text="Host OS">
-          <div class="filterButton" @click="tags.hypervisor = !tags.hypervisor" :class="{ enabled: tags.hypervisor }">Hypervisors</div>
+          <div class="filterButton" @click="tags.hypervisor = !tags.hypervisor" :class="{ enabled: tags.hypervisor }"> Hypervisors</div>
         </Tooltip>
         <Tooltip text="Virtual Machines">
-          <div class="filterButton" @click="tags.vm = !tags.vm" :class="{ enabled: tags.vm }">VMs</div>
+          <div class="filterButton" @click="tags.vm = !tags.vm" :class="{ enabled: tags.vm }"> VMs</div>
         </Tooltip>
       </div>
     </div>
@@ -100,7 +100,7 @@ export default {
       uploadGraph: [],
       labels: [],
       me: appState.getMe(),
-      activeTab: "all",
+      activeTab: this.$route.params.view || "all",
     };
   },
   computed: {

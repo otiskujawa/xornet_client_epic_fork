@@ -2,11 +2,12 @@
   <div class="datacenters p-2 w-full h-full overflow-scroll">
     <div class="datacenterButtons flex w-full flex-col h-full" v-if="!route">
       <h1 class="text-left font-bold p-2 text-2xl">My Datacenters</h1>
-      <div class="buttons p-2 grid gap-2 w-full">
+      <div class="buttons grid gap-2 w-full">
         <DatacenterButton class="datacenter" :datacenter="datacenter" v-for="datacenter of myDatacenters" :key="datacenter" />
         <DatacenterButton :addButton="true" @click="isAddingNew = !isAddingNew" />
         <Dialog v-model="isAddingNew">
-          <AddDatacenter />
+          <DatacenterCard />
+          <!-- <AddDatacenter /> -->
         </Dialog>
         <!-- nanahira pls help us fix the stupid grid this is cancer -->
         <div v-for="i in [...Array(10).keys()]"></div>
@@ -146,6 +147,7 @@ import ServerList from "@/components/dashboard/ServerList";
 import InfoField from "@/components/dashboard/InfoField";
 import MemberField from "@/components/dashboard/MemberField";
 import ShadowButton from "@/components/dashboard/ShadowButton";
+import DatacenterCard from "@/components/misc/DatacenterCard";
 import MultiGauge from "@/components/dashboard/MultiGauge";
 import Dialog from "@/components/library/Dialog.vue";
 import Card from "@/components/library/Card.vue";
@@ -160,6 +162,7 @@ export default {
     ServerList,
     DatacenterButton,
     ServerCard,
+    DatacenterCard,
     MemberField,
     ShadowButton,
     InfoField,
@@ -172,9 +175,9 @@ export default {
       datacenters: [],
       isAddingNew: false,
       isEditing: false,
+      isPrimary: false,
       isShowingServerCard: false,
       totalMachines: 0,
-      isPrimary: false
     };
   },
   computed: {

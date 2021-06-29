@@ -82,7 +82,7 @@
       >
         <Icon
           app
-          class="w-16px min-w-16px h-16px"
+          class="taskIcon w-16px min-w-16px h-16px"
           :icon="
             process.name
               .split('.')

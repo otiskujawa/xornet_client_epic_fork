@@ -1,5 +1,5 @@
 <template>
-  <router-link v-if="!addButton" class="datacenter" :to="{ name: 'datacenters', params: { name: datacenter.name } }">
+  <router-link v-if="!addButton" class="datacenter bg-center bg-blend-soft-light bg-cover" :style="{'background-image': `url(${datacenter.banner})`}" :to="{ name: 'datacenters', params: { name: datacenter.name } }">
     <div class="heading">
       <Icon icon="datacenter" />
       <h1 class="whitespace-nowrap">{{ datacenter.name }}</h1>
@@ -99,18 +99,17 @@ export default {
 .owned,
 .primary {
   padding: 2px 6px;
-  background-color: #8171ff44;
   border-radius: 167px;
-  color: var(--theme-color);
-  border: 1px solid var(--theme-color);
   font-weight: 600;
   text-transform: uppercase;
   font-size: 10px;
 }
 
+.owned {
+  @apply bg-primary-100 border border-primary-300 text-primary-400
+}
+
 .primary {
-  color: var(--blue);
-  border: 1px solid var(--blue);
-  background-color: var(--blue-transparent);
+  @apply bg-tertiary-100 border border-tertiary-300 text-tertiary-400
 }
 </style>

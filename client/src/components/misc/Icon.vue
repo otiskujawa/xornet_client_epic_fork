@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!borderless && color" class="coloredIconContainer icon" :style="{ 'background-color': `${color}1f` }">
+  <div v-if="!borderless && color" class="coloredIconContainer" :style="{ 'background-color': `${color}1f` }">
     <div class="coloredIcon" :style="{ 'mask-image': `url(https://xornet.cloud${image})`, 'background-color': color }"></div>
   </div>
   <div
@@ -60,8 +60,8 @@ export default {
   height: inherit;
 }
 
-.icon:not(.app) {
+.icon:not(.taskIcon) {
   max-width: initial;
-  filter: invert(var(--filter));
+  filter: invert(1);
 }
 </style>
