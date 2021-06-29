@@ -79,7 +79,7 @@ const routes = [
         }
       },
       {
-        path: "machines/machine/:machine/:view?",
+        path: "machines/machine/:machine/:view",
         name: "machine",
         component: () => import(/* webpackChunkName: "machine" */ "@/views/dashboard/Machine.vue"),
         meta: {

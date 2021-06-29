@@ -112,7 +112,6 @@
 <script>
 import Icon from "@/components/misc/Icon";
 import ShadowButton from "@/components/dashboard/ShadowButton";
-import socket from "@/services/socket.js";
 import InfoField from "@/components/dashboard/InfoField";
 import Tabs from "@/components/dashboard/Tabs";
 import Tooltip from "@/components/dashboard/Tooltip";

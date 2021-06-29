@@ -32,7 +32,7 @@ export default {
 }
 .tabs a{
   transition: 100ms ease;
-  @apply opacity-50 select-none border-gray-500 text-11px font-semibold flex gap-2 pb-2 z-10 items-center px-1 whitespace-nowrap outline-none;
+  @apply opacity-50 select-none border-gray-500 text-11px font-medium flex gap-2 pb-2 z-10 items-center px-1 whitespace-nowrap outline-none;
 }
 .tabs a:hover {
   @apply opacity-75;

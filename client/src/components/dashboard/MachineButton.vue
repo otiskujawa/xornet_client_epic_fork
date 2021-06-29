@@ -1,6 +1,6 @@
 <template>
   <router-link
-    :to="{ name: 'machine', params: { machine: machine.uuid } }"
+    :to="{ name: 'machine', params: { machine: machine.uuid, view: 'dashboard' } }"
     class="machineButton"
     :class="{ rogue: machine.rogue, disconnected: Date.now() > machine.timestamp + 15000 }"
   >
