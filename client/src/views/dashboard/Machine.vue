@@ -19,6 +19,12 @@
           <Tooltip text="Trash Machine">
             <ShadowButton icon="trash" />
           </Tooltip>
+          <Tooltip text="Create QR">
+            <ShadowButton icon="qr" @click="qrDialogOpen = true"/>
+          </Tooltip>
+          <Dialog v-model="qrDialogOpen">
+            <QRDialog></QRDialog>
+          </Dialog>
         </div>
       </div>
       <Tabs
@@ -110,6 +116,8 @@ import InfoField from "@/components/dashboard/InfoField";
 import Tabs from "@/components/dashboard/Tabs";
 import Tooltip from "@/components/dashboard/Tooltip";
 import Details from "@/components/dashboard/Details";
+import QRDialog from "@/components/dashboard/QRDialog"
+import Dialog from "@/components/library/Dialog";
 import { appState } from "@/states/appState";
 export default {
   name: "Machine",
@@ -120,11 +128,14 @@ export default {
     Icon,
     InfoField,
     Details,
-    Tooltip
+    Tooltip,
+    QRDialog,
+    Dialog
   },
   data() {
     return {
-      processList: []
+      processList: [],
+      qrDialogOpen: false
     };
   },
   async created() {
