@@ -25,6 +25,7 @@ export default {
 <style scoped>
 .toolTipBox {
   position: relative;
+  z-index: 20;
   display: inline-block;
 }
 
@@ -51,7 +52,6 @@ export default {
   transition: opacity 100ms ease;
 
   position: absolute;
-  z-index: 400;
 
   font-family: Roboto Mono, monospace;
   font-style: normal;

@@ -33,7 +33,7 @@
     <div class="account flex items-center content-center" v-if="!searchToggled">
       <SquareButton icon="logout" @click.native="logout" />
 
-      <router-link class="w-8 h-8 m-2" :to="{ name: 'profile', params: { username } }">
+      <router-link class="w-8 h-8 max-w-8 max-h-8 m-2" :to="{ name: 'profile', params: { username } }">
         <img
           :src="
             profile?.profileImage?.url ??

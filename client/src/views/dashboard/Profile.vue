@@ -63,15 +63,7 @@
           </Tooltip>
           <div class="container">
             <h1 class="username">{{ profile.username }}</h1>
-            <img
-              class="location"
-              :src="
-                profile.geolocation?.countryCode
-                  ? require(`@/assets/flags/${profile.geolocation.countryCode}.png`)
-                  : require('@/assets/flags/__.png')
-              "
-              alt="Country Flag"
-            />
+            <Flag class="w-8" :code="profile.geolocation?.countryCode" :name="profile.geolocation?.location" />
           </div>
         </div>
 
@@ -227,13 +219,14 @@ import Icon from "@/components/misc/Icon";
 import ShadowButton from "@/components/dashboard/ShadowButton";
 import { millify } from "millify";
 import Tooltip from "@/components/dashboard/Tooltip";
-
+import Flag from "@/components/dashboard/Flag";
 export default {
   name: "Profile",
   components: {
     SocialCard,
     InfoField,
-    Icon,
+    Icon,   
+    Flag,
     Gauge,
     ShadowButton,
     Tooltip
