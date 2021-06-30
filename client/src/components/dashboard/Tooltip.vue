@@ -16,7 +16,7 @@ export default {
     },
     side: {
       type: String,
-      required: false,
+      required: false
     },
     color: {
       type: String,
@@ -25,7 +25,7 @@ export default {
   },
   computed: {
     bgcolor() {
-      return (this.color === undefined) ? "background: #6142ff" : "background: " + this.color;
+      return this.color === undefined ? "background: #6142ff" : "background: " + this.color;
     }
   }
 };

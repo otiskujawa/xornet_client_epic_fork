@@ -31,7 +31,9 @@
           <div class="filterButton" @click="tags.ping = !tags.ping" :class="{ enabled: tags.ping }">High Ping</div>
         </Tooltip>
         <Tooltip color="#0469e0" text="Host OS">
-          <div class="filterButton" @click="tags.hypervisor = !tags.hypervisor" :class="{ enabled: tags.hypervisor }">Hypervisors</div>
+          <div class="filterButton" @click="tags.hypervisor = !tags.hypervisor" :class="{ enabled: tags.hypervisor }">
+            Hypervisors
+          </div>
         </Tooltip>
         <Tooltip color="#0469e0" text="Virtual Machines">
           <div class="filterButton" @click="tags.vm = !tags.vm" :class="{ enabled: tags.vm }">VMs</div>
@@ -40,18 +42,12 @@
     </div>
     <div class="flex flex-col">
       <div class="tabs flex gap-4 justify-between md:justify-start">
-        <router-link :to="{ name: 'machines', params: {view: 'all'}}">
-          <Icon icon="view-all"/> All
+        <router-link :to="{ name: 'machines', params: { view: 'all' } }"> <Icon icon="view-all" /> All </router-link>
+        <router-link :to="{ name: 'machines', params: { view: 'owned' } }"> <Icon icon="crown" /> Your Machines </router-link>
+        <router-link :to="{ name: 'machines', params: { view: 'shared' } }">
+          <Icon icon="shared" /> Shared Machines
         </router-link>
-        <router-link :to="{ name: 'machines', params: {view: 'owned'}}">
-          <Icon icon="crown"/> Your Machines
-        </router-link >
-        <router-link :to="{ name: 'machines', params: {view: 'shared'}}">
-          <Icon icon="shared"/> Shared Machines
-        </router-link>
-        <router-link :to="{ name: 'machines', params: {view: 'offline'}}">
-          <Icon icon="dead"/> Offline
-        </router-link>
+        <router-link :to="{ name: 'machines', params: { view: 'offline' } }"> <Icon icon="dead" /> Offline </router-link>
       </div>
       <div class="w-full h-1px bg-gray-500"></div>
     </div>
@@ -92,7 +88,7 @@ export default {
         network: false,
         ping: false,
         hypervisor: false,
-        vm: false,
+        vm: false
       },
       machines: appState.getMachines(),
       downloadGraph: [],
@@ -100,7 +96,7 @@ export default {
       uploadGraph: [],
       labels: [],
       me: appState.getMe(),
-      activeTab: "all",
+      activeTab: "all"
     };
   },
   computed: {
@@ -122,16 +118,17 @@ export default {
     },
     machineArray() {
       let allMachines = Array.from(this.machines.values());
-      allMachines = this.filter !== ""
-        ? allMachines.filter(machine => machine.hostname.toLowerCase().includes(this.filter.toLowerCase()))
-        : allMachines;
-      if (this.activeTab === 'owned') allMachines = allMachines.filter(machine => machine.owner.username === this.me.username);
-      if (this.activeTab === 'shared') allMachines = allMachines.filter(machine => machine.owner.username !== this.me.username);
-      if (this.activeTab !== 'offline') return allMachines;
+      allMachines =
+        this.filter !== ""
+          ? allMachines.filter(machine => machine.hostname.toLowerCase().includes(this.filter.toLowerCase()))
+          : allMachines;
+      if (this.activeTab === "owned") allMachines = allMachines.filter(machine => machine.owner.username === this.me.username);
+      if (this.activeTab === "shared") allMachines = allMachines.filter(machine => machine.owner.username !== this.me.username);
+      if (this.activeTab !== "offline") return allMachines;
     },
     selectedMachine() {
       return this.$route.params.machine;
-    },
+    }
   },
   methods: {
     async getNetwork() {
@@ -183,9 +180,9 @@ export default {
   @apply bg-tertiary-100 border border-tertiary-300 text-tertiary-400;
 }
 .tabs {
-  font-family: 'Work Sans';
+  font-family: "Work Sans";
 }
-.tabs a{
+.tabs a {
   transition: 100ms ease;
   @apply opacity-50 select-none border-gray-500 text-11px font-semibold flex gap-2 pb-2 z-10 items-center px-1 whitespace-nowrap outline-none;
 }
@@ -193,11 +190,10 @@ export default {
   @apply opacity-75;
 }
 .tabs a.router-link-active {
-  @apply opacity-100 border-b-2 border-b-secondary-400 ;
+  @apply opacity-100 border-b-2 border-b-secondary-400;
 }
 
 .tabs a .icon {
   @apply w-5;
 }
-
 </style>
