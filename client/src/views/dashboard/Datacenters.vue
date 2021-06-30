@@ -50,7 +50,7 @@
               <Icon v-else class="logo" :class="{ isEditing }" icon="datacenter" />
               <Icon class="datacenterEdit logoPen" @click="$refs.logo.click()" v-if="isEditing" icon="edit" />
             </div>
-            <div class="buttons">
+            <div class="grid grid-cols-2 gap-2">
               <ShadowButton icon="stack" title="Add server" @click="isShowingServerCard = !isShowingServerCard" />
               <ShadowButton v-if="!isEditing" icon="edit" title="Edit" @click="isEditing = !isEditing" />
               <ShadowButton
@@ -69,7 +69,11 @@
                 @click="setPrimary()"
               />
               <ShadowButton class="primary" icon="bookmark" v-else title="Primary" />
-              <ShadowButton class="delete" icon="trash" title="Delete Datacenter" @click="deleteDatacenter()" />
+              <ShadowButton class="delete" icon="trash" title="Delete" @click="deleteDatacenter()" />
+              <ShadowButton icon="qr" title="Make QR" @click="qrDialogOpen = true"/>
+              <Dialog v-model="qrDialogOpen">
+                <QRDialog :name="datacenter.name"></QRDialog>
+              </Dialog>
             </div>
           </div>
 
@@ -150,6 +154,7 @@ import ShadowButton from "@/components/dashboard/ShadowButton";
 import DatacenterCard from "@/components/misc/DatacenterCard";
 import MultiGauge from "@/components/dashboard/MultiGauge";
 import Dialog from "@/components/library/Dialog.vue";
+import QRDialog from "@/components/dashboard/QRDialog"
 import Card from "@/components/library/Card.vue";
 import AddDatacenter from "@/components/dashboard/AddDatacenter.vue";
 import { appState } from "@/states/appState";
@@ -168,7 +173,8 @@ export default {
     InfoField,
     Dialog,
     MultiGauge,
-    Card
+    Card,
+    QRDialog,
   },
   data() {
     return {
@@ -178,6 +184,7 @@ export default {
       isPrimary: false,
       isShowingServerCard: false,
       totalMachines: 0,
+      qrDialogOpen: false,
     };
   },
   computed: {

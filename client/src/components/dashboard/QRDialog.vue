@@ -15,8 +15,10 @@
 import QRCode from 'qrcode';
 import Card from '@/components/library/Card.vue';
 import ShadowButton from "@/components/dashboard/ShadowButton.vue";
-import {onMounted, ref} from "vue";
+import { onMounted, ref, defineProps } from "vue";
 import { useRoute } from 'vue-router';
+
+const props = defineProps<{ name: string }>();
 
 const route = useRoute();
 
@@ -29,7 +31,7 @@ function saveQR() {
     if(!qrCode.value) return;
     const a = document.createElement("a");
     a.href = qrCode.value;
-    a.download = `${route.params.machine}.png`;
+    a.download = `${props.name}.png`;
     a.click();
 }
 function printQR() {
@@ -43,6 +45,3 @@ onMounted(() => {
     genQR();
 })
 </script>
-<style>
-
-</style>
