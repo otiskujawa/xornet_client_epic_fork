@@ -7,7 +7,7 @@
             <ShadowButton icon="print" title="Print" @click="printQR()"/>
         </div>
       </div>
-      <img :src="qrCode" class="w-full"/>
+      <img :src="qrCode" class="w-full rounded-8px"/>
   </Card>
 </template>
 
