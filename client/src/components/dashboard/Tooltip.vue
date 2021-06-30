@@ -1,7 +1,7 @@
 <template>
   <div class="toolTipBox" :side="side" :class="side">
     <slot />
-    <div class="tooltip">
+    <div class="tooltip" :style="bgcolor">
       <span class="text">{{ text }}</span>
     </div>
   </div>
@@ -17,6 +17,15 @@ export default {
     side: {
       type: String,
       required: false,
+    },
+    color: {
+      type: String,
+      required: false
+    }
+  },
+  computed: {
+    bgcolor() {
+      return (this.color === undefined) ? "background: #6142ff" : "background: " + this.color;
     }
   }
 };
