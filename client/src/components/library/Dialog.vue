@@ -15,9 +15,9 @@ const open = useVModel(props, "modelValue", emit);
       <div
         v-show="open"
         class="bg-white flex h-full bg-opacity-5 w-full top-0 left-0 z-50 items-center align-center justify-center fixed"
-        @click="open = false"
+        @mousedown="open = false"
       >
-        <div class="bg-white rounded-8px overflow-hidden dark:bg-gray-500 shadow-xl w-7/8 sm:w-3/ md:w-1/2 lg:w-1/3" v-bind="$attrs" @click.stop="">
+        <div class="bg-white rounded-8px overflow-hidden dark:bg-gray-500 shadow-xl w-7/8 sm:w-3/ md:w-1/2 lg:w-1/3" v-bind="$attrs" @mousedown.stop="">
           <slot />
         </div>
       </div>
