@@ -1,10 +1,13 @@
 <template>
-    <div class="relative w-12 h-6 cursor-pointer flex items-center" @click="active = !active">
-        <div class="track" :class="{active}"></div>
-        <div class="circle" :class="{active}"></div>
-  </div>
+    <div class="fuck flex items-center gap-2">
+        <label class="flex-1" :for="props.name">{{props.name}}</label>
+        <div :name="props.name" class="relative w-12 h-6 cursor-pointer flex items-center" @click="active = !active">
+            <div class="track" :class="{active}"></div>
+            <div class="circle" :class="{active}"></div>
+        </div>
+    </div>
 </template>
-
+ 
 <script lang="ts" setup>
 import { defineProps, defineEmit } from "vue";
 import { useVModel } from "@vueuse/core";
