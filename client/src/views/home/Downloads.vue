@@ -136,7 +136,7 @@ export default {
 
 <style lang="postcss">
 .lists li {
-  @apply list-disc list-inside text-left text-sm leading-relaxed;
+  @apply list-disc list-inside  text-sm leading-relaxed;
 }
 .downloadContent *:not(.previewImage) {
   @apply z-20;
@@ -166,12 +166,12 @@ export default {
 .downloads * {
   color: white;
   font-family: "Tomorrow", sans-serif;
-  @apply leading-normal text-left font-normal;
+  @apply leading-normal  font-normal;
 }
 
 .cockBlock * {
   font-family: Roboto Mono;
-  @apply font-bold text-sm font-semibold text-left;
+  @apply font-bold text-sm font-semibold ;
 }
 
 .downloadArea > .platform > h1 {

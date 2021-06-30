@@ -20,8 +20,6 @@ import { useRoute } from 'vue-router';
 
 const props = defineProps<{ name: string }>();
 
-const route = useRoute();
-
 const qrCode = ref<string | undefined>(undefined);
 async function genQR() {
     // Upscale or make this an SVG somehow

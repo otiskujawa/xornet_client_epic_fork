@@ -1,6 +1,6 @@
 <template>
   <router-link
-    class="searchResult flex flex-row items-center p-2 rounded justify-between gap-2 text-left"
+    class="searchResult flex flex-row items-center p-2 rounded justify-between gap-2 "
     :to="{ name: 'profile', params: { username: user.username } }"
   >
     <div class="profile">

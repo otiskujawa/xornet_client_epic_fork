@@ -165,7 +165,7 @@ export default {
 
 <style scoped lang="postcss">
 .processList h1 {
-  @apply text-sm overflow-ellipsis overflow-hidden text-left;
+  @apply text-sm overflow-ellipsis overflow-hidden ;
   font-family: Work Sans, sans-serif;
   font-size: 11px;
 }
