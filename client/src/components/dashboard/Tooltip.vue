@@ -1,5 +1,5 @@
 <template>
-  <div class="toolTipBox" :class="{ sideways }">
+  <div class="toolTipBox" :side="side" :class="side">
     <slot />
     <div class="tooltip">
       <span class="text">{{ text }}</span>
@@ -14,9 +14,9 @@ export default {
       type: String,
       required: true
     },
-    sideways: {
-      type: Boolean,
-      required: false
+    side: {
+      type: String,
+      required: false,
     }
   }
 };
@@ -60,7 +60,7 @@ export default {
   background: var(--theme-color);
 }
 
-.toolTipBox.sideways .tooltip {
+.toolTipBox.right .tooltip {
   bottom: 0;
   left: 100%;
   margin-left: 8px;
@@ -83,10 +83,17 @@ export default {
   border-color: var(--theme-color) transparent transparent transparent;
 }
 
-.toolTipBox.sideways .text::after {
+.toolTipBox.right .text::after {
   top: 52%;
   left: 0%;
   margin-left: -9px;
   transform: rotate(90deg) translateX(-50%);
 }
 </style>
+
+<!-- ADD ABILITY TO
+COLOR THE BG
+USE ANY POSITION
+HAVE TEXT COLOR WHITE/BLACK BASED ON VISBILITY AGAINST BG
+ADJUST ARROW SO IT ALWAYS POINTS TO ELEMENT
+-->
