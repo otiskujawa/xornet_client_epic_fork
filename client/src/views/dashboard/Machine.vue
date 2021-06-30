@@ -23,7 +23,7 @@
             <ShadowButton icon="qr" @click="qrDialogOpen = true"/>
           </Tooltip>
           <Dialog v-model="qrDialogOpen">
-            <QRDialog></QRDialog>
+            <QRDialog :name="$route.params.machine"></QRDialog>
           </Dialog>
         </div>
       </div>
