@@ -60,7 +60,6 @@ export default {
 * {
   margin: 0;
   padding: 0;
-  font-family: "Montserrat", sans-serif;
   box-sizing: border-box;
   text-decoration: none;
 }
@@ -77,7 +76,7 @@ html {
 }
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
