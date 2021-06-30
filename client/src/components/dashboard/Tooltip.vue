@@ -60,15 +60,20 @@ export default {
   background: var(--theme-color);
 }
 
+.toolTipBox.under .tooltip {
+  bottom: -100%;
+}
+
+.toolTipBox.left .tooltip {
+  bottom: 0;
+  left: -100%;
+  margin-right: 8px;
+}
+
 .toolTipBox.right .tooltip {
   bottom: 0;
   left: 100%;
   margin-left: 8px;
-}
-
-.toolTipBox.under .tooltip {
-  bottom: -100%;
-
 }
 
 .text {
@@ -94,19 +99,23 @@ export default {
   transform: rotate(180deg);
 }
 
+.toolTipBox.left .text::after {
+  top: 52%;
+  left: 104%;
+  margin-right: 9px;
+  transform: rotate(270deg) translateX(50%);
+}
+
 .toolTipBox.right .text::after {
   top: 52%;
   left: 0%;
   margin-left: -9px;
   transform: rotate(90deg) translateX(-50%);
 }
-
-
 </style>
 
 <!-- ADD ABILITY TO
 COLOR THE BG
-USE ANY POSITION
 HAVE TEXT COLOR WHITE/BLACK BASED ON VISBILITY AGAINST BG
 ADJUST ARROW SO IT ALWAYS POINTS TO ELEMENT
 -->
