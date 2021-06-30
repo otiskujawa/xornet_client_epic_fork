@@ -1,7 +1,7 @@
 <template>
   <div class="view privacypage h-100vh overflow-scroll bg-xorblack">
     <Header />
-    <div class="content flex justify-center h-full items-center p-6 text-left">
+    <div class="content flex justify-center h-full items-center p-6 ">
       <div class="textFields flex flex-col gap-2rem md:w-max-1/2 w-full p-4">
         <h1 class="font-bold md:text-6xl text-4xl">Privacy Information</h1>
         <h2 class="font-bold">Last Updated: 22/6/2021</h2>

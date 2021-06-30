@@ -17,7 +17,7 @@ const open = ref<boolean>(false);
         <div class="top cursor-pointer w-full p-4 rounded-b-4px transition duration-100 bg-gray-300 hover:bg-primary-300 flex justify-between" @click="open = !open">
             <div class="left flex gap-4 items-center"> 
                 <Icon :icon="icon" class="w-8"/>
-                <div class="text flex flex-col gap-2 text-left">
+                <div class="text flex flex-col gap-2 ">
                     <h1 class="font-semibold text-sm leading-none">{{name}}</h1>
                     <p class="font-medium text-alpha-60 text-11px leading-none">{{description}}</p>
                 </div>

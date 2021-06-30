@@ -1,7 +1,7 @@
 <template>
   <div class="datacenters p-2 w-full h-full overflow-scroll">
     <div class="datacenterButtons flex w-full flex-col h-full" v-if="!route">
-      <h1 class="text-left font-bold p-2 text-2xl">My Datacenters</h1>
+      <h1 class=" font-bold p-2 text-2xl">My Datacenters</h1>
       <div class="buttons grid gap-2 w-full">
         <DatacenterButton class="datacenter" :datacenter="datacenter" v-for="datacenter of myDatacenters" :key="datacenter" />
         <DatacenterButton :addButton="true" @click="isAddingNew = !isAddingNew" />
@@ -12,7 +12,7 @@
         <!-- nanahira pls help us fix the stupid grid this is cancer -->
         <div v-for="i in [...Array(10).keys()]"></div>
       </div>
-      <h1 class="text-left font-bold p-2 text-2xl" v-if="sharedDatacenters">Shared Datacenters</h1>
+      <h1 class=" font-bold p-2 text-2xl" v-if="sharedDatacenters">Shared Datacenters</h1>
       <div class="buttons w-full">
         <DatacenterButton
           class="datacenter"
@@ -23,7 +23,7 @@
         <!-- nanahira pls help us fix the stupid grid this is cancer -->
         <div v-for="i in [...Array(10).keys()]"></div>
       </div>
-      <h1 class="text-left font-bold p-2 text-2xl" v-if="me?.is_admin">Other Datacenters</h1>
+      <h1 class=" font-bold p-2 text-2xl" v-if="me?.is_admin">Other Datacenters</h1>
       <div class="buttons w-full">
         <DatacenterButton
           class="datacenter"
