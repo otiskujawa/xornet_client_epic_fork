@@ -66,6 +66,11 @@ export default {
   margin-left: 8px;
 }
 
+.toolTipBox.under .tooltip {
+  bottom: -100%;
+
+}
+
 .text {
   color: white;
   text-transform: capitalize;
@@ -83,12 +88,20 @@ export default {
   border-color: var(--theme-color) transparent transparent transparent;
 }
 
+.toolTipBox.under .text::after {
+  top: -25%;
+  border-color: var(--theme-color) transparent transparent transparent;
+  transform: rotate(180deg);
+}
+
 .toolTipBox.right .text::after {
   top: 52%;
   left: 0%;
   margin-left: -9px;
   transform: rotate(90deg) translateX(-50%);
 }
+
+
 </style>
 
 <!-- ADD ABILITY TO
