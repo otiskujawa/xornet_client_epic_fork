@@ -1,9 +1,8 @@
 <template>
-  <div class="machineSpecsPage">
-    <h1>Details</h1>
-    <div class="specs block md:grid" v-if="specs">
+  <div class="machineDetailsPage">
+    <div class="details block md:grid" v-if="details">
       <!-- we dont talk about this - cimok -->
-      <div :class="outerKey" v-for="(category, outerKey) of specs" :key="outerKey">
+      <div :class="outerKey" v-for="(category, outerKey) of details" :key="outerKey">
         <div class="flex gap-1 items-center">
           <Icon color="#8676ff" class="mt-0.5 w-6 min-w-6" :icon="outerKey" />
           <h2 class="title">{{ outerKey }}</h2>
@@ -43,17 +42,20 @@
 import SpecProperty from "@/components/misc/SpecProperty";
 import Icon from "@/components/misc/Icon";
 export default {
-  name: "Specs",
+  name: "Details",
+  props: {
+    machine: { type: String, required: true},
+  },
   components: {
     SpecProperty,
     Icon
   },
   async created() {
-    this.specs = await this.api.machine.getMachineSpecs(this.$route.params.machine);
+    this.details = await this.api.machine.getMachineSpecs(this.machine);
   },
   data: () => {
     return {
-      specs: null
+      details: null
     };
   },
   methods: {
@@ -65,65 +67,63 @@ export default {
 </script>
 
 <style scope>
-.machineSpecsPage {
+.machineDetailsPage {
   height: 100%;
   width: 100%;
-  padding: 8px;
   overflow: scroll;
   text-align: left;
 }
-.machineSpecsPage::-webkit-scrollbar {
+.machineDetailsPage::-webkit-scrollbar {
   display: initial;
 }
 
-.machineSpecsPage::-webkit-scrollbar-thumb {
+.machineDetailsPage::-webkit-scrollbar-thumb {
   background: var(--black);
   -webkit-border-radius: 1ex;
   -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
 }
 
-.machineSpecsPage::-webkit-scrollbar-corner {
+.machineDetailsPage::-webkit-scrollbar-corner {
   background: #000;
 }
 
-.machineSpecsPage {
+.machineDetailsPage {
   -ms-overflow-style: initial; /* IE and Edge */
   scrollbar-width: initial; /* Firefox */
 }
 
-.specs {
+.details {
   gap: 8px;
   grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
 }
 
-.specs > * {
+.details > * {
   border-radius: 4px;
   font-size: 12px;
-  padding: 0px 16px;
   text-align: left;
 }
 
-.specs h1 {
+.details h1 {
   font-size: 35px;
 }
 
-.specs h2 {
+.details h2 {
   text-transform: uppercase;
   font-size: 25px;
 }
 
-.specs h3 {
+.details h3 {
   font-size: 16px;
   text-transform: capitalize;
 }
 
-.specs strong {
+.details strong {
   opacity: 35%;
   font-weight: 500;
   text-transform: capitalize;
 }
 
-.specs .title {
+.details .title {
   background: linear-gradient(90deg, #8676ff 0%, #4221ee 34.9%, #6142ff 100%);
   background-clip: border-box;
   -webkit-background-clip: text;

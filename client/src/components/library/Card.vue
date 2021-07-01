@@ -2,9 +2,8 @@
 
 <template>
   <div>
-    <div class="bg-blue-400 p-3">
-      <slot name="image" />
+    <div class="p-3">
+      <slot />
     </div>
-    <slot name="body" />
-  </div>
+  </div >
 </template>

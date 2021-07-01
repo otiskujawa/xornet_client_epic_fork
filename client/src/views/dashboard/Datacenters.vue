@@ -1,17 +1,18 @@
 <template>
   <div class="datacenters p-2 w-full h-full overflow-scroll">
     <div class="datacenterButtons flex w-full flex-col h-full" v-if="!route">
-      <h1 class="text-left font-bold p-2 text-2xl">My Datacenters</h1>
-      <div class="buttons p-2 grid gap-2 w-full">
+      <h1 class=" font-bold p-2 text-2xl">My Datacenters</h1>
+      <div class="buttons grid gap-2 w-full">
         <DatacenterButton class="datacenter" :datacenter="datacenter" v-for="datacenter of myDatacenters" :key="datacenter" />
         <DatacenterButton :addButton="true" @click="isAddingNew = !isAddingNew" />
         <Dialog v-model="isAddingNew">
-          <AddDatacenter />
+          <DatacenterCard />
+          <!-- <AddDatacenter /> -->
         </Dialog>
         <!-- nanahira pls help us fix the stupid grid this is cancer -->
         <div v-for="i in [...Array(10).keys()]"></div>
       </div>
-      <h1 class="text-left font-bold p-2 text-2xl" v-if="sharedDatacenters">Shared Datacenters</h1>
+      <h1 class=" font-bold p-2 text-2xl" v-if="sharedDatacenters">Shared Datacenters</h1>
       <div class="buttons w-full">
         <DatacenterButton
           class="datacenter"
@@ -22,7 +23,7 @@
         <!-- nanahira pls help us fix the stupid grid this is cancer -->
         <div v-for="i in [...Array(10).keys()]"></div>
       </div>
-      <h1 class="text-left font-bold p-2 text-2xl" v-if="me?.is_admin">Other Datacenters</h1>
+      <h1 class=" font-bold p-2 text-2xl" v-if="me?.is_admin">Other Datacenters</h1>
       <div class="buttons w-full">
         <DatacenterButton
           class="datacenter"
@@ -49,7 +50,7 @@
               <Icon v-else class="logo" :class="{ isEditing }" icon="datacenter" />
               <Icon class="datacenterEdit logoPen" @click="$refs.logo.click()" v-if="isEditing" icon="edit" />
             </div>
-            <div class="buttons">
+            <div class="grid grid-cols-2 gap-2">
               <ShadowButton icon="stack" title="Add server" @click="isShowingServerCard = !isShowingServerCard" />
               <ShadowButton v-if="!isEditing" icon="edit" title="Edit" @click="isEditing = !isEditing" />
               <ShadowButton
@@ -68,7 +69,11 @@
                 @click="setPrimary()"
               />
               <ShadowButton class="primary" icon="bookmark" v-else title="Primary" />
-              <ShadowButton class="delete" icon="trash" title="Delete Datacenter" @click="deleteDatacenter()" />
+              <ShadowButton class="delete" icon="trash" title="Delete" @click="deleteDatacenter()" />
+              <ShadowButton icon="qr" title="Make QR" @click="qrDialogOpen = true"/>
+              <Dialog v-model="qrDialogOpen">
+                <QRDialog :name="datacenter.name"></QRDialog>
+              </Dialog>
             </div>
           </div>
 
@@ -146,8 +151,10 @@ import ServerList from "@/components/dashboard/ServerList";
 import InfoField from "@/components/dashboard/InfoField";
 import MemberField from "@/components/dashboard/MemberField";
 import ShadowButton from "@/components/dashboard/ShadowButton";
+import DatacenterCard from "@/components/misc/DatacenterCard";
 import MultiGauge from "@/components/dashboard/MultiGauge";
 import Dialog from "@/components/library/Dialog.vue";
+import QRDialog from "@/components/dashboard/QRDialog"
 import Card from "@/components/library/Card.vue";
 import AddDatacenter from "@/components/dashboard/AddDatacenter.vue";
 import { appState } from "@/states/appState";
@@ -160,21 +167,24 @@ export default {
     ServerList,
     DatacenterButton,
     ServerCard,
+    DatacenterCard,
     MemberField,
     ShadowButton,
     InfoField,
     Dialog,
     MultiGauge,
-    Card
+    Card,
+    QRDialog,
   },
   data() {
     return {
       datacenters: [],
       isAddingNew: false,
       isEditing: false,
+      isPrimary: false,
       isShowingServerCard: false,
       totalMachines: 0,
-      isPrimary: false
+      qrDialogOpen: false,
     };
   },
   computed: {

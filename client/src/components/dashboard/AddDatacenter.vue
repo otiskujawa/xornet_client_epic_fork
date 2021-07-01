@@ -1,12 +1,16 @@
 <template>
   <Card>
     <template #image>
-      <h1 class="text-xl">UwU this is the iamge</h1>
+    <img :src="require('@/assets/renders/server.png')" alt="" class="mix-blend-screen">
+      <h1 class="text-xl">Create a new datacenter</h1>
     </template>
     <template #body>
-      <p>This is the body</p>
+      <div class="flex flex-col">
+        <label for="name">Datacenter name</label>
+        <input type="text" ref="name" class="text-black   ">
+      </div>
     </template>
-  </Card>
+  </Card >
 </template>
 
 <script lang="ts" setup>

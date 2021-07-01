@@ -79,19 +79,11 @@ const routes = [
         }
       },
       {
-        path: "machines/machine/:machine",
+        path: "machines/machine/:machine/:view",
         name: "machine",
         component: () => import(/* webpackChunkName: "machine" */ "@/views/dashboard/Machine.vue"),
         meta: {
           title: "Xornet | Machine"
-        }
-      },
-      {
-        path: "machines/machine/:machine?/specs",
-        name: "specs",
-        component: () => import(/* webpackChunkName: "specs" */ "@/views/dashboard/Specs.vue"),
-        meta: {
-          title: "Xornet | Machine Specification"
         }
       },
       {
@@ -105,7 +97,7 @@ const routes = [
       {
         path: "settings",
         name: "settings",
-        component: () => import(/* webpackChunkName: "profile" */ "@/views/dashboard/Settings.vue"),
+        component: () => import(/* webpackChunkName: "settings" */ "@/views/dashboard/Settings.vue"),
         meta: {
           title: "Xornet | Settings"
         }

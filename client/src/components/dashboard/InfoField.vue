@@ -35,7 +35,7 @@ export default {
 
 <style lang="postcss" scoped>
 .info {
-  @apply flex rounded-4px flex-row text-left gap-2 text-white;
+  @apply flex rounded-4px flex-row  gap-2 text-white;
 }
 
 .info:not(.borderless) {

@@ -1,10 +1,7 @@
 <template>
   <div class="card">
     <a href="https://cdn.discordapp.com/attachments/807448839346716683/853054616870322256/spaz.gif" target="_blank">
-      <img
-        src="https://cdn.discordapp.com/attachments/806300597338767450/853124043486134272/f23a88ed1cb21f394a560354c80026f6e4df643cr1-723-666v2_uhq.jpg"
-        alt=""
-      />
+      <img :src="require('@/assets/renders/server.png')" alt="" class="transform scale-140 -translate-y-8 mix-blend-screen">
     </a>
     <div class="details">
       <form v-on:submit.prevent="!isLoading && !isFormValid ? add() : null">

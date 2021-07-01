@@ -17,12 +17,14 @@
     "gsap": "^3.6.1",
     "highlight.js": "^11.0.1",
     "millify": "^4.0.0",
+    "qrcode": "^1.4.4",
     "socket.io-client": "^4.0.2",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "xterm": "^4.12.0"
   },
   "devDependencies": {
+    "@types/qrcode": "^1.4.0",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-plugin-typescript": "~4.5.0",

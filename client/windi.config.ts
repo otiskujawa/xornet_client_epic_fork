@@ -2,8 +2,15 @@ const colors = require("windicss/colors");
 
 export default {
   theme: {
-    transitionProperty: {
-      width: "width"
+    extend: {
+      fontFamily: {
+        sans: ['ui-sans-serif', 'system-ui'],
+        serif: ['ui-serif', 'Georgia'],
+        mono: ['ui-monospace', 'SFMono-Regular'],
+        display: ['Oswald'],
+        body: ['Open Sans'],
+        workSans: ['Work Sans'],
+      },
     },
     colors: {
       ...colors,
@@ -44,6 +51,10 @@ export default {
         300: "#161b22",
         400: "#21262d",
         500: "#2b3138",
+        600: "#434A52",
+        700: "#63696F",
+        800: "#94969A",
+        900: "#CACACA",
       },
       alpha: {
         100: "rgba(255, 255, 255, 1.00)",

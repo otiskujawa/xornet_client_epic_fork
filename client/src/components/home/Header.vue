@@ -109,13 +109,4 @@ header.view-login {
   line-height: 175%;
   white-space: nowrap;
 }
-
-@media only screen and (max-width: 768px) {
-  header.view-home {
-    padding: 8px;
-  }
-  .button p {
-    display: none;
-  }
-}
 </style>

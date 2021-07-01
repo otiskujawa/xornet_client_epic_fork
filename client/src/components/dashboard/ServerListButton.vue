@@ -1,6 +1,6 @@
 <template>
   <router-link
-    :to="{ name: 'machine', params: { machine: machine.uuid } }"
+    :to="{ name: 'machine', params: { machine: machine.uuid, view: 'dashboard' } }"
     class="button"
     :class="{ thin: thin, rogue: machine.rogue, disconnected: Date.now() > machine.timestamp + 15000 }"
   >
@@ -49,14 +49,7 @@
 
     <!-- Region Column -->
     <div class="field region">
-      <img
-        :src="
-          machine.geolocation?.countryCode
-            ? require(`@/assets/flags/${machine.geolocation.countryCode}.png`)
-            : require('@/assets/flags/__.png')
-        "
-        alt="Country Flag"
-      />
+      <Flag class="w-20px" :code="machine.geolocation?.countryCode" :name="machine.geolocation?.location" />
     </div>
 
     <!-- Ping Column -->
@@ -100,9 +93,11 @@
 
 <script>
 import Icon from "@/components/misc/Icon";
+import Flag from "@/components/dashboard/Flag";
 export default {
   name: "ServerListButton",
   components: {
+    Flag,
     Icon
   },
   computed: {
