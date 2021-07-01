@@ -15,7 +15,7 @@
 
       <h1 class="text-2xl font-bold">The Xornet Reporter easily lets you connect your computer to the platform</h1>
 
-      <p>The reporter uses the NodeJS runtime enviroment and is compiled to run natively on most common operating systems</p>
+      <p>The reporter uses the NodeJS runtime enviroment and Rust, it is compiled to run natively on most common operating systems</p>
 
       <img
         class="previewImage hidden md:flex absolute h-465px w-auto right-10vw z-0"
