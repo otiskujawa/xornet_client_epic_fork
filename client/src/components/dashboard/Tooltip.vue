@@ -3,6 +3,7 @@
     <slot />
     <div class="tooltip" :style="bgcolor">
       <span class="text">{{ text }}</span>
+      <div class="arrow" :style="bordercolor"></div>
     </div>
   </div>
 </template>
@@ -26,6 +27,9 @@ export default {
   computed: {
     bgcolor() {
       return this.color === undefined ? "background: #6142ff" : "background: " + this.color;
+    },
+    bordercolor() {
+      return this.color === undefined ? "border-color: #6142ff transparent transparent transparent" : " border-color: " + this.color + " transparent transparent transparent;";
     }
   }
 };
@@ -66,7 +70,6 @@ export default {
   font-style: normal;
   font-weight: 700;
   font-size: 12px;
-  background: var(--theme-color);
 }
 
 .toolTipBox.under .tooltip {
@@ -90,7 +93,7 @@ export default {
   text-transform: capitalize;
 }
 
-.text::after {
+.arrow {
   content: " ";
   position: absolute;
   top: 100%;
@@ -99,23 +102,21 @@ export default {
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: var(--theme-color) transparent transparent transparent;
 }
 
-.toolTipBox.under .text::after {
+.toolTipBox.under .arrow {
   top: -25%;
-  border-color: var(--theme-color) transparent transparent transparent;
   transform: rotate(180deg);
 }
 
-.toolTipBox.left .text::after {
+.toolTipBox.left .arrow {
   top: 52%;
   left: 104%;
   margin-right: 9px;
   transform: rotate(270deg) translateX(50%);
 }
 
-.toolTipBox.right .text::after {
+.toolTipBox.right .arrow {
   top: 52%;
   left: 0%;
   margin-left: -9px;
@@ -124,7 +125,5 @@ export default {
 </style>
 
 <!-- ADD ABILITY TO
-COLOR THE BG
 HAVE TEXT COLOR WHITE/BLACK BASED ON VISBILITY AGAINST BG
-ADJUST ARROW SO IT ALWAYS POINTS TO ELEMENT
 -->
