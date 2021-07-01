@@ -2,7 +2,7 @@
   <div class="toolTipBox" :side="side" :class="side">
     <slot />
     <div class="tooltip" :style="bgcolor">
-      <span class="text">{{ text }}</span>
+      <span class="text" :style="textcolor">{{ text }}</span>
       <div class="arrow" :style="bordercolor"></div>
     </div>
   </div>
@@ -21,15 +21,37 @@ export default {
     },
     color: {
       type: String,
-      required: false
+      required: false,
+      default: "#6142ff"
     }
   },
   computed: {
     bgcolor() {
-      return this.color === undefined ? "background: #6142ff" : "background: " + this.color;
+      return "background: " + this.color;
     },
     bordercolor() {
-      return this.color === undefined ? "border-color: #6142ff transparent transparent transparent" : " border-color: " + this.color + " transparent transparent transparent;";
+      return "border-color: " + this.color + " transparent transparent transparent";
+    },
+    textcolor() {
+      console.log(this.hexToRgb);
+      let num = Math.sqrt( 0.299*this.hexToRgb.r^2 + 0.587*this.hexToRgb.g^2 + 0.114 *this.hexToRgb.b^2);
+      console.log(num + this.text);
+      return num < 7 ? "color: white" : "color: black";
+    },
+    hexToRgb() {
+      // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
+      let shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+      let hex = this.color;
+      hex.replace(shorthandRegex, function(m, r, g, b) {
+        return r + r + g + g + b + b;
+      });
+
+      let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+      } : null;
     }
   }
 };
