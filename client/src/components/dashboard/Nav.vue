@@ -1,26 +1,26 @@
 <template>
   <nav class="buttons bg-gray-300 h-full max-w-min items-center flex flex-col content-between relative">
-    <Tooltip sideways text="Profile">
+    <Tooltip side="right" text="Profile">
       <SquareButton boxless class="firstButton" icon="user" :to="{ name: 'profile', params: { username } }" />
     </Tooltip>
 
-    <Tooltip sideways text="Machines">
+    <Tooltip side="right" text="Machines">
       <SquareButton boxless icon="stack" :to="{ name: 'machines', params: { view: 'all' } }" />
     </Tooltip>
 
-    <Tooltip sideways text="Datacenters">
+    <Tooltip side="right" text="Datacenters">
       <SquareButton boxless icon="datacenter" :to="{ name: 'datacenters' }" />
     </Tooltip>
 
-    <Tooltip sideways text="Logs">
+    <Tooltip side="right" text="Logs">
       <SquareButton boxless icon="clipboard" :to="{ name: 'logs' }" />
     </Tooltip>
 
-    <Tooltip sideways text="Downloads">
+    <Tooltip side="right" text="Downloads">
       <SquareButton boxless icon="downloads" :to="{ name: 'downloads' }" />
     </Tooltip>
 
-    <Tooltip sideways text="Settings">
+    <Tooltip side="right" text="Settings">
       <SquareButton boxless class="settings" icon="settings" :to="{ name: 'settings' }" />
     </Tooltip>
   </nav>
