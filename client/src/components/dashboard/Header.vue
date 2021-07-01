@@ -39,7 +39,7 @@
             profile?.profileImage?.url ??
               'https://cdn.discordapp.com/attachments/816028632269979668/855437868825444372/unknown.png'
           "
-          class="profileImage select-none object-cover cursor-pointer rounded-lg"
+          class="profileImage select-none object-cover cursor-pointer rounded-lg w-8 h-8"
           alt="profileImage"
         />
       </router-link>
