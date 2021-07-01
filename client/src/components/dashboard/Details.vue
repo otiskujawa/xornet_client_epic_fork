@@ -44,7 +44,7 @@ import Icon from "@/components/misc/Icon";
 export default {
   name: "Details",
   props: {
-    machine: { type: String, required: true},
+    machine: { type: String, required: true }
   },
   components: {
     SpecProperty,

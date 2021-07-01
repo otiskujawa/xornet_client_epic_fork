@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <a href="https://cdn.discordapp.com/attachments/807448839346716683/853054616870322256/spaz.gif" target="_blank">
-      <img :src="require('@/assets/renders/server.png')" alt="" class="transform scale-140 -translate-y-8 mix-blend-screen">
+      <img :src="require('@/assets/renders/server.png')" alt="" class="transform scale-140 -translate-y-8 mix-blend-screen" />
     </a>
     <div class="details">
       <form v-on:submit.prevent="!isLoading && !isFormValid ? add() : null">

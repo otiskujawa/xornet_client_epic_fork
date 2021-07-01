@@ -5,7 +5,7 @@
     </Tooltip>
 
     <Tooltip sideways text="Machines">
-      <SquareButton boxless icon="stack" :to="{ name: 'machines' , params: { view: 'all'}}" />
+      <SquareButton boxless icon="stack" :to="{ name: 'machines', params: { view: 'all' } }" />
     </Tooltip>
 
     <Tooltip sideways text="Datacenters">

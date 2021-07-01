@@ -12,14 +12,14 @@
 
 <script lang="ts" setup>
 import { defineProps, computed } from "vue";
-import { useLocalStorage } from '@vueuse/core';
-import { iconStroke } from '@/states/prefs';
+import { useLocalStorage } from "@vueuse/core";
+import { iconStroke } from "@/states/prefs";
 const props = defineProps({
-    icon: { type: String, required: true },
-    default: { type: String, required: false },
-    app: { type: Boolean, required: false },
-    color: { type: String, required: false },
-    borderless: { type: Boolean, required: false }
+  icon: { type: String, required: true },
+  default: { type: String, required: false },
+  app: { type: Boolean, required: false },
+  color: { type: String, required: false },
+  borderless: { type: Boolean, required: false }
 });
 const image = computed(() => {
   const stroke = iconStroke.value;
@@ -43,14 +43,14 @@ const image = computed(() => {
 }
 
 .coloredIcon {
-    mask-position: center;
-    mask-size: contain;
-    mask-repeat: no-repeat;
-    width: inherit;
-    height: inherit;
+  mask-position: center;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  width: inherit;
+  height: inherit;
 }
 .icon:not(.taskIcon) {
-    max-width: initial;
+  max-width: initial;
   filter: invert(1);
 }
 </style>

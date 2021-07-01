@@ -70,7 +70,7 @@
               />
               <ShadowButton class="primary" icon="bookmark" v-else title="Primary" />
               <ShadowButton class="delete" icon="trash" title="Delete" @click="deleteDatacenter()" />
-              <ShadowButton icon="qr" title="Make QR" @click="qrDialogOpen = true"/>
+              <ShadowButton icon="qr" title="Make QR" @click="qrDialogOpen = true" />
               <Dialog v-model="qrDialogOpen">
                 <QRDialog :name="datacenter.name"></QRDialog>
               </Dialog>
@@ -154,7 +154,7 @@ import ShadowButton from "@/components/dashboard/ShadowButton";
 import DatacenterCard from "@/components/misc/DatacenterCard";
 import MultiGauge from "@/components/dashboard/MultiGauge";
 import Dialog from "@/components/library/Dialog.vue";
-import QRDialog from "@/components/dashboard/QRDialog"
+import QRDialog from "@/components/dashboard/QRDialog";
 import Card from "@/components/library/Card.vue";
 import AddDatacenter from "@/components/dashboard/AddDatacenter.vue";
 import { appState } from "@/states/appState";
@@ -174,7 +174,7 @@ export default {
     Dialog,
     MultiGauge,
     Card,
-    QRDialog,
+    QRDialog
   },
   data() {
     return {
@@ -184,7 +184,7 @@ export default {
       isPrimary: false,
       isShowingServerCard: false,
       totalMachines: 0,
-      qrDialogOpen: false,
+      qrDialogOpen: false
     };
   },
   computed: {

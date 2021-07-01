@@ -20,7 +20,7 @@
             <ShadowButton icon="trash" />
           </Tooltip>
           <Tooltip text="Create QR">
-            <ShadowButton icon="qr" @click="qrDialogOpen = true"/>
+            <ShadowButton icon="qr" @click="qrDialogOpen = true" />
           </Tooltip>
           <Dialog v-model="qrDialogOpen">
             <QRDialog :name="$route.params.machine"></QRDialog>
@@ -28,9 +28,9 @@
         </div>
       </div>
       <Tabs
-        :currentRoute="$route.name" 
-        :routes="['dashboard', 'processes', 'stats', 'details']" 
-        :titles="['Dashboard', 'Processes', 'Statistics', 'Details']" 
+        :currentRoute="$route.name"
+        :routes="['dashboard', 'processes', 'stats', 'details']"
+        :titles="['Dashboard', 'Processes', 'Statistics', 'Details']"
         :icons="['dashboard', 'process-tree', 'bars', 'details']"
       />
     </div>
@@ -116,7 +116,7 @@ import InfoField from "@/components/dashboard/InfoField";
 import Tabs from "@/components/dashboard/Tabs";
 import Tooltip from "@/components/dashboard/Tooltip";
 import Details from "@/components/dashboard/Details";
-import QRDialog from "@/components/dashboard/QRDialog"
+import QRDialog from "@/components/dashboard/QRDialog";
 import Dialog from "@/components/library/Dialog";
 import { appState } from "@/states/appState";
 export default {
@@ -165,7 +165,7 @@ export default {
 
 <style scoped lang="postcss">
 .processList h1 {
-  @apply text-sm overflow-ellipsis overflow-hidden ;
+  @apply text-sm overflow-ellipsis overflow-hidden;
   font-family: Work Sans, sans-serif;
   font-size: 11px;
 }
