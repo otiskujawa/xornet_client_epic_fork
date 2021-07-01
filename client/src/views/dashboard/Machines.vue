@@ -40,10 +40,10 @@
         </Tooltip>
       </div>
     </div>
-    <Tabs 
-      :currentRoute="$route.name" 
-      :routes="['all', 'owned', 'shared', 'offline']" 
-      :titles="['All', 'Your Machines', 'Shared Machines', 'Offline']" 
+    <Tabs
+      :currentRoute="$route.name"
+      :routes="['all', 'owned', 'shared', 'offline']"
+      :titles="['All', 'Your Machines', 'Shared Machines', 'Offline']"
       :icons="['view-all', 'crown', 'shared', 'dead']"
     />
     <ServerList :machines="taggedMachines" />
@@ -93,7 +93,7 @@ export default {
       uploadGraph: [],
       labels: [],
       me: appState.getMe(),
-      activeTab: this.$route.params.view || "all",
+      activeTab: this.$route.params.view || "all"
     };
   },
   computed: {

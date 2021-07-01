@@ -171,7 +171,7 @@ export default {
 
 .cockBlock * {
   font-family: Roboto Mono;
-  @apply font-bold text-sm font-semibold ;
+  @apply font-bold text-sm font-semibold;
 }
 
 .downloadArea > .platform > h1 {

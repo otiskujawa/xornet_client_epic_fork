@@ -1,5 +1,10 @@
 <template>
-  <router-link v-if="!addButton" class="datacenter bg-center bg-blend-soft-light bg-cover" :style="{'background-image': `url(${datacenter.banner})`}" :to="{ name: 'datacenters', params: { name: datacenter.name } }">
+  <router-link
+    v-if="!addButton"
+    class="datacenter bg-center bg-blend-soft-light bg-cover"
+    :style="{ 'background-image': `url(${datacenter.banner})` }"
+    :to="{ name: 'datacenters', params: { name: datacenter.name } }"
+  >
     <div class="heading">
       <Icon icon="datacenter" />
       <h1 class="whitespace-nowrap">{{ datacenter.name }}</h1>
@@ -108,16 +113,14 @@ export default {
 }
 
 .owned {
-  @apply bg-primary-100 border border-primary-300 text-primary-400
+  @apply bg-primary-100 border border-primary-300 text-primary-400;
 }
 
 .shared {
-  @apply bg-secondary-100 border border-secondary-300 text-secondary-400
+  @apply bg-secondary-100 border border-secondary-300 text-secondary-400;
 }
 
 .primary {
-  @apply bg-tertiary-100 border border-tertiary-300 text-tertiary-400
+  @apply bg-tertiary-100 border border-tertiary-300 text-tertiary-400;
 }
-
-
 </style>

@@ -225,7 +225,7 @@ export default {
   components: {
     SocialCard,
     InfoField,
-    Icon,   
+    Icon,
     Flag,
     Gauge,
     ShadowButton,

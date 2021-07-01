@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import Switch from '@/components/library/Switch.vue';
-import SettingsButton from '@/components/dashboard/SettingsButton.vue';
-import { iconStroke } from '@/states/prefs';
+import Switch from "@/components/library/Switch.vue";
+import SettingsButton from "@/components/dashboard/SettingsButton.vue";
+import { iconStroke } from "@/states/prefs";
 </script>
