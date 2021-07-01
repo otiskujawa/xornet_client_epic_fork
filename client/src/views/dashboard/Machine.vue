@@ -48,13 +48,21 @@
         :value="machine.ram.used"
         :maxValue="machine.ram.total"
       />
-      <InfoField
+      <InfoField 
         borderless
-        icon="rj45"
-        title="Upload Bandiwdth"
+        icon="download"
+        title="Download Bandicam"
         color="#4ADEFF"
         suffix="Mbps"
-        :value="(machine.network.TxSec + machine.network.RxSec).toFixed(2)"
+        :value="(machine.network.RxSec).toFixed(2)"
+      />
+      <InfoField
+        borderless
+        icon="upload"
+        title="Upload Bandicam"
+        color="#4ADEFF"
+        suffix="Mbps"
+        :value="(machine.network.TxSec).toFixed(2)"
       />
     </div>
     <!-- processes -->
