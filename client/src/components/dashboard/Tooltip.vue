@@ -33,9 +33,7 @@ export default {
       return "border-color: " + this.color + " transparent transparent transparent";
     },
     textcolor() {
-      console.log(this.hexToRgb);
-      let num = Math.sqrt( 0.299*this.hexToRgb.r^2 + 0.587*this.hexToRgb.g^2 + 0.114 *this.hexToRgb.b^2);
-      console.log(num + this.text);
+      let num = Math.sqrt((0.299 * this.hexToRgb.r) ^ (2 + 0.587 * this.hexToRgb.g) ^ (2 + 0.114 * this.hexToRgb.b) ^ 2);
       return num < 7 ? "color: white" : "color: black";
     },
     hexToRgb() {
@@ -47,11 +45,13 @@ export default {
       });
 
       let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-      return result ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16)
-      } : null;
+      return result
+        ? {
+            r: parseInt(result[1], 16),
+            g: parseInt(result[2], 16),
+            b: parseInt(result[3], 16)
+          }
+        : null;
     }
   }
 };
