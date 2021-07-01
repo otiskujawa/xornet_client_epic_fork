@@ -37,6 +37,7 @@
     <!-- dashboard -->
     <div v-if="$route.params.view == 'dashboard'" class="flex gap-4">
       <InfoField borderless icon="cpu" title="CPU Usage" color="#8676FF" suffix="%" :value="machine.cpu" />
+      <CoreBars :cores="machine.cores" />
       <InfoField borderless icon="network" title="Ping" color="#516DFF" suffix="ms" :value="machine.ping" />
       <InfoField
         borderless
@@ -119,10 +120,12 @@ import Details from "@/components/dashboard/Details";
 import QRDialog from "@/components/dashboard/QRDialog";
 import Dialog from "@/components/library/Dialog";
 import { appState } from "@/states/appState";
+import CoreBars from "@/components/dashboard/CoreBars.vue";
 export default {
   name: "Machine",
   components: {
     ShadowButton,
+    CoreBars,
     Tabs,
     Flag,
     Icon,

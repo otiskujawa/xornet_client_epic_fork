@@ -49,7 +49,7 @@
         id="mobile"
         :machine="machine"
         v-for="machine of showRogues ? sortedMachines : sortedMachines.filter(machine => !machine.rogue)"
-        :key="machine"
+        :key="machine.uuid"
       />
       <ServerListButton
         id="desktop"
@@ -57,7 +57,7 @@
         :showDetails="showDetails"
         :machine="machine"
         v-for="machine of showRogues ? sortedMachines : sortedMachines.filter(machine => !machine.rogue)"
-        :key="machine"
+        :key="machine.uuid"
       />
     </div>
   </nav>
