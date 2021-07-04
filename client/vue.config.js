@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-let dev = process.env.NODE_ENV === "development" ? true : false;
+const dev = process.env.NODE_ENV === "development" ? true : false;
 
 module.exports = {
   devServer: {
