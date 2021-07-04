@@ -4,33 +4,31 @@
     <Icon v-else :icon="icon" />
     <div class="text">
       <h1 class="title" :style="{ color: `${color}` }">{{ title }}</h1>
-      <h1 class="value" v-if="suffix && !maxValue">{{ value }}{{ suffix }}</h1>
-      <h1 class="value" v-else-if="maxValue || suffix">{{ value }}/{{ maxValue }}{{ suffix }}</h1>
-      <h1 class="value" v-else>{{ value }}</h1>
+      <h1 class="value" v-if="suffix && !maxValue">{{ displayValue }}{{ suffix }}</h1>
+      <h1 class="value" v-else-if="maxValue || suffix">{{ displayValue }}/{{ maxValue }}{{ suffix }}</h1>
+      <h1 class="value" v-else>{{ displayValue }}</h1>
     </div>
   </div>
 </template>
 
-<script>
-import Icon from "@/components/misc/Icon";
-import ColoredGauge from "@/components/dashboard/ColoredGauge";
-export default {
-  name: "InfoField",
-  components: {
-    ColoredGauge,
-    Icon
-  },
-  props: {
-    icon: { type: String },
-    title: { type: String, required: true },
-    value: { type: [String, Number], required: true },
-    suffix: { type: String, required: false },
-    maxValue: { type: [String, Number], required: false },
-    color: { type: String, required: false },
-    nogauge: { type: Boolean },
-    borderless: { type: Boolean }
-  }
-};
+<script lang="ts" setup>
+import Icon from "@/components/misc/Icon.vue";
+import ColoredGauge from "@/components/dashboard/ColoredGauge.vue";
+import { computed, defineProps } from "@vue/runtime-core";
+
+const props = defineProps<{
+  icon?: string;
+  title: string;
+  value: string | number;
+  tweened?: number | string;
+  suffix?: string;
+  maxValue?: string | number;
+  color?: string;
+  nogauge?: boolean;
+  borderless?: boolean;
+}>();
+
+const displayValue = computed(() => props.tweened || props.value);
 </script>
 
 <style lang="postcss" scoped>

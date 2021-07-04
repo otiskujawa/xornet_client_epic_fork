@@ -18,17 +18,17 @@
 
     <!-- CPU Column -->
     <div class="field cpuUsage" v-if="machine.cpu == null"><strong>Unknown</strong></div>
-    <div class="field cpuUsage" v-else>{{ machine.cpu }}<strong>%</strong></div>
+    <div class="field cpuUsage" v-else>{{ ~~cpu }}<strong>%</strong></div>
 
     <!-- RAM Column -->
     <div class="field ramUsage" v-if="Object.values(machine.ram).some(field => field != null)">
-      {{ machine.ram.used }}/{{ machine.ram.total > 1 ? Math.ceil(machine.ram.total) : machine.ram.total }}<strong>GB</strong>
+      {{ ram.toFixed(2) }}/{{ machine.ram.total > 1 ? Math.ceil(machine.ram.total) : machine.ram.total }}<strong>GB</strong>
     </div>
     <div class="field ramUsage" v-else><strong>Unknown</strong></div>
 
     <!-- Disks Column -->
     <div class="field diskUsage">
-      <h1 v-for="disk of showDetails ? machine.disks : [machine.disks[0]]" :key="disk">
+      <h1 v-for="disk of showDetails ? machine.disks : [machine.disks[0]]" :key="disk.mount">
         <strong>
           {{ disk?.fs }}
         </strong>
@@ -44,8 +44,8 @@
     </div>
 
     <!-- Network Column -->
-    <div class="field networkUsage">{{ machine.network?.TxSec }}<strong>mbps</strong></div>
-    <div class="field networkUsage">{{ machine.network?.RxSec }}<strong>mbps</strong></div>
+    <div class="field networkUsage">{{ tx.toFixed(2) }}<strong>mbps</strong></div>
+    <div class="field networkUsage">{{ rx.toFixed(2) }}<strong>mbps</strong></div>
 
     <!-- Region Column -->
     <div class="field region">
@@ -53,7 +53,7 @@
     </div>
 
     <!-- Ping Column -->
-    <div class="field ping" v-if="machine.ping != null">{{ machine.ping }}<strong>ms</strong></div>
+    <div class="field ping" v-if="machine.ping != null">{{ ~~ping }}<strong>ms</strong></div>
     <div class="field ping" v-else><strong>Unknown</strong></div>
 
     <!-- Uptime Column -->
@@ -91,26 +91,25 @@
   </router-link>
 </template>
 
-<script>
-import Icon from "@/components/misc/Icon";
-import Flag from "@/components/dashboard/Flag";
-export default {
-  name: "ServerListButton",
-  components: {
-    Flag,
-    Icon
-  },
-  computed: {
-    type() {
-      return this.machine.isVirtual ? "slave" : "master";
-    }
-  },
-  props: {
-    machine: { type: Object, required: true },
-    showDetails: { type: Boolean, required: true },
-    thin: { type: Boolean, required: false, default: false }
-  }
-};
+<script lang="ts" setup>
+import Icon from "@/components/misc/Icon.vue";
+import Flag from "@/components/dashboard/Flag.vue";
+import { computed, defineProps } from "@vue/runtime-core";
+import type { MachineObject } from "@/states/types";
+import { tweened } from "@/logic/tween";
+
+const props = defineProps<{
+  thin?: boolean;
+  showDetails: boolean;
+  machine: MachineObject;
+}>();
+
+const type = computed(() => (props.machine.isVirtual ? "slave" : "master"));
+const cpu = tweened(computed(() => props.machine.cpu))
+const ram = tweened(computed(() => props.machine.ram.free))
+const rx = tweened(computed(() => props.machine.network.TxSec))
+const tx = tweened(computed(() => props.machine.network.TxSec))
+const ping = tweened(computed(() => props.machine.ping))
 </script>
 
 <style lang="postcss" scoped>
