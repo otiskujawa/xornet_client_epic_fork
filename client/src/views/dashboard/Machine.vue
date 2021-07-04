@@ -36,9 +36,9 @@
     </div>
     <!-- dashboard -->
     <div v-if="$route.params.view == 'dashboard'" class="flex gap-4">
-      <InfoField borderless icon="cpu" title="CPU Usage" color="#8676FF" suffix="%" :value="machine.cpu" />
+      <InfoField borderless icon="cpu" title="CPU Usage" color="#8676FF" suffix="%" :value="machine.cpu" :tweened="~~cpu" />
       <CoreBars :cores="machine.cores" />
-      <InfoField borderless icon="network" title="Ping" color="#516DFF" suffix="ms" :value="machine.ping" />
+      <InfoField borderless icon="network" title="Ping" color="#516DFF" suffix="ms" :value="machine.ping" :tweened="~~ping" />
       <InfoField
         borderless
         icon="ram"
@@ -46,15 +46,17 @@
         color="#32B5FF"
         suffix="GB"
         :value="machine.ram.used"
+        :tweened="ram.toFixed(2)"
         :maxValue="machine.ram.total"
       />
-      <InfoField 
+      <InfoField
         borderless
         icon="download"
         title="Download Bandicam"
         color="#4ADEFF"
         suffix="Mbps"
-        :value="(machine.network.RxSec).toFixed(2)"
+        :value="machine.network.RxSec.toFixed(2)"
+        :tweened="rx.toFixed(2)"
       />
       <InfoField
         borderless
@@ -62,7 +64,8 @@
         title="Upload Bandicam"
         color="#4ADEFF"
         suffix="Mbps"
-        :value="(machine.network.TxSec).toFixed(2)"
+        :value="machine.network.TxSec.toFixed(2)"
+        :tweened="tx.toFixed(2)"
       />
     </div>
     <!-- processes -->
@@ -117,61 +120,59 @@
   </div>
 </template>
 
-<script>
-import Icon from "@/components/misc/Icon";
-import Flag from "@/components/dashboard/Flag";
-import ShadowButton from "@/components/dashboard/ShadowButton";
-import InfoField from "@/components/dashboard/InfoField";
-import Tabs from "@/components/dashboard/Tabs";
-import Tooltip from "@/components/dashboard/Tooltip";
-import Details from "@/components/dashboard/Details";
-import QRDialog from "@/components/dashboard/QRDialog";
-import Dialog from "@/components/library/Dialog";
+<script lang="ts" setup>
+import Icon from "@/components/misc/Icon.vue";
+import Flag from "@/components/dashboard/Flag.vue";
+import ShadowButton from "@/components/dashboard/ShadowButton.vue";
+import InfoField from "@/components/dashboard/InfoField.vue";
+import Tabs from "@/components/dashboard/Tabs.vue";
+import Tooltip from "@/components/dashboard/Tooltip.vue";
+import Details from "@/components/dashboard/Details.vue";
+import QRDialog from "@/components/dashboard/QRDialog.vue";
+import Dialog from "@/components/library/Dialog.vue";
 import { appState } from "@/states/appState";
 import CoreBars from "@/components/dashboard/CoreBars.vue";
-export default {
-  name: "Machine",
-  components: {
-    ShadowButton,
-    CoreBars,
-    Tabs,
-    Flag,
-    Icon,
-    InfoField,
-    Details,
-    Tooltip,
-    QRDialog,
-    Dialog
-  },
-  data() {
-    return {
-      processList: [],
-      qrDialogOpen: false
-    };
-  },
-  async created() {
-    this.processList = (await this.api.machine.getProcesses(this.$route.params.machine)).list;
-  },
-  methods: {
-    sort(by) {
-      this.processes = this.processes.sort((a, b) => (a[by] < b[by] ? 1 : -1));
-    }
-  },
-  computed: {
-    machine() {
-      return appState.getMachines().get(this.$route.params.machine);
-    },
-    processes() {
-      return this.processList.sort((a, b) => (a.name < b.name ? 1 : -1));
-    },
-    type() {
-      return this.machine.isVirtual ? "slave" : "master";
-    },
-    me() {
-      return appState.getMe();
-    }
-  }
-};
+import { reactive, ref } from "@vue/reactivity";
+import { onMounted } from "@vue/runtime-core";
+import { computed } from "vue";
+import { useAppParams } from "@/logic/routing";
+import api from "@/services/api";
+import { TransitionPresets, useTransition } from "@vueuse/core";
+import { tweened } from "@/logic/tween";
+
+const params = useAppParams();
+
+const qrDialogOpen = ref(false);
+// TODO: provide full typedefs
+const processList = ref<
+  {
+    name: string;
+  }[]
+>([]);
+
+onMounted(async () => {
+  processList.value = (await api.machine.getProcesses(params.value.machine)).list;
+});
+
+const machine = computed(() => {
+  return appState.getMachines().get(params.value.machine);
+});
+
+const cpu = tweened(computed(() => machine.value?.cpu || 0));
+const ping = tweened(computed(() => machine.value?.ping || 0));
+const ram = tweened(computed(() => machine.value?.ram.used || 0));
+const rx = tweened(computed(() => machine.value?.network.RxSec || 0));
+const tx = tweened(computed(() => machine.value?.network.TxSec || 0));
+
+const processes = computed(() => {
+  return processList.value.sort((a, b) => (a.name < b.name ? 1 : -1));
+});
+const type = computed(() => {
+  return machine.value?.isVirtual ? "slave" : "master";
+});
+const me = computed(() => {
+  return appState.getMe();
+});
 </script>
 
 <style scoped lang="postcss">
