@@ -14,6 +14,13 @@ let ROOT_PATH = "https://backend.xornet.cloud";
  * @private
  */
 export default class Base {
+  constructor(){
+    this.token = localStorage.getItem('token');
+  }
+  setToken(token){
+    this.token = token;
+    localStorage.setItem('token', token);
+  }
   /**
    * Custom log function with API suffix
    * @param {string} method The API endpoint
@@ -129,19 +136,16 @@ export default class Base {
    * @author Geoxor
    */
   async request(method, route, headers, body) {
+    headers = {
+      ...headers,
+      'Authorization': `Bearer ${this.token}`
+    };
+
     if (method === "get" || method === "delete") {
-      var response = await axios[method](
-        this.constructEndpoint(route),
-        body || {
-          withCredentials: true,
-          headers
-        }
-      ).catch(error => this.logError(`${method.toUpperCase()} ${route}`, error));
-    } else {
-      var response = await axios[method](this.constructEndpoint(route), body || undefined, {
-        withCredentials: true,
-        headers
-      }).catch(error => this.logError(`${method.toUpperCase()} ${route}`, error));
+      var response = await axios[method](this.constructEndpoint(route), {headers}).catch(error => this.logError(`${method.toUpperCase()} ${route}`, error));
+    }
+    else {
+      var response = await axios[method](this.constructEndpoint(route), body, {headers}).catch(error => this.logError(`${method.toUpperCase()} ${route}`, error));
     }
 
     this.logResponse(`${method.toUpperCase()} ${route}`, response);
