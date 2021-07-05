@@ -4,7 +4,7 @@
   "display": "standalone",
   "orientation": "any",
   "scope": "/",
-  "start_url": "/dashboard/machines",
+  "start_url": "/dashboard/machines/all",
   "name": "Xornet",
   "categories": ["management", "security", "productivity"],
   "short_name": "Xornet",
