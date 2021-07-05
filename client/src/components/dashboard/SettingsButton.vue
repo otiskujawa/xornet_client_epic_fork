@@ -28,7 +28,7 @@ const open = ref<boolean>(false);
       </div>
       <Icon class="w-4 transition duration-100 transform" :class="{ 'rotate-180': open }" icon="chevron-down" />
     </div>
-    <div v-show="open" class="p-4">
+    <div v-show="open" class="p-4 flex flex-col gap-4">
       <slot />
     </div>
   </div>
