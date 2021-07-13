@@ -1,7 +1,7 @@
 import axios from "axios";
 import eventHandler from "@/services/eventHandler";
 import { appState } from "@/states/appState";
-let ROOT_PATH = "https://backend.xornet.cloud";
+let ROOT_PATH = process.env.NODE_ENV.trim() === "development" ? "http://localhost:8080" : "https://backend.xornet.cloud";
 
 /**
  * @author Geoxor & Niko Huuskonen
@@ -14,12 +14,12 @@ let ROOT_PATH = "https://backend.xornet.cloud";
  * @private
  */
 export default class Base {
-  constructor(){
-    this.token = localStorage.getItem('token');
+  constructor() {
+    this.token = localStorage.getItem("token");
   }
-  setToken(token){
+  setToken(token) {
     this.token = token;
-    localStorage.setItem('token', token);
+    localStorage.setItem("token", token);
   }
   /**
    * Custom log function with API suffix
@@ -138,14 +138,17 @@ export default class Base {
   async request(method, route, headers, body) {
     headers = {
       ...headers,
-      'Authorization': `Bearer ${this.token}`
+      Authorization: `Bearer ${this.token}`
     };
 
     if (method === "get" || method === "delete") {
-      var response = await axios[method](this.constructEndpoint(route), {headers}).catch(error => this.logError(`${method.toUpperCase()} ${route}`, error));
-    }
-    else {
-      var response = await axios[method](this.constructEndpoint(route), body, {headers}).catch(error => this.logError(`${method.toUpperCase()} ${route}`, error));
+      var response = await axios[method](this.constructEndpoint(route), { headers }).catch(error =>
+        this.logError(`${method.toUpperCase()} ${route}`, error)
+      );
+    } else {
+      var response = await axios[method](this.constructEndpoint(route), body, { headers }).catch(error =>
+        this.logError(`${method.toUpperCase()} ${route}`, error)
+      );
     }
 
     this.logResponse(`${method.toUpperCase()} ${route}`, response);

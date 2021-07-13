@@ -1,5 +1,5 @@
 const fs = require("fs");
-const dev = process.env.NODE_ENV === "development" ? true : false;
+const dev = process.env.NODE_ENV.trim() === "development" ? true : false;
 module.exports = {
   devServer: {
     disableHostCheck: true,

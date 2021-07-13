@@ -1,7 +1,8 @@
 import io from "socket.io-client";
 import { appState } from "../states/appState";
+const WS_PATH = process.env.NODE_ENV.trim() === "development" ? "ws://localhost:8080" : "wss://backend.xornet.cloud";
 
-const socket = io("wss://backend.xornet.cloud", {
+const socket = io(WS_PATH, {
   reconnect: true,
   auth: {
     type: "client",

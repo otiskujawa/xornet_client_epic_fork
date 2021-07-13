@@ -2,7 +2,7 @@
   <SettingsButton icon="palette" name="Appearance" description="Change your theme & colors">
     <Setting icon="fill" name="Stroked Icons" v-model="iconStroke" />
     <Setting icon="counter" name="Tweened Numbers" v-model="tweenNumbers" />
-  </SettingsButton> 
+  </SettingsButton>
 </template>
 
 <script lang="ts" setup>
