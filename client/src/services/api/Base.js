@@ -1,7 +1,7 @@
 import axios from "axios";
 import eventHandler from "@/services/eventHandler";
 import { appState } from "@/states/appState";
-let ROOT_PATH = "https://backend.xornet.cloud";
+let ROOT_PATH = process.env.NODE_ENV.trim() === "development" ? "http://localhost:8080" : "https://backend.xornet.cloud";
 
 /**
  * @author Geoxor & Niko Huuskonen
