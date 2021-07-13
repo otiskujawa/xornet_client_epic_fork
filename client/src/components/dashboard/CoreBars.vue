@@ -2,7 +2,11 @@
   <div class="coreBars relative flex gap-2">
     <div class="bar flex justify-center" v-for="(value, i) in props.cores" :key="`core-${i}`">
       <div class="track h-full rounded-full bg-gray-300 w-2"></div>
-      <div class="progress rounded-full bg-gradient-to-tr from-primary-200 to-tertiary-200 transform transition-all duration-500 w-2.5 absolute bottom-0 min-h-2.5" :class="{watchOut: value >= 50, death: value >= 95}" :style="`height: ${value}%;`"></div>
+      <div
+        class="progress rounded-full bg-gradient-to-tr from-primary-200 to-tertiary-200 transform transition-all duration-500 w-2.5 absolute bottom-0 min-h-2.5"
+        :class="{ watchOut: value >= 50, death: value >= 95 }"
+        :style="`height: ${value}%;`"
+      ></div>
     </div>
   </div>
 </template>
@@ -10,9 +14,8 @@
 <script lang="ts" setup>
 import { defineProps, computed } from "vue";
 const props = defineProps<{
-  cores: number[]
+  cores: number[];
 }>();
-
 </script>
 
 <style lang="postcss" scoped>
