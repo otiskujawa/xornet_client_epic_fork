@@ -9,35 +9,15 @@
         class="text-11px font-semibold placeholder-alpha-60 outline-none p-2 bg-gray-400 rounded-4px"
       />
       <div class="buttons flex gap-2">
-        <Tooltip color="#0469e0" text="Windows Machines">
-          <div class="filterButton" @click="tags.windows = !tags.windows" :class="{ enabled: tags.windows }">Windows</div>
-        </Tooltip>
-        <Tooltip color="#0469e0" text="Linux Machines">
-          <div class="filterButton" @click="tags.linux = !tags.linux" :class="{ enabled: tags.linux }">Linux</div>
-        </Tooltip>
-        <Tooltip color="#0469e0" text="Darwin Machines">
-          <div class="filterButton" @click="tags.macos = !tags.macos" :class="{ enabled: tags.macos }">MacOS</div>
-        </Tooltip>
-        <Tooltip color="#0469e0" text=">50% CPU">
-          <div class="filterButton" @click="tags.cpu = !tags.cpu" :class="{ enabled: tags.cpu }">High CPU Usage</div>
-        </Tooltip>
-        <Tooltip color="#0469e0" text=">70% RAM">
-          <div class="filterButton" @click="tags.ram = !tags.ram" :class="{ enabled: tags.ram }">High RAM Usage</div>
-        </Tooltip>
-        <Tooltip color="#0469e0" text=">100Mbps Traffic">
-          <div class="filterButton" @click="tags.network = !tags.network" :class="{ enabled: tags.network }">High Network</div>
-        </Tooltip>
-        <Tooltip color="#0469e0" text=">150ms Ping">
-          <div class="filterButton" @click="tags.ping = !tags.ping" :class="{ enabled: tags.ping }">High Ping</div>
-        </Tooltip>
-        <Tooltip color="#0469e0" text="Host OS">
-          <div class="filterButton" @click="tags.hypervisor = !tags.hypervisor" :class="{ enabled: tags.hypervisor }">
-            Hypervisors
-          </div>
-        </Tooltip>
-        <Tooltip color="#0469e0" text="Virtual Machines">
-          <div class="filterButton" @click="tags.vm = !tags.vm" :class="{ enabled: tags.vm }">VMs</div>
-        </Tooltip>
+        <Tag icon="windows" tag="Windows"         title="Windows Machines"  :enabled="tags.windows"     @click="tags.windows    = !tags.windows"    />
+        <Tag icon="linux"   tag="Linux"           title="Linux Machines"    :enabled="tags.linux"       @click="tags.linux      = !tags.linux"      />
+        <Tag icon="macos"   tag="MacOS"           title="Darwin Machines"   :enabled="tags.macos"       @click="tags.macos      = !tags.macos"      />
+        <Tag icon="cpu"     tag="High CPU Usage"  title=">50% CPU"          :enabled="tags.cpu"         @click="tags.cpu        = !tags.cpu"        />
+        <Tag icon="ram"     tag="High RAM Usage"  title=">70% RAM"          :enabled="tags.ram"         @click="tags.ram        = !tags.ram"        />
+        <Tag icon="network" tag="High Network"    title=">100Mbps Traffic"  :enabled="tags.network"     @click="tags.network    = !tags.network"    />
+        <Tag icon="ping"    tag="High Ping"       title=">150ms Ping"       :enabled="tags.ping"        @click="tags.ping       = !tags.ping"       />
+        <Tag icon="master"  tag="Hypervisors"     title="Host OS"           :enabled="tags.hypervisor"  @click="tags.hypervisor = !tags.hypervisor" />
+        <Tag icon="slave"   tag="VMs"             title="Virtual Machines"  :enabled="tags.vm"          @click="tags.vm         = !tags.vm"         />
       </div>
     </div>
     <Tabs
@@ -56,10 +36,9 @@ import LoadingScreen from "@/components/dashboard/LoadingScreen";
 import Chart from "@/components/dashboard/Chart";
 import Terminal from "@/components/dashboard/Terminal";
 import Header from "@/components/dashboard/Header";
-import Icon from "@/components/misc/Icon";
 import Nav from "@/components/dashboard/Nav";
 import Tabs from "@/components/dashboard/Tabs";
-import Tooltip from "@/components/dashboard/Tooltip";
+import Tag from "@/components/library/Tag.vue";
 import { appState } from "@/states/appState";
 export default {
   name: "Machines",
@@ -68,11 +47,10 @@ export default {
     Tabs,
     Nav,
     Header,
-    Icon,
     Chart,
     LoadingScreen,
-    Tooltip,
-    ServerList
+    ServerList,
+    Tag
   },
   data() {
     return {
@@ -156,26 +134,6 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-.filterButton {
-  @apply cursor-pointer 
-  select-none 
-  text-11px 
-  font-semibold 
-  rounded-full 
-  whitespace-nowrap 
-  bg-gray-500 
-  px-2 
-  py-1.5
-  border 
-  border-gray-600 
-  text-gray-600 
-  hover:border-white 
-  hover:text-white;
-}
-
-.filterButton.enabled {
-  @apply bg-tertiary-100 border border-tertiary-300 text-tertiary-400;
-}
 .tabs {
   font-family: "Work Sans";
 }
