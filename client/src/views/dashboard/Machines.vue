@@ -10,33 +10,33 @@
       />
       <div class="buttons flex gap-2">
         <Tooltip color="#0469e0" text="Windows Machines">
-          <div class="filterButton" @click="tags.windows = !tags.windows" :class="{ enabled: tags.windows }">Windows</div>
+          <div class="filterButton" @click="tags.windows = !tags.windows" :class="{ enabled: tags.windows }"><Icon icon="windows" />Windows</div>
         </Tooltip>
         <Tooltip color="#0469e0" text="Linux Machines">
-          <div class="filterButton" @click="tags.linux = !tags.linux" :class="{ enabled: tags.linux }">Linux</div>
+          <div class="filterButton" @click="tags.linux = !tags.linux" :class="{ enabled: tags.linux }"><Icon icon="linux" />Linux</div>
         </Tooltip>
         <Tooltip color="#0469e0" text="Darwin Machines">
-          <div class="filterButton" @click="tags.macos = !tags.macos" :class="{ enabled: tags.macos }">MacOS</div>
+          <div class="filterButton" @click="tags.macos = !tags.macos" :class="{ enabled: tags.macos }"><Icon icon="macos" />MacOS</div>
         </Tooltip>
         <Tooltip color="#0469e0" text=">50% CPU">
-          <div class="filterButton" @click="tags.cpu = !tags.cpu" :class="{ enabled: tags.cpu }">High CPU Usage</div>
+          <div class="filterButton" @click="tags.cpu = !tags.cpu" :class="{ enabled: tags.cpu }"><Icon icon="cpu" />High CPU Usage</div>
         </Tooltip>
         <Tooltip color="#0469e0" text=">70% RAM">
-          <div class="filterButton" @click="tags.ram = !tags.ram" :class="{ enabled: tags.ram }">High RAM Usage</div>
+          <div class="filterButton" @click="tags.ram = !tags.ram" :class="{ enabled: tags.ram }"><Icon icon="ram" />High RAM Usage</div>
         </Tooltip>
         <Tooltip color="#0469e0" text=">100Mbps Traffic">
-          <div class="filterButton" @click="tags.network = !tags.network" :class="{ enabled: tags.network }">High Network</div>
+          <div class="filterButton" @click="tags.network = !tags.network" :class="{ enabled: tags.network }"><Icon icon="rj45" />High Network</div>
         </Tooltip>
         <Tooltip color="#0469e0" text=">150ms Ping">
-          <div class="filterButton" @click="tags.ping = !tags.ping" :class="{ enabled: tags.ping }">High Ping</div>
+          <div class="filterButton" @click="tags.ping = !tags.ping" :class="{ enabled: tags.ping }"><Icon icon="network" />High Ping</div>
         </Tooltip>
         <Tooltip color="#0469e0" text="Host OS">
           <div class="filterButton" @click="tags.hypervisor = !tags.hypervisor" :class="{ enabled: tags.hypervisor }">
-            Hypervisors
+            <Icon icon="master" />Hypervisors
           </div>
         </Tooltip>
         <Tooltip color="#0469e0" text="Virtual Machines">
-          <div class="filterButton" @click="tags.vm = !tags.vm" :class="{ enabled: tags.vm }">VMs</div>
+          <div class="filterButton" @click="tags.vm = !tags.vm" :class="{ enabled: tags.vm }"><Icon icon="slave" />VMs</div>
         </Tooltip>
       </div>
     </div>
@@ -168,9 +168,15 @@ export default {
   py-1.5
   border 
   border-gray-600 
-  text-gray-600 
+  text-gray-900 
   hover:border-white 
-  hover:text-white;
+  hover:text-white
+  flex
+  gap-2
+  items-center;
+  & .icon {
+    @apply w-4;
+  }
 }
 
 .filterButton.enabled {
