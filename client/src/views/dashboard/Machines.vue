@@ -33,7 +33,6 @@
 <script>
 import ServerList from "@/components/dashboard/ServerList";
 import LoadingScreen from "@/components/dashboard/LoadingScreen";
-import Chart from "@/components/dashboard/Chart";
 import Terminal from "@/components/dashboard/Terminal";
 import Header from "@/components/dashboard/Header";
 import Nav from "@/components/dashboard/Nav";
@@ -47,7 +46,6 @@ export default {
     Tabs,
     Nav,
     Header,
-    Chart,
     LoadingScreen,
     ServerList,
     Tag
