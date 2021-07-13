@@ -89,6 +89,14 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
+.search::-webkit-scrollbar {
+  display: none;
+}
+.search {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 @media only screen and (max-width: 360px) {
   .search {
     width: 84vw;

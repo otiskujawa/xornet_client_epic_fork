@@ -63,13 +63,6 @@ export default {
   box-sizing: border-box;
   text-decoration: none;
 }
-*::-webkit-scrollbar {
-  display: none;
-}
-* {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
 
 html {
   overflow: hidden;

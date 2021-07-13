@@ -1,5 +1,5 @@
 <template>
-  <div v-if="machine" class="machine overflow-scroll p-2 md:p-6 w-full h-full flex-col flex gap-4">
+  <div v-if="machine" class="machine p-2 md:p-6 w-full h-full flex-col flex gap-4">
     <div class="div flex gap-4 flex-col">
       <div class="heading flex gap-2 items-center">
         <Icon class="w-32px" :icon="type" v-if="!machine.rogue && Date.now() < machine.timestamp + 15000" />
