@@ -104,7 +104,10 @@ const props = defineProps<{
   machine: MachineObject;
 }>();
 
-const type = computed(() => (props.machine.isVirtual ? "slave" : "master"));
+const type = computed(() => {
+  if (props.machine.isMobile) return 'phone';
+  return props.machine.isVirtual ? "slave" : "master";
+});
 const cpu = tweened(computed(() => props.machine.cpu))
 const ram = tweened(computed(() => props.machine.ram.free))
 const rx = tweened(computed(() => props.machine.network.RxSec))
