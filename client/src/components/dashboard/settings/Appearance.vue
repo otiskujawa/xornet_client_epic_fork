@@ -1,7 +1,7 @@
 <template>
   <SettingsButton icon="palette" name="Appearance" description="Change your theme & colors">
     <Setting icon="fill" name="Stroked Icons" v-model="iconStroke" />
-    <Setting icon="counter" name="Tweened Numbers" v-model="tweenNumbers" />
+    <Setting icon="counter" name="Tweened Numbers (lags like shit)" v-model="tweenNumbers" />
   </SettingsButton>
 </template>
 
