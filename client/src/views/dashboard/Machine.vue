@@ -29,9 +29,9 @@
       </div>
       <Tabs
         :currentRoute="$route.name"
-        :routes="['dashboard', 'processes', 'stats', 'details']"
-        :titles="['Dashboard', 'Processes', 'Statistics', 'Details']"
-        :icons="['dashboard', 'process-tree', 'bars', 'details']"
+        :routes="['dashboard', 'terminal', 'processes', 'stats', 'details']"
+        :titles="['Dashboard', 'Terminal', 'Processes', 'Statistics', 'Details']"
+        :icons="['dashboard', 'terminal', 'process-tree', 'bars', 'details']"
       />
     </div>
     <!-- dashboard -->
@@ -117,6 +117,7 @@
     </div>
     <!-- details -->
     <Details :machine="machine.uuid" v-if="$route.params.view == 'details'" />
+    <Terminal class="w-full h-full" />
   </div>
 </template>
 
@@ -139,6 +140,7 @@ import { useAppParams } from "@/logic/routing";
 import api from "@/services/api";
 import { TransitionPresets, useTransition } from "@vueuse/core";
 import { tweened } from "@/logic/tween";
+import Terminal from "@/components/dashboard/Terminal";
 
 const params = useAppParams();
 

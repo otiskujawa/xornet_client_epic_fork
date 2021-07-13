@@ -1,13 +1,17 @@
 import { Terminal } from "xterm";
 import "xterm/css/xterm.css"; // DO NOT forget importing xterm.css
+import { FitAddon } from 'xterm-addon-fit';
 
 export class TerminalUI {
   constructor(socket) {
     this.terminal = new Terminal();
+    this.fitAddon = new FitAddon();
+
+    this.terminal.loadAddon(this.fitAddon);
 
     /* You can make your terminals colorful :) */
     this.terminal.setOption("theme", {
-      background: "#0B0B15",
+      background: "#161b22",
       foreground: "#F5F8FA"
     });
     this.terminal.setOption("fontSize", 14);
@@ -57,7 +61,7 @@ export class TerminalUI {
    */
   attachTo(container) {
     this.terminal.open(container);
-    //   this.terminal.fit()l
+    this.fitAddon.fit();
     // Default text to display on terminal.
     this.terminal.write("Terminal Connected");
     this.terminal.write("");

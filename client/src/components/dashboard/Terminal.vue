@@ -34,15 +34,9 @@ export default {
 };
 </script>
 
-<style>
+<style lang="postcss" scoped>
 #terminalLmao {
-  border-radius: 8px;
-  border: 1px solid #252547;
-  padding: 16px;
-  background-color: var(--terminal-background);
-  width: fit-content;
-  height: fit-content;
-  overflow: hidden;
+  @apply rounded-8px border-gray-600 p-4 bg-gray-300 overflow-hidden;
 }
 
 #terminalLmao *::-webkit-scrollbar {
