@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "set NODE_ENV=development && vue-cli-service serve",
+    "staged": "set NODE_ENV=staged && vue-cli-service serve",
     "build": "set NODE_ENV=production && vue-cli-service build",
     "prettify": "npx prettier --write \"./**/*.vue\" && npx prettier --write \"./**/*.js\" && npx prettier --parser html --write \"./**/*.svg\""
   },
