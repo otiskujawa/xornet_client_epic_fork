@@ -117,7 +117,7 @@
     </div>
     <!-- details -->
     <Details :machine="machine.uuid" v-if="$route.params.view == 'details'" />
-    <Terminal class="w-full h-full" />
+    <Terminal v-if="$route.params.view == 'terminal'" class="w-full h-full" />
   </div>
 </template>
 
