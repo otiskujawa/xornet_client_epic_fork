@@ -17,7 +17,7 @@
             <ShadowButton icon="shutdown" @click="api.machine.shutdown(machine.uuid)" />
           </Tooltip>
           <Tooltip text="Trash Machine">
-            <ShadowButton icon="trash" />
+            <ShadowButton icon="trash" @click="api.machine.delete(machine.uuid)" />
           </Tooltip>
           <Tooltip text="Create QR">
             <ShadowButton icon="qr" @click="qrDialogOpen = true" />

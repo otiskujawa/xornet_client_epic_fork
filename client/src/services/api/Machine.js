@@ -25,4 +25,8 @@ export default class Machine extends Base {
   async restart(machineUUID) {
     return (await super.request("post", `machine/${machineUUID}/restart`)).data;
   }
+
+  async delete(machineUUID) {
+    return (await super.request("delete", `profile/machine/${machineUUID}`)).data;
+  }
 }
