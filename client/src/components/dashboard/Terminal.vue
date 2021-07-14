@@ -34,14 +34,17 @@ export default {
       this.startTerminal(container, socket);
     },
     kill() {
+      console.log("killing terminal");
       socket.emit("terminateTerminal");
-      this.terminal = null;
+      this.terminal.stopListening();
     },
   },
   mounted() {
-    this.kill();
     this.start();
   },
+  unmounted() {
+    this.kill();
+  }
 };
 </script>
 

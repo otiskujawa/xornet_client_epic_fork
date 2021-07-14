@@ -18,10 +18,16 @@ export class TerminalUI {
 
   startListening() {
     this.terminal.onData(data => this.sendInput(data));
+    this.socket.removeAllListeners("output");
     this.socket.on("output", data => {
       // When there is data from PTY on server, print that on Terminal.
       this.write(data);
     });
+  }
+
+  stopListening(){
+    this.socket.removeAllListeners("output");
+    this.terminal.dispose();
   }
 
   write(text) {
