@@ -27,46 +27,20 @@
           </Dialog>
         </div>
       </div>
-      <Tabs
-        :currentRoute="$route.name"
-        :routes="['dashboard', 'terminal', 'processes', 'stats', 'details']"
-        :titles="['Dashboard', 'Terminal', 'Processes', 'Statistics', 'Details']"
-        :icons="['dashboard', 'terminal', 'process-tree', 'bars', 'details']"
-      />
+      <Tabs :currentRoute="$route.name" 
+      :routes="['dashboard', 'terminal', 'processes', 'stats', 'details']" 
+      :titles="['Dashboard', 'Terminal', 'Processes', 'Statistics', 'Details']" 
+      :icons="['dashboard', 'terminal', 'process-tree', 'bars', 'details']"
+      :enabled="[true, details?.settings?.allowTerminal, true, true, true]" />
     </div>
     <!-- dashboard -->
     <div v-if="$route.params.view == 'dashboard'" class="flex gap-4">
       <InfoField borderless icon="cpu" title="CPU Usage" color="#8676FF" suffix="%" :value="machine.cpu" :tweened="~~cpu" />
       <CoreBars :cores="machine.cores" />
       <InfoField borderless icon="network" title="Ping" color="#516DFF" suffix="ms" :value="machine.ping" :tweened="~~ping" />
-      <InfoField
-        borderless
-        icon="ram"
-        title="Total RAM Usage"
-        color="#32B5FF"
-        suffix="GB"
-        :value="machine.ram.used"
-        :tweened="ram.toFixed(2)"
-        :maxValue="machine.ram.total"
-      />
-      <InfoField
-        borderless
-        icon="download"
-        title="Download Bandicam"
-        color="#4ADEFF"
-        suffix="Mbps"
-        :value="machine.network.RxSec.toFixed(2)"
-        :tweened="rx.toFixed(2)"
-      />
-      <InfoField
-        borderless
-        icon="upload"
-        title="Upload Bandicam"
-        color="#4ADEFF"
-        suffix="Mbps"
-        :value="machine.network.TxSec.toFixed(2)"
-        :tweened="tx.toFixed(2)"
-      />
+      <InfoField borderless icon="ram" title="Total RAM Usage" color="#32B5FF" suffix="GB" :value="machine.ram.used" :tweened="ram.toFixed(2)" :maxValue="machine.ram.total" />
+      <InfoField borderless icon="download" title="Download Bandicam" color="#4ADEFF" suffix="Mbps" :value="machine.network.RxSec.toFixed(2)" :tweened="rx.toFixed(2)" />
+      <InfoField borderless icon="upload" title="Upload Bandicam" color="#4ADEFF" suffix="Mbps" :value="machine.network.TxSec.toFixed(2)" :tweened="tx.toFixed(2)" />
     </div>
     <!-- processes -->
     <div v-if="processes && $route.params.view == 'processes'" class="processList w-full h-full overflow-scroll ">
@@ -117,7 +91,9 @@
     </div>
     <!-- details -->
     <Details :machine="machine.uuid" v-if="$route.params.view == 'details'" />
-    <Terminal v-if="$route.params.view == 'terminal'" class="w-full h-full" />
+    <div v-if="details?.settings?.allowTerminal">
+      <Terminal v-if="$route.params.view == 'terminal'" class="w-full h-full" />
+    </div>
   </div>
 </template>
 
@@ -152,12 +128,19 @@ const processList = ref<
   }[]
 >([]);
 
-onMounted(async () => {
-  processList.value = (await api.machine.getProcesses(params.value.machine)).list;
-});
+const details = ref<
+  {
+    name: string;
+  }
+>();
 
 const machine = computed(() => {
   return appState.getMachines().get(params.value.machine);
+});
+
+onMounted(async () => {
+  processList.value = (await api.machine.getProcesses(params.value.machine)).list;
+  details.value = (await api.machine.getMachineSpecs(params.value.machine));
 });
 
 const cpu = tweened(computed(() => machine.value?.cpu || 0));
@@ -175,6 +158,7 @@ const type = computed(() => {
 const me = computed(() => {
   return appState.getMe();
 });
+
 </script>
 
 <style scoped lang="postcss">

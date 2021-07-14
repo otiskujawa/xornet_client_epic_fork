@@ -2,7 +2,7 @@
   <div class="tabsContainer flex flex-col overflow-x-scroll">
     <div class="tabs w-min flex gap-4 justify-between md:justify-start">
       <router-link :to="{ name: currentRoute, params: { view: routes[i] } }" v-for="(title, i) of titles" :key="title">
-        <Icon :icon="icons[i]" />{{ titles[i] }}
+        <div v-if="enabled[i]"><Icon :icon="icons[i]" />{{ titles[i] }}</div>
       </router-link>
     </div>
     <div class="w-full h-1px bg-gray-500"></div>
@@ -20,7 +20,8 @@ export default {
     currentRoute: { type: String, required: true },
     routes: { type: Array, required: true },
     titles: { type: Array, required: true },
-    icons: { type: Array, required: true }
+    icons: { type: Array, required: true },
+    enabled: { type: Array, default: true }
   }
 };
 </script>
@@ -33,7 +34,7 @@ export default {
 .tabs {
   font-family: "Work Sans";
 }
-.tabs a {
+.tabs a div {
   transition: 100ms ease;
   @apply opacity-50 select-none border-gray-500 text-11px font-medium flex gap-2 pb-2 z-10 items-center px-1 whitespace-nowrap outline-none;
 }
