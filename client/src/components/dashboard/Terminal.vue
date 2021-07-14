@@ -35,17 +35,13 @@ export default {
     },
     kill() {
       socket.emit("terminateTerminal");
-      socket.off("output");
       this.terminal = null;
     },
   },
   mounted() {
+    this.kill();
     this.start();
   },
-  unmounted() {
-    console.log('killing terminal')
-    this.kill();
-  }
 };
 </script>
 
