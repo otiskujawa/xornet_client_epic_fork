@@ -15,7 +15,7 @@
         <Tag icon="cpu"     tag="High CPU Usage"  title=">50% CPU"          :enabled="tags.cpu"         @click="tags.cpu        = !tags.cpu"        />
         <Tag icon="ram"     tag="High RAM Usage"  title=">70% RAM"          :enabled="tags.ram"         @click="tags.ram        = !tags.ram"        />
         <Tag icon="network" tag="High Network"    title=">100Mbps Traffic"  :enabled="tags.network"     @click="tags.network    = !tags.network"    />
-        <Tag icon="ping"    tag="High Ping"       title=">150ms Ping"       :enabled="tags.ping"        @click="tags.ping       = !tags.ping"       />
+        <Tag icon="rj45"    tag="High Ping"       title=">150ms Ping"       :enabled="tags.ping"        @click="tags.ping       = !tags.ping"       />
         <Tag icon="master"  tag="Hypervisors"     title="Host OS"           :enabled="tags.hypervisor"  @click="tags.hypervisor = !tags.hypervisor" />
         <Tag icon="slave"   tag="VMs"             title="Virtual Machines"  :enabled="tags.vm"          @click="tags.vm         = !tags.vm"         />
       </div>

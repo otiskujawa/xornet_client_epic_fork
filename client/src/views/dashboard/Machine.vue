@@ -1,7 +1,7 @@
 <template>
   <div v-if="machine" class="machine p-2 md:p-6 w-full h-full flex-col flex gap-4">
     <div class="div flex gap-4 flex-col">
-      <div class="heading flex gap-2 items-center">
+      <div class="heading flex gap-2 items-center ">
         <Icon class="w-32px" :icon="type" v-if="!machine.rogue && Date.now() < machine.timestamp + 15000" />
         <h1 class="text-32px font-semibold text-white">{{ machine.hostname }}</h1>
         <Flag class="mx-2 w-32px" :code="machine.geolocation?.countryCode" :name="machine.geolocation?.location" />

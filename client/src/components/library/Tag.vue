@@ -30,12 +30,11 @@ const props = defineProps<{
     px-2 
     py-1.5
     border 
-    border-gray-600 
     text-gray-900 
     hover:border-white 
     hover:text-white
     flex
-    gap-2
+    gap-1
     items-center;
   & .icon {
     @apply w-4;

@@ -7,12 +7,14 @@ export class TerminalUI {
     this.fitAddon = new FitAddon();
     this.terminal.loadAddon(this.fitAddon);
     this.terminal.setOption("theme", {
-      background: "#161b22",
+      background: "#00000000",
       foreground: "#F5F8FA"
     });
     this.terminal.setOption("fontFamily", "Ubuntu Mono, courier-new, courier, monospace");
     this.terminal.setOption("fontWeight", "600");
-    this.terminal.setOption("fontSize", 14);
+    this.terminal.setOption("fontSize", 13);
+    this.terminal.setOption("allowTransparency", true);
+    this.terminal.setOption("cursorBlink", true);
     this.socket = socket;
   }
 
