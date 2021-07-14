@@ -47,7 +47,7 @@ export class TerminalUI {
     this.fitAddon.fit();
     // Default text to display on terminal.
     this.terminal.write("Terminal Connected");
-    this.terminal.write("");
+    this.terminal.write("\n");
     this.prompt();
   }
 
