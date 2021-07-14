@@ -11,7 +11,7 @@ export class TerminalUI {
       foreground: "#F5F8FA"
     });
     this.terminal.setOption("fontFamily", "Ubuntu Mono, courier-new, courier, monospace");
-    this.terminal.setOption("fontWeight", "500");
+    this.terminal.setOption("fontWeight", "600");
     this.terminal.setOption("fontSize", 14);
     this.socket = socket;
   }
@@ -46,7 +46,7 @@ export class TerminalUI {
     this.terminal.open(container);
     this.fitAddon.fit();
     // Default text to display on terminal.
-    this.terminal.write("Terminal Connected");
+    this.terminal.write("Stonks");
     this.terminal.write("\n");
     this.prompt();
   }
