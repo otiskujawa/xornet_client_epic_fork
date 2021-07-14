@@ -10,9 +10,9 @@ export class TerminalUI {
       background: "#161b22",
       foreground: "#F5F8FA"
     });
+    this.terminal.setOption("fontFamily", "Ubuntu Mono, courier-new, courier, monospace");
+    this.terminal.setOption("fontWeight", "500");
     this.terminal.setOption("fontSize", 14);
-    this.terminal.setOption("fontWeight", "400");
-    this.terminal.setOption("fontFamily", "Courier Prime");
     this.socket = socket;
   }
 
