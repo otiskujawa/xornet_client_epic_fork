@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import SpecProperty from "@/components/misc/SpecProperty";
+import SpecProperty from "@/components/misc/SpecProperty.vue";
 import Icon from "@/components/misc/Icon";
 export default {
   name: "Details",

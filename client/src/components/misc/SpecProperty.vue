@@ -17,7 +17,7 @@ export default {
   },
   props: {
     prop: { type: String, required: true },
-    value: { type: [String, Number], required: true }
+    value: { required: true }
   }
 };
 </script>
