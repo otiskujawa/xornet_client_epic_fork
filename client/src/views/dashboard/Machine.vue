@@ -31,7 +31,7 @@
       :routes="['dashboard', 'terminal', 'processes', 'stats', 'details']" 
       :titles="['Dashboard', 'Terminal', 'Processes', 'Statistics', 'Details']" 
       :icons="['dashboard', 'terminal', 'process-tree', 'bars', 'details']"
-      :enabled="[true, details?.settings?.allowTerminal, true, true, true]" />
+      :enabled="[true, details?.settings?.allowTerminal, true, false, true]" />
     </div>
     <!-- dashboard -->
     <div v-if="$route.params.view == 'dashboard'" class="flex gap-4">

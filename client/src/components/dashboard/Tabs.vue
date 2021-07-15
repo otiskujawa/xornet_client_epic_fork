@@ -49,6 +49,6 @@ export default {
 }
 
 .tabs a.disabled {
-  @apply filter grayscale opacity-40 cursor-not-allowed;
+  @apply filter grayscale opacity-25 cursor-not-allowed;
 }
 </style>
