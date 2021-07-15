@@ -1,8 +1,8 @@
 <template>
   <div class="tabsContainer flex flex-col overflow-x-scroll">
     <div class="tabs w-min flex gap-4 justify-between md:justify-start">
-      <router-link :to="{ name: currentRoute, params: { view: routes[i] } }" v-for="(title, i) of titles" :key="title">
-        <div v-if="enabled[i]"><Icon :icon="icons[i]" />{{ titles[i] }}</div>
+      <router-link v-if="enabled[i]" :to="{ name: currentRoute, params: { view: routes[i] } }" v-for="(title, i) of titles" :key="title">
+        <div><Icon :icon="icons[i]" />{{ titles[i] }}</div>
       </router-link>
     </div>
     <div class="w-full h-1px bg-gray-500"></div>
