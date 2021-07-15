@@ -105,7 +105,6 @@ const props = defineProps<{
 }>();
 
 const type = computed(() => {
-  if (props.machine.isMobile) return 'phone';
   return props.machine.isVirtual ? "slave" : "master";
 });
 const cpu = tweened(computed(() => props.machine.cpu))
