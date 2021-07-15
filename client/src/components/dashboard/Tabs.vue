@@ -1,7 +1,7 @@
 <template>
   <div class="tabsContainer flex flex-col overflow-x-scroll">
     <div class="tabs w-min flex gap-4 justify-between md:justify-start">
-      <router-link v-if="enabled[i]" :to="{ name: currentRoute, params: { view: routes[i] } }" v-for="(title, i) of titles" :key="title">
+      <router-link :to="{ name: currentRoute, params: { view: routes[i] } }" v-for="(title, i) of titles" :key="title" :class="{disabled: !enabled[i]}" >
         <div><Icon :icon="icons[i]" />{{ titles[i] }}</div>
       </router-link>
     </div>
@@ -34,17 +34,21 @@ export default {
 .tabs {
   font-family: "Work Sans";
 }
+
 .tabs a div {
-  transition: 100ms ease;
-  @apply opacity-50 select-none border-gray-500 text-11px font-medium flex gap-2 pb-2 z-10 items-center px-1 whitespace-nowrap outline-none;
+  @apply opacity-50 select-none transition duration-100 border-gray-500 text-11px font-medium flex gap-2 pb-2 z-10 items-center px-1 whitespace-nowrap outline-none;
 }
-.tabs a:hover {
+.tabs a:not(.disabled):not(.router-link-active):hover div {
   @apply opacity-75;
 }
-.tabs a.router-link-active {
+.tabs a.router-link-active div {
   @apply opacity-100 border-b-2 border-b-secondary-400;
 }
 .tabs a .icon {
   @apply w-5;
+}
+
+.tabs a.disabled {
+  @apply filter grayscale opacity-40 cursor-not-allowed;
 }
 </style>
