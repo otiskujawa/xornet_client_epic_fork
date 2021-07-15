@@ -21,7 +21,7 @@ export default {
     routes: { type: Array, required: true },
     titles: { type: Array, required: true },
     icons: { type: Array, required: true },
-    enabled: { type: Array, default: true }
+    enabled: { type: Array, required: true }
   }
 };
 </script>

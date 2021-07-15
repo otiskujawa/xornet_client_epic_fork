@@ -25,6 +25,7 @@
       :routes="['all', 'owned', 'shared', 'offline']"
       :titles="['All', 'Your Machines', 'Shared Machines', 'Offline']"
       :icons="['view-all', 'crown', 'shared', 'dead']"
+      :enabled="[true, true, true, true]"
     />
     <ServerList :machines="taggedMachines" />
   </div>
