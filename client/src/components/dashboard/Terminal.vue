@@ -50,7 +50,7 @@ export default {
 
 <style lang="postcss" scoped>
 #terminalLmao {
-  @apply rounded-8px border-gray-600 p-4 box-content h-1/2 w-full bg-gray-300 overflow-hidden;
+  @apply rounded-8px border-gray-600 p-4 box-content h-full w-full bg-gray-300 overflow-hidden;
 }
 
 #terminalLmao *::-webkit-scrollbar {
