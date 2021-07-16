@@ -34,14 +34,28 @@
       :enabled="[true, details?.settings?.allowTerminal, true, false, true]" />
     </div>
     <!-- dashboard -->
-    <div v-if="$route.params.view == 'dashboard'" class="flex gap-4">
-      <InfoField borderless icon="cpu" title="CPU Usage" color="#8676FF" suffix="%" :value="machine.cpu" :tweened="~~cpu" />
-      <CoreBars :cores="machine.cores" />
-      <InfoField borderless icon="network" title="Ping" color="#516DFF" suffix="ms" :value="machine.ping" :tweened="~~ping" />
-      <InfoField borderless icon="ram" title="Total RAM Usage" color="#32B5FF" suffix="GB" :value="machine.ram.used" :tweened="ram.toFixed(2)" :maxValue="machine.ram.total" />
-      <InfoField borderless icon="download" title="Download Bandicam" color="#4ADEFF" suffix="Mbps" :value="machine.network.RxSec.toFixed(2)" :tweened="rx.toFixed(2)" />
-      <InfoField borderless icon="upload" title="Upload Bandicam" color="#4ADEFF" suffix="Mbps" :value="machine.network.TxSec.toFixed(2)" :tweened="tx.toFixed(2)" />
+    <div class="dashboard h-full gap-2 pt-2 md:gap-4 overflow-y-scroll overflow-x-hidden flex flex-col" v-if="$route.params.view == 'dashboard'">
+      <fieldset class="flex gap-2 md:gap-4">
+        <legend>Overview</legend>
+        <InfoField borderless icon="cpu" title="Total CPU Usage" color="#8676FF" suffix="%" :value="machine.cpu" :tweened="~~cpu" />
+        <InfoField borderless icon="ram" title="Total RAM Usage" color="#32B5FF" suffix="GB" :value="machine.ram.used" :tweened="ram.toFixed(2)" :maxValue="machine.ram.total" />
+        <InfoField borderless icon="rj45" title="Total Network" color="#4ADEFF" suffix="Mbps" :value="machine.network.RxSec+machine.network.TxSec.toFixed(2)" :tweened="totalNetwork.toFixed(2)" />
+        <InfoField borderless icon="network" title="Ping" color="#516DFF" suffix="ms" :value="machine.ping" :tweened="~~ping" />
+        <!-- <CoreBars class="h-full w-full" :cores="machine.cores" /> -->
+      </fieldset>
+
+      <fieldset>
+        <legend>CPUs</legend>
+        <InfoField v-for="(core, index) of machine.cores" :key="index" borderless icon="cpu" :title="`#${index} Core`" color="#8676FF" suffix="%" :value="core.toFixed(2)"/>
+      </fieldset>
+  
+      <fieldset v-for="(iface, index) of machine.network.interfaces" :key="index">
+        <legend>#{{index}} Interface</legend>
+        <InfoField borderless icon="download" title="Download" color="#4ADEFF" suffix="Mbps" :value="iface.rx_sec.toFixed(2)"/>
+        <InfoField borderless icon="upload" title="Upload" color="#4ADEFF" suffix="Mbps" :value="iface.tx_sec.toFixed(2)" />
+      </fieldset>
     </div>
+
     <!-- processes -->
     <div v-if="processes && $route.params.view == 'processes'" class="processList w-full h-full overflow-scroll ">
       <div class="ml-24px header px-1 py-0.5 flex items-center gap-2 justify-start">
@@ -146,8 +160,7 @@ onMounted(async () => {
 const cpu = tweened(computed(() => machine.value?.cpu || 0));
 const ping = tweened(computed(() => machine.value?.ping || 0));
 const ram = tweened(computed(() => machine.value?.ram.used || 0));
-const rx = tweened(computed(() => machine.value?.network.RxSec || 0));
-const tx = tweened(computed(() => machine.value?.network.TxSec || 0));
+const totalNetwork = tweened(computed(() => machine.value?.network.RxSec + machine.value?.network.TxSec || 0));
 
 const processes = computed(() => {
   return processList.value.sort((a, b) => (a.name < b.name ? 1 : -1));
@@ -180,4 +193,21 @@ const me = computed(() => {
   border: 1px solid var(--white);
   background-color: var(--white);
 }
+
+fieldset {
+  @apply grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 relative p-4 w-full border bg-gray-300 border-gray-400 rounded-8px;
+}
+
+legend {
+  @apply absolute -top-2 left-4 text-11px font-bold
+}
+
+.dashboard::-webkit-scrollbar {
+  display: none;
+}
+.dashboard {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 </style>
