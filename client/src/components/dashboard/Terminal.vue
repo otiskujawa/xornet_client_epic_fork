@@ -37,6 +37,7 @@ export default {
       console.log("killing terminal");
       socket.emit("terminateTerminal");
       this.terminal.stopListening();
+      this.terminal = null;
     },
   },
   mounted() {
