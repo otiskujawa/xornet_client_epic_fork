@@ -46,11 +46,11 @@
 
       <fieldset>
         <legend>CPUs</legend>
-        <InfoField v-for="(core, index) of machine.cores" :key="index" borderless icon="cpu" :title="`#${index} Core`" color="#8676FF" suffix="%" :value="core.toFixed(2)"/>
+        <InfoField v-for="(core, index) of machine.cores" :key="index" borderless icon="cpu" :title="`#${index + 1} Core`" color="#8676FF" suffix="%" :value="core.toFixed(2)"/>
       </fieldset>
   
       <fieldset v-for="(iface, index) of machine.network.interfaces" :key="index">
-        <legend>#{{index}} Interface</legend>
+        <legend>#{{index + 1}} Interface</legend>
         <InfoField borderless icon="download" title="Download" color="#4ADEFF" suffix="Mbps" :value="iface.rx_sec.toFixed(2)"/>
         <InfoField borderless icon="upload" title="Upload" color="#4ADEFF" suffix="Mbps" :value="iface.tx_sec.toFixed(2)" />
       </fieldset>
