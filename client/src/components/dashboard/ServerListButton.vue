@@ -108,7 +108,7 @@ const type = computed(() => {
   return props.machine.isVirtual ? "slave" : "master";
 });
 const cpu = tweened(computed(() => props.machine.cpu))
-const ram = tweened(computed(() => props.machine.ram.free))
+const ram = tweened(computed(() => props.machine.ram.used))
 const rx = tweened(computed(() => props.machine.network.RxSec))
 const tx = tweened(computed(() => props.machine.network.TxSec))
 const ping = tweened(computed(() => props.machine.ping))
