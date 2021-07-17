@@ -1,6 +1,7 @@
+@@ -1,307 +1,307 @@
 <template>
   <nav class="serverList">
-    <nav v-if="thinButtons" id="desktop" class="columns" :class="{ thin: thinButtons }">
+    <nav id="desktop" class="columns">
       <div @click="sort('hostname')" class="field hostname">
         hostname <img :src="sortingDirection ? chevronUp : chevronDown" v-if="sortingMethod == 'hostname'" />
       </div>
@@ -45,26 +46,27 @@
     </section>
 
     <div class="list">
-      <MachineButton
-        id="mobile"
-        :machine="machine"
-        v-for="machine of showRogues ? sortedMachines : sortedMachines.filter(machine => !machine.rogue)"
-        :key="machine.uuid"
-      />
       <ServerListButton
         id="desktop"
         :thin="thinButtons"
         :showDetails="showDetails"
         :machine="machine"
-        v-for="machine of showRogues ? sortedMachines : sortedMachines.filter(machine => !machine.rogue)"
+        v-for="machine of machines.filter(machine => machine.type === 'computer')"
         :key="machine.uuid"
       />
+      <InfrastructureListButton 
+        v-for="machine of machines.filter(machine => machine.type !== 'computer')" 
+        :key="machine.uuid"
+        :machine="machine"
+      />
+      
     </div>
   </nav>
 </template>
 
 <script>
 import ServerListButton from "@/components/dashboard/ServerListButton";
+import InfrastructureListButton from "@/components/dashboard/InfrastructureListButton";
 import MachineButton from "@/components/dashboard/MachineButton";
 import Icon from "@/components/misc/Icon";
 export default {
@@ -92,6 +94,7 @@ export default {
   components: {
     Icon,
     MachineButton,
+    InfrastructureListButton,
     ServerListButton
   },
   props: {
