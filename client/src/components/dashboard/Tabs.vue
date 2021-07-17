@@ -1,5 +1,5 @@
 <template>
-  <div class="tabsContainer flex flex-col overflow-x-scroll">
+  <div class="tabsContainer flex flex-col">
     <div class="tabs w-min flex gap-4 justify-between md:justify-start">
       <router-link :to="{ name: currentRoute, params: { view: routes[i] } }" v-for="(title, i) of titles" :key="title" :class="{disabled: !enabled[i]}" >
         <div><Icon :icon="icons[i]" />{{ titles[i] }}</div>

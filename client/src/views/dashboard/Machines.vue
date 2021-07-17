@@ -22,10 +22,10 @@
     </div>
     <Tabs
       :currentRoute="$route.name"
-      :routes="['all', 'owned', 'shared', 'offline']"
-      :titles="['All', 'Your Machines', 'Shared Machines', 'Offline']"
-      :icons="['view-all', 'crown', 'shared', 'dead']"
-      :enabled="[true, true, true, true]"
+      :routes="['all', 'servers', 'rmi', 'routers', 'switches', 'aps', 'ups']"
+      :titles="['All', 'Servers', 'RMI', 'Routers', 'Switches', 'Access Points', 'UPS']"
+      :icons=" ['view-all', 'stack', 'rmi', 'router', 'switch', 'ap', 'ups']"
+      :enabled="[true, true, true, true, true, true, true]"
     />
     <ServerList :machines="taggedMachines" />
   </div>

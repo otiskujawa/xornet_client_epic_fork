@@ -43,30 +43,35 @@
       <Icon icon="master" />
       <h1>Physical Machines</h1>
     </section>
-
-    <div class="list">
-      <MachineButton
-        id="mobile"
-        :machine="machine"
-        v-for="machine of showRogues ? sortedMachines : sortedMachines.filter(machine => !machine.rogue)"
-        :key="machine.uuid"
-      />
-      <ServerListButton
-        id="desktop"
-        :thin="thinButtons"
-        :showDetails="showDetails"
-        :machine="machine"
-        v-for="machine of showRogues ? sortedMachines : sortedMachines.filter(machine => !machine.rogue)"
-        :key="machine.uuid"
-      />
+    <div class="list h-full">
+      <div v-if="$route.params.view == 'all'">
+        <ServerListButton
+          :thin="thinButtons"
+          :showDetails="showDetails"
+          :machine="machine"
+          v-for="machine of sortedMachines"
+          :key="machine.uuid"
+        />
+        <div v-for="deviceType of devices" :key="deviceType">
+          <ServerListButton
+            :thin="thinButtons"
+            :showDetails="showDetails"
+            :machine="device"
+            v-for="device of deviceType" :key="device.uuid"
+          />
+        </div>
+      </div>
     </div>
   </nav>
 </template>
 
-<script>
+<script>  
+import TableItem from "@/components/dashboard/TableItem";
 import ServerListButton from "@/components/dashboard/ServerListButton";
 import MachineButton from "@/components/dashboard/MachineButton";
 import Icon from "@/components/misc/Icon";
+import { appState } from "@/states/appState";
+
 export default {
   name: "ServerList",
   computed: {
@@ -75,6 +80,9 @@ export default {
     },
     settings() {
       if (localStorage.settings) return JSON.parse(localStorage.settings);
+    },
+    devices() {
+      return appState.getDevices();
     }
   },
   data() {
@@ -82,7 +90,6 @@ export default {
       chevronUp: require("@/assets/icons/filled/chevron-up.svg"),
       chevronDown: require("@/assets/icons/filled/chevron-down.svg"),
       thinButtons: true,
-      showRogues: true,
       showDetails: false,
       sortingMethod: "hostname",
       sortingDirection: true,
@@ -92,7 +99,8 @@ export default {
   components: {
     Icon,
     MachineButton,
-    ServerListButton
+    ServerListButton,
+    TableItem
   },
   props: {
     machines: { type: Object, required: false }
@@ -187,7 +195,8 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
+
 .serverList {
   width: 100%;
   border-radius: 4px;

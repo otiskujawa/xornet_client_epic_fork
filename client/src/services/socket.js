@@ -24,5 +24,9 @@ socket.on("disconnect", () => {
   );
 });
 socket.on("machines", machines => appState.setMachines(machines));
+socket.on("devices", devices => {
+  console.log(devices);
+  appState.setDevices(devices)
+});
 
 export default socket;

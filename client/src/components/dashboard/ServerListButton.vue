@@ -5,7 +5,7 @@
     :class="{ thin: thin, rogue: machine.rogue, disconnected: Date.now() > machine.timestamp + 15000 }"
   >
     <!-- Icons Column -->
-    <Icon :icon="type" v-if="!machine.rogue && Date.now() < machine.timestamp + 15000" class="machineType" />
+    <Icon :icon="machine.type|| type" class="machineType" />
     <Icon icon="warning" v-if="machine.rogue && Date.now() < machine.timestamp + 15000" class="machineType" />
     <Icon icon="disconnected" v-if="Date.now() > machine.timestamp + 15000" class="machineType" />
 
@@ -18,16 +18,16 @@
 
     <!-- CPU Column -->
     <div class="field cpuUsage" v-if="machine.cpu == null"><strong>Unknown</strong></div>
-    <div class="field cpuUsage" v-else>{{ ~~cpu }}<strong>%</strong></div>
+    <div class="field cpuUsage" v-else>{{ machine.cpu }}<strong>%</strong></div>
 
     <!-- RAM Column -->
-    <div class="field ramUsage" v-if="Object.values(machine.ram).some(field => field != null)">
-      {{ ram.toFixed(2) }}/{{ machine.ram.total > 1 ? Math.ceil(machine.ram.total) : machine.ram.total }}<strong>GB</strong>
+    <div class="field ramUsage" v-if="machine.ram && Object.values(machine.ram).some(field => field != null)">
+      {{ machine.ram.used }}/{{ machine.ram.total > 1 ? Math.ceil(machine.ram.total) : machine.ram.total }}<strong>GB</strong>
     </div>
     <div class="field ramUsage" v-else><strong>Unknown</strong></div>
 
     <!-- Disks Column -->
-    <div class="field diskUsage">
+    <div class="field diskUsage" v-if="machine.disks">
       <h1 v-for="disk of showDetails ? machine.disks : [machine.disks[0]]" :key="disk.mount">
         <strong>
           {{ disk?.fs }}
@@ -42,10 +42,13 @@
         </strong>
       </h1>
     </div>
+    <div class="field diskUsage" v-else><strong>Unknown</strong></div>
 
     <!-- Network Column -->
-    <div class="field networkUsage">{{ tx.toFixed(2) }}<strong>mbps</strong></div>
-    <div class="field networkUsage">{{ rx.toFixed(2) }}<strong>mbps</strong></div>
+    <div class="field networkUsage" v-if="machine.network">{{ machine.network.RxSec }}<strong>mbps</strong></div>
+    <div class="field networkUsage" v-else><strong>Unknown</strong></div>
+    <div class="field networkUsage" v-if="machine.network">{{ machine.network.TxSec }}<strong>mbps</strong></div>
+    <div class="field networkUsage" v-else><strong>Unknown</strong></div>
 
     <!-- Region Column -->
     <div class="field region">
@@ -53,7 +56,7 @@
     </div>
 
     <!-- Ping Column -->
-    <div class="field ping" v-if="machine.ping != null">{{ ~~ping }}<strong>ms</strong></div>
+    <div class="field ping" v-if="machine.ping != null">{{ machine.ping }}<strong>ms</strong></div>
     <div class="field ping" v-else><strong>Unknown</strong></div>
 
     <!-- Uptime Column -->
@@ -64,25 +67,27 @@
     </div>
 
     <!-- Owner Column -->
-    <router-link class="field owner" :to="{ name: 'profile', params: { username: machine?.owner?.username } }"
+    <router-link v-if="machine.owner" class="field owner" :to="{ name: 'profile', params: { username: machine?.owner?.username } }"
       ><img
         :src="
           machine?.owner?.profileImage ??
             'https://cdn.discordapp.com/attachments/816028632269979668/855437868825444372/unknown.png'
         "
         :alt="machine?.owner?.username"
-      />{{ machine.owner.username }}</router-link
+      />{{ machine.owner.username }}</router-link 
     >
+    <div class="field owner" v-else><strong>Unknown</strong></div>
+
 
     <!-- Datacenter Column -->
-    <router-link class="field datacenter" :to="{ name: 'datacenters', params: { name: machine.datacenter?.name } }"
+    <router-link class="field datacenter" v-if="machine.datacenter" :to="{ name: 'datacenters', params: { name: machine.datacenter?.name } }"
       ><img :src="machine.datacenter?.logo ?? require('@/assets/icons/filled/missing.svg')" :alt="machine.datacenter?.name" />{{
         machine.datacenter ? machine.datacenter.name : "Unassigned"
       }}</router-link
     >
 
     <!-- Platform Column -->
-    <div class="platform">
+    <div class="platform" v-if="machine.platform">
       <img v-if="machine.platform == 'win32'" :src="require('@/assets/icons/filled/windows.svg')" alt="" />
       <img v-if="machine.platform == 'darwin'" :src="require('@/assets/icons/filled/macos.svg')" alt="" />
       <img v-if="machine.platform == 'linux'" :src="require('@/assets/icons/filled/linux.svg')" alt="" />
@@ -107,11 +112,7 @@ const props = defineProps<{
 const type = computed(() => {
   return props.machine.isVirtual ? "slave" : "master";
 });
-const cpu = tweened(computed(() => props.machine.cpu))
-const ram = tweened(computed(() => props.machine.ram.used))
-const rx = tweened(computed(() => props.machine.network.RxSec))
-const tx = tweened(computed(() => props.machine.network.TxSec))
-const ping = tweened(computed(() => props.machine.ping))
+
 </script>
 
 <style lang="postcss" scoped>
@@ -210,7 +211,6 @@ const ping = tweened(computed(() => props.machine.ping))
   font-weight: 500;
   font-size: 14px;
   line-height: 117.9%;
-  text-transform: lowercase;
   color: var(--black);
   text-align: left;
 }

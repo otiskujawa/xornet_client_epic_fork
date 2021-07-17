@@ -4,6 +4,7 @@ import { MachineObject, MeObject } from "./types";
 interface IAppState {
   me?: MeObject;
   machines: Map<string, MachineObject>;
+  devices: Object;
 }
 
 class AppState extends Store<IAppState> {
@@ -19,9 +20,16 @@ class AppState extends Store<IAppState> {
   getMachines() {
     return this.state.machines;
   }
+  setDevices(devices: Object) {
+    this.state.devices = devices;
+  }
+  getDevices() {
+    return this.state.devices;
+  }
 }
 
 export const appState = new AppState({
   me: JSON.parse(localStorage.getItem("me")!),
-  machines: new Map()
+  machines: new Map(),
+  devices: {},
 });
