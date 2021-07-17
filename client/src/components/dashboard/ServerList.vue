@@ -283,7 +283,7 @@ section h1 {
 }
 .field.cpuUsage {
   margin-left: 32px;
-  min-width: 48px;
+  min-width: 64px;
 }
 .field.hostname {
   margin-left: 24px;

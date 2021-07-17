@@ -240,7 +240,7 @@ const type = computed(() => {
 }
 .field.cpuUsage {
   margin-left: 32px;
-  min-width: 48px;
+  min-width: 64px;
 }
 .field.region {
   min-width: 48px;
