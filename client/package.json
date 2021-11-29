@@ -11,7 +11,7 @@
   "dependencies": {
     "@highlightjs/vue-plugin": "github:highlightjs/vue-plugin",
     "@vueuse/core": "^5.0.3",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "chokidar": "^3.5.2",
     "core-js": "^3.6.5",
     "epoch-timeago": "^1.1.9",
