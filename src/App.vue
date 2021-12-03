@@ -1,96 +1,61 @@
+<script setup lang="ts"></script>
+
 <template>
-  <div>
-    <Popup />
-    <router-view />
-  </div>
+  <router-view />
 </template>
 
-<script>
-import Popup from "@/components/misc/Popup";
-export default {
-  components: {
-    Popup
-  }
-};
-</script>
-
-<style>
-:root {
-  /* Static colors that wont change */
-  --dark: #0b0b15;
-  --dark-light: #0f0f1e;
-  --dark-lighter: #18182c;
-  --rogue-red-border: #f85149;
-  --theme-color: #6142ff;
-  --bright-theme-color: #aca3f5;
-  --terminal-background: #0b0b15;
-  --green: #00ff6672;
-  --blue: #4adeff;
-  --blue-transparent: #4adeff44;
-
-  /* Initial colors */
-  --background-color: #0b0b15;
-  --white: #0f0f1e;
-  --black: #fff;
-  --border-color: #26293f;
-  --slyColor: #fff;
-  --rogue-red: rgba(218, 54, 51, 0.2);
-  --rogue-red-active: #8e1519;
-  --gray: #c7c7c7;
-  --shadowButton-color: #0f0f1e;
-  --shadowColor: #8676ff50;
-
-  /* Darkmode colors */
-  --darkmode-background-color: #0b0b15;
-  --darkmode-white: #0f0f1e;
-  --darkmode-black: #fff;
-  --darkmode-border-color: #26293f;
-  --darkmode-slyColor: #fff;
-  --darkmode-rogue-red: rgba(218, 54, 51, 0.2);
-  --darkmode-rogue-red-active: #8e1519;
-  --darkmode-gray: #c7c7c7;
-  --darkmode-shadowButton-color: #0f0f1e;
-  --darkmode-shadowColor: #8676ff50;
-
-  /* This variable decides weither the images on the buttons will have their color inverted 
-    it switches states if darkmode is on or off in serverList.vue */
-  --filter: 1;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  text-decoration: none;
-}
-
+<style scoped lang="postcss">
+#app,
+body,
 html {
-  overflow: hidden;
+  @apply text-theme-700 h-full w-full select-none bg-theme-100;
+  font-family: "Roboto";
 }
-
-#app {
-  font-family: "Montserrat", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: white;
-  height: 100vh;
+svg {
+  fill: currentColor;
 }
-
-@media only screen and (max-width: 600px) {
-  #desktop {
-    display: none;
-  }
-  #mobile {
-    display: flex;
-  }
+* {
+  @apply !outline-none;
 }
-
-@media only screen and (min-width: 600px) {
-  #desktop {
-    display: flex;
-  }
-  #mobile {
-    display: none;
-  }
+*::selection {
+  background-color: var(--accent-color);
+}
+*::-webkit-scrollbar {
+  width: 6px;
+  display: none;
+  left: -100px;
+}
+*::-webkit-scrollbar-track,
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  @apply bg-theme-400;
+  border-radius: 20px;
+  border: transparent;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  @apply bg-theme-300 rounded-full h-2;
+}
+input[type="range"]::-webkit-slider-thumb {
+  @apply -mt-1;
+}
+.scrollable {
+  overflow-y: overlay;
+  overflow-x: initial;
+}
+.animated {
+  @apply duration-50 transition-all;
+}
+.clicky {
+  @apply cursor-pointer;
+}
+.fullscreen {
+  @apply absolute top-0 left-0 w-full h-full;
 }
 </style>

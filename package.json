@@ -1,43 +1,31 @@
 {
-  "name": "xornet-website",
-  "version": "0.1.0",
-  "private": true,
+  "name": "client",
+  "version": "0.0.0",
   "scripts": {
-    "dev": "set NODE_ENV=development && vue-cli-service serve",
-    "staged": "set NODE_ENV=staged && vue-cli-service serve",
-    "build": "set NODE_ENV=production && vue-cli-service build",
-    "prettify": "npx prettier --write \"./**/*.vue\" && npx prettier --write \"./**/*.js\" && npx prettier --parser html --write \"./**/*.svg\""
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "serve": "vite preview"
   },
   "dependencies": {
-    "@highlightjs/vue-plugin": "github:highlightjs/vue-plugin",
-    "@vueuse/core": "^5.0.3",
-    "axios": "^0.21.2",
-    "chokidar": "^3.5.2",
-    "core-js": "^3.6.5",
-    "epoch-timeago": "^1.1.9",
-    "gsap": "^3.6.1",
-    "highlight.js": "^11.0.1",
-    "millify": "^4.0.0",
-    "qrcode": "^1.4.4",
-    "socket.io-client": "^4.0.2",
-    "vue": "^3.0.0",
-    "vue-router": "^4.0.0-0",
-    "xterm": "^4.12.0",
-    "xterm-addon-fit": "^0.5.0"
+    "@vitejs/plugin-vue": "^1.9.3",
+    "@vueuse/core": "^6.9.0",
+    "music-metadata": "^7.11.4",
+    "typescript": "^4.4.3",
+    "unplugin-icons": "^0.12.18",
+    "unplugin-vue-components": "^0.17.1",
+    "vue": "^3.2.16",
+    "vue-router": "^4.0.11",
+    "vue-tsc": "^0.3.0",
+    "windicss": "^3.2.1"
   },
   "devDependencies": {
-    "@types/qrcode": "^1.4.0",
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-router": "~4.5.0",
-    "@vue/cli-plugin-typescript": "~4.5.0",
-    "@vue/cli-service": "^4.5.13",
-    "@vue/compiler-sfc": "^3.0.0",
-    "typescript": "~4.1.5",
-    "vue-cli-plugin-windicss": "~1.0.0"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+    "@vitejs/plugin-vue": "^1.9.3",
+    "typescript": "^4.4.3",
+    "vite": "^2.6.4",
+    "vite-plugin-md": "^0.11.4",
+    "vite-plugin-pwa": "^0.11.7",
+    "vite-plugin-tauri": "^0.1.6",
+    "vite-plugin-windicss": "^1.5.1",
+    "vue-tsc": "^0.3.0"
+  }
 }
