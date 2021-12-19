@@ -1,61 +1,31 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+// This starter template is using Vue 3 <script setup> SFCs
+// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
+import HelloWorld from "./components/HelloWorld.vue";
+</script>
 
 <template>
-  <router-view />
+  <img alt="Vue logo" src="./assets/logo.png" />
+  <HelloWorld msg="Vue 3 + TypeScript + Vite + Electron" />
+  <div id="test"></div>
 </template>
 
-<style scoped lang="postcss">
-#app,
-body,
-html {
-  @apply text-theme-700 h-full w-full select-none bg-theme-100;
-  font-family: "Roboto";
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
 }
-svg {
-  fill: currentColor;
-}
-* {
-  @apply !outline-none;
-}
-*::selection {
-  background-color: var(--accent-color);
-}
-*::-webkit-scrollbar {
-  width: 6px;
-  display: none;
-  left: -100px;
-}
-*::-webkit-scrollbar-track,
-*::-webkit-scrollbar-corner {
-  background: transparent;
-}
-*::-webkit-scrollbar-thumb {
-  @apply bg-theme-400;
-  border-radius: 20px;
-  border: transparent;
-}
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-input[type="range"]::-webkit-slider-runnable-track {
-  @apply bg-theme-300 rounded-full h-2;
-}
-input[type="range"]::-webkit-slider-thumb {
-  @apply -mt-1;
-}
-.scrollable {
-  overflow-y: overlay;
-  overflow-x: initial;
-}
-.animated {
-  @apply duration-50 transition-all;
-}
-.clicky {
-  @apply cursor-pointer;
-}
-.fullscreen {
-  @apply absolute top-0 left-0 w-full h-full;
+#test {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #05050588;
+  z-index: -1;
 }
 </style>
