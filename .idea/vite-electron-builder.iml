@@ -5,8 +5,8 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/main/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/packages/preload/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/packages/renderer/src" isTestSource="false" />
-      <excludeFolder url="file://$MODULE_DIR$/packages/renderer/dist" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/vue/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/vue/dist" />
       <excludeFolder url="file://$MODULE_DIR$/dist" />
       <excludeFolder url="file://$MODULE_DIR$/packages/main/dist" />
       <excludeFolder url="file://$MODULE_DIR$/packages/preload/dist" />

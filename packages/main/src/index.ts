@@ -59,15 +59,12 @@ const createWindow = async () => {
   /**
    * URL for main window.
    * Vite dev server for development.
-   * `file://../renderer/index.html` for production and test
+   * `file://../vue/index.html` for production and test
    */
   const pageUrl =
     isDevelopment && import.meta.env.VITE_DEV_SERVER_URL !== undefined
       ? import.meta.env.VITE_DEV_SERVER_URL
-      : new URL(
-          "../renderer/dist/index.html",
-          "file://" + __dirname
-        ).toString();
+      : new URL("../vue/dist/index.html", "file://" + __dirname).toString();
 
   await mainWindow.loadURL(pageUrl);
 };

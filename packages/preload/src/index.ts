@@ -1,11 +1,11 @@
-import {contextBridge} from "electron";
+import { contextBridge } from "electron";
 
-import type {BinaryLike} from "crypto";
-import {createHash} from "crypto";
+import type { BinaryLike } from "crypto";
+import { createHash } from "crypto";
 
 /**
- * The "Main World" is the JavaScript context that your main renderer code runs in.
- * By default, the page you load in your renderer executes code in this world.
+ * The "Main World" is the JavaScript context that your main vue code runs in.
+ * By default, the page you load in your vue executes code in this world.
  *
  * @see https://www.electronjs.org/docs/api/context-bridge
  */
@@ -14,7 +14,7 @@ import {createHash} from "crypto";
  * After analyzing the `exposeInMainWorld` calls,
  * `packages/preload/exposedInMainWorld.d.ts` file will be generated.
  * It contains all interfaces.
- * `packages/preload/exposedInMainWorld.d.ts` file is required for TS is `renderer`
+ * `packages/preload/exposedInMainWorld.d.ts` file is required for TS is `vue`
  *
  * @see https://github.com/cawa-93/dts-for-context-bridge
  */

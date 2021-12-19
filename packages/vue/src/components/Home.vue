@@ -35,7 +35,7 @@
 
   <p>
     Edit
-    <code>renderer/components/Home.vue</code> to test hot module replacement.
+    <code>vue/components/Home.vue</code> to test hot module replacement.
   </p>
 </template>
 
