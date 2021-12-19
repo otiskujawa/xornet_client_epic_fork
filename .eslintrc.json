@@ -48,7 +48,7 @@
      * Just for beauty
      */
     "quotes": [
-      "warn", "single"
+      "warn", "double"
     ]
   }
 }

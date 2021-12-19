@@ -54,14 +54,14 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, ref} from 'vue';
+import {computed, defineComponent, ref} from "vue";
 
 export default defineComponent({
-  name: 'HelloWorld',
+  name: "HelloWorld",
   setup() {
     const count = ref(0);
 
-    const rawString = ref('Hello World');
+    const rawString = ref("Hello World");
     const hashedString = computed(() => window.nodeCrypto.sha256sum(rawString.value));
 
     return {count, rawString, hashedString};

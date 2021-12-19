@@ -1,7 +1,7 @@
-import {contextBridge} from 'electron';
+import {contextBridge} from "electron";
 
-import type {BinaryLike} from 'crypto';
-import {createHash} from 'crypto';
+import type {BinaryLike} from "crypto";
+import {createHash} from "crypto";
 
 /**
  * The "Main World" is the JavaScript context that your main renderer code runs in.
@@ -24,17 +24,17 @@ import {createHash} from 'crypto';
  * @example
  * console.log( window.versions )
  */
-contextBridge.exposeInMainWorld('versions', process.versions);
+contextBridge.exposeInMainWorld("versions", process.versions);
 
 /**
  * Safe expose node.js API
  * @example
  * window.nodeCrypto('data')
  */
-contextBridge.exposeInMainWorld('nodeCrypto', {
+contextBridge.exposeInMainWorld("nodeCrypto", {
   sha256sum(data: BinaryLike) {
-    const hash = createHash('sha256');
+    const hash = createHash("sha256");
     hash.update(data);
-    return hash.digest('hex');
+    return hash.digest("hex");
   },
 });

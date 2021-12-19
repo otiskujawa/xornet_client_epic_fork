@@ -1,14 +1,14 @@
 #!/usr/bin/env node
-const {build} = require('vite');
-const {dirname} = require('path');
+const {build} = require("vite");
+const {dirname} = require("path");
 
 /** @type 'production' | 'development' */
-const mode = process.env.MODE = process.env.MODE || 'production';
+const mode = process.env.MODE = process.env.MODE || "production";
 
 const packagesConfigs = [
-  'packages/main/vite.config.js',
-  'packages/preload/vite.config.js',
-  'packages/renderer/vite.config.js',
+  "packages/main/vite.config.js",
+  "packages/preload/vite.config.js",
+  "packages/renderer/vite.config.js",
 ];
 
 
@@ -18,7 +18,7 @@ const packagesConfigs = [
 const buildByConfig = (configFile) => build({configFile, mode});
 (async () => {
   try {
-    const totalTimeLabel = 'Total bundling time';
+    const totalTimeLabel = "Total bundling time";
     console.time(totalTimeLabel);
 
     for (const packageConfigPath of packagesConfigs) {
@@ -26,14 +26,14 @@ const buildByConfig = (configFile) => build({configFile, mode});
       const consoleGroupName = `${dirname(packageConfigPath)}/`;
       console.group(consoleGroupName);
 
-      const timeLabel = 'Bundling time';
+      const timeLabel = "Bundling time";
       console.time(timeLabel);
 
       await buildByConfig(packageConfigPath);
 
       console.timeEnd(timeLabel);
       console.groupEnd();
-      console.log('\n'); // Just for pretty print
+      console.log("\n"); // Just for pretty print
     }
     console.timeEnd(totalTimeLabel);
   } catch (e) {
