@@ -12,7 +12,7 @@ module.exports = {
       globalComponents: ["./src/components/**/*.vue"],
     },
     {
-      root: "./packages/main",
+      root: "./packages/electron",
       tsconfig: "./tsconfig.json",
     },
     {

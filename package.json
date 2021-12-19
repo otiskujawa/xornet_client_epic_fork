@@ -5,7 +5,7 @@
     "node": ">=v16.13",
     "npm": ">=8.1"
   },
-  "main": "packages/main/dist/index.cjs",
+  "main": "packages/electron/dist/index.cjs",
   "scripts": {
     "build": "node scripts/build.js",
     "precompile": "cross-env MODE=production npm run build",
@@ -14,10 +14,10 @@
     "test": "node tests/app.spec.js",
     "watch": "node scripts/watch.js",
     "lint": "eslint . --ext js,ts,vue",
-    "typecheck-main": "tsc --noEmit -p packages/main/tsconfig.json",
+    "typecheck-electron": "tsc --noEmit -p packages/electron/tsconfig.json",
     "typecheck-preload": "tsc --noEmit -p packages/preload/tsconfig.json",
     "typecheck-vue": "vue-tsc --noEmit -p packages/vue/tsconfig.json",
-    "typecheck": "npm run typecheck-main && npm run typecheck-preload && npm run typecheck-vue",
+    "typecheck": "npm run typecheck-electron && npm run typecheck-preload && npm run typecheck-vue",
     "pretypecheck-vue": "dts-cb -i packages/preload/src/**/*.ts -o packages/preload/exposedInMainWorld.d.ts"
   },
   "devDependencies": {
@@ -35,8 +35,12 @@
     "playwright": "1.17.1",
     "simple-git-hooks": "2.7.0",
     "typescript": "4.5.4",
+    "unplugin-icons": "^0.12.23",
+    "unplugin-vue-components": "^0.17.9",
     "vite": "2.7.3",
-    "vue-tsc": "0.29.8"
+    "vite-plugin-windicss": "^1.5.4",
+    "vue-tsc": "0.29.8",
+    "windicss": "^3.4.0"
   },
   "dependencies": {
     "electron-updater": "4.6.5",

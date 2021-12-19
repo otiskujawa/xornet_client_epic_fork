@@ -64,7 +64,7 @@ const setupMainPackageWatcher = (viteDevServer) => {
 
   return getWatcher({
     name: "reload-app-on-main-package-change",
-    configFile: "packages/main/vite.config.js",
+    configFile: "packages/electron/vite.config.js",
     writeBundle() {
       if (spawnProcess !== null) {
         spawnProcess.kill("SIGINT");

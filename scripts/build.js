@@ -6,7 +6,7 @@ const { dirname } = require("path");
 const mode = (process.env.MODE = process.env.MODE || "production");
 
 const packagesConfigs = [
-  "packages/main/vite.config.js",
+  "packages/electron/vite.config.js",
   "packages/preload/vite.config.js",
   "packages/vue/vite.config.js",
 ];
