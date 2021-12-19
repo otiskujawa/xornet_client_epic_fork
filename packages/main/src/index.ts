@@ -23,7 +23,7 @@ if (isDevelopment) {
         loadExtensionOptions: {
           allowFileAccess: true,
         },
-      }),
+      })
     )
     .catch((e) => console.error("Failed install extension:", e));
 }
@@ -33,8 +33,8 @@ let mainWindow: BrowserWindow | null = null;
 const createWindow = async () => {
   mainWindow = new BrowserWindow({
     show: false, // Use 'ready-to-show' event to show window
-    transparent: true,
     frame: false,
+    icon: "../../../buildResources/icon.png",
     webPreferences: {
       nativeWindowOpen: true,
       webviewTag: false, // The webview tag is not recommended. Consider alternatives like iframe or Electron's BrowserView. https://www.electronjs.org/docs/latest/api/webview-tag#warning
@@ -66,7 +66,7 @@ const createWindow = async () => {
       ? import.meta.env.VITE_DEV_SERVER_URL
       : new URL(
           "../renderer/dist/index.html",
-          "file://" + __dirname,
+          "file://" + __dirname
         ).toString();
 
   await mainWindow.loadURL(pageUrl);
