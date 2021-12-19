@@ -73,11 +73,7 @@ const setupMainPackageWatcher = (viteDevServer) => {
 
       spawnProcess = spawn(String(electronPath), ["."]);
 
-      spawnProcess.stdout.on(
-        "data",
-        (d) =>
-          d.toString().trim() && logger.warn(d.toString(), { timestamp: true })
-      );
+      spawnProcess.stdout.on("data", (d) => d.toString().trim() && logger.warn(d.toString(), { timestamp: true }));
       spawnProcess.stderr.on("data", (d) => {
         const data = d.toString().trim();
         if (!data) return;

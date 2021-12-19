@@ -2,15 +2,11 @@
   <p>
     For a guide and recipes on how to configure / customize this project,<br />
     check out the
-    <a href="https://github.com/cawa-93/xornet" rel="noopener" target="_blank"
-      >xornet documentation</a
-    >.
+    <a href="https://github.com/cawa-93/xornet" rel="noopener" target="_blank">xornet documentation</a>.
   </p>
 
   <p>
-    <a href="https://vitejs.dev/guide/features.html" target="_blank"
-      >Vite Documentation</a
-    >
+    <a href="https://vitejs.dev/guide/features.html" target="_blank">Vite Documentation</a>
     |
     <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Documentation</a>
   </p>
@@ -48,9 +44,7 @@ export default defineComponent({
     const count = ref(0);
 
     const rawString = ref("Hello World");
-    const hashedString = computed(() =>
-      window.nodeCrypto.sha256sum(rawString.value)
-    );
+    const hashedString = computed(() => window.nodeCrypto.sha256sum(rawString.value));
 
     return { count, rawString, hashedString };
   },

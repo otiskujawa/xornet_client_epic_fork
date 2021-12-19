@@ -21,10 +21,7 @@ const { strict: assert } = require("assert");
     return new Promise((resolve) => {
       if (mainWindow.isVisible()) {
         resolve(getState());
-      } else
-        mainWindow.once("ready-to-show", () =>
-          setTimeout(() => resolve(getState()), 0)
-        );
+      } else mainWindow.once("ready-to-show", () => setTimeout(() => resolve(getState()), 0));
     });
   });
 
@@ -42,11 +39,7 @@ const { strict: assert } = require("assert");
   // Check web-page content
   const element = await page.$("#app", { strict: true });
   assert.notStrictEqual(element, null, "Can't find root element");
-  assert.notStrictEqual(
-    (await element.innerHTML()).trim(),
-    "",
-    "Window content is empty"
-  );
+  assert.notStrictEqual((await element.innerHTML()).trim(), "", "Window content is empty");
 
   // Checking the framework.
   // It is assumed that on the main screen there is a `<button>` that changes its contents after clicking.
@@ -56,20 +49,13 @@ const { strict: assert } = require("assert");
   await button.click();
   const newBtnText = await button.textContent();
 
-  assert.ok(
-    originalBtnText !== newBtnText,
-    "The button did not change the contents after clicking"
-  );
+  assert.ok(originalBtnText !== newBtnText, "The button did not change the contents after clicking");
 
   // Check Preload script
   const renderedExposedApi = await page.evaluate(() => globalThis.versions);
   const realVersions = await electronApp.evaluate(() => process.versions);
 
-  assert.notStrictEqual(
-    renderedExposedApi,
-    undefined,
-    "In vue `globalThis.electron` is undefined"
-  );
+  assert.notStrictEqual(renderedExposedApi, undefined, "In vue `globalThis.electron` is undefined");
   assert.strictEqual(renderedExposedApi?.electron, realVersions.electron);
 
   // Close app

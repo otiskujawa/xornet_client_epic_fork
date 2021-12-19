@@ -18,7 +18,8 @@
     "typecheck-preload": "tsc --noEmit -p packages/preload/tsconfig.json",
     "typecheck-vue": "vue-tsc --noEmit -p packages/vue/tsconfig.json",
     "typecheck": "npm run typecheck-electron && npm run typecheck-preload && npm run typecheck-vue",
-    "pretypecheck-vue": "dts-cb -i packages/preload/src/**/*.ts -o packages/preload/exposedInMainWorld.d.ts"
+    "pretypecheck-vue": "dts-cb -i packages/preload/src/**/*.ts -o packages/preload/exposedInMainWorld.d.ts",
+    "prettify": "npx prettier --write \"./**/*.ts\" && npx prettier --write \"./**/*.js\" && npx prettier --write \"./**/*.json\" && npx prettier --write \"./**/*.vue\""
   },
   "devDependencies": {
     "@types/electron-devtools-installer": "2.2.0",

@@ -5,11 +5,7 @@ const { dirname } = require("path");
 /** @type 'production' | 'development' */
 const mode = (process.env.MODE = process.env.MODE || "production");
 
-const packagesConfigs = [
-  "packages/electron/vite.config.js",
-  "packages/preload/vite.config.js",
-  "packages/vue/vite.config.js",
-];
+const packagesConfigs = ["packages/electron/vite.config.js", "packages/preload/vite.config.js", "packages/vue/vite.config.js"];
 
 /**
  * Run `vite build` for config file
