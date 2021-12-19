@@ -1,51 +1,46 @@
 {
-  "name": "client",
-  "version": "0.0.0",
-  "author": "Geoxor",
-  "main": "src/electron/electron.js",
+  "name": "vite-electron-builder",
+  "private": true,
+  "engines": {
+    "node": ">=v16.13",
+    "npm": ">=8.1"
+  },
+  "main": "packages/main/dist/index.cjs",
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
-    "serve": "vite preview",
-    "electron": "wait-on tcp:3000 && cross-env IS_DEV=true electron .",
-    "electron:pack": "electron-builder --dir",
-    "electron:dev": "concurrently -k \"cross-env BROWSER=none yarn dev\" \"yarn electron\"",
-    "electron:builder": "electron-builder",
-    "build:for:electron": "vue-tsc --noEmit && cross-env ELECTRON=true vite build",
-    "app:build": "yarn build:for:electron && yarn electron:builder"
-  },
-  "build": {
-    "appId": "com.my-website.my-app",
-    "productName": "MyApp",
-    "copyright": "Copyright © 2021 ${author}",
-    "mac": {
-      "category": "public.app-category.utilities"
-    },
-    "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true
-    },
-    "files": [
-      "dist/**/*",
-      "electron/**/*"
-    ],
-    "directories": {
-      "buildResources": "assets",
-      "output": "dist_electron"
-    }
-  },
-  "dependencies": {
-    "vue": "^3.2.16"
+    "build": "node scripts/build.js",
+    "precompile": "cross-env MODE=production npm run build",
+    "compile": "electron-builder build --config .electron-builder.config.js --dir --config.asar=false",
+    "pretest": "npm run build",
+    "test": "node tests/app.spec.js",
+    "watch": "node scripts/watch.js",
+    "lint": "eslint . --ext js,ts,vue",
+    "typecheck-main": "tsc --noEmit -p packages/main/tsconfig.json",
+    "typecheck-preload": "tsc --noEmit -p packages/preload/tsconfig.json",
+    "typecheck-renderer": "vue-tsc --noEmit -p packages/renderer/tsconfig.json",
+    "typecheck": "npm run typecheck-main && npm run typecheck-preload && npm run typecheck-renderer",
+    "pretypecheck-renderer": "dts-cb -i packages/preload/src/**/*.ts -o packages/preload/exposedInMainWorld.d.ts"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.9.3",
-    "concurrently": "^6.3.0",
-    "cross-env": "^7.0.3",
-    "electron": "^15.3.0",
-    "electron-builder": "^22.13.1",
-    "typescript": "^4.4.3",
-    "vite": "^2.6.4",
-    "vue-tsc": "^0.3.0",
-    "wait-on": "^6.0.0"
+    "@types/electron-devtools-installer": "2.2.0",
+    "@typescript-eslint/eslint-plugin": "5.7.0",
+    "@vitejs/plugin-vue": "2.0.1",
+    "cross-env": "7.0.3",
+    "dts-for-context-bridge": "0.7.0",
+    "electron": "16.0.5",
+    "electron-builder": "22.14.5",
+    "electron-devtools-installer": "3.2.0",
+    "eslint": "8.5.0",
+    "eslint-plugin-vue": "8.2.0",
+    "nano-staged": "0.5.0",
+    "playwright": "1.17.1",
+    "simple-git-hooks": "2.7.0",
+    "typescript": "4.5.4",
+    "vite": "2.7.3",
+    "vue-tsc": "0.29.8"
+  },
+  "dependencies": {
+    "electron-updater": "4.6.5",
+    "vue": "3.2.26",
+    "vue-router": "4.0.12"
   }
 }
