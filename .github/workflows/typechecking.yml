@@ -37,6 +37,6 @@ jobs:
         run: npm ci
 
       # Type checking is divided into three separate commands for more convenient logs
-      - run: npm run typecheck-main
+      - run: npm run typecheck-electron
       - run: npm run typecheck-preload
       - run: npm run typecheck-vue
