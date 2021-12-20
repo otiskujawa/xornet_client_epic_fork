@@ -8,4 +8,12 @@ export class SettingsState extends State<ISettingsState> {
   constructor(state: ISettingsState) {
     super(state);
   }
+
+  public get opacity(): number {
+    return this.state.opacity;
+  }
+
+  public set opacity(opacity: number) {
+    this.state.opacity = opacity;
+  }
 }

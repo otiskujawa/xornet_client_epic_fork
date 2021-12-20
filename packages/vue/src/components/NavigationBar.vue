@@ -1,8 +1,8 @@
 <template>
   <nav class="h-full flex flex-col">
     <ul>
-      <li class="p-4 text-white opacity-25" v-for="route of routes">
-        <router-link :to="route.name"> <icon :name="route.icon" />{{ route.name }} </router-link>
+      <li class="p-4 text-2xl text-white opacity-25" v-for="route of routes">
+        <router-link :to="route.name"><icon :name="route.icon" /></router-link>
       </li>
     </ul>
   </nav>
