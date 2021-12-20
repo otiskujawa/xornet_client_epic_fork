@@ -21,6 +21,7 @@ defaults:
 
 jobs:
   e2e:
+    if: ${{ false }}  # disable for now
     strategy:
       matrix:
         os: [ windows-latest, ubuntu-latest, macos-latest ]
