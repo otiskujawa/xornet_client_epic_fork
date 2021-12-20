@@ -36,7 +36,7 @@ export default defineConfig({
     WindiCSS(),
     Icons({
       customCollections: {
-        fluency: FileSystemIconLoader("../resources/svg"),
+        fluency: FileSystemIconLoader("./resources/svg"),
       },
     }),
     vue(),

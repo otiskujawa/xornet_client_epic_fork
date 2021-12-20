@@ -23,7 +23,7 @@ if (isDevelopment) {
         loadExtensionOptions: {
           allowFileAccess: true,
         },
-      }),
+      })
     )
     .catch((e) => console.error("Failed install extension:", e));
 }
@@ -34,6 +34,7 @@ const createWindow = async () => {
   mainWindow = new BrowserWindow({
     show: false, // Use 'ready-to-show' event to show window
     frame: false,
+    transparent: true,
     center: true,
     icon: "../../../resources/icon.png",
     title: "Xornet",

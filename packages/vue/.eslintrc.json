@@ -7,6 +7,9 @@
     /** @see https://eslint.vuejs.org/rules/ */
     "plugin:vue/vue3-recommended"
   ],
+  "rules": {
+    "vue/script-setup-uses-vars": "error"
+  },
   "parserOptions": {
     "parser": "@typescript-eslint/parser",
     "ecmaVersion": 12,
