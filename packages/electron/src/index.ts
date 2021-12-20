@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
 import { join } from "path";
 import { URL } from "url";
 import "./security-restrictions";
@@ -35,11 +35,11 @@ const createWindow = async () => {
     show: false, // Use 'ready-to-show' event to show window
     frame: false,
     transparent: true,
-    center: true,
     icon: "../../../resources/icon.png",
     title: "Xornet",
     webPreferences: {
       nativeWindowOpen: true,
+      nodeIntegration: true,
       webviewTag: false, // The webview tag is not recommended. Consider alternatives like iframe or Electron's BrowserView. https://www.electronjs.org/docs/latest/api/webview-tag#warning
       preload: join(__dirname, "../../preload/dist/index.cjs"),
     },
@@ -71,6 +71,26 @@ const createWindow = async () => {
 
   await mainWindow.loadURL(pageUrl);
 };
+
+// Listen to events from the frontend
+ipcMain.on("event", (_, event) => {
+  switch (event.name) {
+    case "close":
+      app.quit();
+    case "minimize":
+      mainWindow?.minimize();
+      break;
+    case "maximize":
+      mainWindow?.maximize();
+      break;
+    case "unmaximize":
+      mainWindow?.unmaximize();
+      break;
+    case "restore":
+      mainWindow?.restore();
+      break;
+  }
+});
 
 app.on("second-instance", () => {
   // Someone tried to run a second instance, we should focus our window.

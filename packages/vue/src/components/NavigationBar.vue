@@ -1,8 +1,8 @@
 <template>
-  <nav class="h-full flex flex-col">
+  <nav class="h-full w-min flex flex-col">
     <ul>
-      <li class="p-4 text-2xl text-white opacity-25" v-for="route of routes">
-        <router-link :to="route.name"><icon :name="route.icon" /></router-link>
+      <li class="flex" v-for="route of routes">
+        <router-link class="p-4 text-2xl text-white opacity-25" :to="route.name"><icon :name="route.icon" /></router-link>
       </li>
     </ul>
   </nav>
@@ -14,7 +14,7 @@ import icon from "/@/components/shared/Icon.vue";
 </script>
 
 <style scoped lang="postcss">
-li {
+a {
   &:hover {
     @apply opacity-50;
   }

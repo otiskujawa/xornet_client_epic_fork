@@ -1,4 +1,4 @@
-import { contextBridge } from "electron";
+import { contextBridge, ipcRenderer } from "electron";
 
 import type { BinaryLike } from "crypto";
 import { createHash } from "crypto";
@@ -38,3 +38,8 @@ contextBridge.exposeInMainWorld("nodeCrypto", {
     return hash.digest("hex");
   },
 });
+
+/**
+ * Connects the frontend to electron's backend so we can send events to node
+ */
+process.once("loaded", () => window.addEventListener("message", (event) => ipcRenderer.send("event", event.data)));

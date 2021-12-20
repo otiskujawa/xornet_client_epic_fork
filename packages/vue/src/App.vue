@@ -1,23 +1,26 @@
 <template>
   <div>
+    <control-buttons v-if="isElectron()" />
     <navigation-bar />
     <router-view />
   </div>
 </template>
 
 <script setup lang="ts">
-import NavigationBar from "./components/shared/NavigationBar.vue";
+import { isElectron } from "/@/services/logic";
+import NavigationBar from "/@/components/NavigationBar.vue";
+import ControlButtons from "/@/components/electron/ControlButtons.vue";
 </script>
 
 <style lang="postcss">
 :root {
-  --background-color: #212121;
+  --background-color: #21212133;
+}
+* {
+  @apply !outline-none fill-current;
+  scrollbar-width: thin;
 }
 
-* {
-  scrollbar-width: thin;
-  fill: currentColor;
-}
 *::selection {
   background-color: var(--accent-color);
 }
