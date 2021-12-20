@@ -1,27 +1,18 @@
 <template>
-  <img alt="Vue logo" src="../assets/logo.svg" width="300" />
-  <app-navigation />
-  <router-view />
+  <div>
+    <navigation-bar />
+    <router-view />
+  </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import AppNavigation from "/@/components/AppNavigation.vue";
-export default defineComponent({
-  name: "App",
-  components: {
-    AppNavigation,
-  },
-});
+<script setup lang="ts">
+import NavigationBar from "./components/shared/NavigationBar.vue";
 </script>
 
-<style>
+<style lang="postcss">
+body,
+html,
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  @apply h-full w-full;
 }
 </style>

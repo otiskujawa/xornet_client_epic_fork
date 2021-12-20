@@ -1,13 +1,9 @@
+import type { RouteRecordRaw } from "vue-router";
 import { createRouter, createWebHashHistory } from "vue-router";
-import Home from "/@/components/Home.vue";
 
-const routes = [
-  { path: "/", name: "Home", component: Home },
-  {
-    path: "/about",
-    name: "About",
-    component: () => import("/@/components/About.vue"),
-  }, // Lazy load route component
+const routes: RouteRecordRaw[] = [
+  { path: "/", name: "home", component: () => import("./views/homepage.vue") },
+  { path: "/machines", name: "machines", component: () => import("./views/machines.vue") },
 ];
 
 export default createRouter({
