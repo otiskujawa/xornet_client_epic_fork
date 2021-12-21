@@ -29,7 +29,7 @@ export default defineConfig({
     Components({
       resolvers: [
         IconsResolver({
-          customCollections: ["fluency"],
+          customCollections: ["fluency", "distros"],
         }),
       ],
     }),
@@ -37,6 +37,7 @@ export default defineConfig({
     Icons({
       customCollections: {
         fluency: FileSystemIconLoader("./resources/svg"),
+        distros: FileSystemIconLoader("./resources/distros"),
       },
     }),
     vue(),

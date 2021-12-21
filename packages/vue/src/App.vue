@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex h-full">
     <control-buttons v-if="isElectron()" />
     <navigation-bar />
     <router-view />
@@ -14,11 +14,12 @@ import ControlButtons from "/@/components/electron/ControlButtons.vue";
 
 <style lang="postcss">
 :root {
-  --background-color: #21212133;
+  --background-color: #21212144;
 }
 * {
   @apply !outline-none fill-current;
   scrollbar-width: thin;
+  font-family: "Roboto Mono", monospace;
 }
 
 *::selection {
