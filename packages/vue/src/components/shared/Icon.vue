@@ -1,6 +1,7 @@
 <!-- prettier-ignore -->
 <template>
-  <i-fluency-close      v-if="name === 'close'"      />
+  <div class="flex items-center">
+<i-fluency-close      v-if="name === 'close'"      />
   <i-fluency-computer   v-if="name === 'computer'"   />
   <i-fluency-down       v-if="name === 'down'"       />
   <i-fluency-logs       v-if="name === 'logs'"       />
@@ -21,7 +22,10 @@
   <i-fluency-terminal   v-if="name === 'terminal'"   />
   <i-fluency-up         v-if="name === 'up'"         />
   <i-fluency-user       v-if="name === 'user'"       />
-  <i-fluency-zap        v-if="name === 'zap'"        />
+  <i-fluency-zap        v-if="name === 'zap'"        /> 
+  <i-fluency-status     v-if="name === 'status'"     /> 
+  </div>
+  
 </template>
 
 <script setup lang="ts">
