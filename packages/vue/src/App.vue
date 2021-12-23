@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-full">
+  <div class="bg-background flex h-full" :class="state.window.state.isMaximized ? 'rounded-0px' : 'rounded-8px'">
     <control-buttons v-if="isElectron()" />
     <navigation-bar />
     <router-view />
@@ -7,24 +7,20 @@
 </template>
 
 <script setup lang="ts">
-import { isElectron } from "/@/services/logic";
-import NavigationBar from "/@/components/NavigationBar.vue";
+import { useState } from "./services/state";
 import ControlButtons from "/@/components/electron/ControlButtons.vue";
+import NavigationBar from "/@/components/NavigationBar.vue";
+import { isElectron } from "/@/services/logic";
+const { state } = useState();
 </script>
 
 <style lang="postcss">
-:root {
-  --background-color: #21212144;
-}
 * {
   @apply !outline-none fill-current;
   scrollbar-width: thin;
   font-family: "Roboto Mono", monospace;
 }
 
-*::selection {
-  background-color: var(--accent-color);
-}
 *::-webkit-scrollbar {
   width: 6px;
   display: none;
@@ -46,6 +42,6 @@ import ControlButtons from "/@/components/electron/ControlButtons.vue";
 body,
 html,
 #app {
-  @apply h-full w-full bg-background-color text-white;
+  @apply h-full w-full text-white overflow-hidden;
 }
 </style>

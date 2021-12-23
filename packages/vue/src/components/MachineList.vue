@@ -5,10 +5,9 @@
 </template>
 
 <script setup lang="ts">
+import { Ref, ref } from "vue";
 import MachineButton from "/@/components/MachineButton.vue";
 import ResizableDiv from "/@/components/shared/ResizableDiv.vue";
-import { IMachine } from "../../types/api/machine";
-import { Ref, ref, computed, onMounted } from "vue";
 
 const mode: Ref<"minimal" | "normal" | "maximal"> = ref("normal");
 

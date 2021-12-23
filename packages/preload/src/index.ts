@@ -2,6 +2,7 @@ import { contextBridge, ipcRenderer } from "electron";
 
 import type { BinaryLike } from "crypto";
 import { createHash } from "crypto";
+import { webFrame } from "electron";
 
 /**
  * The "Main World" is the JavaScript context that your main vue code runs in.
@@ -38,6 +39,8 @@ contextBridge.exposeInMainWorld("nodeCrypto", {
     return hash.digest("hex");
   },
 });
+
+webFrame.setZoomFactor(1.1);
 
 /**
  * Connects the frontend to electron's backend so we can send events to node

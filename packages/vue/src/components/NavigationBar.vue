@@ -13,6 +13,7 @@
 <script setup lang="ts">
 import { routes } from "/@/router";
 import icon from "/@/components/shared/Icon.vue";
+import { onMounted } from "vue";
 </script>
 
 <style scoped lang="postcss">

@@ -1,5 +1,6 @@
 import { GlobalState } from "./GlobalState";
 import { SettingsState } from "./SettingState";
+import { WindowState } from "./WindowState";
 
 const globalState = new GlobalState({
   isLoggedIn: false,
@@ -9,6 +10,9 @@ const globalState = new GlobalState({
   selectedMachine: null,
   settings: new SettingsState({
     opacity: 100,
+  }),
+  window: new WindowState({
+    isMaximized: false,
   }),
 });
 

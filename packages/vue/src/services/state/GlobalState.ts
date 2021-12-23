@@ -1,8 +1,9 @@
-import { State } from "./State";
-import { SettingsState } from "./SettingState";
+import { uuid } from "../../../types/api/index";
 import { IMachine } from "../../../types/api/machine";
 import { IUser } from "../../../types/api/user";
-import { uuid } from "../../../types/api/index";
+import { SettingsState } from "./SettingState";
+import { State } from "./State";
+import { WindowState } from "./WindowState";
 
 export interface IAppState {
   isLoggedIn: boolean;
@@ -11,6 +12,7 @@ export interface IAppState {
   machines: Map<uuid, IMachine>;
   selectedMachine: uuid | null;
   settings: SettingsState;
+  window: WindowState;
 }
 export class GlobalState extends State<IAppState> {
   constructor(state: IAppState) {
