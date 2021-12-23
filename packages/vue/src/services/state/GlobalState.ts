@@ -18,4 +18,26 @@ export class GlobalState extends State<IAppState> {
   constructor(state: IAppState) {
     super(state);
   }
+
+  public get isLoggedIn() {
+    return this.state.isLoggedIn;
+  }
+  public get users() {
+    return this.state.users;
+  }
+  public get me() {
+    return this.state.me;
+  }
+  public get machines() {
+    return this.state.machines;
+  }
+  public get selectedMachine() {
+    return this.state.selectedMachine;
+  }
+  public get settings() {
+    return this.state.settings;
+  }
+  public get window() {
+    return this.state.window;
+  }
 }

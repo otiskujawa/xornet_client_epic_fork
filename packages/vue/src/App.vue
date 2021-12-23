@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-background flex h-full" :class="state.window.state.isMaximized ? 'rounded-0px' : 'rounded-8px'">
+  <div class="bg-background flex h-full" :class="state.window.isMaximized ? 'rounded-0px' : 'rounded-8px'">
     <control-buttons v-if="isElectron()" />
     <navigation-bar />
     <router-view />
@@ -11,7 +11,7 @@ import { useState } from "./services/state";
 import ControlButtons from "/@/components/electron/ControlButtons.vue";
 import NavigationBar from "/@/components/NavigationBar.vue";
 import { isElectron } from "/@/services/logic";
-const { state } = useState();
+const state = useState();
 </script>
 
 <style lang="postcss">

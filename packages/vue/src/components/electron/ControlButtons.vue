@@ -1,9 +1,9 @@
 <template>
-  <div class="control-buttons absolute flex" :class="state.window.state.isMaximized && 'maximized'">
+  <div class="control-buttons absolute flex" :class="state.window.isMaximized && 'maximized'">
     <button @click="onMinimizeClick()">
       <icon name="minimize" />
     </button>
-    <button v-if="!state.window.state.isMaximized" @click="onMaximizeClick()">
+    <button v-if="!state.window.isMaximized" @click="onMaximizeClick()">
       <icon name="maximize" />
     </button>
     <button v-else @click="onUnmaximizeClick()">
@@ -18,7 +18,7 @@
 import { nodeEmit } from "/@/services/logic";
 import { useState } from "/@/services/state";
 
-const { state } = useState();
+const state = useState();
 
 const onCloseClick = () => {
   nodeEmit("close");
@@ -27,11 +27,11 @@ const onMinimizeClick = () => {
   nodeEmit("minimize");
 };
 const onMaximizeClick = () => {
-  state.window.state.isMaximized = true;
+  state.window.isMaximized = true;
   nodeEmit("maximize");
 };
 const onUnmaximizeClick = () => {
-  state.window.state.isMaximized = false;
+  state.window.isMaximized = false;
   nodeEmit("unmaximize");
 };
 </script>
