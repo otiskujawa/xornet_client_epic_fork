@@ -9,7 +9,6 @@ on:
 
 concurrency:
   group: update-electron-vendors-${{ github.ref }}
-  cancel-in-progress: true
 
 
 defaults:
