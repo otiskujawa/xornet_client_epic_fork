@@ -1,15 +1,15 @@
 /* eslint-env node */
 
-import { chrome } from "../../.electron-vendors.cache.json";
-import { join } from "path";
-import { builtinModules } from "module";
-import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import WindiCSS from "vite-plugin-windicss";
-import Icons from "unplugin-icons/vite";
-import IconsResolver from "unplugin-icons/resolver";
-import Components from "unplugin-vue-components/vite";
+import { builtinModules } from "module";
+import { join } from "path";
 import { FileSystemIconLoader } from "unplugin-icons/loaders";
+import IconsResolver from "unplugin-icons/resolver";
+import Icons from "unplugin-icons/vite";
+import Components from "unplugin-vue-components/vite";
+import { defineConfig } from "vite";
+import WindiCSS from "vite-plugin-windicss";
+import { chrome } from "../../.electron-vendors.cache.json";
 
 const PACKAGE_ROOT = __dirname;
 
