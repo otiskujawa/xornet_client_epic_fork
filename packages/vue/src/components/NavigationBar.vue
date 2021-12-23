@@ -11,12 +11,19 @@
 </template>
 
 <script setup lang="ts">
-import { routes } from "/@/router";
 import icon from "/@/components/shared/Icon.vue";
-import { onMounted } from "vue";
+import { routes } from "/@/router";
 </script>
 
 <style scoped lang="postcss">
+nav {
+  -webkit-app-region: drag;
+}
+
+ul {
+  -webkit-app-region: no-drag;
+}
+
 a {
   &:hover {
     @apply opacity-50;

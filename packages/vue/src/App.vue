@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-background flex h-full" :class="state.window.isMaximized ? 'rounded-0px' : 'rounded-8px'">
+  <div class="bg-background flex h-full" :class="state.window.isMaximized || !isElectron() ? 'rounded-0px' : 'rounded-8px'">
     <control-buttons v-if="isElectron()" />
     <navigation-bar />
     <router-view />
