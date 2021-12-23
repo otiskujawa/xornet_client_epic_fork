@@ -1,5 +1,5 @@
 <template>
-  <div class="control-buttons absolute flex" :class="state.window.isMaximized && 'maximized'">
+  <div class="control-buttons absolute flex" :class="state.window.isMaximized && 'is-maximized'">
     <button @click="onMinimizeClick()">
       <icon name="minimize" />
     </button>
@@ -9,7 +9,7 @@
     <button v-else @click="onUnmaximizeClick()">
       <icon name="unmaximize" />
     </button>
-    <button class="red" @click="onCloseClick()">
+    <button class="caution" @click="onCloseClick()">
       <icon name="close" />
     </button>
   </div>
@@ -39,7 +39,7 @@ const onUnmaximizeClick = () => {
 <style lang="postcss" scoped>
 .control-buttons {
   @apply top-8px right-8px;
-  &.maximized {
+  &.is-maximized {
     @apply top-0px right-0px;
 
     & button {
@@ -61,7 +61,7 @@ const onUnmaximizeClick = () => {
       @apply bg-black bg-opacity-25 text-opacity-75;
     }
 
-    &.red {
+    &.caution {
       &:hover {
         @apply bg-caution text-white text-opacity-100;
       }
