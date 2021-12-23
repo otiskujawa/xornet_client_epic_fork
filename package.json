@@ -5,6 +5,11 @@
     "node": ">=v16.13",
     "npm": ">=8.1"
   },
+  "description": "Xornet is a management dashboard for people to easily view & control their servers from anywhere in the world!",
+  "author": {
+    "name": "Geoxor",
+    "url": "https://github.com/Geoxor"
+  },
   "main": "packages/electron/dist/index.cjs",
   "scripts": {
     "build": "node scripts/build.js",
