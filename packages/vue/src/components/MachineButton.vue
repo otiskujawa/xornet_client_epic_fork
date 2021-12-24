@@ -1,7 +1,7 @@
 <template>
   <li
     :class="[mode === 'minimal' ? 'justify-center' : 'justify-between']"
-    class="text-12px text-white text-opacity-50 cursor-pointer list-none flex py-6px px-16px items-center"
+    class="text-12px text-text text-opacity-50 cursor-pointer list-none flex py-6px px-16px items-center"
   >
     <div class="flex gap-3 items-center">
       <distro-icon class="w-16px h-16px min-w-16px min-h-16px" :name="machine.distro" />

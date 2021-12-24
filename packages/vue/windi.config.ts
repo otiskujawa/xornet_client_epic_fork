@@ -21,6 +21,7 @@ export default defineConfig({
       colors: {
         background: withOpacityValue("color-background"),
         caution: withOpacityValue("color-caution"),
+        text: withOpacityValue("color-text"),
       },
     },
   },

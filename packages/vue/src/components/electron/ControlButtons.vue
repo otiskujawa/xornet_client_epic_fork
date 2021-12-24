@@ -55,7 +55,7 @@ const onUnmaximizeClick = () => {
       @apply w-4 h-4;
     }
 
-    @apply p-6px px-16px text-white text-opacity-50 flex items-center justify-center;
+    @apply p-6px px-16px text-text text-opacity-50 flex items-center justify-center;
 
     &:hover {
       @apply bg-black bg-opacity-25 text-opacity-75;
@@ -63,7 +63,7 @@ const onUnmaximizeClick = () => {
 
     &.caution {
       &:hover {
-        @apply bg-caution text-white text-opacity-100;
+        @apply bg-caution text-text text-opacity-100;
       }
     }
   }

@@ -1,9 +1,11 @@
-.theme-light {
+.theme-dark {
   --color-background: 33, 33, 33;
+  --color-text: 255, 255, 255;
   --color-caution: 255, 0, 122;
 }
 
-.theme-dark {
-  --color-background: 33, 33, 33;
+.theme-light {
+  --color-background: 255, 255, 255;
+  --color-text: 0, 0, 0;
   --color-caution: 255, 0, 122;
 }

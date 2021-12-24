@@ -9,7 +9,7 @@ export const routes: (RouteRecordRaw & { icon: string })[] = [
     component: () => import("./views/MachinesView.vue"),
   },
   {
-    path: "/settings",
+    path: "/settings/:setting?",
     name: "settings",
     icon: "settings",
     component: () => import("./views/SettingsView.vue"),
