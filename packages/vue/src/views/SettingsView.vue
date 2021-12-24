@@ -9,7 +9,7 @@
     </div>
     <div v-if="isElectron()">
       <label for="opacity">Background Opacity</label>
-      <input type="range" v-model="state.settings.opacity" min="5" max="100" step="1" />
+      <input type="range" v-model="state.settings.opacity" min="0" max="100" step="1" />
       {{ state.settings.opacity }}%
     </div>
   </div>
