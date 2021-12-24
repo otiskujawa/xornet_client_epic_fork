@@ -15,7 +15,7 @@ export class SettingsState extends State<ISettingsState> {
   private registerWatchers(): void {
     // Apply the theme when it changes
     watch(
-      () => this.theme,
+      () => this.state.theme,
       () => this.applyCurrentTheme()
     );
   }
