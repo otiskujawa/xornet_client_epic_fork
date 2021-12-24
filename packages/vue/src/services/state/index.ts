@@ -10,6 +10,7 @@ const globalState = new GlobalState({
   selectedMachine: null,
   settings: new SettingsState({
     opacity: 100,
+    theme: "dark",
   }),
   window: new WindowState({
     isMaximized: false,
