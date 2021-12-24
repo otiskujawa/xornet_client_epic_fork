@@ -73,7 +73,7 @@ const createWindow = async () => {
 };
 
 // Listen to events from the frontend
-ipcMain.on("event", (_, event) => {
+ipcMain.on("event", (_, event: { name: string; data: string }) => {
   switch (event.name) {
     case "close":
       app.quit();

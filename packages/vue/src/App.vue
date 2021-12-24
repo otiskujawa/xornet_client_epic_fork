@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-background flex h-full" :class="state.window.isMaximized || !isElectron() ? 'rounded-0px' : 'rounded-8px'">
+  <div class="flex h-full" :class="state.window.isMaximized || !isElectron() ? 'rounded-0px' : 'rounded-8px'">
     <control-buttons v-if="isElectron()" />
     <navigation-bar />
     <router-view />
@@ -42,6 +42,10 @@ const state = useState();
 body,
 html,
 #app {
-  @apply h-full w-full text-white overflow-hidden;
+  @apply h-full w-full bg-transparent text-text overflow-hidden;
+}
+
+#app {
+  @apply bg-background;
 }
 </style>

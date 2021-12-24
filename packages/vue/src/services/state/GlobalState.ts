@@ -5,7 +5,7 @@ import { SettingsState } from "./SettingState";
 import { State } from "./State";
 import { WindowState } from "./WindowState";
 
-export interface IAppState {
+export interface IGlobalState {
   isLoggedIn: boolean;
   users: Map<uuid, IUser>;
   me: uuid | null;
@@ -14,8 +14,8 @@ export interface IAppState {
   settings: SettingsState;
   window: WindowState;
 }
-export class GlobalState extends State<IAppState> {
-  constructor(state: IAppState) {
+export class GlobalState extends State<IGlobalState> {
+  constructor(state: IGlobalState) {
     super(state);
   }
 

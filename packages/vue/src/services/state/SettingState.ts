@@ -18,11 +18,21 @@ export class SettingsState extends State<ISettingsState> {
       () => this.state.theme,
       () => this.applyCurrentTheme()
     );
+
+    watch(
+      () => this.state.opacity,
+      () => this.applyOpacity()
+    );
   }
 
   private applyCurrentTheme() {
     const dom = document.querySelector("html");
     dom!.className = `theme-${this.theme}`;
+  }
+
+  private applyOpacity() {
+    const app = <HTMLElement>document.querySelector("#app");
+    app!.style.setProperty("--tw-bg-opacity", (this.state.opacity / 100).toString());
   }
 
   public get theme(): "light" | "dark" {
