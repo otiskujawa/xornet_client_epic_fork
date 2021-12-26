@@ -34,9 +34,9 @@ jobs:
 
       # TODO: Install not all dependencies, but only those required for this workflow
       - name: Install dependencies
-        run: pnpm ci
+        run: npm ci
 
       # Type checking is divided into three separate commands for more convenient logs
-      - run: pnpm run typecheck-electron
-      - run: pnpm run typecheck-preload
-      - run: pnpm run typecheck-vue
+      - run: npm run typecheck-electron
+      - run: npm run typecheck-preload
+      - run: npm run typecheck-vue
