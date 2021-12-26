@@ -1,7 +1,7 @@
 <template>
   <nav class="h-full w-min flex flex-col">
     <ul> 
-      <base-tooltip :text="route.name" v-for="route of routes.filter(route => !!route.icon)" :key="route.path">
+      <base-tooltip :text="route.name as string" v-for="route of routes.filter(route => !!route.icon)" :key="route.path">
         <li class="flex">
           <router-link
             class="p-4 flex items-center justify-center text-69px text-text opacity-25"
