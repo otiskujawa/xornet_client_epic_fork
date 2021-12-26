@@ -42,7 +42,16 @@ export const routes: (FancyRouteRecord & { children?: FancyRouteRecord[] })[] = 
 	},
 ];
 
-export default createRouter({
+
+const router = createRouter({
 	routes,
 	history: createWebHashHistory(),
 });
+
+router.beforeEach((to, from, next) => {
+  if (!to.name) {
+    return next({name: "login"});
+	}
+  next();
+})
+export default router

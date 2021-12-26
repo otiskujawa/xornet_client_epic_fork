@@ -1,6 +1,6 @@
 <template>
-  <form class="text-text flex flex-col gap-4 p-6" @submit.prevent="$emit('submit')">
-    <h1 class="font-bold text-lg">
+  <form class="text-text flex flex-col gap-2 p-3" @submit.prevent="$emit('submit')">
+    <h1 class="font-bold text-sm">
       {{ title }}
     </h1>
     <slot />

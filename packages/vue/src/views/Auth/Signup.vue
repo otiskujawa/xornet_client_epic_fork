@@ -1,11 +1,11 @@
 <template>
   <div class="w-full flex items-center justify-center h-full">
-    <div class="rounded-lg bg-black bg-opacity-25 w-128">
+    <div class="rounded-4px bg-black bg-opacity-25 w-128">
       <base-form title="Sign Up" @submit="onSubmit">
         <base-input v-model="form.username" placeholder="Username" type="username" />
         <base-input v-model="form.email" placeholder="Email" type="email" />
         <base-input v-model="form.password" placeholder="Password" type="password" />
-        <base-input v-model="form.repeatPassword" placeholder="Repeat Password" type="new-password" />
+        <base-input v-model="form.repeatPassword" placeholder="Repeat Password" type="password" />
         <base-link to="login">
           Already have an account?
         </base-link>

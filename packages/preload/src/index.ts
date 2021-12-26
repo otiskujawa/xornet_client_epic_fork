@@ -39,7 +39,7 @@ contextBridge.exposeInMainWorld("nodeCrypto", {
 	},
 });
 
-webFrame.setZoomFactor(1.1);
+webFrame.setZoomFactor(1.0);
 
 /**
  * Connects the frontend to electron's backend so we can send events to node
