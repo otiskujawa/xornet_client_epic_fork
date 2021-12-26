@@ -1,6 +1,6 @@
 <template>
   <slot />
-  <div ref="tooltip" class="p-3 fixed tooltip" :class="{openOnHover, open}">
+  <div ref="popover" class="p-3 fixed popover" :class="{ openOnHover, open }">
     <div ref="arrowElement" class="arrow" v-if="props.arrow"></div>
     <slot name="content" />
   </div>
@@ -9,49 +9,48 @@
 <script setup lang="ts">
 import { computePosition, offset, arrow, shift } from '@floating-ui/dom';
 import { computed, onMounted, Ref, ref } from 'vue';
-
 const props = defineProps<{
   open?: boolean,
   openOnHover?: boolean,
   arrow?: boolean
 }>()
 
-const tooltip = ref() as Ref<HTMLElement>;
+const popover = ref() as Ref<HTMLElement>;
 const arrowElement = ref() as Ref<HTMLElement>;
-const target = computed(() => tooltip.value.previousElementSibling!);
+const target = computed(() => popover.value.previousElementSibling!);
 
 const middleware = computed(() => {
- const enabled = [offset(8)]
- if (props.arrow) enabled.push(arrow({element: arrowElement.value}))
- return enabled
+  const enabled = [offset(8)]
+  if (props.arrow) enabled.push(arrow({ element: arrowElement.value }))
+  return enabled
 });
 
 async function updatePosition() {
-  const {x, y, middlewareData, placement} = await computePosition(target.value, tooltip.value, {
+  const { x, y, middlewareData, placement } = await computePosition(target.value, popover.value, {
     placement: 'right',
     middleware: middleware.value,
   });
 
-  Object.assign(tooltip.value.style, {
+  Object.assign(popover.value.style, {
     left: `${x}px`,
     top: `${y}px`,
   });
 
   if (props.arrow) {
     const staticSide = {
-    top: 'bottom',
-    right: 'left',
-    bottom: 'top',
-    left: 'right',
-  }[placement.split('-')[0]];
-  const {x: arrowX, y: arrowY} = middlewareData.arrow!;
-  Object.assign(arrowElement.value.style, {
-    left: arrowX != null ? `${arrowX}px` : '',
-    top: arrowY != null ? `${arrowY}px` : '',
-    right: '',
-    bottom: '',
-    [staticSide!]: '-0.25em',
-  });
+      top: 'bottom',
+      right: 'left',
+      bottom: 'top',
+      left: 'right',
+    }[placement.split('-')[0]];
+    const { x: arrowX, y: arrowY } = middlewareData.arrow!;
+    Object.assign(arrowElement.value.style, {
+      left: arrowX != null ? `${arrowX}px` : '',
+      top: arrowY != null ? `${arrowY}px` : '',
+      right: '',
+      bottom: '',
+      [staticSide!]: '-0.25em',
+    });
   }
 }
 
@@ -63,12 +62,12 @@ onMounted(async () => {
 </script>
 
 <style scoped lang="postcss">
+.popover {
+  @apply rounded-4px transform text-sm text-white capitalize p-2 bg-primary-500 transition-all duration-200 ease-in-out;
 
-.tooltip {
-  @apply rounded-4px text-sm capitalize p-2 bg-primary-500;
-
-  &.openOnHover, &:not(.open) {
-    @apply invisible;
+  &.openOnHover,
+  &:not(.open) {
+    @apply invisible translate-x-4 opacity-0;
   }
 
   .arrow {
@@ -76,7 +75,7 @@ onMounted(async () => {
   }
 }
 
-.target:hover + .tooltip.openOnHover {
-  @apply visible;
+.target:hover + .popover.openOnHover {
+  @apply visible translate-x-0 opacity-100;
 }
 </style>
