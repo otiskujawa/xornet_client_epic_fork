@@ -20,8 +20,8 @@
 </template>
 
 <script setup lang="ts">
-import { isElectron } from "../services/logic";
-import { useState } from "../services/state";
+import { isElectron } from "../../services/logic";
+import { useState } from "../../services/state";
 const state = useState();
 </script>
 

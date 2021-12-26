@@ -4,7 +4,6 @@
     :class="state.window.isMaximized || !isElectron() ? 'rounded-0px' : 'rounded-8px'"
   >
     <control-buttons v-if="isElectron()" />
-    <navigation-bar />
     <router-view />
   </div>
 </template>
@@ -12,7 +11,6 @@
 <script setup lang="ts">
 import { useState } from "./services/state";
 import ControlButtons from "/@/components/electron/ControlButtons.vue";
-import NavigationBar from "/@/components/NavigationBar.vue";
 import { isElectron } from "/@/services/logic";
 const state = useState();
 </script>

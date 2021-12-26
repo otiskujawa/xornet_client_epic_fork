@@ -13,8 +13,8 @@ specifiers:
   electron-updater: 4.6.5
   eslint: 8.5.0
   eslint-plugin-vue: 8.2.0
+  husky: ^7.0.4
   playwright: 1.17.1
-  simple-git-hooks: 2.7.0
   typescript: 4.5.4
   unplugin-icons: ^0.12.23
   unplugin-vue-components: ^0.17.9
@@ -43,8 +43,8 @@ devDependencies:
   electron-devtools-installer: 3.2.0
   eslint: 8.5.0
   eslint-plugin-vue: 8.2.0_eslint@8.5.0
+  husky: 7.0.4
   playwright: 1.17.1
-  simple-git-hooks: 2.7.0
   typescript: 4.5.4
   unplugin-icons: 0.12.23_vite@2.7.3
   unplugin-vue-components: 0.17.10_vite@2.7.3+vue@3.2.26
@@ -3036,6 +3036,12 @@ packages:
     engines: {node: '>=10.17.0'}
     dev: true
 
+  /husky/7.0.4:
+    resolution: {integrity: sha512-vbaCKN2QLtP/vD4yvs6iz6hBEo6wkSzs8HpRah1Z6aGmF2KW5PdYuAd7uX5a+OyBZHBhd+TFLqgjUgytQr4RvQ==}
+    engines: {node: '>=12'}
+    hasBin: true
+    dev: true
+
   /iconv-corefoundation/1.1.7:
     resolution: {integrity: sha512-T10qvkw0zz4wnm560lOEg0PovVqUXuOFhhHAkixw8/sycy7TJt7v/RrkEKEQnAw2viPSJu6iAkErxnzR0g8PpQ==}
     engines: {node: ^8.11.2 || >=10}
@@ -4464,12 +4470,6 @@ packages:
 
   /signal-exit/3.0.6:
     resolution: {integrity: sha512-sDl4qMFpijcGw22U5w63KmD3cZJfBuFlVNbVMKje2keoKML7X2UzWbc4XrmEbDwg0NXJc3yv4/ox7b+JWb57kQ==}
-    dev: true
-
-  /simple-git-hooks/2.7.0:
-    resolution: {integrity: sha512-nQe6ASMO9zn5/htIrU37xEIHGr9E6wikXelLbOeTcfsX2O++DHaVug7RSQoq+kO7DvZTH37WA5gW49hN9HTDmQ==}
-    hasBin: true
-    requiresBuild: true
     dev: true
 
   /slash/3.0.0:
