@@ -36,7 +36,7 @@ jobs:
 
       # TODO: Install not all dependencies, but only those required for this workflow
       - name: Install dependencies
-        run: pnpm i
+        run: npm i -g pnpm && pnpm i
 
       - run: pnpm test
         if: ${{ false }}  # disable for now

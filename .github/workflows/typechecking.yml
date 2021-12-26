@@ -34,7 +34,7 @@ jobs:
 
       # TODO: Install not all dependencies, but only those required for this workflow
       - name: Install dependencies
-        run: pnpm i
+        run: npm i -g pnpm && pnpm i
 
       # Type checking is divided into three separate commands for more convenient logs
       - run: pnpm run typecheck-electron
