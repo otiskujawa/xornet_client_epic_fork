@@ -22,6 +22,10 @@ const state = useState();
   font-family: "Roboto Mono", monospace;
 }
 
+.fullscreen {
+  @apply fixed top-0 left-0 z-0 w-full h-full;
+}
+
 *::-webkit-scrollbar {
   width: 6px;
   display: none;

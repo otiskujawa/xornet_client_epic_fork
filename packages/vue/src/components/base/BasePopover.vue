@@ -2,7 +2,7 @@
   <slot />
   <div
     ref="popover"
-    class="p-3 fixed popover"
+    class="p-3 fixed popover z-1"
     :class="{ openOnHover, open, [placement || 'bottom']: !open || openOnHover  }"
   >
     <div ref="arrowElement" class="arrow" v-if="props.arrow"></div>
