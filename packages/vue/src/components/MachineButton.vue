@@ -18,11 +18,11 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
-  mode: "minimal" | "normal" | "maximal";
-  machine: { uuid: string; hostname: string; isOnline: boolean; distro: string };
-}>();
 import DistroIcon from "/@/components/shared/DistroIcon.vue";
+defineProps<{
+	mode: "minimal" | "normal" | "maximal"
+	machine: { uuid: string; hostname: string; isOnline: boolean; distro: string }
+}>();
 </script>
 
 <style scoped lang="postcss">

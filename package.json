@@ -13,20 +13,21 @@
   "main": "packages/electron/dist/index.cjs",
   "scripts": {
     "build": "node scripts/build.js",
-    "precompile": "cross-env MODE=production npm run build",
+    "precompile": "cross-env MODE=production pnpm run build",
     "compile": "electron-builder build --config .electron-builder.config.js --dir --config.asar=false",
-    "pretest": "npm run build",
+    "pretest": "pnpm run build",
     "test": "node tests/app.spec.js",
     "watch": "node scripts/watch.js",
-    "lint": "eslint . --ext js,ts,vue",
+    "lint": "eslint \"**/*.{vue,ts,js}\"",
     "typecheck-electron": "tsc --noEmit -p packages/electron/tsconfig.json",
     "typecheck-preload": "tsc --noEmit -p packages/preload/tsconfig.json",
     "typecheck-vue": "vue-tsc --noEmit -p packages/vue/tsconfig.json",
-    "typecheck": "npm run typecheck-electron && npm run typecheck-preload && npm run typecheck-vue",
+    "typecheck": "pnpm run typecheck-electron && pnpm run typecheck-preload && pnpm run typecheck-vue",
     "pretypecheck-vue": "dts-cb -i packages/preload/src/**/*.ts -o packages/preload/exposedInMainWorld.d.ts",
-    "prettify": "npx prettier --write \"./**/*.ts\" && npx prettier --write \"./**/*.js\" && npx prettier --write \"./**/*.json\" && npx prettier --write \"./**/*.vue\""
+    "prettify": "eslint --fix \"**/*.{vue,ts,js}\""
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^0.14.0",
     "@types/electron-devtools-installer": "2.2.0",
     "@typescript-eslint/eslint-plugin": "5.7.0",
     "@vitejs/plugin-vue": "2.0.1",
@@ -44,6 +45,7 @@
     "unplugin-vue-components": "^0.17.9",
     "vite": "2.7.3",
     "vite-plugin-windicss": "^1.5.4",
+    "vitest": "^0.0.113",
     "vue-tsc": "0.29.8",
     "windicss": "^3.4.0"
   },

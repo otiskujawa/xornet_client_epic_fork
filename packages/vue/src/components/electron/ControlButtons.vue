@@ -21,18 +21,18 @@ import { useState } from "/@/services/state";
 const state = useState();
 
 const onCloseClick = () => {
-  nodeEmit("close");
+	nodeEmit("close");
 };
 const onMinimizeClick = () => {
-  nodeEmit("minimize");
+	nodeEmit("minimize");
 };
 const onMaximizeClick = () => {
-  state.window.isMaximized = true;
-  nodeEmit("maximize");
+	state.window.isMaximized = true;
+	nodeEmit("maximize");
 };
 const onUnmaximizeClick = () => {
-  state.window.isMaximized = false;
-  nodeEmit("unmaximize");
+	state.window.isMaximized = false;
+	nodeEmit("unmaximize");
 };
 </script>
 

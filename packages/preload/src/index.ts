@@ -1,8 +1,7 @@
-import { contextBridge, ipcRenderer } from "electron";
 
 import type { BinaryLike } from "crypto";
 import { createHash } from "crypto";
-import { webFrame } from "electron";
+import { contextBridge, ipcRenderer, webFrame } from "electron";
 
 /**
  * The "Main World" is the JavaScript context that your main vue code runs in.
@@ -33,11 +32,11 @@ contextBridge.exposeInMainWorld("versions", process.versions);
  * window.nodeCrypto('data')
  */
 contextBridge.exposeInMainWorld("nodeCrypto", {
-  sha256sum(data: BinaryLike) {
-    const hash = createHash("sha256");
-    hash.update(data);
-    return hash.digest("hex");
-  },
+	sha256sum(data: BinaryLike) {
+		const hash = createHash("sha256");
+		hash.update(data);
+		return hash.digest("hex");
+	},
 });
 
 webFrame.setZoomFactor(1.1);
@@ -45,4 +44,4 @@ webFrame.setZoomFactor(1.1);
 /**
  * Connects the frontend to electron's backend so we can send events to node
  */
-process.once("loaded", () => window.addEventListener("message", (event) => ipcRenderer.send("event", event.data)));
+process.once("loaded", () => window.addEventListener("message", event => ipcRenderer.send("event", event.data)));

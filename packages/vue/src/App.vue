@@ -1,5 +1,8 @@
 <template>
-  <div class="flex h-full" :class="state.window.isMaximized || !isElectron() ? 'rounded-0px' : 'rounded-8px'">
+  <div
+    class="flex h-full"
+    :class="state.window.isMaximized || !isElectron() ? 'rounded-0px' : 'rounded-8px'"
+  >
     <control-buttons v-if="isElectron()" />
     <navigation-bar />
     <router-view />

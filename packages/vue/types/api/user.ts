@@ -1,9 +1,9 @@
-import { uuid } from "../../types/api/index";
+import type { uuid } from "../../types/api/index";
 
 export interface IUser {
-  uuid: uuid;
-  username: string;
-  email: string;
-  avatar?: string;
-  biography?: string;
+	uuid: uuid
+	username: string
+	email: string
+	avatar?: string
+	biography?: string
 }

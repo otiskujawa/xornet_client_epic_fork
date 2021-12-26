@@ -1,18 +1,18 @@
 import { State } from "./State";
 
 export interface IWindowState {
-  isMaximized: boolean;
+	isMaximized: boolean
 }
 export class WindowState extends State<IWindowState> {
-  constructor(state: IWindowState) {
-    super(state);
-  }
+	constructor(state: IWindowState) {
+		super(state);
+	}
 
-  public get isMaximized() {
-    return this.state.isMaximized;
-  }
+	public get isMaximized() {
+		return this.state.isMaximized;
+	}
 
-  public set isMaximized(value: boolean) {
-    this.state.isMaximized = value;
-  }
+	public set isMaximized(value: boolean) {
+		this.state.isMaximized = value;
+	}
 }
