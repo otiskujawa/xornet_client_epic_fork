@@ -2,8 +2,9 @@
   <slot />
   <div
     ref="popover"
-    class="p-3 fixed popover z-1"
+    class="fixed popover z-1"
     :class="{ openOnHover, open, [placement || 'bottom']: !open || openOnHover  }"
+    v-bind="$attrs"
   >
     <div ref="arrowElement" class="arrow" v-if="props.arrow"></div>
     <slot name="content" />
@@ -70,7 +71,7 @@ onMounted(async () => {
 <style scoped lang="postcss">
 
 .popover {
-  @apply rounded-4px transform text-sm text-white capitalize p-2 bg-primary-500 transition-all duration-200 ease-in-out;
+  @apply rounded-4px transform text-sm text-white capitalize transition-all duration-100 ease-in-out;
 
   &.openOnHover,
   &:not(.open) {
@@ -87,10 +88,6 @@ onMounted(async () => {
     &.right {
       @apply translate-x-2;
     }
-  }
-
-  .arrow {
-    @apply absolute w-2 h-2 rotate-45 transform bg-primary-500;
   }
 }
 

@@ -4,9 +4,12 @@
       <base-form title="Login" @submit="onSubmit">
         <base-input v-model="form.username" placeholder="Username" type="username" />
         <base-input v-model="form.password" placeholder="Password" type="password" autocomplete="password" />
-        <base-link to="signup">
-          Sign Up?
-        </base-link>
+        <p class="text-sm">
+          New to Xornet?
+          <base-link to="signup">
+            Create new account
+          </base-link>
+        </p>
         <base-button type="submit" :disabled="!isValid">
           Login
         </base-button>
