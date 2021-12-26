@@ -51,6 +51,7 @@
     "windicss": "^3.4.0"
   },
   "dependencies": {
+    "@vueuse/core": "^7.4.1",
     "electron-updater": "4.6.5",
     "vue": "3.2.26",
     "vue-router": "4.0.12"
