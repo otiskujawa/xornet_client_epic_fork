@@ -2,6 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@antfu/eslint-config': ^0.14.0
+  '@floating-ui/core': ^0.2.2
   '@floating-ui/dom': ^0.1.8
   '@types/electron-devtools-installer': 2.2.0
   '@typescript-eslint/eslint-plugin': 5.7.0
@@ -30,6 +31,7 @@ specifiers:
   windicss: ^3.4.0
 
 dependencies:
+  '@floating-ui/core': 0.2.2
   '@floating-ui/dom': 0.1.8
   '@vueuse/core': 7.4.1_vue@3.2.26
   electron-updater: 4.6.5

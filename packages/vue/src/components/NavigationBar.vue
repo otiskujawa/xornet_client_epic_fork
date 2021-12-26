@@ -5,6 +5,7 @@
         :text="route.name as string"
         v-for="route of routes.filter(route => !!route.icon)"
         :key="route.path"
+        placement="right"
       >
         <li class="flex">
           <router-link
