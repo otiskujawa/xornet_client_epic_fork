@@ -94,7 +94,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 17 # Need for pnpm >=7.7
-          cache: 'pnpm'
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm i -g pnpm && pnpm i
