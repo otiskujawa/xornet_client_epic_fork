@@ -7,7 +7,7 @@ export const BASE_URL = "http://localhost:8085";
 
 export class API {
 	private debug(method: string, endpoint: string, headers?: any, body?: any, ...messages: any) {
-		if (import.meta.env.DEV) {
+		if (state.settings.enableDebugLogger) {
 			console.group(
 				"%c[API]"
         + `%c [${method.toUpperCase()}]`
@@ -51,7 +51,7 @@ export class API {
 			body: body instanceof FormData ? body : JSON.stringify(body),
 		};
 
-		state.settings.enableDebugLogger && this.debug(method, endpoint, headers, body);
+		this.debug(method, endpoint, headers, body);
 
 		const response = await fetch(BASE_URL + endpoint, options);
 
