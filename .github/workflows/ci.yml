@@ -1,0 +1,79 @@
+name: CI for Commits
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**.ts'
+      - '**.vue'
+      - '**/tsconfig.json'
+      - 'package-lock.json'
+      - '.github/workflows/typechecking.yml'
+  pull_request:
+    paths:
+      - '**.ts'
+      - '**.vue'
+      - '**/tsconfig.json'
+      - 'package-lock.json'
+      - '.github/workflows/typechecking.yml'
+
+jobs:
+  test-check: 
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 17 # Need for pnpm >=7.7
+
+      # TODO: Install not all dependencies, but only those required for this workflow
+      - name: Install dependencies
+        run: npm i -g pnpm && pnpm i
+
+      # Type checking is divided into three separate commands for more convenient logs
+      - name: Run unit tests
+        run: pnpm test
+
+  lint-check: 
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 17 # Need for pnpm >=7.7
+
+      # TODO: Install not all dependencies, but only those required for this workflow
+      - name: Install dependencies
+        run: npm i -g pnpm && pnpm i
+
+      # Type checking is divided into three separate commands for more convenient logs
+      - name: Lint check
+        run: pnpm lint
+
+  type-check:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix: 
+        package: 
+          - electron
+          - preload
+          - vue
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 17 # Need for pnpm >=7.7
+
+      # TODO: Install not all dependencies, but only those required for this workflow
+      - name: Install dependencies
+        run: npm i -g pnpm && pnpm i
+
+      # Type checking is divided into three separate commands for more convenient logs
+      - name: Typecheck ${{matrix.package}}
+        run: pnpm typecheck-${{matrix.package}}

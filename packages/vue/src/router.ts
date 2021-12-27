@@ -1,5 +1,5 @@
 import type { RouteRecordRaw } from "vue-router";
-import { createMemoryHistory, createRouter, createWebHashHistory, createWebHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 
 export type FancyRouteRecord = RouteRecordRaw & { icon?: string };
 
