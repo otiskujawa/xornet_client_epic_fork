@@ -1,5 +1,5 @@
 <template>
-  <nav class="h-full w-min flex flex-col">
+  <nav class="h-full justify-between w-min flex flex-col">
     <ul>
       <base-tooltip
         v-for="route of routes.filter(route => !!route.icon)"
@@ -16,6 +16,8 @@
           </router-link>
         </li>
       </base-tooltip>
+    </ul>
+    <ul>
       <base-tooltip
         text="Logout"
         placement="right"
@@ -30,6 +32,13 @@
           </router-link>
         </li>
       </base-tooltip>
+      <li class="flex">
+        <div
+          class="p-4 flex items-center justify-center "
+        >
+          <img class="w-6 h-6 rounded-full" :src="state.users.getMe()?.avatar" alt="">
+        </div>
+      </li>
     </ul>
   </nav>
 </template>

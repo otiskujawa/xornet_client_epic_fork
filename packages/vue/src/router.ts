@@ -1,5 +1,6 @@
 import type { RouteRecordRaw } from "vue-router";
 import { createRouter, createWebHistory } from "vue-router";
+import { state } from "./services/state";
 
 export type FancyRouteRecord = RouteRecordRaw & { icon?: string };
 
@@ -48,7 +49,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-	if (!to.name)
+	if (state.users.token === "unset" && (to.name !== "login" && to.name !== "signup"))
 		return next({ name: "login" });
 
 	next();

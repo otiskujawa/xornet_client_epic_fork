@@ -20,6 +20,8 @@ export interface UserSignupInput extends UserLoginInput {
 }
 
 export class UsersState extends State<IUsersState> {
+	private me_uuid: uuid | undefined;
+
 	constructor() {
 		super({
 			users: {},
@@ -27,18 +29,26 @@ export class UsersState extends State<IUsersState> {
 		});
 	}
 
+	public getMe() {
+		if (this.me_uuid) return this.get(this.me_uuid);
+	}
+
 	public async logout() {
 		this.token = "unset";
 	}
 
 	public async login(form: UserLoginInput) {
-		const response: {token: string} = await api.request("POST", "/users/@login", form);
+		const response: {token: string; user: IUser} = await api.request("POST", "/users/@login", form);
 		this.token = response.token;
+		this.set(response.user);
+		this.me_uuid = response.user.uuid;
 	}
 
 	public async signup(form: UserSignupInput) {
-		const response: {token: string} = await api.request("POST", "/users/@signup", form);
+		const response: {token: string; user: IUser} = await api.request("POST", "/users/@signup", form);
 		this.token = response.token;
+		this.set(response.user);
+		this.me_uuid = response.user.uuid;
 	}
 
 	public set token(value: string) {
