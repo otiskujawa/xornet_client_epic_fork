@@ -10,7 +10,7 @@
           Already have an account?
         </base-link>
         <base-button type="submit" :disabled="!isValid">
-          Login
+          Sign Up
         </base-button>
       </base-form>
     </div>
@@ -19,10 +19,14 @@
 
 <script setup lang="ts">
 import { computed, reactive } from "vue";
+import { useRouter } from "vue-router";
 import BaseButton from "/@/components/base/BaseButton.vue";
 import BaseForm from "/@/components/base/BaseForm.vue";
 import BaseInput from "/@/components/base/BaseInput.vue";
 import BaseLink from "/@/components/base/BaseLink.vue";
+import { useState } from "/@/services/state";
+const router = useRouter();
+const state = useState();
 
 const form = reactive({
 	username: "",
@@ -33,19 +37,7 @@ const form = reactive({
 
 const isValid = computed(() => form.username && form.email && form.password && form.repeatPassword === form.password);
 
-const onSubmit = async() => {
-	const response = await fetch("http://127.0.0.1:8085/users/@login", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({
-			email: form.email,
-			username: form.username,
-			password: form.password,
-		}),
-	});
-};
+const onSubmit = async() => state.users.signup(form).then(() => router.push({ name: "machines" }));
 
 </script>
 

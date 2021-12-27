@@ -49,7 +49,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
 	if (!to.name)
-		return next({ name: "machines" });
+		return next({ name: "login" });
 
 	next();
 });

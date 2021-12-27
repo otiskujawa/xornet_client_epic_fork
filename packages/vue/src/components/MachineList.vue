@@ -1,14 +1,17 @@
 <template>
   <resizable-div id="list" :minimum-width="96" class="bg-black pt-3 bg-opacity-25 h-full w-64" @resize="handleResize">
-    <machine-button v-for="machine of machines" :key="machine.uuid" :mode="mode" :machine="machine" />
+    <machine-button v-for="machine of state.machines.getAll()" :key="machine.uuid" :mode="mode" :machine="machine" />
   </resizable-div>
 </template>
 
 <script setup lang="ts">
 import type { Ref } from "vue";
 import { ref } from "vue";
+import { useState } from "../services/state";
 import MachineButton from "/@/components/MachineButton.vue";
 import ResizableDiv from "/@/components/shared/ResizableDiv.vue";
+
+const state = useState();
 
 const mode: Ref<"minimal" | "normal" | "maximal"> = ref("normal");
 
