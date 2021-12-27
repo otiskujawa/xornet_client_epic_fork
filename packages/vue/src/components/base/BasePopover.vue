@@ -3,67 +3,68 @@
   <div
     ref="popover"
     class="fixed popover z-1"
-    :class="{ openOnHover, open, [placement || 'bottom']: !open || openOnHover  }"
+    :class="{ openOnHover, open, [placement || 'bottom']: !open || openOnHover }"
     v-bind="$attrs"
   >
-    <div ref="arrowElement" class="arrow" v-if="props.arrow"></div>
+    <div v-if="props.arrow" ref="arrowElement" class="arrow" />
     <slot name="content" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { computePosition, offset, arrow, shift } from '@floating-ui/dom';
-import { BasePlacement } from '@floating-ui/core';
-import { computed, onMounted, Ref, ref } from 'vue';
+import { arrow, computePosition, offset, shift } from "@floating-ui/dom";
+import type { BasePlacement } from "@floating-ui/core";
+import type { Ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 const props = defineProps<{
-  open?: boolean,
-  openOnHover?: boolean,
-  arrow?: boolean,
-  placement?: BasePlacement,
-}>()
+	open?: boolean
+	openOnHover?: boolean
+	arrow?: boolean
+	placement?: BasePlacement
+}>();
 
 const popover = ref() as Ref<HTMLElement>;
 const arrowElement = ref() as Ref<HTMLElement>;
 const target = computed(() => popover.value.previousElementSibling!);
 
 const middleware = computed(() => {
-  const enabled = [offset(8), shift()]
-  if (props.arrow) enabled.push(arrow({ element: arrowElement.value }))
-  return enabled
+	const enabled = [offset(8), shift()];
+	if (props.arrow) enabled.push(arrow({ element: arrowElement.value }));
+	return enabled;
 });
 
 async function updatePosition() {
-  const { x, y, middlewareData, placement } = await computePosition(target.value, popover.value, {
-    placement: props.placement,
-    middleware: middleware.value,
-  });
+	const { x, y, middlewareData, placement } = await computePosition(target.value, popover.value, {
+		placement: props.placement,
+		middleware: middleware.value,
+	});
 
-  Object.assign(popover.value.style, {
-    left: `${x}px`,
-    top: `${y}px`,
-  });
+	Object.assign(popover.value.style, {
+		left: `${x}px`,
+		top: `${y}px`,
+	});
 
-  if (props.arrow) {
-    const staticSide = {
-      top: 'bottom',
-      right: 'left',
-      bottom: 'top',
-      left: 'right',
-    }[placement.split('-')[0]];
-    const { x: arrowX, y: arrowY } = middlewareData.arrow!;
-    Object.assign(arrowElement.value.style, {
-      left: arrowX != null ? `${arrowX}px` : '',
-      top: arrowY != null ? `${arrowY}px` : '',
-      right: '',
-      bottom: '',
-      [staticSide!]: '-0.25em',
-    });
-  }
+	if (props.arrow) {
+		const staticSide = {
+			top: "bottom",
+			right: "left",
+			bottom: "top",
+			left: "right",
+		}[placement.split("-")[0]];
+		const { x: arrowX, y: arrowY } = middlewareData.arrow!;
+		Object.assign(arrowElement.value.style, {
+			left: arrowX != null ? `${arrowX}px` : "",
+			top: arrowY != null ? `${arrowY}px` : "",
+			right: "",
+			bottom: "",
+			[staticSide!]: "-0.25em",
+		});
+	}
 }
 
-onMounted(async () => {
-  target.value.classList.add('target');
-  updatePosition();
+onMounted(async() => {
+	target.value.classList.add("target");
+	updatePosition();
 });
 
 </script>

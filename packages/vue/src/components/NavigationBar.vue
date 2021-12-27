@@ -2,9 +2,9 @@
   <nav class="h-full w-min flex flex-col">
     <ul>
       <base-tooltip
-        :text="route.name as string"
         v-for="route of routes.filter(route => !!route.icon)"
         :key="route.path"
+        :text="route.name as string"
         placement="right"
       >
         <li class="flex">
@@ -26,7 +26,7 @@ import type { FancyRouteRecord } from "../router";
 import BaseTooltip from "./base/BaseTooltip.vue";
 
 defineProps<{
-  routes: FancyRouteRecord[]
+	routes: FancyRouteRecord[]
 }>();
 
 </script>

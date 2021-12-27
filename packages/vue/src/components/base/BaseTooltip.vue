@@ -2,16 +2,16 @@
   <base-popover open-on-hover arrow class="tooltip">
     <slot />
     <template #content>
-      {{text}}
+      {{ text }}
     </template>
   </base-popover>
 </template>
 
 <script setup lang="ts">
-import BasePopover from './BasePopover.vue';
-const props = defineProps<{
-  text?: string;
-}>()
+import BasePopover from "./BasePopover.vue";
+defineProps<{
+	text?: string
+}>();
 </script>
 
 <style lang="postcss" >
