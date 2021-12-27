@@ -19,6 +19,9 @@ export class API {
 			);
 
 			if (headers) {
+				// Conceal the token
+				headers.Authorization = headers.Authorization !== "unset" ? "*".repeat(headers.Authorization.length) : headers.Authorization;
+
 				console.group("%c [Headers]", "color: #818DF8;");
 				console.log("%cAuthorization:", "color: #81dDd8;", headers.Authorization);
 				console.log("%cContent-Type:", "color: #81dDd8;", headers["Content-Type"]);
@@ -26,13 +29,13 @@ export class API {
 			}
 
 			if (body) {
+				// Conceal the password
 				body.password = "*".repeat(body.password.length);
+
 				console.group("%c [Body]", "color: #818DF8;");
 				console.log(Object.assign({}, body));
 				console.groupEnd();
 			}
-
-			console.groupEnd();
 		}
 	}
 
@@ -48,13 +51,15 @@ export class API {
 			body: body instanceof FormData ? body : JSON.stringify(body),
 		};
 
-		import.meta.env.DEV && this.debug(method, endpoint, headers, body);
+		state.settings.enableDebugLogger && this.debug(method, endpoint, headers, body);
 
 		const response = await fetch(BASE_URL + endpoint, options);
 
 		if (!response.ok) return Promise.reject(response.json());
 
 		const data = await response.json().catch(e => console.log(e));
+
+		console.groupEnd();
 		return data;
 	}
 }

@@ -32,8 +32,8 @@ const open = ref(false);
 
 onKeyStroke("Escape", () => (open.value = false));
 const props = defineProps<{
-	modelValue: string
-	options: string[]
+	modelValue: any
+	options: any[]
 	stayOpen?: boolean
 }>();
 const emit = defineEmits(["update:modelValue"]);

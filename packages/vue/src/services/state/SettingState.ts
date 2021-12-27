@@ -4,6 +4,7 @@ import { State } from "./State";
 export interface ISettingsState {
 	opacity: number
 	theme: "light" | "dark"
+	enableDebugLogger: boolean
 }
 
 export class SettingsState extends State<ISettingsState> {
@@ -11,6 +12,7 @@ export class SettingsState extends State<ISettingsState> {
 		super({
 			opacity: 100,
 			theme: "dark",
+			enableDebugLogger: import.meta.env.DEV,
 		});
 		this.registerWatchers();
 	}
@@ -52,5 +54,13 @@ export class SettingsState extends State<ISettingsState> {
 
 	public set opacity(opacity: number) {
 		this.state.opacity = opacity;
+	}
+
+	public get enableDebugLogger(): boolean {
+		return this.state.enableDebugLogger;
+	}
+
+	public set enableDebugLogger(state: boolean) {
+		this.state.enableDebugLogger = state;
 	}
 }
