@@ -19,11 +19,8 @@ export class API {
 			);
 
 			if (headers) {
-				// Conceal the token
-				headers.Authorization = headers.Authorization !== "unset" ? "*".repeat(headers.Authorization.length) : headers.Authorization;
-
 				console.group("%c [Headers]", "color: #818DF8;");
-				console.log("%cAuthorization:", "color: #81dDd8;", headers.Authorization);
+				console.log("%cAuthorization:", "color: #81dDd8;", headers.Authorization ? "*".repeat(headers.Authorization.length) : headers.Authorization);
 				console.log("%cContent-Type:", "color: #81dDd8;", headers["Content-Type"]);
 				console.groupEnd();
 			}
@@ -32,7 +29,7 @@ export class API {
 				// Conceal the password
 				body.password = "*".repeat(body.password.length);
 
-				console.group("%c [Body]", "color: #818DF8;");
+				console.group("%c [Sending Body]", "color: #818DF8;");
 				console.log(Object.assign({}, body));
 				console.groupEnd();
 			}
@@ -41,7 +38,7 @@ export class API {
 
 	public async request<T>(method: Verb, endpoint: string, body?: object): Promise<T> {
 		const headers = {
-			"Authorization": state.users.token,
+			"Authorization": state.users.getToken(),
 			"Content-Type": body instanceof FormData ? "multipart/form-data" : "application/json",
 		};
 
@@ -58,6 +55,10 @@ export class API {
 		if (!response.ok) return Promise.reject(response.json());
 
 		const data = await response.json().catch(e => console.log(e));
+
+		console.group("%c [Receiving Body]", "color: #818DF8;");
+		console.log(Object.assign({}, data));
+		console.groupEnd();
 
 		console.groupEnd();
 		return data;

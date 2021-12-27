@@ -49,7 +49,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-	if (state.users.token === "unset" && (to.name !== "login" && to.name !== "signup"))
+	if (state.users.getToken() === "undefined" && (to.name !== "login" && to.name !== "signup"))
 		return next({ name: "login" });
 
 	next();

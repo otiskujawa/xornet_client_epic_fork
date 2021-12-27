@@ -1,3 +1,5 @@
+import type { RemovableRef } from "@vueuse/core";
+import { useLocalStorage } from "@vueuse/core";
 import type { uuid } from "types/api";
 import type { IUser } from "types/api/user";
 import api from "../api";
@@ -5,7 +7,6 @@ import { State } from "./State";
 
 export interface IUsersState {
 	users: Record<uuid, IUser>
-	token: string
 }
 
 export interface UserLoginInput {
@@ -21,52 +22,87 @@ export interface UserSignupInput extends UserLoginInput {
 
 export class UsersState extends State<IUsersState> {
 	private me_uuid: uuid | undefined;
+	private token: RemovableRef<string> = useLocalStorage("token", "undefined");
 
 	constructor() {
 		super({
 			users: {},
-			token: "unset",
 		});
 	}
 
+	/**
+	 * Sets the user in the state and as me
+	 */
+	protected setMe(user: IUser) {
+		this.set(user); 										// Set the user
+		this.me_uuid = user.uuid; 					// Set this user as me
+	}
+
+	/**
+	 * Gets the me user from the state and if it doesn't exist it fetches it from the backend
+	 */
 	public getMe() {
-		if (this.me_uuid) return this.get(this.me_uuid);
+		if (!this.me_uuid) this.fetchMe(); 	// If the user isn't loaded already fetch it from the backend
+		return this.get(this.me_uuid!);		 	// Return the user from the Record
 	}
 
-	public async logout() {
-		this.token = "unset";
+	/**
+	 * Fetches the current logged in user object from the backend and sets it
+	 */
+	protected async fetchMe() {
+		const user: IUser = await api.request("GET", "/users/@me");
+		this.setMe(user);
 	}
 
+	/**
+	 * Get the user's current login token
+	 */
+	public getToken() {
+		return this.token.value;
+	}
+
+	/**
+	 * Logs a user out and resets the state
+	 */
+	public logout() {
+		this.token.value = "undefined";
+	}
+
+	/**
+	 * Logs in a user to the backend and sets the return user in the state
+	 */
 	public async login(form: UserLoginInput) {
 		const response: {token: string; user: IUser} = await api.request("POST", "/users/@login", form);
-		this.token = response.token;
-		this.set(response.user);
-		this.me_uuid = response.user.uuid;
+		this.token.value = response.token;
+		this.setMe(response.user);
 	}
 
+	/**
+	 * Signs up a user to the backend and sets the return user in the state
+	 */
 	public async signup(form: UserSignupInput) {
 		const response: {token: string; user: IUser} = await api.request("POST", "/users/@signup", form);
-		this.token = response.token;
-		this.set(response.user);
-		this.me_uuid = response.user.uuid;
+		this.token.value = response.token;
+		this.setMe(response.user);
 	}
 
-	public set token(value: string) {
-		this.state.token = value;
-	}
-
-	public get token() {
-		return this.state.token;
-	}
-
-	public setUsers(users: IUser[]) {
+	/**
+	 * Sets an array of users to the state
+	 */
+	protected setUsers(users: IUser[]) {
 		users.forEach(user => this.set(user));
 	}
 
-	public set(user: IUser) {
+	/**
+	 * Sets a user to the state
+	 */
+	protected set(user: IUser) {
 		this.state.users[user.uuid] = user;
 	}
 
+	/**
+	 * Gets a user from the state
+	 */
 	public get(uuid: uuid) {
 		return this.state.users[uuid];
 	}
