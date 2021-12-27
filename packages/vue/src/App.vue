@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { useState } from "./services/state";
+import { useState } from "./services/state/State";
 import ControlButtons from "/@/components/electron/ControlButtons.vue";
 import { isElectron } from "/@/services/logic";
 const state = useState();

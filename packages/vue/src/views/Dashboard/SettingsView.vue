@@ -14,9 +14,10 @@
 
 <script setup lang="ts">
 import { isElectron } from "/@/services/logic";
-import { useState } from "/@/services/state";
 import BaseDropdown from "/@/components/base/BaseDropdown.vue";
+import { useState } from "/@/services/state/State";
 const state = useState();
+
 </script>
 
 <style scoped lang="postcss"></style>

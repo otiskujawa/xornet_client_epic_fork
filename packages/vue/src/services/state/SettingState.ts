@@ -7,8 +7,11 @@ export interface ISettingsState {
 }
 
 export class SettingsState extends State<ISettingsState> {
-	constructor(state: ISettingsState) {
-		super(state);
+	constructor() {
+		super({
+			opacity: 100,
+			theme: "dark",
+		});
 		this.registerWatchers();
 	}
 

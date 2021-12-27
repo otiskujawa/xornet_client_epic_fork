@@ -16,7 +16,7 @@
 </template>
 <script setup lang="ts">
 import { nodeEmit } from "/@/services/logic";
-import { useState } from "/@/services/state";
+import { useState } from "/@/services/state/State";
 
 const state = useState();
 

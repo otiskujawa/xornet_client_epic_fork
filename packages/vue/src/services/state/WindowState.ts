@@ -4,8 +4,10 @@ export interface IWindowState {
 	isMaximized: boolean
 }
 export class WindowState extends State<IWindowState> {
-	constructor(state: IWindowState) {
-		super(state);
+	constructor() {
+		super({
+			isMaximized: false,
+		});
 	}
 
 	public get isMaximized() {
