@@ -44,7 +44,7 @@ export class UsersState extends State<IUsersState> {
 	 * Sets the user in the state and as me
 	 */
 	protected setMe(user: IUser) {
-		this.set(user); 										// Set the user
+		this.set(user); 													// Set the user
 		this.state.me_uuid = user.uuid; 					// Set this user as me
 	}
 

@@ -1,5 +1,6 @@
 import type { RouteRecordRaw } from "vue-router";
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
+
 import { state } from "./services/state";
 
 export type FancyRouteRecord = RouteRecordRaw & { icon?: string };
@@ -45,7 +46,7 @@ export const routes: (FancyRouteRecord & { children?: FancyRouteRecord[] })[] = 
 
 const router = createRouter({
 	routes,
-	history: createWebHistory(),
+	history: createWebHashHistory(),
 });
 
 router.beforeEach((to, from, next) => {
