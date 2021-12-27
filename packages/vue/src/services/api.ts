@@ -2,17 +2,24 @@
 
 import { state } from "./state";
 
-export type Verb = "GET" | "POST" | "DELETE"| "PUT"| "PATCH";
+export type Verb = "GET" | "POST" | "DELETE" | "PUT" | "PATCH";
 export const BASE_URL = "http://localhost:8085";
 
 export class API {
-	private debug(method: string, endpoint: string, duration: number, headers?: any, body?: any, ...messages: any) {
+	private debug(
+		method: string,
+		endpoint: string,
+		duration: number,
+		headers?: any,
+		body?: any,
+		...messages: any
+	) {
 		if (state.settings.enableDebugLogger) {
 			console.group(
 				"%c[API]"
-        + `%c [${method.toUpperCase()}]`
-				+ `%c ${duration}ms`
-				+ `%c ${endpoint}`,
+          + `%c [${method.toUpperCase()}]`
+          + `%c ${duration}ms`
+          + `%c ${endpoint}`,
 				"color: black; background-color: #818DF8; padding: 2px; font-weight: bold;",
 				"color: #818DF8;",
 				"color: #777;",
@@ -22,8 +29,16 @@ export class API {
 
 			if (headers) {
 				console.group("%c [Headers]", "color: #818DF8;");
-				console.log("%cAuthorization:", "color: #81dDd8;", headers.Authorization ? "*".repeat(16) : undefined);
-				console.log("%cContent-Type:", "color: #81dDd8;", headers["Content-Type"]);
+				console.log(
+					"%cAuthorization:",
+					"color: #81dDd8;",
+					headers.Authorization ? "*".repeat(16) : undefined,
+				);
+				console.log(
+					"%cContent-Type:",
+					"color: #81dDd8;",
+					headers["Content-Type"],
+				);
 				console.groupEnd();
 			}
 
@@ -38,10 +53,15 @@ export class API {
 		}
 	}
 
-	public async request<T>(method: Verb, endpoint: string, body?: object): Promise<T> {
+	public async request<T>(
+		method: Verb,
+		endpoint: string,
+		body?: object,
+	): Promise<T> {
 		const headers = {
 			"Authorization": state.users.getToken(),
-			"Content-Type": body instanceof FormData ? "multipart/form-data" : "application/json",
+			"Content-Type":
+        body instanceof FormData ? "multipart/form-data" : "application/json",
 		};
 
 		const options = {
@@ -51,9 +71,7 @@ export class API {
 		};
 
 		const start = Date.now();
-
 		const response = await fetch(BASE_URL + endpoint, options);
-
 		this.debug(method, endpoint, Date.now() - start, headers, body);
 
 		if (!response.ok) return Promise.reject(response.json());
