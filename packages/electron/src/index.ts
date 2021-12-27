@@ -36,6 +36,7 @@ const createWindow = async() => {
 		frame: false,
 		transparent: true,
 		icon: "../../../resources/icon.png",
+		vibrancy: "dark",
 		title: "Xornet",
 		webPreferences: {
 			nativeWindowOpen: true,

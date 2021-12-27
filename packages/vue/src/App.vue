@@ -47,7 +47,7 @@ const state = useState();
 body,
 html,
 #app {
-  @apply h-full w-full bg-transparent text-text overflow-hidden;
+  @apply h-full w-full bg-transparent filter text-text overflow-hidden;
 }
 
 #app {
