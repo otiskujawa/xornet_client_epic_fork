@@ -7,6 +7,7 @@ import { State } from "./State";
 
 export interface IUsersState {
 	users: Record<uuid, IUser>
+	me_uuid: uuid | undefined
 }
 
 export interface UserLoginInput {
@@ -21,11 +22,11 @@ export interface UserSignupInput extends UserLoginInput {
 }
 
 export class UsersState extends State<IUsersState> {
-	private me_uuid: uuid | undefined;
 	private token: RemovableRef<string> = useLocalStorage("token", "undefined");
 
 	constructor() {
 		super({
+			me_uuid: undefined,
 			users: {},
 		});
 	}
@@ -35,15 +36,15 @@ export class UsersState extends State<IUsersState> {
 	 */
 	protected setMe(user: IUser) {
 		this.set(user); 										// Set the user
-		this.me_uuid = user.uuid; 					// Set this user as me
+		this.state.me_uuid = user.uuid; 					// Set this user as me
 	}
 
 	/**
 	 * Gets the me user from the state and if it doesn't exist it fetches it from the backend
 	 */
 	public getMe() {
-		if (!this.me_uuid) this.fetchMe(); 	// If the user isn't loaded already fetch it from the backend
-		return this.get(this.me_uuid!);		 	// Return the user from the Record
+		if (!this.state.me_uuid) this.fetchMe(); 	// If the user isn't loaded already fetch it from the backend
+		return this.get(this.state.me_uuid!);		 	// Return the user from the Record
 	}
 
 	/**

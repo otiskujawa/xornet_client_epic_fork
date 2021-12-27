@@ -20,14 +20,14 @@ export class API {
 
 			if (headers) {
 				console.group("%c [Headers]", "color: #818DF8;");
-				console.log("%cAuthorization:", "color: #81dDd8;", headers.Authorization ? "*".repeat(headers.Authorization.length) : headers.Authorization);
+				console.log("%cAuthorization:", "color: #81dDd8;", headers.Authorization ? "*".repeat(16) : undefined);
 				console.log("%cContent-Type:", "color: #81dDd8;", headers["Content-Type"]);
 				console.groupEnd();
 			}
 
 			if (body) {
 				// Conceal the password
-				body.password = "*".repeat(body.password.length);
+				body.password = "*".repeat(16);
 
 				console.group("%c [Sending Body]", "color: #818DF8;");
 				console.log(Object.assign({}, body));
