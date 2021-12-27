@@ -16,10 +16,10 @@ defineProps<{
 
 <style lang="postcss" >
 .tooltip.popover {
-  @apply p-2 bg-primary-500 shadow-xl;
+  @apply p-2 bg-tooltip-background text-tooltip-text shadow-xl;
 }
 
 .tooltip .arrow {
-  @apply absolute w-2 h-2 rotate-45 transform bg-primary-500;
+  @apply absolute w-2 h-2 rotate-45 transform bg-tooltip-background;
 }
 </style>

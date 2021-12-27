@@ -19,14 +19,17 @@ export default defineConfig({
 	theme: {
 		extend: {
 			colors: {
-				background: withOpacityValue("color-background"),
-				caution: withOpacityValue("color-caution"),
 				text: withOpacityValue("color-text"),
+				caution: withOpacityValue("color-caution"),
+				background: withOpacityValue("color-background"),
+				tooltip: {
+					background: withOpacityValue("color-tooltip-background"),
+					text: withOpacityValue("color-tooltip-text"),
+				},
 				primary: {
 					300: withOpacityValue("color-primary-300"),
 					400: withOpacityValue("color-primary-400"),
 					500: withOpacityValue("color-primary-500"),
-
 				},
 			},
 		},

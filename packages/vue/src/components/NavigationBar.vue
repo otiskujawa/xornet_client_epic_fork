@@ -9,7 +9,7 @@
       >
         <li class="flex">
           <router-link
-            class="p-4 flex items-center justify-center text-69px text-text opacity-25"
+            class="p-4 flex items-center justify-center text-69px opacity-25"
             :to="route.name"
           >
             <icon class="w-24px h-24px" :name="route.icon!" />
@@ -24,7 +24,7 @@
       >
         <li class="flex">
           <router-link
-            class="p-4 flex items-center justify-center text-69px text-text opacity-25"
+            class="p-4 flex items-center justify-center text-69px opacity-25"
             :to="{name: 'login'}"
             @click="state.users.logout()"
           >
