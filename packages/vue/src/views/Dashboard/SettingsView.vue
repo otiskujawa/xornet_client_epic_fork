@@ -1,7 +1,7 @@
 <template>
   <div class="w-full flex flex-col gap-2 text-12px bg-black text-text bg-opacity-25 p-8">
-    <div>
-      <label for="theme">Theme</label>
+    <div class="flex gap-2 items-center">
+      <label for="theme text-xl">Theme</label>
       <base-dropdown stay-open v-model="state.settings.theme" :options="['dark', 'light']" />
     </div>
     <div v-if="isElectron()">

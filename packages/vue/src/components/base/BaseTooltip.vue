@@ -16,8 +16,9 @@ const props = defineProps<{
 
 <style lang="postcss" >
 .tooltip.popover {
-  @apply p-2 bg-primary-500;
+  @apply p-2 bg-primary-500 shadow-xl;
 }
+
 .tooltip .arrow {
   @apply absolute w-2 h-2 rotate-45 transform bg-primary-500;
 }
