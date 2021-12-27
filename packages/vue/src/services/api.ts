@@ -6,14 +6,16 @@ export type Verb = "GET" | "POST" | "DELETE"| "PUT"| "PATCH";
 export const BASE_URL = "http://localhost:8085";
 
 export class API {
-	private debug(method: string, endpoint: string, headers?: any, body?: any, ...messages: any) {
+	private debug(method: string, endpoint: string, duration: number, headers?: any, body?: any, ...messages: any) {
 		if (state.settings.enableDebugLogger) {
 			console.group(
 				"%c[API]"
         + `%c [${method.toUpperCase()}]`
+				+ `%c ${duration}ms`
 				+ `%c ${endpoint}`,
 				"color: black; background-color: #818DF8; padding: 2px; font-weight: bold;",
 				"color: #818DF8;",
+				"color: #777;",
 				"color: #FFF;",
 				...messages,
 			);
@@ -48,19 +50,23 @@ export class API {
 			body: body instanceof FormData ? body : JSON.stringify(body),
 		};
 
-		this.debug(method, endpoint, headers, body);
+		const start = Date.now();
 
 		const response = await fetch(BASE_URL + endpoint, options);
+
+		this.debug(method, endpoint, Date.now() - start, headers, body);
 
 		if (!response.ok) return Promise.reject(response.json());
 
 		const data = await response.json().catch(e => console.log(e));
 
-		console.group("%c [Receiving Body]", "color: #818DF8;");
-		console.log(Object.assign({}, data));
-		console.groupEnd();
+		if (state.settings.enableDebugLogger) {
+			console.group("%c [Receiving Body]", "color: #818DF8;");
+			console.log(Object.assign({}, data));
+			console.groupEnd();
+			console.groupEnd();
+		}
 
-		console.groupEnd();
 		return data;
 	}
 }
