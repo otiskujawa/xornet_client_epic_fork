@@ -1,4 +1,4 @@
-name: CI for Commits
+name: Continuous Integration
 
 on:
   push:
