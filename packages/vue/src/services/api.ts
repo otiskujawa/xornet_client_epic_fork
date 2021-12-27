@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import { state } from "./state";
 
 export type Verb = "GET" | "POST" | "DELETE"| "PUT"| "PATCH";
@@ -6,7 +8,6 @@ export const BASE_URL = "http://localhost:8085";
 export class API {
 	private debug(method: string, endpoint: string, headers?: any, body?: any, ...messages: any) {
 		if (import.meta.env.DEV) {
-			// eslint-disable-next-line no-console
 			console.group(
 				"%c[API]"
         + `%c [${method.toUpperCase()}]`
@@ -53,7 +54,6 @@ export class API {
 
 		if (!response.ok) return Promise.reject(response.json());
 
-		// eslint-disable-next-line no-console
 		const data = await response.json().catch(e => console.log(e));
 		return data;
 	}
