@@ -1,23 +1,25 @@
 .theme-dark {
-  --color-primary-300: 129, 141, 248;         /* #818df8 */       /* Main Color */
-  --color-primary-400: 103,116,234;           /* #6774ea */
-  --color-primary-500: 85,102,250;            /* #5566fa */
+  --color-primary-300: 129, 141, 248;        /* #818df8 */       /* Main Color */
+  --color-primary-400: 103, 116, 234;        /* #6774ea */
+  --color-primary-500: 85, 102, 250;         /* #5566fa */
 
-  --color-background: 33, 33, 33;             /* #212121 */
-  --color-tooltip-background: 255, 255 ,255;  /* #ffffff */
-  --color-tooltip-text: 33, 33, 33;           /* #212121 */
-  --color-text: 255, 255, 255;                /* #ffffff */
-  --color-caution: 255, 0, 122;               /* #ff007a */
+  --color-tooltip-background: 255, 255, 255; /* #ffffff */
+  --color-tooltip-text: 33, 33, 33;          /* #212121 */
+
+  --color-background: 33, 33, 33;            /* #212121 */
+  --color-text: 255, 255, 255;               /* #ffffff */
+  --color-caution: 255, 0, 122;              /* #ff007a */
 }
 
 .theme-light {
-  --color-primary-300: 129, 141, 248;         /* #818df8 */       /* Main Color */
-  --color-primary-400: 103,116,234;           /* #6774ea */
-  --color-primary-500: 85, 102, 250;          /* #5566fa */
+  --color-primary-300: 129, 141, 248;        /* #818df8 */       /* Main Color */
+  --color-primary-400: 103, 116, 234;        /* #6774ea */
+  --color-primary-500: 85, 102, 250;         /* #5566fa */
 
-  --color-background: 255, 255, 255;          /* #ffffff */
-  --color-tooltip-background: 0, 0 ,0;        /* #000000 */
-  --color-tooltip-text: 255, 255, 255;        /* #FFFFFF */
-  --color-text: 0, 0, 0;                      /* #000000 */
-  --color-caution: 255, 0, 122;               /* #ff007a */
+  --color-tooltip-background: 0, 0, 0;       /* #000000 */
+  --color-tooltip-text: 255, 255, 255;       /* #FFFFFF */
+
+  --color-background: 255, 255, 255;         /* #ffffff */
+  --color-text: 0, 0, 0;                     /* #000000 */
+  --color-caution: 255, 0, 122;              /* #ff007a */
 }
