@@ -35,7 +35,7 @@ const form = reactive({
 });
 
 const isValid = computed(() => form.username && form.password);
-const onSubmit = async() => state.users.login(form).then(() => router.push({ name: "machines" }));
+const onSubmit = () => state.users.login(form).then(() => router.push({ name: "machines" }));
 </script>
 
 <style scoped lang="postcss">

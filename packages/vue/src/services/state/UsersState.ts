@@ -14,9 +14,6 @@ export interface UserLoginInput {
 	username: string
 }
 
-/**
- * What the user signs up with
- */
 export interface UserSignupInput extends UserLoginInput {
 	[key: string]: any
 	email: string
@@ -28,6 +25,10 @@ export class UsersState extends State<IUsersState> {
 			users: {},
 			token: "unset",
 		});
+	}
+
+	public async logout() {
+		this.token = "unset";
 	}
 
 	public async login(form: UserLoginInput) {
