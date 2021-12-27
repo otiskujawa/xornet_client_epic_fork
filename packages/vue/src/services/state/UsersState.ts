@@ -24,11 +24,20 @@ export interface UserSignupInput extends UserLoginInput {
 export class UsersState extends State<IUsersState> {
 	private token: RemovableRef<string> = useLocalStorage("token", "undefined");
 
-	constructor() {
+	public constructor() {
 		super({
 			me_uuid: undefined,
 			users: {},
 		});
+	}
+
+	/**
+	 * Resets this state
+	 */
+	private reset() {
+		delete this.state.me_uuid;
+		this.token.value = "undefined";
+		this.setUsers([]);
 	}
 
 	/**
@@ -66,7 +75,7 @@ export class UsersState extends State<IUsersState> {
 	 * Logs a user out and resets the state
 	 */
 	public logout() {
-		this.token.value = "undefined";
+		this.reset();
 	}
 
 	/**
