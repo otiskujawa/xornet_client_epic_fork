@@ -14,6 +14,11 @@ export class MachinesState extends State<IMachinesState> {
 		});
 	}
 
+	public async generateToken() {
+		const { key }: {key: string} = await api.request("GET", "/machines/@newkey");
+		return key;
+	}
+
 	public async fetchMachines() {
 		this.setMachines(await api.request("GET", "/users/@me/machines"));
 	}
