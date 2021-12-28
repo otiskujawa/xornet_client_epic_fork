@@ -6,6 +6,22 @@ export type Verb = "GET" | "POST" | "DELETE" | "PUT" | "PATCH";
 export const BASE_URL = "http://localhost:8085";
 
 export class API {
+	private debugWs(direction: "got" | "sent", event: string, data: any, ...messages: any) {
+		if (state.settings.enableDebugLogger) {
+			console.group(
+				"%c[API Websockets]"
+					+ `%c ${direction}`
+          + `%c [${event.toUpperCase()}]`
+          + `%c ${data}`,
+				"color: black; background-color: #818DF8; padding: 2px; font-weight: bold;",
+				"color: #818DF8;",
+				"color: #FFF;",
+				"color: #777;",
+				...messages,
+			);
+		}
+	}
+
 	private debug(
 		method: string,
 		endpoint: string,
@@ -59,16 +75,18 @@ export class API {
 
 	public async createWebsocketConnection() {
 		// Create WebSocket connection.
-		const socket = new WebSocket(BASE_URL.replace("https", "wss").replace("http", "ws"));
+		const socket = new WebSocket(BASE_URL.replace("https", "wss").replace("http", "ws") + "/client");
 
 		// Connection opened
 		socket.addEventListener("open", (event) => {
-			socket.send(JSON.stringify({ e: 0x10, access_token: state.users.getToken() }));
+			const encoded = JSON.stringify({ e: 0x02, data: {access_token: state.users.getToken()} });
+			socket.send(encoded);
 		});
 
 		// Listen for messages
-		socket.addEventListener("message", (event) => {
-			console.log("Message from server ", event.data);
+		socket.addEventListener("message", (message) => {
+			const {e, data} = JSON.parse(message.toString());
+			this.debugWs("got", e, data)
 		});
 	}
 
