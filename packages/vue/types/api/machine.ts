@@ -37,6 +37,14 @@ export interface IMachineDynamicData {
 	disks: IDisk[]
 	processes: string
 	temps?: ITemp[]
+	network: INetwork[]
+}
+
+export interface INetwork {
+	[x: string]: any
+	name: string
+	tx: number
+	rx: number
 }
 
 export interface ICPU {

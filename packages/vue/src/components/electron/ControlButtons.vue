@@ -1,16 +1,16 @@
 <template>
   <div class="control-buttons absolute flex" :class="state.window.isMaximized && 'is-maximized'">
     <button @click="onMinimizeClick()">
-      <icon name="minimize" />
+      <i-fluency-minimize />
     </button>
     <button v-if="!state.window.isMaximized" @click="onMaximizeClick()">
-      <icon name="maximize" />
+      <i-fluency-maximize />
     </button>
     <button v-else @click="onUnmaximizeClick()">
-      <icon name="unmaximize" />
+      <i-fluency-unmaximize />
     </button>
     <button class="caution" @click="onCloseClick()">
-      <icon name="close" />
+      <i-fluency-close />
     </button>
   </div>
 </template>

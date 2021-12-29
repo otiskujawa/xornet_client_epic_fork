@@ -1,11 +1,6 @@
 <template>
-  <resizable-div
-    id="list"
-    :minimum-width="96"
-    class="bg-black bg-opacity-25 h-full w-64"
-    @resize="handleResize"
-  >
-    <div class="p-2 pr-1 flex gap-4">
+  <div class="w-full h-full  bg-black bg-opacity-25">
+    <div class="p-2 pr-1 flex gap-4 max-w-64">
       <base-input v-model="filter" placeholder="Filter" />
 
       <base-tooltip text="Add machine">
@@ -20,11 +15,11 @@
     </div>
     <machine-button
       v-for="machine of state.machines.getAll()"
-      :key="machine.uuid"
+      :key="machine.hardware_uuid"
       :mode="mode"
       :machine="machine"
     />
-  </resizable-div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -34,7 +29,6 @@ import { ref } from "vue";
 import { useState } from "../services/state";
 
 import MachineButton from "/@/components/MachineButton.vue";
-import ResizableDiv from "/@/components/shared/ResizableDiv.vue";
 
 import BaseInput from "./base/BaseInput.vue";
 import BaseTooltip from "./base/BaseTooltip.vue";
@@ -44,17 +38,10 @@ import TokenGenerator from "./TokenGenerator.vue";
 
 const state = useState();
 
-// Remove this later
 state.machines.fetchMachines();
 
 const filter = ref("");
 const mode: Ref<"minimal" | "normal" | "maximal"> = ref("normal");
 const showTokenGenerator = ref(false);
-
-const handleResize = (value: number) => {
-	if (value < 128) return (mode.value = "minimal");
-	else if (value >= 128 && value < 256) return (mode.value = "normal");
-	else return (mode.value = "maximal");
-};
 
 </script>
