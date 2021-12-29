@@ -53,6 +53,25 @@ export class API {
 		}
 	}
 
+	constructor() {
+		this.createWebsocketConnection();
+	}
+
+	public async createWebsocketConnection() {
+		// Create WebSocket connection.
+		const socket = new WebSocket(BASE_URL.replace("https", "wss").replace("http", "ws"));
+
+		// Connection opened
+		socket.addEventListener("open", (event) => {
+			socket.send(JSON.stringify({ e: 0x10, access_token: state.users.getToken() }));
+		});
+
+		// Listen for messages
+		socket.addEventListener("message", (event) => {
+			console.log("Message from server ", event.data);
+		});
+	}
+
 	public async request<T>(
 		method: Verb,
 		endpoint: string,
