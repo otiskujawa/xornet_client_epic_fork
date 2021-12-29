@@ -1,24 +1,35 @@
 /* eslint-disable no-console */
 
+import type { EventType } from "mitt";
+import mitt from "mitt";
+import type { IMachineDynamicData } from "types/api/machine";
 import { state } from "./state";
 
 export type Verb = "GET" | "POST" | "DELETE" | "PUT" | "PATCH";
 export const BASE_URL = "http://localhost:8085";
 
+export type MittEvent = Record<EventType, unknown>;
+export interface BackendToClientEvents {
+	[key: string | symbol]: unknown
+	machineData: IMachineDynamicData & { uuid: string }
+}
+
 export class API {
+	public socket = this.createWebsocketConnection();
+
 	private debugWs(direction: "got" | "sent", event: string, data: any, ...messages: any) {
 		if (state.settings.enableDebugLogger) {
 			console.group(
 				"%c[API Websockets]"
 					+ `%c ${direction}`
-          + `%c [${event.toUpperCase()}]`
-          + `%c ${data}`,
+          + `%c [${event}]`,
 				"color: black; background-color: #818DF8; padding: 2px; font-weight: bold;",
 				"color: #818DF8;",
 				"color: #FFF;",
-				"color: #777;",
+				data,
 				...messages,
 			);
+			console.groupEnd();
 		}
 	}
 
@@ -69,24 +80,26 @@ export class API {
 		}
 	}
 
-	constructor() {
-		this.createWebsocketConnection();
-	}
-
-	public async createWebsocketConnection() {
+	public createWebsocketConnection() {
 		// Create WebSocket connection.
 		const socket = new WebSocket(`${BASE_URL.replace("https", "wss").replace("http", "ws")}/client`);
 
+		const emitter = mitt<BackendToClientEvents>();
+		emitter.on("machineData", (dynamicData) => {
+			state.machines.updateDynamicData(dynamicData.uuid, dynamicData);
+		});
+
 		// Connection opened
 		socket.addEventListener("open", () => {
-			const encoded = JSON.stringify({ e: "login", data: { auth_token: state.users.getToken() } });
-			socket.send(encoded);
+			const encoded = JSON.stringify({ e: "login", d: { auth_token: state.users.getToken() } });
+			state.users.getToken() && socket.send(encoded);
 		});
 
 		// Listen for messages
 		socket.addEventListener("message", (message) => {
-			const { e, data } = JSON.parse(message.toString());
-			this.debugWs("got", e, data);
+			const { e: event, d: data } = JSON.parse(message.data.toString());
+			emitter.emit(event, data);
+			// this.debugWs("got", event, data);
 		});
 	}
 

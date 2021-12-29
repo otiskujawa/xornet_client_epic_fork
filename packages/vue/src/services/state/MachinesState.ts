@@ -1,5 +1,5 @@
 import type { uuid } from "types/api";
-import type { IMachine } from "types/api/machine";
+import type { IMachine, IMachineDynamicData } from "types/api/machine";
 import api from "../api";
 import { State } from "./State";
 
@@ -25,6 +25,10 @@ export class MachinesState extends State<IMachinesState> {
 
 	public setMachines(machines: IMachine[]) {
 		machines.forEach(machine => this.set(machine));
+	}
+
+	public updateDynamicData(machineUuid: uuid, data: IMachineDynamicData) {
+		this.get(machineUuid).dynamic_data = data;
 	}
 
 	public set(machine: IMachine) {

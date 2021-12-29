@@ -19,6 +19,7 @@ specifiers:
   eslint: ^7.12.1
   eslint-plugin-vue: 8.2.0
   husky: ^7.0.4
+  mitt: ^3.0.0
   playwright: 1.17.1
   typescript: 4.5.4
   unplugin-icons: ^0.12.23
@@ -36,6 +37,7 @@ dependencies:
   '@floating-ui/dom': 0.1.8
   '@vueuse/core': 7.4.1_vue@3.2.26
   electron-updater: 4.6.5
+  mitt: 3.0.0
   vue: 3.2.26
   vue-router: 4.0.12_vue@3.2.26
 
@@ -3795,6 +3797,10 @@ packages:
   /minimist/1.2.5:
     resolution: {integrity: sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==}
     dev: true
+
+  /mitt/3.0.0:
+    resolution: {integrity: sha512-7dX2/10ITVyqh4aOSVI9gdape+t9l2/8QxHrFmUXu4EEUpdlxl6RudZUPZoc+zuY2hk1j7XxVroIVIan/pD/SQ==}
+    dev: false
 
   /mkdirp/0.5.5:
     resolution: {integrity: sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==}

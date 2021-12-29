@@ -8,6 +8,8 @@
       <p v-if="mode !== 'minimal'" class="overflow-hidden whitespace-nowrap overflow-ellipsis max-w-full">
         {{ machine.name }}
       </p>
+
+      <i-fluency-processor /> <p>{{ cpuUsage }} %</p>
     </div>
     <i-fluency-status
       v-if="mode !== 'minimal'"
@@ -19,11 +21,15 @@
 
 <script setup lang="ts">
 import type { IMachine } from "types/api/machine";
+import { computed } from "vue";
 import DistroIcon from "/@/components/shared/DistroIcon.vue";
-defineProps<{
+const props = defineProps<{
 	mode: "minimal" | "normal" | "maximal"
 	machine: IMachine
 }>();
+
+const cpuUsage = computed(() => (props.machine.dynamic_data.cpu.usage.reduce((a, b) => a + b, 0) / props.machine.dynamic_data.cpu.usage.length).toFixed(2));
+
 </script>
 
 <style scoped lang="postcss">
