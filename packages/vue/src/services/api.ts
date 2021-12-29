@@ -75,18 +75,18 @@ export class API {
 
 	public async createWebsocketConnection() {
 		// Create WebSocket connection.
-		const socket = new WebSocket(BASE_URL.replace("https", "wss").replace("http", "ws") + "/client");
+		const socket = new WebSocket(`${BASE_URL.replace("https", "wss").replace("http", "ws")}/client`);
 
 		// Connection opened
-		socket.addEventListener("open", (event) => {
-			const encoded = JSON.stringify({ e: 0x02, data: {access_token: state.users.getToken()} });
+		socket.addEventListener("open", () => {
+			const encoded = JSON.stringify({ e: "login", data: { auth_token: state.users.getToken() } });
 			socket.send(encoded);
 		});
 
 		// Listen for messages
 		socket.addEventListener("message", (message) => {
-			const {e, data} = JSON.parse(message.toString());
-			this.debugWs("got", e, data)
+			const { e, data } = JSON.parse(message.toString());
+			this.debugWs("got", e, data);
 		});
 	}
 
