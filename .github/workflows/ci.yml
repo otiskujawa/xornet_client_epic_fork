@@ -31,11 +31,11 @@ jobs:
 
       # TODO: Install not all dependencies, but only those required for this workflow
       - name: Install dependencies
-        run: npm i -g pnpm && pnpm i
+        run: npm i
 
       # Type checking is divided into three separate commands for more convenient logs
       - name: Run unit tests
-        run: pnpm test
+        run: npm run test
 
   # lint-check: 
   #   name: Linting 
@@ -49,11 +49,11 @@ jobs:
 
   #     # TODO: Install not all dependencies, but only those required for this workflow
   #     - name: Install dependencies
-  #       run: npm i -g pnpm && pnpm i
+  #       run: npm i 
 
   #     # Type checking is divided into three separate commands for more convenient logs
   #     - name: Lint check
-  #       run: pnpm lint
+  #       run: npm run lint
 
   type-check:
     name: Typecheck
@@ -75,8 +75,8 @@ jobs:
 
       # TODO: Install not all dependencies, but only those required for this workflow
       - name: Install dependencies
-        run: npm i -g pnpm && pnpm i
+        run: npm i
 
       # Type checking is divided into three separate commands for more convenient logs
       - name: Typecheck ${{matrix.package}}
-        run: pnpm typecheck-${{matrix.package}}
+        run: npm typecheck-${{matrix.package}}
