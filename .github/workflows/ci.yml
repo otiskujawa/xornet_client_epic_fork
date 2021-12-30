@@ -16,7 +16,7 @@ on:
       - '**.vue'
       - '**/tsconfig.json'
       - 'package-lock.json'
-      - '.github/workflows/typechecking.yml'
+      - '.github/workflows/typechecking.yml' 
 
 jobs:
   test-check:
