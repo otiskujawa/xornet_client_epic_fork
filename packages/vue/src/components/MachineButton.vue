@@ -25,8 +25,8 @@
 
       <network-switch v-if="machine.dynamic_data" class="w-min-16" :interfaces="machine.dynamic_data.network" />
 
-      <base-tooltip :text="state.users.get(machine.owner_uuid).username">
-        <img class="w-4 h-4 rounded-full" :src="state.users.get(machine.owner_uuid).avatar" alt="">
+      <base-tooltip :text="state.users.get(machine.owner_uuid)?.username">
+        <img class="w-4 h-4 rounded-full" :src="state.users.get(machine.owner_uuid)?.avatar" alt="">
       </base-tooltip>
     </div>
     <i-fluency-status
