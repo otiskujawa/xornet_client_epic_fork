@@ -44,7 +44,6 @@ export default defineConfig({
 	],
 	base: "",
 	server: {
-		host: true,
 		fs: {
 			strict: true,
 		},
