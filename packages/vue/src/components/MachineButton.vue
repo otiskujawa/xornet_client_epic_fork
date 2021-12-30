@@ -29,7 +29,7 @@
     </div>
     <i-fluency-status
       class="w-16px h-16px min-w-16px min-h-16px"
-      :class="machine.status ? 'text-green-400' : 'text-gray-400'"
+      :class="machine.status ? 'text-active' : 'text-gray-400'"
     />
   </li>
 </template>

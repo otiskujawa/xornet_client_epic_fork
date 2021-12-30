@@ -39,15 +39,15 @@ const speeds = computed(() => {
 
 @keyframes flash {
   from {
-    box-shadow: 0px 0px 6px #00FF67;
+    /* box-shadow: 0px 0px 6px #00FF67; */
     @apply bg-active bg-opacity-100;
   }
   49% {
-    box-shadow: 0px 0px 6px #00FF67;
+    /* box-shadow: 0px 0px 6px #00FF67; */
     @apply bg-active bg-opacity-100;
   }
   50% {
-    box-shadow: 0px 0px 6px #00000000;
+    /* box-shadow: 0px 0px 6px #00000000; */
     @apply bg-black bg-opacity-25;
   }
 }
