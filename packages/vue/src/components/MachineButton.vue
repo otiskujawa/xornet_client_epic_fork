@@ -15,12 +15,12 @@
         <i-fluency-memory />
       </machine-stat>
 
-      <machine-stat class="w-min-28" :value="upload" suffix="Mbps">
-        <i-fluency-up />
-      </machine-stat>
-
       <machine-stat class="w-min-28" :value="download" suffix="Mbps">
         <i-fluency-down />
+      </machine-stat>
+
+      <machine-stat class="w-min-28" :value="upload" suffix="Mbps">
+        <i-fluency-up />
       </machine-stat>
 
       <network-switch v-if="machine.dynamic_data" class="w-min-16" :interfaces="machine.dynamic_data.network" />
@@ -52,8 +52,8 @@ const props = defineProps<{
 
 const cpuUsage = computed(() => (props.machine.dynamic_data?.cpu.usage.reduce((a, b) => a + b, 0) / props.machine.dynamic_data?.cpu.usage.length).toFixed(2));
 const memUsage = computed(() => `${(props.machine.dynamic_data?.ram.used / 1024 / 1024).toFixed(2)} / ${(props.machine.dynamic_data?.ram.total / 1024 / 1024).toFixed(2)}`);
-const upload = computed(() => (props.machine.dynamic_data?.network.reduce((a, b) => a + b.tx, 0) / 1000 / 1000).toFixed(2));
 const download = computed(() => (props.machine.dynamic_data?.network.reduce((a, b) => a + b.rx, 0) / 1000 / 1000).toFixed(2));
+const upload = computed(() => (props.machine.dynamic_data?.network.reduce((a, b) => a + b.tx, 0) / 1000 / 1000).toFixed(2));
 
 </script>
 
