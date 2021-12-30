@@ -6,7 +6,7 @@ import type { IMachineDynamicData } from "types/api/machine";
 import { state } from "./state";
 
 export type Verb = "GET" | "POST" | "DELETE" | "PUT" | "PATCH";
-export const BASE_URL = "http://localhost:8085";
+export const BASE_URL = "https://backend.xornet.cloud/";
 
 export type MittEvent = Record<EventType, unknown>;
 export interface BackendToClientEvents {
