@@ -23,6 +23,8 @@
         <i-fluency-down />
       </machine-stat>
 
+      <network-switch v-if="machine.dynamic_data" :interfaces="machine.dynamic_data.network" />
+
       <img class="w-4 h-4 rounded-full" :src="state.users.get(machine.owner_uuid).avatar" alt="">
     </div>
     <i-fluency-status
