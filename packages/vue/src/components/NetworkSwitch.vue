@@ -23,8 +23,8 @@ const speeds = computed(() => {
 
 	interfaces.value.forEach((iface) => {
 		const totalTraffic = (iface.tx + iface.rx) / 1000 / 1000;
-		if (totalTraffic === 0) nics[iface.name] = 0;
-		else if (totalTraffic > 0 && totalTraffic <= 10) nics[iface.name] = 400;
+		if (totalTraffic <= 0.1) nics[iface.name] = 0;
+		else if (totalTraffic > 0.1 && totalTraffic <= 10) nics[iface.name] = 400;
 		else if (totalTraffic > 10 && totalTraffic <= 100) nics[iface.name] = 200;
 		else if (totalTraffic > 100 && totalTraffic <= 1000) nics[iface.name] = 150;
 		else nics[iface.name] = 100;
