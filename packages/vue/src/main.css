@@ -9,6 +9,7 @@
   --color-background: 33, 33, 33;            /* #212121 */
   --color-text: 255, 255, 255;               /* #ffffff */
   --color-caution: 255, 0, 122;              /* #ff007a */
+  --color-active: 0,255,103;                 /* #00ff67 */
 }
 
 .theme-light {
@@ -22,4 +23,5 @@
   --color-background: 255, 255, 255;         /* #ffffff */
   --color-text: 0, 0, 0;                     /* #000000 */
   --color-caution: 255, 0, 122;              /* #ff007a */
+  --color-active: 0,255,103;                 /* #00ff67 */
 }

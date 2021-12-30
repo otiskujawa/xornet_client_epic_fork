@@ -40,6 +40,8 @@ import { computed } from "vue";
 import { useState } from "../services/state";
 import DistroIcon from "/@/components/shared/DistroIcon.vue";
 import MachineStat from "./MachineStat.vue";
+import NetworkSwitch from "./NetworkSwitch.vue";
+
 const state = useState();
 const props = defineProps<{
 	machine: IMachine
@@ -47,8 +49,8 @@ const props = defineProps<{
 
 const cpuUsage = computed(() => (props.machine.dynamic_data?.cpu.usage.reduce((a, b) => a + b, 0) / props.machine.dynamic_data?.cpu.usage.length).toFixed(2));
 const memUsage = computed(() => `${(props.machine.dynamic_data?.ram.used / 1024 / 1024).toFixed(2)} / ${(props.machine.dynamic_data?.ram.total / 1024 / 1024).toFixed(2)}`);
-const upload = computed(() => (props.machine.dynamic_data?.network.reduce((a, b) => a + b.tx, 0) / 1024).toFixed(2));
-const download = computed(() => (props.machine.dynamic_data?.network.reduce((a, b) => a + b.rx, 0) / 1024).toFixed(2));
+const upload = computed(() => (props.machine.dynamic_data?.network.reduce((a, b) => a + b.tx, 0) / 1000 / 1000).toFixed(2));
+const download = computed(() => (props.machine.dynamic_data?.network.reduce((a, b) => a + b.rx, 0) / 1000 / 1000).toFixed(2));
 
 </script>
 

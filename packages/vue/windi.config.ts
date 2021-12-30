@@ -21,6 +21,7 @@ export default defineConfig({
 			colors: {
 				text: withOpacityValue("color-text"),
 				caution: withOpacityValue("color-caution"),
+				active: withOpacityValue("color-active"),
 				background: withOpacityValue("color-background"),
 				tooltip: {
 					background: withOpacityValue("color-tooltip-background"),

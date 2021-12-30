@@ -1,27 +1,36 @@
 <template>
-  <div class="flex gap-2px">
-    {{ speeds }}
+  <div class="flex gap-4px">
     <div v-for="iface of interfaces" :key="iface.name">
-      <div class="cube" />
+      <base-tooltip :text="iface.name">
+        <div class="cube" :style="`animation-duration: ${speeds[iface.name]}ms;`" />
+      </base-tooltip>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, reactive, watch } from "vue";
+import { computed } from "vue";
 import type { INetwork } from "../../types/api/machine";
+import BaseTooltip from "./base/BaseTooltip.vue";
 const props = defineProps<{
 	interfaces: INetwork[]
 }>();
 
 const interfaces = computed(() => props.interfaces);
 
-const speeds = reactive<Record<string, number>>({});
+const speeds = computed(() => {
+	const nics: Record<string, number> = {};
 
-onMounted(() => {
-	interfaces.value.forEach(iface => watch(iface, () => {
-		speeds[iface.name] = iface.tx + iface.rx;
-	}));
+	interfaces.value.forEach((iface) => {
+		const totalTraffic = (iface.tx + iface.rx) / 1000 / 1000;
+		if (totalTraffic === 0) nics[iface.name] = 0;
+		else if (totalTraffic > 0 && totalTraffic <= 10) nics[iface.name] = 400;
+		else if (totalTraffic > 10 && totalTraffic <= 100) nics[iface.name] = 200;
+		else if (totalTraffic > 100 && totalTraffic <= 1000) nics[iface.name] = 150;
+		else nics[iface.name] = 100;
+	});
+
+	return nics;
 });
 
 </script>
@@ -30,18 +39,21 @@ onMounted(() => {
 
 @keyframes flash {
   from {
-    @apply bg-green-400;
+    box-shadow: 0px 0px 6px #00FF67;
+    @apply bg-active bg-opacity-100;
   }
   49% {
-    @apply bg-green-400;
+    box-shadow: 0px 0px 6px #00FF67;
+    @apply bg-active bg-opacity-100;
   }
   50% {
-    @apply bg-black;
+    box-shadow: 0px 0px 6px #00000000;
+    @apply bg-black bg-opacity-25;
   }
 }
 
 .cube {
-  @apply w-4px h-4px bg-black;
+  @apply w-6px h-6px bg-black bg-opacity-25;
   animation: flash infinite;
 }
 </style>
