@@ -50,6 +50,9 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
+	if (localStorage.getItem("token") && (to.fullPath === "/"))
+		return next({ name: "machines" });
+
 	if (state.users.getToken() === "undefined" && (to.name !== "login" && to.name !== "signup"))
 		return next({ name: "login" });
 
