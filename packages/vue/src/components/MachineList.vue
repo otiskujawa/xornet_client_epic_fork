@@ -4,7 +4,7 @@
       <base-input v-model="filter" placeholder="Filter" />
 
       <base-tooltip text="Add machine">
-        <base-button class="w-12 flex items-center justify-center" @click="showTokenGenerator = true">
+        <base-button transparent class="w-12 flex items-center justify-center" @click="showTokenGenerator = true">
           <i-fluency-plus class="w-4 h-4" />
         </base-button>
       </base-tooltip>
