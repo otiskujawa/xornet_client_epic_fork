@@ -3,29 +3,31 @@
     class="text-sm select-none text-text text-opacity-50 cursor-pointer list-none flex py-6px px-16px items-center"
   >
     <div class="flex gap-8 items-center ">
-      <machine-stat :value="machine.name">
+      <machine-stat class="w-min-40" :value="machine.name">
         <distro-icon class="w-16px h-16px min-w-16px min-h-16px" name="alpine" />
       </machine-stat>
 
-      <machine-stat :value="cpuUsage" suffix="%">
+      <machine-stat class="w-min-28" :value="cpuUsage" suffix="%">
         <i-fluency-processor />
       </machine-stat>
 
-      <machine-stat :value="memUsage" suffix="GB">
+      <machine-stat class="w-min-48" :value="memUsage" suffix="GB">
         <i-fluency-memory />
       </machine-stat>
 
-      <machine-stat :value="upload" suffix="Mbps">
+      <machine-stat class="w-min-28" :value="upload" suffix="Mbps">
         <i-fluency-up />
       </machine-stat>
 
-      <machine-stat :value="download" suffix="Mbps">
+      <machine-stat class="w-min-28" :value="download" suffix="Mbps">
         <i-fluency-down />
       </machine-stat>
 
-      <network-switch v-if="machine.dynamic_data" :interfaces="machine.dynamic_data.network" />
+      <network-switch v-if="machine.dynamic_data" class="w-min-16" :interfaces="machine.dynamic_data.network" />
 
-      <img class="w-4 h-4 rounded-full" :src="state.users.get(machine.owner_uuid).avatar" alt="">
+      <base-tooltip :text="state.users.get(machine.owner_uuid).username">
+        <img class="w-4 h-4 rounded-full" :src="state.users.get(machine.owner_uuid).avatar" alt="">
+      </base-tooltip>
     </div>
     <i-fluency-status
       class="w-16px h-16px min-w-16px min-h-16px"
@@ -41,6 +43,7 @@ import { useState } from "../services/state";
 import DistroIcon from "/@/components/shared/DistroIcon.vue";
 import MachineStat from "./MachineStat.vue";
 import NetworkSwitch from "./NetworkSwitch.vue";
+import BaseTooltip from "./base/BaseTooltip.vue";
 
 const state = useState();
 const props = defineProps<{
