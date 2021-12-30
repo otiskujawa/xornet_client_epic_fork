@@ -15,11 +15,11 @@
         <i-fluency-memory />
       </machine-stat>
 
-      <machine-stat class="w-min-28" :value="download" suffix="Mbps">
+      <machine-stat class="w-min-30" :value="download" suffix="Mbps">
         <i-fluency-down />
       </machine-stat>
 
-      <machine-stat class="w-min-28" :value="upload" suffix="Mbps">
+      <machine-stat class="w-min-30" :value="upload" suffix="Mbps">
         <i-fluency-up />
       </machine-stat>
 
