@@ -53,13 +53,6 @@ jobs:
         id: version
         run: echo "::set-output name=build-version::$(node -e "try{console.log(require('./.electron-builder.config.js').extraMetadata.version)}catch(e){console.error(e);process.exit(1)}")"
 
-      - name: Waiting on All checks
-        uses: lewagon/wait-on-check-action@v0.2
-        with:
-          ref: ${{ github.ref }}
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          running-workflow-name: 'draft'
-
       - name: Delete outdated drafts
         uses: hugo19941994/delete-draft-releases@v1.0.0
         env:

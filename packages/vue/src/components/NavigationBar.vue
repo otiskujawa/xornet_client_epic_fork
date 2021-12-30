@@ -6,7 +6,7 @@
         :key="route.path"
         :text="route.name as string"
         placement="right"
-      > 
+      >
         <li class="flex">
           <router-link
             class="p-4 flex items-center justify-center text-69px opacity-25"
