@@ -1,5 +1,6 @@
 <template>
-  <div class="control-buttons absolute flex" :class="state.window.isMaximized && 'is-maximized'">
+  <teleport to=body>
+      <div class="absolute flex" id="control-buttons" :class="state.window.isMaximized && 'is-maximized'">
     <button @click="onMinimizeClick()">
       <i-fluency-minimize />
     </button>
@@ -13,6 +14,7 @@
       <i-fluency-close />
     </button>
   </div>
+  </teleport>
 </template>
 <script setup lang="ts">
 import { nodeEmit } from "/@/services/logic";
@@ -37,7 +39,8 @@ const onUnmaximizeClick = () => {
 </script>
 
 <style lang="postcss" scoped>
-.control-buttons {
+#control-buttons {
+  -webkit-app-region: no-drag;
   @apply top-8px right-8px;
   &.is-maximized {
     @apply top-0px right-0px;
