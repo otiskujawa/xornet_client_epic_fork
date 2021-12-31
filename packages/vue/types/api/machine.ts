@@ -21,13 +21,14 @@ export interface IMachine {
 }
 
 export interface IMachineStaticData {
-	total_mem: number
-	cpu_cores: number
-	cpu_threads: number
+	hostname?: string
+	os_version?: string
+	os_name?: string
+	cpu_cores?: number
+	public_ip?: string
 	cpu_model: string
-	hostname: string
-	public_ip: string
-	os_version: string
+	cpu_threads: number
+	total_mem: number
 }
 
 export interface IMachineDynamicData {

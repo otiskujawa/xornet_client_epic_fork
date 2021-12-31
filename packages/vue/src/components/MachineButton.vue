@@ -4,7 +4,7 @@
   >
     <div class="flex gap-8 items-center ">
       <machine-stat class="w-min-40" :value="machine.name">
-        <distro-icon class="w-16px h-16px min-w-16px min-h-16px" name="alpine" />
+        <distro-icon class="w-16px h-16px min-w-16px min-h-16px" :name="machine.static_data?.os_name?.replace(/'/g, '')" />
       </machine-stat>
 
       <machine-stat class="w-min-28" :value="cpuUsage" suffix="%">
