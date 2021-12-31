@@ -31,7 +31,7 @@
         Token will expire in {{ expiresIn }}s
       </p>
 
-      <base-link href="https://github.com/xornet-cloud/Reporter">
+      <base-link href="https://github.com/xornet-cloud/Reporter#-how-do-i-add-my-machine-on-xornet">
         What to do?
       </base-link>
     </div>
