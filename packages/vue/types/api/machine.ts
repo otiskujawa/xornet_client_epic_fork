@@ -1,6 +1,6 @@
 import type { uuid } from "../../types/api/index";
 
-export const enum IMachineStatus {
+export const enum MachineStatus {
 	Unknown,
 	Offline,
 	Online,
@@ -14,7 +14,7 @@ export interface IMachine {
 	dynamic_data: IMachineDynamicData
 	access_token: string
 	name: string
-	status: IMachineStatus
+	status: MachineStatus
 	access: string[]
 	created_at: number
 	updated_at: number

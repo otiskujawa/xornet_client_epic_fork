@@ -1,5 +1,7 @@
 import type { uuid } from "types/api";
-import type { IMachine, IMachineDynamicData } from "types/api/machine";
+import { MachineStatus } from "../../../types/api/machine";
+import type { IMachine, IMachineDynamicData } from "../../../types/api/machine";
+
 import api from "../api";
 import { State } from "./State";
 
@@ -29,6 +31,7 @@ export class MachinesState extends State<IMachinesState> {
 
 	public updateDynamicData(machineUuid: uuid, data: IMachineDynamicData) {
 		this.get(machineUuid).dynamic_data = data;
+		this.get(machineUuid).status = MachineStatus.Online;
 	}
 
 	public set(machine: IMachine) {

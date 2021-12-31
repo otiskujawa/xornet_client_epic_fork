@@ -1,9 +1,14 @@
 <template>
   <div class="w-full h-full bg-black bg-opacity-25">
     <machine-button
-      v-for="machine of state.machines.getAll()"
+      v-for="machine of state.machines.getAll().filter(machine => machine.status == 2)"
       :key="machine.hardware_uuid"
-      :mode="mode"
+      :machine="machine"
+    />
+    <div class="h-1px w-full bg-white my-2 bg-opacity-5" />
+    <machine-button
+      v-for="machine of state.machines.getAll().filter(machine => machine.status != 2)"
+      :key="machine.hardware_uuid"
       :machine="machine"
     />
   </div>
@@ -20,7 +25,4 @@ import MachineButton from "/@/components/MachineButton.vue";
 const state = useState();
 
 state.machines.fetchMachines();
-
-const mode: Ref<"minimal" | "normal" | "maximal"> = ref("normal");
-
 </script>

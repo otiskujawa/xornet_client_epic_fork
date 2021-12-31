@@ -23,16 +23,17 @@
         <i-fluency-up />
       </machine-stat>
 
-      <network-switch v-if="machine.dynamic_data" class="w-min-16" :interfaces="machine.dynamic_data.network" />
-
       <base-tooltip :text="state.users.get(machine.owner_uuid)?.username">
         <img class="w-4 h-4 rounded-full" :src="state.users.get(machine.owner_uuid)?.avatar" alt="">
       </base-tooltip>
+
+      <i-fluency-status
+        class="w-16px h-16px min-w-16px min-h-16px"
+        :class="machine.status == 2 ? 'text-active text-opacity-100' : 'text-white text-opacity-5'"
+      />
+
+      <network-switch v-if="machine.dynamic_data" class="w-min-16" :interfaces="machine.dynamic_data.network" />
     </div>
-    <i-fluency-status
-      class="w-16px h-16px min-w-16px min-h-16px"
-      :class="machine.status ? 'text-active' : 'text-gray-400'"
-    />
   </li>
 </template>
 
