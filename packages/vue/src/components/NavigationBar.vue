@@ -8,7 +8,7 @@
         placement="right"
       >
         <li class="flex">
-          <router-link
+          <router-link draggable="false"
             class="p-4 flex items-center justify-center text-69px opacity-25"
             :to="route.name"
           >
@@ -23,7 +23,7 @@
         placement="right"
       >
         <li class="flex">
-          <router-link
+          <router-link draggable="false"
             class="p-4 flex items-center justify-center text-69px opacity-25"
             :to="{name: 'login'}"
             @click="state.users.logout()"
@@ -36,7 +36,7 @@
         <div
           class="p-4 flex items-center justify-center "
         >
-          <img class="w-6 h-6 rounded-full" :src="state.users.getMe()?.avatar" alt="">
+          <img class="w-6 h-6 rounded-full" draggable="false" :src="state.users.getMe()?.avatar" alt="">
         </div>
       </li>
     </ul>
