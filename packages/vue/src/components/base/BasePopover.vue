@@ -72,7 +72,7 @@ onMounted(async() => {
 <style scoped lang="postcss">
 
 .popover {
-  @apply rounded-4px transform text-sm text-white capitalize transition-all duration-100 ease-in-out;
+  @apply rounded-4px transform text-sm capitalize transition-all duration-100 ease-in-out;
 
   &.openOnHover,
   &:not(.open) {
