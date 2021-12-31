@@ -8,7 +8,8 @@
         placement="right"
       >
         <li class="flex">
-          <router-link draggable="false"
+          <router-link
+            draggable="false"
             class="p-4 flex items-center justify-center text-69px opacity-25"
             :to="route.name"
           >
@@ -23,13 +24,7 @@
         placement="right"
       >
         <li class="flex">
-          <router-link draggable="false"
-            class="p-4 flex items-center justify-center text-69px opacity-25"
-            :to="{name: 'login'}"
-            @click="state.users.logout()"
-          >
-            <i-fluency-skull class="w-24px h-24px" />
-          </router-link>
+          <logout-button />
         </li>
       </base-tooltip>
       <li class="flex">
@@ -48,6 +43,7 @@ import icon from "/@/components/shared/Icon.vue";
 import type { FancyRouteRecord } from "../router";
 import BaseTooltip from "./base/BaseTooltip.vue";
 import { useState } from "../services/state";
+import LogoutButton from "/@/components/NavigationBar/LogoutButton.vue";
 const state = useState();
 
 defineProps<{
