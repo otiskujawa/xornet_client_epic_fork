@@ -51,6 +51,6 @@ html,
 }
 
 #app {
-  @apply bg-background;
+  @apply bg-background-300;
 }
 </style>

@@ -28,6 +28,7 @@ export class MachinesState extends State<IMachinesState> {
 	}
 
 	public updateDynamicData(machineUuid: uuid, data: IMachineDynamicData) {
+		console.log(data);
 		this.get(machineUuid).dynamic_data = data;
 	}
 

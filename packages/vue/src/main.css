@@ -3,10 +3,14 @@
   --color-primary-400: 103, 116, 234;        /* #6774ea */
   --color-primary-500: 85, 102, 250;         /* #5566fa */
 
-  --color-tooltip-background: 255, 255, 255; /* #ffffff */
-  --color-tooltip-text: 33, 33, 33;          /* #212121 */
+  --color-background-200: 1,4,9;             /* #010409 */
+  --color-background-300: 15,19,25;          /* #0F1319 */
+  --color-background-400: 24,29,37;          /* #181D25 */
+  --color-background-500: 35,41,49;          /* #232931 */
 
-  --color-background: 33, 33, 33;            /* #212121 */
+  --color-tooltip-background: 255, 255, 255; /* #ffffff */
+  --color-tooltip-text: 1,4,9;               /* #010409 */
+
   --color-text: 255, 255, 255;               /* #ffffff */
   --color-caution: 255, 0, 122;              /* #ff007a */
   --color-active: 0,255,103;                 /* #00ff67 */
@@ -17,10 +21,14 @@
   --color-primary-400: 103, 116, 234;        /* #6774ea */
   --color-primary-500: 85, 102, 250;         /* #5566fa */
 
+  --color-background-200: 255, 255, 255;     /* #ffffff */
+  --color-background-300: 255, 255, 255;     /* #ffffff */
+  --color-background-400: 255, 255, 255;     /* #ffffff */
+  --color-background-500: 255, 255, 255;     /* #ffffff */
+
   --color-tooltip-background: 0, 0, 0;       /* #000000 */
   --color-tooltip-text: 255, 255, 255;       /* #FFFFFF */
 
-  --color-background: 255, 255, 255;         /* #ffffff */
   --color-text: 0, 0, 0;                     /* #000000 */
   --color-caution: 255, 0, 122;              /* #ff007a */
   --color-active: 0,255,103;                 /* #00ff67 */

@@ -58,7 +58,7 @@ const onUnmaximizeClick = () => {
     @apply p-6px px-16px text-text text-opacity-50 flex items-center justify-center;
 
     &:hover {
-      @apply bg-black bg-opacity-25 text-opacity-75;
+      @apply bg-background-400 text-opacity-75;
     }
 
     &.caution {

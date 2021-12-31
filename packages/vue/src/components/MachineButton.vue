@@ -60,7 +60,7 @@ const upload = computed(() => (props.machine.dynamic_data?.network.reduce((a, b)
 <style scoped lang="postcss">
 li {
   &:hover {
-    @apply bg-black bg-opacity-25 text-opacity-100;
+    @apply bg-background-400 text-opacity-100;
   }
 }
 </style>

@@ -8,7 +8,7 @@
       />
     </base-button>
     <template #content>
-      <ul class="bg-background p-1 text-xs rounded-4px overflow-hidden space-y-1">
+      <ul class="bg-background-300 p-1 text-xs rounded-4px overflow-hidden space-y-1">
         <li v-for="option in options" :key="option">
           <button
             :class="option === value && 'bg-black bg-opacity-20'"
