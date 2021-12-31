@@ -47,12 +47,12 @@ export default defineConfig({
 				theme_color: "#010409",
 				icons: [
 					{
-						src: "https://cdn.discordapp.com/attachments/755597803102928966/926547679402684426/icon.png",
+						src: "https://cdn.discordapp.com/attachments/755597803102928966/926549454620872734/logo_2.png",
 						sizes: "192x192",
 						type: "image/png",
 					},
 					{
-						src: "https://cdn.discordapp.com/attachments/755597803102928966/926547679402684426/icon.png",
+						src: "https://cdn.discordapp.com/attachments/755597803102928966/926549526930681857/logo_1.png",
 						sizes: "512x512",
 						type: "image/png",
 						purpose: "any maskable",
