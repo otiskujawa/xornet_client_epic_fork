@@ -15,7 +15,7 @@
         <i-fluency-memory />
       </machine-stat>
 
-      <network-switch class="w-min-16" :interfaces="machine.dynamic_data?.network" />
+      <network-switch class="w-min-20" :interfaces="machine.dynamic_data?.network" />
 
       <machine-stat class="w-min-30" :value="download" suffix="Mbps">
         <i-fluency-down />
