@@ -29,10 +29,10 @@ export class SettingsState {
 	}
 
 	private applyCurrentOpacity() {
-		// This is a hack 
+		// This is a hack
 		setTimeout(() => {
 			const main = <HTMLElement>document.querySelector("#main");
 			main!.style.setProperty("--tw-bg-opacity", (this.opacity.value / 100).toString());
-		}, 10)
+		}, 10);
 	}
 }

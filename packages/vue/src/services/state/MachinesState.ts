@@ -25,6 +25,10 @@ export class MachinesState extends State<IMachinesState> {
 		this.setMachines(await api.request("GET", "/users/@me/machines"));
 	}
 
+	public getTotal() {
+		return Object.values(this.state.machines).length;
+	}
+
 	public setMachines(machines: IMachine[]) {
 		machines.forEach(machine => this.set(machine));
 	}

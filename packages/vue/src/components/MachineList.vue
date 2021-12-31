@@ -15,14 +15,10 @@
 </template>
 
 <script setup lang="ts">
-import type { Ref } from "vue";
-import { ref } from "vue";
-
 import { useState } from "../services/state";
-
 import MachineButton from "/@/components/MachineButton.vue";
-
 const state = useState();
 
-state.machines.fetchMachines();
+// Little hack troll
+if (state.machines.getTotal() === 0) state.machines.fetchMachines();
 </script>
