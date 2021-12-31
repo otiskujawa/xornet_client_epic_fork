@@ -1,5 +1,5 @@
 <template>
-  <div class="flex gap-3px flex-wrap">
+  <div class="flex gap-3px max-w-32 flex-wrap">
     <div v-for="iface of interfaces" :key="iface.name">
       <base-tooltip :text="iface.name">
         <div class="cube" :style="`animation-duration: ${speeds[iface.name]}ms;`" />
