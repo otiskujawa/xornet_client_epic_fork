@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex h-full"
+    class="flex h-full bg-background-300 overflow-hidden"
     :class="state.window.isMaximized || !isElectron() ? 'rounded-0px' : 'rounded-8px'"
   >
     <control-buttons v-if="isElectron()" />
@@ -47,10 +47,6 @@ const state = useState();
 body,
 html,
 #app {
-  @apply h-full w-full bg-transparent filter rounded-8px text-text overflow-hidden;
-}
-
-#app {
-  @apply bg-background-300;
+  @apply h-full w-full bg-transparent filter text-text overflow-hidden;
 }
 </style>
