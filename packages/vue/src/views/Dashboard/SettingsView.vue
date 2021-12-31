@@ -8,6 +8,10 @@
       <label for="theme text-xl">API Debug Logger</label>
       <base-dropdown v-model="state.settings.enableDebugLogger.value" stay-open :options="[true, false]" />
     </div>
+    <div v-if="isElectron()" class="flex gap-2 items-center">
+      <label for="theme">Rounded Window Corners</label>
+      <base-dropdown v-model="state.settings.enableRoundedCorners.value" stay-open :options="[true, false]" />
+    </div>
     <div v-if="isElectron()">
       <label for="opacity">Background Opacity</label>
       <input v-model="state.settings.opacity.value" type="range" min="0" max="100" step="1">
@@ -24,4 +28,4 @@ const state = useState();
 
 </script>
 
-<style scoped lang="postcss"></style>
+<style scoped lang="postcss" />

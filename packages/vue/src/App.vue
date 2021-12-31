@@ -2,7 +2,7 @@
   <div
     id="main"
     class="flex h-full overflow-hidden bg-background-300"
-    :class="state.window.isMaximized || !isElectron() ? 'rounded-0px' : 'rounded-8px'"
+    :class="state.window.isMaximized || !isElectron() || !state.settings.enableRoundedCorners.value ? 'rounded-0px' : 'rounded-8px'"
   >
     <control-buttons v-if="isElectron()" />
     <router-view />
