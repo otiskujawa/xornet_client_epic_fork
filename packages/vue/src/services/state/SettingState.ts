@@ -10,7 +10,7 @@ export class SettingsState {
 	constructor() {
 		this.registerWatchers();
 		this.applyCurrentTheme();
-		this.applyOpacity();
+		this.applyCurrentOpacity();
 	}
 
 
@@ -23,7 +23,7 @@ export class SettingsState {
 
 		watch(
 			() => this.opacity.value,
-			() => this.applyOpacity(),
+			() => this.applyCurrentOpacity(),
 		);
 	}
 
@@ -32,7 +32,7 @@ export class SettingsState {
 		dom!.className = `theme-${this.theme.value}`;
 	}
 
-	private applyOpacity() {
+	private applyCurrentOpacity() {
 		const app = <HTMLElement>document.querySelector("#app");
 		app!.style.setProperty("--tw-bg-opacity", (this.opacity.value / 100).toString());
 	}
