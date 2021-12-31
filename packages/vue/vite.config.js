@@ -9,6 +9,7 @@ import Icons from "unplugin-icons/vite";
 import Components from "unplugin-vue-components/vite";
 import { defineConfig } from "vite";
 import WindiCSS from "vite-plugin-windicss";
+import { VitePWA } from "vite-plugin-pwa";
 import { chrome } from "../../.electron-vendors.cache.json";
 
 const PACKAGE_ROOT = __dirname;
@@ -34,6 +35,18 @@ export default defineConfig({
 			],
 		}),
 		WindiCSS(),
+		VitePWA({
+			registerType: "autoUpdate",
+			includeAssets: ["favicon.svg", "favicon.ico", "robots.txt", "apple-touch-icon.png"],
+			manifest: {
+				name: "Xornet Cloud",
+				short_name: "Xornet",
+				start_url: "./dashboard/machines",
+				display: "standalone",
+				description: "Xornet Dashboard",
+				theme_color: "#010409",
+			},
+		}),
 		Icons({
 			customCollections: {
 				fluency: FileSystemIconLoader("./resources/svg"),
