@@ -65,7 +65,7 @@ export class UsersState extends State<IUsersState> {
 	}
 
 	/**
-	 * Fetches the current logged in user object from the backend and sets it
+	 * Fetches a user from the backend and sets it
 	 */
 	protected async fetch(uuid: uuid) {
 		const user: IUser = await api.request("GET", `/users/${uuid}`);
@@ -119,7 +119,7 @@ export class UsersState extends State<IUsersState> {
 	}
 
 	/**
-	 * Gets a user from the state
+	 * Gets a user from the state and if it doesn't exist fetches it
 	 */
 	public get(uuid: uuid) {
 		const user = this.state.users[uuid];
