@@ -15,6 +15,8 @@
         <i-fluency-memory />
       </machine-stat>
 
+      <network-switch v-if="machine.dynamic_data" class="w-min-16" :interfaces="machine.dynamic_data.network" />
+
       <machine-stat class="w-min-30" :value="download" suffix="Mbps">
         <i-fluency-down />
       </machine-stat>
@@ -31,8 +33,6 @@
         class="w-16px h-16px min-w-16px min-h-16px"
         :class="machine.status == 2 ? 'text-active text-opacity-100' : 'text-white text-opacity-5'"
       />
-
-      <network-switch v-if="machine.dynamic_data" class="w-min-16" :interfaces="machine.dynamic_data.network" />
     </div>
   </li>
 </template>
