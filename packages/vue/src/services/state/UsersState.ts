@@ -65,6 +65,14 @@ export class UsersState extends State<IUsersState> {
 	}
 
 	/**
+	 * Fetches the current logged in user object from the backend and sets it
+	 */
+	protected async fetch(uuid: uuid) {
+		const user: IUser = await api.request("GET", `/users/${uuid}`);
+		this.set(user);
+	}
+
+	/**
 	 * Get the user's current login token
 	 */
 	public getToken() {
@@ -114,6 +122,8 @@ export class UsersState extends State<IUsersState> {
 	 * Gets a user from the state
 	 */
 	public get(uuid: uuid) {
-		return this.state.users[uuid];
+		const user = this.state.users[uuid];
+		if (!user) this.fetch(uuid);
+		return user;
 	}
 }
