@@ -1,7 +1,6 @@
 import { useLocalStorage } from "@vueuse/core";
 import { watch } from "vue";
 
-
 export class SettingsState {
 	public opacity = useLocalStorage("opacity", 100);
 	public theme = useLocalStorage("theme", "dark");
@@ -13,14 +12,11 @@ export class SettingsState {
 		this.applyCurrentOpacity();
 	}
 
-
 	private registerWatchers(): void {
-		// Apply the theme when it changes
 		watch(
 			() => this.theme.value,
 			() => this.applyCurrentTheme(),
 		);
-
 		watch(
 			() => this.opacity.value,
 			() => this.applyCurrentOpacity(),
@@ -33,7 +29,10 @@ export class SettingsState {
 	}
 
 	private applyCurrentOpacity() {
-		const app = <HTMLElement>document.querySelector("#app");
-		app!.style.setProperty("--tw-bg-opacity", (this.opacity.value / 100).toString());
+		// This is a hack 
+		setTimeout(() => {
+			const main = <HTMLElement>document.querySelector("#main");
+			main!.style.setProperty("--tw-bg-opacity", (this.opacity.value / 100).toString());
+		}, 10)
 	}
 }

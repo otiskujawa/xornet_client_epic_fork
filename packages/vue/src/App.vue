@@ -1,6 +1,7 @@
 <template>
   <div
-    class="flex h-full bg-background-300 overflow-hidden"
+    id="main"
+    class="flex h-full overflow-hidden bg-background-300"
     :class="state.window.isMaximized || !isElectron() ? 'rounded-0px' : 'rounded-8px'"
   >
     <control-buttons v-if="isElectron()" />
