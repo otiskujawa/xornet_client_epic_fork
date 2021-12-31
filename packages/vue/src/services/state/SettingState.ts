@@ -1,66 +1,39 @@
+import { useLocalStorage } from "@vueuse/core";
 import { watch } from "vue";
-import { State } from "./State";
 
-export interface ISettingsState {
-	opacity: number
-	theme: "light" | "dark"
-	enableDebugLogger: boolean
-}
 
-export class SettingsState extends State<ISettingsState> {
+export class SettingsState {
+	public opacity = useLocalStorage("opacity", 100);
+	public theme = useLocalStorage("theme", "dark");
+	public enableDebugLogger = useLocalStorage("debugLogging", import.meta.env.DEV);
+
 	constructor() {
-		super({
-			opacity: 100,
-			theme: "dark",
-			enableDebugLogger: import.meta.env.DEV,
-		});
 		this.registerWatchers();
+		this.applyCurrentTheme();
+		this.applyOpacity();
 	}
+
 
 	private registerWatchers(): void {
 		// Apply the theme when it changes
 		watch(
-			() => this.state.theme,
+			() => this.theme.value,
 			() => this.applyCurrentTheme(),
 		);
 
 		watch(
-			() => this.state.opacity,
+			() => this.opacity.value,
 			() => this.applyOpacity(),
 		);
 	}
 
 	private applyCurrentTheme() {
 		const dom = document.querySelector("html");
-		dom!.className = `theme-${this.theme}`;
+		dom!.className = `theme-${this.theme.value}`;
 	}
 
 	private applyOpacity() {
 		const app = <HTMLElement>document.querySelector("#app");
-		app!.style.setProperty("--tw-bg-opacity", (this.state.opacity / 100).toString());
-	}
-
-	public get theme(): "light" | "dark" {
-		return this.state.theme;
-	}
-
-	public set theme(theme: "light" | "dark") {
-		this.state.theme = theme;
-	}
-
-	public get opacity(): number {
-		return this.state.opacity;
-	}
-
-	public set opacity(opacity: number) {
-		this.state.opacity = opacity;
-	}
-
-	public get enableDebugLogger(): boolean {
-		return this.state.enableDebugLogger;
-	}
-
-	public set enableDebugLogger(state: boolean) {
-		this.state.enableDebugLogger = state;
+		app!.style.setProperty("--tw-bg-opacity", (this.opacity.value / 100).toString());
 	}
 }
