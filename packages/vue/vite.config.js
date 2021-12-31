@@ -41,10 +41,23 @@ export default defineConfig({
 			manifest: {
 				name: "Xornet Cloud",
 				short_name: "Xornet",
-				start_url: "./dashboard/machines",
+				start_url: "./#/dashboard/machines",
 				display: "standalone",
 				description: "Xornet Dashboard",
 				theme_color: "#010409",
+				icons: [
+					{
+						src: "https://cdn.discordapp.com/attachments/755597803102928966/926547679402684426/icon.png",
+						sizes: "192x192",
+						type: "image/png",
+					},
+					{
+						src: "https://cdn.discordapp.com/attachments/755597803102928966/926547679402684426/icon.png",
+						sizes: "512x512",
+						type: "image/png",
+						purpose: "any maskable",
+					},
+				],
 			},
 		}),
 		Icons({
