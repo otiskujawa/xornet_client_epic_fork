@@ -15,7 +15,7 @@
         <i-fluency-memory />
       </machine-stat>
 
-      <network-switch v-if="machine.dynamic_data" class="w-min-16" :interfaces="machine.dynamic_data.network" />
+      <network-switch class="w-min-16" :interfaces="machine.dynamic_data?.network" />
 
       <machine-stat class="w-min-30" :value="download" suffix="Mbps">
         <i-fluency-down />
@@ -23,6 +23,10 @@
 
       <machine-stat class="w-min-30" :value="upload" suffix="Mbps">
         <i-fluency-up />
+      </machine-stat>
+
+      <machine-stat class="w-min-30" :value="machine.dynamic_data?.temps?.[0].value.toFixed(2)" suffix="°C">
+        <i-fluency-temperature />
       </machine-stat>
 
       <base-tooltip :text="state.users.get(machine.owner_uuid)?.username">

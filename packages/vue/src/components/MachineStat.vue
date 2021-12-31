@@ -1,7 +1,9 @@
 <template>
-  <div class="flex gap-2 items-center">
-    <slot />
-    <p>{{ value }} {{ suffix }}</p>
+  <div>
+    <div v-if="value" class="flex gap-2 items-center">
+      <slot />
+      <p>{{ value }} {{ suffix }}</p>
+    </div>
   </div>
 </template>
 
