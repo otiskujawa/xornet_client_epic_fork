@@ -1,48 +1,9 @@
 <template>
   <nav class="h-full justify-between w-min flex flex-col">
     <ul>
-      <base-tooltip
-        text="Machines"
-        placement="right"
-      >
-        <li class="flex">
-          <router-link
-            draggable="false"
-            class="p-4 flex items-center justify-center text-69px opacity-25"
-            :to="{ name: 'machines' }"
-          >
-            <icon class="w-24px h-24px" name="nas" />
-          </router-link>
-        </li>
-      </base-tooltip>
-      <base-tooltip
-        text="Settings"
-        placement="right"
-      >
-        <li class="flex">
-          <router-link
-            draggable="false"
-            class="p-4 flex items-center justify-center text-69px opacity-25"
-            :to="{ name: 'settings' }"
-          >
-            <icon class="w-24px h-24px" name="settings" />
-          </router-link>
-        </li>
-      </base-tooltip>
-      <base-tooltip
-        text="Profile"
-        placement="right"
-      >
-        <li class="flex">
-          <router-link
-            draggable="false"
-            class="p-4 flex items-center justify-center text-69px opacity-25"
-            :to="{ name: 'profile', params: { uuid: state.users.getMe()?.uuid } }"
-          >
-            <icon class="w-24px h-24px" name="user" />
-          </router-link>
-        </li>
-      </base-tooltip>
+      <navigation-button name="machines" icon="nas" :to="{ name: 'machines' }" />
+      <navigation-button name="settings" icon="settings" :to="{ name: 'settings' }" />
+      <navigation-button name="profile" icon="user" :to="{ name: 'profile', params: { uuid: state.users.getMe()?.uuid } }" />
     </ul>
     <ul>
       <base-tooltip
@@ -65,16 +26,11 @@
 </template>
 
 <script setup lang="ts">
-import icon from "/@/components/shared/Icon.vue";
-import type { FancyRouteRecord } from "../router";
-import BaseTooltip from "./base/BaseTooltip.vue";
 import { useState } from "../services/state";
+import BaseTooltip from "./base/BaseTooltip.vue";
 import LogoutButton from "/@/components/NavigationBar/LogoutButton.vue";
+import NavigationButton from "./NavigationButton.vue";
 const state = useState();
-
-defineProps<{
-	routes: FancyRouteRecord[]
-}>();
 
 </script>
 
