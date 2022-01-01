@@ -1,5 +1,5 @@
 <template>
-  <div id="TopBar" class="w-full bg-black bg-opacity-25">
+  <div id="TopBar" class="w-full">
     <div class="p-2 pr-1 flex gap-4 max-w-64">
       <base-input v-model="filter" placeholder="Filter" />
 

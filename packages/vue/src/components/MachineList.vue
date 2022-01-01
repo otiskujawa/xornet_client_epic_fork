@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full  h-full bg-black bg-opacity-25">
+  <div class="w-full  h-full">
     <base-table
       :headers="[
         'Hostname',

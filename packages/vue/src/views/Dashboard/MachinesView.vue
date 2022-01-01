@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full flex-col">
+  <div class="flex w-full flex-col bg-black bg-opacity-25">
     <top-bar />
     <machine-list />
   </div>

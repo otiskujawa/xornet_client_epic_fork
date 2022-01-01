@@ -1,7 +1,7 @@
 <template>
-  <div class="flex w-full h-full flex-col">
+  <div class="flex w-full h-full flex-col bg-black bg-opacity-25">
     <top-bar />
-    <div class="w-full h-full flex flex-col items-center gap-2 text-12px bg-black bg-opacity-25  text-text px-8">
+    <div class="w-full h-full flex flex-col items-center gap-2 text-12px text-text px-8">
       <div class="option">
         <label for="theme text-xl">Theme</label>
         <base-dropdown v-model="state.settings.theme.value" stay-open :options="['dark', 'light']" />
