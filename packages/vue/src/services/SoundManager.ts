@@ -5,10 +5,10 @@ export class SoundManager {
 		if (!state.settings.enableSoundEffects.value) return;
 
 		const sounds = [
-			new Audio("./assets/sounds/hover1.wav"),
-			new Audio("./assets/sounds/hover2.wav"),
-			new Audio("./assets/sounds/hover3.wav"),
-			new Audio("./assets/sounds/hover4.wav"),
+			new Audio("sounds/hover1.wav"),
+			new Audio("sounds/hover2.wav"),
+			new Audio("sounds/hover3.wav"),
+			new Audio("sounds/hover4.wav"),
 		];
 
 		const sound = sounds[~~(Math.random() * sounds.length - 1)];
@@ -19,7 +19,7 @@ export class SoundManager {
 	public static playClick() {
 		if (!state.settings.enableSoundEffects.value) return;
 
-		const sound = new Audio("./assets/sounds/click1.wav");
+		const sound = new Audio("sounds/click1.wav");
 		sound.volume = 0.25;
 		sound.play();
 	}
@@ -27,7 +27,7 @@ export class SoundManager {
 	public static playEscape() {
 		if (!state.settings.enableSoundEffects.value) return;
 
-		const sound = new Audio("./assets/sounds/escape.wav");
+		const sound = new Audio("sounds/escape.wav");
 		sound.volume = 0.25;
 		sound.play();
 	}
