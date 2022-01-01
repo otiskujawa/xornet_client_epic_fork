@@ -36,6 +36,8 @@ const createWindow = async() => {
 		frame: false,
 		transparent: true,
 		icon: "../../../resources/icon.png",
+		minHeight: 400,
+		minWidth: 800,
 		vibrancy: "dark",
 		title: "Xornet",
 		webPreferences: {
