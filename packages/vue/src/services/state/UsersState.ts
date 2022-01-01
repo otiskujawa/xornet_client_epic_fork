@@ -59,7 +59,7 @@ export class UsersState extends State<IUsersState> {
 	/**
 	 * Fetches the current logged in user object from the backend and sets it
 	 */
-	protected async fetchMe() {
+	public async fetchMe() {
 		const user: IUser = await api.request("GET", "/users/@me");
 		this.setMe(user);
 	}

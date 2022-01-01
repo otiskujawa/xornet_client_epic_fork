@@ -2,18 +2,44 @@
   <nav class="h-full justify-between w-min flex flex-col">
     <ul>
       <base-tooltip
-        v-for="route of routes.filter(route => !!route.icon)"
-        :key="route.path"
-        :text="route.name as string"
+        text="Machines"
         placement="right"
       >
         <li class="flex">
           <router-link
             draggable="false"
             class="p-4 flex items-center justify-center text-69px opacity-25"
-            :to="route.name"
+            :to="{ name: 'machines' }"
           >
-            <icon class="w-24px h-24px" :name="route.icon!" />
+            <icon class="w-24px h-24px" name="nas" />
+          </router-link>
+        </li>
+      </base-tooltip>
+      <base-tooltip
+        text="Settings"
+        placement="right"
+      >
+        <li class="flex">
+          <router-link
+            draggable="false"
+            class="p-4 flex items-center justify-center text-69px opacity-25"
+            :to="{ name: 'settings' }"
+          >
+            <icon class="w-24px h-24px" name="settings" />
+          </router-link>
+        </li>
+      </base-tooltip>
+      <base-tooltip
+        text="Profile"
+        placement="right"
+      >
+        <li class="flex">
+          <router-link
+            draggable="false"
+            class="p-4 flex items-center justify-center text-69px opacity-25"
+            :to="{ name: 'profile', params: { uuid: state.users.getMe()?.uuid } }"
+          >
+            <icon class="w-24px h-24px" name="user" />
           </router-link>
         </li>
       </base-tooltip>

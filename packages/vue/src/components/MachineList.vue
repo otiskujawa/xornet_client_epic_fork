@@ -53,7 +53,7 @@
         </th>
         <th>
           <base-tooltip :text="state.users.get(machine.owner_uuid)?.username">
-            <img class="w-4 h-4 rounded-full" :src="state.users.get(machine.owner_uuid)?.avatar" alt="">
+            <avatar :uuid="state.users.get(machine.owner_uuid)?.uuid" :img="state.users.get(machine.owner_uuid)?.avatar" width="16px" />
           </base-tooltip>
         </th>
         <th>
@@ -74,6 +74,7 @@ import BaseTable from "./base/BaseTable.vue";
 import BaseTooltip from "./base/BaseTooltip.vue";
 import MachineStat from "./MachineStat.vue";
 import NetworkSwitch from "./NetworkSwitch.vue";
+import Avatar from "./user/Avatar.vue";
 const state = useState();
 // Little hack troll
 if (state.machines.getTotal() === 0) state.machines.fetchMachines();
