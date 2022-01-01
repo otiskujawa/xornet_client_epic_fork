@@ -1,8 +1,8 @@
 <template>
-  <a v-if="href" :href="href" class="baselink" target="_blank">
+  <a v-if="href" draggable="false" :href="href" class="baselink" target="_blank">
     <slot />
   </a>
-  <router-link v-else class="baselink">
+  <router-link v-else draggable="false" class="baselink">
     <slot />
   </router-link>
 </template>
