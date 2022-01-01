@@ -1,7 +1,7 @@
 <template>
   <div id="TopBar" class="w-full">
     <div class="p-2 pr-1 flex gap-4 max-w-64">
-      <base-input v-model="filter" placeholder="Filter" />
+      <base-input v-model="filter" placeholder="Filter" class="text-xs" />
 
       <base-tooltip text="Add machine">
         <base-button transparent class="w-12 flex items-center justify-center" @click="showTokenGenerator = true">

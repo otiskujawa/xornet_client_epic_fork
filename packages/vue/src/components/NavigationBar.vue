@@ -16,9 +16,9 @@
       </base-tooltip>
       <li class="flex">
         <div
-          class="p-4 flex items-center justify-center "
+          class="p-3 flex items-center justify-center "
         >
-          <avatar :img="state.users.getMe()?.avatar" width="6rem" />
+          <avatar :img="state.users.getMe()?.avatar" width="32px" />
         </div>
       </li>
     </ul>
