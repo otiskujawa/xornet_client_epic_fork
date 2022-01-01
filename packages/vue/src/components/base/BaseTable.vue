@@ -1,5 +1,5 @@
 <template>
-  <table class="w-full text-sm table-auto">
+  <table class="w-full text-xs table-auto">
     <tr class="headerRow text-left ">
       <th v-for="header of headers" :key="header" class="header cursor-pointer hover:text-opacity-100">
         {{ header }}
