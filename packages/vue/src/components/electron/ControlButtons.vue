@@ -1,23 +1,24 @@
 <template>
-  <teleport to=body>
-      <div class="absolute flex" id="control-buttons" :class="state.window.isMaximized && 'is-maximized'">
-    <button @click="onMinimizeClick()">
-      <i-fluency-minimize />
-    </button>
-    <button v-if="!state.window.isMaximized" @click="onMaximizeClick()">
-      <i-fluency-maximize />
-    </button>
-    <button v-else @click="onUnmaximizeClick()">
-      <i-fluency-unmaximize />
-    </button>
-    <button class="caution" @click="onCloseClick()">
-      <i-fluency-close />
-    </button>
-  </div>
+  <teleport to="body">
+    <div id="control-buttons" class="absolute flex" :class="state.window.isMaximized && 'is-maximized'">
+      <button @click="onMinimizeClick()">
+        <i-fluency-minimize />
+      </button>
+      <button v-if="!state.window.isMaximized" @click="onMaximizeClick()">
+        <i-fluency-maximize />
+      </button>
+      <button v-else @click="onUnmaximizeClick()">
+        <i-fluency-unmaximize />
+      </button>
+      <button class="caution" @click="onCloseClick()">
+        <i-fluency-close />
+      </button>
+    </div>
   </teleport>
 </template>
 <script setup lang="ts">
 import { nodeEmit } from "/@/services/logic";
+import { SoundManager } from "/@/services/SoundManager";
 import { useState } from "/@/services/state";
 
 const state = useState();

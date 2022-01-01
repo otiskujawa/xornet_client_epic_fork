@@ -8,6 +8,10 @@
       <label for="theme text-xl">API Debug Logger</label>
       <base-dropdown v-model="state.settings.enableDebugLogger.value" stay-open :options="[true, false]" />
     </div>
+    <div class="flex gap-2 items-center">
+      <label for="theme text-xl">Sound FX</label>
+      <base-dropdown v-model="state.settings.enableSoundEffects.value" stay-open :options="[true, false]" />
+    </div>
     <div v-if="isElectron()" class="flex gap-2 items-center">
       <label for="theme">Rounded Window Corners</label>
       <base-dropdown v-model="state.settings.enableRoundedCorners.value" stay-open :options="[true, false]" />

@@ -6,6 +6,7 @@ export class SettingsState {
 	public theme = useLocalStorage("theme", "dark");
 	public enableDebugLogger = useLocalStorage("debugLogging", import.meta.env.DEV);
 	public enableRoundedCorners = useLocalStorage("roundedCorners", true);
+	public enableSoundEffects = useLocalStorage("soundEffects", false);
 
 	constructor() {
 		this.registerWatchers();

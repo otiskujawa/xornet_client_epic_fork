@@ -16,6 +16,7 @@
       <tr
         v-for="machine of state.machines.getAll().sort((a) => a.status == 2 ? -1 : 1)"
         :key="machine.hardware_uuid"
+        @mouseenter="SoundManager.playHover()"
       >
         <th>
           <machine-stat :value="machine.name">
@@ -67,13 +68,13 @@
 </template>
 
 <script setup lang="ts">
+import { SoundManager } from "../services/SoundManager";
 import { useState } from "../services/state";
 import BaseTable from "./base/BaseTable.vue";
 import BaseTooltip from "./base/BaseTooltip.vue";
 import MachineStat from "./MachineStat.vue";
 import NetworkSwitch from "./NetworkSwitch.vue";
 const state = useState();
-
 // Little hack troll
 if (state.machines.getTotal() === 0) state.machines.fetchMachines();
 </script>
