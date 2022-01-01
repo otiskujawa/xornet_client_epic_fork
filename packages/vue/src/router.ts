@@ -40,6 +40,12 @@ export const routes: (FancyRouteRecord & { children?: FancyRouteRecord[] })[] = 
 				icon: "settings",
 				component: () => import("./views/Dashboard/SettingsView.vue"),
 			},
+			{
+				path: "profile/:uuid?",
+				name: "profile",
+				icon: "user",
+				component: () => import("./views/Dashboard/ProfileView.vue"),
+			},
 		],
 	},
 ];
