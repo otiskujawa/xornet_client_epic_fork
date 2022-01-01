@@ -1,21 +1,27 @@
 <template>
-  <div class="w-full flex flex-col gap-2 text-12px bg-black text-text bg-opacity-25 p-8">
-    <div class="flex gap-2 items-center">
+  <div class="w-full flex flex-col items-center gap-2 text-12px bg-black text-text bg-opacity-25 p-8 pt-12">
+    <div class="option">
       <label for="theme text-xl">Theme</label>
       <base-dropdown v-model="state.settings.theme.value" stay-open :options="['dark', 'light']" />
     </div>
-    <div class="flex gap-2 items-center">
+    <div class="option">
       <label for="theme text-xl">API Debug Logger</label>
-      <base-dropdown v-model="state.settings.enableDebugLogger.value" stay-open :options="[true, false]" />
+      <base-switch v-model="state.settings.enableDebugLogger.value" />
     </div>
-    <div v-if="isElectron()" class="flex gap-2 items-center">
+    <div class="option">
+      <label for="theme text-xl">Sound FX</label>
+      <base-switch v-model="state.settings.enableSoundEffects.value" />
+    </div>
+    <div v-if="isElectron()" class="option">
       <label for="theme">Rounded Window Corners</label>
-      <base-dropdown v-model="state.settings.enableRoundedCorners.value" stay-open :options="[true, false]" />
+      <base-switch v-model="state.settings.enableRoundedCorners.value" />
     </div>
-    <div v-if="isElectron()">
+    <div v-if="isElectron()" class="option">
       <label for="opacity">Background Opacity</label>
-      <input v-model="state.settings.opacity.value" type="range" min="0" max="100" step="1">
-      {{ state.settings.opacity.value }}%
+      <div class="flex gap-2 items-center">
+        <input v-model="state.settings.opacity.value" type="range" min="0" max="100" step="1">
+        {{ state.settings.opacity.value }}%
+      </div>
     </div>
   </div>
 </template>
@@ -24,8 +30,15 @@
 import { isElectron } from "/@/services/logic";
 import BaseDropdown from "/@/components/base/BaseDropdown.vue";
 import { useState } from "/@/services/state";
+import BaseSwitch from "/@/components/base/BaseSwitch.vue";
 const state = useState();
 
 </script>
 
-<style scoped lang="postcss" />
+<style scoped lang="postcss" >
+
+.option {
+  @apply flex w-full gap-2 items-center justify-between max-w-128;
+}
+
+</style>
