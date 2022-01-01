@@ -1,18 +1,21 @@
 <template>
-  <div v-if="user" class="flex w-full flex-col">
+  <div v-if="user" class="flex w-full flex-col bg-black bg-opacity-25">
     <top-bar />
-    <div class="w-full h-full bg-black bg-opacity-25">
+    <div class="w-full h-full px-4">
       <div
         class="p-4 flex items-center justify-center"
       >
-        <avatar :img="user?.avatar" width="8rem" />
+        <avatar :img="user.avatar" width="8rem" />
       </div>
-      <h1 class="text-center">
-        {{ user }}
-      </h1>
-      <h2 class="text-center">
-        {{ user?.biography }}
-      </h2>
+      {{ user.username }}
+      <br>
+      {{ user.biography }}
+      <br>
+      UUID: {{ user.uuid }}
+      <br>
+      Account created: {{ new Date(user.created_at).toLocaleString() }}
+      <br>
+      Edited: {{ new Date(user.updated_at).toLocaleString() }}
     </div>
   </div>
 </template>
