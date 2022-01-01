@@ -18,7 +18,7 @@
         <div
           class="p-4 flex items-center justify-center "
         >
-          <img class="w-6 h-6 rounded-full" draggable="false" :src="state.users.getMe()?.avatar" alt="">
+          <avatar :img="state.users.getMe()?.avatar" width="6rem" />
         </div>
       </li>
     </ul>
@@ -27,6 +27,7 @@
 
 <script setup lang="ts">
 import { useState } from "../services/state";
+import Avatar from "./user/Avatar.vue";
 import BaseTooltip from "./base/BaseTooltip.vue";
 import LogoutButton from "/@/components/NavigationBar/LogoutButton.vue";
 import NavigationButton from "./NavigationButton.vue";
