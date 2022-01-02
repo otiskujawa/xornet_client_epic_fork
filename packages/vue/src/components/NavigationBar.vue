@@ -44,12 +44,4 @@ ul {
   -webkit-app-region: no-drag;
 }
 
-a {
-  &:hover {
-    @apply opacity-50;
-  }
-  &.router-link-active {
-    @apply opacity-100;
-  }
-}
 </style>

@@ -25,3 +25,15 @@ defineProps<{
 }>();
 
 </script>
+
+<style lang="postcss" scoped>
+
+a {
+  &:hover {
+    @apply opacity-50;
+  }
+  &.router-link-active {
+    @apply opacity-100;
+  }
+}
+</style>
