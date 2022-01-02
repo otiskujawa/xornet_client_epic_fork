@@ -10,7 +10,8 @@
         'Upload',
         'Temperature',
         'Owner',
-        'Status'
+        'Status',
+        'Actions'
       ]"
     >
       <tr
@@ -56,11 +57,22 @@
             <avatar :uuid="state.users.get(machine.owner_uuid)?.uuid" :img="state.users.get(machine.owner_uuid)?.avatar" width="16px" />
           </base-tooltip>
         </th>
-        <th>
+        <th v-if="machine.status == 2">
           <i-fluency-status
-            class="w-16px h-16px min-w-16px min-h-16px"
-            :class="machine.status == 2 ? 'text-active text-opacity-100' : 'text-white text-opacity-5'"
+            class="w-16px h-16px min-w-16px min-h-16px text-active text-opacity-100"
           />
+          Online
+        </th>
+        <th v-else>
+          <i-fluency-status
+            class="w-16px h-16px min-w-16px min-h-16px text-active text-opacity-100 text-white text-opacity-5"
+          />
+          Offline
+        </th>
+        <th>
+          <base-confirmation-dialog confirmation-text="are you sure about that?" @confirm="deleteMachine(machine.uuid)">
+            <i-fluency-trash />
+          </base-confirmation-dialog>
         </th>
       </tr>
     </base-table>
@@ -68,6 +80,7 @@
 </template>
 
 <script setup lang="ts">
+import type { uuid } from "types/api";
 import { SoundManager } from "../services/SoundManager";
 import { useState } from "../services/state";
 import BaseTable from "./base/BaseTable.vue";
@@ -75,7 +88,13 @@ import BaseTooltip from "./base/BaseTooltip.vue";
 import MachineStat from "./MachineStat.vue";
 import NetworkSwitch from "./NetworkSwitch.vue";
 import Avatar from "./user/Avatar.vue";
+import BaseConfirmationDialog from "./base/BaseConfirmationDialog.vue";
 const state = useState();
 // Little hack troll
 if (state.machines.getTotal() === 0) state.machines.fetchMachines();
+
+const deleteMachine = async(uuid: uuid) => {
+	const { machines } = useState();
+	await machines.deleteMachine(uuid);
+};
 </script>
