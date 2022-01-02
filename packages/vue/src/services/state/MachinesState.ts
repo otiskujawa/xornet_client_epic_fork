@@ -25,6 +25,11 @@ export class MachinesState extends State<IMachinesState> {
 		this.setMachines(await api.request("GET", "/users/@me/machines"));
 	}
 
+	public async deleteMachine(uuid: uuid) {
+		await api.request("DELETE", `/machines/${uuid}`);
+		delete this.state.machines[uuid];
+	}
+
 	public getTotal() {
 		return Object.values(this.state.machines).length;
 	}
