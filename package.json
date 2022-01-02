@@ -17,7 +17,7 @@
     "compile": "electron-builder build --config .electron-builder.config.js --dir --config.asar=false",
     "pretest": "npm run build",
     "test": "npx vitest --config vitest.config.ts",
-    "watch": "node scripts/watch.js",
+    "dev": "node scripts/watch.js",
     "lint": "eslint \"**/*.{vue,ts,js}\"",
     "typecheck-electron": "tsc --noEmit -p packages/electron/tsconfig.json",
     "typecheck-preload": "tsc --noEmit -p packages/preload/tsconfig.json",
