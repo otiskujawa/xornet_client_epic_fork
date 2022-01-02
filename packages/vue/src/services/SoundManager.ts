@@ -12,7 +12,7 @@ export class SoundManager {
 		];
 
 		const sound = sounds[~~(Math.random() * sounds.length - 1)];
-		sound.volume = 0.25;
+		sound.volume = 0.15;
 		sound.play();
 	}
 
