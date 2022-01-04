@@ -4,7 +4,7 @@
       <base-form title="Login" @submit="onSubmit">
         <base-input v-model="form.username" placeholder="Username" type="username" />
         <base-input v-model="form.password" placeholder="Password" type="password" autocomplete="password" />
-        <p class="text-sm">
+        <p class="">
           New to Xornet?
           <base-link to="signup">
             Create new account

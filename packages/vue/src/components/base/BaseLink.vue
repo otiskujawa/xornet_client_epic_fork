@@ -16,6 +16,6 @@ defineProps<{
 
 <style scoped lang="postcss">
 .baselink {
-  @apply hover:underline focus:underline  text-sm text-primary-300;
+  @apply hover:underline focus:underline   text-primary-300;
 }
 </style>

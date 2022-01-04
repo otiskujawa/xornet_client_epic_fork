@@ -6,10 +6,10 @@
     <li class="flex">
       <router-link
         draggable="false"
-        class="p-4 flex items-center justify-center text-69px opacity-25"
+        class="p-4 flex items-center justify-center w-full h-full opacity-25"
         :to="to"
       >
-        <icon class="w-24px h-24px" :name="icon" />
+        <slot />
       </router-link>
     </li>
   </base-tooltip>
@@ -21,7 +21,6 @@ import type { RouteLocationRaw } from "vue-router";
 defineProps<{
 	to: RouteLocationRaw
 	name: string
-	icon: string
 }>();
 
 </script>

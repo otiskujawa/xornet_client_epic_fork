@@ -70,7 +70,7 @@
           Offline
         </th>
         <th>
-          <base-confirmation-dialog confirmation-text="are you sure about that?" @confirm="deleteMachine(machine.uuid)">
+          <base-confirmation-dialog confirmation-text="Are you sure you want to delete this machine?" @confirm="deleteMachine(machine.uuid)">
             <i-fluency-trash />
           </base-confirmation-dialog>
         </th>

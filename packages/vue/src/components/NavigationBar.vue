@@ -1,9 +1,15 @@
 <template>
   <nav class="h-full justify-between w-min flex flex-col">
     <ul>
-      <navigation-button name="machines" icon="nas" :to="{ name: 'machines' }" />
-      <navigation-button name="settings" icon="settings" :to="{ name: 'settings' }" />
-      <navigation-button name="profile" icon="user" :to="{ name: 'profile', params: { uuid: state.users.getMe()?.uuid } }" />
+      <navigation-button name="machines" :to="{ name: 'machines' }">
+        <i-fluency-nas class="w-full h-full" />
+      </navigation-button>
+      <navigation-button name="settings" :to="{ name: 'settings' }">
+        <i-fluency-settings class="w-full h-full" />
+      </navigation-button>
+      <navigation-button name="profile" :to="{ name: 'profile', params: { uuid: state.users.getMe()?.uuid } }">
+        <i-fluency-user class="w-full h-full" />
+      </navigation-button>
     </ul>
     <ul>
       <base-tooltip

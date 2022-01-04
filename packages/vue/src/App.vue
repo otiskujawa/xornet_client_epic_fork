@@ -18,7 +18,7 @@ const state = useState();
 
 <style lang="postcss">
 * {
-  @apply !outline-none fill-current;
+  @apply !outline-none fill-current text-sm;
   scrollbar-width: thin;
   font-family: "Roboto Mono", monospace;
 }

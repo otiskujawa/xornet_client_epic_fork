@@ -23,7 +23,7 @@
       </div>
     </base-tooltip>
 
-    <div class="flex text-sm justify-between">
+    <div class="flex  justify-between">
       <p v-if="expired" class="text-red-500">
         Token expired, Generate a new one
       </p>
