@@ -25,12 +25,12 @@
           </machine-stat>
         </th>
         <th>
-          <machine-stat :value="(machine.dynamic_data?.cpu.usage.reduce((a, b) => a + b, 0) / machine.dynamic_data?.cpu.usage.length).toFixed(2)" suffix="%">
+          <machine-stat v-if="machine.status == 2" :value="(machine.dynamic_data?.cpu.usage.reduce((a, b) => a + b, 0) / machine.dynamic_data?.cpu.usage.length).toFixed(2)" suffix="%">
             <i-fluency-processor />
           </machine-stat>
         </th>
         <th>
-          <machine-stat :value="`${(machine.dynamic_data?.ram.used / 1024 / 1024).toFixed(2)} / ${(machine.dynamic_data?.ram.total / 1024 / 1024).toFixed(2)}`" suffix="GB">
+          <machine-stat v-if="machine.status == 2" :value="`${(machine.dynamic_data?.ram.used / 1024 / 1024).toFixed(2)} / ${(machine.dynamic_data?.ram.total / 1024 / 1024).toFixed(2)}`" suffix="GB">
             <i-fluency-memory />
           </machine-stat>
         </th>
@@ -38,12 +38,12 @@
           <network-switch :interfaces="machine.dynamic_data?.network" />
         </th>
         <th>
-          <machine-stat :value="(machine.dynamic_data?.network.reduce((a, b) => a + b.rx, 0) / 1000 / 1000).toFixed(2)" suffix="Mbps">
+          <machine-stat v-if="machine.status == 2" :value="(machine.dynamic_data?.network.reduce((a, b) => a + b.rx, 0) / 1000 / 1000).toFixed(2)" suffix="Mbps">
             <i-fluency-down />
           </machine-stat>
         </th>
         <th>
-          <machine-stat :value="(machine.dynamic_data?.network.reduce((a, b) => a + b.tx, 0) / 1000 / 1000).toFixed(2)" suffix="Mbps">
+          <machine-stat v-if="machine.status == 2" :value="(machine.dynamic_data?.network.reduce((a, b) => a + b.tx, 0) / 1000 / 1000).toFixed(2)" suffix="Mbps">
             <i-fluency-up />
           </machine-stat>
         </th>
