@@ -3,6 +3,9 @@
     <i-distros-alpine v-if="name === 'alpine'" />
     <i-distros-arch v-if="name === 'Arch Linux'" />
     <i-distros-debian v-if="name === 'Debian GNU/Linux'" />
+    <i-distros-redhat v-if="name === 'Red Hat Enterprise Linux Server'" />
+    <i-distros-ubuntu v-if="name === 'Ubuntu'" />
+    <i-distros-suse v-if="name === 'SUSE'" />
     <i-distros-endeavour v-if="name === 'EndeavourOS'" />
     <i-distros-garuda v-if="name === 'garuda'" />
     <i-distros-macos v-if="name === 'macos'" />
