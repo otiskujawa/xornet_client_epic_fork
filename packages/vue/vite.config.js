@@ -42,7 +42,7 @@ export default defineConfig({
 				id: "xornet.cloud",
 				name: "Xornet Cloud",
 				short_name: "Xornet",
-				start_url: "https://beta.xornet.cloud/#/dashboard/machines",
+				start_url: "https://beta.xornet.cloud/",
 				scope: "https://beta.xornet.cloud/",
 				display: "standalone",
 				description: "Xornet Dashboard",
