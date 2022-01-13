@@ -5,7 +5,7 @@
       <div
         class="p-4 flex items-center justify-center"
       >
-        <avatar :img="user.avatar" width="8rem" />
+        <avatar :user="user" width="8rem" />
       </div>
       {{ user.username }}
       <br>

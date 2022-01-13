@@ -54,7 +54,7 @@
         </th>
         <th>
           <base-tooltip :text="state.users.get(machine.owner_uuid)?.username">
-            <avatar :uuid="state.users.get(machine.owner_uuid)?.uuid" :img="state.users.get(machine.owner_uuid)?.avatar" width="16px" />
+            <avatar :user="state.users.get(machine.owner_uuid)" width="16px" />
           </base-tooltip>
         </th>
         <th v-if="machine.status == 2">

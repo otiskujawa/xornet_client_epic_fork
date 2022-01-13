@@ -24,7 +24,7 @@
         <div
           class="p-3 flex items-center justify-center "
         >
-          <avatar :img="state.users.getMe()?.avatar" width="32px" />
+          <avatar :user="state.users.getMe()" width="32px" />
         </div>
       </li>
     </ul>

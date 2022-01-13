@@ -1,13 +1,15 @@
 <template>
-  <router-link v-if="uuid" draggable="false" :to="{ name: 'profile', params: { uuid }}">
-    <img class="rounded-full" :src="img" alt="avatar" :style="{width: (width || 'auto'), height: (height || 'auto')}">
-  </router-link>
-  <img v-else class="rounded-full" :src="img" alt="avatar" :style="{width: (width || 'auto'), height: (height || 'auto')}">
+  <div v-if="user" class="rounded-full">
+    <router-link v-if="user.uuid" draggable="false" :to="{ name: 'profile', params: { uuid: user.uuid }}">
+      <img class="rounded-full" :src="user.avatar" :alt="user.username" :style="{width: (width || 'auto'), height: (height || 'auto')}">
+    </router-link>
+    <img v-else :src="user.avatar" :alt="user.username" :style="{width: (width || 'auto'), height: (height || 'auto')}">
+  </div>
 </template>
 <script setup lang="ts">
-const props = defineProps<{
-	img?: string
-	uuid?: string
+import type { IUser } from "types/api/user";
+defineProps<{
+	user?: IUser
 	width?: string
 	height?: string
 }>();
