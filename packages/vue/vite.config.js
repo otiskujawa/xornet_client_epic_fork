@@ -39,10 +39,11 @@ export default defineConfig({
 			registerType: "autoUpdate",
 			includeAssets: ["favicon.svg", "favicon.ico", "robots.txt", "apple-touch-icon.png"],
 			manifest: {
-				id: "/#/dashboard/machines",
+				id: "xornet.cloud",
 				name: "Xornet Cloud",
 				short_name: "Xornet",
-				start_url: "./#/dashboard/machines",
+				start_url: "https://beta.xornet.cloud/#/dashboard/machines",
+				scope: "https://beta.xornet.cloud/",
 				display: "standalone",
 				description: "Xornet Dashboard",
 				theme_color: "#010409",
