@@ -42,7 +42,7 @@ export default defineConfig({
 				id: "xornet.cloud",
 				name: "Xornet Cloud",
 				short_name: "Xornet",
-				start_url: "./#/dashboard/machines",
+				start_url: "https://xornet.cloud/#/dashboard/machines",
 				display: "standalone",
 				description: "Xornet Dashboard",
 				theme_color: "#010409",
