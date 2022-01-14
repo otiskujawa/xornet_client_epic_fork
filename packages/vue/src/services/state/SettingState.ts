@@ -10,6 +10,8 @@ export class SettingsState {
 	public columns = useLocalStorage("enabledColumns", {
 		hostname: true,
 		cpu_usage: true,
+		gpu_usage: false,
+		gpu_power_usage: false,
 		ram_usage: true,
 		network_switch: true,
 		download: true,

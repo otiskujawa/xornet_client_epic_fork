@@ -21,6 +21,12 @@
             <base-dropdown-checkbox v-model="state.settings.columns.value.cpu_usage" text="CPU Usage">
               <i-fluency-processor />
             </base-dropdown-checkbox>
+            <base-dropdown-checkbox v-model="state.settings.columns.value.gpu_usage" text="GPU Usage">
+              <i-fluency-video-card />
+            </base-dropdown-checkbox>
+            <base-dropdown-checkbox v-model="state.settings.columns.value.gpu_power_usage" text="GPU Power Usage">
+              <i-fluency-lightning-bolt />
+            </base-dropdown-checkbox>
             <base-dropdown-checkbox v-model="state.settings.columns.value.ram_usage" text="RAM Usage">
               <i-fluency-memory />
             </base-dropdown-checkbox>

@@ -1,9 +1,11 @@
 <template>
-  <div class="w-full  h-full">
+  <div class="w-full h-full overflow-scroll">
     <base-table>
       <template #headers>
         <base-table-header v-if="state.settings.columns.value.hostname" text="Hostname" />
         <base-table-header v-if="state.settings.columns.value.cpu_usage" text="CPU Usage" />
+        <base-table-header v-if="state.settings.columns.value.gpu_usage" text="GPU Usage" />
+        <base-table-header v-if="state.settings.columns.value.gpu_power_usage" text="GPU Power Usage" />
         <base-table-header v-if="state.settings.columns.value.ram_usage" text="RAM Usage" />
         <base-table-header v-if="state.settings.columns.value.network_switch" text="Network Switch" />
         <base-table-header v-if="state.settings.columns.value.download" text="Download" />
@@ -27,6 +29,16 @@
           <th v-if="state.settings.columns.value.cpu_usage">
             <machine-stat v-if="machine.status == 2" :value="(machine.dynamic_data?.cpu.usage.reduce((a, b) => a + b, 0) / machine.dynamic_data?.cpu.usage.length).toFixed(2)" suffix="%">
               <i-fluency-processor />
+            </machine-stat>
+          </th>
+          <th v-if="state.settings.columns.value.gpu_usage">
+            <machine-stat v-if="machine.status == 2" :value="machine.dynamic_data?.gpu?.gpu_usage" suffix="%">
+              <i-fluency-video-card />
+            </machine-stat>
+          </th>
+          <th v-if="state.settings.columns.value.gpu_power_usage">
+            <machine-stat v-if="machine.status == 2" :value="machine.dynamic_data?.gpu?.power_usage" suffix="mW">
+              <i-fluency-lightning-bolt />
             </machine-stat>
           </th>
           <th v-if="state.settings.columns.value.ram_usage">
