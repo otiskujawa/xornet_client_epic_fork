@@ -7,6 +7,18 @@ export class SettingsState {
 	public enableDebugLogger = useLocalStorage("debugLogging", import.meta.env.DEV);
 	public enableRoundedCorners = useLocalStorage("roundedCorners", true);
 	public enableSoundEffects = useLocalStorage("soundEffects", false);
+	public columns = useLocalStorage("enabledColumns", {
+		hostname: true,
+		cpu_usage: true,
+		ram_usage: true,
+		network_switch: true,
+		download: true,
+		upload: true,
+		temperature: false,
+		owner: true,
+		status: true,
+		action: true,
+	});
 
 	constructor() {
 		this.registerWatchers();
