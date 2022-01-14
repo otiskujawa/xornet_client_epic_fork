@@ -1,15 +1,16 @@
 <template>
   <div class="distro-icon flex items-center">
-    <i-distros-alpine v-if="name === 'alpine'" />
-    <i-distros-arch v-if="name === 'Arch Linux'" />
-    <i-distros-debian v-if="name === 'Debian GNU/Linux'" />
-    <i-distros-redhat v-if="name === 'Red Hat Enterprise Linux Server'" />
-    <i-distros-ubuntu v-if="name === 'Ubuntu'" />
-    <i-distros-suse v-if="name === 'SUSE'" />
-    <i-distros-endeavour v-if="name === 'EndeavourOS'" />
-    <i-distros-garuda v-if="name === 'garuda'" />
-    <i-distros-macos v-if="name === 'macos'" />
-    <i-distros-windows10 v-if="name === 'Windows'" />
+    <i-distros-alpine v-if="name?.toLowerCase().includes('alpine')" />
+    <i-distros-arch v-if="name?.toLowerCase().includes('arch')" />
+    <i-distros-debian v-if="name?.toLowerCase().includes('debian')" />
+    <i-distros-redhat v-if="name?.toLowerCase().includes('red hat')" />
+    <i-distros-ubuntu v-if="name?.toLowerCase().includes('ubuntu')" />
+    <i-distros-openwrt v-if="name?.toLowerCase().includes('openwrt')" />
+    <i-distros-suse v-if="name?.toLowerCase().includes('suse')" />
+    <i-distros-endeavour v-if="name?.toLowerCase().includes('endeavour')" />
+    <i-distros-garuda v-if="name?.toLowerCase().includes('garuda')" />
+    <i-distros-macos v-if="name?.toLowerCase().includes('macos')" />
+    <i-distros-windows10 v-if="name?.toLowerCase().includes('windows')" />
   </div>
 </template>
 

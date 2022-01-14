@@ -7,7 +7,6 @@
 import NavigationBar from "/@/components/NavigationBar.vue";
 import { routes } from "/@/router";
 </script>
-
 <style scoped lang="postcss">
 
 </style>
