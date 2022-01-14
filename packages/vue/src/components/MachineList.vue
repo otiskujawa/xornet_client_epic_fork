@@ -57,13 +57,13 @@
               <avatar :user="state.users.get(machine.owner_uuid)" width="16px" />
             </base-tooltip>
           </th>
-          <th v-if="machine.status == 2 && state.settings.columns.value.status">
+          <th v-if="machine.status == 2 && state.settings.columns.value.status" class="flex items-center h-min gap-2 justify-start">
             <i-fluency-status
               class="w-16px h-16px min-w-16px min-h-16px text-active text-opacity-100"
             />
             Online
           </th>
-          <th v-else-if="machine.status !== 2 && state.settings.columns.value.status">
+          <th v-else-if="machine.status !== 2 && state.settings.columns.value.status" class="flex items-center h-min gap-2 justify-start">
             <i-fluency-status
               class="w-16px h-16px min-w-16px min-h-16px text-active text-opacity-100 text-white text-opacity-5"
             />
