@@ -14,6 +14,10 @@
         <label for="theme text-xl">Sound FX</label>
         <base-switch v-model="state.settings.enableSoundEffects.value" />
       </div>
+      <div class="option">
+        <label for="theme text-xl">Bloom Effects</label>
+        <base-switch v-model="state.settings.enableBloom.value" />
+      </div>
       <div v-if="isElectron()" class="option">
         <label for="theme">Rounded Window Corners</label>
         <base-switch v-model="state.settings.enableRoundedCorners.value" />

@@ -2,7 +2,7 @@
   <div class="flex gap-3px max-w-32 flex-wrap">
     <div v-for="iface of interfaces" :key="iface.name">
       <base-tooltip :text="iface.name">
-        <div class="cube" :style="`animation-duration: ${speeds[iface.name]}ms;`" />
+        <div class="cube" :class="state.settings.enableBloom.value && 'bloom'" :style="`animation-duration: ${speeds[iface.name]}ms;`" />
       </base-tooltip>
     </div>
   </div>
@@ -11,10 +11,12 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import type { INetwork } from "../../types/api/machine";
+import { useState } from "../services/state";
 import BaseTooltip from "./base/BaseTooltip.vue";
 const props = defineProps<{
 	interfaces: INetwork[]
 }>();
+const state = useState();
 
 const interfaces = computed(() => props.interfaces);
 
@@ -39,21 +41,39 @@ const speeds = computed(() => {
 
 @keyframes flash {
   from {
-    /* box-shadow: 0px 0px 6px #00FF67; */
     @apply bg-active bg-opacity-100;
   }
   49% {
-    /* box-shadow: 0px 0px 6px #00FF67; */
     @apply bg-active bg-opacity-100;
   }
   50% {
-    /* box-shadow: 0px 0px 6px #00000000; */
     @apply bg-white bg-opacity-5;
+  }
+}
+
+@keyframes flashBloom {
+  from {
+    @apply bg-active bg-opacity-100;
+    box-shadow: 0px 0px 6px #00FF67;
+  }
+  49% {
+    @apply bg-active bg-opacity-100;
+    box-shadow: 0px 0px 6px #00FF67;
+  }
+  50% {
+    @apply bg-white bg-opacity-5;
+    box-shadow: 0px 0px 6px #00000000;
   }
 }
 
 .cube {
   @apply w-6px h-6px bg-white bg-opacity-5;
-  animation: flash infinite;
+
+  &.bloom {
+    animation: flashBloom infinite;
+  }
+  &:not(.bloom) {
+    animation: flash infinite;
+  }
 }
 </style>
