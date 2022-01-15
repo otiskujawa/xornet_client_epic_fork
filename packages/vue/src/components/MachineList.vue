@@ -69,15 +69,16 @@
               <avatar :user="state.users.get(machine.owner_uuid)" width="16px" />
             </base-tooltip>
           </th>
-          <th v-if="machine.status == 2 && columns.status" class="flex items-center h-min gap-2 justify-start">
-            <i-fluency-status
-              class="w-16px h-16px min-w-16px min-h-16px text-active text-opacity-100"
+          <th v-if="machine.status == 2 && columns.status" class="flex items-center h-min gap-4 justify-start">
+            <div
+              :class="state.settings.enableBloom.value && 'bloom'"
+              class="w-5px h-5px rounded-full bg-active text-opacity-100"
             />
             Online
           </th>
-          <th v-else-if="machine.status !== 2 && columns.status" class="flex items-center h-min gap-2 justify-start">
-            <i-fluency-status
-              class="w-16px h-16px min-w-16px min-h-16px text-active text-opacity-100 text-white text-opacity-5"
+          <th v-else-if="machine.status !== 2 && columns.status" class="flex items-center h-min gap-4 justify-start">
+            <div
+              class="w-5px h-5px rounded-full bg-white bg-opacity-5 text-white text-opacity-5"
             />
             Offline
           </th>
@@ -119,3 +120,9 @@ const deleteMachine = async(uuid: uuid) => {
 	await machines.deleteMachine(uuid);
 };
 </script>
+
+<style scoped lang="postcss">
+.bloom {
+  box-shadow: 0px 0px 6px #00FF67;
+}
+</style>
