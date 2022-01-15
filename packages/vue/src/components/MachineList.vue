@@ -2,22 +2,22 @@
   <div class="w-full h-full overflow-scroll">
     <base-table>
       <template #headers>
-        <base-table-header v-if="columns.hostname" text="Hostname" />
-        <base-table-header v-if="columns.cpu_usage" text="CPU Usage" />
-        <base-table-header v-if="columns.ram_usage" text="RAM Usage" />
-        <base-table-header v-if="columns.gpu_usage" text="GPU Usage" />
-        <base-table-header v-if="columns.gpu_power_usage" text="GPU Power Usage" />
-        <base-table-header v-if="columns.network_switch" text="Network Switch" />
-        <base-table-header v-if="columns.download" text="Download" />
-        <base-table-header v-if="columns.upload" text="Upload" />
-        <base-table-header v-if="columns.temperature" text="Temperature" />
-        <base-table-header v-if="columns.owner" text="Owner" />
-        <base-table-header v-if="columns.status" text="Status" />
-        <base-table-header v-if="columns.action" text="Action" />
+        <base-table-header v-if="columns.hostname" :class="shortByKey === 'hostname' && 'active'" text="Hostname" @click="sortBy('hostname')" />
+        <base-table-header v-if="columns.cpu_usage" :class="shortByKey === 'cpu_usage' && 'active'" text="CPU Usage" @click="sortBy('cpu_usage')" />
+        <base-table-header v-if="columns.ram_usage" :class="shortByKey === 'ram_usage' && 'active'" text="RAM Usage" @click="sortBy('ram_usage')" />
+        <base-table-header v-if="columns.gpu_usage" :class="shortByKey === 'gpu_usage' && 'active'" text="GPU Usage" @click="sortBy('gpu_usage')" />
+        <base-table-header v-if="columns.gpu_power_usage" :class="shortByKey === 'gpu_power_usage' && 'active'" text="GPU Power Usage" @click="sortBy('gpu_power_usage')" />
+        <base-table-header v-if="columns.network_switch" :class="shortByKey === 'network_switch' && 'active'" text="Network Switch" @click="sortBy('network_switch')" />
+        <base-table-header v-if="columns.download" :class="shortByKey === 'download' && 'active'" text="Download" @click="sortBy('download')" />
+        <base-table-header v-if="columns.upload" :class="shortByKey === 'upload' && 'active'" text="Upload" @click="sortBy('upload')" />
+        <base-table-header v-if="columns.temperature" :class="shortByKey === 'temperature' && 'active'" text="Temperature" @click="sortBy('temperature')" />
+        <base-table-header v-if="columns.owner" :class="shortByKey === 'owner' && 'active'" text="Owner" @click="sortBy('owner')" />
+        <base-table-header v-if="columns.status" :class="shortByKey === 'status' && 'active'" text="Status" @click="sortBy('status')" />
+        <base-table-header v-if="columns.action" :class="shortByKey === 'action' && 'active'" text="Action" @click="sortBy('action')" />
       </template>
       <template #rows>
         <tr
-          v-for="machine of state.machines.getAll().sort((a) => a.status == 2 ? -1 : 1)"
+          v-for="machine of machines"
           :key="machine.hardware_uuid"
           @mouseenter="SoundManager.playHover()"
         >
@@ -94,7 +94,7 @@
 
 <script setup lang="ts">
 import type { uuid } from "types/api";
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { SoundManager } from "../services/SoundManager";
 import { useState } from "../services/state";
 import BaseTable from "./base/BaseTable.vue";
@@ -106,6 +106,11 @@ import BaseConfirmationDialog from "./base/BaseConfirmationDialog.vue";
 import BaseTableHeader from "./base/BaseTableHeader.vue";
 const state = useState();
 const columns = computed(() => state.settings.columns);
+const shortByKey = ref("hostname");
+const machines = computed(() => state.machines.getAll().filter(machine => state.settings.showOfflineMachines.value ? machine : machine.status === 2).sort(a => a.status === 2 ? -1 : 1));
+const sortBy = (field: string) => {
+	shortByKey.value = field;
+};
 // Little hack troll
 if (state.machines.getTotal() === 0) state.machines.fetchMachines();
 

@@ -1,5 +1,5 @@
 <template>
-  <label class="relative inline-block w-13 h-6">
+  <label class="relative inline-block w-10 h-5">
     <input v-model="value" type="checkbox" class="hidden" :checked="modelValue">
     <span class="slider round" />
   </label>
@@ -14,11 +14,11 @@ const value = useModelValue(props, "modelValue", emits);
 
 <style scoped lang="postcss">
 .slider {
-  @apply bg-background-500 rounded-full  duration-100 absolute cursor-pointer top-0 left-0 right-0 bottom-0;
+  @apply bg-background-500 rounded-full duration-100 absolute cursor-pointer top-0 left-0 right-0 bottom-0;
 }
 
 .slider:before {
-  @apply absolute  rounded-full w-4 h-4 left-1 bottom-1 bg-white transition duration-100;
+  @apply absolute  rounded-full w-3.5 h-3.5 left-0.75 bottom-0.75 bg-white transition duration-100;
   content: "";
 }
 
@@ -27,7 +27,7 @@ input:checked + .slider {
 }
 
 input:checked + .slider:before {
-  @apply transform translate-x-26px;
+  @apply transform translate-x-18px;
 }
 
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div id="TopBar" class="w-full">
-    <div class="p-2 pr-1 flex max-w-96">
-      <base-input v-model="filter" placeholder="Filter" class="text-xs" />
+    <div class="p-2 pr-1 flex items-center gap-2 ">
+      <base-input v-model="filter" placeholder="Filter" class="max-w-96 text-xs" />
 
       <base-tooltip text="Add machine">
         <base-button transparent @click="showTokenGenerator = true">
@@ -32,6 +32,9 @@
         </base-dropdown>
       </base-tooltip>
 
+      <base-switch v-model="state.settings.showOfflineMachines.value" />
+      Show Offline
+
       <base-dialog v-model="showTokenGenerator" unsized>
         <token-generator />
       </base-dialog>
@@ -49,6 +52,7 @@ import TokenGenerator from "./TokenGenerator.vue";
 import BaseDropdown from "./base/BaseDropdown.vue";
 import BaseDropdownCheckbox from "./base/BaseDropdownCheckbox.vue";
 import Icon from "./shared/Icon.vue";
+import BaseSwitch from "./base/BaseSwitch.vue";
 const showTokenGenerator = ref(false);
 const filter = ref("");
 const columnFilter = ref("");
