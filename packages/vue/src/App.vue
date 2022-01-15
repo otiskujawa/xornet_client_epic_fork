@@ -23,6 +23,14 @@ const state = useState();
   font-family: "Roboto Mono", monospace;
 }
 
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
 .fullscreen {
   @apply fixed top-0 left-0 z-0 w-full h-full;
 }
