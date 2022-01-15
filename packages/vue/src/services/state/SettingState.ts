@@ -15,6 +15,7 @@ export class SettingsState {
 		gpu_usage: false,
 		gpu_power_usage: false,
 		ram_usage: true,
+		external_ip: false,
 		network_switch: true,
 		download: true,
 		upload: true,

@@ -3,6 +3,7 @@
     <base-table>
       <template #headers>
         <base-table-header v-if="columns.hostname" :class="shortByKey === 'hostname' && 'active'" text="Hostname" @click="sortBy('hostname')" />
+        <base-table-header v-if="columns.external_ip" :class="shortByKey === 'external_ip' && 'active'" text="External IP" @click="sortBy('external_ip')" />
         <base-table-header v-if="columns.cpu_usage" :class="shortByKey === 'cpu_usage' && 'active'" text="CPU Usage" @click="sortBy('cpu_usage')" />
         <base-table-header v-if="columns.ram_usage" :class="shortByKey === 'ram_usage' && 'active'" text="RAM Usage" @click="sortBy('ram_usage')" />
         <base-table-header v-if="columns.gpu_usage" :class="shortByKey === 'gpu_usage' && 'active'" text="GPU Usage" @click="sortBy('gpu_usage')" />
@@ -24,6 +25,11 @@
           <th v-if="columns.hostname">
             <machine-stat :value="machine.name">
               <distro-icon class="w-16px h-16px min-w-16px min-h-16px" :name="machine.static_data?.os_name?.replace(/'/g, '')" />
+            </machine-stat>
+          </th>
+          <th v-if="columns.external_ip">
+            <machine-stat :value="machine.static_data.public_ip">
+              <i-fluency-processor />
             </machine-stat>
           </th>
           <th v-if="columns.cpu_usage">
