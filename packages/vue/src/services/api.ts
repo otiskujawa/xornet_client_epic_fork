@@ -122,7 +122,7 @@ export class API {
 
 		const start = Date.now();
 		const response = await fetch(BASE_URL + endpoint, options);
-		this.debug(method, endpoint, Date.now() - start, headers, body);
+		state.settings.enableDebugLogger && this.debug(method, endpoint, Date.now() - start, headers, body);
 
 		if (!response.ok) return Promise.reject(response.json());
 
