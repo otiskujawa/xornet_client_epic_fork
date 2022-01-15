@@ -1,10 +1,12 @@
 <template>
-  <div>
-    <div v-if="value" class="flex gap-2 items-center">
-      <slot />
-      <p>{{ value }} {{ suffix }}</p>
-    </div>
-  </div>
+  <p v-if="value && !value.toString().includes('NaN')" class="flex gap-2 items-center">
+    <slot />
+    {{ value }} {{ suffix }}
+  </p>
+  <p v-else class="flex gap-2 items-center opacity-20">
+    <slot />
+    Unavailable
+  </p>
 </template>
 
 <script setup lang="ts">

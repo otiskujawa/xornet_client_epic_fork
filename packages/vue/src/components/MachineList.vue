@@ -3,7 +3,6 @@
     <base-table>
       <template #headers>
         <base-table-header v-if="columns.hostname" :class="shortByKey === 'hostname' && 'active'" text="Hostname" @click="sortBy('hostname')" />
-        <base-table-header v-if="columns.external_ip" :class="shortByKey === 'external_ip' && 'active'" text="External IP" @click="sortBy('external_ip')" />
         <base-table-header v-if="columns.cpu_usage" :class="shortByKey === 'cpu_usage' && 'active'" text="CPU Usage" @click="sortBy('cpu_usage')" />
         <base-table-header v-if="columns.ram_usage" :class="shortByKey === 'ram_usage' && 'active'" text="RAM Usage" @click="sortBy('ram_usage')" />
         <base-table-header v-if="columns.gpu_usage" :class="shortByKey === 'gpu_usage' && 'active'" text="GPU Usage" @click="sortBy('gpu_usage')" />
@@ -12,6 +11,8 @@
         <base-table-header v-if="columns.download" :class="shortByKey === 'download' && 'active'" text="Download" @click="sortBy('download')" />
         <base-table-header v-if="columns.upload" :class="shortByKey === 'upload' && 'active'" text="Upload" @click="sortBy('upload')" />
         <base-table-header v-if="columns.temperature" :class="shortByKey === 'temperature' && 'active'" text="Temperature" @click="sortBy('temperature')" />
+        <base-table-header v-if="columns.external_ip" :class="shortByKey === 'external_ip' && 'active'" text="External IP" @click="sortBy('external_ip')" />
+        <base-table-header v-if="columns.process_count" :class="shortByKey === 'process_count' && 'active'" text="Process Count" @click="sortBy('process_count')" />
         <base-table-header v-if="columns.owner" :class="shortByKey === 'owner' && 'active'" text="Owner" @click="sortBy('owner')" />
         <base-table-header v-if="columns.status" :class="shortByKey === 'status' && 'active'" text="Status" @click="sortBy('status')" />
         <base-table-header v-if="columns.action" :class="shortByKey === 'action' && 'active'" text="Action" @click="sortBy('action')" />
@@ -27,28 +28,23 @@
               <distro-icon class="w-16px h-16px min-w-16px min-h-16px" :name="machine.static_data?.os_name?.replace(/'/g, '')" />
             </machine-stat>
           </th>
-          <th v-if="columns.external_ip">
-            <machine-stat :value="machine.static_data.public_ip">
-              <i-fluency-processor />
-            </machine-stat>
-          </th>
           <th v-if="columns.cpu_usage">
-            <machine-stat v-if="machine.status == 2" :value="(machine.dynamic_data?.cpu.usage.reduce((a, b) => a + b, 0) / machine.dynamic_data?.cpu.usage.length).toFixed(2)" suffix="%">
+            <machine-stat :value="(machine.dynamic_data?.cpu.usage.reduce((a, b) => a + b, 0) / machine.dynamic_data?.cpu.usage.length).toFixed(2)" suffix="%">
               <i-fluency-processor />
             </machine-stat>
           </th>
           <th v-if="columns.ram_usage">
-            <machine-stat v-if="machine.status == 2" :value="`${(machine.dynamic_data?.ram.used / 1024 / 1024).toFixed(2)} / ${(machine.dynamic_data?.ram.total / 1024 / 1024).toFixed(2)}`" suffix="GB">
+            <machine-stat :value="`${(machine.dynamic_data?.ram.used / 1024 / 1024).toFixed(2)} / ${(machine.dynamic_data?.ram.total / 1024 / 1024).toFixed(2)}`" suffix="GB">
               <i-fluency-memory />
             </machine-stat>
           </th>
           <th v-if="columns.gpu_usage">
-            <machine-stat v-if="machine.status == 2" :value="machine.dynamic_data?.gpu?.gpu_usage" suffix="%">
+            <machine-stat :value="machine.dynamic_data?.gpu?.gpu_usage" suffix="%">
               <i-fluency-video-card />
             </machine-stat>
           </th>
           <th v-if="columns.gpu_power_usage">
-            <machine-stat v-if="machine.status == 2" :value="machine.dynamic_data?.gpu?.power_usage" suffix="mW">
+            <machine-stat :value="machine.dynamic_data?.gpu?.power_usage" suffix="mW">
               <i-fluency-lightning-bolt />
             </machine-stat>
           </th>
@@ -56,18 +52,28 @@
             <network-switch :interfaces="machine.dynamic_data?.network" />
           </th>
           <th v-if="columns.download">
-            <machine-stat v-if="machine.status == 2" :value="(machine.dynamic_data?.network.reduce((a, b) => a + b.rx, 0) / 1000 / 1000).toFixed(2)" suffix="Mbps">
+            <machine-stat :value="(machine.dynamic_data?.network.reduce((a, b) => a + b.rx, 0) / 1000 / 1000).toFixed(2)" suffix="Mbps">
               <i-fluency-down />
             </machine-stat>
           </th>
           <th v-if="columns.upload">
-            <machine-stat v-if="machine.status == 2" :value="(machine.dynamic_data?.network.reduce((a, b) => a + b.tx, 0) / 1000 / 1000).toFixed(2)" suffix="Mbps">
+            <machine-stat :value="(machine.dynamic_data?.network.reduce((a, b) => a + b.tx, 0) / 1000 / 1000).toFixed(2)" suffix="Mbps">
               <i-fluency-up />
             </machine-stat>
           </th>
           <th v-if="columns.temperature">
             <machine-stat :value="machine.dynamic_data?.temps?.[0].value.toFixed(2)" suffix="°C">
               <i-fluency-temperature />
+            </machine-stat>
+          </th>
+          <th v-if="columns.external_ip">
+            <machine-stat :value="machine.static_data.public_ip">
+              <i-fluency-ipv6 />
+            </machine-stat>
+          </th>
+          <th v-if="columns.process_count">
+            <machine-stat :value="machine.dynamic_data?.processes">
+              <i-fluency-processes />
             </machine-stat>
           </th>
           <th v-if="columns.owner">
@@ -82,9 +88,9 @@
             />
             Online
           </th>
-          <th v-else-if="machine.status !== 2 && columns.status" class="flex items-center h-min gap-4 justify-start">
+          <th v-else-if="machine.status !== 2 && columns.status" class="opacity-20 flex items-center h-min gap-4 justify-start">
             <div
-              class="w-5px h-5px rounded-full bg-white bg-opacity-5 text-white text-opacity-5"
+              class="w-5px h-5px rounded-full bg-white text-white"
             />
             Offline
           </th>

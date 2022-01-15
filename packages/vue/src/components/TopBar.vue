@@ -21,6 +21,7 @@
               :key="key" v-model="(columns as any)[key]"
               :text="key
                 .replaceAll('_', ' ')
+                .replaceAll('ip', 'IP')
                 .replaceAll('cpu', 'CPU')
                 .replaceAll('gpu', 'GPU')
                 .replaceAll('ram', 'RAM')
