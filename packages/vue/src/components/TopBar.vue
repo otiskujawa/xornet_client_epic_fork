@@ -15,40 +15,40 @@
             <i-fluency-select-column />
           </template>
           <template #options>
-            <base-dropdown-checkbox v-model="state.settings.columns.value.hostname" text="Hostname">
+            <base-dropdown-checkbox v-model="columns.hostname" text="Hostname">
               <i-fluency-at-sign />
             </base-dropdown-checkbox>
-            <base-dropdown-checkbox v-model="state.settings.columns.value.cpu_usage" text="CPU Usage">
+            <base-dropdown-checkbox v-model="columns.cpu_usage" text="CPU Usage">
               <i-fluency-processor />
             </base-dropdown-checkbox>
-            <base-dropdown-checkbox v-model="state.settings.columns.value.gpu_usage" text="GPU Usage">
-              <i-fluency-video-card />
-            </base-dropdown-checkbox>
-            <base-dropdown-checkbox v-model="state.settings.columns.value.gpu_power_usage" text="GPU Power Usage">
-              <i-fluency-lightning-bolt />
-            </base-dropdown-checkbox>
-            <base-dropdown-checkbox v-model="state.settings.columns.value.ram_usage" text="RAM Usage">
+            <base-dropdown-checkbox v-model="columns.ram_usage" text="RAM Usage">
               <i-fluency-memory />
             </base-dropdown-checkbox>
-            <base-dropdown-checkbox v-model="state.settings.columns.value.network_switch" text="Network Switch">
+            <base-dropdown-checkbox v-model="columns.gpu_usage" text="GPU Usage">
+              <i-fluency-video-card />
+            </base-dropdown-checkbox>
+            <base-dropdown-checkbox v-model="columns.gpu_power_usage" text="GPU Power Usage">
+              <i-fluency-lightning-bolt />
+            </base-dropdown-checkbox>
+            <base-dropdown-checkbox v-model="columns.network_switch" text="Network Switch">
               <i-fluency-switch />
             </base-dropdown-checkbox>
-            <base-dropdown-checkbox v-model="state.settings.columns.value.download" text="Download">
+            <base-dropdown-checkbox v-model="columns.download" text="Download">
               <i-fluency-down />
             </base-dropdown-checkbox>
-            <base-dropdown-checkbox v-model="state.settings.columns.value.upload" text="Upload">
+            <base-dropdown-checkbox v-model="columns.upload" text="Upload">
               <i-fluency-up />
             </base-dropdown-checkbox>
-            <base-dropdown-checkbox v-model="state.settings.columns.value.temperature" text="Temperature">
+            <base-dropdown-checkbox v-model="columns.temperature" text="Temperature">
               <i-fluency-temperature />
             </base-dropdown-checkbox>
-            <base-dropdown-checkbox v-model="state.settings.columns.value.owner" text="Owner">
+            <base-dropdown-checkbox v-model="columns.owner" text="Owner">
               <i-fluency-user />
             </base-dropdown-checkbox>
-            <base-dropdown-checkbox v-model="state.settings.columns.value.status" text="Status">
+            <base-dropdown-checkbox v-model="columns.status" text="Status">
               <i-fluency-active-state />
             </base-dropdown-checkbox>
-            <base-dropdown-checkbox v-model="state.settings.columns.value.action" text="Action">
+            <base-dropdown-checkbox v-model="columns.action" text="Action">
               <i-fluency-thor-hammer />
             </base-dropdown-checkbox>
           </template>
@@ -62,7 +62,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { useState } from "../services/state";
 import BaseInput from "./base/BaseInput.vue";
 import BaseTooltip from "./base/BaseTooltip.vue";
@@ -74,6 +74,7 @@ import BaseDropdownCheckbox from "./base/BaseDropdownCheckbox.vue";
 const showTokenGenerator = ref(false);
 const filter = ref("");
 const state = useState();
+const columns = computed(() => state.settings.columns);
 </script>
 <style lang="postcss" scoped>
 #TopBar {

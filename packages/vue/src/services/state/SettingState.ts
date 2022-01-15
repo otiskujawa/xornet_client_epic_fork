@@ -20,7 +20,7 @@ export class SettingsState {
 		owner: true,
 		status: true,
 		action: true,
-	});
+	}).value;
 
 	constructor() {
 		this.registerWatchers();
