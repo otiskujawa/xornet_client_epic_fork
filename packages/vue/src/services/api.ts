@@ -18,7 +18,7 @@ export class API {
 	public socket = this.createWebsocketConnection();
 
 	private debugWs(direction: "got" | "sent", event: string, data: any, ...messages: any) {
-		if (state.settings.enableDebugLogger) {
+		if (state.settings.enableDebugLogger.value) {
 			console.group(
 				"%c[API Websockets]"
 					+ `%c ${direction}`
@@ -41,7 +41,7 @@ export class API {
 		body?: any,
 		...messages: any
 	) {
-		if (state.settings.enableDebugLogger) {
+		if (state.settings.enableDebugLogger.value) {
 			console.group(
 				"%c[API]"
           + `%c [${method.toUpperCase()}]`
@@ -122,13 +122,13 @@ export class API {
 
 		const start = Date.now();
 		const response = await fetch(BASE_URL + endpoint, options);
-		this.debug(method, endpoint, Date.now() - start, headers, body);
+		state.settings.enableDebugLogger.value && this.debug(method, endpoint, Date.now() - start, headers, body);
 
 		if (!response.ok) return Promise.reject(response.json());
 
 		const data = await response.json().catch(e => console.log(e));
 
-		if (state.settings.enableDebugLogger) {
+		if (state.settings.enableDebugLogger.value) {
 			console.group("%c [Receiving Body]", "color: #818DF8;");
 			console.log(Object.assign({}, data));
 			console.groupEnd();

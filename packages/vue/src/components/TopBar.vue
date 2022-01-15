@@ -1,13 +1,39 @@
 <template>
   <div id="TopBar" class="w-full">
-    <div class="p-2 pr-1 flex gap-4 max-w-64">
-      <base-input v-model="filter" placeholder="Filter" class="text-xs" />
+    <div class="p-2 pr-1 flex items-center gap-2 ">
+      <base-input v-model="filter" placeholder="Filter" class="max-w-96 text-xs" />
 
       <base-tooltip text="Add machine">
-        <base-button transparent class="w-12 flex items-center justify-center" @click="showTokenGenerator = true">
-          <i-fluency-plus class="w-4 h-4" />
+        <base-button transparent @click="showTokenGenerator = true">
+          <i-fluency-plus />
         </base-button>
       </base-tooltip>
+
+      <base-tooltip text="Customize Columns">
+        <base-dropdown text="Columns" transparent stay-open>
+          <template #icon>
+            <i-fluency-select-column />
+          </template>
+          <template #options>
+            <base-input v-model="columnFilter" placeholder="Find..." />
+            <base-dropdown-checkbox
+              v-for="key of Object.keys(columns).filter(item => item.includes(columnFilter.toLowerCase()))"
+              :key="key" v-model="(columns as any)[key]"
+              :text="key
+                .replaceAll('_', ' ')
+                .replaceAll('cpu', 'CPU')
+                .replaceAll('gpu', 'GPU')
+                .replaceAll('ram', 'RAM')
+              "
+            >
+              <icon :name="key" />
+            </base-dropdown-checkbox>
+          </template>
+        </base-dropdown>
+      </base-tooltip>
+
+      <base-switch v-model="state.settings.showOfflineMachines.value" />
+      Show Offline
 
       <base-dialog v-model="showTokenGenerator" unsized>
         <token-generator />
@@ -16,14 +42,22 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
+import { useState } from "../services/state";
 import BaseInput from "./base/BaseInput.vue";
 import BaseTooltip from "./base/BaseTooltip.vue";
 import BaseButton from "./base/BaseButton.vue";
 import BaseDialog from "./base/BaseDialog.vue";
 import TokenGenerator from "./TokenGenerator.vue";
+import BaseDropdown from "./base/BaseDropdown.vue";
+import BaseDropdownCheckbox from "./base/BaseDropdownCheckbox.vue";
+import Icon from "./shared/Icon.vue";
+import BaseSwitch from "./base/BaseSwitch.vue";
 const showTokenGenerator = ref(false);
 const filter = ref("");
+const columnFilter = ref("");
+const state = useState();
+const columns = computed(() => state.settings.columns);
 </script>
 <style lang="postcss" scoped>
 #TopBar {
