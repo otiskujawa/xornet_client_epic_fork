@@ -20,7 +20,7 @@
           </button>
         </li>
       </ul>
-      <div v-else class="bg-background-400 flex flex-col p-1 text-xs rounded-4px overflow-hidden space-y-1">
+      <div v-else class="bg-background-500 flex flex-col p-1 text-xs rounded-4px overflow-hidden space-y-1">
         <slot name="options" />
       </div>
     </template>

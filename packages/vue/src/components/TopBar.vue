@@ -15,41 +15,18 @@
             <i-fluency-select-column />
           </template>
           <template #options>
-            <base-dropdown-checkbox v-model="columns.hostname" text="Hostname">
-              <i-fluency-at-sign />
-            </base-dropdown-checkbox>
-            <base-dropdown-checkbox v-model="columns.cpu_usage" text="CPU Usage">
-              <i-fluency-processor />
-            </base-dropdown-checkbox>
-            <base-dropdown-checkbox v-model="columns.ram_usage" text="RAM Usage">
-              <i-fluency-memory />
-            </base-dropdown-checkbox>
-            <base-dropdown-checkbox v-model="columns.gpu_usage" text="GPU Usage">
-              <i-fluency-video-card />
-            </base-dropdown-checkbox>
-            <base-dropdown-checkbox v-model="columns.gpu_power_usage" text="GPU Power Usage">
-              <i-fluency-lightning-bolt />
-            </base-dropdown-checkbox>
-            <base-dropdown-checkbox v-model="columns.network_switch" text="Network Switch">
-              <i-fluency-switch />
-            </base-dropdown-checkbox>
-            <base-dropdown-checkbox v-model="columns.download" text="Download">
-              <i-fluency-down />
-            </base-dropdown-checkbox>
-            <base-dropdown-checkbox v-model="columns.upload" text="Upload">
-              <i-fluency-up />
-            </base-dropdown-checkbox>
-            <base-dropdown-checkbox v-model="columns.temperature" text="Temperature">
-              <i-fluency-temperature />
-            </base-dropdown-checkbox>
-            <base-dropdown-checkbox v-model="columns.owner" text="Owner">
-              <i-fluency-user />
-            </base-dropdown-checkbox>
-            <base-dropdown-checkbox v-model="columns.status" text="Status">
-              <i-fluency-active-state />
-            </base-dropdown-checkbox>
-            <base-dropdown-checkbox v-model="columns.action" text="Action">
-              <i-fluency-thor-hammer />
+            <base-input v-model="columnFilter" placeholder="Find..." />
+            <base-dropdown-checkbox
+              v-for="key of Object.keys(columns).filter(item => item.includes(columnFilter.toLowerCase()))"
+              :key="key" v-model="(columns as any)[key]"
+              :text="key
+                .replaceAll('_', ' ')
+                .replaceAll('cpu', 'CPU')
+                .replaceAll('gpu', 'GPU')
+                .replaceAll('ram', 'RAM')
+              "
+            >
+              <icon :name="key" />
             </base-dropdown-checkbox>
           </template>
         </base-dropdown>
@@ -71,8 +48,10 @@ import BaseDialog from "./base/BaseDialog.vue";
 import TokenGenerator from "./TokenGenerator.vue";
 import BaseDropdown from "./base/BaseDropdown.vue";
 import BaseDropdownCheckbox from "./base/BaseDropdownCheckbox.vue";
+import Icon from "./shared/Icon.vue";
 const showTokenGenerator = ref(false);
 const filter = ref("");
+const columnFilter = ref("");
 const state = useState();
 const columns = computed(() => state.settings.columns);
 </script>
