@@ -77,9 +77,12 @@
             </machine-stat>
           </th>
           <th v-if="columns.owner">
-            <base-tooltip :text="state.users.get(machine.owner_uuid)?.username">
+            <div class="inline-flex">
               <avatar :user="state.users.get(machine.owner_uuid)" class="w-16px" />
-            </base-tooltip>
+              <p class="ml-3">
+                {{ state.users.get(machine.owner_uuid)?.username }}
+              </p>
+            </div>
           </th>
           <th v-if="machine.status == 2 && columns.status" class="flex items-center h-min gap-4 justify-start">
             <div
