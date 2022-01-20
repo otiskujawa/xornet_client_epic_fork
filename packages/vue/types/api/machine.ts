@@ -46,8 +46,8 @@ export interface INetwork {
 	name: string
 	tx: number
 	rx: number
+	speed: number
 }
-
 export interface ICPU {
 	usage: number[]
 	freq: number[]
