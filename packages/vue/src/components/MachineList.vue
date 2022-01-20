@@ -150,21 +150,23 @@ const machines = computed(() => state.machines.getAll()
 	.filter(machine => state.settings.showOwnedMachinesOnly.value ? machine.owner_uuid === state.users.getMe().uuid : machine)
 // This switch is what sorts the columns
 	.sort((a, b) => {
+		// Someone fix the || "" bullshit at some point thanks, it's there because you can't compare undefined
+		// meaning the sorting breaks when you have offline machines visible
 		switch (shortByKey.value) {
 			case "hostname":
 				return a.static_data.hostname!.toLowerCase() > b.static_data.hostname!.toLowerCase() ? -1 : 1;
 			case "cpu_usage":
-				return a.cpu_average < b.cpu_average ? -1 : 1;
+				return (a.cpu_average || "") < (b.cpu_average || "") ? -1 : 1;
 			case "cpu_speed":
-				return a.cpu_average_speed < b.cpu_average_speed ? -1 : 1;
+				return (a.cpu_average_speed || "") < (b.cpu_average_speed || "") ? -1 : 1;
 			case "ram_usage":
-				return a.ram_used / a.ram_total < b.ram_used / b.ram_total ? -1 : 1;
+				return (a.ram_used / a.ram_total || "") < (b.ram_used / b.ram_total || "") ? -1 : 1;
 			case "network_switch":
-				return a.dynamic_data?.network.length < b.dynamic_data?.network.length ? -1 : 1;
+				return (a.dynamic_data?.network.length || "") < (b.dynamic_data?.network.length || "") ? -1 : 1;
 			case "download":
-				return a.total_download < b.total_download ? -1 : 1;
+				return (a.total_download || "") < (b.total_download || "") ? -1 : 1;
 			case "upload":
-				return a.total_upload < b.total_upload ? -1 : 1;
+				return (a.total_upload || "") < (b.total_upload || "") ? -1 : 1;
 			case "temperature":
 				return (a.temperature || "") < (b.temperature || "") ? -1 : 1;
 			case "gpu_usage":
@@ -174,7 +176,7 @@ const machines = computed(() => state.machines.getAll()
 			case "external_ip":
 				return (a.static_data.public_ip || "") < (b.static_data.public_ip || "") ? -1 : 1;
 			case "process_count":
-				return a.dynamic_data?.processes < b.dynamic_data?.processes ? -1 : 1;
+				return (a.dynamic_data?.processes || "") < (b.dynamic_data?.processes || "") ? -1 : 1;
 			case "owner":
 				return a.owner.username.toLowerCase() > b.owner.username.toLowerCase() ? -1 : 1;
 			default:
