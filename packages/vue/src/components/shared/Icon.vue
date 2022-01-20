@@ -5,6 +5,7 @@
     <i-fluency-happy-skull v-if="name === 'happy_skull'" />
     <i-fluency-lightning-bolt v-if="name === 'gpu_power_usage'" />
     <i-fluency-processor v-if="name === 'cpu_usage'" />
+    <i-fluency-speedometer v-if="name === 'cpu_speed'" />
     <i-fluency-memory v-if="name === 'ram_usage'" />
     <i-fluency-switch v-if="name === 'network_switch'" />
     <i-fluency-temperature v-if="name === 'temperature'" />

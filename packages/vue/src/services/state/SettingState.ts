@@ -10,9 +10,10 @@ export class SettingsState {
 	public enableSoundEffects = useLocalStorage("soundEffects", false);
 	public showOfflineMachines = useLocalStorage("showOfflineMachines", true);
 	public showOwnedMachinesOnly = useLocalStorage("showOwnedMachinesOnly", false);
-	public columns = useLocalStorage("enabledColumns", {
+	public columns = useLocalStorage("enabledColumnsxd", {
 		hostname: true,
 		cpu_usage: true,
+		cpu_speed: false,
 		gpu_usage: false,
 		gpu_power_usage: false,
 		ram_usage: true,

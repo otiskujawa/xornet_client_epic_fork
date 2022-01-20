@@ -4,6 +4,7 @@
       <template #headers>
         <base-table-header v-if="columns.hostname" :class="shortByKey === 'hostname' && 'active'" text="Hostname" @click="sortBy('hostname')" />
         <base-table-header v-if="columns.cpu_usage" :class="shortByKey === 'cpu_usage' && 'active'" text="CPU Usage" @click="sortBy('cpu_usage')" />
+        <base-table-header v-if="columns.cpu_speed" :class="shortByKey === 'cpu_speed' && 'active'" text="CPU Speed" @click="sortBy('cpu_speed')" />
         <base-table-header v-if="columns.ram_usage" :class="shortByKey === 'ram_usage' && 'active'" text="RAM Usage" @click="sortBy('ram_usage')" />
         <base-table-header v-if="columns.gpu_usage" :class="shortByKey === 'gpu_usage' && 'active'" text="GPU Usage" @click="sortBy('gpu_usage')" />
         <base-table-header v-if="columns.gpu_power_usage" :class="shortByKey === 'gpu_power_usage' && 'active'" text="GPU Power Usage" @click="sortBy('gpu_power_usage')" />
@@ -31,6 +32,11 @@
           <th v-if="columns.cpu_usage">
             <machine-stat :value="(machine.dynamic_data?.cpu.usage.reduce((a, b) => a + b, 0) / machine.dynamic_data?.cpu.usage.length).toFixed(2)" suffix="%">
               <i-fluency-processor />
+            </machine-stat>
+          </th>
+          <th v-if="columns.cpu_speed">
+            <machine-stat :value="(machine.dynamic_data?.cpu.freq.reduce((a, b) => a + b, 0) / machine.dynamic_data?.cpu.usage.length).toFixed(2)" suffix="MHz">
+              <i-fluency-speedometer />
             </machine-stat>
           </th>
           <th v-if="columns.ram_usage">
