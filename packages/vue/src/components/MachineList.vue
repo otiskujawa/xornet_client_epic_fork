@@ -129,12 +129,6 @@ const machines = computed(() => state.machines.getAll()
 // Compute a bunch of properties so we don't have to do it multiple times
 	.map(machine => ({
 		...machine,
-		cpu_average: machine.dynamic_data?.cpu.usage.reduce((a, b) => a + b, 0) / machine.dynamic_data?.cpu.usage.length,
-		cpu_average_speed: machine.dynamic_data?.cpu.freq.reduce((a, b) => a + b, 0) / machine.dynamic_data?.cpu.usage.length,
-		total_download: machine.dynamic_data?.network.reduce((a, b) => a + b.rx, 0) / 1000 / 1000,
-		total_upload: machine.dynamic_data?.network.reduce((a, b) => a + b.tx, 0) / 1000 / 1000,
-		ram_used: machine.dynamic_data?.ram.used / 1024 / 1024,
-		ram_total: machine.dynamic_data?.ram.total / 1024 / 1024,
 		temperature: machine.dynamic_data?.temps?.[0].value,
 		is_online: machine.status === 2,
 		owner: state.users.get(machine.owner_uuid),

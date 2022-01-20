@@ -18,6 +18,14 @@ export interface IMachine {
 	access: string[]
 	created_at: number
 	updated_at: number
+
+	// Computed Shit
+	cpu_average: number
+	cpu_average_speed: number
+	total_download: number
+	total_upload: number
+	ram_used: number
+	ram_total: number
 }
 
 export interface IMachineStaticData {
