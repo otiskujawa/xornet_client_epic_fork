@@ -22,7 +22,7 @@ export class SettingsState {
 		upload: true,
 		temperature: false,
 		process_count: false,
-		external_ip: false,
+		public_ip: false,
 		owner: true,
 		action: true,
 	}).value;

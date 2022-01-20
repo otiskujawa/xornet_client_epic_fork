@@ -6,26 +6,16 @@ export const enum MachineStatus {
 	Online,
 }
 
-export interface IMachine {
+export interface IMachine extends IMachineDynamicData, IMachineStaticData {
 	uuid: uuid
 	owner_uuid: uuid
 	hardware_uuid: uuid
-	static_data: IMachineStaticData
-	dynamic_data: IMachineDynamicData
 	access_token: string
 	name: string
 	status: MachineStatus
 	access: string[]
 	created_at: number
 	updated_at: number
-
-	// Computed Shit
-	cpu_average: number
-	cpu_average_speed: number
-	total_download: number
-	total_upload: number
-	ram_used: number
-	ram_total: number
 }
 
 export interface IMachineStaticData {
@@ -44,11 +34,19 @@ export interface IMachineDynamicData {
 	ram: IRAM
 	gpu?: IGPU
 	disks: IDisk[]
-	processes: string
+	process_count: number
 	temps?: ITemp[]
 	network: INetwork[]
 	host_uptime: number
 	reporter_uptime: number
+
+	// Computed Shit
+	cpu_usage: number
+	cpu_speed: number
+	total_download: number
+	total_upload: number
+	ram_used: number
+	ram_total: number
 }
 
 export interface INetwork {

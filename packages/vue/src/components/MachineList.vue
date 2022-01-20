@@ -2,20 +2,20 @@
   <div class="w-full h-full overflow-scroll">
     <base-table>
       <template #headers>
-        <base-table-header v-if="columns.hostname" :class="shortByKey === 'hostname' && 'active'" text="Hostname" @click="sortBy('hostname')" />
-        <base-table-header v-if="columns.cpu_usage" :class="shortByKey === 'cpu_usage' && 'active'" text="CPU Usage" @click="sortBy('cpu_usage')" />
-        <base-table-header v-if="columns.cpu_speed" :class="shortByKey === 'cpu_speed' && 'active'" text="CPU Speed" @click="sortBy('cpu_speed')" />
-        <base-table-header v-if="columns.ram_usage" :class="shortByKey === 'ram_usage' && 'active'" text="RAM Usage" @click="sortBy('ram_usage')" />
-        <base-table-header v-if="columns.gpu_usage" :class="shortByKey === 'gpu_usage' && 'active'" text="GPU Usage" @click="sortBy('gpu_usage')" />
-        <base-table-header v-if="columns.gpu_power_usage" :class="shortByKey === 'gpu_power_usage' && 'active'" text="GPU Power Usage" @click="sortBy('gpu_power_usage')" />
-        <base-table-header v-if="columns.network_switch" :class="shortByKey === 'network_switch' && 'active'" text="Network Switch" @click="sortBy('network_switch')" />
-        <base-table-header v-if="columns.download" :class="shortByKey === 'download' && 'active'" text="Download" @click="sortBy('download')" />
-        <base-table-header v-if="columns.upload" :class="shortByKey === 'upload' && 'active'" text="Upload" @click="sortBy('upload')" />
-        <base-table-header v-if="columns.temperature" :class="shortByKey === 'temperature' && 'active'" text="Temperature" @click="sortBy('temperature')" />
-        <base-table-header v-if="columns.external_ip" :class="shortByKey === 'external_ip' && 'active'" text="External IP" @click="sortBy('external_ip')" />
-        <base-table-header v-if="columns.process_count" :class="shortByKey === 'process_count' && 'active'" text="Process Count" @click="sortBy('process_count')" />
-        <base-table-header v-if="columns.owner" :class="shortByKey === 'owner' && 'active'" text="Owner" @click="sortBy('owner')" />
-        <base-table-header v-if="columns.action" :class="shortByKey === 'action' && 'active'" text="Action" @click="sortBy('action')" />
+        <base-table-header v-if="columns.hostname" :class="sortByKey === 'hostname' && 'active'" text="Hostname" @click="sortBy('hostname')" />
+        <base-table-header v-if="columns.cpu_usage" :class="sortByKey === 'cpu_usage' && 'active'" text="CPU Usage" @click="sortBy('cpu_usage')" />
+        <base-table-header v-if="columns.cpu_speed" :class="sortByKey === 'cpu_speed' && 'active'" text="CPU Speed" @click="sortBy('cpu_speed')" />
+        <base-table-header v-if="columns.ram_usage" :class="sortByKey === 'ram_usage' && 'active'" text="RAM Usage" @click="sortBy('ram_usage')" />
+        <base-table-header v-if="columns.gpu_usage" :class="sortByKey === 'gpu_usage' && 'active'" text="GPU Usage" @click="sortBy('gpu_usage')" />
+        <base-table-header v-if="columns.gpu_power_usage" :class="sortByKey === 'gpu_power_usage' && 'active'" text="GPU Power Usage" @click="sortBy('gpu_power_usage')" />
+        <base-table-header v-if="columns.network_switch" :class="sortByKey === 'network_switch' && 'active'" text="Network Switch" @click="sortBy('network_switch')" />
+        <base-table-header v-if="columns.download" :class="sortByKey === 'download' && 'active'" text="Download" @click="sortBy('download')" />
+        <base-table-header v-if="columns.upload" :class="sortByKey === 'upload' && 'active'" text="Upload" @click="sortBy('upload')" />
+        <base-table-header v-if="columns.temperature" :class="sortByKey === 'temperature' && 'active'" text="Temperature" @click="sortBy('temperature')" />
+        <base-table-header v-if="columns.public_ip" :class="sortByKey === 'public_ip' && 'active'" text="public IP" @click="sortBy('public_ip')" />
+        <base-table-header v-if="columns.process_count" :class="sortByKey === 'process_count' && 'active'" text="Process Count" @click="sortBy('process_count')" />
+        <base-table-header v-if="columns.owner" :class="sortByKey === 'owner' && 'active'" text="Owner" @click="sortBy('owner')" />
+        <base-table-header v-if="columns.action" :class="sortByKey === 'action' && 'active'" text="Action" @click="sortBy('action')" />
       </template>
       <template #rows>
         <tr
@@ -25,7 +25,7 @@
         >
           <th v-if="columns.hostname">
             <machine-stat :value="machine.name">
-              <distro-icon class="w-16px h-16px min-w-16px min-h-16px" :name="machine.static_data?.os_name?.replace(/'/g, '')" />
+              <distro-icon class="w-16px h-16px min-w-16px min-h-16px" :name="machine.os_name?.replace(/'/g, '')" />
               <div
                 v-if="machine.is_online"
                 :class="state.settings.enableBloom.value && 'bloom'"
@@ -38,12 +38,12 @@
             </machine-stat>
           </th>
           <th v-if="columns.cpu_usage">
-            <machine-stat :value="machine.cpu_average.toFixed(2)" suffix="%">
+            <machine-stat :value="machine.cpu_usage.toFixed(2)" suffix="%">
               <i-fluency-processor />
             </machine-stat>
           </th>
           <th v-if="columns.cpu_speed">
-            <machine-stat :value="machine.cpu_average_speed.toFixed(2)" suffix="MHz">
+            <machine-stat :value="machine.cpu_speed.toFixed(2)" suffix="MHz">
               <i-fluency-speedometer />
             </machine-stat>
           </th>
@@ -53,17 +53,17 @@
             </machine-stat>
           </th>
           <th v-if="columns.gpu_usage">
-            <machine-stat :value="machine.dynamic_data?.gpu?.gpu_usage" suffix="%">
+            <machine-stat :value="machine.gpu?.gpu_usage" suffix="%">
               <i-fluency-video-card />
             </machine-stat>
           </th>
           <th v-if="columns.gpu_power_usage">
-            <machine-stat :value="machine.dynamic_data?.gpu?.power_usage" suffix="mW">
+            <machine-stat :value="machine.gpu?.power_usage" suffix="mW">
               <i-fluency-lightning-bolt />
             </machine-stat>
           </th>
           <th v-if="columns.network_switch">
-            <network-switch v-if="machine.dynamic_data?.network" :interfaces="machine.dynamic_data?.network" />
+            <network-switch v-if="machine.network" :interfaces="machine.network" />
           </th>
           <th v-if="columns.download">
             <machine-stat :value="machine.total_download.toFixed(2)" suffix="Mbps">
@@ -76,17 +76,17 @@
             </machine-stat>
           </th>
           <th v-if="columns.temperature">
-            <machine-stat :value="machine.dynamic_data?.temps?.[0].value.toFixed(2)" suffix="°C">
+            <machine-stat :value="machine.temps?.[0].value.toFixed(2)" suffix="°C">
               <i-fluency-temperature />
             </machine-stat>
           </th>
-          <th v-if="columns.external_ip">
-            <machine-stat :value="machine.static_data.public_ip">
+          <th v-if="columns.public_ip">
+            <machine-stat :value="machine.public_ip">
               <i-fluency-ipv6 />
             </machine-stat>
           </th>
           <th v-if="columns.process_count">
-            <machine-stat :value="machine.dynamic_data?.processes">
+            <machine-stat :value="machine.process_count">
               <i-fluency-processes />
             </machine-stat>
           </th>
@@ -120,19 +120,21 @@ import BaseConfirmationDialog from "./base/BaseConfirmationDialog.vue";
 import BaseTableHeader from "./base/BaseTableHeader.vue";
 const state = useState();
 const columns = computed(() => state.settings.columns);
-const shortByKey = ref("hostname");
+const sortByKey = ref("hostname");
 const sortBy = (field: string) => {
-	shortByKey.value = field;
+	sortByKey.value = field;
 };
 
 const machines = computed(() => state.machines.getAll()
 // Compute a bunch of properties so we don't have to do it multiple times
-	.map(machine => ({
-		...machine,
-		temperature: machine.dynamic_data?.temps?.[0].value,
-		is_online: machine.status === 2,
-		owner: state.users.get(machine.owner_uuid),
-	}))
+	.map((machine) => {
+		return ({
+			...machine,
+			temperature: machine.temps?.[0].value,
+			is_online: machine.status === 2,
+			owner: state.users.get(machine.owner_uuid),
+		});
+	})
 // This is for the filter input so user's can quickly search through machines
 	.filter(machine =>
 		machine.name.toLowerCase().includes(state.machines.filterText.value)
@@ -144,38 +146,53 @@ const machines = computed(() => state.machines.getAll()
 	.filter(machine => state.settings.showOwnedMachinesOnly.value ? machine.owner_uuid === state.users.getMe().uuid : machine)
 // This switch is what sorts the columns
 	.sort((a, b) => {
-		// Someone fix the || "" bullshit at some point thanks, it's there because you can't compare undefined
-		// meaning the sorting breaks when you have offline machines visible
-		switch (shortByKey.value) {
+		let comparison = false;
+
+		switch (sortByKey.value) {
 			case "hostname":
-				return a.static_data.hostname!.toLowerCase() > b.static_data.hostname!.toLowerCase() ? -1 : 1;
+				comparison = a.hostname!.toLowerCase() > b.hostname!.toLowerCase();
+				break;
 			case "cpu_usage":
-				return (a.cpu_average || "") < (b.cpu_average || "") ? -1 : 1;
+				comparison = a.cpu_usage < b.cpu_usage;
+				break;
 			case "cpu_speed":
-				return (a.cpu_average_speed || "") < (b.cpu_average_speed || "") ? -1 : 1;
-			case "ram_usage":
-				return (a.ram_used / a.ram_total || "") < (b.ram_used / b.ram_total || "") ? -1 : 1;
+				comparison = a.cpu_speed < b.cpu_speed;
+				break;
+			case "ram_usage_ratio":
+				comparison = a.ram_used / a.ram_total < b.ram_used / b.ram_total;
+				break;
 			case "network_switch":
-				return (a.dynamic_data?.network.length || "") < (b.dynamic_data?.network.length || "") ? -1 : 1;
-			case "download":
-				return (a.total_download || "") < (b.total_download || "") ? -1 : 1;
-			case "upload":
-				return (a.total_upload || "") < (b.total_upload || "") ? -1 : 1;
+				comparison = a.network.length < b.network.length;
+				break;
+			case "total_download":
+				comparison = a.total_download < b.total_download;
+				break;
+			case "total_upload":
+				comparison = a.total_upload < b.total_upload;
+				break;
 			case "temperature":
-				return (a.temperature || "") < (b.temperature || "") ? -1 : 1;
+				comparison = (a.temperature || "") < (b.temperature || "");
+				break;
 			case "gpu_usage":
-				return (a.dynamic_data?.gpu?.gpu_usage || "") < (b.dynamic_data?.gpu?.gpu_usage || "") ? -1 : 1;
+				comparison = (a.gpu?.gpu_usage || "") < (b.gpu?.gpu_usage || "");
+				break;
 			case "gpu_power_usage":
-				return (a.dynamic_data?.gpu?.power_usage || "") < (b.dynamic_data?.gpu?.power_usage || "") ? -1 : 1;
-			case "external_ip":
-				return (a.static_data.public_ip || "") < (b.static_data.public_ip || "") ? -1 : 1;
+				comparison = (a.gpu?.power_usage || "") < (b.gpu?.power_usage || "");
+				break;
+			case "public_ip":
+				comparison = (a.public_ip || "") < (b.public_ip || "");
+				break;
 			case "process_count":
-				return (a.dynamic_data?.processes || "") < (b.dynamic_data?.processes || "") ? -1 : 1;
+				comparison = a.process_count < b.process_count;
+				break;
 			case "owner":
-				return a.owner.username.toLowerCase() > b.owner.username.toLowerCase() ? -1 : 1;
+				comparison = a.owner.username.toLowerCase() > b.owner.username.toLowerCase();
+				break;
 			default:
-				return a.static_data.hostname!.toLowerCase() > b.static_data.hostname!.toLowerCase() ? -1 : 1;
+				comparison = a.hostname!.toLowerCase() > b.hostname!.toLowerCase();
+				break;
 		}
+		return comparison ? -1 : 1;
 	})
 // This puts all the offline machines at the bottom
 	.sort(a => a.is_online ? -1 : 1));

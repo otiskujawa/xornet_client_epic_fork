@@ -42,7 +42,7 @@ export class MachinesState extends State<IMachinesState> {
 	}
 
 	public updateDynamicData(machineUuid: uuid, data: IMachineDynamicData) {
-		this.get(machineUuid).dynamic_data = data;
+		Object.assign(this.get(machineUuid), data);
 		this.get(machineUuid).status = MachineStatus.Online;
 	}
 
