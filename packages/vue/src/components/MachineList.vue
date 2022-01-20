@@ -120,7 +120,10 @@ import BaseTableHeader from "./base/BaseTableHeader.vue";
 const state = useState();
 const columns = computed(() => state.settings.columns);
 const shortByKey = ref("hostname");
-const machines = computed(() => state.machines.getAll().filter(machine => state.settings.showOfflineMachines.value ? machine : machine.status === 2).sort(a => a.status === 2 ? -1 : 1));
+const machines = computed(() => state.machines.getAll()
+	.filter(machine => state.settings.showOfflineMachines.value ? machine : machine.status === 2)
+	.filter(machine => state.settings.showOwnedMachinesOnly.value ? machine.owner_uuid === state.users.getMe().uuid : machine)
+	.sort(a => a.status === 2 ? -1 : 1));
 const sortBy = (field: string) => {
 	shortByKey.value = field;
 };

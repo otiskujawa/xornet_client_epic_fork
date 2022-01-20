@@ -8,7 +8,8 @@ export class SettingsState {
 	public enableDebugLogger = useLocalStorage("debugLogging", import.meta.env.DEV);
 	public enableRoundedCorners = useLocalStorage("roundedCorners", true);
 	public enableSoundEffects = useLocalStorage("soundEffects", false);
-	public showOfflineMachines = useLocalStorage("showOfflineMachinessoundEffects", true);
+	public showOfflineMachines = useLocalStorage("showOfflineMachines", true);
+	public showOwnedMachinesOnly = useLocalStorage("showOwnedMachinesOnly", false);
 	public columns = useLocalStorage("enabledColumns", {
 		hostname: true,
 		cpu_usage: true,
