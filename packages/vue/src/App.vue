@@ -37,11 +37,9 @@ a {
 
 *::-webkit-scrollbar {
   width: 6px;
-  display: none;
   left: -100px;
 }
 *:hover::-webkit-scrollbar {
-  display: initial;
   overflow-y: overlay;
 }
 *::-webkit-scrollbar-track,
