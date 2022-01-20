@@ -77,11 +77,9 @@
             </machine-stat>
           </th>
           <th v-if="columns.owner">
-            <div class="inline-flex">
+            <div class="flex items-center gap-3">
               <avatar :user="state.users.get(machine.owner_uuid)" class="w-16px" />
-              <p class="ml-3">
-                {{ state.users.get(machine.owner_uuid)?.username }}
-              </p>
+              {{ state.users.get(machine.owner_uuid)?.username }}
             </div>
           </th>
           <th v-if="machine.status == 2 && columns.status" class="flex items-center h-min gap-4 justify-start">
