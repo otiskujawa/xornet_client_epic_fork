@@ -1,7 +1,7 @@
 <template>
   <div id="TopBar" class="w-full">
     <div class="p-2 pr-1 flex items-center gap-2 ">
-      <base-input v-model="filter" placeholder="Filter" class="max-w-96 text-xs" />
+      <base-input v-model="state.machines.filterText.value" placeholder="Filter" class="max-w-96 text-xs" />
 
       <base-tooltip text="Add machine">
         <base-button transparent @click="showTokenGenerator = true">
@@ -58,7 +58,6 @@ import BaseDropdownCheckbox from "./base/BaseDropdownCheckbox.vue";
 import Icon from "./shared/Icon.vue";
 import BaseSwitch from "./base/BaseSwitch.vue";
 const showTokenGenerator = ref(false);
-const filter = ref("");
 const columnFilter = ref("");
 const state = useState();
 const columns = computed(() => state.settings.columns);

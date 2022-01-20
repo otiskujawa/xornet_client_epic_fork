@@ -122,6 +122,7 @@ const state = useState();
 const columns = computed(() => state.settings.columns);
 const shortByKey = ref("hostname");
 const machines = computed(() => state.machines.getAll()
+	.filter(machine => machine.name.toLowerCase().includes(state.machines.filterText.value))
 	.filter(machine => state.settings.showOfflineMachines.value ? machine : machine.status === 2)
 	.filter(machine => state.settings.showOwnedMachinesOnly.value ? machine.owner_uuid === state.users.getMe().uuid : machine)
 	.sort(a => a.status === 2 ? -1 : 1));

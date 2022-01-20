@@ -1,4 +1,5 @@
 import type { uuid } from "types/api";
+import { ref } from "vue";
 import { MachineStatus } from "../../../types/api/machine";
 import type { IMachine, IMachineDynamicData } from "../../../types/api/machine";
 
@@ -10,6 +11,8 @@ export interface IMachinesState {
 }
 
 export class MachinesState extends State<IMachinesState> {
+	public filterText = ref("");
+
 	constructor() {
 		super({
 			machines: {},
