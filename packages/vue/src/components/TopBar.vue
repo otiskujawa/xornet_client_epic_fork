@@ -37,7 +37,7 @@
       Show Offline
 
       <base-switch v-model="state.settings.showOwnedMachinesOnly.value" />
-      Owned Ownly
+      Owned Only
 
       <base-dialog v-model="showTokenGenerator" unsized>
         <token-generator />
