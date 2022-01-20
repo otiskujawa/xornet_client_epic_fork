@@ -1,10 +1,14 @@
 <template>
   <div class="flex gap-3px max-w-32 flex-wrap">
-    <div v-for="iface of interfaces" :key="iface.name">
-      <base-tooltip :text="iface.name">
-        <div class="cube" :class="state.settings.enableBloom.value && 'bloom'" :style="`animation-duration: ${speeds[iface.name]}ms;`" />
-      </base-tooltip>
-    </div>
+    <div
+      v-for="iface of interfaces" :key="iface.name"
+      class="cube"
+      :class="[
+        (iface.tx + iface.rx) / 1000 / 1000 >= 25 ? 'text-[#00FF67]' : 'text-[#FFA800]',
+        state.settings.enableBloom.value && 'bloom'
+      ]"
+      :style="`animation-duration: ${speeds[iface.name]}ms;`"
+    />
   </div>
 </template>
 
@@ -12,21 +16,17 @@
 import { computed } from "vue";
 import type { INetwork } from "../../types/api/machine";
 import { useState } from "../services/state";
-import BaseTooltip from "./base/BaseTooltip.vue";
-const props = defineProps<{
-	interfaces: INetwork[]
-}>();
+const MINIMUM_BLINK_SPEED = 0.025;
+const props = defineProps<{interfaces: INetwork[]}>();
 const state = useState();
-
 const interfaces = computed(() => props.interfaces);
-
 const speeds = computed(() => {
 	const nics: Record<string, number> = {};
 
 	interfaces.value.forEach((iface) => {
 		const totalTraffic = (iface.tx + iface.rx) / 1000 / 1000;
-		if (totalTraffic <= 0.05) nics[iface.name] = 0;
-		else if (totalTraffic > 0.05 && totalTraffic <= 10) nics[iface.name] = 400;
+		if (totalTraffic <= MINIMUM_BLINK_SPEED) nics[iface.name] = 0;
+		else if (totalTraffic > MINIMUM_BLINK_SPEED && totalTraffic <= 10) nics[iface.name] = 400;
 		else if (totalTraffic > 10 && totalTraffic <= 100) nics[iface.name] = 200;
 		else if (totalTraffic > 100 && totalTraffic <= 1000) nics[iface.name] = 150;
 		else nics[iface.name] = 100;
@@ -41,10 +41,10 @@ const speeds = computed(() => {
 
 @keyframes flash {
   from {
-    @apply bg-active bg-opacity-100;
+    @apply bg-current bg-opacity-100;
   }
   49% {
-    @apply bg-active bg-opacity-100;
+    @apply bg-current bg-opacity-100;
   }
   50% {
     @apply bg-white bg-opacity-5;
@@ -53,12 +53,12 @@ const speeds = computed(() => {
 
 @keyframes flashBloom {
   from {
-    @apply bg-active bg-opacity-100;
-    box-shadow: 0px 0px 6px #00FF67;
+    @apply bg-current bg-opacity-100;
+    box-shadow: 0px 0px 6px currentColor;
   }
   49% {
-    @apply bg-active bg-opacity-100;
-    box-shadow: 0px 0px 6px #00FF67;
+    @apply bg-current bg-opacity-100;
+    box-shadow: 0px 0px 6px currentColor;
   }
   50% {
     @apply bg-white bg-opacity-5;
