@@ -49,6 +49,24 @@ export class UsersState extends State<IUsersState> {
 	}
 
 	/**
+	 * Set the avatar of a user in the state
+	 * @param user The user to set the avatar of
+	 * @param avatar The URL of the avatar to set
+	 */
+	protected setAvatar(user: IUser, avatar: string) {
+		this.state.users[user.uuid].avatar = avatar;
+	}
+
+	/**
+	 * Update the avatar of me in the backend and set the new avatar in the state
+	 * @param avatar The URL of the avatar to set
+	 */
+	public updateAvatar(avatar: string) {
+		const me = this.getMe();
+		me && api.request<IUser>("PATCH", "/users/@avatar", { url: avatar }).then(me => this.setAvatar(me, avatar));
+	}
+
+	/**
 	 * Gets the me user from the state and if it doesn't exist it fetches it from the backend
 	 */
 	public getMe() {
