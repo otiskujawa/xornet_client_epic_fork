@@ -15,7 +15,6 @@
         <base-table-header v-if="columns.external_ip" :class="shortByKey === 'external_ip' && 'active'" text="External IP" @click="sortBy('external_ip')" />
         <base-table-header v-if="columns.process_count" :class="shortByKey === 'process_count' && 'active'" text="Process Count" @click="sortBy('process_count')" />
         <base-table-header v-if="columns.owner" :class="shortByKey === 'owner' && 'active'" text="Owner" @click="sortBy('owner')" />
-        <base-table-header v-if="columns.status" :class="shortByKey === 'status' && 'active'" text="Status" @click="sortBy('status')" />
         <base-table-header v-if="columns.action" :class="shortByKey === 'action' && 'active'" text="Action" @click="sortBy('action')" />
       </template>
       <template #rows>
@@ -27,6 +26,15 @@
           <th v-if="columns.hostname">
             <machine-stat :value="machine.name">
               <distro-icon class="w-16px h-16px min-w-16px min-h-16px" :name="machine.static_data?.os_name?.replace(/'/g, '')" />
+              <div
+                v-if="machine.status == 2"
+                :class="state.settings.enableBloom.value && 'bloom'"
+                class="w-5px h-5px rounded-full bg-active text-opacity-100 mr-1"
+              />
+              <div
+                v-else
+                class="w-5px h-5px rounded-full bg-white text-white opacity-15 mr-1"
+              />
             </machine-stat>
           </th>
           <th v-if="columns.cpu_usage">
@@ -87,19 +95,6 @@
               <avatar :user="state.users.get(machine.owner_uuid)" class="w-16px" />
               {{ state.users.get(machine.owner_uuid)?.username }}
             </div>
-          </th>
-          <th v-if="machine.status == 2 && columns.status" class="flex items-center h-min gap-4 justify-start">
-            <div
-              :class="state.settings.enableBloom.value && 'bloom'"
-              class="w-5px h-5px rounded-full bg-active text-opacity-100"
-            />
-            Online
-          </th>
-          <th v-else-if="machine.status !== 2 && columns.status" class="opacity-20 flex items-center h-min gap-4 justify-start">
-            <div
-              class="w-5px h-5px rounded-full bg-white text-white"
-            />
-            Offline
           </th>
           <th v-if="columns.action">
             <base-confirmation-dialog v-if="machine.owner_uuid === state.users.getMe().uuid" confirmation-text="Are you sure you want to delete this machine?" @confirm="deleteMachine(machine.uuid)">
