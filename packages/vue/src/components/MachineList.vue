@@ -27,7 +27,7 @@
             <machine-stat :value="machine.name">
               <distro-icon class="w-16px h-16px min-w-16px min-h-16px" :name="machine.static_data?.os_name?.replace(/'/g, '')" />
               <div
-                v-if="machine.status == 2"
+                v-if="machine.is_online"
                 :class="state.settings.enableBloom.value && 'bloom'"
                 class="w-5px h-5px rounded-full bg-active text-opacity-100 mr-1"
               />
@@ -38,17 +38,17 @@
             </machine-stat>
           </th>
           <th v-if="columns.cpu_usage">
-            <machine-stat :value="(machine.dynamic_data?.cpu.usage.reduce((a, b) => a + b, 0) / machine.dynamic_data?.cpu.usage.length).toFixed(2)" suffix="%">
+            <machine-stat :value="machine.cpu_average.toFixed(2)" suffix="%">
               <i-fluency-processor />
             </machine-stat>
           </th>
           <th v-if="columns.cpu_speed">
-            <machine-stat :value="(machine.dynamic_data?.cpu.freq.reduce((a, b) => a + b, 0) / machine.dynamic_data?.cpu.usage.length).toFixed(2)" suffix="MHz">
+            <machine-stat :value="machine.cpu_average_speed.toFixed(2)" suffix="MHz">
               <i-fluency-speedometer />
             </machine-stat>
           </th>
           <th v-if="columns.ram_usage">
-            <machine-stat :value="`${(machine.dynamic_data?.ram.used / 1024 / 1024).toFixed(2)} / ${(machine.dynamic_data?.ram.total / 1024 / 1024).toFixed(2)}`" suffix="GB">
+            <machine-stat :value="`${machine.ram_used.toFixed(2)} / ${machine.ram_total.toFixed(2)}`" suffix="GB">
               <i-fluency-memory />
             </machine-stat>
           </th>
@@ -66,12 +66,12 @@
             <network-switch v-if="machine.dynamic_data?.network" :interfaces="machine.dynamic_data?.network" />
           </th>
           <th v-if="columns.download">
-            <machine-stat :value="(machine.dynamic_data?.network.reduce((a, b) => a + b.rx, 0) / 1000 / 1000).toFixed(2)" suffix="Mbps">
+            <machine-stat :value="machine.total_download.toFixed(2)" suffix="Mbps">
               <i-fluency-down />
             </machine-stat>
           </th>
           <th v-if="columns.upload">
-            <machine-stat :value="(machine.dynamic_data?.network.reduce((a, b) => a + b.tx, 0) / 1000 / 1000).toFixed(2)" suffix="Mbps">
+            <machine-stat :value="machine.total_upload.toFixed(2)" suffix="Mbps">
               <i-fluency-up />
             </machine-stat>
           </th>
@@ -92,8 +92,8 @@
           </th>
           <th v-if="columns.owner">
             <div class="flex items-center gap-3">
-              <avatar :user="state.users.get(machine.owner_uuid)" class="w-16px" />
-              {{ state.users.get(machine.owner_uuid)?.username }}
+              <avatar :user="machine.owner" class="w-16px" />
+              {{ machine.owner.username }}
             </div>
           </th>
           <th v-if="columns.action">
@@ -121,17 +121,68 @@ import BaseTableHeader from "./base/BaseTableHeader.vue";
 const state = useState();
 const columns = computed(() => state.settings.columns);
 const shortByKey = ref("hostname");
+const sortBy = (field: string) => {
+	shortByKey.value = field;
+};
+
 const machines = computed(() => state.machines.getAll()
+// Compute a bunch of properties so we don't have to do it multiple times
+	.map(machine => ({
+		...machine,
+		cpu_average: machine.dynamic_data?.cpu.usage.reduce((a, b) => a + b, 0) / machine.dynamic_data?.cpu.usage.length,
+		cpu_average_speed: machine.dynamic_data?.cpu.freq.reduce((a, b) => a + b, 0) / machine.dynamic_data?.cpu.usage.length,
+		total_download: machine.dynamic_data?.network.reduce((a, b) => a + b.rx, 0) / 1000 / 1000,
+		total_upload: machine.dynamic_data?.network.reduce((a, b) => a + b.tx, 0) / 1000 / 1000,
+		ram_used: machine.dynamic_data?.ram.used / 1024 / 1024,
+		ram_total: machine.dynamic_data?.ram.total / 1024 / 1024,
+		temperature: machine.dynamic_data?.temps?.[0].value,
+		is_online: machine.status === 2,
+		owner: state.users.get(machine.owner_uuid),
+	}))
+// This is for the filter input so user's can quickly search through machines
 	.filter(machine =>
 		machine.name.toLowerCase().includes(state.machines.filterText.value)
     || state.users.get(machine.owner_uuid).username.toLowerCase().includes(state.machines.filterText.value),
 	)
-	.filter(machine => state.settings.showOfflineMachines.value ? machine : machine.status === 2)
+// This is so you can hide offline machines
+	.filter(machine => state.settings.showOfflineMachines.value ? machine : machine.is_online)
+// This makes it so you can see only your own machines
 	.filter(machine => state.settings.showOwnedMachinesOnly.value ? machine.owner_uuid === state.users.getMe().uuid : machine)
-	.sort(a => a.status === 2 ? -1 : 1));
-const sortBy = (field: string) => {
-	shortByKey.value = field;
-};
+// This switch is what sorts the columns
+	.sort((a, b) => {
+		switch (shortByKey.value) {
+			case "hostname":
+				return a.static_data.hostname!.toLowerCase() > b.static_data.hostname!.toLowerCase() ? -1 : 1;
+			case "cpu_usage":
+				return a.cpu_average < b.cpu_average ? -1 : 1;
+			case "cpu_speed":
+				return a.cpu_average_speed < b.cpu_average_speed ? -1 : 1;
+			case "ram_usage":
+				return a.ram_used / a.ram_total < b.ram_used / b.ram_total ? -1 : 1;
+			case "network_switch":
+				return a.dynamic_data?.network.length < b.dynamic_data?.network.length ? -1 : 1;
+			case "download":
+				return a.total_download < b.total_download ? -1 : 1;
+			case "upload":
+				return a.total_upload < b.total_upload ? -1 : 1;
+			case "temperature":
+				return (a.temperature || "") < (b.temperature || "") ? -1 : 1;
+			case "gpu_usage":
+				return (a.dynamic_data?.gpu?.gpu_usage || "") < (b.dynamic_data?.gpu?.gpu_usage || "") ? -1 : 1;
+			case "gpu_power_usage":
+				return (a.dynamic_data?.gpu?.power_usage || "") < (b.dynamic_data?.gpu?.power_usage || "") ? -1 : 1;
+			case "external_ip":
+				return (a.static_data.public_ip || "") < (b.static_data.public_ip || "") ? -1 : 1;
+			case "process_count":
+				return a.dynamic_data?.processes < b.dynamic_data?.processes ? -1 : 1;
+			case "owner":
+				return a.owner.username.toLowerCase() > b.owner.username.toLowerCase() ? -1 : 1;
+			default:
+				return a.static_data.hostname!.toLowerCase() > b.static_data.hostname!.toLowerCase() ? -1 : 1;
+		}
+	})
+// This puts all the offline machines at the bottom
+	.sort(a => a.is_online ? -1 : 1));
 
 const deleteMachine = async(uuid: uuid) => {
 	const { machines } = useState();
