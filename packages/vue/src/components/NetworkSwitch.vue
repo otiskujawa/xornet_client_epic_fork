@@ -4,7 +4,9 @@
       v-for="iface of interfaces" :key="iface.name"
       class="cube"
       :class="[
-        (iface.tx + iface.rx) / 1000 / 1000 >= 25 ? 'text-[#00FF67]' : 'text-[#FFA800]',
+        iface.speed === 100 && 'text-[#FFA800]',
+        iface.speed === 1000 && 'text-[#00FF67]',
+        iface.speed !== 100 && iface.speed !== 1000 && 'text-[#00ccee]',
         state.settings.enableBloom.value && 'bloom'
       ]"
       :style="`animation-duration: ${speeds[iface.name]}ms;`"
