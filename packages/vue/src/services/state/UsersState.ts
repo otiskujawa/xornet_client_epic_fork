@@ -23,12 +23,24 @@ export interface UserSignupInput extends UserLoginInput {
 
 export class UsersState extends State<IUsersState> {
 	private token: RemovableRef<string> = useLocalStorage("token", "undefined");
+	private requestQueue: Record<uuid, Promise<void>> = {};
 
 	public constructor() {
 		super({
 			me_uuid: undefined,
 			users: {},
 		});
+	}
+
+	/**
+	 * This is a smart lock system that will deny repetitive requests and only do them once
+	 * (this should be improved with some async lock of some sort)
+	 */
+	private async requestUser(uuid: uuid) {
+		if (this.requestQueue[uuid] !== undefined) return;
+		this.requestQueue[uuid] = this.fetch(uuid);
+		await this.requestQueue[uuid];
+		delete this.requestQueue[uuid];
 	}
 
 	/**
@@ -61,8 +73,8 @@ export class UsersState extends State<IUsersState> {
 	 * Update the avatar of me in the backend and set the new avatar in the state
 	 * @param avatar The URL of the avatar to set
 	 */
-	public updateAvatar(avatar: string) {
-		const me = this.getMe();
+	public async updateAvatar(avatar: string) {
+		const me = await this.getMe();
 		me && api.request<IUser>("PATCH", "/users/@avatar", { url: avatar }).then(me => this.setAvatar(me, avatar));
 	}
 
@@ -141,7 +153,7 @@ export class UsersState extends State<IUsersState> {
 	 */
 	public get(uuid: uuid) {
 		const user = this.state.users[uuid];
-		if (!user) this.fetch(uuid);
+		if (!user) this.requestUser(uuid);
 		return user;
 	}
 }

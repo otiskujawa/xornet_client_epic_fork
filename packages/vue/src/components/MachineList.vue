@@ -49,7 +49,7 @@
             </machine-stat>
           </th>
           <th v-if="columns.network_switch">
-            <network-switch :interfaces="machine.dynamic_data?.network" />
+            <network-switch v-if="machine.dynamic_data?.network" :interfaces="machine.dynamic_data?.network" />
           </th>
           <th v-if="columns.download">
             <machine-stat :value="(machine.dynamic_data?.network.reduce((a, b) => a + b.rx, 0) / 1000 / 1000).toFixed(2)" suffix="Mbps">
@@ -112,7 +112,6 @@ import { computed, ref } from "vue";
 import { SoundManager } from "../services/SoundManager";
 import { useState } from "../services/state";
 import BaseTable from "./base/BaseTable.vue";
-import BaseTooltip from "./base/BaseTooltip.vue";
 import MachineStat from "./MachineStat.vue";
 import NetworkSwitch from "./NetworkSwitch.vue";
 import Avatar from "./user/Avatar.vue";
@@ -132,8 +131,6 @@ const machines = computed(() => state.machines.getAll()
 const sortBy = (field: string) => {
 	shortByKey.value = field;
 };
-// Little hack troll
-if (state.machines.getTotal() === 0) state.machines.fetchMachines();
 
 const deleteMachine = async(uuid: uuid) => {
 	const { machines } = useState();

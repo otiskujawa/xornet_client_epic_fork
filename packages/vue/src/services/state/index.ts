@@ -10,4 +10,6 @@ export const state = {
 	window: new WindowState(),
 };
 
+state.machines.fetchMachines();
+
 export const useState = () => state;
