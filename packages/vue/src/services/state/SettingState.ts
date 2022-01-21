@@ -23,6 +23,8 @@ export class SettingsState {
 		temperature: false,
 		public_ip: false,
 		process_count: false,
+		host_uptime: false,
+		reporter_uptime: false,
 		owner: true,
 		action: true,
 	}, { deep: true }).value;

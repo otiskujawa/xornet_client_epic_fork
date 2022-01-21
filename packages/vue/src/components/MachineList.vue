@@ -79,6 +79,16 @@
               <i-fluency-processes />
             </machine-stat>
           </th>
+          <th v-if="columns.host_uptime">
+            <machine-stat :value="formatEpoch(machine.host_uptime)">
+              <i-fluency-clock />
+            </machine-stat>
+          </th>
+          <th v-if="columns.reporter_uptime">
+            <machine-stat :value="formatEpoch(machine.reporter_uptime)">
+              <i-fluency-clock />
+            </machine-stat>
+          </th>
           <th v-if="columns.owner">
             <div class="flex items-center gap-3">
               <avatar :user="machine.owner" class="w-16px" />
@@ -111,6 +121,23 @@ const state = useState();
 const columns = computed(() => state.settings.columns);
 const sortByKey = ref("hostname");
 const sortBy = (field: string) => sortByKey.value = field;
+
+const padNumber = (time: number) => {
+	const floored = ~~time;
+	return floored > 9 ? floored : `0${floored}`;
+};
+
+const formatEpoch = (ms: number) => {
+	const days = ~~(ms / (24 * 60 * 60 * 1000));
+	const daysms = ms % (24 * 60 * 60 * 1000);
+	const hours = ~~(daysms / (60 * 60 * 1000));
+	const hoursms = ms % (60 * 60 * 1000);
+	const minutes = ~~(hoursms / (60 * 1000));
+	const minutesms = ms % (60 * 1000);
+	const sec = ~~(minutesms / 1000);
+	return `${padNumber(days)}:${padNumber(hours)}:${padNumber(minutes)}:${padNumber(sec)}`;
+};
+
 const machines = computed(() => state.machines.getAll()
 // Compute a bunch of properties so we don't have to do it multiple times
 	.map((machine) => {
@@ -167,6 +194,12 @@ const machines = computed(() => state.machines.getAll()
 				break;
 			case "public_ip":
 				comparison = (a.public_ip || "") < (b.public_ip || "");
+				break;
+			case "host_uptime":
+				comparison = (a.host_uptime || "") < (b.host_uptime);
+				break;
+			case "reporter_uptime":
+				comparison = (a.reporter_uptime || "") < (b.reporter_uptime);
 				break;
 			case "process_count":
 				comparison = (a.process_count || "") < (b.process_count || "");
