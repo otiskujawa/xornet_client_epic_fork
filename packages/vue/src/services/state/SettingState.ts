@@ -12,8 +12,8 @@ export class SettingsState {
 	public showOwnedMachinesOnly = useLocalStorage("showOwnedMachinesOnly", false);
 	public columns = useLocalStorage("enabledColumns", {
 		hostname: true,
-		cpu_usage: true,
-		cpu_speed: false,
+		cpu_average_usage: true,
+		cpu_average_speed: false,
 		gpu_usage: false,
 		gpu_power_usage: false,
 		ram_usage: true,

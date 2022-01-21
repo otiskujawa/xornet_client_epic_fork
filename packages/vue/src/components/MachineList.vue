@@ -3,8 +3,8 @@
     <base-table>
       <template #headers>
         <base-table-header v-if="columns.hostname" :class="sortByKey === 'hostname' && 'active'" text="Hostname" @click="sortBy('hostname')" />
-        <base-table-header v-if="columns.cpu_usage" :class="sortByKey === 'cpu_usage' && 'active'" text="CPU Usage" @click="sortBy('cpu_usage')" />
-        <base-table-header v-if="columns.cpu_speed" :class="sortByKey === 'cpu_speed' && 'active'" text="CPU Speed" @click="sortBy('cpu_speed')" />
+        <base-table-header v-if="columns.cpu_average_usage" :class="sortByKey === 'cpu_average_usage' && 'active'" text="CPU Usage" @click="sortBy('cpu_average_usage')" />
+        <base-table-header v-if="columns.cpu_average_speed" :class="sortByKey === 'cpu_average_speed' && 'active'" text="CPU Speed" @click="sortBy('cpu_average_speed')" />
         <base-table-header v-if="columns.ram_usage" :class="sortByKey === 'ram_usage' && 'active'" text="RAM Usage" @click="sortBy('ram_usage')" />
         <base-table-header v-if="columns.gpu_usage" :class="sortByKey === 'gpu_usage' && 'active'" text="GPU Usage" @click="sortBy('gpu_usage')" />
         <base-table-header v-if="columns.gpu_power_usage" :class="sortByKey === 'gpu_power_usage' && 'active'" text="GPU Power Usage" @click="sortBy('gpu_power_usage')" />
@@ -37,18 +37,18 @@
               />
             </machine-stat>
           </th>
-          <th v-if="columns.cpu_usage">
-            <machine-stat :value="machine.cpu_usage.toFixed(2)" suffix="%">
+          <th v-if="columns.cpu_average_usage">
+            <machine-stat :value="machine.cpu_average_usage.toFixed(2)" suffix="%">
               <i-fluency-processor />
             </machine-stat>
           </th>
-          <th v-if="columns.cpu_speed">
-            <machine-stat :value="machine.cpu_speed.toFixed(2)" suffix="MHz">
+          <th v-if="columns.cpu_average_speed">
+            <machine-stat :value="machine.cpu_average_speed.toFixed(2)" suffix="MHz">
               <i-fluency-speedometer />
             </machine-stat>
           </th>
           <th v-if="columns.ram_usage">
-            <machine-stat :value="`${machine.ram_used.toFixed(2)} / ${machine.ram_total.toFixed(2)}`" suffix="GB">
+            <machine-stat :value="`${machine.ram_used_gb.toFixed(2)} / ${machine.ram_total_gb.toFixed(2)}`" suffix="GB">
               <i-fluency-memory />
             </machine-stat>
           </th>
@@ -149,14 +149,14 @@ const machines = computed(() => state.machines.getAll()
 			case "hostname":
 				comparison = a.hostname!.toLowerCase() > b.hostname!.toLowerCase();
 				break;
-			case "cpu_usage":
-				comparison = a.cpu_usage < b.cpu_usage;
+			case "cpu_average_usage":
+				comparison = a.cpu_average_usage < b.cpu_average_usage;
 				break;
-			case "cpu_speed":
-				comparison = a.cpu_speed < b.cpu_speed;
+			case "cpu_average_speed":
+				comparison = a.cpu_average_speed < b.cpu_average_speed;
 				break;
 			case "ram_usage_ratio":
-				comparison = a.ram_used / a.ram_total < b.ram_used / b.ram_total;
+				comparison = a.ram.used / a.ram.total < b.ram.used / b.ram.total;
 				break;
 			case "network_switch":
 				comparison = a.network.length < b.network.length;

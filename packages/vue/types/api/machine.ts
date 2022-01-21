@@ -93,11 +93,11 @@ export interface IMachineDynamicData {
 	/**
 	 * Server-side computed - Average usage of all the cores from 0% to 100%
 	 */
-	cpu_usage: number
+	cpu_average_usage: number
 	/**
 	 * Server-side computed - Average clock speed of all the cores
 	 */
-	cpu_speed: number
+	cpu_average_speed: number
 	/**
 	 * Server-side computed - Total download of all interfaces on the system
 	 */
@@ -109,11 +109,11 @@ export interface IMachineDynamicData {
 	/**
 	 * Server-side computed - RAM used in GB
 	 */
-	ram_used: number
+	ram_used_gb: number
 	/**
 	 * Server-side computed - RAM total in GB
 	 */
-	ram_total: number
+	ram_total_gb: number
 }
 
 export interface INetwork {
