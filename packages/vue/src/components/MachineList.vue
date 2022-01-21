@@ -127,7 +127,8 @@ const padNumber = (time: number) => {
 	return floored > 9 ? floored : `0${floored}`;
 };
 
-const formatEpoch = (ms: number) => {
+const formatEpoch = (ms?: number) => {
+	if (!ms) return undefined;
 	const days = ~~(ms / (24 * 60 * 60 * 1000));
 	const daysms = ms % (24 * 60 * 60 * 1000);
 	const hours = ~~(daysms / (60 * 60 * 1000));
@@ -172,7 +173,7 @@ const machines = computed(() => state.machines.getAll()
 				comparison = (a.cpu_average_speed || "") < (b.cpu_average_speed || "");
 				break;
 			case "ram_usage_ratio":
-				comparison = (a.ram.used / a.ram.total || "") < (b.ram.used / b.ram.total || "");
+				comparison = (a.ram!.used / a.ram!.total || "") < (b.ram!.used / b.ram!.total || "");
 				break;
 			case "network_switch":
 				comparison = (a.network?.length || "") < (b.network?.length || "");
@@ -196,10 +197,10 @@ const machines = computed(() => state.machines.getAll()
 				comparison = (a.public_ip || "") < (b.public_ip || "");
 				break;
 			case "host_uptime":
-				comparison = (a.host_uptime || "") < (b.host_uptime);
+				comparison = (a.host_uptime || "") < (b.host_uptime || "");
 				break;
 			case "reporter_uptime":
-				comparison = (a.reporter_uptime || "") < (b.reporter_uptime);
+				comparison = (a.reporter_uptime || "") < (b.reporter_uptime || "");
 				break;
 			case "process_count":
 				comparison = (a.process_count || "") < (b.process_count || "");

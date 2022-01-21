@@ -70,11 +70,11 @@ export interface IMachineDynamicData {
 	/**
 	 * The CPU on the machine
 	 */
-	cpu: ICPU
+	cpu?: ICPU
 	/**
 	 * The RAM on the machine
 	 */
-	ram: IRAM
+	ram?: IRAM
 	/**
 	 * The GPU on the machine
 	 */
@@ -82,11 +82,11 @@ export interface IMachineDynamicData {
 	/**
 	 * The disks on the machine
 	 */
-	disks: IDisk[]
+	disks?: IDisk[]
 	/**
 	 * The amount of processes running on the system
 	 */
-	process_count: number
+	process_count?: number
 	/**
 	 * Temperature sensors of the machine
 	 */
@@ -94,39 +94,39 @@ export interface IMachineDynamicData {
 	/**
 	 * All the network interfaces of the machine
 	 */
-	network: INetwork[]
+	network?: INetwork[]
 	/**
 	 * The boot time of how long the host machine has been up for
 	 */
-	host_uptime: number
+	host_uptime?: number
 	/**
 	 * The amount of time the reporter has been running for
 	 */
-	reporter_uptime: number
+	reporter_uptime?: number
 	/**
 	 * Server-side computed - Average usage of all the cores from 0% to 100%
 	 */
-	cpu_average_usage: number
+	cpu_average_usage?: number
 	/**
 	 * Server-side computed - Average clock speed of all the cores
 	 */
-	cpu_average_speed: number
+	cpu_average_speed?: number
 	/**
 	 * Server-side computed - Total download of all interfaces on the system
 	 */
-	total_download: number
+	total_download?: number
 	/**
 	 * Server-side computed - Total upload of all interfaces on the system
 	 */
-	total_upload: number
+	total_upload?: number
 	/**
 	 * Server-side computed - RAM used in GB
 	 */
-	ram_used_gb: number
+	ram_used_gb?: number
 	/**
 	 * Server-side computed - RAM total in GB
 	 */
-	ram_total_gb: number
+	ram_total_gb?: number
 }
 
 export interface INetwork {
