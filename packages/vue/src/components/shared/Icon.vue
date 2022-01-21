@@ -14,7 +14,7 @@
     <i-fluency-down v-if="name === 'download'" />
     <i-fluency-user v-if="name === 'owner'" />
     <i-fluency-video-card v-if="name === 'gpu_usage'" />
-    <i-fluency-ipv6 v-if="name === 'external_ip'" />
+    <i-fluency-ipv6 v-if="name === 'public_ip'" />
     <i-fluency-processes v-if="name === 'process_count'" />
   </div>
 </template>

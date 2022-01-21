@@ -2,20 +2,9 @@
   <div class="w-full h-full overflow-scroll">
     <base-table>
       <template #headers>
-        <base-table-header v-if="columns.hostname" :class="sortByKey === 'hostname' && 'active'" text="Hostname" @click="sortBy('hostname')" />
-        <base-table-header v-if="columns.cpu_average_usage" :class="sortByKey === 'cpu_average_usage' && 'active'" text="CPU Usage" @click="sortBy('cpu_average_usage')" />
-        <base-table-header v-if="columns.cpu_average_speed" :class="sortByKey === 'cpu_average_speed' && 'active'" text="CPU Speed" @click="sortBy('cpu_average_speed')" />
-        <base-table-header v-if="columns.ram_usage" :class="sortByKey === 'ram_usage' && 'active'" text="RAM Usage" @click="sortBy('ram_usage')" />
-        <base-table-header v-if="columns.gpu_usage" :class="sortByKey === 'gpu_usage' && 'active'" text="GPU Usage" @click="sortBy('gpu_usage')" />
-        <base-table-header v-if="columns.gpu_power_usage" :class="sortByKey === 'gpu_power_usage' && 'active'" text="GPU Power Usage" @click="sortBy('gpu_power_usage')" />
-        <base-table-header v-if="columns.network_switch" :class="sortByKey === 'network_switch' && 'active'" text="Network Switch" @click="sortBy('network_switch')" />
-        <base-table-header v-if="columns.download" :class="sortByKey === 'total_download' && 'active'" text="Download" @click="sortBy('total_download')" />
-        <base-table-header v-if="columns.upload" :class="sortByKey === 'total_upload' && 'active'" text="Upload" @click="sortBy('total_upload')" />
-        <base-table-header v-if="columns.temperature" :class="sortByKey === 'temperature' && 'active'" text="Temperature" @click="sortBy('temperature')" />
-        <base-table-header v-if="columns.public_ip" :class="sortByKey === 'public_ip' && 'active'" text="public IP" @click="sortBy('public_ip')" />
-        <base-table-header v-if="columns.process_count" :class="sortByKey === 'process_count' && 'active'" text="Process Count" @click="sortBy('process_count')" />
-        <base-table-header v-if="columns.owner" :class="sortByKey === 'owner' && 'active'" text="Owner" @click="sortBy('owner')" />
-        <base-table-header v-if="columns.action" :class="sortByKey === 'action' && 'active'" text="Action" @click="sortBy('action')" />
+        <template v-for="column of Object.keys(columns)" :key="column">
+          <base-table-header v-if="(columns as any)[column]" :class="sortByKey === column && 'active'" :text="column" @click="sortBy(column)" />
+        </template>
       </template>
       <template #rows>
         <tr
