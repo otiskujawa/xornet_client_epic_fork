@@ -147,7 +147,7 @@ const machines = computed(() => state.machines.getAll()
 
 		switch (sortByKey.value) {
 			case "hostname":
-				comparison = a.hostname!.toLowerCase() > b.hostname!.toLowerCase();
+				comparison = (a.hostname?.toLowerCase() || "") > (b.hostname?.toLowerCase() || "");
 				break;
 			case "cpu_average_usage":
 				comparison = a.cpu_average_usage < b.cpu_average_usage;
