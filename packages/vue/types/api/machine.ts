@@ -49,7 +49,7 @@ export interface IMachineStaticData {
 	 */
 	cpu_cores?: number
 	/**
-	 * The external IP address of the machine
+	 * The public IP address of the machine
 	 */
 	public_ip?: string
 	/**
