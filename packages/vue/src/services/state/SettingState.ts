@@ -25,7 +25,7 @@ export class SettingsState {
 		process_count: false,
 		owner: true,
 		action: true,
-	}).value;
+	}, { deep: true }).value;
 
 	constructor() {
 		this.registerWatchers();
