@@ -121,10 +121,7 @@ import BaseTableHeader from "./base/BaseTableHeader.vue";
 const state = useState();
 const columns = computed(() => state.settings.columns);
 const sortByKey = ref("hostname");
-const sortBy = (field: string) => {
-	sortByKey.value = field;
-};
-
+const sortBy = (field: string) => sortByKey.value = field;
 const machines = computed(() => state.machines.getAll()
 // Compute a bunch of properties so we don't have to do it multiple times
 	.map((machine) => {

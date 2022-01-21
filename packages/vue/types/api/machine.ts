@@ -19,33 +19,100 @@ export interface IMachine extends IMachineDynamicData, IMachineStaticData {
 }
 
 export interface IMachineStaticData {
+	/**
+	 * The machine's hostname
+	 */
 	hostname?: string
+	/**
+	 * The host's OS version (for arch it may say 'rolling')
+	 */
 	os_version?: string
+	/**
+	 * The host's OS name
+	 */
 	os_name?: string
+	/**
+	 * The amount of cores the CPU has
+	 */
 	cpu_cores?: number
+	/**
+	 * The external IP address of the machine
+	 */
 	public_ip?: string
+	/**
+	 * The name of the CPU model
+	 */
 	cpu_model: string
+	/**
+	 * The amount of threads the CPU has
+	 */
 	cpu_threads: number
+	/**
+	 * The total memory the machine has
+	 */
 	total_mem: number
 }
 
 export interface IMachineDynamicData {
+	/**
+	 * The CPU on the machine
+	 */
 	cpu: ICPU
+	/**
+	 * The RAM on the machine
+	 */
 	ram: IRAM
+	/**
+	 * The GPU on the machine
+	 */
 	gpu?: IGPU
+	/**
+	 * The disks on the machine
+	 */
 	disks: IDisk[]
+	/**
+	 * The amount of processes running on the system
+	 */
 	process_count: number
+	/**
+	 * Temperature sensors of the machine
+	 */
 	temps?: ITemp[]
+	/**
+	 * All the network interfaces of the machine
+	 */
 	network: INetwork[]
+	/**
+	 * The boot time of how long the host machine has been up for
+	 */
 	host_uptime: number
+	/**
+	 * The amount of time the reporter has been running for
+	 */
 	reporter_uptime: number
-
-	// Computed Shit
+	/**
+	 * Server-side computed - Average usage of all the cores from 0% to 100%
+	 */
 	cpu_usage: number
+	/**
+	 * Server-side computed - Average clock speed of all the cores
+	 */
 	cpu_speed: number
+	/**
+	 * Server-side computed - Total download of all interfaces on the system
+	 */
 	total_download: number
+	/**
+	 * Server-side computed - Total upload of all interfaces on the system
+	 */
 	total_upload: number
+	/**
+	 * Server-side computed - RAM used in GB
+	 */
 	ram_used: number
+	/**
+	 * Server-side computed - RAM total in GB
+	 */
 	ram_total: number
 }
 
