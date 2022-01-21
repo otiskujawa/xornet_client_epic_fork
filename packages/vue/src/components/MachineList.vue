@@ -9,8 +9,8 @@
         <base-table-header v-if="columns.gpu_usage" :class="sortByKey === 'gpu_usage' && 'active'" text="GPU Usage" @click="sortBy('gpu_usage')" />
         <base-table-header v-if="columns.gpu_power_usage" :class="sortByKey === 'gpu_power_usage' && 'active'" text="GPU Power Usage" @click="sortBy('gpu_power_usage')" />
         <base-table-header v-if="columns.network_switch" :class="sortByKey === 'network_switch' && 'active'" text="Network Switch" @click="sortBy('network_switch')" />
-        <base-table-header v-if="columns.download" :class="sortByKey === 'download' && 'active'" text="Download" @click="sortBy('download')" />
-        <base-table-header v-if="columns.upload" :class="sortByKey === 'upload' && 'active'" text="Upload" @click="sortBy('upload')" />
+        <base-table-header v-if="columns.download" :class="sortByKey === 'total_download' && 'active'" text="Download" @click="sortBy('total_download')" />
+        <base-table-header v-if="columns.upload" :class="sortByKey === 'total_upload' && 'active'" text="Upload" @click="sortBy('total_upload')" />
         <base-table-header v-if="columns.temperature" :class="sortByKey === 'temperature' && 'active'" text="Temperature" @click="sortBy('temperature')" />
         <base-table-header v-if="columns.public_ip" :class="sortByKey === 'public_ip' && 'active'" text="public IP" @click="sortBy('public_ip')" />
         <base-table-header v-if="columns.process_count" :class="sortByKey === 'process_count' && 'active'" text="Process Count" @click="sortBy('process_count')" />
@@ -38,17 +38,17 @@
             </machine-stat>
           </th>
           <th v-if="columns.cpu_average_usage">
-            <machine-stat :value="machine.cpu_average_usage.toFixed(2)" suffix="%">
+            <machine-stat :value="machine.cpu_average_usage?.toFixed(2)" suffix="%">
               <i-fluency-processor />
             </machine-stat>
           </th>
           <th v-if="columns.cpu_average_speed">
-            <machine-stat :value="machine.cpu_average_speed.toFixed(2)" suffix="MHz">
+            <machine-stat :value="machine.cpu_average_speed?.toFixed(2)" suffix="MHz">
               <i-fluency-speedometer />
             </machine-stat>
           </th>
           <th v-if="columns.ram_usage">
-            <machine-stat :value="`${machine.ram_used_gb.toFixed(2)} / ${machine.ram_total_gb.toFixed(2)}`" suffix="GB">
+            <machine-stat :value="`${machine.ram_used_gb?.toFixed(2)} / ${machine.ram_total_gb?.toFixed(2)}`" suffix="GB">
               <i-fluency-memory />
             </machine-stat>
           </th>
@@ -66,17 +66,17 @@
             <network-switch v-if="machine.network" :interfaces="machine.network" />
           </th>
           <th v-if="columns.download">
-            <machine-stat :value="machine.total_download.toFixed(2)" suffix="Mbps">
+            <machine-stat :value="machine.total_download?.toFixed(2)" suffix="Mbps">
               <i-fluency-down />
             </machine-stat>
           </th>
           <th v-if="columns.upload">
-            <machine-stat :value="machine.total_upload.toFixed(2)" suffix="Mbps">
+            <machine-stat :value="machine.total_upload?.toFixed(2)" suffix="Mbps">
               <i-fluency-up />
             </machine-stat>
           </th>
           <th v-if="columns.temperature">
-            <machine-stat :value="machine.temps?.[0].value.toFixed(2)" suffix="°C">
+            <machine-stat :value="machine.temps?.[0].value?.toFixed(2)" suffix="°C">
               <i-fluency-temperature />
             </machine-stat>
           </th>
@@ -93,7 +93,7 @@
           <th v-if="columns.owner">
             <div class="flex items-center gap-3">
               <avatar :user="machine.owner" class="w-16px" />
-              {{ machine.owner.username }}
+              {{ machine.owner?.username }}
             </div>
           </th>
           <th v-if="columns.action">
@@ -150,22 +150,22 @@ const machines = computed(() => state.machines.getAll()
 				comparison = (a.hostname?.toLowerCase() || "") > (b.hostname?.toLowerCase() || "");
 				break;
 			case "cpu_average_usage":
-				comparison = a.cpu_average_usage < b.cpu_average_usage;
+				comparison = (a.cpu_average_usage || "") < (b.cpu_average_usage || "");
 				break;
 			case "cpu_average_speed":
-				comparison = a.cpu_average_speed < b.cpu_average_speed;
+				comparison = (a.cpu_average_speed || "") < (b.cpu_average_speed || "");
 				break;
 			case "ram_usage_ratio":
-				comparison = a.ram.used / a.ram.total < b.ram.used / b.ram.total;
+				comparison = (a.ram.used / a.ram.total || "") < (b.ram.used / b.ram.total || "");
 				break;
 			case "network_switch":
-				comparison = a.network.length < b.network.length;
+				comparison = (a.network?.length || "") < (b.network?.length || "");
 				break;
 			case "total_download":
-				comparison = a.total_download < b.total_download;
+				comparison = (a.total_download || "") < (b.total_download || "");
 				break;
 			case "total_upload":
-				comparison = a.total_upload < b.total_upload;
+				comparison = (a.total_upload || "") < (b.total_upload || "");
 				break;
 			case "temperature":
 				comparison = (a.temperature || "") < (b.temperature || "");
@@ -180,13 +180,13 @@ const machines = computed(() => state.machines.getAll()
 				comparison = (a.public_ip || "") < (b.public_ip || "");
 				break;
 			case "process_count":
-				comparison = a.process_count < b.process_count;
+				comparison = (a.process_count || "") < (b.process_count || "");
 				break;
 			case "owner":
-				comparison = a.owner.username.toLowerCase() > b.owner.username.toLowerCase();
+				comparison = (a.owner.username.toLowerCase() || "") > (b.owner.username.toLowerCase() || "");
 				break;
 			default:
-				comparison = a.hostname!.toLowerCase() > b.hostname!.toLowerCase();
+				comparison = (a.hostname?.toLowerCase() || "") > (b.hostname?.toLowerCase() || "");
 				break;
 		}
 		return comparison ? -1 : 1;

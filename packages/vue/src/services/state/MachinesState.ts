@@ -1,7 +1,7 @@
 import type { uuid } from "types/api";
 import { ref } from "vue";
 import { MachineStatus } from "../../../types/api/machine";
-import type { IMachine, IMachineDynamicData } from "../../../types/api/machine";
+import type { IDatabaseMachine, IMachine, IMachineDynamicData } from "../../../types/api/machine";
 
 import api from "../api";
 import { State } from "./State";
@@ -37,7 +37,7 @@ export class MachinesState extends State<IMachinesState> {
 		return Object.values(this.state.machines).length;
 	}
 
-	public setMachines(machines: IMachine[]) {
+	public setMachines(machines: IDatabaseMachine[]) {
 		machines.forEach(machine => this.set(machine));
 	}
 
@@ -46,8 +46,11 @@ export class MachinesState extends State<IMachinesState> {
 		this.get(machineUuid).status = MachineStatus.Online;
 	}
 
-	public set(machine: IMachine) {
-		this.state.machines[machine.uuid] = machine;
+	public set(machine: IDatabaseMachine) {
+		const machineFlattened = Object.assign(machine, machine.static_data);
+		// @ts-ignore
+		delete machineFlattened.static_data;
+		this.state.machines[machine.uuid] = machineFlattened as unknown as IMachine;
 	}
 
 	public get(uuid: uuid) {

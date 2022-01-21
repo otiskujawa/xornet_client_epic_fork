@@ -18,6 +18,19 @@ export interface IMachine extends IMachineDynamicData, IMachineStaticData {
 	updated_at: number
 }
 
+export interface IDatabaseMachine {
+	uuid: uuid
+	owner_uuid: uuid
+	hardware_uuid: uuid
+	access_token: string
+	static_data: IMachineStaticData
+	name: string
+	status: MachineStatus
+	access: string[]
+	created_at: number
+	updated_at: number
+}
+
 export interface IMachineStaticData {
 	/**
 	 * The machine's hostname
