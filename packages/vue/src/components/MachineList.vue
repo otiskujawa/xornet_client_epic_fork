@@ -36,7 +36,7 @@
             <machine-stat :value="machine.cpu_average_speed?.toFixed(2)" suffix="MHz">
               <i-fluency-speedometer />
             </machine-stat>
-          </th>
+          </th >
           <th v-if="columns.ram_usage">
             <machine-stat :value="machine.ram_used_gb ? `${machine.ram_used_gb?.toFixed(2)} / ${machine.ram_total_gb?.toFixed(2)}` : undefined" suffix="GB">
               <i-fluency-memory />
