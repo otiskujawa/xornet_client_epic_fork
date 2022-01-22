@@ -14,11 +14,11 @@ const value = useModelValue(props, "modelValue", emits);
 
 <style scoped lang="postcss">
 .slider {
-  @apply bg-white bg-opacity-10 rounded-full duration-100 absolute cursor-pointer top-0 left-0 right-0 bottom-0;
+  @apply bg-white bg-opacity-50 rounded-full duration-100 absolute cursor-pointer top-0 left-0 right-0 bottom-0;
 }
 
 .slider:before {
-  @apply absolute rounded-full w-3.5 h-3.5 left-0.75 bottom-0.75 bg-tooltip-background transition duration-100;
+  @apply absolute rounded-full w-3.5 h-3.5 left-0.75 bottom-0.75 bg-white transition duration-100;
   content: "";
 }
 
