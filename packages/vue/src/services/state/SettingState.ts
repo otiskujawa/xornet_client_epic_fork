@@ -10,7 +10,7 @@ export class SettingsState {
 	public enableSoundEffects = useLocalStorage("soundEffects", false);
 	public showOfflineMachines = useLocalStorage("showOfflineMachines", true);
 	public showOwnedMachinesOnly = useLocalStorage("showOwnedMachinesOnly", false);
-	public columns = useLocalStorage("enabledColumns", {
+	public columns = useLocalStorage("columns", {
 		hostname: true,
 		cpu_average_usage: true,
 		cpu_average_speed: false,
@@ -25,6 +25,7 @@ export class SettingsState {
 		process_count: false,
 		host_uptime: false,
 		reporter_uptime: false,
+		reporter_version: true,
 		owner: true,
 		action: true,
 	}, { deep: true }).value;

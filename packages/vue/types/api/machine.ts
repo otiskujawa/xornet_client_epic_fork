@@ -33,6 +33,10 @@ export interface IDatabaseMachine {
 
 export interface IMachineStaticData {
 	/**
+	 * The version of the reporter thats running on the machine
+	 */
+	reporter_version: string
+	/**
 	 * The machine's hostname
 	 */
 	hostname?: string

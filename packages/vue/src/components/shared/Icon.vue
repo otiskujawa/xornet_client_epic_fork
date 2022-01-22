@@ -13,6 +13,7 @@
     <i-fluency-up v-if="name === 'upload'" />
     <i-fluency-down v-if="name === 'download'" />
     <i-fluency-user v-if="name === 'owner'" />
+    <i-fluency-upgrade v-if="name === 'reporter_version'" />
     <i-fluency-video-card v-if="name === 'gpu_usage'" />
     <i-fluency-ipv6 v-if="name === 'public_ip'" />
     <i-fluency-clock v-if="name === 'reporter_uptime' || name === 'host_uptime'" />

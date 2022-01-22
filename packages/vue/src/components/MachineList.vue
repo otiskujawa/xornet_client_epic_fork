@@ -10,7 +10,6 @@
         <tr
           v-for="machine of machines"
           :key="machine.hardware_uuid"
-          :class="machine.is_online ? 'opacity-100' : 'opacity-20'"
           @mouseenter="SoundManager.playHover()"
         >
           <th v-if="columns.hostname">
@@ -88,6 +87,11 @@
           <th v-if="columns.reporter_uptime">
             <machine-stat :value="formatEpoch(machine.reporter_uptime)">
               <i-fluency-clock />
+            </machine-stat>
+          </th>
+          <th v-if="columns.reporter_version">
+            <machine-stat :value="`v${machine.reporter_version}`">
+              <i-fluency-upgrade />
             </machine-stat>
           </th>
           <th v-if="columns.owner">
