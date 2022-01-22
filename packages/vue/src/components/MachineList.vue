@@ -194,6 +194,7 @@ const machines = computed(() => state.machines.getAll()
 			case "total_upload":
 			case "temperature":
 			case "public_ip":
+			case "reporter_version":
 			case "host_uptime":
 			case "reporter_uptime":
 			case "process_count":
