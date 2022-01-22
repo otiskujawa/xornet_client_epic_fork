@@ -36,7 +36,7 @@
             <machine-stat :value="machine.cpu_average_speed?.toFixed(2)" suffix="MHz">
               <i-fluency-speedometer />
             </machine-stat>
-          </th >
+          </th>
           <th v-if="columns.ram_usage">
             <machine-stat :value="machine.ram_used_gb ? `${machine.ram_used_gb?.toFixed(2)} / ${machine.ram_total_gb?.toFixed(2)}` : undefined" suffix="GB">
               <i-fluency-memory />
@@ -169,26 +169,11 @@ const machines = computed(() => state.machines.getAll()
 			case "hostname":
 				comparison = (a.hostname?.toLowerCase() || "") > (b.hostname?.toLowerCase() || "");
 				break;
-			case "cpu_average_usage":
-				comparison = (a.cpu_average_usage || "") < (b.cpu_average_usage || "");
-				break;
-			case "cpu_average_speed":
-				comparison = (a.cpu_average_speed || "") < (b.cpu_average_speed || "");
-				break;
-			case "ram_usage_ratio":
-				comparison = (a.ram!.used / a.ram!.total || "") < (b.ram!.used / b.ram!.total || "");
+			case "ram_usage":
+				comparison = a.ram_used_gb / a.ram_total_gb < b.ram_used_gb / b.ram_total_gb;
 				break;
 			case "network_switch":
 				comparison = (a.network?.length || "") < (b.network?.length || "");
-				break;
-			case "total_download":
-				comparison = (a.total_download || "") < (b.total_download || "");
-				break;
-			case "total_upload":
-				comparison = (a.total_upload || "") < (b.total_upload || "");
-				break;
-			case "temperature":
-				comparison = (a.temperature || "") < (b.temperature || "");
 				break;
 			case "gpu_usage":
 				comparison = (a.gpu?.gpu_usage || "") < (b.gpu?.gpu_usage || "");
@@ -196,20 +181,19 @@ const machines = computed(() => state.machines.getAll()
 			case "gpu_power_usage":
 				comparison = (a.gpu?.power_usage || "") < (b.gpu?.power_usage || "");
 				break;
-			case "public_ip":
-				comparison = (a.public_ip || "") < (b.public_ip || "");
-				break;
-			case "host_uptime":
-				comparison = (a.host_uptime || "") < (b.host_uptime || "");
-				break;
-			case "reporter_uptime":
-				comparison = (a.reporter_uptime || "") < (b.reporter_uptime || "");
-				break;
-			case "process_count":
-				comparison = (a.process_count || "") < (b.process_count || "");
-				break;
 			case "owner":
 				comparison = (a.owner.username.toLowerCase() || "") > (b.owner.username.toLowerCase() || "");
+				break;
+			case "cpu_average_usage":
+			case "cpu_average_speed":
+			case "total_download":
+			case "total_upload":
+			case "temperature":
+			case "public_ip":
+			case "host_uptime":
+			case "reporter_uptime":
+			case "process_count":
+				comparison = (a[sortByKey.value] || "") < (b[sortByKey.value] || "");
 				break;
 			default:
 				comparison = (a.hostname?.toLowerCase() || "") > (b.hostname?.toLowerCase() || "");
