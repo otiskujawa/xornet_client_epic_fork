@@ -217,7 +217,7 @@ const deleteMachine = async(uuid: uuid) => {
 
 <style scoped lang="postcss">
 th {
-  @apply text-text;
+  @apply text-text text-opacity-50;
 }
 .bloom {
   box-shadow: 0px 0px 6px #00FF67;
