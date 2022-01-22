@@ -2,6 +2,7 @@
 
 import type { EventType } from "mitt";
 import mitt from "mitt";
+import type { uuid } from "types/api";
 import type { IMachineDynamicData } from "types/api/machine";
 import { state } from "./state";
 
@@ -11,7 +12,7 @@ export const BASE_URL = "https://backend.xornet.cloud";
 export type MittEvent = Record<EventType, unknown>;
 export interface BackendToClientEvents {
 	[key: string | symbol]: unknown
-	machineData: IMachineDynamicData & { uuid: string }
+	machineData: Record<uuid, IMachineDynamicData & { uuid: string }>
 }
 
 export class API {
@@ -86,7 +87,8 @@ export class API {
 
 		const emitter = mitt<BackendToClientEvents>();
 		emitter.on("machineData", (dynamicData) => {
-			state.machines.updateDynamicData(dynamicData.uuid, dynamicData);
+			for (const [uuid, data] of Object.entries(dynamicData))
+				state.machines.updateDynamicData(uuid, data);
 		});
 
 		// Connection opened
