@@ -119,14 +119,6 @@ export interface IMachineDynamicData {
 	 * Server-side computed - Total upload of all interfaces on the system
 	 */
 	total_upload?: number
-	/**
-	 * Server-side computed - RAM used in GB
-	 */
-	ram_used_gb?: number
-	/**
-	 * Server-side computed - RAM total in GB
-	 */
-	ram_total_gb?: number
 }
 
 export interface INetwork {

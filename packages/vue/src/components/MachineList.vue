@@ -37,7 +37,7 @@
             </machine-stat>
           </th>
           <th v-if="columns.ram_usage">
-            <machine-stat :value="`${(machine.ram?.used! / 1024 / 1024)?.toFixed(2)} / ${(machine.ram?.total! / 1024 / 1024)?.toFixed(2)}`" suffix="GB">
+            <machine-stat :value="`${machine.ram_used_gb?.toFixed(2)} / ${machine.ram_total_gb?.toFixed(2)}`" suffix="GB">
               <i-fluency-memory />
             </machine-stat>
           </th>
@@ -144,6 +144,8 @@ const machines = computed(() => state.machines.getAll()
 	.map((machine) => {
 		return ({
 			...machine,
+			ram_used_gb: (machine.ram?.used || 0) / 1024 / 1024,
+			ram_total_gb: (machine.ram?.total || 0) / 1024 / 1024,
 			temperature: machine.temps?.[0].value,
 			is_online: machine.status === 2,
 			owner: state.users.get(machine.owner_uuid),
