@@ -37,7 +37,7 @@
             </machine-stat>
           </th>
           <th v-if="columns.ram_usage">
-            <machine-stat :value="`${machine.ram_used_gb?.toFixed(2)} / ${machine.ram_total_gb?.toFixed(2)}`" suffix="GB">
+            <machine-stat :value="`${(machine.ram?.used! / 1024 / 1024)?.toFixed(2)} / ${(machine.ram?.total! / 1024 / 1024)?.toFixed(2)}`" suffix="GB">
               <i-fluency-memory />
             </machine-stat>
           </th>
