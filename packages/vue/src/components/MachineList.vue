@@ -10,6 +10,7 @@
         <tr
           v-for="machine of machines"
           :key="machine.hardware_uuid"
+          :class="machine.is_online ? 'opacity-100' : 'opacity-20'"
           @mouseenter="SoundManager.playHover()"
         >
           <th v-if="columns.hostname">
@@ -18,11 +19,11 @@
               <div
                 v-if="machine.is_online"
                 :class="state.settings.enableBloom.value && 'bloom'"
-                class="w-5px h-5px rounded-full bg-active text-opacity-100 mr-1"
+                class="w-5px h-5px rounded-full bg-active mr-1"
               />
               <div
                 v-else
-                class="w-5px h-5px rounded-full bg-white text-white opacity-15 mr-1"
+                class="w-5px h-5px rounded-full bg-white text-white opacity-50 mr-1"
               />
             </machine-stat>
           </th>
@@ -37,7 +38,7 @@
             </machine-stat>
           </th>
           <th v-if="columns.ram_usage">
-            <machine-stat :value="`${machine.ram_used_gb?.toFixed(2)} / ${machine.ram_total_gb?.toFixed(2)}`" suffix="GB">
+            <machine-stat :value="machine.ram_used_gb ? `${machine.ram_used_gb?.toFixed(2)} / ${machine.ram_total_gb?.toFixed(2)}` : undefined" suffix="GB">
               <i-fluency-memory />
             </machine-stat>
           </th>

@@ -3,7 +3,7 @@
     <slot />
     {{ value }} {{ suffix }}
   </p>
-  <p v-else class="flex gap-2 items-center opacity-20">
+  <p v-else class="flex gap-2 items-center">
     <slot />
     Unavailable
   </p>
