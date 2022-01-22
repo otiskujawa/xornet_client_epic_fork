@@ -12,7 +12,7 @@ export const BASE_URL = "https://backend.xornet.cloud";
 export type MittEvent = Record<EventType, unknown>;
 export interface BackendToClientEvents {
 	[key: string | symbol]: unknown
-	machineData: Record<uuid, IMachineDynamicData & { uuid: string }>
+	machineData: Record<uuid, IMachineDynamicData>
 }
 
 export class API {
