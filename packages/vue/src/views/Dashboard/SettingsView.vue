@@ -11,6 +11,10 @@
         <base-switch v-model="state.settings.enableDebugLogger.value" />
       </div>
       <div class="option">
+        <label for="theme text-xl">Status Bar</label>
+        <base-switch v-model="state.settings.enableStatusBar.value" />
+      </div>
+      <div class="option">
         <label for="theme text-xl">Sound FX</label>
         <base-switch v-model="state.settings.enableSoundEffects.value" />
       </div>
@@ -46,7 +50,7 @@ const state = useState();
 <style scoped lang="postcss" >
 
 .option {
-  @apply flex w-full gap-2 items-center justify-between max-w-128;
+  @apply flex w-full gap-2 items-center justify-between max-w-168;
 }
 
 </style>

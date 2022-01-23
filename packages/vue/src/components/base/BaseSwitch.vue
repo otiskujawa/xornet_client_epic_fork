@@ -1,5 +1,5 @@
 <template>
-  <label class="relative inline-block w-10 h-5">
+  <label class="relative inline-block w-10 h-5" @click="SoundManager.playClick()" @mouseenter="SoundManager.playHover()">
     <input v-model="value" type="checkbox" class="hidden" :checked="modelValue">
     <span class="slider round" />
   </label>
@@ -7,6 +7,7 @@
 
 <script setup lang="ts">
 import { useVModel as useModelValue } from "@vueuse/core";
+import { SoundManager } from "/@/services/SoundManager";
 const props = defineProps<{modelValue: boolean}>();
 const emits = defineEmits(["update:modelValue"]);
 const value = useModelValue(props, "modelValue", emits);
@@ -15,6 +16,9 @@ const value = useModelValue(props, "modelValue", emits);
 <style scoped lang="postcss">
 .slider {
   @apply bg-background-500 rounded-full duration-100 absolute cursor-pointer top-0 left-0 right-0 bottom-0;
+  &:hover {
+    @apply bg-background-600;
+  }
 }
 
 .slider:before {
@@ -24,6 +28,9 @@ const value = useModelValue(props, "modelValue", emits);
 
 input:checked + .slider {
   @apply bg-primary-500;
+  &:hover {
+    @apply bg-primary-400;
+  }
 }
 
 input:checked + .slider:before {

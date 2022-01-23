@@ -1,7 +1,7 @@
 <template>
   <div
     id="main"
-    class="flex h-full overflow-hidden bg-background-300"
+    class="flex h-full flex-col overflow-hidden bg-background-300"
     :class="state.window.isMaximized || !isElectron() || !state.settings.enableRoundedCorners.value ? 'rounded-0px' : 'rounded-8px'"
   >
     <control-buttons v-if="isElectron()" />

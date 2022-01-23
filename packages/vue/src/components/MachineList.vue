@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full overflow-scroll">
+  <div class="flex w-full overflow-scroll">
     <base-table>
       <template #headers>
         <template v-for="column of Object.keys(columns)" :key="column">

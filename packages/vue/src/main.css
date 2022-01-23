@@ -7,6 +7,7 @@
   --color-background-300: 15,19,25;          /* #0F1319 */
   --color-background-400: 24,29,37;          /* #181D25 */
   --color-background-500: 35,41,49;          /* #232931 */
+  --color-background-600: 42,48,56;          /* #2A3038 */
 
   --color-tooltip-background: 255, 255, 255; /* #ffffff */
   --color-tooltip-text: 1,4,9;               /* #010409 */
@@ -25,6 +26,7 @@
   --color-background-300: 255, 255, 255;     /* #ffffff */
   --color-background-400: 255, 255, 255;     /* #ffffff */
   --color-background-500: 255, 255, 255;     /* #ffffff */
+  --color-background-600: 255, 255, 255;     /* #ffffff */
 
   --color-tooltip-background: 0, 0, 0;       /* #000000 */
   --color-tooltip-text: 255, 255, 255;       /* #FFFFFF */
@@ -43,6 +45,7 @@
   --color-background-300: 59,66,82;          /* #3B4252 */
   --color-background-400: 67,76,94;          /* #434C5E */
   --color-background-500: 31,35,43;          /* #1f232b */
+  --color-background-600: 46,52,64;          /* #2E3440 */
 
   --color-tooltip-background: 73,83,102;     /* #495366 */
   --color-tooltip-text: 129,161,193;         /* #81A1C1 */
