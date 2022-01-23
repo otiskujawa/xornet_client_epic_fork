@@ -1,7 +1,7 @@
 <template>
   <base-dialog v-model="showConfirmDialog" unsized>
-    <div class="bg-black flex flex-col gap-4 p-4 w-full text-center">
-      <div class="flex items-center justify-center">
+    <div class="bg-black flex flex-col gap-4 p-4 w-full  text-center">
+      <div class="flex items-center justify-center text-background-400">
         <i-fluency-skull v-if="isSkullHappy==0" class="w-24 h-24" />
         <i-fluency-happy-skull v-else-if="isSkullHappy==1" class="w-24 h-24" />
         <i-fluency-pirate-bay v-else class="w-24 h-24" />
@@ -24,7 +24,7 @@
   <base-button
     transparent
     draggable="false"
-    class="p-4 flex items-center justify-center text-69px opacity-25"
+    class="p-4 flex items-center justify-center text-69px  text-text opacity-25"
     @click="showConfirmDialog = true"
   >
     <i-fluency-skull class="w-24px h-24px" />

@@ -23,12 +23,8 @@
           <logout-button />
         </li>
       </base-tooltip>
-      <li class="flex">
-        <div
-          class="p-3 flex items-center justify-center "
-        >
-          <avatar :user="state.users.getMe()" class="w-8" />
-        </div>
+      <li class="flex p-3 flex items-center justify-center ">
+        <avatar :user="state.users.getMe()" class="w-8" />
       </li>
     </ul>
   </nav>
