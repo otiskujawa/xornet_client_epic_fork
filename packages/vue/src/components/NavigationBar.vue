@@ -10,6 +10,9 @@
       <navigation-button name="profile" :to="{ name: 'profile', params: { uuid: state.users.getMe()?.uuid } }">
         <i-fluency-user class="w-full h-full" />
       </navigation-button>
+      <navigation-button name="Github Repository" href="https://github.com/xornet-cloud">
+        <i-fluency-github class="w-full h-full" />
+      </navigation-button>
     </ul>
     <ul>
       <base-tooltip
