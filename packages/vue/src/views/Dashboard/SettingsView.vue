@@ -4,7 +4,7 @@
     <div class="w-full h-full flex flex-col items-center gap-2 text-12px text-text px-8">
       <div class="option">
         <label for="theme text-xl">Theme</label>
-        <base-dropdown v-model="state.settings.theme.value" stay-open :options="['dark', 'light']" />
+        <base-dropdown v-model="state.settings.theme.value" stay-open :options="['dark', 'light', 'nord']" />
       </div>
       <div class="option">
         <label for="theme text-xl">API Debug Logger</label>
