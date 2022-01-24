@@ -20,6 +20,7 @@
   --color-100mbps: var(--color-warning);
   --color-1000mbps: var(--color-active);
   --color-10000mbps: 0,255,238;              /* #00ffee */ 
+  --color-100000mbps: 187,255,255;           /* #bbffff */ 
 }
 
 .theme-light {
@@ -44,6 +45,7 @@
   --color-100mbps: var(--color-warning);
   --color-1000mbps: var(--color-active);
   --color-10000mbps: 0,255,238;              /* #00ffee */ 
+  --color-100000mbps: 187,255,255;           /* #bbffff */ 
 }
 
 .theme-nord {
@@ -67,7 +69,8 @@
 
   --color-100mbps: var(--color-warning);
   --color-1000mbps: var(--color-active);
-  --color-10000mbps: var(--color-text);           
+  --color-10000mbps: var(--color-text);
+  --color-100000mbps: 236,239,244;           /* #ECEFF4 */ 
 }
 
 .drag {
