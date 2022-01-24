@@ -14,7 +14,12 @@
 
   --color-text: 255, 255, 255;               /* #ffffff */
   --color-caution: 255, 0, 122;              /* #ff007a */
+  --color-warning: 255,168,0;                /* #FFA800 */
   --color-active: 0,255,103;                 /* #00ff67 */
+
+  --color-100mbps: var(--color-warning);
+  --color-1000mbps: var(--color-active);
+  --color-10000mbps: 0,255,238;              /* #00ffee */ 
 }
 
 .theme-light {
@@ -34,6 +39,11 @@
   --color-text: 0, 0, 0;                     /* #000000 */
   --color-caution: 255, 0, 122;              /* #ff007a */
   --color-active: 0,255,103;                 /* #00ff67 */
+  --color-warning: 255,168,0;                /* #FFA800 */
+
+  --color-100mbps: var(--color-warning);
+  --color-1000mbps: var(--color-active);
+  --color-10000mbps: 0,255,238;              /* #00ffee */ 
 }
 
 .theme-nord {
@@ -53,6 +63,11 @@
   --color-text: 136,192,208;                 /* #88C0D0 */
   --color-caution: 191,97,106;               /* #BF616A */
   --color-active: 163,190,140;               /* #A3BE8C */
+  --color-warning: 235,203,139;              /* #EBCB8B */
+
+  --color-100mbps: var(--color-warning);
+  --color-1000mbps: var(--color-active);
+  --color-10000mbps: var(--color-text);           
 }
 
 .drag {

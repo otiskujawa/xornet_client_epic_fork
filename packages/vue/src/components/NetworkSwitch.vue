@@ -2,10 +2,10 @@
   <div class="flex gap-3px max-w-32 flex-wrap">
     <div
       v-for="iface of interfaces" :key="iface.name"
-      class="cube text-[#FFA800]"
+      class="cube text-100mbps"
       :class="[
-        iface.speed > 100 && 'text-[#00FF67]',
-        iface.speed > 1000 && 'text-[#00ffee]',
+        iface.speed > 100 && `text-1000mbps`,
+        iface.speed > 1000 && 'text-10000mbps',
         state.settings.enableBloom.value && 'bloom'
       ]"
       :style="`animation-duration: ${speeds[iface.name]}ms;`"

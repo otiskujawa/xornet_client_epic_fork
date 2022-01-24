@@ -19,21 +19,24 @@ export default defineConfig({
 	theme: {
 		extend: {
 			colors: {
-				text: withOpacityValue("color-text"),
-				caution: withOpacityValue("color-caution"),
-				active: withOpacityValue("color-active"),
-				background: {
+				"text": withOpacityValue("color-text"),
+				"caution": withOpacityValue("color-caution"),
+				"active": withOpacityValue("color-active"),
+				"100mbps": withOpacityValue("color-100mbps"),
+				"1000mbps": withOpacityValue("color-1000mbps"),
+				"10000mbps": withOpacityValue("color-10000mbps"),
+				"background": {
 					200: withOpacityValue("color-background-200"),
 					300: withOpacityValue("color-background-300"),
 					400: withOpacityValue("color-background-400"),
 					500: withOpacityValue("color-background-500"),
 					600: withOpacityValue("color-background-600"),
 				},
-				tooltip: {
+				"tooltip": {
 					background: withOpacityValue("color-tooltip-background"),
 					text: withOpacityValue("color-tooltip-text"),
 				},
-				primary: {
+				"primary": {
 					300: withOpacityValue("color-primary-300"),
 					400: withOpacityValue("color-primary-400"),
 					500: withOpacityValue("color-primary-500"),
