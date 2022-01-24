@@ -194,6 +194,7 @@ const machines = computed(() => state.machines.getAll()
 				break;
 			case "cpu_average_usage":
 			case "cpu_average_speed":
+			case "country":
 			case "total_download":
 			case "total_upload":
 			case "temperature":
