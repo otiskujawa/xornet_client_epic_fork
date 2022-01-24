@@ -39,13 +39,4 @@ import TopBar from "/@/components/TopBar.vue";
 import BaseRangeInput from "/@/components/base/BaseRangeInput.vue";
 import OptionField from "/@/components/OptionField.vue";
 const state = useState();
-
 </script>
-
-<style scoped lang="postcss" >
-
-.option {
-  @apply flex w-full gap-2 items-center justify-between max-w-168;
-}
-
-</style>
