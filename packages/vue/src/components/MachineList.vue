@@ -69,6 +69,10 @@
               <i-fluency-temperature />
             </machine-stat>
           </th>
+          <th v-if="columns.country">
+            <img v-if="machine.country" class="h-4 rounded-2px" :src="`https://cdn.ipwhois.io/flags/gr.svg`" :alt="machine.country">
+            <machine-stat v-else />
+          </th>
           <th v-if="columns.public_ip">
             <machine-stat :value="machine.public_ip">
               <i-fluency-ipv6 />

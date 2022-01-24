@@ -11,7 +11,7 @@ export class SettingsState {
 	public enableStatusBar = useLocalStorage("statusBar", false);
 	public showOfflineMachines = useLocalStorage("showOfflineMachines", true);
 	public showOwnedMachinesOnly = useLocalStorage("showOwnedMachinesOnly", false);
-	public columns = useLocalStorage("columns", {
+	public columns = useLocalStorage("columns_xd", {
 		hostname: true,
 		cpu_average_usage: true,
 		cpu_average_speed: false,
@@ -22,6 +22,7 @@ export class SettingsState {
 		download: true,
 		upload: true,
 		temperature: false,
+		country: true,
 		public_ip: false,
 		process_count: false,
 		host_uptime: false,

@@ -68,6 +68,10 @@ export interface IMachineStaticData {
 	 * The total memory the machine has
 	 */
 	total_mem: number
+	/**
+	 * The code of the country the IP is from
+	 */
+	country?: string
 }
 
 export interface IMachineDynamicData {
