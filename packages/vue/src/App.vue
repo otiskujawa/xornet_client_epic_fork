@@ -15,7 +15,6 @@ import ControlButtons from "/@/components/electron/ControlButtons.vue";
 import { isElectron } from "/@/services/logic";
 const state = useState();
 </script>
-
 <style lang="postcss">
 * {
   @apply !outline-none fill-current text-sm;
