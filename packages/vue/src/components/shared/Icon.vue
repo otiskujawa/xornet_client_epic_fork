@@ -4,6 +4,7 @@
     <i-fluency-at-sign v-if="name === 'hostname'" />
     <i-fluency-happy-skull v-if="name === 'happy_skull'" />
     <i-fluency-lightning-bolt v-if="name === 'gpu_power_usage'" />
+    <i-fluency-country v-if="name === 'country'" />
     <i-fluency-processor v-if="name === 'cpu_average_usage'" />
     <i-fluency-speedometer v-if="name === 'cpu_average_speed'" />
     <i-fluency-memory v-if="name === 'ram_usage'" />

@@ -71,7 +71,9 @@
           </th>
           <th v-if="columns.country">
             <img v-if="machine.country" class="h-4 rounded-2px" :src="`https://cdn.ipwhois.io/flags/${machine.country.toLowerCase()}.svg`" :alt="machine.country">
-            <machine-stat v-else />
+            <machine-stat v-else>
+              <i-fluency-country />
+            </machine-stat>
           </th>
           <th v-if="columns.public_ip">
             <machine-stat :value="machine.public_ip">
