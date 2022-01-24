@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center gap-2 select-none">
+  <div class="flex items-center gap-2 select-none no-drag">
     <input v-model="isChecked" tabindex="-1" class="check opacity-0 absolute h-4 w-4" :checked="isChecked" type="checkbox">
     <div class="border-primary-500 border-2 text-transparent rounded-2px w-4 h-4 flex flex-shrink-0 justify-center items-center">
       <i-fluency-done />

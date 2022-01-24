@@ -1,5 +1,5 @@
 <template>
-  <base-popover class="text-xs" :open="open">
+  <base-popover class="text-xs no-drag" :open="open">
     <base-button :transparent="transparent" @click="open = !open">
       <slot name="icon" />
       {{ text ? text : value }}
