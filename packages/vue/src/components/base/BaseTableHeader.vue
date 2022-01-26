@@ -15,12 +15,10 @@ defineProps<{text: string}>();
 </script>
 
 <style scoped lang="postcss">
-
 th.active {
   @apply text-opacity-100;
   & svg {
     @apply inline;
   }
 }
-
 </style>

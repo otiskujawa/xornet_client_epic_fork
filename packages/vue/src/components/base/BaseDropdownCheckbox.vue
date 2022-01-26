@@ -15,9 +15,4 @@ import { SoundManager } from "/@/services/SoundManager";
 const props = defineProps<{text: string; modelValue: boolean}>();
 const emits = defineEmits(["update:modelValue"]);
 const value = useModelValue(props, "modelValue", emits);
-
 </script>
-
-<style scoped lang="postcss">
-
-</style>

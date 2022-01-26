@@ -13,7 +13,3 @@ defineProps<{
 }>();
 defineEmits(["submit"]);
 </script>
-
-<style scoped lang="postcss">
-
-</style>

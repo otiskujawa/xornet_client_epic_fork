@@ -18,17 +18,11 @@
 </template>
 <script setup lang="ts">
 import { nodeEmit } from "/@/services/logic";
-import { SoundManager } from "/@/services/SoundManager";
 import { useState } from "/@/services/state";
 
 const state = useState();
-
-const onCloseClick = () => {
-	nodeEmit("close");
-};
-const onMinimizeClick = () => {
-	nodeEmit("minimize");
-};
+const onCloseClick = () => nodeEmit("close");
+const onMinimizeClick = () => nodeEmit("minimize");
 const onMaximizeClick = () => {
 	state.window.isMaximized = true;
 	nodeEmit("maximize");

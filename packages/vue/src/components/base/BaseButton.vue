@@ -7,7 +7,6 @@
 
 <script lang="ts" setup>
 import { SoundManager } from "/@/services/SoundManager";
-
 defineProps<{
 	transparent?: boolean
 	text?: string
