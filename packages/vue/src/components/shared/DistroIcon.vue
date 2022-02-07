@@ -14,6 +14,7 @@
     <i-distros-raspbian v-else-if="name?.toLowerCase().includes('raspbian')" />
     <i-distros-macos v-else-if="name?.toLowerCase().includes('macos')" />
     <i-distros-windows10 v-else-if="name?.toLowerCase().includes('windows')" />
+    <i-distros-kubuntu v-else-if="name?.toLowerCase().includes('kubuntu')" />
     <i-fluency-computer v-else />
   </div>
 </template>
