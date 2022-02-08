@@ -5,7 +5,6 @@ export class SettingsState {
 	public opacity = useLocalStorage("opacity", 100);
 	public theme = useLocalStorage("theme", "dark");
 	public enableBloom = useLocalStorage("enableBloom", false);
-	public enableDebugLogger = useLocalStorage("debugLogging", import.meta.env.DEV);
 	public enableRoundedCorners = useLocalStorage("roundedCorners", true);
 	public enableSoundEffects = useLocalStorage("soundEffects", false);
 	public enableStatusBar = useLocalStorage("statusBar", false);

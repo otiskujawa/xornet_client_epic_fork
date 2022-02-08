@@ -5,9 +5,6 @@
       <option-field label="Theme">
         <base-dropdown v-model="state.settings.theme.value" stay-open :options="['dark', 'light', 'nord']" />
       </option-field>
-      <option-field label="API Debug Logger">
-        <base-switch v-model="state.settings.enableDebugLogger.value" />
-      </option-field>
       <option-field label="Status Bar">
         <base-switch v-model="state.settings.enableStatusBar.value" />
       </option-field>
