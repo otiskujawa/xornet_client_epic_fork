@@ -7,7 +7,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import type { IUser } from "types/api/user";
+import type { IUser } from "/@/types/api/user";
 const defaultAvatar = "https://cdn.discordapp.com/attachments/755597803102928966/933895255508525177/unknown.png";
 defineProps<{
 	user?: IUser

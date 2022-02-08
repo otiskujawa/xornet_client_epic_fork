@@ -118,7 +118,7 @@
 </template>
 
 <script setup lang="ts">
-import type { uuid } from "types/api";
+import type { uuid } from "/@/types/api";
 import { computed, ref } from "vue";
 import { useSoundManager, useState } from "/@/app";
 import BaseTable from "/@/components/base/BaseTable.vue";
