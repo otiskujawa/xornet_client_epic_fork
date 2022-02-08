@@ -1,4 +1,4 @@
-import { onKeyStroke } from "@vueuse/core";
+import { onKeyStroke, useKeyModifier } from "@vueuse/core";
 import { State } from "./State";
 
 export interface IWindowState {
@@ -6,19 +6,14 @@ export interface IWindowState {
 	isShowingCommandPallete: boolean
 }
 export class WindowState extends State<IWindowState> {
+	public ctrl = useKeyModifier("Control");
+	public shift = useKeyModifier("Shift");
 	constructor() {
 		super({
 			isMaximized: false,
 			isShowingCommandPallete: false,
 		});
-
-		onKeyStroke("Control", (e) => {
-			e.preventDefault();
-			onKeyStroke("k", (e) => {
-				e.preventDefault();
-				this.isShowingCommandPallete = !this.isShowingCommandPallete;
-			});
-		});
+		onKeyStroke("P", () => this.ctrl.value && (this.isShowingCommandPallete = true));
 	}
 
 	public get isShowingCommandPallete() {
