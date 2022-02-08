@@ -59,7 +59,7 @@ html,
 }
 
 .center {
-  @apply top-50 left-50 transform translate-x-100 translate-y-50;
+  @apply top-50 left-50 transform translate-x-1/2 translate-y-1/2;
 }
 
 .flexcol {
