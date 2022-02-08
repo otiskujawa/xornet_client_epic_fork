@@ -10,7 +10,7 @@ const emit = defineEmits(["update:modelValue"]);
 const open = useVModel(props, "modelValue", emit);
 const close = () => {
 	open.value = false;
-	open.value && SoundManager.playEscape();
+	open.value && xornet.soundManager.playEscape();
 };
 onKeyStroke("Escape", () => close());
 </script>

@@ -10,7 +10,7 @@
         <tr
           v-for="machine of machines"
           :key="machine.hardware_uuid"
-          @mouseenter="SoundManager.playHover()"
+          @mouseenter="soundManager.playHover()"
         >
           <th v-if="columns.hostname">
             <machine-stat :value="machine.name">
@@ -120,19 +120,18 @@
 <script setup lang="ts">
 import type { uuid } from "types/api";
 import { computed, ref } from "vue";
-import { SoundManager } from "../services/SoundManager";
-import { useState } from "../services/state";
+import { useSoundManager, useState } from "/@/app";
 import BaseTable from "./base/BaseTable.vue";
 import MachineStat from "./MachineStat.vue";
 import NetworkSwitch from "./NetworkSwitch.vue";
 import Avatar from "./user/Avatar.vue";
 import BaseConfirmationDialog from "./base/BaseConfirmationDialog.vue";
 import BaseTableHeader from "./base/BaseTableHeader.vue";
+const soundManager = useSoundManager();
 const state = useState();
 const columns = computed(() => state.settings.columns);
 const sortByKey = ref("hostname");
 const sortBy = (field: string) => sortByKey.value = field;
-
 const padNumber = (time: number) => {
 	const floored = ~~time;
 	return floored > 9 ? floored : `0${floored}`;

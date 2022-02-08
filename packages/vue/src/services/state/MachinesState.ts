@@ -2,8 +2,7 @@ import type { uuid } from "types/api";
 import { ref } from "vue";
 import { MachineStatus } from "../../../types/api/machine";
 import type { IDatabaseMachine, IMachine, IMachineDynamicData } from "../../../types/api/machine";
-
-import api from "../api";
+import type { API } from "../api";
 import { State } from "./State";
 
 export interface IMachinesState {
@@ -13,23 +12,23 @@ export interface IMachinesState {
 export class MachinesState extends State<IMachinesState> {
 	public filterText = ref("");
 
-	constructor() {
+	public constructor(public api: API) {
 		super({
 			machines: {},
 		});
 	}
 
 	public async generateToken() {
-		const { key, expiration } = await api.request<{ key: string; expiration: number }>("GET", "/machines/@newkey");
+		const { key, expiration } = await this.api.request<{ key: string; expiration: number }>("GET", "/machines/@newkey");
 		return { key, expiration };
 	}
 
 	public async fetchMachines() {
-		this.setMachines(await api.request("GET", "/users/@me/machines"));
+		this.setMachines(await this.api.request("GET", "/users/@me/machines"));
 	}
 
 	public async deleteMachine(uuid: uuid) {
-		await api.request("DELETE", `/machines/${uuid}`);
+		await this.api.request("DELETE", `/machines/${uuid}`);
 		delete this.state.machines[uuid];
 	}
 

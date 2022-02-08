@@ -18,7 +18,7 @@
 </template>
 <script setup lang="ts">
 import { nodeEmit } from "/@/services/logic";
-import { useState } from "/@/services/state";
+import { useState } from "/@/app";
 
 const state = useState();
 const onCloseClick = () => nodeEmit("close");

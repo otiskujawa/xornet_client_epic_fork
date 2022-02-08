@@ -10,7 +10,7 @@
 import NavigationBar from "/@/components/NavigationBar.vue";
 import StatusBar from "/@/components/StatusBar.vue";
 import { routes } from "/@/router";
-import { useState } from "/@/services/state";
+import { useState } from "/@/app";
 const state = useState();
 </script>
 <style scoped lang="postcss">

@@ -33,7 +33,7 @@
 <script setup lang="ts">
 import { isElectron } from "/@/services/logic";
 import BaseDropdown from "/@/components/base/BaseDropdown.vue";
-import { useState } from "/@/services/state";
+import { useState } from "/@/app";
 import BaseSwitch from "/@/components/base/BaseSwitch.vue";
 import TopBar from "/@/components/TopBar.vue";
 import BaseRangeInput from "/@/components/base/BaseRangeInput.vue";

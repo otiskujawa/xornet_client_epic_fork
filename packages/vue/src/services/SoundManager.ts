@@ -1,6 +1,7 @@
-import { state } from "./state";
+import type { GlobalState } from "../app";
 
 export class SoundManager {
+	constructor(public state: GlobalState) {}
 	public static sounds = {
 		hoverSounds: [
 			new Audio("sounds/hover1.wav"),
@@ -12,25 +13,25 @@ export class SoundManager {
 		escape: new Audio("sounds/escape.wav"),
 	};
 
-	public static playHover() {
-		if (!state.settings.enableSoundEffects.value) return;
-		const sounds = this.sounds.hoverSounds;
+	public playHover() {
+		if (!this.state.settings.enableSoundEffects.value) return;
+		const sounds = SoundManager.sounds.hoverSounds;
 		let sound = sounds[~~(Math.random() * sounds.length - 1)];
 		sound = <HTMLAudioElement>sound.cloneNode(false);
 		sound.volume = 0.15;
 		sound.play();
 	}
 
-	public static playClick() {
-		if (!state.settings.enableSoundEffects.value) return;
-		const sound = <HTMLAudioElement> this.sounds.click1.cloneNode(false);
+	public playClick() {
+		if (!this.state.settings.enableSoundEffects.value) return;
+		const sound = <HTMLAudioElement> SoundManager.sounds.click1.cloneNode(false);
 		sound.volume = 0.25;
 		sound.play();
 	}
 
-	public static playEscape() {
-		if (!state.settings.enableSoundEffects.value) return;
-		const sound = <HTMLAudioElement> this.sounds.escape.cloneNode(false);
+	public playEscape() {
+		if (!this.state.settings.enableSoundEffects.value) return;
+		const sound = <HTMLAudioElement> SoundManager.sounds.escape.cloneNode(false);
 		sound.volume = 0.25;
 		sound.play();
 	}

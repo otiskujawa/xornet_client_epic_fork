@@ -2,7 +2,7 @@ import type { RemovableRef } from "@vueuse/core";
 import { useLocalStorage } from "@vueuse/core";
 import type { uuid } from "types/api";
 import type { IUser } from "types/api/user";
-import api from "../api";
+import type { API } from "../api";
 import { State } from "./State";
 
 export interface IUsersState {
@@ -25,7 +25,7 @@ export class UsersState extends State<IUsersState> {
 	private token: RemovableRef<string> = useLocalStorage("token", "undefined");
 	private requestQueue: Record<uuid, Promise<void>> = {};
 
-	public constructor() {
+	public constructor(public api: API) {
 		super({
 			me_uuid: undefined,
 			users: {},
@@ -74,8 +74,8 @@ export class UsersState extends State<IUsersState> {
 	 * @param avatar The URL of the avatar to set
 	 */
 	public async updateAvatar(avatar: string) {
-		const me = await this.getMe();
-		me && api.request<IUser>("PATCH", "/users/@avatar", { url: avatar }).then(me => this.setAvatar(me, avatar));
+		const me = this.getMe();
+		me && this.api.request<IUser>("PATCH", "/users/@avatar", { url: avatar }).then((me: IUser) => this.setAvatar(me, avatar));
 	}
 
 	/**
@@ -90,7 +90,7 @@ export class UsersState extends State<IUsersState> {
 	 * Fetches the current logged in user object from the backend and sets it
 	 */
 	public async fetchMe() {
-		const user: IUser = await api.request("GET", "/users/@me");
+		const user: IUser = await this.api.request("GET", "/users/@me");
 		this.setMe(user);
 	}
 
@@ -98,7 +98,7 @@ export class UsersState extends State<IUsersState> {
 	 * Fetches a user from the backend and sets it
 	 */
 	protected async fetch(uuid: uuid) {
-		const user: IUser = await api.request("GET", `/users/${uuid}`);
+		const user: IUser = await this.api.request("GET", `/users/${uuid}`);
 		this.set(user);
 	}
 
@@ -120,7 +120,7 @@ export class UsersState extends State<IUsersState> {
 	 * Logs in a user to the backend and sets the return user in the state
 	 */
 	public async login(form: UserLoginInput) {
-		const response: {token: string; user: IUser} = await api.request("POST", "/users/@login", form);
+		const response: {token: string; user: IUser} = await this.api.request("POST", "/users/@login", form);
 		this.token.value = response.token;
 		this.setMe(response.user);
 	}
@@ -129,7 +129,7 @@ export class UsersState extends State<IUsersState> {
 	 * Signs up a user to the backend and sets the return user in the state
 	 */
 	public async signup(form: UserSignupInput) {
-		const response: {token: string; user: IUser} = await api.request("POST", "/users/@signup", form);
+		const response: {token: string; user: IUser} = await this.api.request("POST", "/users/@signup", form);
 		this.token.value = response.token;
 		this.setMe(response.user);
 	}

@@ -4,7 +4,7 @@ import type { EventType } from "mitt";
 import mitt from "mitt";
 import type { uuid } from "types/api";
 import type { IMachineDynamicData } from "types/api/machine";
-import { state } from "./state";
+import type { GlobalState } from "../app";
 
 export type Verb = "GET" | "POST" | "DELETE" | "PUT" | "PATCH";
 export const BASE_URL = "https://backend.xornet.cloud";
@@ -16,72 +16,72 @@ export interface BackendToClientEvents {
 }
 
 export class API {
-	public socket = this.createWebsocketConnection();
+	constructor() {}
 
-	private debugWs(direction: "got" | "sent", event: string, data: any, ...messages: any) {
-		if (state.settings.enableDebugLogger.value) {
-			console.group(
-				"%c[API Websockets]"
-					+ `%c ${direction}`
-          + `%c [${event}]`,
-				"color: black; background-color: #818DF8; padding: 2px; font-weight: bold;",
-				"color: #818DF8;",
-				"color: #FFF;",
-				data,
-				...messages,
-			);
-			console.groupEnd();
-		}
-	}
+	// private debugWs(direction: "got" | "sent", event: string, data: any, ...messages: any) {
+	// 	if (this.state.settings.enableDebugLogger.value) {
+	// 		console.group(
+	// 			"%c[API Websockets]"
+	// 				+ `%c ${direction}`
+	//         + `%c [${event}]`,
+	// 			"color: black; background-color: #818DF8; padding: 2px; font-weight: bold;",
+	// 			"color: #818DF8;",
+	// 			"color: #FFF;",
+	// 			data,
+	// 			...messages,
+	// 		);
+	// 		console.groupEnd();
+	// 	}
+	// }
 
-	private debug(
-		method: string,
-		endpoint: string,
-		duration: number,
-		headers?: any,
-		body?: any,
-		...messages: any
-	) {
-		if (state.settings.enableDebugLogger.value) {
-			console.group(
-				"%c[API]"
-          + `%c [${method.toUpperCase()}]`
-          + `%c ${duration}ms`
-          + `%c ${endpoint}`,
-				"color: black; background-color: #818DF8; padding: 2px; font-weight: bold;",
-				"color: #818DF8;",
-				"color: #777;",
-				"color: #FFF;",
-				...messages,
-			);
+	// private debug(
+	// 	method: string,
+	// 	endpoint: string,
+	// 	duration: number,
+	// 	headers?: any,
+	// 	body?: any,
+	// 	...messages: any
+	// ) {
+	// 	if (this.state.settings.enableDebugLogger.value) {
+	// 		console.group(
+	// 			"%c[API]"
+	//         + `%c [${method.toUpperCase()}]`
+	//         + `%c ${duration}ms`
+	//         + `%c ${endpoint}`,
+	// 			"color: black; background-color: #818DF8; padding: 2px; font-weight: bold;",
+	// 			"color: #818DF8;",
+	// 			"color: #777;",
+	// 			"color: #FFF;",
+	// 			...messages,
+	// 		);
 
-			if (headers) {
-				console.group("%c [Headers]", "color: #818DF8;");
-				console.log(
-					"%cAuthorization:",
-					"color: #81dDd8;",
-					headers.Authorization ? "*".repeat(16) : undefined,
-				);
-				console.log(
-					"%cContent-Type:",
-					"color: #81dDd8;",
-					headers["Content-Type"],
-				);
-				console.groupEnd();
-			}
+	// 		if (headers) {
+	// 			console.group("%c [Headers]", "color: #818DF8;");
+	// 			console.log(
+	// 				"%cAuthorization:",
+	// 				"color: #81dDd8;",
+	// 				headers.Authorization ? "*".repeat(16) : undefined,
+	// 			);
+	// 			console.log(
+	// 				"%cContent-Type:",
+	// 				"color: #81dDd8;",
+	// 				headers["Content-Type"],
+	// 			);
+	// 			console.groupEnd();
+	// 		}
 
-			if (body) {
-				// Conceal the password
-				body.password = "*".repeat(16);
+	// 		if (body) {
+	// 			// Conceal the password
+	// 			body.password = "*".repeat(16);
 
-				console.group("%c [Sending Body]", "color: #818DF8;");
-				console.log(Object.assign({}, body));
-				console.groupEnd();
-			}
-		}
-	}
+	// 			console.group("%c [Sending Body]", "color: #818DF8;");
+	// 			console.log(Object.assign({}, body));
+	// 			console.groupEnd();
+	// 		}
+	// 	}
+	// }
 
-	public createWebsocketConnection() {
+	public createWebsocketConnection(state: GlobalState) {
 		// Create WebSocket connection.
 		const socket = new WebSocket(`${BASE_URL.replace("https", "wss").replace("http", "ws")}/client`);
 
@@ -110,7 +110,7 @@ export class API {
 		body?: object,
 	): Promise<T> {
 		const headers = {
-			"Authorization": state.users.getToken(),
+			"Authorization": localStorage.getItem("token") || "unset",
 			"Content-Type":
         body instanceof FormData ? "multipart/form-data" : "application/json",
 		};
@@ -121,25 +121,21 @@ export class API {
 			body: body instanceof FormData ? body : JSON.stringify(body),
 		};
 
-		const start = Date.now();
+		// const start = Date.now();
 		const response = await fetch(BASE_URL + endpoint, options);
-		state.settings.enableDebugLogger.value && this.debug(method, endpoint, Date.now() - start, headers, body);
+		// this.state.settings.enableDebugLogger.value && this.debug(method, endpoint, Date.now() - start, headers, body);
 
 		if (!response.ok) return Promise.reject(response.json());
 
 		const data = await response.json().catch(e => console.log(e));
 
-		if (state.settings.enableDebugLogger.value) {
-			console.group("%c [Receiving Body]", "color: #818DF8;");
-			console.log(Object.assign({}, data));
-			console.groupEnd();
-			console.groupEnd();
-		}
+		// if (this.state.settings.enableDebugLogger.value) {
+		// 	console.group("%c [Receiving Body]", "color: #818DF8;");
+		// 	console.log(Object.assign({}, data));
+		// 	console.groupEnd();
+		// 	console.groupEnd();
+		// }
 
 		return data;
 	}
 }
-
-const api = new API();
-
-export default api;

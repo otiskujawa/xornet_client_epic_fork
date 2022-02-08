@@ -47,7 +47,8 @@
 </template>
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { useState } from "../services/state";
+import { useState } from "/@/app";
+
 import BaseInput from "./base/BaseInput.vue";
 import BaseTooltip from "./base/BaseTooltip.vue";
 import BaseButton from "./base/BaseButton.vue";

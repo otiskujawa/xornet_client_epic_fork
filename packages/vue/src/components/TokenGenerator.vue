@@ -42,7 +42,8 @@
 import { computed, onMounted, onUnmounted, ref, Ref } from "vue";
 import { useClipboard } from "@vueuse/core";
 import BaseLink from "./base/BaseLink.vue";
-import { useState } from "../services/state";
+import { useState } from "/@/app";
+
 import BaseTooltip from "./base/BaseTooltip.vue";
 import BaseButton from "./base/BaseButton.vue";
 const state = useState();

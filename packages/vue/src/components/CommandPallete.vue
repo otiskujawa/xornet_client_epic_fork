@@ -29,7 +29,8 @@ import type { Ref } from "vue";
 import { computed, onMounted, ref } from "vue";
 
 import { useRouter } from "vue-router";
-import { useState } from "../services/state";
+import { useState } from "/@/app";
+
 import BaseDialog from "./base/BaseDialog.vue";
 export type CommandPalleteOptionCategory = "route" | "machine";
 const router = useRouter();

@@ -43,7 +43,8 @@
 
 <script setup lang="ts">
 import { isElectron } from "../services/logic";
-import { useState } from "../services/state";
+import { useState } from "/@/app";
+
 import Avatar from "./user/Avatar.vue";
 import BaseTooltip from "./base/BaseTooltip.vue";
 import LogoutButton from "/@/components/NavigationBar/LogoutButton.vue";

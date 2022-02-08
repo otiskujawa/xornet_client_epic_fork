@@ -11,10 +11,10 @@
 </template>
 
 <script setup lang="ts">
-import { useState } from "./services/state";
+import { useState } from "/@/app";
 import ControlButtons from "/@/components/electron/ControlButtons.vue";
 import { isElectron } from "/@/services/logic";
-import CommandPallete from "./components/CommandPallete.vue";
+import CommandPallete from "/@/components/CommandPallete.vue";
 const state = useState();
 </script>
 <style lang="postcss">

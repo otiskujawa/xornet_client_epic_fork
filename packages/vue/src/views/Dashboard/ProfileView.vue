@@ -33,7 +33,7 @@
 import BaseInput from "/@/components/base/BaseInput.vue";
 import TopBar from "/@/components/TopBar.vue";
 import Avatar from "/@/components/user/Avatar.vue";
-import { useState } from "/@/services/state";
+import { useState } from "/@/app";
 import { useRoute, useRouter } from "vue-router";
 import { computed, onMounted, ref } from "vue";
 const router = useRouter();
