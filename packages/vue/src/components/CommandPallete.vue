@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 import type { Ref } from "vue";
-import { computed, onMounted, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { useState } from "/@/app";
 import BaseDialog from "/@/components/base/BaseDialog.vue";
@@ -39,9 +39,10 @@ const router = useRouter();
 const search = ref("");
 const state = useState();
 const commandPalleteInput = ref() as Ref<HTMLInputElement>;
-onMounted(() => {
-	commandPalleteInput.value.focus();
-});
+watch(
+	() => state.window.isShowingCommandPallete,
+	() => setTimeout(() => commandPalleteInput.value && commandPalleteInput.value.focus(), 10),
+);
 
 interface CommandPalleteOption {
 	title: string

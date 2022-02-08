@@ -5,7 +5,7 @@
     :class="state.window.isMaximized || !isElectron() || !state.settings.enableRoundedCorners.value ? 'rounded-0px' : 'rounded-8px'"
   >
     <control-buttons v-if="isElectron()" />
-    <command-pallete v-if="state.window.isShowingCommandPallete" />
+    <command-pallete />
     <router-view />
   </div>
 </template>
