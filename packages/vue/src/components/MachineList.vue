@@ -14,7 +14,7 @@
         >
           <th v-if="columns.hostname">
             <machine-stat :value="machine.name">
-              <distro-icon class="w-16px h-16px min-w-16px min-h-16px" :name="'nixos'" />
+              <distro-icon class="w-16px h-16px min-w-16px min-h-16px" :name="machine.os_name?.replace(/'/g, '')" />
               <div
                 v-if="machine.is_online"
                 :class="state.settings.enableBloom.value && 'bloom'"
