@@ -3,6 +3,9 @@
     :text="name"
     placement="right"
   >
+    <template v-if="shortcut" #content>
+      <base-kbd v-for="k of shortcut" :key="k" :key-button="k" />
+    </template>
     <li class="flex">
       <router-link
         v-if="to"
@@ -13,26 +16,33 @@
         <slot />
       </router-link>
       <a
-        v-if="href"
+        v-else-if="href"
         target="_blank"
         draggable="false"
         class="navButton"
         :href="href"
         @click="require('shell').openExternal(href)"
       >
+
         <slot />
       </a>
+      <div v-else class="navButton" @click="handleFn && handleFn()">
+        <slot />
+      </div>
     </li>
   </base-tooltip>
 </template>
 
 <script setup lang="ts">
 import type { RouteLocationRaw } from "vue-router";
+import BaseKbd from "./base/BaseKbd.vue";
 
 defineProps<{
 	to?: RouteLocationRaw
+	handleFn?: Function
 	href?: string
 	name: string
+	shortcut?: string[]
 }>();
 
 </script>
@@ -40,10 +50,10 @@ defineProps<{
 <style lang="postcss" scoped>
 
 .navButton {
-  @apply p-4 flex items-center justify-center w-full h-full opacity-25;
+  @apply p-4 flex cursor-pointer items-center justify-center w-full h-full opacity-25;
 }
 
-a {
+a, div {
   &:hover {
     @apply opacity-50;
   }

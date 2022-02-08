@@ -1,5 +1,6 @@
 import { onKeyStroke, useKeyModifier } from "@vueuse/core";
 import { State } from "./State";
+import router from "/@/router";
 
 export interface IWindowState {
 	isMaximized: boolean
@@ -13,7 +14,12 @@ export class WindowState extends State<IWindowState> {
 			isMaximized: false,
 			isShowingCommandPallete: false,
 		});
+
+		// Should probably move these somewhere else later
 		onKeyStroke("P", () => this.ctrl.value && (this.isShowingCommandPallete = true));
+		onKeyStroke("1", () => this.ctrl.value && router.push({ name: "machines" }));
+		onKeyStroke("2", () => this.ctrl.value && router.push({ name: "settings" }));
+		onKeyStroke("3", () => this.ctrl.value && router.push({ name: "profile" }));
 	}
 
 	public get isShowingCommandPallete() {

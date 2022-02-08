@@ -3,6 +3,7 @@
     <slot />
     <template #content>
       {{ text }}
+      <slot name="content" />
     </template>
   </base-popover>
 </template>

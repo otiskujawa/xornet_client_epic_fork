@@ -1,15 +1,26 @@
 <template>
   <nav class="h-full justify-between w-min flexcol">
     <ul>
-      <navigation-button name="machines" :to="{ name: 'machines' }">
+      <navigation-button name="machines" :shortcut="['Control', '1']" :to="{ name: 'machines' }">
         <i-fluency-nas class="w-full h-full" />
       </navigation-button>
-      <navigation-button name="settings" :to="{ name: 'settings' }">
+      <navigation-button name="settings" :shortcut="['Control', '2']" :to="{ name: 'settings' }">
         <i-fluency-settings class="w-full h-full" />
       </navigation-button>
-      <navigation-button name="profile" :to="{ name: 'profile', params: { uuid: state.users.getMe()?.uuid } }">
+      <navigation-button name="profile" :shortcut="['Control', '3']" :to="{ name: 'profile', params: { uuid: state.users.getMe()?.uuid } }">
         <i-fluency-user class="w-full h-full" />
       </navigation-button>
+
+      <div class="px-2">
+        <div class="h-1px bg-background-200 w-full" />
+      </div>
+      <navigation-button name="Open Command Palette" :shortcut="['Control', 'Shift', 'P']" :handle-fn="() => state.window.isShowingCommandPallete = true">
+        <i-fluency-command-palette class="w-full h-full" />
+      </navigation-button>
+
+      <div class="px-2">
+        <div class="h-1px bg-background-200 w-full" />
+      </div>
       <navigation-button name="Github Repository" href="https://github.com/xornet-cloud">
         <i-fluency-github class="w-full h-full" />
       </navigation-button>
