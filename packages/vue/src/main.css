@@ -28,11 +28,11 @@
   --color-primary-400: 180,105,255;          /* #B469FF */
   --color-primary-500: 129,43,215;           /* #812BD7 */
 
-  --color-background-200: 255, 255, 255;     /* #ffffff */
-  --color-background-300: 255, 255, 255;     /* #ffffff */
-  --color-background-400: 255, 255, 255;     /* #ffffff */
-  --color-background-500: 255, 255, 255;     /* #ffffff */
-  --color-background-600: 255, 255, 255;     /* #ffffff */
+  --color-background-200: 221, 221, 221;     /* #fff */
+  --color-background-300: 255, 255, 255;     /* #fff */
+  --color-background-400: 187, 187, 187;     /* #bbb */
+  --color-background-500: 255, 255, 255;     /* #fff */
+  --color-background-600: 255, 255, 255;     /* #fff */
 
   --color-tooltip-background: 0, 0, 0;       /* #000000 */
   --color-tooltip-text: 255, 255, 255;       /* #FFFFFF */

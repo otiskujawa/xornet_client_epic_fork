@@ -13,7 +13,7 @@
         <button
           v-for="option of filteredCommandPaletteOptions.filter(option => option.category === category)"
           :key="option.title"
-          class="capitalize items-center flex gap-4 p-4 py-3 rounded-6px hover:bg-background-200 text-left"
+          class="capitalize items-center flex gap-4 p-4 py-3 rounded-6px focus:bg-background-400 hover:bg-background-200 text-left"
           @click="option.onClickHandler && option.onClickHandler(); state.window.isShowingCommandPallete = false;"
         >
           <fluency-icon :icon="option.icon" />
@@ -27,12 +27,12 @@
 <script setup lang="ts">
 import type { Ref } from "vue";
 import { computed, onMounted, ref } from "vue";
-
 import { useRouter } from "vue-router";
 import { useState } from "/@/app";
-
 import BaseDialog from "/@/components/base/BaseDialog.vue";
-export type CommandPalleteOptionCategory = "route" | "machine";
+
+export type CommandPalleteOptionCategory = "route" | "machine" | "skin";
+
 const router = useRouter();
 const search = ref("");
 const state = useState();
@@ -50,27 +50,45 @@ interface CommandPalleteOption {
 
 const commandPaletteOptions: CommandPalleteOption[] = [
 	{
+		onClickHandler: () => state.settings.theme.value = "light",
+		category: "skin",
+		title: "Set Light theme",
+		icon: "speedometer",
+	},
+	{
+		onClickHandler: () => state.settings.theme.value = "dark",
+		category: "skin",
+		title: "Set Dark theme",
+		icon: "speedometer",
+	},
+	{
+		onClickHandler: () => state.settings.theme.value = "nord",
+		category: "skin",
+		title: "Set Nord theme",
+		icon: "speedometer",
+	},
+	{
 		onClickHandler: () => router.push({ name: "machines" }),
 		category: "route",
-		title: "machines",
+		title: "Machines Page",
 		icon: "nas",
 	},
 	{
 		onClickHandler: () => router.push({ name: "settings" }),
 		category: "route",
-		title: "settings",
+		title: "Settings Page",
 		icon: "settings",
 	},
 	{
 		onClickHandler: () => router.push({ name: "profile" }),
 		category: "route",
-		title: "profile",
+		title: "Profile Page",
 		icon: "user",
 	},
 ];
 
 const filteredCommandPaletteOptions = computed(() => {
-	return commandPaletteOptions.filter(option => option.title.includes(search.value.toLowerCase()));
+	return commandPaletteOptions.filter(option => option.title.toLowerCase().includes(search.value.toLowerCase()));
 });
 
 </script>
