@@ -49,15 +49,15 @@
 import { computed, ref } from "vue";
 import { useState } from "/@/app";
 
-import BaseInput from "./base/BaseInput.vue";
-import BaseTooltip from "./base/BaseTooltip.vue";
-import BaseButton from "./base/BaseButton.vue";
-import BaseDialog from "./base/BaseDialog.vue";
-import TokenGenerator from "./TokenGenerator.vue";
-import BaseDropdown from "./base/BaseDropdown.vue";
-import BaseDropdownCheckbox from "./base/BaseDropdownCheckbox.vue";
-import Icon from "./shared/Icon.vue";
-import BaseSwitch from "./base/BaseSwitch.vue";
+import BaseInput from "/@/components/base/BaseInput.vue";
+import BaseTooltip from "/@/components/base/BaseTooltip.vue";
+import BaseButton from "/@/components/base/BaseButton.vue";
+import BaseDialog from "/@/components/base/BaseDialog.vue";
+import TokenGenerator from "/@/components/TokenGenerator.vue";
+import BaseDropdown from "/@/components/base/BaseDropdown.vue";
+import BaseDropdownCheckbox from "/@/components/base/BaseDropdownCheckbox.vue";
+import Icon from "/@/components/shared/Icon.vue";
+import BaseSwitch from "/@/components/base/BaseSwitch.vue";
 const showTokenGenerator = ref(false);
 const columnFilter = ref("");
 const state = useState();

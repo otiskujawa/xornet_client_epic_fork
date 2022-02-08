@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import { useVModel as useModelValue } from "@vueuse/core";
-import BaseCheckbox from "./BaseCheckbox.vue";
+import BaseCheckbox from "/@/components/base/BaseCheckbox.vue";
 import { useSoundManager } from "/@/app";
 const soundManager = useSoundManager();
 const props = defineProps<{text: string; modelValue: boolean}>();

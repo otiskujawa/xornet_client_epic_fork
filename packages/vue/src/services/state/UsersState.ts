@@ -1,9 +1,9 @@
 import type { RemovableRef } from "@vueuse/core";
 import { useLocalStorage } from "@vueuse/core";
-import type { uuid } from "types/api";
-import type { IUser } from "types/api/user";
-import type { API } from "../api";
-import { State } from "./State";
+import type { uuid } from "/@/types/api";
+import type { IUser } from "/@/types/api/user";
+import type { API } from "/@/services/api";
+import { State } from "/@/services/state/State";
 
 export interface IUsersState {
 	users: Record<uuid, IUser>

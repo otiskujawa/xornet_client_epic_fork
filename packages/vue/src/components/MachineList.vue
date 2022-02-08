@@ -121,12 +121,12 @@
 import type { uuid } from "types/api";
 import { computed, ref } from "vue";
 import { useSoundManager, useState } from "/@/app";
-import BaseTable from "./base/BaseTable.vue";
-import MachineStat from "./MachineStat.vue";
-import NetworkSwitch from "./NetworkSwitch.vue";
-import Avatar from "./user/Avatar.vue";
-import BaseConfirmationDialog from "./base/BaseConfirmationDialog.vue";
-import BaseTableHeader from "./base/BaseTableHeader.vue";
+import BaseTable from "/@/components/base/BaseTable.vue";
+import MachineStat from "/@/components/MachineStat.vue";
+import NetworkSwitch from "/@/components/NetworkSwitch.vue";
+import Avatar from "/@/components/user/Avatar.vue";
+import BaseConfirmationDialog from "/@/components/base/BaseConfirmationDialog.vue";
+import BaseTableHeader from "/@/components/base/BaseTableHeader.vue";
 const soundManager = useSoundManager();
 const state = useState();
 const columns = computed(() => state.settings.columns);

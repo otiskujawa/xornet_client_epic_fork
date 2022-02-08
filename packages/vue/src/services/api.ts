@@ -2,9 +2,9 @@
 
 import type { EventType } from "mitt";
 import mitt from "mitt";
-import type { uuid } from "types/api";
-import type { IMachineDynamicData } from "types/api/machine";
-import type { GlobalState } from "../app";
+import type { uuid } from "/@/types/api";
+import type { IMachineDynamicData } from "/@/types/api/machine";
+import type { GlobalState } from "/@/app";
 
 export type Verb = "GET" | "POST" | "DELETE" | "PUT" | "PATCH";
 export const BASE_URL = "https://backend.xornet.cloud";

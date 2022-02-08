@@ -3,12 +3,12 @@
 // conflicting circular dependancies of modules requiring each other to be
 // initialized before themselves which is a massive code structure issue
 
-import { API } from "./services/api";
-import { SoundManager } from "./services/SoundManager";
-import { MachinesState } from "./services/state/MachinesState";
-import { SettingsState } from "./services/state/SettingState";
-import { UsersState } from "./services/state/UsersState";
-import { WindowState } from "./services/state/WindowState";
+import { API } from "/@/services/api";
+import { SoundManager } from "/@/services/SoundManager";
+import { MachinesState } from "/@/services/state/MachinesState";
+import { SettingsState } from "/@/services/state/SettingState";
+import { UsersState } from "/@/services/state/UsersState";
+import { WindowState } from "/@/services/state/WindowState";
 
 export interface GlobalState {
 	users: UsersState

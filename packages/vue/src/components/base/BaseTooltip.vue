@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import type { BasePlacement } from "@floating-ui/core";
-import BasePopover from "./BasePopover.vue";
+import BasePopover from "/@/components/base/BasePopover.vue";
 defineProps<{
 	text?: string
 	placement?: BasePlacement

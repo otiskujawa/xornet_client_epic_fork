@@ -1,4 +1,4 @@
-import type { GlobalState } from "../app";
+import type { GlobalState } from "/@/app";
 
 export class SoundManager {
 	constructor(public state: GlobalState) {}

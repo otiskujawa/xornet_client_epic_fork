@@ -30,8 +30,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { onKeyStroke, useVModel } from "@vueuse/core";
-import BasePopover from "./BasePopover.vue";
-import BaseButton from "./BaseButton.vue";
+import BasePopover from "/@/components/base/BasePopover.vue";
+import BaseButton from "/@/components/base/BaseButton.vue";
 const open = ref(false);
 
 onKeyStroke("Escape", () => (open.value = false));

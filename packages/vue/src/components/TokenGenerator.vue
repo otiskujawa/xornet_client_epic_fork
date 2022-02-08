@@ -41,11 +41,11 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, Ref } from "vue";
 import { useClipboard } from "@vueuse/core";
-import BaseLink from "./base/BaseLink.vue";
+import BaseLink from "/@/components/base/BaseLink.vue";
 import { useState } from "/@/app";
 
-import BaseTooltip from "./base/BaseTooltip.vue";
-import BaseButton from "./base/BaseButton.vue";
+import BaseTooltip from "/@/components/base/BaseTooltip.vue";
+import BaseButton from "/@/components/base/BaseButton.vue";
 const state = useState();
 
 const token = <Ref<string>>ref();

@@ -33,8 +33,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import BaseDialog from "../base/BaseDialog.vue";
-import BaseButton from "../base/BaseButton.vue";
+import BaseDialog from "/@/components/base/BaseDialog.vue";
+import BaseButton from "/@/components/base/BaseButton.vue";
 import { useState } from "/@/app";
 const router = useRouter();
 const state = useState();

@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import type { INetwork } from "../../types/api/machine";
+import type { INetwork } from "/@/types/api/machine";
 import { useState } from "/@/app";
 
 const MINIMUM_BLINK_SPEED = 0.025;

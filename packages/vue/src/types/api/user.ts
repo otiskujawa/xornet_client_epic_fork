@@ -1,4 +1,4 @@
-import type { uuid } from "../../types/api/index";
+import type { uuid } from "/@/types/api/index";
 
 export interface IUser {
 	uuid: uuid

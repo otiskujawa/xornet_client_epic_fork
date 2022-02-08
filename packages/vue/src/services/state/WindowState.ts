@@ -1,6 +1,6 @@
 import { onKeyStroke, useKeyModifier } from "@vueuse/core";
-import { isElectron } from "../logic";
-import { State } from "./State";
+import { isElectron } from "/@/services/logic";
+import { State } from "/@/services/state/State";
 import router from "/@/router";
 
 export interface IWindowState {

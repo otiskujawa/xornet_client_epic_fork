@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { onKeyStroke, useVModel } from "@vueuse/core";
-import PopInTransition from "../shared/transitions/PopInTransition.vue";
-import { SoundManager } from "/@/services/SoundManager";
+import { useSoundManager } from "/@/app";
+import PopInTransition from "/@/components/shared/transitions/PopInTransition.vue";
+const soundManager = useSoundManager();
 const props = defineProps<{
 	modelValue?: boolean
 	unsized?: boolean
@@ -10,7 +11,7 @@ const emit = defineEmits(["update:modelValue"]);
 const open = useVModel(props, "modelValue", emit);
 const close = () => {
 	open.value = false;
-	open.value && xornet.soundManager.playEscape();
+	open.value && soundManager.playEscape();
 };
 onKeyStroke("Escape", () => close());
 </script>
