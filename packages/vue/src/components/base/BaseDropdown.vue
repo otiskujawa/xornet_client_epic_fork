@@ -13,14 +13,14 @@
         <li v-for="option in options" :key="option">
           <button
             :class="option === value && 'bg-black bg-opacity-20'"
-            class="focus:bg-primary-500 focus:text-white hover:text-white text-text flex flex-col rounded-2px select-none min-w-32 px-3 py-2 hover:bg-primary-400 cursor-pointer"
+            class="focus:bg-primary-500 focus:text-white hover:text-white text-text flexcol rounded-2px select-none min-w-32 px-3 py-2 hover:bg-primary-400 cursor-pointer"
             @click="setValue(option)"
           >
             {{ option }}
           </button>
         </li>
       </ul>
-      <div v-else class="bg-background-500 flex flex-col p-1 text-xs rounded-4px overflow-hidden space-y-1">
+      <div v-else class="bg-background-500 flexcol p-1 text-xs rounded-4px overflow-hidden space-y-1">
         <slot name="options" />
       </div>
     </template>

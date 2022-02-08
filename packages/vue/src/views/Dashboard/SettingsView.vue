@@ -1,7 +1,7 @@
 <template>
-  <div class="flex w-full h-full flex-col bg-black bg-opacity-25">
+  <div class="w-full h-full flexcol bg-black bg-opacity-25">
     <top-bar />
-    <div class="w-full h-full flex flex-col items-center gap-2 text-12px text-text px-8">
+    <div class="w-full h-full flexcol items-center gap-2 text-12px text-text px-8">
       <option-field label="Theme">
         <base-dropdown v-model="state.settings.theme.value" stay-open :options="['dark', 'light', 'nord']" />
       </option-field>

@@ -1,6 +1,6 @@
 <template>
   <base-dialog v-model="showConfirmDialog" unsized>
-    <div class="bg-black flex flex-col gap-4 p-4 w-full  text-center">
+    <div class="bg-black flexcol gap-4 p-4 w-full  text-center">
       <div class="flex items-center justify-center text-background-400">
         <i-fluency-skull v-if="isSkullHappy==0" class="w-24 h-24" />
         <i-fluency-happy-skull v-else-if="isSkullHappy==1" class="w-24 h-24" />

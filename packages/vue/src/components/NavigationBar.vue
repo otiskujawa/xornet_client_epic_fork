@@ -1,5 +1,5 @@
 <template>
-  <nav class="h-full justify-between w-min flex flex-col">
+  <nav class="h-full justify-between w-min flexcol">
     <ul>
       <navigation-button name="machines" :to="{ name: 'machines' }">
         <i-fluency-nas class="w-full h-full" />

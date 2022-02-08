@@ -1,10 +1,11 @@
 <template>
   <div
     id="main"
-    class="flex h-full flex-col overflow-hidden bg-background-300"
+    class="h-full flexcol overflow-hidden bg-background-300"
     :class="state.window.isMaximized || !isElectron() || !state.settings.enableRoundedCorners.value ? 'rounded-0px' : 'rounded-8px'"
   >
     <control-buttons v-if="isElectron()" />
+    <command-pallete v-if="state.window.isShowingCommandPallete" />
     <router-view />
   </div>
 </template>
@@ -13,6 +14,7 @@
 import { useState } from "./services/state";
 import ControlButtons from "/@/components/electron/ControlButtons.vue";
 import { isElectron } from "/@/services/logic";
+import CommandPallete from "./components/CommandPallete.vue";
 const state = useState();
 </script>
 <style lang="postcss">
@@ -54,5 +56,13 @@ body,
 html,
 #app {
   @apply h-full w-full bg-transparent filter text-text overflow-hidden;
+}
+
+.center {
+  @apply top-50 left-50 transform translate-x-100 translate-y-50;
+}
+
+.flexcol {
+  @apply flex flex-col;
 }
 </style>

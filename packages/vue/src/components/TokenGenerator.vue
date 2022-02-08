@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-black flex flex-col gap-4 p-4 w-min text-center">
+  <div class="bg-black flexcol gap-4 p-4 w-min text-center">
     <div class="div flex items-center justify-between">
       <h1 class>
         Signup Token

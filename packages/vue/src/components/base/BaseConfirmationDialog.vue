@@ -1,6 +1,6 @@
 <template>
   <base-dialog v-model="showConfirmDialog" unsized>
-    <div class="bg-black flex flex-col gap-4 p-4 w-full text-left">
+    <div class="bg-black flexcol gap-4 p-4 w-full text-left">
       <div class="text-white max-w-64">
         {{ confirmationText }}
       </div>
