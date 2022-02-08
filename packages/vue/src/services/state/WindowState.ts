@@ -1,4 +1,5 @@
 import { onKeyStroke, useKeyModifier } from "@vueuse/core";
+import { isElectron } from "../logic";
 import { State } from "./State";
 import router from "/@/router";
 
@@ -16,7 +17,9 @@ export class WindowState extends State<IWindowState> {
 		});
 
 		// Should probably move these somewhere else later
-		onKeyStroke("P", () => this.ctrl.value && (this.isShowingCommandPallete = true));
+		isElectron()
+			? onKeyStroke("P", () => this.ctrl.value && (this.isShowingCommandPallete = true))
+			: onKeyStroke("k", (e) => { e.preventDefault(); (this.isShowingCommandPallete = true); });
 		onKeyStroke("1", () => this.ctrl.value && router.push({ name: "machines" }));
 		onKeyStroke("2", () => this.ctrl.value && router.push({ name: "settings" }));
 		onKeyStroke("3", () => this.ctrl.value && router.push({ name: "profile" }));

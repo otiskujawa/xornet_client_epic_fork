@@ -14,7 +14,7 @@
       <div class="px-2">
         <div class="h-1px bg-background-200 w-full" />
       </div>
-      <navigation-button name="Open Command Palette" :shortcut="['Control', 'Shift', 'P']" :handle-fn="() => state.window.isShowingCommandPallete = true">
+      <navigation-button name="Open Command Palette" :shortcut="isElectron() ? ['Control', 'Shift', 'P'] : ['Control', 'k']" :handle-fn="() => state.window.isShowingCommandPallete = true">
         <i-fluency-command-palette class="w-full h-full" />
       </navigation-button>
 
@@ -42,6 +42,7 @@
 </template>
 
 <script setup lang="ts">
+import { isElectron } from "../services/logic";
 import { useState } from "../services/state";
 import Avatar from "./user/Avatar.vue";
 import BaseTooltip from "./base/BaseTooltip.vue";
