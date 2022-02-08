@@ -41,7 +41,10 @@ const state = useState();
 const commandPalleteInput = ref() as Ref<HTMLInputElement>;
 watch(
 	() => state.window.isShowingCommandPallete,
-	() => setTimeout(() => commandPalleteInput.value && commandPalleteInput.value.focus(), 10),
+	() => {
+		search.value = "";
+		setTimeout(() => commandPalleteInput.value && commandPalleteInput.value.focus(), 10);
+	},
 );
 
 interface CommandPalleteOption {
