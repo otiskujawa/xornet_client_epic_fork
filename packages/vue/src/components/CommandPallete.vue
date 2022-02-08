@@ -6,19 +6,21 @@
         <div class="h-1px bg-background-200 w-full" />
       </div>
 
-      <div v-for="category of new Set(filteredCommandPaletteOptions.map(option => option.category))" :key="category" class="flexcol">
-        <p class="opacity-50 ml-4 mb-2 capitalize">
-          {{ category }}s
-        </p>
-        <button
-          v-for="option of filteredCommandPaletteOptions.filter(option => option.category === category)"
-          :key="option.title"
-          class="capitalize items-center flex gap-4 p-4 py-3 rounded-6px focus:bg-background-400 hover:bg-background-200 text-left"
-          @click="option.onClickHandler && option.onClickHandler(); state.window.isShowingCommandPallete = false;"
-        >
-          <fluency-icon :icon="option.icon" />
-          {{ option.title }}
-        </button>
+      <div class="min-h-72 max-h-72 overflow-hidden overflow-y-scroll">
+        <div v-for="category of new Set(filteredCommandPaletteOptions.map(option => option.category))" :key="category" class=" flexcol">
+          <p class="opacity-50 mx-4 my-2 capitalize">
+            {{ category }}s
+          </p>
+          <button
+            v-for="option of filteredCommandPaletteOptions.filter(option => option.category === category)"
+            :key="option.title"
+            class="capitalize items-center flex gap-4 p-4 py-3 rounded-6px focus:bg-background-400 hover:bg-background-200 text-left"
+            @click="option.onClickHandler && option.onClickHandler(); state.window.isShowingCommandPallete = false;"
+          >
+            <fluency-icon :icon="option.icon" />
+            {{ option.title }}
+          </button>
+        </div>
       </div>
     </div>
   </base-dialog>
@@ -31,7 +33,7 @@ import { useRouter } from "vue-router";
 import { useState } from "/@/app";
 import BaseDialog from "/@/components/base/BaseDialog.vue";
 
-export type CommandPalleteOptionCategory = "route" | "machine" | "skin";
+export type CommandPalleteOptionCategory = "route" | "machine" | "appearance" | "sound";
 
 const router = useRouter();
 const search = ref("");
@@ -51,21 +53,45 @@ interface CommandPalleteOption {
 const commandPaletteOptions: CommandPalleteOption[] = [
 	{
 		onClickHandler: () => state.settings.theme.value = "light",
-		category: "skin",
+		category: "appearance",
 		title: "Set Light theme",
-		icon: "speedometer",
+		icon: "palette",
+	},
+	{
+		onClickHandler: () => state.settings.enableBloom.value = !state.settings.enableBloom.value,
+		category: "appearance",
+		title: "Toggle bloom",
+		icon: "palette",
+	},
+	{
+		onClickHandler: () => state.settings.enableRoundedCorners.value = !state.settings.enableRoundedCorners.value,
+		category: "appearance",
+		title: "Toggle rounded corners",
+		icon: "palette",
+	},
+	{
+		onClickHandler: () => state.settings.enableSoundEffects.value = !state.settings.enableSoundEffects.value,
+		category: "sound",
+		title: "Toggle sound effects",
+		icon: "sound",
+	},
+	{
+		onClickHandler: () => state.settings.enableStatusBar.value = !state.settings.enableStatusBar.value,
+		category: "appearance",
+		title: "Toggle status bar",
+		icon: "palette",
 	},
 	{
 		onClickHandler: () => state.settings.theme.value = "dark",
-		category: "skin",
+		category: "appearance",
 		title: "Set Dark theme",
-		icon: "speedometer",
+		icon: "palette",
 	},
 	{
 		onClickHandler: () => state.settings.theme.value = "nord",
-		category: "skin",
+		category: "appearance",
 		title: "Set Nord theme",
-		icon: "speedometer",
+		icon: "palette",
 	},
 	{
 		onClickHandler: () => router.push({ name: "machines" }),

@@ -21,11 +21,13 @@
     <i-fluency-ping v-if="icon === 'ping'" />
     <i-fluency-pirate-bay v-if="icon === 'pirate-bay'" />
     <i-fluency-plus v-if="icon === 'plus'" />
+    <i-fluency-palette v-if="icon === 'palette'" />
     <i-fluency-processes v-if="icon === 'processes'" />
     <i-fluency-processor v-if="icon === 'processor'" />
     <i-fluency-restart v-if="icon === 'restart'" />
     <i-fluency-select-column v-if="icon === 'select-column'" />
     <i-fluency-services v-if="icon === 'services'" />
+    <i-fluency-sound v-if="icon === 'sound'" />
     <i-fluency-settings v-if="icon === 'settings'" />
     <i-fluency-skull v-if="icon === 'skull'" />
     <i-fluency-speedometer v-if="icon === 'speedometer'" />
