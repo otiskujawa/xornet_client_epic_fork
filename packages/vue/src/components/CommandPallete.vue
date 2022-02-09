@@ -33,7 +33,7 @@ import { useRouter } from "vue-router";
 import { useState } from "/@/app";
 import BaseDialog from "/@/components/base/BaseDialog.vue";
 
-export type CommandPalleteOptionCategory = "route" | "machine" | "appearance" | "sound";
+export type CommandPalleteOptionCategory = "route" | "machine" | "appearance" | "sound" | "theme";
 
 const router = useRouter();
 const search = ref("");
@@ -57,9 +57,9 @@ interface CommandPalleteOption {
 const commandPaletteOptions: CommandPalleteOption[] = [
 	{
 		onClickHandler: () => state.settings.theme.value = "light",
-		category: "appearance",
-		title: "Set Light theme",
-		icon: "palette",
+		category: "theme",
+		title: "Set Light",
+		icon: "color-palette",
 	},
 	{
 		onClickHandler: () => state.settings.enableBloom.value = !state.settings.enableBloom.value,
@@ -87,15 +87,15 @@ const commandPaletteOptions: CommandPalleteOption[] = [
 	},
 	{
 		onClickHandler: () => state.settings.theme.value = "dark",
-		category: "appearance",
-		title: "Set Dark theme",
-		icon: "palette",
+		category: "theme",
+		title: "Set Dark",
+		icon: "color-palette",
 	},
 	{
 		onClickHandler: () => state.settings.theme.value = "nord",
-		category: "appearance",
-		title: "Set Nord theme",
-		icon: "palette",
+		category: "theme",
+		title: "Set Nord",
+		icon: "color-palette",
 	},
 	{
 		onClickHandler: () => router.push({ name: "machines" }),
