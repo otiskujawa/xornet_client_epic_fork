@@ -19,7 +19,7 @@ export class WindowState extends State<IWindowState> {
 		// Should probably move these somewhere else later
 		isElectron()
 			? onKeyStroke("P", () => this.ctrl.value && (this.isShowingCommandPallete = true))
-			: onKeyStroke("k", (e) => { e.preventDefault(); (this.isShowingCommandPallete = true); });
+			: onKeyStroke("k", (e) => { e.preventDefault(); this.ctrl.value && (this.isShowingCommandPallete = true); });
 		onKeyStroke("1", () => this.ctrl.value && router.push({ name: "machines" }));
 		onKeyStroke("2", () => this.ctrl.value && router.push({ name: "settings" }));
 		onKeyStroke("3", () => this.ctrl.value && router.push({ name: "profile" }));
