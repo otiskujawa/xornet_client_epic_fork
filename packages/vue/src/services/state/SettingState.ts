@@ -45,11 +45,18 @@ export class SettingsState {
 	}
 
 	public toObject() {
-		const obj: {[key: string]: any} = {};
-		return {
-			general: Object.entries(this.general).map(([key, value]) => obj[key] = value),
-			columns: Object.entries(this.columns).map(([key, value]) => obj[key] = value),
+		const obj: {[key: string]: any} = {
+			general: {},
+			columns: {},
 		};
+
+		for (const category of Object.keys(obj)) {
+			// @ts-ignore
+			for (const [key, value] of Object.entries(this[category]))
+				obj[category][key] = value;
+		}
+
+		return obj;
 	}
 
 	private registerWatchers(): void {

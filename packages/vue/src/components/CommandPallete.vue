@@ -109,7 +109,7 @@ const commandPaletteOptions: CommandPalleteOption[] = [
 	{
 		onClickHandler: () => state.syncSettings(),
 		category: "setting",
-		title: "Sync (fetch) Settings",
+		title: "Sync (read) Settings",
 		icon: "synchronize",
 	},
 	{

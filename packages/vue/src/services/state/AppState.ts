@@ -28,7 +28,7 @@ export class AppState {
 			.then((newSettings) => {
 				this.window.isSyncing = false;
 				for (const [settingsGroupName, settings] of Object.entries(newSettings)) {
-					for (const [key, value] of settings)
+					for (const [key, value] of Object.entries(settings))
 						this.settings[settingsGroupName][key] = value;
 				}
 			})
