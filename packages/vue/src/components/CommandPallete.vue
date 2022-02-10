@@ -115,7 +115,7 @@ const commandPaletteOptions: CommandPalleteOption[] = [
 	{
 		onClickHandler: () => state.updateSettings(),
 		category: "setting",
-		title: "Update (write) Settings",
+		title: "Sync (write) Settings",
 		icon: "synchronize",
 	},
 	{
