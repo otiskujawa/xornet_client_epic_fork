@@ -3,19 +3,19 @@
     <top-bar />
     <div class="w-full h-full flexcol items-center gap-2 text-12px text-text px-8">
       <option-field label="Theme">
-        <base-dropdown v-model="state.settings.general.theme" stay-open :options="['dark', 'light', 'nord']" />
+        <base-dropdown v-model="state.settings.general.theme" stay-open :options="['dark', 'nord']" />
       </option-field>
       <option-field label="Status Bar">
-        <base-switch v-model="state.settings.general.enableStatusBar" />
+        <base-switch v-model="state.settings.general.enable_status_bar" />
       </option-field>
       <option-field label="Sound FX">
-        <base-switch v-model="state.settings.general.enableSoundEffects" />
+        <base-switch v-model="state.settings.general.enable_sound_effects" />
       </option-field>
       <option-field label="Bloom Effects">
-        <base-switch v-model="state.settings.general.enableBloom" />
+        <base-switch v-model="state.settings.general.enable_bloom" />
       </option-field>
       <option-field v-if="isElectron()" label="Rounded Window Corners">
-        <base-switch v-model="state.settings.general.enableRoundedCorners" />
+        <base-switch v-model="state.settings.general.enable_rounded_corners" />
       </option-field>
       <option-field v-if="isElectron()" label="Background Opacity">
         <div class="flex gap-2 items-center">

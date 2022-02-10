@@ -5,19 +5,19 @@ import { watch } from "vue";
  * This keeps track of the user's settings and updates the local storage
  */
 export class SettingsState {
+	// These are snake cased because they are used to index the JSONs we get from the backend as well
 	public general = useLocalStorage("generalSettings", {
 		opacity: 100,
 		theme: "dark",
-		enableBloom: false,
-		enableRoundedCorners: true,
-		enableSoundEffects: false,
-		enableStatusBar: false,
-		showOfflineMachines: true,
-		showOwnedMachinesOnly: false,
+		enable_bloom: false,
+		enable_rounded_corners: true,
+		enable_sound_effects: false,
+		enable_status_bar: false,
+		show_offline_machines: true,
+		show_owned_machines_only: false,
 	}).value;
 
-	// These are snake cased because they are used to index the JSONs we get from the backend as well
-	public columns = useLocalStorage("enabledColumns", {
+	public columns = useLocalStorage("columns", {
 		hostname: true,
 		cpu_average_usage: true,
 		cpu_average_speed: false,
@@ -44,8 +44,12 @@ export class SettingsState {
 		this.applyCurrentOpacity();
 	}
 
-	public toJSON() {
-		return JSON.stringify({ ...Object.entries(this.columns), ...Object.entries(this.general) });
+	public toObject() {
+		const obj: {[key: string]: any} = {};
+		return {
+			general: Object.entries(this.general).map(([key, value]) => obj[key] = value),
+			columns: Object.entries(this.columns).map(([key, value]) => obj[key] = value),
+		};
 	}
 
 	private registerWatchers(): void {

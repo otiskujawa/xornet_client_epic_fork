@@ -21,7 +21,7 @@ export class Xornet {
 	public soundManager: SoundManager = new SoundManager(this.state);
 
 	constructor() {
-		this.state.sync();
+		this.state.syncSettings();
 		this.state.machines.fetchMachines();
 		this.api.createWebsocketConnection(this.state);
 	}

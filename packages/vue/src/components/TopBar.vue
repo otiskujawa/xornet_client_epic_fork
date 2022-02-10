@@ -33,10 +33,10 @@
         </base-dropdown>
       </base-tooltip>
 
-      <base-switch v-model="state.settings.general.showOfflineMachines" />
+      <base-switch v-model="state.settings.general.show_offline_machines" />
       Show Offline
 
-      <base-switch v-model="state.settings.general.showOwnedMachinesOnly" />
+      <base-switch v-model="state.settings.general.show_owned_machines_only" />
       Owned Only
 
       <base-dialog v-model="showTokenGenerator" unsized>

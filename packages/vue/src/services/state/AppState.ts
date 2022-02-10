@@ -3,6 +3,7 @@ import { MachinesState } from "./MachinesState";
 import { SettingsState } from "./SettingState";
 import { UsersState } from "./UsersState";
 import { WindowState } from "./WindowState";
+import type { UserClientSettings } from "/@/types/api/user";
 
 /**
  * Brings all the states together and includes some managing methods for them
@@ -11,7 +12,7 @@ import { WindowState } from "./WindowState";
 export class AppState {
 	public users: UsersState;
 	public machines: MachinesState;
-	public settings: SettingsState;
+	public settings: SettingsState & {[key: string]: any};
 	public window: WindowState;
 
 	constructor(public api: API) {
@@ -21,9 +22,23 @@ export class AppState {
 		this.window = new WindowState();
 	}
 
-	public sync() {
+	public syncSettings() {
 		this.window.isSyncing = true;
-		console.log(this.settings.toJSON());
-		this.window.isSyncing = false;
+		this.api.request<UserClientSettings>("GET", "/users/@settings")
+			.then((newSettings) => {
+				this.window.isSyncing = false;
+				for (const [settingsGroupName, settings] of Object.entries(newSettings)) {
+					for (const [key, value] of settings)
+						this.settings[settingsGroupName][key] = value;
+				}
+			})
+			.catch(() => this.window.isSyncing = false);
+	}
+
+	public updateSettings() {
+		const settingsObject = this.settings.toObject();
+		this.api.request<UserClientSettings>("PATCH", "/users/@settings", settingsObject)
+			.then(() => this.window.isSyncing = false)
+			.catch(() => this.window.isSyncing = false);
 	}
 }

@@ -34,7 +34,7 @@ import { isElectron } from "../services/logic";
 import { useState } from "/@/app";
 import BaseDialog from "/@/components/base/BaseDialog.vue";
 
-export type CommandPalleteOptionCategory = "route" | "machine" | "appearance" | "sound" | "theme";
+export type CommandPalleteOptionCategory = "route" | "machine" | "appearance" | "sound" | "theme" | "setting";
 
 const router = useRouter();
 const search = ref("");
@@ -58,32 +58,26 @@ interface CommandPalleteOption {
 
 const commandPaletteOptions: CommandPalleteOption[] = [
 	{
-		onClickHandler: () => state.settings.general.theme = "light",
-		category: "theme",
-		title: "Set Light",
-		icon: "color-palette",
-	},
-	{
-		onClickHandler: () => state.settings.general.enableBloom = !state.settings.general.enableBloom,
+		onClickHandler: () => state.settings.general.enable_bloom = !state.settings.general.enable_bloom,
 		category: "appearance",
 		title: "Toggle bloom",
 		icon: "palette",
 	},
 	{
-		onClickHandler: () => state.settings.general.enableRoundedCorners = !state.settings.general.enableRoundedCorners,
+		onClickHandler: () => state.settings.general.enable_rounded_corners = !state.settings.general.enable_rounded_corners,
 		category: "appearance",
 		title: "Toggle rounded corners",
 		electronOnly: true,
 		icon: "palette",
 	},
 	{
-		onClickHandler: () => state.settings.general.enableSoundEffects = !state.settings.general.enableSoundEffects,
+		onClickHandler: () => state.settings.general.enable_sound_effects = !state.settings.general.enable_sound_effects,
 		category: "sound",
 		title: "Toggle sound effects",
 		icon: "sound",
 	},
 	{
-		onClickHandler: () => state.settings.general.enableStatusBar = !state.settings.general.enableStatusBar,
+		onClickHandler: () => state.settings.general.enable_status_bar = !state.settings.general.enable_status_bar,
 		category: "appearance",
 		title: "Toggle status bar",
 		icon: "palette",
@@ -113,10 +107,16 @@ const commandPaletteOptions: CommandPalleteOption[] = [
 		icon: "settings",
 	},
 	{
-		onClickHandler: () => state.sync(),
-		category: "appearance",
-		title: "Sync Settings",
-		icon: "settings",
+		onClickHandler: () => state.syncSettings(),
+		category: "setting",
+		title: "Sync (fetch) Settings",
+		icon: "synchronize",
+	},
+	{
+		onClickHandler: () => state.updateSettings(),
+		category: "setting",
+		title: "Update (write) Settings",
+		icon: "synchronize",
 	},
 	{
 		onClickHandler: () => router.push({ name: "profile" }),
