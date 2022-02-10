@@ -51,7 +51,7 @@ export class UsersState extends State<IUsersState> {
 	 */
 	private reset() {
 		delete this.state.me_uuid;
-		this.token.value = "undefined";
+		localStorage.clear();
 		this.setUsers([]);
 	}
 
