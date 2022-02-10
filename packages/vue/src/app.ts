@@ -6,7 +6,7 @@
 import { ShortcutManager } from "/@/services/ShortcutManager";
 import { API } from "/@/services/api";
 import { SoundManager } from "/@/services/SoundManager";
-import { AppState } from "./services/state/AppState";
+import { AppState } from "/@/services/state/AppState";
 
 /**
  * This is the middle-end that connects all the modules together so they have

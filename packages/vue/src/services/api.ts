@@ -2,9 +2,9 @@
 
 import type { EventType } from "mitt";
 import mitt from "mitt";
+import type { AppState } from "/@/services/state/AppState";
 import type { uuid } from "/@/types/api";
 import type { IMachineDynamicData } from "/@/types/api/machine";
-import type { GlobalState } from "/@/app";
 
 export type Verb = "GET" | "POST" | "DELETE" | "PUT" | "PATCH";
 export const BASE_URL = "https://backend.xornet.cloud";
@@ -18,7 +18,7 @@ export interface BackendToClientEvents {
 export class API {
 	constructor() {}
 
-	public createWebsocketConnection(state: GlobalState) {
+	public createWebsocketConnection(state: AppState) {
 		// Create WebSocket connection.
 		const socket = new WebSocket(`${BASE_URL.replace("https", "wss").replace("http", "ws")}/client`);
 
