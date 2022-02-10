@@ -1,5 +1,6 @@
 import { useLocalStorage } from "@vueuse/core";
 import { watch } from "vue";
+import { isElectron } from "../logic";
 
 /**
  * This keeps track of the user's settings and updates the local storage
@@ -79,7 +80,7 @@ export class SettingsState {
 		// This is a hack
 		setTimeout(() => {
 			const main = <HTMLElement>document.querySelector("#main");
-			main!.style.setProperty("--tw-bg-opacity", (this.general.opacity / 100).toString());
+			main!.style.setProperty("--tw-bg-opacity", (isElectron() ? (this.general.opacity / 100) : 100).toString());
 		}, 10);
 	}
 }
