@@ -3,7 +3,7 @@
     <navigation-bar :routes="routes[1].children!" />
     <router-view />
   </div>
-  <status-bar v-if="state.settings.enableStatusBar.value" />
+  <status-bar v-if="state.settings.general.enableStatusBar" />
 </template>
 
 <script setup lang="ts">
@@ -13,6 +13,3 @@ import { routes } from "/@/router";
 import { useState } from "/@/app";
 const state = useState();
 </script>
-<style scoped lang="postcss">
-
-</style>

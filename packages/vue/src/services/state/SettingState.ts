@@ -1,16 +1,23 @@
 import { useLocalStorage } from "@vueuse/core";
 import { watch } from "vue";
 
+/**
+ * This keeps track of the user's settings and updates the local storage
+ */
 export class SettingsState {
-	public opacity = useLocalStorage("opacity", 100);
-	public theme = useLocalStorage("theme", "dark");
-	public enableBloom = useLocalStorage("enableBloom", false);
-	public enableRoundedCorners = useLocalStorage("roundedCorners", true);
-	public enableSoundEffects = useLocalStorage("soundEffects", false);
-	public enableStatusBar = useLocalStorage("statusBar", false);
-	public showOfflineMachines = useLocalStorage("showOfflineMachines", true);
-	public showOwnedMachinesOnly = useLocalStorage("showOwnedMachinesOnly", false);
-	public columns = useLocalStorage("columns_xd", {
+	public general = useLocalStorage("generalSettings", {
+		opacity: 100,
+		theme: "dark",
+		enableBloom: false,
+		enableRoundedCorners: true,
+		enableSoundEffects: false,
+		enableStatusBar: false,
+		showOfflineMachines: true,
+		showOwnedMachinesOnly: false,
+	}).value;
+
+	// These are snake cased because they are used to index the JSONs we get from the backend as well
+	public columns = useLocalStorage("enabledColumns", {
 		hostname: true,
 		cpu_average_usage: true,
 		cpu_average_speed: false,
@@ -37,27 +44,31 @@ export class SettingsState {
 		this.applyCurrentOpacity();
 	}
 
+	public toJSON() {
+		return JSON.stringify({ ...Object.entries(this.columns), ...Object.entries(this.general) });
+	}
+
 	private registerWatchers(): void {
 		watch(
-			() => this.theme.value,
+			() => this.general.theme,
 			() => this.applyCurrentTheme(),
 		);
 		watch(
-			() => this.opacity.value,
+			() => this.general.opacity,
 			() => this.applyCurrentOpacity(),
 		);
 	}
 
 	private applyCurrentTheme() {
 		const dom = document.querySelector("html");
-		dom!.className = `theme-${this.theme.value}`;
+		dom!.className = `theme-${this.general.theme}`;
 	}
 
 	private applyCurrentOpacity() {
 		// This is a hack
 		setTimeout(() => {
 			const main = <HTMLElement>document.querySelector("#main");
-			main!.style.setProperty("--tw-bg-opacity", (this.opacity.value / 100).toString());
+			main!.style.setProperty("--tw-bg-opacity", (this.general.opacity / 100).toString());
 		}, 10);
 	}
 }

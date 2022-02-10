@@ -21,6 +21,9 @@ export interface UserSignupInput extends UserLoginInput {
 	email: string
 }
 
+/**
+ * This keeps track of all the cached users including the logged in user
+ */
 export class UsersState extends State<IUsersState> {
 	private token: RemovableRef<string> = useLocalStorage("token", "undefined");
 	private requestQueue: Record<uuid, Promise<void>> = {};

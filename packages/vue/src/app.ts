@@ -3,19 +3,10 @@
 // conflicting circular dependancies of modules requiring each other to be
 // initialized before themselves which is a massive code structure issue
 
+import { ShortcutManager } from "/@/services/ShortcutManager";
 import { API } from "/@/services/api";
 import { SoundManager } from "/@/services/SoundManager";
-import { MachinesState } from "/@/services/state/MachinesState";
-import { SettingsState } from "/@/services/state/SettingState";
-import { UsersState } from "/@/services/state/UsersState";
-import { WindowState } from "/@/services/state/WindowState";
-
-export interface GlobalState {
-	users: UsersState
-	machines: MachinesState
-	settings: SettingsState
-	window: WindowState
-}
+import { AppState } from "./services/state/AppState";
 
 /**
  * This is the middle-end that connects all the modules together so they have
@@ -25,17 +16,12 @@ export interface GlobalState {
  */
 export class Xornet {
 	private api: API = new API();
-
-	public state: GlobalState = {
-		users: new UsersState(this.api),
-		machines: new MachinesState(this.api),
-		settings: new SettingsState(),
-		window: new WindowState(),
-	};
-
+	public state: AppState = new AppState(this.api);
+	public shortcutManager: ShortcutManager = new ShortcutManager(this.state.window);
 	public soundManager: SoundManager = new SoundManager(this.state);
 
 	constructor() {
+		this.state.sync();
 		this.state.machines.fetchMachines();
 		this.api.createWebsocketConnection(this.state);
 	}

@@ -6,7 +6,7 @@
       :class="[
         iface.speed > 100 && `text-1000mbps`,
         iface.speed > 1000 && 'text-10000mbps',
-        state.settings.enableBloom.value && 'bloom'
+        state.settings.general.enableBloom && 'bloom'
       ]"
       :style="`animation-duration: ${speeds[iface.name]}ms;`"
     />

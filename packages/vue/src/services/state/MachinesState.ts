@@ -9,6 +9,9 @@ export interface IMachinesState {
 	machines: Record<uuid, IMachine>
 }
 
+/**
+ * This keeps tracks of all the machines on the dashboard
+ */
 export class MachinesState extends State<IMachinesState> {
 	public filterText = ref("");
 

@@ -17,7 +17,7 @@
               <distro-icon class="w-16px h-16px min-w-16px min-h-16px" :name="machine.os_name?.replace(/'/g, '')" />
               <div
                 v-if="machine.is_online"
-                :class="state.settings.enableBloom.value && 'bloom'"
+                :class="state.settings.general.enableBloom && 'bloom'"
                 class="w-5px h-5px rounded-full bg-active mr-1"
               />
               <div
@@ -167,9 +167,9 @@ const machines = computed(() => state.machines.getAll()
     || state.users.get(machine.owner_uuid).username.toLowerCase().includes(state.machines.filterText.value),
 	)
 // This is so you can hide offline machines
-	.filter(machine => state.settings.showOfflineMachines.value ? machine : machine.is_online)
+	.filter(machine => state.settings.general.showOfflineMachines ? machine : machine.is_online)
 // This makes it so you can see only your own machines
-	.filter(machine => state.settings.showOwnedMachinesOnly.value ? machine.owner_uuid === state.users.getMe().uuid : machine)
+	.filter(machine => state.settings.general.showOwnedMachinesOnly ? machine.owner_uuid === state.users.getMe().uuid : machine)
 // This switch is what sorts the columns
 	.sort((a, b) => {
 		let comparison = false;

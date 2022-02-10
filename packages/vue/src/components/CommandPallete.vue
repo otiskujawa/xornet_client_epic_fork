@@ -30,6 +30,7 @@
 import type { Ref } from "vue";
 import { computed, ref, watch } from "vue";
 import { useRouter } from "vue-router";
+import { isElectron } from "../services/logic";
 import { useState } from "/@/app";
 import BaseDialog from "/@/components/base/BaseDialog.vue";
 
@@ -50,49 +51,51 @@ watch(
 interface CommandPalleteOption {
 	title: string
 	icon?: string
+	electronOnly?: boolean
 	category: CommandPalleteOptionCategory
 	onClickHandler?: Function
 }
 
 const commandPaletteOptions: CommandPalleteOption[] = [
 	{
-		onClickHandler: () => state.settings.theme.value = "light",
+		onClickHandler: () => state.settings.general.theme = "light",
 		category: "theme",
 		title: "Set Light",
 		icon: "color-palette",
 	},
 	{
-		onClickHandler: () => state.settings.enableBloom.value = !state.settings.enableBloom.value,
+		onClickHandler: () => state.settings.general.enableBloom = !state.settings.general.enableBloom,
 		category: "appearance",
 		title: "Toggle bloom",
 		icon: "palette",
 	},
 	{
-		onClickHandler: () => state.settings.enableRoundedCorners.value = !state.settings.enableRoundedCorners.value,
+		onClickHandler: () => state.settings.general.enableRoundedCorners = !state.settings.general.enableRoundedCorners,
 		category: "appearance",
 		title: "Toggle rounded corners",
+		electronOnly: true,
 		icon: "palette",
 	},
 	{
-		onClickHandler: () => state.settings.enableSoundEffects.value = !state.settings.enableSoundEffects.value,
+		onClickHandler: () => state.settings.general.enableSoundEffects = !state.settings.general.enableSoundEffects,
 		category: "sound",
 		title: "Toggle sound effects",
 		icon: "sound",
 	},
 	{
-		onClickHandler: () => state.settings.enableStatusBar.value = !state.settings.enableStatusBar.value,
+		onClickHandler: () => state.settings.general.enableStatusBar = !state.settings.general.enableStatusBar,
 		category: "appearance",
 		title: "Toggle status bar",
 		icon: "palette",
 	},
 	{
-		onClickHandler: () => state.settings.theme.value = "dark",
+		onClickHandler: () => state.settings.general.theme = "dark",
 		category: "theme",
 		title: "Set Dark",
 		icon: "color-palette",
 	},
 	{
-		onClickHandler: () => state.settings.theme.value = "nord",
+		onClickHandler: () => state.settings.general.theme = "nord",
 		category: "theme",
 		title: "Set Nord",
 		icon: "color-palette",
@@ -110,6 +113,12 @@ const commandPaletteOptions: CommandPalleteOption[] = [
 		icon: "settings",
 	},
 	{
+		onClickHandler: () => state.sync(),
+		category: "appearance",
+		title: "Sync Settings",
+		icon: "settings",
+	},
+	{
 		onClickHandler: () => router.push({ name: "profile" }),
 		category: "route",
 		title: "Profile Page",
@@ -118,7 +127,9 @@ const commandPaletteOptions: CommandPalleteOption[] = [
 ];
 
 const filteredCommandPaletteOptions = computed(() => {
-	return commandPaletteOptions.filter(option => option.title.toLowerCase().includes(search.value.toLowerCase()));
+	let filtered = commandPaletteOptions.filter(option => option.title.toLowerCase().includes(search.value.toLowerCase()));
+	!isElectron() && (filtered = filtered.filter(option => !option.electronOnly));
+	return filtered;
 });
 
 </script>

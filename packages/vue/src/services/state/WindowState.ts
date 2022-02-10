@@ -1,28 +1,29 @@
-import { onKeyStroke, useKeyModifier } from "@vueuse/core";
-import { isElectron } from "/@/services/logic";
 import { State } from "/@/services/state/State";
-import router from "/@/router";
 
 export interface IWindowState {
 	isMaximized: boolean
 	isShowingCommandPallete: boolean
+	isSyncing: boolean
 }
+
+/**
+ * This keeps track of the window's state regarding if it's maximized, minimize etc.
+ */
 export class WindowState extends State<IWindowState> {
-	public ctrl = useKeyModifier("Control");
-	public shift = useKeyModifier("Shift");
 	constructor() {
 		super({
 			isMaximized: false,
 			isShowingCommandPallete: false,
+			isSyncing: false,
 		});
+	}
 
-		// Should probably move these somewhere else later
-		isElectron()
-			? onKeyStroke("P", () => this.ctrl.value && (this.isShowingCommandPallete = true))
-			: onKeyStroke("k", (e) => { this.ctrl.value && e.preventDefault(); this.ctrl.value && (this.isShowingCommandPallete = true); });
-		onKeyStroke("1", () => this.ctrl.value && router.push({ name: "machines" }));
-		onKeyStroke("2", () => this.ctrl.value && router.push({ name: "settings" }));
-		onKeyStroke("3", () => this.ctrl.value && router.push({ name: "profile" }));
+	public get isSyncing() {
+		return this.state.isSyncing;
+	}
+
+	public set isSyncing(value: boolean) {
+		this.state.isSyncing = value;
 	}
 
 	public get isShowingCommandPallete() {

@@ -2,7 +2,7 @@
   <div
     id="main"
     class="h-full flexcol overflow-hidden bg-background-300"
-    :class="state.window.isMaximized || !isElectron() || !state.settings.enableRoundedCorners.value ? 'rounded-0px' : 'rounded-8px'"
+    :class="state.window.isMaximized || !isElectron() || !state.settings.general.enableRoundedCorners ? 'rounded-0px' : 'rounded-8px'"
   >
     <control-buttons v-if="isElectron()" />
     <command-pallete />
