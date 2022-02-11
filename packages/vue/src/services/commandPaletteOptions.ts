@@ -1,5 +1,7 @@
+import { computed } from "vue";
 import { useState } from "../app";
 import router from "../router";
+import type { IMachine } from "../types/api/machine";
 
 export type CommandPalleteOptionCategory = "route" | "machine" | "appearance" | "sound" | "theme" | "setting";
 
@@ -32,8 +34,18 @@ const defineThemeCommands = (themes: string[]): CommandPalleteOption[] => {
 	));
 };
 
-export const commandPaletteOptions: CommandPalleteOption[] = [
+const defineMachineCommands = (machines: IMachine[]): CommandPalleteOption[] => {
+	return machines.map(machine => defineOption(
+		() => {},
+		"machine",
+		`Machine <strong>${machine.name}</strong>`,
+		"nas",
+	));
+};
+
+export const commandPaletteOptions = computed<CommandPalleteOption[]>(() => ([
 	...defineThemeCommands(["nord", "dark"]),
+	...defineMachineCommands(state.machines.getAll()),
 	defineOption(
 		() => state.settings.general.enable_rounded_corners = !state.settings.general.enable_rounded_corners,
 		"appearance",
@@ -95,4 +107,4 @@ export const commandPaletteOptions: CommandPalleteOption[] = [
 		"Sync (write) Settings",
 		"synchronize",
 	),
-];
+]));

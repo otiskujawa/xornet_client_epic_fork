@@ -14,11 +14,11 @@
           <button
             v-for="option of filteredCommandPaletteOptions.filter(option => option.category === category)"
             :key="option.title"
-            class="capitalize items-center flex gap-4 p-4 py-3 rounded-6px focus:bg-background-400 hover:bg-background-200 text-left"
+            class="capitalize items-center flex gap-4 p-4 py-3 rounded-6px focus:bg-background-200 hover:bg-background-400 text-left"
             @click="option.onClickHandler && option.onClickHandler(); state.window.isShowingCommandPallete = false;"
           >
             <fluency-icon :icon="option.icon" />
-            {{ option.title }}
+            <span v-html="option.title" />
           </button>
         </div>
       </div>
@@ -46,7 +46,7 @@ watch(
 );
 
 const filteredCommandPaletteOptions = computed(() => {
-	let filtered = commandPaletteOptions.filter(option => option.title.toLowerCase().includes(search.value.toLowerCase()));
+	let filtered = commandPaletteOptions.value.filter(option => option.title.toLowerCase().includes(search.value.toLowerCase()));
 	!isElectron() && (filtered = filtered.filter(option => !option.electronOnly));
 	return filtered;
 });
