@@ -29,7 +29,7 @@ const defineThemeCommands = (themes: string[]): CommandPalleteOption[] => {
 	return themes.map(theme => defineOption(
 		() => state.settings.general.theme = theme,
 		"theme",
-		`Set ${theme} theme`,
+		`Set <strong>${theme}</strong> theme`,
 		"color-palette",
 	));
 };
@@ -44,7 +44,7 @@ const defineMachineCommands = (machines: IMachine[]): CommandPalleteOption[] => 
 };
 
 export const commandPaletteOptions = computed<CommandPalleteOption[]>(() => ([
-	...defineThemeCommands(["nord", "dark"]),
+	...defineThemeCommands(["nord", "dark", "opera"]),
 	...defineMachineCommands(state.machines.getAll()),
 	defineOption(
 		() => state.settings.general.enable_rounded_corners = !state.settings.general.enable_rounded_corners,

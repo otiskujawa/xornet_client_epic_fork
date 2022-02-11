@@ -3,7 +3,7 @@
     <top-bar />
     <div class="w-full h-full flexcol items-center gap-2 text-12px text-text px-8">
       <option-field label="Theme">
-        <base-dropdown v-model="state.settings.general.theme" stay-open :options="['dark', 'nord']" />
+        <base-dropdown v-model="state.settings.general.theme" stay-open :options="['dark', 'nord', 'opera']" />
       </option-field>
       <option-field label="Status Bar">
         <base-switch v-model="state.settings.general.enable_status_bar" />

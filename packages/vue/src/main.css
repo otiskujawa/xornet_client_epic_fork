@@ -48,6 +48,31 @@
   --color-100000mbps: 236,239,244;           /* #ECEFF4 */ 
 }
 
+.theme-opera {
+  --color-primary-300: 194,153,255;           /* #c299ff */       /* Main Color */
+  --color-primary-400: 183,135,255;           /* #b787ff */
+  --color-primary-500: 169,112,255;           /* #A970FF */
+
+  --color-background-200: 14,12,29;           /* #0E0C1D */ 
+  --color-background-300: 22,18,43;           /* #16122B */
+  --color-background-400: 36,31,71;           /* #241F47 */
+  --color-background-500: 51,35,82;           /* #332352 */
+  --color-background-600: 57,48,112;          /* #393070 */
+
+  --color-tooltip-background: 255,255,255;    /* #ffffff */
+  --color-tooltip-text: 7,6,14;               /* #07060E */
+
+  --color-text: 211,181,255;                  /* #d3b5ff */
+  --color-caution: 255,0,179;                 /* #ff00b3 */
+  --color-warning: 255,0,72;                  /* #ff0048 */
+  --color-active: 4,194,156;                  /* #04c29c */
+
+  --color-100mbps: var(--color-warning);
+  --color-1000mbps: var(--color-active);
+  --color-10000mbps: 0,255,238;               /* #00ffee */ 
+  --color-100000mbps: 187,255,255;            /* #bbffff */ 
+}
+
 .drag {
   -webkit-app-region: drag;
 }
