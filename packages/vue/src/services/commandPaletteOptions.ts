@@ -1,5 +1,5 @@
-import { useRouter } from "vue-router";
 import { useState } from "../app";
+import router from "../router";
 
 export type CommandPalleteOptionCategory = "route" | "machine" | "appearance" | "sound" | "theme" | "setting";
 
@@ -12,80 +12,87 @@ export interface CommandPalleteOption {
 }
 
 const state = useState();
-const router = useRouter();
+
+const defineOption = (onClickHandler: Function, category: CommandPalleteOptionCategory, title: string, icon: string, electronOnly = false) => {
+	return {
+		onClickHandler,
+		category,
+		title,
+		icon,
+		electronOnly,
+	};
+};
+
+const defineThemeCommands = (themes: string[]): CommandPalleteOption[] => {
+	return themes.map(theme => defineOption(
+		() => state.settings.general.theme = theme,
+		"theme",
+		`Set ${theme} theme`,
+		"color-palette",
+	));
+};
 
 export const commandPaletteOptions: CommandPalleteOption[] = [
-	{
-		onClickHandler: () => state.settings.general.enable_bloom = !state.settings.general.enable_bloom,
-		category: "appearance",
-		title: "Toggle bloom",
-		icon: "palette",
-	},
-	{
-		onClickHandler: () => state.settings.general.enable_rounded_corners = !state.settings.general.enable_rounded_corners,
-		category: "appearance",
-		title: "Toggle rounded corners",
-		electronOnly: true,
-		icon: "palette",
-	},
-	{
-		onClickHandler: () => state.settings.general.fixed_column_width = !state.settings.general.fixed_column_width,
-		category: "appearance",
-		title: "Toggle fixed column width",
-		icon: "command-palette",
-	},
-	{
-		onClickHandler: () => state.settings.general.enable_sound_effects = !state.settings.general.enable_sound_effects,
-		category: "sound",
-		title: "Toggle sound effects",
-		icon: "sound",
-	},
-	{
-		onClickHandler: () => state.settings.general.enable_status_bar = !state.settings.general.enable_status_bar,
-		category: "appearance",
-		title: "Toggle status bar",
-		icon: "palette",
-	},
-	{
-		onClickHandler: () => state.settings.general.theme = "dark",
-		category: "theme",
-		title: "Set Dark",
-		icon: "color-palette",
-	},
-	{
-		onClickHandler: () => state.settings.general.theme = "nord",
-		category: "theme",
-		title: "Set Nord",
-		icon: "color-palette",
-	},
-	{
-		onClickHandler: () => router.push({ name: "machines" }),
-		category: "route",
-		title: "Machines Page",
-		icon: "nas",
-	},
-	{
-		onClickHandler: () => router.push({ name: "settings" }),
-		category: "route",
-		title: "Settings Page",
-		icon: "settings",
-	},
-	{
-		onClickHandler: () => state.syncSettings(),
-		category: "setting",
-		title: "Sync (read) Settings",
-		icon: "synchronize",
-	},
-	{
-		onClickHandler: () => state.updateSettings(),
-		category: "setting",
-		title: "Sync (write) Settings",
-		icon: "synchronize",
-	},
-	{
-		onClickHandler: () => router.push({ name: "profile" }),
-		category: "route",
-		title: "Profile Page",
-		icon: "user",
-	},
+	...defineThemeCommands(["nord", "dark"]),
+	defineOption(
+		() => state.settings.general.enable_rounded_corners = !state.settings.general.enable_rounded_corners,
+		"appearance",
+		"Toggle rounded corners",
+		"color-palette",
+		true,
+	),
+	defineOption(
+		() => state.settings.general.enable_bloom = !state.settings.general.enable_bloom,
+		"appearance",
+		"Toggle bloom",
+		"palette",
+	),
+	defineOption(
+		() => state.settings.general.fixed_column_width = !state.settings.general.fixed_column_width,
+		"appearance",
+		"Toggle fixed column width",
+		"command-palette",
+	),
+	defineOption(
+		() => state.settings.general.enable_sound_effects = !state.settings.general.enable_sound_effects,
+		"sound",
+		"Toggle sound effects",
+		"sound",
+	),
+	defineOption(
+		() => state.settings.general.enable_status_bar = !state.settings.general.enable_status_bar,
+		"appearance",
+		"Toggle status bar",
+		"palette",
+	),
+	defineOption(
+		() => router.push({ name: "profile" }),
+		"route",
+		"Profile Page",
+		"user",
+	),
+	defineOption(
+		() => router.push({ name: "machines" }),
+		"route",
+		"Machines Page",
+		"nas",
+	),
+	defineOption(
+		() => router.push({ name: "settings" }),
+		"route",
+		"Settings Page",
+		"settings",
+	),
+	defineOption(
+		() => state.syncSettings(),
+		"setting",
+		"Sync (read) Settings",
+		"synchronize",
+	),
+	defineOption(
+		() => state.updateSettings(),
+		"setting",
+		"Sync (write) Settings",
+		"synchronize",
+	),
 ];
