@@ -29,14 +29,11 @@
 <script setup lang="ts">
 import type { Ref } from "vue";
 import { computed, ref, watch } from "vue";
-import { useRouter } from "vue-router";
+import { commandPaletteOptions } from "../services/commandPaletteOptions";
 import { isElectron } from "../services/logic";
 import { useState } from "/@/app";
 import BaseDialog from "/@/components/base/BaseDialog.vue";
 
-export type CommandPalleteOptionCategory = "route" | "machine" | "appearance" | "sound" | "theme" | "setting";
-
-const router = useRouter();
 const search = ref("");
 const state = useState();
 const commandPalleteInput = ref() as Ref<HTMLInputElement>;
@@ -47,84 +44,6 @@ watch(
 		setTimeout(() => commandPalleteInput.value && commandPalleteInput.value.focus(), 10);
 	},
 );
-
-interface CommandPalleteOption {
-	title: string
-	icon?: string
-	electronOnly?: boolean
-	category: CommandPalleteOptionCategory
-	onClickHandler?: Function
-}
-
-const commandPaletteOptions: CommandPalleteOption[] = [
-	{
-		onClickHandler: () => state.settings.general.enable_bloom = !state.settings.general.enable_bloom,
-		category: "appearance",
-		title: "Toggle bloom",
-		icon: "palette",
-	},
-	{
-		onClickHandler: () => state.settings.general.enable_rounded_corners = !state.settings.general.enable_rounded_corners,
-		category: "appearance",
-		title: "Toggle rounded corners",
-		electronOnly: true,
-		icon: "palette",
-	},
-	{
-		onClickHandler: () => state.settings.general.enable_sound_effects = !state.settings.general.enable_sound_effects,
-		category: "sound",
-		title: "Toggle sound effects",
-		icon: "sound",
-	},
-	{
-		onClickHandler: () => state.settings.general.enable_status_bar = !state.settings.general.enable_status_bar,
-		category: "appearance",
-		title: "Toggle status bar",
-		icon: "palette",
-	},
-	{
-		onClickHandler: () => state.settings.general.theme = "dark",
-		category: "theme",
-		title: "Set Dark",
-		icon: "color-palette",
-	},
-	{
-		onClickHandler: () => state.settings.general.theme = "nord",
-		category: "theme",
-		title: "Set Nord",
-		icon: "color-palette",
-	},
-	{
-		onClickHandler: () => router.push({ name: "machines" }),
-		category: "route",
-		title: "Machines Page",
-		icon: "nas",
-	},
-	{
-		onClickHandler: () => router.push({ name: "settings" }),
-		category: "route",
-		title: "Settings Page",
-		icon: "settings",
-	},
-	{
-		onClickHandler: () => state.syncSettings(),
-		category: "setting",
-		title: "Sync (read) Settings",
-		icon: "synchronize",
-	},
-	{
-		onClickHandler: () => state.updateSettings(),
-		category: "setting",
-		title: "Sync (write) Settings",
-		icon: "synchronize",
-	},
-	{
-		onClickHandler: () => router.push({ name: "profile" }),
-		category: "route",
-		title: "Profile Page",
-		icon: "user",
-	},
-];
 
 const filteredCommandPaletteOptions = computed(() => {
 	let filtered = commandPaletteOptions.filter(option => option.title.toLowerCase().includes(search.value.toLowerCase()));

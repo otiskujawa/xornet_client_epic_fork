@@ -221,7 +221,7 @@ const deleteMachine = async(uuid: uuid) => {
 };
 </script>
 
-<style scoped lang="postcss">
+<style scoped>
 th {
   @apply text-text text-opacity-50;
 }

@@ -1,5 +1,5 @@
 <template>
-  <table class="w-full text-xs table-auto">
+  <table class="w-full text-xs" :class="state.settings.general.fixed_column_width ? 'table-fixed' : 'table-auto'">
     <tr class="headerRow text-left ">
       <slot name="headers" />
     </tr>
@@ -9,6 +9,9 @@
 </template>
 
 <script setup lang="ts">
+import { useState } from "/@/app";
+
+const state = useState();
 </script>
 
 <style  lang="postcss">

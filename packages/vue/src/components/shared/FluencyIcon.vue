@@ -29,6 +29,7 @@
     <i-fluency-select-column v-if="icon === 'select-column'" />
     <i-fluency-services v-if="icon === 'services'" />
     <i-fluency-color-palette v-if="icon === 'color-palette'" />
+    <i-fluency-command-palette v-if="icon === 'command-palette'" />
     <i-fluency-sound v-if="icon === 'sound'" />
     <i-fluency-settings v-if="icon === 'settings'" />
     <i-fluency-skull v-if="icon === 'skull'" />

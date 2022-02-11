@@ -16,6 +16,7 @@ export class SettingsState {
 		enable_status_bar: false,
 		show_offline_machines: true,
 		show_owned_machines_only: false,
+		fixed_column_width: false,
 	}).value;
 
 	public columns = useLocalStorage("columns", {
