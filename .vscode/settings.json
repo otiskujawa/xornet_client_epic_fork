@@ -6,7 +6,7 @@
     "source.organizeImports": true
   },
   "typescript.inlayHints.variableTypes.enabled": false,
-  "typescript.inlayHints.parameterNames.enabled": "literals",
+  "typescript.inlayHints.parameterNames.enabled": "all",
   "files.associations": {
     "*.css": "postcss"
   },
