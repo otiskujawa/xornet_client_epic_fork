@@ -10,20 +10,13 @@
         <tr
           v-for="machine of machines"
           :key="machine.hardware_uuid"
+          @click="router.push({name: 'machine', params: {uuid: machine.uuid}})"
           @mouseenter="soundManager.playHover()"
         >
           <th v-if="columns.hostname">
             <machine-stat :value="machine.name">
-              <distro-icon class="w-16px h-16px min-w-16px min-h-16px" :name="machine.os_name?.replace(/'/g, '')" />
-              <div
-                v-if="machine.is_online"
-                :class="state.settings.general.enable_bloom && 'bloom'"
-                class="w-5px h-5px rounded-full bg-active mr-1"
-              />
-              <div
-                v-else
-                class="w-5px h-5px rounded-full bg-white text-white opacity-50 mr-1"
-              />
+              <distro-icon class="text-sm" :name="machine.os_name?.replace(/'/g, '')" />
+              <activity-status :machine="machine" />
             </machine-stat>
           </th>
           <th v-if="columns.cpu_average_usage">
@@ -100,7 +93,7 @@
               <i-fluency-upgrade />
             </machine-stat>
           </th>
-          <th v-if="columns.owner">
+          <th v-if="columns.owner" @click.stop>
             <div class="flex items-center gap-3">
               <avatar :user="machine.owner" class="w-16px" />
               {{ machine.owner?.username }}
@@ -121,14 +114,19 @@
 import type { uuid } from "/@/types/api";
 import { computed, ref } from "vue";
 import { useSoundManager, useState } from "/@/app";
+import ActivityStatus from "/@/components/ActivityStatus.vue";
 import BaseTable from "/@/components/base/BaseTable.vue";
 import MachineStat from "/@/components/MachineStat.vue";
 import NetworkSwitch from "/@/components/NetworkSwitch.vue";
 import Avatar from "/@/components/user/Avatar.vue";
 import BaseConfirmationDialog from "/@/components/base/BaseConfirmationDialog.vue";
 import BaseTableHeader from "/@/components/base/BaseTableHeader.vue";
+import { useRouter } from "vue-router";
+import DistroIcon from "./shared/DistroIcon.vue";
+import { IMachine } from "../types/api/machine";
 const soundManager = useSoundManager();
 const state = useState();
+const router = useRouter();
 const columns = computed(() => state.settings.columns);
 const sortByKey = ref("hostname");
 const sortBy = (field: string) => sortByKey.value = field;
@@ -157,7 +155,6 @@ const machines = computed(() => state.machines.getAll()
 			ram_used_gb: (machine.ram?.used || 0) / 1024 / 1024,
 			ram_total_gb: (machine.ram?.total || 0) / 1024 / 1024,
 			temperature: machine.temps?.[0].value,
-			is_online: machine.status === 2,
 			owner: state.users.get(machine.owner_uuid),
 		});
 	})
@@ -167,7 +164,7 @@ const machines = computed(() => state.machines.getAll()
     || state.users.get(machine.owner_uuid).username.toLowerCase().includes(state.machines.filterText.value),
 	)
 // This is so you can hide offline machines
-	.filter(machine => state.settings.general.show_offline_machines ? machine : machine.is_online)
+	.filter(machine => state.settings.general.show_offline_machines ? machine : machine.status === 2)
 // This makes it so you can see only your own machines
 	.filter(machine => state.settings.general.show_owned_machines_only ? machine.owner_uuid === state.users.getMe().uuid : machine)
 // This switch is what sorts the columns
@@ -213,7 +210,7 @@ const machines = computed(() => state.machines.getAll()
 		return comparison ? -1 : 1;
 	})
 // This puts all the offline machines at the bottom
-	.sort(a => a.is_online ? -1 : 1));
+	.sort(a => a.status === 2 ? -1 : 1));
 
 const deleteMachine = async(uuid: uuid) => {
 	const { machines } = useState();
@@ -224,8 +221,5 @@ const deleteMachine = async(uuid: uuid) => {
 <style scoped>
 th {
   @apply text-text text-opacity-50;
-}
-.bloom {
-  box-shadow: 0px 0px 6px #00FF67;
 }
 </style>

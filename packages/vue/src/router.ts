@@ -33,6 +33,11 @@ export const routes: (FancyRouteRecord & { children?: FancyRouteRecord[] })[] = 
 				component: () => import("./views/Dashboard/MachinesView.vue"),
 			},
 			{
+				path: "machine/:uuid",
+				name: "machine",
+				component: () => import("./views/Dashboard/MachineView.vue"),
+			},
+			{
 				path: "settings",
 				name: "settings",
 				icon: "settings",

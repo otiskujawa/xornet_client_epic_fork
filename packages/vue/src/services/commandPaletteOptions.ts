@@ -36,7 +36,7 @@ const defineThemeCommands = (themes: string[]): CommandPalleteOption[] => {
 
 const defineMachineCommands = (machines: IMachine[]): CommandPalleteOption[] => {
 	return machines.map(machine => defineOption(
-		() => {},
+		() => router.push({ name: "machine", params: { uuid: machine.uuid } }),
 		"machine",
 		`Machine <strong>${machine.name}</strong>`,
 		"nas",

@@ -1,9 +1,9 @@
-import type { uuid } from "/@/types/api";
 import { ref } from "vue";
-import { MachineStatus } from "/@/types/api/machine";
-import type { IDatabaseMachine, IMachine, IMachineDynamicData } from "/@/types/api/machine";
 import type { API } from "/@/services/api";
 import { State } from "/@/services/state/State";
+import type { uuid } from "/@/types/api";
+import type { IDatabaseMachine, IMachine, IMachineDynamicData } from "/@/types/api/machine";
+import { MachineStatus } from "/@/types/api/machine";
 
 export interface IMachinesState {
 	machines: Record<uuid, IMachine>
