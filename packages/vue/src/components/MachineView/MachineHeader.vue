@@ -1,6 +1,6 @@
 <template>
   <div class="flexcol">
-    <div class="px-2 bg-black drag bg-opacity-25 flex items-center">
+    <div class="px-2 pt-1 drag flex items-center">
       <router-link class="flex no-drag items-center p-4 opacity-50 hover:opacity-100" :to="{name: 'machines'}">
         <i-fluency-home />
       </router-link>
@@ -11,7 +11,7 @@
         {{ machine.name }}
       </router-link>
     </div>
-    <div class="text-lg p-4 flex gap-4 items-center">
+    <div class="text-lg p-4 pt-3 flex gap-4 items-center">
       <distro-icon class="text-4xl" :name="machine.os_name" />
       <div class="flexcol">
         <div class="flex gap-1 items-center">
