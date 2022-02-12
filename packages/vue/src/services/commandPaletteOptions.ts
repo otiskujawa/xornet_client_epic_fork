@@ -78,6 +78,12 @@ export const commandPaletteOptions = computed<CommandPalleteOption[]>(() => ([
 		"palette",
 	),
 	defineOption(
+		() => state.settings.general.enable_totals = !state.settings.general.enable_totals,
+		"appearance",
+		"Toggle total stats",
+		"command-palette",
+	),
+	defineOption(
 		() => router.push({ name: "profile" }),
 		"route",
 		"Profile Page",
