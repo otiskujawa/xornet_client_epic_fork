@@ -1,6 +1,6 @@
+import { app, BrowserWindow, ipcMain } from "electron";
 import { join } from "path";
 import { URL } from "url";
-import { BrowserWindow, app, ipcMain } from "electron";
 import "./security-restrictions";
 
 const isSingleInstance = app.requestSingleInstanceLock();
@@ -11,7 +11,7 @@ if (!isSingleInstance) {
 	process.exit(0);
 }
 
-app.disableHardwareAcceleration();
+// app.disableHardwareAcceleration();
 
 // Install "Vue.js devtools"
 if (isDevelopment) {
