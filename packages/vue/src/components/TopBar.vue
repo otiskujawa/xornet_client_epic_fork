@@ -39,6 +39,9 @@
       <base-switch v-model="state.settings.general.show_owned_machines_only" />
       Owned Only
 
+      <base-switch v-model="state.settings.general.enable_totals" />
+      Show Totals
+
       <base-dialog v-model="showTokenGenerator" unsized>
         <token-generator />
       </base-dialog>
