@@ -3,8 +3,8 @@
 // conflicting circular dependancies of modules requiring each other to be
 // initialized before themselves which is a massive code structure issue
 
-import { ShortcutManager } from "/@/services/ShortcutManager";
 import { API } from "/@/services/api";
+import { ShortcutManager } from "/@/services/ShortcutManager";
 import { SoundManager } from "/@/services/SoundManager";
 import { AppState } from "/@/services/state/AppState";
 
@@ -15,15 +15,18 @@ import { AppState } from "/@/services/state/AppState";
  * hopefully this code structure will scale well in the end
  */
 export class Xornet {
-	private api: API = new API();
+	public api: API = new API();
 	public state: AppState = new AppState(this.api);
 	public shortcutManager: ShortcutManager = new ShortcutManager(this.state.window);
 	public soundManager: SoundManager = new SoundManager(this.state);
 
 	constructor() {
+		this.initDashboard();
+	}
+
+	public initDashboard() {
 		this.state.syncSettings();
-		this.state.machines.fetchMachines();
-		this.api.createWebsocketConnection(this.state);
+		this.state.machines.fetchMachines().then(() => this.api.createWebsocketConnection(this.state));
 	}
 }
 

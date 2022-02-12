@@ -19,6 +19,7 @@ export class API {
 	constructor() {}
 
 	public createWebsocketConnection(state: AppState) {
+		if (!localStorage.getItem("token") === undefined) return;
 		// Create WebSocket connection.
 		const socket = new WebSocket(`${BASE_URL.replace("https", "wss").replace("http", "ws")}/client`);
 

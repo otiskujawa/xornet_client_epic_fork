@@ -9,6 +9,9 @@
         <base-link to="login">
           Already have an account?
         </base-link>
+        <p class="font-bold text-caution">
+          {{ errorText }}
+        </p>
         <base-button type="submit" :disabled="!isValid">
           Sign Up
         </base-button>
@@ -18,15 +21,16 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive } from "vue";
+import { computed, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import BaseButton from "/@/components/base/BaseButton.vue";
 import BaseForm from "/@/components/base/BaseForm.vue";
 import BaseInput from "/@/components/base/BaseInput.vue";
 import BaseLink from "/@/components/base/BaseLink.vue";
-import { useState } from "/@/app";
+import xornet, { useState } from "/@/app";
 const router = useRouter();
 const state = useState();
+const errorText = ref("");
 
 const form = reactive({
 	username: "",
@@ -37,7 +41,12 @@ const form = reactive({
 
 const isValid = computed(() => form.username && form.email && form.password && form.repeatPassword === form.password);
 
-const onSubmit = async() => state.users.signup(form).then(() => router.push({ name: "machines" }));
+const onSubmit = async() => state.users.signup(form).then(() => {
+	router.push({ name: "machines" });
+	xornet.initDashboard();
+}).catch(async(e) => {
+	errorText.value = (await e).error;
+});
 
 </script>
 
