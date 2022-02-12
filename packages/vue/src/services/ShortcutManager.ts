@@ -11,8 +11,8 @@ export class ShortcutManager {
 		isElectron()
 			? onKeyStroke("P", () => this.ctrl.value && (this.windowState.isShowingCommandPallete = true))
 			: onKeyStroke("k", (e) => { this.ctrl.value && e.preventDefault(); this.ctrl.value && (this.windowState.isShowingCommandPallete = true); });
-		onKeyStroke("1", () => this.ctrl.value && router.push({ name: "machines" }));
-		onKeyStroke("2", () => this.ctrl.value && router.push({ name: "settings" }));
-		onKeyStroke("3", () => this.ctrl.value && router.push({ name: "profile" }));
+		onKeyStroke("1", (e) => { this.ctrl.value && e.preventDefault(); this.ctrl.value && router.push({ name: "machines" }); });
+		onKeyStroke("2", (e) => { this.ctrl.value && e.preventDefault(); this.ctrl.value && router.push({ name: "settings" }); });
+		onKeyStroke("3", (e) => { this.ctrl.value && e.preventDefault(); this.ctrl.value && router.push({ name: "profile" }); });
 	}
 }
