@@ -11,7 +11,7 @@
           {{ ( disk.used / disk.total * 100).toFixed(2) }}% used
         </p>
       </div>
-      <div class="opacity-25 flex justify-between items-center">
+      <div class="opacity-35 flex justify-between items-center">
         <p>
           {{ `${(disk.used / 1024 / 1024 / 1024).toFixed(2)} GB` }}
         </p>

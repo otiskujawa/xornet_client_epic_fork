@@ -8,7 +8,7 @@
           {{ machine.name }}
         </h1>
       </div>
-      <p class="opacity-25">
+      <p class="opacity-35">
         {{ machine.uuid }}
       </p>
     </div>
