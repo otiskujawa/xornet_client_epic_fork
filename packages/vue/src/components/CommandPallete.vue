@@ -27,6 +27,7 @@
 </template>
 
 <script setup lang="ts">
+import { onKeyDown } from "@vueuse/core";
 import type { Ref } from "vue";
 import { computed, ref, watch } from "vue";
 import { commandPaletteOptions } from "../services/commandPaletteOptions";
@@ -37,6 +38,72 @@ import BaseDialog from "/@/components/base/BaseDialog.vue";
 const search = ref("");
 const state = useState();
 const commandPalleteInput = ref() as Ref<HTMLInputElement>;
+const focusKeyFilter = [
+	"Control",
+	"Backspace",
+	"q",
+	"w",
+	"e",
+	"r",
+	"t",
+	"y",
+	"u",
+	"i",
+	"o",
+	"p",
+	"a",
+	"s",
+	"d",
+	"f",
+	"g",
+	"h",
+	"j",
+	"k",
+	"l",
+	"z",
+	"x",
+	"c",
+	"v",
+	"b",
+	"n",
+	"m",
+	"Q",
+	"W",
+	"E",
+	"R",
+	"T",
+	"Y",
+	"U",
+	"I",
+	"O",
+	"P",
+	"A",
+	"S",
+	"D",
+	"F",
+	"G",
+	"H",
+	"J",
+	"K",
+	"L",
+	"Z",
+	"X",
+	"C",
+	"V",
+	"B",
+	"N",
+	"M",
+	"1",
+	"2",
+	"3",
+	"4",
+	"5",
+	"6",
+	"7",
+	"8",
+	"9",
+];
+onKeyDown(focusKeyFilter, () => commandPalleteInput.value.focus());
 watch(
 	() => state.window.isShowingCommandPallete,
 	() => {
