@@ -1,5 +1,5 @@
 <template>
-  <div v-if="machine" class="flexcol bg-background-200 w-full">
+  <div v-if="machine" class="flexcol bg-black bg-opacity-25 w-full">
     <machine-header :machine="machine" />
     <div class="flexcol gap-2 px-4">
       <machine-processor :machine="machine" />
