@@ -12,14 +12,14 @@
       </navigation-button>
 
       <div class="px-2">
-        <div class="h-1px bg-background-200 w-full" />
+        <div class="h-1px bg-black bg-opacity-50 w-full" />
       </div>
       <navigation-button name="Open Command Palette" :shortcut="isElectron() ? ['Control', 'Shift', 'P'] : ['Control', 'k']" :handle-fn="() => state.window.isShowingCommandPallete = true">
         <i-fluency-command-palette class="w-full h-full" />
       </navigation-button>
 
       <div class="px-2">
-        <div class="h-1px bg-background-200 w-full" />
+        <div class="h-1px bg-black bg-opacity-50 w-full" />
       </div>
       <navigation-button name="Github Repository" href="https://github.com/xornet-cloud">
         <i-fluency-github class="w-full h-full" />
