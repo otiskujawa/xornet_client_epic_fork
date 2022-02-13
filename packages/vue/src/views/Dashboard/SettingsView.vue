@@ -8,6 +8,9 @@
       <option-field label="Status Bar">
         <base-switch v-model="state.settings.general.enable_status_bar" />
       </option-field>
+      <option-field label="Sync on startup (client only)">
+        <base-switch v-model="state.settings.client.enable_autosync" />
+      </option-field>
       <option-field label="Sound FX">
         <base-switch v-model="state.settings.general.enable_sound_effects" />
       </option-field>
@@ -26,7 +29,6 @@
       <option-field label="Show Total Machine Stats">
         <base-switch v-model="state.settings.general.enable_totals" />
       </option-field>
-
       <option-field v-if="isElectron()" label="Background Opacity">
         <div class="flex gap-2 items-center">
           <base-range-input v-model="state.settings.general.opacity" min="0" max="100" step="1" />

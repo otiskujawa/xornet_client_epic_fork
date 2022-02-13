@@ -47,6 +47,12 @@ export const commandPaletteOptions = computed<CommandPalleteOption[]>(() => ([
 	...defineThemeCommands(["nord", "dark", "opera"]),
 	...defineMachineCommands(state.machines.getAll()),
 	defineOption(
+		() => location.reload(),
+		"setting",
+		"Reload Page",
+		"synchronize",
+	),
+	defineOption(
 		() => state.settings.general.enable_rounded_corners = !state.settings.general.enable_rounded_corners,
 		"appearance",
 		"Toggle rounded corners",
