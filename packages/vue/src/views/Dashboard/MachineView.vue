@@ -22,9 +22,9 @@ const state = useState();
 const machineUuid = computed(() => route.params.uuid as string);
 const machine = computed(() => {
 	const machine = state.machines.get(machineUuid.value);
-	if (machine.name) {
+	if (machine?.name) {
 		xornet.discordManager.updatePresence({
-			state: "Viewing Dashboard",
+			state: machine.os_name?.replaceAll("'", ""),
 			details: machine.name,
 			largeImageKey: "main_logo",
 			largeImageText: "Xornet Cloud",

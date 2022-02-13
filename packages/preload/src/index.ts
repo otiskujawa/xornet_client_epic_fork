@@ -48,8 +48,7 @@ const discordRPC = new DiscordRPC();
  */
 process.once("loaded", () => window.addEventListener("message", (event) => {
 	const theEvent = event.data as unknown as { name: string; data: string };
-	console.log(theEvent.data);
 	if (theEvent.name === "rpc")
 		return discordRPC.updateRichPresence(theEvent.data as any);
-	ipcRenderer.send("event", theEvent.data);
+	ipcRenderer.send("event", event.data);
 }));

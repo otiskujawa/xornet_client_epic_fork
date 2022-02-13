@@ -6,6 +6,15 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from "vue";
+import xornet from "/@/app";
 import MachineList from "/@/components/MachineList.vue";
 import TopBar from "/@/components/TopBar.vue";
+onMounted(() => {
+	xornet.discordManager.updatePresence({
+		state: "Monitoring Machines",
+		largeImageKey: "main_logo",
+		largeImageText: "Xornet Cloud",
+	});
+});
 </script>
