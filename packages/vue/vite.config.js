@@ -1,8 +1,8 @@
 /* eslint-env node */
 
-import vue from "@vitejs/plugin-vue";
 import { builtinModules } from "module";
 import { join } from "path";
+import vue from "@vitejs/plugin-vue";
 import { FileSystemIconLoader } from "unplugin-icons/loaders";
 import IconsResolver from "unplugin-icons/resolver";
 import Icons from "unplugin-icons/vite";
