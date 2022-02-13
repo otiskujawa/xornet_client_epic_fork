@@ -32,12 +32,13 @@ export class Xornet {
 	}
 }
 
-// Alias function for scope bounds
+// Make an instance in here because this is basically the entry point
 const xornet = new Xornet();
 
 // Alias function for scope bounds
 export const useState = () => xornet.state;
 export const useSoundManager = () => xornet.soundManager;
+export const useDiscordManager = () => xornet.discordManager;
 
 // Export the middle-end as a default export
 export default xornet;

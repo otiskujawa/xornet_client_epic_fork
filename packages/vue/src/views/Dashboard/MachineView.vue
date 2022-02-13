@@ -10,9 +10,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from "vue";
+import { computed } from "vue";
 import { useRoute } from "vue-router";
-import xornet, { useState } from "/@/app";
+import { useDiscordManager, useState } from "/@/app";
 import MachineHeader from "/@/components/MachineView/MachineHeader.vue";
 import MachineDisk from "/@/components/MachineView/MachineDisk.vue";
 import MachineProcessor from "/@/components/MachineView/MachineProcessor.vue";
@@ -23,7 +23,7 @@ const machineUuid = computed(() => route.params.uuid as string);
 const machine = computed(() => {
 	const machine = state.machines.get(machineUuid.value);
 	if (machine?.name) {
-		xornet.discordManager.updatePresence({
+		useDiscordManager().updatePresence({
 			state: machine.os_name?.replaceAll("'", ""),
 			details: machine.name,
 			largeImageKey: "main_logo",
