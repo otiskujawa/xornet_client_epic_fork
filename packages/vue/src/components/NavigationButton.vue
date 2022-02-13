@@ -36,6 +36,7 @@
 <script setup lang="ts">
 import type { RouteLocationRaw } from "vue-router";
 import BaseKbd from "/@/components/base/BaseKbd.vue";
+import BaseTooltip from "./base/BaseTooltip.vue";
 
 defineProps<{
 	to?: RouteLocationRaw
@@ -50,8 +51,8 @@ defineProps<{
 <style lang="postcss" scoped>
 
 .navButton {
-  @apply p-4 flex cursor-pointer items-center justify-center w-full h-full opacity-25;
-}
+  @apply p-3 sm:p-4 flex cursor-pointer items-center justify-center w-full h-full opacity-25;
+  }
 
 a, div {
   &:hover {

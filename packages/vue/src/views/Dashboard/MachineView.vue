@@ -1,5 +1,5 @@
 <template>
-  <div v-if="machine" class="flexcol bg-black bg-opacity-25 w-full">
+  <div v-if="machine" class="flexcol bg-black bg-opacity-25 h-full w-full">
     <machine-header :machine="machine" />
     <div class="flexcol gap-2 px-4">
       <machine-processor :machine="machine" />
@@ -31,15 +31,15 @@ const machine = computed(() => {
 			smallImageKey: "viewing",
 			smallImageText: `Viewing ${machine.name}`,
 			buttons: [
-			{
-				"label": "See Machine",
-				"url": `https://xornet.cloud/#/dashboard/machine/${machine.uuid}`,
-			},
-			{
-				"label": "GitHub",
-				"url": "https://github.com/xornet-cloud/",
-			}
-		],
+				{
+					label: "See Machine",
+					url: `https://xornet.cloud/#/dashboard/machine/${machine.uuid}`,
+				},
+				{
+					label: "GitHub",
+					url: "https://github.com/xornet-cloud/",
+				},
+			],
 		});
 	}
 

@@ -17,6 +17,16 @@
       <option-field v-if="isElectron()" label="Rounded Window Corners">
         <base-switch v-model="state.settings.general.enable_rounded_corners" />
       </option-field>
+      <option-field label="Show Offline Machines">
+        <base-switch v-model="state.settings.general.show_offline_machines" />
+      </option-field>
+      <option-field label="Show Owned Machines Only">
+        <base-switch v-model="state.settings.general.show_owned_machines_only" />
+      </option-field>
+      <option-field label="Show Total Machine Stats">
+        <base-switch v-model="state.settings.general.enable_totals" />
+      </option-field>
+
       <option-field v-if="isElectron()" label="Background Opacity">
         <div class="flex gap-2 items-center">
           <base-range-input v-model="state.settings.general.opacity" min="0" max="100" step="1" />

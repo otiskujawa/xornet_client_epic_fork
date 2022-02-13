@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flexcol bg-black bg-opacity-25 overflow-hidden">
+  <div class="w-full h-full flexcol bg-black bg-opacity-25 overflow-hidden">
     <top-bar />
     <machine-list />
   </div>
@@ -17,13 +17,13 @@ onMounted(() => {
 		largeImageText: "Xornet Cloud",
 		buttons: [
 			{
-				"label": "Website",
-				"url": "https://xornet.cloud/"
+				label: "Website",
+				url: "https://xornet.cloud/",
 			},
 			{
-				"label": "GitHub",
-				"url": "https://github.com/xornet-cloud/",
-			}
+				label: "GitHub",
+				url: "https://github.com/xornet-cloud/",
+			},
 		],
 	});
 });

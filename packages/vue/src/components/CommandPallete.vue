@@ -1,6 +1,6 @@
 <template>
   <base-dialog v-model="state.window.isShowingCommandPallete">
-    <div class="border-2 border-background-200 flexcol gap-2 fixed bg-background-300 z-50 text-text w-128 p-2 rounded-8px center">
+    <div class="border-2 border-background-200 flexcol gap-2 fixed bg-background-300 z-50 text-text w-128 max-w-full p-2 rounded-8px center">
       <div class="p-2 flexcol gap-4">
         <input ref="commandPalleteInput" v-model="search" class="bg-transparent placeholder-text placeholder-opacity-50 text-lg" placeholder="Quick search...">
         <div class="h-1px bg-background-200 w-full" />

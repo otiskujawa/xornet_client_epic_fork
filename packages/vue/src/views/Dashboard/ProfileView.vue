@@ -1,5 +1,5 @@
 <template>
-  <div v-if="user" class="w-full flexcol bg-black bg-opacity-25">
+  <div v-if="user" class="w-full h-full flexcol bg-black bg-opacity-25">
     <top-bar />
     <div class="w-full h-full px-4">
       <div

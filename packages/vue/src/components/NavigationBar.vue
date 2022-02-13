@@ -1,5 +1,24 @@
 <template>
-  <nav class="h-full justify-between w-min flexcol">
+  <nav class="p-4 mb-1 items-center flex sm:hidden bg-black bg-opacity-25 w-full">
+    <div class="flex w-full h-min justify-between bg-background-300 rounded-full px-10 pr-24 border-1 border-background-500 ">
+      <navigation-button name="machines" :to="{ name: 'machines' }">
+        <i-fluency-nas class="text-2xl" />
+      </navigation-button>
+      <navigation-button name="profile" :to="{ name: 'profile', params: { uuid: state.users.getMe()?.uuid } }">
+        <i-fluency-user class="text-2xl" />
+      </navigation-button>
+      <navigation-button name="Open Command Palette" :shortcut="isElectron() ? ['Control', 'Shift', 'P'] : ['Control', 'k']" :handle-fn="() => state.window.isShowingCommandPallete = true">
+        <i-fluency-command-palette class="text-2xl" />
+      </navigation-button>
+      <navigation-button name="settings" :to="{ name: 'settings' }">
+        <i-fluency-settings class="text-2xl" />
+      </navigation-button>
+    </div>
+    <li class="flex fixed bottom-4 right-4 items-center justify-center ">
+      <avatar :user="state.users.getMe()" class="w-16" />
+    </li>
+  </nav>
+  <nav class="h-full hidden sm:flex flex-col justify-between w-min ">
     <ul>
       <navigation-button name="machines" :shortcut="['Control', '1']" :to="{ name: 'machines' }">
         <i-fluency-nas class="w-full h-full" />
@@ -37,7 +56,7 @@
           <logout-button />
         </li>
       </base-tooltip>
-      <li class="flex p-3 flex items-center justify-center ">
+      <li class="flex p-3 items-center justify-center ">
         <avatar :user="state.users.getMe()" class="w-8" />
       </li>
     </ul>

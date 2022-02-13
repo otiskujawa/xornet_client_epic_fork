@@ -511,6 +511,7 @@ export default defineConfig({
 		fs: {
 			strict: true,
 		},
+		host: true,
 	},
 	build: {
 		sourcemap: true,
