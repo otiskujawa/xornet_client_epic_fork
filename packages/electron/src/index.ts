@@ -1,6 +1,8 @@
+import type { Presence } from "discord-rpc";
 import { app, BrowserWindow, ipcMain } from "electron";
 import { join } from "path";
 import { URL } from "url";
+import { DiscordRPC } from "./DiscordRPC";
 import "./security-restrictions";
 
 const isSingleInstance = app.requestSingleInstanceLock();
@@ -74,9 +76,14 @@ const createWindow = async() => {
 	await mainWindow.loadURL(pageUrl);
 };
 
+const discordRPC = new DiscordRPC();
+
 // Listen to events from the frontend
 ipcMain.on("event", (_, event: { name: string; data: string }) => {
 	switch (event.name) {
+		case "rpc":
+			discordRPC.updateRichPresence(event.data as Presence);
+			break;
 		case "close":
 			app.quit();
 			break;

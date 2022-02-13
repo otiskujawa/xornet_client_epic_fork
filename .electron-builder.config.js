@@ -18,6 +18,7 @@ const config = {
   extraMetadata: {
     version: process.env.VITE_APP_VERSION,
   },
+  npmRebuild: false
 };
 
 module.exports = config;
