@@ -15,6 +15,16 @@ onMounted(() => {
 		state: "Monitoring Machines",
 		largeImageKey: "main_logo",
 		largeImageText: "Xornet Cloud",
+		buttons: [
+			{
+				"label": "Website",
+				"url": "https://xornet.cloud/"
+			},
+			{
+				"label": "GitHub",
+				"url": "https://github.com/xornet-cloud/",
+			}
+		],
 	});
 });
 </script>

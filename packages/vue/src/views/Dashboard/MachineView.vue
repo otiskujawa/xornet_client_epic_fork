@@ -30,6 +30,16 @@ const machine = computed(() => {
 			largeImageText: "Xornet Cloud",
 			smallImageKey: "viewing",
 			smallImageText: `Viewing ${machine.name}`,
+			buttons: [
+			{
+				"label": "See Machine",
+				"url": `https://xornet.cloud/#/dashboard/machine/${machine.uuid}`,
+			},
+			{
+				"label": "GitHub",
+				"url": "https://github.com/xornet-cloud/",
+			}
+		],
 		});
 	}
 
