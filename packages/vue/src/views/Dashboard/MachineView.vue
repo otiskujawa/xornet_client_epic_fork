@@ -32,8 +32,8 @@ const machine = computed(() => {
 			smallImageText: `Viewing ${machine.name}`,
 			buttons: [
 			{
-				"label": "Website",
-				"url": "https://xornet.cloud/"
+				"label": "See Machine",
+				"url": `https://xornet.cloud/#/dashboard/machine/${machine.uuid}`,
 			},
 			{
 				"label": "GitHub",
