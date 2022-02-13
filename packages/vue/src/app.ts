@@ -3,6 +3,7 @@
 // conflicting circular dependancies of modules requiring each other to be
 // initialized before themselves which is a massive code structure issue
 
+import { DiscordManager } from "./services/DiscordManager";
 import { API } from "/@/services/api";
 import { ShortcutManager } from "/@/services/ShortcutManager";
 import { SoundManager } from "/@/services/SoundManager";
@@ -19,6 +20,7 @@ export class Xornet {
 	public state: AppState = new AppState(this.api);
 	public shortcutManager: ShortcutManager = new ShortcutManager(this.state.window);
 	public soundManager: SoundManager = new SoundManager(this.state);
+	public discordManager: DiscordManager = new DiscordManager();
 
 	constructor() {
 		this.initDashboard();

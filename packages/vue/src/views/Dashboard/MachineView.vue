@@ -10,9 +10,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
-import { useState } from "/@/app";
+import xornet, { useState } from "/@/app";
 import MachineHeader from "/@/components/MachineView/MachineHeader.vue";
 import MachineDisk from "/@/components/MachineView/MachineDisk.vue";
 import MachineProcessor from "/@/components/MachineView/MachineProcessor.vue";
@@ -20,5 +20,19 @@ import MachineTempSensor from "/@/components/MachineView/MachineTempSensor.vue";
 const route = useRoute();
 const state = useState();
 const machineUuid = computed(() => route.params.uuid as string);
-const machine = computed(() => state.machines.get(machineUuid.value));
+const machine = computed(() => {
+	const machine = state.machines.get(machineUuid.value);
+	if (machine.name) {
+		xornet.discordManager.updatePresence({
+			state: "Viewing Dashboard",
+			details: machine.name,
+			largeImageKey: "main_logo",
+			largeImageText: "Xornet Cloud",
+			smallImageKey: "viewing",
+			smallImageText: `Viewing ${machine.name}`,
+		});
+	}
+
+	return machine;
+});
 </script>

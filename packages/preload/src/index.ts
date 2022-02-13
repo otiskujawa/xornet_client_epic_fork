@@ -2,6 +2,7 @@
 import type { BinaryLike } from "crypto";
 import { createHash } from "crypto";
 import { contextBridge, ipcRenderer, webFrame } from "electron";
+import { DiscordRPC } from "./DiscordRPC";
 
 /**
  * The "Main World" is the JavaScript context that your main vue code runs in.
@@ -40,8 +41,15 @@ contextBridge.exposeInMainWorld("nodeCrypto", {
 });
 
 webFrame.setZoomFactor(1.0);
+const discordRPC = new DiscordRPC();
 
 /**
  * Connects the frontend to electron's backend so we can send events to node
  */
-process.once("loaded", () => window.addEventListener("message", event => ipcRenderer.send("event", event.data)));
+process.once("loaded", () => window.addEventListener("message", (event) => {
+	const theEvent = event.data as unknown as { name: string; data: string };
+	console.log(theEvent.data);
+	if (theEvent.name === "rpc")
+		return discordRPC.updateRichPresence(theEvent.data as any);
+	ipcRenderer.send("event", theEvent.data);
+}));
