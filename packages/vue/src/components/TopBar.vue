@@ -16,19 +16,21 @@
           </template>
           <template #options>
             <base-input v-model="columnFilter" placeholder="Find..." />
-            <base-dropdown-checkbox
-              v-for="key of Object.keys(columns).filter(item => item.includes(columnFilter.toLowerCase()))"
-              :key="key" v-model="(columns as any)[key]"
-              :text="key
-                .replaceAll('_', ' ')
-                .replaceAll('ip', 'IP')
-                .replaceAll('cpu', 'CPU')
-                .replaceAll('gpu', 'GPU')
-                .replaceAll('ram', 'RAM')
-              "
-            >
-              <icon :name="key" />
-            </base-dropdown-checkbox>
+            <div class="max-h-96 flexcol overflow-hidden overflow-y-scroll">
+              <base-dropdown-checkbox
+                v-for="key of Object.keys(columns).filter(item => item.includes(columnFilter.toLowerCase()))"
+                :key="key" v-model="(columns as any)[key]"
+                :text="key
+                  .replaceAll('_', ' ')
+                  .replaceAll('ip', 'IP')
+                  .replaceAll('cpu', 'CPU')
+                  .replaceAll('gpu', 'GPU')
+                  .replaceAll('ram', 'RAM')
+                "
+              >
+                <icon :name="key" />
+              </base-dropdown-checkbox>
+            </div>
           </template>
         </base-dropdown>
       </base-tooltip>

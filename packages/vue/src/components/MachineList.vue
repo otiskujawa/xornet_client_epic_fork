@@ -1,5 +1,5 @@
 <template>
-  <div class="flexcol w-full overflow-scroll">
+  <div class="flexcol w-full overflow-hidden overflow-y-scroll">
     <machine-list-totals v-if="state.settings.general.enable_totals" :machines="machines" />
     <div>
       <base-table>

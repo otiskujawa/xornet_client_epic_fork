@@ -37,18 +37,19 @@ a {
 }
 
 *::-webkit-scrollbar {
-  width: 6px;
-  left: -100px;
+  width: 4px;
 }
 *:hover::-webkit-scrollbar {
   overflow-y: overlay;
 }
 *::-webkit-scrollbar-track,
 *::-webkit-scrollbar-corner {
-  background: transparent;
+  border-radius: 20px;
+  background: #0000003a;
 }
 *::-webkit-scrollbar-thumb {
   border-radius: 20px;
+  background: rgba(var(--color-primary-500));
   border: transparent;
 }
 
