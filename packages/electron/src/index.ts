@@ -1,7 +1,7 @@
-import type { Presence } from "discord-rpc";
-import { app, BrowserWindow, ipcMain } from "electron";
 import { join } from "path";
 import { URL } from "url";
+import type { Presence } from "discord-rpc";
+import { BrowserWindow, app, ipcMain } from "electron";
 import { DiscordRPC } from "./DiscordRPC";
 import "./security-restrictions";
 
@@ -71,7 +71,7 @@ const createWindow = async() => {
    * `file://../vue/index.html` for production and test
    */
 	const pageUrl
-    = isDevelopment && import.meta.env.VITE_DEV_SERVER_URL !== undefined ? import.meta.env.VITE_DEV_SERVER_URL : new URL("../vue/dist/index.html", `file://${__dirname}`).toString();
+    = isDevelopment && import.meta.env.VITE_DEV_SERVER_URL !== undefined ? "http://localhost:3000" : new URL("../vue/dist/index.html", `file://${__dirname}`).toString();
 
 	await mainWindow.loadURL(pageUrl);
 };
