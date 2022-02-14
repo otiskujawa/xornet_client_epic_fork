@@ -11,7 +11,7 @@
   <i-distros-endeavour v-else-if="name?.toLowerCase().includes('endeavour')" />
   <i-distros-garuda v-else-if="name?.toLowerCase().includes('garuda')" />
   <i-distros-raspbian v-else-if="name?.toLowerCase().includes('raspbian')" />
-  <i-distros-macos v-else-if="name?.toLowerCase().includes('macos')" />
+  <i-distros-macos v-else-if="name?.toLowerCase().includes('darwin')" />
   <i-distros-windows10 v-else-if="name?.toLowerCase().includes('windows')" />
   <i-distros-kubuntu v-else-if="name?.toLowerCase().includes('kubuntu')" />
   <i-distros-nixos v-else-if="name?.toLowerCase().includes('nixos')" />

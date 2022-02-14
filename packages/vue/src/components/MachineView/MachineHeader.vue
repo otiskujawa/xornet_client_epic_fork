@@ -9,6 +9,7 @@
       </p>
       <router-link class="p-4 no-drag opacity-50 hover:opacity-100" :to="{name: 'machine', params: {uuid: machine.uuid}}">
         {{ machine.name }}
+        ({{ machine.os_name }})
       </router-link>
     </div>
     <div class="text-lg p-4 pt-3 flex gap-4 items-center">
