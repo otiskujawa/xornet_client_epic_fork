@@ -1,5 +1,5 @@
 <template>
-  <div class="flex gap-3px max-w-32 flex-wrap">
+  <div class="flex gap-3px max-w-64 flex-wrap">
     <div
       v-for="iface of interfaces" :key="iface.name"
       class="cube text-100mbps"
