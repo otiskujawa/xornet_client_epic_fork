@@ -19,6 +19,7 @@
           <activity-status :machine="machine" />
           <h1>
             {{ machine.name }}
+            ({{ machine.os_name }})
           </h1>
         </div>
         <p class="opacity-35">
