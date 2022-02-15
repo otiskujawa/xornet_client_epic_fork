@@ -47,7 +47,7 @@
               </machine-stat>
             </th>
             <th v-if="columns.network_switch">
-              <network-switch v-if="machine.net" :interfaces="machine.net" />
+              <network-switch v-if="machine.network" :interfaces="machine.network" />
             </th>
             <th v-if="columns.td">
               <machine-stat :value="machine.td?.toFixed(2)" suffix="Mbps">
@@ -183,7 +183,7 @@ const machines = computed(() => state.machines.getAll()
 				comparison = a.ram_used_gb / a.ram_total_gb < b.ram_used_gb / b.ram_total_gb;
 				break;
 			case "network_switch":
-				comparison = (a.net?.length || "") < (b.net?.length || "");
+				comparison = (a.network?.length || "") < (b.network?.length || "");
 				break;
 			case "gpu_usage":
 				comparison = (a.gpu?.gpu_usage || "") < (b.gpu?.gpu_usage || "");

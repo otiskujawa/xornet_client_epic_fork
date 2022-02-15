@@ -102,7 +102,7 @@ export interface IMachineDynamicData {
 	/**
 	 * All the network interfaces of the machine
 	 */
-	net?: INetwork[]
+	network?: INetwork[]
 	/**
 	 * The boot time of how long the host machine has been up for
 	 */
