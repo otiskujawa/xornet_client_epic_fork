@@ -24,8 +24,19 @@ export class API {
 		const socket = new WebSocket(`${BASE_URL.replace("https", "wss").replace("http", "ws")}/client`);
 
 		const emitter = mitt<BackendToClientEvents>();
+
+		// TODO: remove this once the backend sends stuff every second
+		const machineDataBuffer: (IMachineDynamicData & { uuid: string })[] = [];
+		setInterval(() => {
+			machineDataBuffer.forEach((dynamicData) => {
+				state.machines.updateDynamicData(dynamicData.uuid, dynamicData);
+				machineDataBuffer.shift();
+			});
+		}, 1000);
+
 		emitter.on("machineData", (dynamicData) => {
-			state.machines.updateDynamicData(dynamicData.uuid, dynamicData);
+			// state.machines.updateDynamicData(dynamicData.uuid, dynamicData);
+			machineDataBuffer.push(dynamicData);
 		});
 
 		// Connection opened

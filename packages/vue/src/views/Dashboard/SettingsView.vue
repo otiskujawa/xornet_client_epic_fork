@@ -58,6 +58,7 @@ import BaseSwitch from "/@/components/base/BaseSwitch.vue";
 import TopBar from "/@/components/TopBar.vue";
 import BaseRangeInput from "/@/components/base/BaseRangeInput.vue";
 import OptionField from "/@/components/OptionField.vue";
+import BaseInput from "/@/components/base/BaseInput.vue";
 const state = useState();
 </script>
 

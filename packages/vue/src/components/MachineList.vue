@@ -126,7 +126,7 @@ import BaseConfirmationDialog from "/@/components/base/BaseConfirmationDialog.vu
 import BaseTableHeader from "/@/components/base/BaseTableHeader.vue";
 import { useRouter } from "vue-router";
 import DistroIcon from "./shared/DistroIcon.vue";
-import { IMachine } from "../types/api/machine";
+import type { IMachine } from "../types/api/machine";
 import MachineListTotals from "./MachineListTotals.vue";
 const soundManager = useSoundManager();
 const state = useState();

@@ -7,7 +7,7 @@
 import { useVModel as useModelValue } from "@vueuse/core";
 const props = defineProps<{
 	label?: string
-	modelValue: string
+	modelValue: string | number
 }>();
 const emits = defineEmits(["update:modelValue"]);
 const value = useModelValue(props, "modelValue", emits);
