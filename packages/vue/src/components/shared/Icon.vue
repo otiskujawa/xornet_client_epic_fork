@@ -11,8 +11,8 @@
     <i-fluency-switch v-if="name === 'network_switch'" />
     <i-fluency-temperature v-if="name === 'temperature'" />
     <i-fluency-thor-hammer v-if="name === 'action'" />
-    <i-fluency-up v-if="name === 'upload'" />
-    <i-fluency-down v-if="name === 'download'" />
+    <i-fluency-up v-if="name === 'total_upload'" />
+    <i-fluency-down v-if="name === 'total_download'" />
     <i-fluency-user v-if="name === 'owner'" />
     <i-fluency-upgrade v-if="name === 'reporter_version'" />
     <i-fluency-video-card v-if="name === 'gpu_usage'" />
