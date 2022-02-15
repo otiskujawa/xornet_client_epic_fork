@@ -49,12 +49,12 @@
             <th v-if="columns.network_switch">
               <network-switch v-if="machine.network" :interfaces="machine.network" />
             </th>
-            <th v-if="columns.download">
+            <th v-if="columns.total_download">
               <machine-stat :value="machine.total_download?.toFixed(2)" suffix="Mbps">
                 <i-fluency-down />
               </machine-stat>
             </th>
-            <th v-if="columns.upload">
+            <th v-if="columns.total_upload">
               <machine-stat :value="machine.total_upload?.toFixed(2)" suffix="Mbps">
                 <i-fluency-up />
               </machine-stat>
@@ -156,8 +156,8 @@ const machines = computed(() => state.machines.getAll()
 	.map((machine) => {
 		return ({
 			...machine,
-			ram_used_gb: (machine.ram?.used || 0) / 1024 / 1024,
-			ram_total_gb: (machine.ram?.total || 0) / 1024 / 1024,
+			ram_used_gb: ~~(machine.ram?.used || 0) / 1024 / 1024,
+			ram_total_gb: ~~(machine.ram?.total || 0) / 1024 / 1024,
 			temperature: machine.temps?.[0].value,
 			owner: state.users.get(machine.owner_uuid),
 		});
