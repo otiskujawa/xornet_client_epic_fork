@@ -7,7 +7,7 @@ import { isElectron } from "../logic";
  */
 export class SettingsState {
 	public client = useLocalStorage("clientOnlySettings", {
-		enable_autosync: true,
+		enable_autosync: false,
 	}).value;
 
 	// These are snake cased because they are used to index the JSONs we get from the backend as well
