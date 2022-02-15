@@ -101,7 +101,7 @@
                 {{ machine.owner?.username }}
               </div>
             </th>
-            <th v-if="columns.action">
+            <th v-if="columns.action" @click.stop>
               <base-confirmation-dialog v-if="machine.owner_uuid === state.users.getMe().uuid" confirmation-text="Are you sure you want to delete this machine?" @confirm="deleteMachine(machine.uuid)">
                 <i-fluency-trash />
               </base-confirmation-dialog>
