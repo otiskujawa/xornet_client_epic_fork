@@ -73,6 +73,80 @@
   --color-100000mbps: 187,255,255;            /* #bbffff */ 
 }
 
+
+.theme-galaxy {
+    --color-primary-300: 111,0,255;				/* #6f00ff *//* Main Color */
+    --color-primary-400: 129,79,255;			/* #814fff */
+    --color-primary-500: 25,2,55;				/* #190237 */
+	
+    --color-background-200: 0,0,43;				/* #00002b */
+    --color-background-300: 0,0,43;				/* #00002b */
+    --color-background-400: 37,0,107;			/* #25006b */
+    --color-background-500: 25,2,55;			/* #190237 */
+    --color-background-600: 29,77,228;			/* #1d4de4 */
+	
+    --color-tooltip-background: 151,64,220;		/* #9740dc */
+    --color-tooltip-text: 255,255,255;			/* #ffffff */
+	
+    --color-text: 255,255,255;					/* #ffffff */
+    --color-caution: 225,0,216;					/* #e100d8 */
+    --color-warning: 59,77,228;					/* #3b4de4 */
+    --color-active: 39,229,254;					/* #27e5fe */
+	
+    --color-100mbps: var(--color-warning);
+    --color-1000mbps: var(--color-active);
+    --color-10000mbps: 190,50,150;				/* #be3296 */
+    --color-100000mbps: 255,0,216;				/* #ff00d8 */
+}
+.theme-galaxy .bg-black.bg-opacity-25{background: linear-gradient(0deg,rgb(59 77 228),rgb(151 64 220));}
+.theme-galaxy .flex-col{background: linear-gradient(0deg,rgb(28 46 202),rgb(123 35 192));}
+
+.theme-darkgalaxy {
+    --color-primary-300: 111,0,255;				/* #6f00ff *//* Main Color */
+    --color-primary-400: 129,79,255;			/* #814fff */
+    --color-primary-500: 25,2,55;				/* #190237 */
+	
+    --color-background-200: 0,0,43;				/* #00002b */
+    --color-background-300: 25,2,55;			/* #190237 */
+    --color-background-400: 37,0,107;			/* #25006b */
+    --color-background-500: 25,2,55;			/* #190237 */
+    --color-background-600: 29,77,228;			/* #1d4de4 */
+	
+    --color-tooltip-background: 151,64,220;		/* #9740dc */
+    --color-tooltip-text: 255,255,255;			/* #ffffff */
+	
+    --color-text: 255,255,255;					/* #ffffff */
+    --color-caution: 225,0,216;					/* #e100d8 */
+    --color-warning: 59,77,228;					/* #3b4de4 */
+    --color-active: 39,229,254;					/* #27e5fe */
+	
+    --color-100mbps: var(--color-warning);
+    --color-1000mbps: var(--color-active);
+    --color-10000mbps: 190,50,150;				/* #be3296 */
+    --color-100000mbps: 255,0,216;				/* #ff00d8 */
+}
+
+.theme-light {
+    --color-primary-300: 164, 51, 255;
+    --color-primary-400: 180,105,255;
+    --color-primary-500: 129,43,215;
+    --color-background-200: 1,4,9;
+    --color-background-300: 255,255,255;
+    --color-background-400: 200,200,200;
+    --color-background-500: 213, 161, 255;
+    --color-background-600: 183, 92, 255;
+    --color-tooltip-background: 255, 255, 255;
+    --color-tooltip-text: 1,4,9;
+    --color-text: 0,0,0;
+    --color-caution: 251, 0, 255;
+    --color-warning: 251, 0, 255;
+    --color-active: 54, 117, 255;
+    --color-100mbps: 164, 51, 255;
+    --color-1000mbps: 93, 0, 255;
+    --color-10000mbps: 82, 183, 255;
+    --color-100000mbps: 255,0,216;
+}
+
 .drag {
   -webkit-app-region: drag;
 }
