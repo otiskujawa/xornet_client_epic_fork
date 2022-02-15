@@ -34,6 +34,8 @@ export class API {
 			state.users.getToken() && socket.send(encoded);
 		});
 
+		socket.addEventListener("close", () => this.createWebsocketConnection(state));
+
 		// Listen for messages
 		socket.addEventListener("message", (message) => {
 			const { e: event, d: data } = JSON.parse(message.data.toString());
