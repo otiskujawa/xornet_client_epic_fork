@@ -3,6 +3,7 @@ node_modules
 dist
 *.local
 thumbs.db
+package-lock.json
 
 .eslintcache
 coverage
@@ -56,3 +57,4 @@ coverage
 # Editor-based Rest Client
 .idea/httpRequests
 /.idea/csv-plugin.xml
+package-lock.json
