@@ -44,7 +44,7 @@ const defineMachineCommands = (machines: IMachine[]): CommandPalleteOption[] => 
 };
 
 export const commandPaletteOptions = computed<CommandPalleteOption[]>(() => ([
-	...defineThemeCommands(["nord", "dark", "opera"]),
+	...defineThemeCommands(["nord", "dark", "opera", "galaxy"]),
 	...defineMachineCommands(state.machines.getAll()),
 	defineOption(
 		() => location.reload(),
