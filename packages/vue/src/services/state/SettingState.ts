@@ -26,14 +26,14 @@ export class SettingsState {
 
 	public columns = useLocalStorage("columns", {
 		hostname: true,
-		cpu_average_usage: true,
-		cpu_average_speed: false,
+		cau: true,
+		cas: false,
 		ram_usage: true,
 		gpu_usage: false,
 		gpu_power_usage: false,
 		network_switch: true,
-		total_download: true,
-		total_upload: true,
+		td: true,
+		tu: true,
 		temperature: false,
 		country: true,
 		public_ip: false,

@@ -102,7 +102,7 @@ export interface IMachineDynamicData {
 	/**
 	 * All the network interfaces of the machine
 	 */
-	network?: INetwork[]
+	net?: INetwork[]
 	/**
 	 * The boot time of how long the host machine has been up for
 	 */
@@ -112,29 +112,33 @@ export interface IMachineDynamicData {
 	 */
 	reporter_uptime?: number
 	/**
-	 * Server-side computed - Average usage of all the cores from 0% to 100%
+	 * Average usage of all the cores from 0% to 100%
+	 * @computed server-side
 	 */
-	cpu_average_usage?: number
+	cau?: number
 	/**
-	 * Server-side computed - Average clock speed of all the cores
+	 * Average clock speed of all the cores
+	 * @computed server-side
 	 */
-	cpu_average_speed?: number
+	cas?: number
 	/**
-	 * Server-side computed - Total download of all interfaces on the system
+	 * Total download of all interfaces on the system
+	 * @computed server-side
 	 */
-	total_download?: number
+	td?: number
 	/**
-	 * Server-side computed - Total upload of all interfaces on the system
+	 * Total upload of all interfaces on the system
+	 * @computed server-side
 	 */
-	total_upload?: number
+	tu?: number
 }
 
 export interface INetwork {
 	[x: string]: any
-	name: string
+	n: string
 	tx: number
 	rx: number
-	speed: number
+	s: number
 }
 export interface ICPU {
 	usage: number[]
