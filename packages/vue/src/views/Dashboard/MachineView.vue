@@ -17,6 +17,7 @@ import MachineHeader from "/@/components/MachineView/MachineHeader.vue";
 import MachineDisk from "/@/components/MachineView/MachineDisk.vue";
 import MachineProcessor from "/@/components/MachineView/MachineProcessor.vue";
 import MachineTempSensor from "/@/components/MachineView/MachineTempSensor.vue";
+import NetworkSwitch from "/@/components/NetworkSwitch.vue";
 const route = useRoute();
 const state = useState();
 const machineUuid = computed(() => route.params.uuid as string);
