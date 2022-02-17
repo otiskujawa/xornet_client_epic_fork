@@ -2,10 +2,11 @@
   <div class="flex gap-3px max-w-64 flex-wrap">
     <div
       v-for="iface of interfaces" :key="iface.n"
-      class="cube text-100mbps"
+      class="cube"
       :class="[
-        iface.s > 100 && `text-1000mbps`,
-        iface.s > 1000 && 'text-10000mbps',
+        state.settings.general.use_single_color_for_switch_lights ? `text-1000mbps` : `text-100mbps`,
+        !state.settings.general.use_single_color_for_switch_lights && iface.s > 100 && `text-1000mbps`,
+        !state.settings.general.use_single_color_for_switch_lights && iface.s > 1000 && 'text-10000mbps',
         state.settings.general.enable_bloom && 'bloom'
       ]"
       :style="`animation-duration: ${speeds[iface.n]}ms;`"
