@@ -43,9 +43,6 @@
       <option-field label="Show Offline Machines" description="Show offline machines on the machine list">
         <base-switch v-model="state.settings.general.show_offline_machines" />
       </option-field>
-      <option-field label="Show Owned Machines Only" description="See only machines you own or are added to on the machine list">
-        <base-switch v-model="state.settings.general.show_owned_machines_only" />
-      </option-field>
       <option-field label="Show Total Machine Stats" description="Show sum stats of all machines on the machine list ">
         <base-switch v-model="state.settings.general.enable_totals" />
       </option-field>

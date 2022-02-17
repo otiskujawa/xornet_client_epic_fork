@@ -19,7 +19,7 @@ import { computed } from "vue";
 import type { INetwork } from "/@/types/api/machine";
 import { useState } from "/@/app";
 
-const MINIMUM_BLINK_SPEED = 0.0001;
+const MINIMUM_BLINK_SPEED = 0.025;
 const props = defineProps<{interfaces: INetwork[]}>();
 const state = useState();
 const interfaces = computed(() => props.interfaces);
