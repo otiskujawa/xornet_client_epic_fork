@@ -56,4 +56,3 @@ coverage
 # Editor-based Rest Client
 .idea/httpRequests
 /.idea/csv-plugin.xml
-package-lock.json

@@ -13,8 +13,8 @@ import type { IMachine } from "/@/types/api/machine";
 const props = defineProps<{machines: (IMachine & {ram_used_gb: number; ram_total_gb: number})[]}>();
 const totalRamUsedOverall = computed(() => props.machines.reduce((a, b) => a = a + b.ram_used_gb, 0));
 const totalRamTotalOverall = computed(() => props.machines.reduce((a, b) => a = a + b.ram_total_gb, 0));
-const totalNetworkDown = computed(() => props.machines.reduce((a, b) => a = a + (b.total_download! || 0), 0));
-const totalNetworkUp = computed(() => props.machines.reduce((a, b) => a = a + (b.total_upload! || 0), 0));
+const totalNetworkDown = computed(() => props.machines.reduce((a, b) => a = a + (b.td! || 0), 0));
+const totalNetworkUp = computed(() => props.machines.reduce((a, b) => a = a + (b.tu! || 0), 0));
 const totalStorage = computed(() => props.machines.reduce((a, b) => b.disks ? a = a + b.disks.reduce((a, b) => a = a + b.total || 0, 0) : a, 0));
 const totalGpuWatts = computed(() => props.machines.reduce((a, b) => a = a + (b.gpu?.power_usage || 0), 0));
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div v-if="machine" class="flexcol bg-black bg-opacity-25 h-full w-full">
     <machine-header :machine="machine" />
-    <div class="flexcol gap-2 px-4 overflow-scroll">
+    <div class="flexcol gap-2 px-4 overflow-y-scroll">
       <machine-processor :machine="machine" />
       <machine-disk v-for="disk of machine.disks" :key="disk.mount" :disk="disk" />
       <machine-temp-sensor v-for="sensor of machine.temps" :key="sensor.label" :sensor="sensor" />
@@ -17,6 +17,7 @@ import MachineHeader from "/@/components/MachineView/MachineHeader.vue";
 import MachineDisk from "/@/components/MachineView/MachineDisk.vue";
 import MachineProcessor from "/@/components/MachineView/MachineProcessor.vue";
 import MachineTempSensor from "/@/components/MachineView/MachineTempSensor.vue";
+import NetworkSwitch from "/@/components/NetworkSwitch.vue";
 const route = useRoute();
 const state = useState();
 const machineUuid = computed(() => route.params.uuid as string);

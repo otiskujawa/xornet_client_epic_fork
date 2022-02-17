@@ -26,6 +26,7 @@
           {{ machine.uuid }}
         </p>
       </div>
+      <network-switch :interfaces="machine.network!" />
     </div>
   </div>
 </template>

@@ -1,14 +1,15 @@
 <template>
   <div class="flex gap-3px max-w-64 flex-wrap">
     <div
-      v-for="iface of interfaces" :key="iface.name"
-      class="cube text-100mbps"
+      v-for="iface of interfaces" :key="iface.n"
+      class="cube"
       :class="[
-        iface.speed > 100 && `text-1000mbps`,
-        iface.speed > 1000 && 'text-10000mbps',
+        state.settings.general.use_single_color_for_switch_lights ? `text-1000mbps` : `text-100mbps`,
+        !state.settings.general.use_single_color_for_switch_lights && iface.s > 100 && `text-1000mbps`,
+        !state.settings.general.use_single_color_for_switch_lights && iface.s > 1000 && 'text-10000mbps',
         state.settings.general.enable_bloom && 'bloom'
       ]"
-      :style="`animation-duration: ${speeds[iface.name]}ms;`"
+      :style="`animation-duration: ${speeds[iface.n]}ms;`"
     />
   </div>
 </template>
@@ -18,7 +19,7 @@ import { computed } from "vue";
 import type { INetwork } from "/@/types/api/machine";
 import { useState } from "/@/app";
 
-const MINIMUM_BLINK_SPEED = 0.025;
+const MINIMUM_BLINK_SPEED = 0.0001;
 const props = defineProps<{interfaces: INetwork[]}>();
 const state = useState();
 const interfaces = computed(() => props.interfaces);
@@ -27,11 +28,11 @@ const speeds = computed(() => {
 
 	interfaces.value.forEach((iface) => {
 		const totalTraffic = (iface.tx + iface.rx) / 1000 / 1000;
-		if (totalTraffic <= MINIMUM_BLINK_SPEED) nics[iface.name] = 0;
-		else if (totalTraffic > MINIMUM_BLINK_SPEED && totalTraffic <= 10) nics[iface.name] = 400;
-		else if (totalTraffic > 10 && totalTraffic <= 100) nics[iface.name] = 200;
-		else if (totalTraffic > 100 && totalTraffic <= 1000) nics[iface.name] = 150;
-		else nics[iface.name] = 100;
+		if (totalTraffic <= MINIMUM_BLINK_SPEED) nics[iface.n] = 0;
+		else if (totalTraffic > MINIMUM_BLINK_SPEED && totalTraffic <= 10) nics[iface.n] = 400;
+		else if (totalTraffic > 10 && totalTraffic <= 100) nics[iface.n] = 200;
+		else if (totalTraffic > 100 && totalTraffic <= 1000) nics[iface.n] = 150;
+		else nics[iface.n] = 100;
 	});
 
 	return nics;

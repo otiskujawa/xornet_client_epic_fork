@@ -26,6 +26,11 @@
                   .replaceAll('cpu', 'CPU')
                   .replaceAll('gpu', 'GPU')
                   .replaceAll('ram', 'RAM')
+                  .replaceAll(/^tu/g, 'Total Upload')
+                  .replaceAll(/^td/g, 'Total Download')
+                  .replaceAll('cau', 'CPU Usage')
+                  .replaceAll('cas', 'CPU Speed')
+
                 "
               >
                 <icon :name="key" />
