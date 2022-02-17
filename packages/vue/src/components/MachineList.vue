@@ -21,13 +21,13 @@
                 <activity-status :machine="machine" />
               </machine-stat>
             </th>
-            <th v-if="columns.cpu_average_usage">
-              <machine-stat :value="machine.cpu_average_usage?.toFixed(2)" suffix="%">
+            <th v-if="columns.cau">
+              <machine-stat :value="machine.cau?.toFixed(2)" suffix="%">
                 <i-fluency-processor />
               </machine-stat>
             </th>
-            <th v-if="columns.cpu_average_speed">
-              <machine-stat :value="machine.cpu_average_speed?.toFixed(2)" suffix="MHz">
+            <th v-if="columns.cas">
+              <machine-stat :value="machine.cas?.toFixed(2)" suffix="MHz">
                 <i-fluency-speedometer />
               </machine-stat>
             </th>
@@ -49,13 +49,13 @@
             <th v-if="columns.network_switch">
               <network-switch v-if="machine.network" :interfaces="machine.network" />
             </th>
-            <th v-if="columns.total_download">
-              <machine-stat :value="machine.total_download?.toFixed(2)" suffix="Mbps">
+            <th v-if="columns.td">
+              <machine-stat :value="machine.td?.toFixed(2)" suffix="Mbps">
                 <i-fluency-down />
               </machine-stat>
             </th>
-            <th v-if="columns.total_upload">
-              <machine-stat :value="machine.total_upload?.toFixed(2)" suffix="Mbps">
+            <th v-if="columns.tu">
+              <machine-stat :value="machine.tu?.toFixed(2)" suffix="Mbps">
                 <i-fluency-up />
               </machine-stat>
             </th>
@@ -194,11 +194,11 @@ const machines = computed(() => state.machines.getAll()
 			case "owner":
 				comparison = (a.owner.username.toLowerCase() || "") > (b.owner.username.toLowerCase() || "");
 				break;
-			case "cpu_average_usage":
-			case "cpu_average_speed":
+			case "cau":
+			case "cas":
 			case "country":
-			case "total_download":
-			case "total_upload":
+			case "td":
+			case "tu":
 			case "temperature":
 			case "public_ip":
 			case "reporter_version":

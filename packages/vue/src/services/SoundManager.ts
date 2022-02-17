@@ -4,12 +4,12 @@ export class SoundManager {
 	constructor(public state: AppState) {}
 	public static sounds = {
 		hoverSounds: [
-			new Audio("sounds/hover1.wav"),
-			new Audio("sounds/hover2.wav"),
-			new Audio("sounds/hover3.wav"),
-			new Audio("sounds/hover4.wav"),
+			new Audio("sounds/hover_1.wav"),
+			new Audio("sounds/hover_2.wav"),
+			new Audio("sounds/hover_3.wav"),
+			new Audio("sounds/hover_4.wav"),
 		],
-		click1: new Audio("sounds/click1.wav"),
+		click1: new Audio("sounds/click.wav"),
 		escape: new Audio("sounds/escape.wav"),
 	};
 

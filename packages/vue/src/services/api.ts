@@ -16,14 +16,34 @@ export interface BackendToClientEvents {
 }
 
 export class API {
-	constructor() {}
+	public lastHeartbeat = 0;
+	public state: AppState | undefined;
 
+	public aliveTimer = setInterval(() => {
+		const isDead = Date.now() - this.lastHeartbeat > 5000;
+		isDead && this.state && this.createWebsocketConnection(this.state);
+	}, 5000);
+
+	// TODO: Make this into a class or something because everything happens within this function
 	public createWebsocketConnection(state: AppState) {
 		if (!localStorage.getItem("token") === undefined) return;
+		console.log("creating new connection");
+		this.state = state;
 		// Create WebSocket connection.
 		const socket = new WebSocket(`${BASE_URL.replace("https", "wss").replace("http", "ws")}/client`);
-
 		const emitter = mitt<BackendToClientEvents>();
+
+		// Connection opened
+		socket.addEventListener("open", () => {
+			const encoded = JSON.stringify({ e: "login", d: { auth_token: state.users.getToken() } });
+			state.users.getToken() && socket.send(encoded);
+		});
+
+		// Listen for messages
+		socket.addEventListener("message", (message) => {
+			const { e: event, d: data } = JSON.parse(message.data.toString());
+			emitter.emit(event, data);
+		});
 
 		// TODO: remove this once the backend sends stuff every second
 		const machineDataBuffer: (IMachineDynamicData & { uuid: string })[] = [];
@@ -34,24 +54,13 @@ export class API {
 			});
 		}, 1000);
 
+		// TODO: Move these to a seperate file for organization
 		emitter.on("machineData", (dynamicData) => {
 			// state.machines.updateDynamicData(dynamicData.uuid, dynamicData);
 			machineDataBuffer.push(dynamicData);
 		});
 
-		// Connection opened
-		socket.addEventListener("open", () => {
-			const encoded = JSON.stringify({ e: "login", d: { auth_token: state.users.getToken() } });
-			state.users.getToken() && socket.send(encoded);
-		});
-
-		socket.addEventListener("close", () => this.createWebsocketConnection(state));
-
-		// Listen for messages
-		socket.addEventListener("message", (message) => {
-			const { e: event, d: data } = JSON.parse(message.data.toString());
-			emitter.emit(event, data);
-		});
+		emitter.on("heartbeat", () => this.lastHeartbeat = Date.now());
 	}
 
 	public async request<T>(

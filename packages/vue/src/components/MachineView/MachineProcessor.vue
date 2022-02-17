@@ -1,7 +1,7 @@
 <template>
   <div class="flex gap-2 items-center">
     <i-fluency-processor class="text-2xl" />
-    <p>{{ machine.cpu_average_usage }}%</p>
+    <p>{{ machine.cau }}%</p>
     <p class="opacity-35">
       {{ machine.cpu_model }}
     </p>

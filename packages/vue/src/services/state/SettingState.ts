@@ -7,7 +7,7 @@ import { isElectron } from "../logic";
  */
 export class SettingsState {
 	public client = useLocalStorage("clientOnlySettings", {
-		enable_autosync: true,
+		enable_autosync: false,
 	}).value;
 
 	// These are snake cased because they are used to index the JSONs we get from the backend as well
@@ -19,6 +19,7 @@ export class SettingsState {
 		enable_rounded_corners: true,
 		enable_sound_effects: false,
 		enable_status_bar: false,
+		use_single_color_for_switch_lights: false,
 		show_offline_machines: true,
 		show_owned_machines_only: false,
 		fixed_column_width: false,
@@ -26,14 +27,14 @@ export class SettingsState {
 
 	public columns = useLocalStorage("columns", {
 		hostname: true,
-		cpu_average_usage: true,
-		cpu_average_speed: false,
+		cau: true,
+		cas: false,
 		ram_usage: true,
 		gpu_usage: false,
 		gpu_power_usage: false,
 		network_switch: true,
-		total_download: true,
-		total_upload: true,
+		td: true,
+		tu: true,
 		temperature: false,
 		country: true,
 		public_ip: false,
