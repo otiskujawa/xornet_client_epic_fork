@@ -21,7 +21,6 @@ export class SettingsState {
 		enable_status_bar: false,
 		use_single_color_for_switch_lights: false,
 		show_offline_machines: true,
-		show_owned_machines_only: false,
 		fixed_column_width: false,
 	}).value;
 

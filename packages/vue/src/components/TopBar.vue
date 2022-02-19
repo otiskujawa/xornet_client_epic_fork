@@ -44,9 +44,6 @@
         <option-field label="Show Offline">
           <base-switch v-model="state.settings.general.show_offline_machines" />
         </option-field>
-        <option-field label="Owned Only">
-          <base-switch v-model="state.settings.general.show_owned_machines_only" />
-        </option-field>
         <option-field label="Show Totals">
           <base-switch v-model="state.settings.general.enable_totals" />
         </option-field>
