@@ -50,7 +50,7 @@ const speeds = computed(() => {
     @apply bg-current bg-opacity-100;
   }
   50% {
-    @apply bg-white bg-opacity-5;
+    @apply bg-white bg-opacity-10;
   }
 }
 
@@ -64,13 +64,13 @@ const speeds = computed(() => {
     box-shadow: 0px 0px 6px currentColor;
   }
   50% {
-    @apply bg-white bg-opacity-5;
+    @apply bg-white bg-opacity-10;
     box-shadow: 0px 0px 6px #00000000;
   }
 }
 
 .cube {
-  @apply w-6px h-6px bg-white bg-opacity-5;
+  @apply w-6px h-6px bg-white bg-opacity-10;
 
   &.bloom {
     animation: flashBloom infinite;

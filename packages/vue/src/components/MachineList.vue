@@ -16,7 +16,7 @@
             @mouseenter="soundManager.playHover()"
           >
             <th v-if="columns.hostname">
-              <machine-stat :value="machine.name">
+              <machine-stat :value="machine.name" dont-fade>
                 <distro-icon class="text-sm" :name="machine.os_name?.replace(/'/g, '')" />
                 <activity-status :machine="machine" />
               </machine-stat>
