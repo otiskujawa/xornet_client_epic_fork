@@ -153,8 +153,6 @@ export interface IRAM {
 export interface IGPU {
 	brand: string
 	gpu_usage: number
-	mem_total: number
-	mem_used: number
 	power_usage: number
 }
 
