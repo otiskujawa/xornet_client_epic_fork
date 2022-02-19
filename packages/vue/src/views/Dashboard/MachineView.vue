@@ -19,17 +19,19 @@ import MachineDisk from "/@/components/MachineView/MachineDisk.vue";
 import MachineProcessor from "/@/components/MachineView/MachineProcessor.vue";
 import MachineTempSensor from "/@/components/MachineView/MachineTempSensor.vue";
 import MachineUser from "/@/components/MachineView/MachineUser.vue";
+import { getMachineOsImageKey } from "/@/services/logic";
 const route = useRoute();
 const state = useState();
 const machineUuid = computed(() => route.params.uuid as string);
+
 const machine = computed(() => {
 	const machine = state.machines.get(machineUuid.value);
 	if (machine?.name) {
 		useDiscordManager().updatePresence({
 			state: machine.os_name?.replaceAll("'", ""),
 			details: machine.name,
-			largeImageKey: "main_logo",
-			largeImageText: "Xornet Cloud",
+			largeImageKey: machine.os_name ? getMachineOsImageKey(machine.os_name) : "main_logo",
+			largeImageText: machine.os_name,
 			smallImageKey: "viewing",
 			smallImageText: `Viewing ${machine.name}`,
 			buttons: [
