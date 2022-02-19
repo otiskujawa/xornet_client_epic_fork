@@ -1,12 +1,14 @@
 <template>
-  <p v-if="value && !value.toString().includes('NaN') && !value.toString().includes('undefined')" class="flex gap-2 items-center">
-    <slot />
-    {{ value }} {{ suffix }}
-  </p>
-  <p v-else class="flex gap-2 items-center opacity-20">
+  <div v-if="value && !value.toString().includes('NaN') && !value.toString().includes('undefined')" class="flex gap-2 items-center">
+    <div class="flex items-center gap-2 opacity-50">
+      <slot />
+    </div>
+    {{ value }} <strong class="font-normal opacity-50">{{ suffix }}</strong>
+  </div>
+  <div v-else class="flex gap-2 items-center opacity-50">
     <slot />
     Unavailable
-  </p>
+  </div>
 </template>
 
 <script setup lang="ts">

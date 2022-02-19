@@ -20,6 +20,6 @@
 
 <script setup lang="ts">
 import { getMachineOsImageKey } from "/@/services/logic";
-const props = defineProps<{ name: string }>();
-const icon = getMachineOsImageKey(props.name);
+const props = defineProps<{ name?: string }>();
+const icon = getMachineOsImageKey(props.name!);
 </script>
