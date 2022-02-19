@@ -43,6 +43,9 @@
       <navigation-button name="Github Repository" href="https://github.com/xornet-cloud">
         <i-fluency-github class="w-full h-full" />
       </navigation-button>
+      <navigation-button v-if="!isElectron()" name="API Status" href="https://xornet.statuspage.io/">
+        <i-fluency-area-chart class="w-full h-full" />
+      </navigation-button>
     </ul>
     <ul>
       <div v-if="state.window.isSyncing" class="p-4" name="Syncing settings...">
