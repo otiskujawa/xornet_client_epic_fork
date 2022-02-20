@@ -85,7 +85,6 @@ export class UsersState extends State<IUsersState> {
 	 * Gets the me user from the state and if it doesn't exist it fetches it from the backend
 	 */
 	public getMe() {
-		if (!this.state.me_uuid) this.fetchMe(); 	// If the user isn't loaded already fetch it from the backend
 		return this.get(this.state.me_uuid!);		 	// Return the user from the Record
 	}
 
@@ -101,6 +100,7 @@ export class UsersState extends State<IUsersState> {
 	 * Fetches a user from the backend and sets it
 	 */
 	protected async fetch(uuid: uuid) {
+		if (!uuid) return;
 		const user: IUser = await this.api.request("GET", `/users/${uuid}`);
 		this.set(user);
 	}
