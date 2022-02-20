@@ -35,13 +35,14 @@ export function nodeEmit(name: string, data?: any) {
  * @param name The os name of the machine to search through
  */
 export const getMachineOsImageKey = (name: string) => {
-	const lowerCasedName = name?.toLowerCase();
+	if (!name) return;
+	const lowerCasedName = name.toLowerCase();
 	if (lowerCasedName.includes("alpine")) return "alpine";
 	else if (lowerCasedName.includes("arch")) return "arch";
 	else if (lowerCasedName.includes("debian")) return "debian";
 	else if (lowerCasedName.includes("fedora")) return "fedora";
 	else if (lowerCasedName.includes("popos")) return "popos";
-	else if (lowerCasedName.includes("red hat")) return "red";
+	else if (lowerCasedName.includes("red hat")) return "redhat";
 	else if (lowerCasedName.includes("ubuntu")) return "ubuntu";
 	else if (lowerCasedName.includes("openwrt")) return "openwrt";
 	else if (lowerCasedName.includes("suse")) return "suse";
