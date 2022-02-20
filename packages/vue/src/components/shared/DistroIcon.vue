@@ -4,7 +4,7 @@
   <i-distros-debian v-else-if="icon === 'debian'" />
   <i-distros-fedora v-else-if="icon === 'fedora'" />
   <i-distros-popos v-else-if="icon === 'popos'" />
-  <i-distros-redhat v-else-if="icon === 'red hat'" />
+  <i-distros-redhat v-else-if="icon === 'redhat'" />
   <i-distros-ubuntu v-else-if="icon === 'ubuntu'" />
   <i-distros-openwrt v-else-if="icon === 'openwrt'" />
   <i-distros-suse v-else-if="icon === 'suse'" />
