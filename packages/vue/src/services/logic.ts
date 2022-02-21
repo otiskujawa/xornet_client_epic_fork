@@ -40,7 +40,7 @@ export const getMachineOsImageKey = (name: string) => {
 	if (lowerCasedName.includes("alpine")) return "alpine";
 	else if (lowerCasedName.includes("arch")) return "arch";
 	else if (lowerCasedName.includes("debian")) return "debian";
-	else if (lowerCasedName.includes("fedora")) return "fedora";
+	else if (lowerCasedName.includes("oracle linux server")) return "fedora";
 	else if (lowerCasedName.includes("popos")) return "popos";
 	else if (lowerCasedName.includes("red hat")) return "redhat";
 	else if (lowerCasedName.includes("ubuntu")) return "ubuntu";
