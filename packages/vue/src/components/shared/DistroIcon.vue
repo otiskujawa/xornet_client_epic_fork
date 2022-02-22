@@ -8,6 +8,7 @@
   <i-distros-ubuntu v-else-if="icon === 'ubuntu'" />
   <i-distros-openwrt v-else-if="icon === 'openwrt'" />
   <i-distros-suse v-else-if="icon === 'suse'" />
+  <i-distros-freebsd v-else-if="icon === 'freebsd'" />
   <i-distros-endeavour v-else-if="icon === 'endeavour'" />
   <i-distros-garuda v-else-if="icon === 'garuda'" />
   <i-distros-raspbian v-else-if="icon === 'raspbian'" />
