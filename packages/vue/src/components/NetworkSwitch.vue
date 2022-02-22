@@ -8,7 +8,7 @@
         (iface.s >= -1 && iface.s <= 100 || !iface.s) && `text-100mbps`,
         iface.s > 100 && iface.s <= 1000 && `text-1000mbps`,
         iface.s > 1000 && iface.s <= 10000 && 'text-10000mbps',
-        iface.s > 10000 && iface.s <= 100000 && 'text-10000mbps',
+        iface.s > 10000 && iface.s <= 100000 && 'text-100000mbps',
         state.settings.general.enable_bloom && 'bloom'
       ]"
       :style="`animation-duration: ${speeds[iface.n]}ms;`"
