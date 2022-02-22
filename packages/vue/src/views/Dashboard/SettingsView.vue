@@ -30,6 +30,9 @@
       <p>
         Behaviour
       </p>
+      <option-field v-if="isElectron()" label="Discord Rich Presence" description="Show the current machine you're viewing on your Discord status">
+        <base-switch v-model="state.settings.client.enable_rich_presence" />
+      </option-field>
       <option-field label="Sync on startup (client only)" description="Synchronize your settings with the backend when opening the client">
         <base-switch v-model="state.settings.client.enable_autosync" />
       </option-field>

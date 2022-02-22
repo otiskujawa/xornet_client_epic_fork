@@ -60,6 +60,13 @@ export const commandPaletteOptions = computed<CommandPalleteOption[]>(() => ([
 		true,
 	),
 	defineOption(
+		() => state.settings.client.enable_rich_presence = !state.settings.client.enable_rich_presence,
+		"appearance",
+		"Toggle Discord Rich Presence",
+		"color-palette",
+		true,
+	),
+	defineOption(
 		() => state.settings.general.enable_bloom = !state.settings.general.enable_bloom,
 		"appearance",
 		"Toggle bloom",

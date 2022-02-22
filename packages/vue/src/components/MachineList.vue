@@ -96,9 +96,11 @@
               </machine-stat>
             </th>
             <th v-if="columns.owner" @click.stop>
-              <div class="flex items-center gap-3">
+              <div class="flex items-center gap-3 max-w-32">
                 <avatar :user="machine.owner" class="w-16px" />
-                {{ machine.owner?.username }}
+                <p class="overflow-ellipsis overflow-hidden">
+                  {{ machine.owner?.username }}
+                </p>
               </div>
             </th>
             <th v-if="columns.action" @click.stop>
@@ -164,8 +166,8 @@ const machines = computed(() => state.machines.getAll()
 	})
 // This is for the filter input so user's can quickly search through machines
 	.filter(machine =>
-		machine.name.toLowerCase().includes(state.machines.filterText.value)
-    || state.users.get(machine.owner_uuid).username.toLowerCase().includes(state.machines.filterText.value),
+		machine.name.toLowerCase().includes(state.machines.filterText.value.toLowerCase())
+    || state.users.get(machine.owner_uuid).username.toLowerCase().includes(state.machines.filterText.value.toLowerCase()),
 	)
 // This is so you can hide offline machines
 	.filter(machine => state.settings.general.show_offline_machines ? machine : machine.status === 2)

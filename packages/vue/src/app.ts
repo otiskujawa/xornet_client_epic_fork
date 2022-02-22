@@ -20,7 +20,7 @@ export class Xornet {
 	public state: AppState = new AppState(this.api);
 	public shortcutManager: ShortcutManager = new ShortcutManager(this.state.window);
 	public soundManager: SoundManager = new SoundManager(this.state);
-	public discordManager: DiscordManager = new DiscordManager();
+	public discordManager: DiscordManager = new DiscordManager(this.state);
 
 	constructor() {
 		this.initDashboard();
