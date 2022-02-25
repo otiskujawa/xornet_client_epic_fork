@@ -38,6 +38,23 @@ export const formatEpoch = (ms?: number) => {
 	return `${padNumber(days)}:${padNumber(hours)}:${padNumber(minutes)}:${padNumber(sec)}`;
 };
 
+export const detectBrowser = () => {
+	if ((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf("OPR")) !== -1)
+		return "opera";
+
+	else if (navigator.userAgent.includes("Chrome"))
+		return "chrome";
+
+	else if (navigator.userAgent.includes("Safari"))
+		return "safari";
+
+	else if (navigator.userAgent.includes("Firefox"))
+		return "firefox";
+
+	else
+		return null;
+};
+
 /**
  * Sends a message to electron's node backend
  * @param name the name of the event

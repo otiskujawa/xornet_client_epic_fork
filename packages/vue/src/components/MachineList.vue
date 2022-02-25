@@ -104,7 +104,7 @@
               </div>
             </th>
             <th v-if="columns.action" @click.stop>
-              <base-confirmation-dialog v-if="machine.owner_uuid === state.users.getMe().uuid" confirmation-text="Are you sure you want to delete this machine?" @confirm="deleteMachine(machine.uuid)">
+              <base-confirmation-dialog v-if="machine.owner_uuid === state.users.getMe().uuid" confirmation-text="Are you sure you want to delete this machine?" @confirm="state.machines.deleteMachine(machine.uuid)">
                 <i-fluency-trash />
               </base-confirmation-dialog>
             </th>
@@ -129,13 +129,14 @@ import BaseTableHeader from "/@/components/base/BaseTableHeader.vue";
 import { useRouter } from "vue-router";
 import DistroIcon from "./shared/DistroIcon.vue";
 import MachineListTotals from "./MachineListTotals.vue";
-import { formatEpoch } from "../services/logic";
+import { detectBrowser, formatEpoch } from "../services/logic";
 const soundManager = useSoundManager();
 const state = useState();
 const router = useRouter();
 const columns = computed(() => state.settings.columns);
 const sortByKey = ref("hostname");
 const sortBy = (field: string) => sortByKey.value = field;
+const browser = detectBrowser();
 
 const machines = computed(() => state.machines.getAll()
 // Compute a bunch of properties so we don't have to do it multiple times
@@ -178,32 +179,21 @@ const machines = computed(() => state.machines.getAll()
 			case "owner":
 				comparison = (a.owner.username.toLowerCase() || "") > (b.owner.username.toLowerCase() || "");
 				break;
-			case "cau":
-			case "cas":
-			case "country":
-			case "td":
-			case "tu":
-			case "temperature":
-			case "public_ip":
-			case "reporter_version":
-			case "host_uptime":
-			case "reporter_uptime":
-			case "process_count":
+			case "cau" || "cas" || "country" || "td" || "tu" || "temperature" || "public_ip" || "reporter_version" || "host_uptime" || "reporter_uptime" || "process_count":
 				comparison = (a[sortByKey.value] || "") < (b[sortByKey.value] || "");
 				break;
 			default:
 				comparison = (a.hostname?.toLowerCase() || "") > (b.hostname?.toLowerCase() || "");
 				break;
 		}
-		return comparison ? -1 : 1;
+
+		// For some reason this ends up being reversed only
+		// in firefox so this will do as a temp fix for now
+		return browser === "firefox" ? comparison ? 1 : -1 : comparison ? -1 : 1;
 	})
 // This puts all the offline machines at the bottom
 	.sort(a => a.status === 2 ? -1 : 1));
 
-const deleteMachine = async(uuid: uuid) => {
-	const { machines } = useState();
-	await machines.deleteMachine(uuid);
-};
 </script>
 
 <style scoped>
