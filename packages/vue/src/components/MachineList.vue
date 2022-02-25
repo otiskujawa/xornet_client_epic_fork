@@ -128,30 +128,14 @@ import BaseConfirmationDialog from "/@/components/base/BaseConfirmationDialog.vu
 import BaseTableHeader from "/@/components/base/BaseTableHeader.vue";
 import { useRouter } from "vue-router";
 import DistroIcon from "./shared/DistroIcon.vue";
-import type { IMachine } from "../types/api/machine";
 import MachineListTotals from "./MachineListTotals.vue";
+import { formatEpoch } from "../services/logic";
 const soundManager = useSoundManager();
 const state = useState();
 const router = useRouter();
 const columns = computed(() => state.settings.columns);
 const sortByKey = ref("hostname");
 const sortBy = (field: string) => sortByKey.value = field;
-const padNumber = (time: number) => {
-	const floored = ~~time;
-	return floored > 9 ? floored : `0${floored}`;
-};
-
-const formatEpoch = (ms?: number) => {
-	if (!ms) return undefined;
-	const days = ~~(ms / (24 * 60 * 60 * 1000));
-	const daysms = ms % (24 * 60 * 60 * 1000);
-	const hours = ~~(daysms / (60 * 60 * 1000));
-	const hoursms = ms % (60 * 60 * 1000);
-	const minutes = ~~(hoursms / (60 * 1000));
-	const minutesms = ms % (60 * 1000);
-	const sec = ~~(minutesms / 1000);
-	return `${padNumber(days)}:${padNumber(hours)}:${padNumber(minutes)}:${padNumber(sec)}`;
-};
 
 const machines = computed(() => state.machines.getAll()
 // Compute a bunch of properties so we don't have to do it multiple times

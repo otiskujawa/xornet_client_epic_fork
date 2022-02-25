@@ -21,6 +21,23 @@ export function isElectron() {
 	return false;
 }
 
+export const padNumber = (time: number) => {
+	const floored = ~~time;
+	return floored > 9 ? floored : `0${floored}`;
+};
+
+export const formatEpoch = (ms?: number) => {
+	if (!ms) return undefined;
+	const days = ~~(ms / (24 * 60 * 60 * 1000));
+	const daysms = ms % (24 * 60 * 60 * 1000);
+	const hours = ~~(daysms / (60 * 60 * 1000));
+	const hoursms = ms % (60 * 60 * 1000);
+	const minutes = ~~(hoursms / (60 * 1000));
+	const minutesms = ms % (60 * 1000);
+	const sec = ~~(minutesms / 1000);
+	return `${padNumber(days)}:${padNumber(hours)}:${padNumber(minutes)}:${padNumber(sec)}`;
+};
+
 /**
  * Sends a message to electron's node backend
  * @param name the name of the event
