@@ -5,10 +5,7 @@
       :key="iface.n"
       class="cube"
       :class="[
-        (iface.s >= -1 && iface.s <= 100 || !iface.s) && `text-100mbps`,
-        iface.s > 100 && iface.s <= 1000 && `text-1000mbps`,
-        iface.s > 1000 && iface.s <= 10000 && 'text-10000mbps',
-        iface.s > 10000 && iface.s <= 100000 && 'text-100000mbps',
+        determineInterfaceColor(iface.s),
         state.settings.general.enable_bloom && 'bloom'
       ]"
       :style="`animation-duration: ${speeds[iface.n]}ms;`"
@@ -25,6 +22,16 @@ const MINIMUM_BLINK_SPEED = 0.001;
 const props = defineProps<{interfaces: INetwork[]}>();
 const state = useState();
 const interfaces = computed(() => props.interfaces);
+
+const determineInterfaceColor = (speed: number) => {
+	if (state.settings.general.use_single_color_for_switch_lights) return "text-1000mbps";
+	if ((speed >= -1 && speed <= 100) || !speed) return "text-100mbps";
+	if (speed > 100 && speed <= 1000) return "text-1000mbps";
+	if (speed > 1000 && speed <= 10000) return "text-10000mbps";
+	if (speed > 10000 && speed <= 100000) return "text-100000mbps";
+	return "text-100mbps";
+};
+
 const speeds = computed(() => {
 	const nics: Record<string, number> = {};
 
