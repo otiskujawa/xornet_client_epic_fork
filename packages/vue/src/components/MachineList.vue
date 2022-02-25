@@ -179,7 +179,17 @@ const machines = computed(() => state.machines.getAll()
 			case "owner":
 				comparison = (a.owner.username.toLowerCase() || "") > (b.owner.username.toLowerCase() || "");
 				break;
-			case "cau" || "cas" || "country" || "td" || "tu" || "temperature" || "public_ip" || "reporter_version" || "host_uptime" || "reporter_uptime" || "process_count":
+			case "cau":
+			case "cas":
+			case "country":
+			case "td":
+			case "tu":
+			case "temperature":
+			case "public_ip":
+			case "reporter_version":
+			case "host_uptime":
+			case "reporter_uptime":
+			case "process_count":
 				comparison = (a[sortByKey.value] || "") < (b[sortByKey.value] || "");
 				break;
 			default:
