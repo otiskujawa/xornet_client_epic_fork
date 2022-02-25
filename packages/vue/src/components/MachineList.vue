@@ -138,6 +138,7 @@ const sortByKey = ref("hostname");
 const sortBy = (field: string) => sortByKey.value = field;
 const browser = detectBrowser();
 
+// This whole thing is fucked honestly
 const machines = computed(() => state.machines.getAll()
 // Compute a bunch of properties so we don't have to do it multiple times
 	.map((machine) => {
