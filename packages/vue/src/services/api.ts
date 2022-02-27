@@ -8,7 +8,7 @@ import type { IMachineDynamicData } from "/@/types/api/machine";
 
 export type Verb = "GET" | "POST" | "DELETE" | "PUT" | "PATCH";
 console.log(import.meta.env.MODE);
-export const BASE_URL = import.meta.env.MODE === "development-local" ? "http://localhost:7000" : "https://backend.xornet.cloud";
+export const BASE_URL = import.meta.env.MODE === "development-local" ? "http://localhost:7000" : "https://go.xornet.cloud";
 
 export type MittEvent = Record<EventType, unknown>;
 export interface BackendToClientEvents {
