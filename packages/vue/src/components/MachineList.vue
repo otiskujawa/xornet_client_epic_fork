@@ -130,11 +130,12 @@ import { useRouter } from "vue-router";
 import DistroIcon from "./shared/DistroIcon.vue";
 import MachineListTotals from "./MachineListTotals.vue";
 import { detectBrowser, formatEpoch } from "../services/logic";
+import { useLocalStorage } from "@vueuse/core";
 const soundManager = useSoundManager();
 const state = useState();
 const router = useRouter();
 const columns = computed(() => state.settings.columns);
-const sortByKey = ref("hostname");
+const sortByKey = useLocalStorage("sortByKey", "hostname");
 const sortBy = (field: string) => sortByKey.value = field;
 const browser = detectBrowser();
 
