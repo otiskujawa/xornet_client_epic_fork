@@ -37,7 +37,7 @@ const newBackendPopup = useLocalStorage("hasNotSeenNewBackendPopup", true);
 const state = useState();
 const router = useRouter();
 const logout = () => {
-	router.push({ name: "signup" });
+	router.push({ name: "login" });
 	state.users.logout();
 };
 </script>
