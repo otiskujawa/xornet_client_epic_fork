@@ -17,7 +17,8 @@
         <p>We updated our backend to Go! <span class="opacity-25">(I've lost all my braincells)</span></p>
         <p>
           This took me 3 entire days of no sleep to do <br>
-          hopefully the backend survives the influx of data
+          <strong class="font-light text-red-500">Please re-register your reporters</strong> to <br>
+          update their tokens so they work with the new backend
         </p>
       </div>
     </base-dialog>
