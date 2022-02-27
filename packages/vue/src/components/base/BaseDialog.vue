@@ -7,11 +7,12 @@ const props = defineProps<{
 	modelValue?: boolean
 	unsized?: boolean
 }>();
-const emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits(["update:modelValue", "closed"]);
 const open = useVModel(props, "modelValue", emit);
 const close = () => {
 	open.value = false;
 	open.value && soundManager.playEscape();
+	emit("closed");
 };
 onKeyStroke("Escape", () => close());
 </script>
