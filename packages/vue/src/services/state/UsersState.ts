@@ -78,7 +78,7 @@ export class UsersState extends State<IUsersState> {
 	 */
 	public async updateAvatar(avatar: string) {
 		const me = this.getMe();
-		me && this.api.request<IUser>("PATCH", "/users/me/avatar", { url: avatar }).then((me: IUser) => this.setAvatar(me, avatar));
+		me && this.api.request<IUser>("PATCH", "/users/@avatar", { url: avatar }).then((me: IUser) => this.setAvatar(me, avatar));
 	}
 
 	/**
@@ -92,7 +92,7 @@ export class UsersState extends State<IUsersState> {
 	 * Fetches the current logged in user object from the backend and sets it
 	 */
 	public async fetchMe() {
-		const user: IUser = await this.api.request("GET", "/users/me");
+		const user: IUser = await this.api.request("GET", "/users/@me");
 		this.setMe(user);
 	}
 
@@ -101,7 +101,7 @@ export class UsersState extends State<IUsersState> {
 	 */
 	protected async fetch(uuid: uuid) {
 		if (!uuid) return;
-		const user: IUser = await this.api.request("GET", `/users/uuid/${uuid}`);
+		const user: IUser = await this.api.request("GET", `/users/${uuid}`);
 		this.set(user);
 	}
 
@@ -123,7 +123,7 @@ export class UsersState extends State<IUsersState> {
 	 * Logs in a user to the backend and sets the return user in the state
 	 */
 	public async login(form: UserLoginInput) {
-		const response: {token: string; user: IUser} = await this.api.request("POST", "/auth/user/login", form);
+		const response: {token: string; user: IUser} = await this.api.request("POST", "/users/@login", form);
 		this.token.value = response.token;
 		this.setMe(response.user);
 	}
@@ -132,7 +132,7 @@ export class UsersState extends State<IUsersState> {
 	 * Signs up a user to the backend and sets the return user in the state
 	 */
 	public async signup(form: UserSignupInput) {
-		const response: {token: string; user: IUser} = await this.api.request("POST", "/auth/user/signup", form);
+		const response: {token: string; user: IUser} = await this.api.request("POST", "/users/@signup", form);
 		this.token.value = response.token;
 		this.setMe(response.user);
 	}

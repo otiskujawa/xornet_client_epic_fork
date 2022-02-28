@@ -81,7 +81,7 @@ export class API {
 			body: body instanceof FormData ? body : JSON.stringify(body),
 		};
 
-		const response = await fetch(`${BASE_URL}/v1${endpoint}`, options);
+		const response = await fetch(BASE_URL + endpoint, options);
 		if (!response.ok) return Promise.reject(response.json());
 
 		return response.json().catch(e => console.log(e));

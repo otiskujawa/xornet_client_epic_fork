@@ -5,7 +5,7 @@
         <base-input v-model="form.username" placeholder="Username" type="username" />
         <base-input v-model="form.email" placeholder="Email" type="email" />
         <base-input v-model="form.password" placeholder="Password" type="password" />
-        <base-input v-model="form.password_repeat" placeholder="Repeat Password" type="password" />
+        <base-input v-model="form.repeatPassword" placeholder="Repeat Password" type="password" />
         <base-link to="login">
           Already have an account?
         </base-link>
@@ -36,10 +36,10 @@ const form = reactive({
 	username: "",
 	email: "",
 	password: "",
-	password_repeat: "",
+	repeatPassword: "",
 });
 
-const isValid = computed(() => form.username && form.email && form.password && form.password_repeat === form.password);
+const isValid = computed(() => form.username && form.email && form.password && form.repeatPassword === form.password);
 
 const onSubmit = async() => state.users.signup(form).then(() => {
 	router.push({ name: "machines" });

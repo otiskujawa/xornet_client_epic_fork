@@ -22,16 +22,16 @@ export class MachinesState extends State<IMachinesState> {
 	}
 
 	public async generateToken() {
-		const { key, expiration } = await this.api.request<{ key: string; expiration: number }>("GET", "/machines/key");
+		const { key, expiration } = await this.api.request<{ key: string; expiration: number }>("GET", "/machines/@newkey");
 		return { key, expiration };
 	}
 
 	public async fetchMachines() {
-		this.setMachines(await this.api.request("GET", "/users/me/machines"));
+		this.setMachines(await this.api.request("GET", "/users/@me/machines"));
 	}
 
 	public async deleteMachine(uuid: uuid) {
-		await this.api.request("DELETE", `/machines/uuid/${uuid}`);
+		await this.api.request("DELETE", `/machines/${uuid}`);
 		delete this.state.machines[uuid];
 	}
 
