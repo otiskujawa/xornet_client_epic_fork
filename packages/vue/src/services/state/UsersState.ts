@@ -82,7 +82,7 @@ export class UsersState extends State<IUsersState> {
 	}
 
 	public async deleteAccount() {
-		return this.api.request<IUser>("DELETE", "/@me");
+		return this.api.request<IUser>("DELETE", "/users/@me");
 	}
 
 	/**
