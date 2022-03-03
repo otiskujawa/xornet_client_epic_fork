@@ -5,7 +5,7 @@
       <p>
         Account
       </p>
-      <option-field label="Delete account" description="This will remove all your data from Xornet (fuck you qexat)">
+      <option-field label="Delete account" description="This will remove all your data from Xornet">
         <base-confirmation-dialog confirmation-text="Are you sure you wanna delete your account?" @confirm="deleteAccount()">
           <base-button red text="Delete Account" />
         </base-confirmation-dialog>
