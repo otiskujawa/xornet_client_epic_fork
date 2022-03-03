@@ -1,3 +1,6 @@
+import { useState } from "../app";
+import router from "../router";
+
 /**
  *  Returns true if the user is on the electron client
  */
@@ -88,4 +91,9 @@ export const getMachineOsImageKey = (name: string) => {
 	else if (lowerCasedName.includes("windows")) return "windows10";
 	else if (lowerCasedName.includes("kubuntu")) return "kubuntu";
 	else if (lowerCasedName.includes("nixos")) return "nixos";
+};
+
+export const logout = () => {
+	router.push({ name: "login" });
+	useState().users.logout();
 };

@@ -3,6 +3,14 @@
     <top-bar />
     <div class="optionList">
       <p>
+        Account
+      </p>
+      <option-field label="Delete account" description="This will remove all your data from Xornet (fuck you qexat)">
+        <base-confirmation-dialog confirmation-text="Are you sure you wanna delete your account?" @confirm="deleteAccount()">
+          <base-button red text="Delete Account" />
+        </base-confirmation-dialog>
+      </option-field>
+      <p>
         Appearance & Aesthetics
       </p>
       <option-field label="Theme" description="Change the theme of the app">
@@ -54,14 +62,17 @@
 </template>
 
 <script setup lang="ts">
-import { isElectron } from "/@/services/logic";
+import { isElectron, logout } from "/@/services/logic";
 import BaseDropdown from "/@/components/base/BaseDropdown.vue";
 import { useState } from "/@/app";
 import BaseSwitch from "/@/components/base/BaseSwitch.vue";
 import TopBar from "/@/components/TopBar.vue";
 import BaseRangeInput from "/@/components/base/BaseRangeInput.vue";
 import OptionField from "/@/components/OptionField.vue";
+import BaseButton from "/@/components/base/BaseButton.vue";
+import BaseConfirmationDialog from "/@/components/base/BaseConfirmationDialog.vue";
 const state = useState();
+const deleteAccount = () => state.users.deleteAccount().then(() => logout());
 </script>
 
 <style scoped>
