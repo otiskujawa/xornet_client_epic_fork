@@ -20,7 +20,7 @@
   --color-100mbps: var(--color-warning);
   --color-1000mbps: var(--color-active);
   --color-10000mbps: 0,255,238;              /* #00ffee */ 
-  --color-100000mbps: 187,255,255;           /* #bbffff */ 
+  --color-100000mbps: 187,255,255;           /* #e5ffff */ 
 }
 
 .theme-nord {
@@ -67,10 +67,10 @@
   --color-warning: 255,0,72;                  /* #ff0048 */
   --color-active: 4,194,156;                  /* #04c29c */
 
-  --color-100mbps: var(--color-warning);
-  --color-1000mbps: var(--color-active);
-  --color-10000mbps: 0,255,238;               /* #00ffee */ 
-  --color-100000mbps: 187,255,255;            /* #bbffff */ 
+  --color-100mbps: 247,37,133;                /* #f72585 */
+  --color-1000mbps: 114,9,183;                /* #7209b7 */
+  --color-10000mbps: 67,97,238;               /* #4361ee */
+  --color-100000mbps: 76,201,240;             /* #4cc9f0 */
 }
 
 .theme-galaxy {

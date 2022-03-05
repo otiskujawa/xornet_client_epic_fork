@@ -22,7 +22,7 @@ const config = {
 		target: `node${node}`,
 		outDir: "dist",
 		assetsDir: ".",
-		minify: process.env.MODE !== "development",
+		minify: process.env.MODE === "production",
 		lib: {
 			entry: "src/index.ts",
 			formats: ["cjs"],

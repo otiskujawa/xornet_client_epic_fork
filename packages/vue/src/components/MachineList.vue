@@ -96,13 +96,15 @@
               </machine-stat>
             </th>
             <th v-if="columns.owner" @click.stop>
-              <div class="flex items-center gap-3">
+              <div class="flex items-center gap-3 max-w-32">
                 <avatar :user="machine.owner" class="w-16px" />
-                {{ machine.owner?.username }}
+                <p class="overflow-ellipsis overflow-hidden">
+                  {{ machine.owner?.username }}
+                </p>
               </div>
             </th>
             <th v-if="columns.action" @click.stop>
-              <base-confirmation-dialog v-if="machine.owner_uuid === state.users.getMe().uuid" confirmation-text="Are you sure you want to delete this machine?" @confirm="deleteMachine(machine.uuid)">
+              <base-confirmation-dialog v-if="machine.owner_uuid === state.users.getMe().uuid" confirmation-text="Are you sure you want to delete this machine?" @confirm="state.machines.deleteMachine(machine.uuid)">
                 <i-fluency-trash />
               </base-confirmation-dialog>
             </th>
@@ -126,31 +128,18 @@ import BaseConfirmationDialog from "/@/components/base/BaseConfirmationDialog.vu
 import BaseTableHeader from "/@/components/base/BaseTableHeader.vue";
 import { useRouter } from "vue-router";
 import DistroIcon from "./shared/DistroIcon.vue";
-import type { IMachine } from "../types/api/machine";
 import MachineListTotals from "./MachineListTotals.vue";
+import { detectBrowser, formatEpoch } from "../services/logic";
+import { useLocalStorage } from "@vueuse/core";
 const soundManager = useSoundManager();
 const state = useState();
 const router = useRouter();
 const columns = computed(() => state.settings.columns);
-const sortByKey = ref("hostname");
+const sortByKey = useLocalStorage("sortByKey", "hostname");
 const sortBy = (field: string) => sortByKey.value = field;
-const padNumber = (time: number) => {
-	const floored = ~~time;
-	return floored > 9 ? floored : `0${floored}`;
-};
+const browser = detectBrowser();
 
-const formatEpoch = (ms?: number) => {
-	if (!ms) return undefined;
-	const days = ~~(ms / (24 * 60 * 60 * 1000));
-	const daysms = ms % (24 * 60 * 60 * 1000);
-	const hours = ~~(daysms / (60 * 60 * 1000));
-	const hoursms = ms % (60 * 60 * 1000);
-	const minutes = ~~(hoursms / (60 * 1000));
-	const minutesms = ms % (60 * 1000);
-	const sec = ~~(minutesms / 1000);
-	return `${padNumber(days)}:${padNumber(hours)}:${padNumber(minutes)}:${padNumber(sec)}`;
-};
-
+// This whole thing is fucked honestly
 const machines = computed(() => state.machines.getAll()
 // Compute a bunch of properties so we don't have to do it multiple times
 	.map((machine) => {
@@ -164,8 +153,8 @@ const machines = computed(() => state.machines.getAll()
 	})
 // This is for the filter input so user's can quickly search through machines
 	.filter(machine =>
-		machine.name.toLowerCase().includes(state.machines.filterText.value)
-    || state.users.get(machine.owner_uuid).username.toLowerCase().includes(state.machines.filterText.value),
+		machine.name.toLowerCase().includes(state.machines.filterText.value.toLowerCase())
+    || state.users.get(machine.owner_uuid).username.toLowerCase().includes(state.machines.filterText.value.toLowerCase()),
 	)
 // This is so you can hide offline machines
 	.filter(machine => state.settings.general.show_offline_machines ? machine : machine.status === 2)
@@ -209,15 +198,14 @@ const machines = computed(() => state.machines.getAll()
 				comparison = (a.hostname?.toLowerCase() || "") > (b.hostname?.toLowerCase() || "");
 				break;
 		}
-		return comparison ? -1 : 1;
+
+		// For some reason this ends up being reversed only
+		// in firefox so this will do as a temp fix for now
+		return browser === "firefox" ? comparison ? 1 : -1 : comparison ? -1 : 1;
 	})
 // This puts all the offline machines at the bottom
 	.sort(a => a.status === 2 ? -1 : 1));
 
-const deleteMachine = async(uuid: uuid) => {
-	const { machines } = useState();
-	await machines.deleteMachine(uuid);
-};
 </script>
 
 <style scoped>

@@ -84,6 +84,9 @@ ipcMain.on("event", (_, event: { name: string; data: string }) => {
 		case "rpc":
 			discordRPC.updateRichPresence(event.data as Presence);
 			break;
+		case "rpc-clear":
+			discordRPC.clearRichPresesnce();
+			break;
 		case "close":
 			app.quit();
 			break;
