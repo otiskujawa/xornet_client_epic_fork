@@ -6,7 +6,7 @@
         Appearance & Aesthetics
       </p>
       <option-field label="Theme" description="Change the theme of the app">
-        <base-dropdown v-model="state.settings.general.theme" stay-open :options="['dark', 'nord', 'opera', 'galaxy']" />
+        <base-dropdown v-model="state.settings.general.theme" stay-open :options="['dark', 'nord', 'opera', 'galaxy', 'darkgalaxy', 'light']" />
       </option-field>
       <option-field label="Sound FX" description="Enables sound effects when hovering over buttons etc.">
         <base-switch v-model="state.settings.general.enable_sound_effects" />
@@ -62,7 +62,6 @@ const state = useState();
 </script>
 
 <style scoped>
-
 .optionList {
   @apply  h-full text-left flexcol items-center w-full max-w-224 gap-2 text-12px text-text px-8;
   & p {
