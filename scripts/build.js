@@ -4,6 +4,7 @@ const { build } = require("vite");
 
 /** @type 'production' | 'development' */
 const mode = (process.env.MODE = process.env.MODE || "production");
+console.log(`Build environment mode: ${mode}`);
 
 const packagesConfigs = ["packages/electron/vite.config.js", "packages/preload/vite.config.js", "packages/vue/vite.config.js"];
 

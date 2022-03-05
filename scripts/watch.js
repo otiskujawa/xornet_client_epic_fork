@@ -6,6 +6,7 @@ const electronPath = require("electron");
 
 /** @type 'production' | 'development'' */
 const mode = (process.env.MODE = process.env.MODE || "development");
+console.log(`Watch environment mode: ${mode}`);
 
 /** @type {import('vite').LogLevel} */
 const LOG_LEVEL = "info";
@@ -35,6 +36,7 @@ const stderrFilterPatterns = [
 const getWatcher = ({ name, configFile, writeBundle }) => {
 	return build({
 		...sharedConfig,
+		mode: mode.includes("production") ? "production" : "development",
 		configFile,
 		plugins: [{ name, writeBundle }],
 	});

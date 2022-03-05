@@ -81,6 +81,10 @@ export class UsersState extends State<IUsersState> {
 		me && this.api.request<IUser>("PATCH", "/users/@avatar", { url: avatar }).then((me: IUser) => this.setAvatar(me, avatar));
 	}
 
+	public async deleteAccount() {
+		return this.api.request<IUser>("DELETE", "/users/@me");
+	}
+
 	/**
 	 * Gets the me user from the state and if it doesn't exist it fetches it from the backend
 	 */

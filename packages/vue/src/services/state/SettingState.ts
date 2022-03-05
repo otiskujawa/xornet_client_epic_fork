@@ -1,6 +1,7 @@
 import { useLocalStorage } from "@vueuse/core";
 import { watch } from "vue";
 import { isElectron } from "../logic";
+import xornet from "/@/app";
 
 /**
  * This keeps track of the user's settings and updates the local storage
@@ -8,6 +9,7 @@ import { isElectron } from "../logic";
 export class SettingsState {
 	public client = useLocalStorage("clientOnlySettings", {
 		enable_autosync: false,
+		enable_rich_presence: true,
 	}).value;
 
 	// These are snake cased because they are used to index the JSONs we get from the backend as well
@@ -74,6 +76,10 @@ export class SettingsState {
 		watch(
 			() => this.general.opacity,
 			() => this.applyCurrentOpacity(),
+		);
+		watch(
+			() => this.client.enable_rich_presence,
+			(before, after) => after && xornet.discordManager.clearPresence(),
 		);
 	}
 

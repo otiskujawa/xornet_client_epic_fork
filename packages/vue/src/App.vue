@@ -17,7 +17,8 @@ import { isElectron } from "/@/services/logic";
 import CommandPallete from "/@/components/CommandPallete.vue";
 const state = useState();
 </script>
-<style lang="postcss">
+
+<style>
 * {
   @apply !outline-none fill-current text-sm;
   scrollbar-width: thin;

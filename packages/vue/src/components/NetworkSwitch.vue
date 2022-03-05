@@ -1,12 +1,11 @@
 <template>
   <div class="flex gap-3px max-w-64 flex-wrap">
     <div
-      v-for="iface of interfaces" :key="iface.n"
+      v-for="iface of interfaces"
+      :key="iface.n"
       class="cube"
       :class="[
-        state.settings.general.use_single_color_for_switch_lights ? `text-1000mbps` : `text-100mbps`,
-        !state.settings.general.use_single_color_for_switch_lights && iface.s > 100 && `text-1000mbps`,
-        !state.settings.general.use_single_color_for_switch_lights && iface.s > 1000 && 'text-10000mbps',
+        determineInterfaceColor(iface.s),
         state.settings.general.enable_bloom && 'bloom'
       ]"
       :style="`animation-duration: ${speeds[iface.n]}ms;`"
@@ -19,28 +18,57 @@ import { computed } from "vue";
 import type { INetwork } from "/@/types/api/machine";
 import { useState } from "/@/app";
 
-const MINIMUM_BLINK_SPEED = 0.025;
+const MINIMUM_BLINK_SPEED = 0.001;
 const props = defineProps<{interfaces: INetwork[]}>();
 const state = useState();
 const interfaces = computed(() => props.interfaces);
+
+const determineInterfaceColor = (speed: number) => {
+	if (state.settings.general.use_single_color_for_switch_lights) return "text-1000mbps";
+	const log = ~~Math.log10(speed);
+
+	switch (log) {
+		case 2:
+			return "text-100mbps";
+		case 3:
+			return "text-1000mbps";
+		case 4:
+			return "text-10000mbps";
+		case 5:
+			return "text-100000mbps";
+		default:
+			return "text-100mbps";
+	}
+};
+
+const determineInterfaceBlinkSpeed = (iface: INetwork) => {
+	const totalTraffic = (iface.tx + iface.rx) / 1000 / 1000;
+	if (totalTraffic <= MINIMUM_BLINK_SPEED) return 0;
+
+	const log = ~~Math.log10(totalTraffic);
+	switch (log) {
+		case 1:
+			return 400;
+		case 2:
+			return 200;
+		case 3:
+			return 150;
+		case 4:
+			return 100;
+		default:
+			return 400;
+	}
+};
+
 const speeds = computed(() => {
 	const nics: Record<string, number> = {};
-
-	interfaces.value.forEach((iface) => {
-		const totalTraffic = (iface.tx + iface.rx) / 1000 / 1000;
-		if (totalTraffic <= MINIMUM_BLINK_SPEED) nics[iface.n] = 0;
-		else if (totalTraffic > MINIMUM_BLINK_SPEED && totalTraffic <= 10) nics[iface.n] = 400;
-		else if (totalTraffic > 10 && totalTraffic <= 100) nics[iface.n] = 200;
-		else if (totalTraffic > 100 && totalTraffic <= 1000) nics[iface.n] = 150;
-		else nics[iface.n] = 100;
-	});
-
+	interfaces.value.forEach(iface => (nics[iface.n] = determineInterfaceBlinkSpeed(iface)));
 	return nics;
 });
 
 </script>
 
-<style scoped lang="postcss">
+<style scoped>
 
 @keyframes flash {
   from {
