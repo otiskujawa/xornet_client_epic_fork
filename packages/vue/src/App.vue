@@ -50,7 +50,7 @@ a {
 }
 *::-webkit-scrollbar-thumb {
   border-radius: 20px;
-  background: rgba(var(--color-primary-500));
+  background: rgba(var(--color-background-500));
   border: transparent;
 }
 

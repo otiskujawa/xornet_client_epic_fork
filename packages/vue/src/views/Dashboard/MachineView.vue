@@ -1,11 +1,11 @@
 <template>
   <div v-if="machine && machine.ram" class="flexcol bg-black bg-opacity-25 h-full w-full">
     <machine-header :machine="machine" />
-    <div class="flexcol gap-2 px-4 overflow-y-scroll">
-      <machine-user :user="owner" />
+    <div class="flexcol gap-2 overflow-hidden overflow-y-visible px-4">
       <machine-processor :machine="machine" />
+      <p>Memory Composition</p>
       <machine-memory-composition :memory="machine.ram" />
-      <div class="grid gap-x-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 w-full">
+      <div class="grid gap-x-4 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 w-full">
         <machine-disk v-for="disk of machine.disks" :key="disk.mount" :disk="disk" />
       </div>
 
@@ -56,5 +56,4 @@ const machine = computed(() => {
 
 	return machine;
 });
-const owner = state.users.get(machine.value?.owner_uuid);
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="value && !value.toString().includes('NaN') && !value.toString().includes('undefined')" class="flex whitespace-nowrap gap-2 max-w-48 items-center">
+  <div v-if="value && !value.toString().includes('NaN') && !value.toString().includes('undefined')" class="flex whitespace-nowrap gap-2 max-w-64 items-center">
     <div class="flex items-center gap-2" :class="!dontFade && 'opacity-50'">
       <slot />
     </div>

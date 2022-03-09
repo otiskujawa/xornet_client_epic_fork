@@ -31,11 +31,13 @@ export const routes: (FancyRouteRecord & { children?: FancyRouteRecord[] })[] = 
 				name: "machines",
 				icon: "nas",
 				component: () => import("./views/Dashboard/MachinesView.vue"),
-			},
-			{
-				path: "machine/:uuid",
-				name: "machine",
-				component: () => import("./views/Dashboard/MachineView.vue"),
+				children: [
+					{
+						path: "machine/:uuid",
+						name: "machine",
+						component: () => import("./views/Dashboard/MachineView.vue"),
+					},
+				],
 			},
 			{
 				path: "settings",
