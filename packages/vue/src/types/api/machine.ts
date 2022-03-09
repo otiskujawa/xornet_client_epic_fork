@@ -84,6 +84,10 @@ export interface IMachineDynamicData {
 	 */
 	ram?: IRAM
 	/**
+	 * The swap memory of the machine
+	 */
+	swap?: ISwap
+	/**
 	 * The GPU on the machine
 	 */
 	gpu?: IGPU
@@ -149,6 +153,8 @@ export interface IRAM {
 	total: number
 	used: number
 }
+
+export type ISwap = IRAM;
 
 export interface IGPU {
 	brand: string
