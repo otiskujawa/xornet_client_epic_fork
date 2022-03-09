@@ -215,14 +215,14 @@ const currentIndex = computed(() => machines.value.findIndex(machine => machine.
 onKeyStroke("ArrowDown", () => {
 	let nextMachine;
 	if (currentIndex.value + 1 > machines.value.length - 1)
-		nextMachine = machines.value[0];
+		nextMachine = machines.value.at(0);
 	else
-		nextMachine = machines.value[currentIndex.value + 1];
+		nextMachine = machines.value.at(currentIndex.value + 1);
 	router.push({ name: "machine", params: { uuid: nextMachine?.uuid } });
 });
 
 onKeyStroke("ArrowUp", () => {
-	const nextMachine = machines.value[currentIndex.value - 1];
+	const nextMachine = machines.value.at(currentIndex.value - 1);
 	router.push({ name: "machine", params: { uuid: nextMachine?.uuid } });
 });
 
