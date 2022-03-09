@@ -20,7 +20,7 @@
       <div v-if="swap" class="edgeBorder swap flex items-center w-full justify-center h-full duration-100" :style="`width: ${ swap.total / totalMemoryCombined * 100 }%`">
         {{ (swap.total / 1024 / 1024).toFixed(2) }} GB
       </div>
-      <div class="flex items-center w-full justify-center h-full duration-100" :style="`width: ${ 100 - (memory.used / totalMemoryCombined * 100) }%`">
+      <div v-if="swap" class="flex items-center w-full justify-center h-full duration-100" :style="`width: ${ 100 - ((memory.used / totalMemoryCombined * 100) + (swap.total / totalMemoryCombined * 100)) }%`">
         {{ ((memory.total - memory.used) / 1024 / 1024).toFixed(2) }} GB
       </div>
     </div>
