@@ -39,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref, Ref } from "vue";
+import { Ref, computed, onMounted, onUnmounted, ref } from "vue";
 import { useClipboard } from "@vueuse/core";
 import BaseLink from "/@/components/base/BaseLink.vue";
 import { useState } from "/@/app";
@@ -48,19 +48,14 @@ import BaseTooltip from "/@/components/base/BaseTooltip.vue";
 import BaseButton from "/@/components/base/BaseButton.vue";
 const state = useState();
 
-const token = <Ref<string>>ref();
-const { copy, copied } = useClipboard({ source: token });
+const token = ref<string>();
+const { copy, copied } = useClipboard({ source: token.value });
 
 const expiresAt = ref<number>();
 const expiresIn = ref<number>();
 const expired = computed(() => expiresIn.value! <= 0);
 
 const clock = ref();
-onMounted(() => {
-  if (!token.value) regenerateToken();
-  clock.value = setInterval(() => updateExpiration(), 1000)
-})
-onUnmounted(() => clearInterval(clock.value));
 
 const regenerateToken = async() => {
 	token.value = "";
@@ -72,6 +67,12 @@ const regenerateToken = async() => {
 const updateExpiration = () => {
 	expiresIn.value = ~~((expiresAt.value! - Date.now()) / 1000);
 };
+
+onMounted(() => {
+	if (!token.value) regenerateToken();
+	clock.value = setInterval(() => updateExpiration(), 1000);
+});
+onUnmounted(() => clearInterval(clock.value));
 
 </script>
 

@@ -13,7 +13,7 @@
   <i-distros-garuda v-else-if="icon === 'garuda'" />
   <i-distros-raspbian v-else-if="icon === 'raspbian'" />
   <i-distros-macos v-else-if="icon === 'darwin'" />
-  <i-distros-windows10 v-else-if="icon === 'windows10'" />
+  <i-distros-windows v-else-if="icon === 'windows'" />
   <i-distros-kubuntu v-else-if="icon === 'kubuntu'" />
   <i-distros-nixos v-else-if="icon === 'nixos'" />
   <i-distros-parrot v-else-if="icon === 'parrot'" />
