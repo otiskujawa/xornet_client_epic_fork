@@ -9,7 +9,7 @@
       </div>
 
       <div class="grid gap-x-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full">
-        <machine-temp-sensor v-for="sensor of machine.temps" :key="sensor.label" :sensor="sensor" />
+        <machine-temp-sensor v-for="(sensor, i) of machine.temps" :key="i" :sensor="sensor" />
       </div>
     </div>
   </div>
@@ -23,7 +23,6 @@ import MachineHeader from "/@/components/MachineView/MachineHeader.vue";
 import MachineDisk from "/@/components/MachineView/MachineDisk.vue";
 import MachineProcessor from "/@/components/MachineView/MachineProcessor.vue";
 import MachineTempSensor from "/@/components/MachineView/MachineTempSensor.vue";
-import MachineUser from "/@/components/MachineView/MachineUser.vue";
 import { getMachineOsImageKey } from "/@/services/logic";
 import MachineMemoryComposition from "../../components/MachineView/MachineMemoryComposition.vue";
 const route = useRoute();

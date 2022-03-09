@@ -130,7 +130,7 @@ import Avatar from "/@/components/user/Avatar.vue";
 import BaseConfirmationDialog from "/@/components/base/BaseConfirmationDialog.vue";
 import BaseTableHeader from "/@/components/base/BaseTableHeader.vue";
 import { useRouter } from "vue-router";
-import { useLocalStorage } from "@vueuse/core";
+import { onKeyStroke, useLocalStorage } from "@vueuse/core";
 import { detectBrowser, formatEpoch } from "../services/logic";
 import DistroIcon from "./shared/DistroIcon.vue";
 import MachineListTotals from "./MachineListTotals.vue";
@@ -209,6 +209,22 @@ const machines = computed(() => state.machines.getAll()
 	})
 // This puts all the offline machines at the bottom
 	.sort(a => a.status === 2 ? -1 : 1));
+
+const currentIndex = computed(() => machines.value.findIndex(machine => machine.uuid === router.currentRoute.value.params.uuid));
+
+onKeyStroke("ArrowDown", () => {
+	let nextMachine;
+	if (currentIndex.value + 1 > machines.value.length - 1)
+		nextMachine = machines.value[0];
+	else
+		nextMachine = machines.value[currentIndex.value + 1];
+	router.push({ name: "machine", params: { uuid: nextMachine?.uuid } });
+});
+
+onKeyStroke("ArrowUp", () => {
+	const nextMachine = machines.value[currentIndex.value - 1];
+	router.push({ name: "machine", params: { uuid: nextMachine?.uuid } });
+});
 
 </script>
 
