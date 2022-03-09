@@ -2,7 +2,7 @@
   <div class="flex w-full h-full">
     <div class="flexcol h-full" :class="isViewingMachine ? ' w-min' : 'w-full'">
       <machine-list-totals v-if="state.settings.general.enable_totals" :machines="machines" />
-      <div class="overflow-hidden overflow-y-scroll ">
+      <div class="overflow-hidden overflow-y-scroll pb-14 ">
         <base-table>
           <template v-if="!isViewingMachine" #headers>
             <template v-for="column of Object.keys(columns)" :key="column">

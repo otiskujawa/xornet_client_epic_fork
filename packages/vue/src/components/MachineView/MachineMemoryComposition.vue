@@ -4,17 +4,17 @@
       <p>Memory Composition</p>
       <div class="flex gap-2 items-center">
         <p>Used</p>
-        <div class="legend bg-primary-400 bg-opacity-25" />
+        <div class="legend bg-active bg-opacity-25" />
         <p v-if="swap">
           Swap
         </p>
-        <div v-if="swap" class="swap legend bg-primary-400 bg-opacity-25" />
+        <div v-if="swap" class="swap legend bg-active bg-opacity-25" />
         <p>Free</p>
-        <div class="legend bg-primary-400 bg-opacity-5" />
+        <div class="legend bg-active bg-opacity-15" />
       </div>
     </div>
-    <div class="relative whitespace-nowrap flex items-center bg-primary-400 bg-opacity-5 border-1 border-primary-400 w-full min-h-12 h-12">
-      <div class="edgeBorder flex items-center justify-center h-full bg-primary-400 bg-opacity-25 duration-250 " :style="`width: ${ memory.used / totalMemoryCombined * 100 }%`">
+    <div class="relative whitespace-nowrap flex items-center bg-active bg-opacity-15 border-1 border-active w-full min-h-12 h-12">
+      <div class="edgeBorder flex items-center justify-center h-full bg-active bg-opacity-25 duration-250 " :style="`width: ${ memory.used / totalMemoryCombined * 100 }%`">
         {{ (memory.used / 1024 / 1024).toFixed(2) }} GB
       </div>
       <div v-if="swap" class="edgeBorder swap flex items-center w-full justify-center h-full duration-250" :style="`width: ${ swap.total / totalMemoryCombined * 100 }%`">
@@ -37,18 +37,18 @@ const totalMemoryCombined = computed(() => props.swap?.total ? props.memory.tota
 
 <style scoped>
 .legend {
-  @apply rounded-full w-4 h-4 border-1 border-primary-400;
+  @apply rounded-full w-4 h-4 border-1 border-active;
 }
 
 .edgeBorder {
-  @apply border-transparent border-r-primary-400 border-1px;
+  @apply border-transparent border-r-active border-1px;
 }
 
 .swap {
   background-image: repeating-linear-gradient(-66deg,
     transparent,
     transparent 2.5px,
-    rgba(var(--color-primary-400), 0.25) 2.5px,
-    rgba(var(--color-primary-400), 0.25) 5px);
+    rgba(var(--color-active), 0.25) 2.5px,
+    rgba(var(--color-active), 0.25) 5px);
 }
 </style>
