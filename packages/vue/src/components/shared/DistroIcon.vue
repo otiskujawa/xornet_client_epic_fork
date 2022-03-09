@@ -12,6 +12,7 @@
   <i-distros-endeavour v-else-if="icon === 'endeavour'" />
   <i-distros-garuda v-else-if="icon === 'garuda'" />
   <i-distros-raspbian v-else-if="icon === 'raspbian'" />
+  <i-distros-kali v-else-if="icon === 'kali'" />
   <i-distros-macos v-else-if="icon === 'darwin'" />
   <i-distros-windows v-else-if="icon === 'windows'" />
   <i-distros-kubuntu v-else-if="icon === 'kubuntu'" />
