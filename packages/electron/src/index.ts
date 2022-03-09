@@ -128,13 +128,8 @@ if (import.meta.env.PROD) {
 		.whenReady()
 		.then(() => import("electron-updater"))
 		.then(({ autoUpdater }) => {
+			autoUpdater.autoDownload = true;
 			autoUpdater.checkForUpdatesAndNotify();
-			autoUpdater.on("update-downloaded", () => {
-				setTimeout(() => {
-					app.relaunch();
-					app.exit(0);
-				}, 3000);
-			});
 		})
 		.catch(e => console.error("Failed check updates:", e));
 }
