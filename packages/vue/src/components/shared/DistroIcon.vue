@@ -16,9 +16,9 @@
   <i-distros-windows10 v-else-if="icon === 'windows10'" />
   <i-distros-kubuntu v-else-if="icon === 'kubuntu'" />
   <i-distros-nixos v-else-if="icon === 'nixos'" />
+  <i-distros-parrot v-else-if="icon === 'parrot'" />
   <i-fluency-computer v-else />
 </template>
-
 <script setup lang="ts">
 import { getMachineOsImageKey } from "/@/services/logic";
 const props = defineProps<{ name?: string }>();

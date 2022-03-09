@@ -91,6 +91,7 @@ export const getMachineOsImageKey = (name: string) => {
 	else if (lowerCasedName.includes("windows")) return "windows10";
 	else if (lowerCasedName.includes("kubuntu")) return "kubuntu";
 	else if (lowerCasedName.includes("nixos")) return "nixos";
+	else if (lowerCasedName.includes("parrot")) return "parrot";
 };
 
 export const logout = () => {
