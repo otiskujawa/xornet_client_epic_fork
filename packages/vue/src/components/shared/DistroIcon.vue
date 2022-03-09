@@ -21,7 +21,8 @@
   <i-fluency-computer v-else />
 </template>
 <script setup lang="ts">
+import { computed } from "vue";
 import { getMachineOsImageKey } from "/@/services/logic";
 const props = defineProps<{ name?: string }>();
-const icon = getMachineOsImageKey(props.name!);
+const icon = computed(() => getMachineOsImageKey(props.name!));
 </script>
