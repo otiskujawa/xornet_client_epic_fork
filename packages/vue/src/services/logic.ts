@@ -73,7 +73,7 @@ const OPERATING_SYSTEMS = [
 	"freebsd",
 	"fedora",
 	"popos",
-	"red",
+	"redhat",
 	"ubuntu",
 	"openwrt",
 	"kali",
