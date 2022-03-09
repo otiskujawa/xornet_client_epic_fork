@@ -76,6 +76,7 @@ const OPERATING_SYSTEMS = [
 	"red",
 	"ubuntu",
 	"openwrt",
+	"kali",
 	"suse",
 	"endeavour",
 	"garuda",
