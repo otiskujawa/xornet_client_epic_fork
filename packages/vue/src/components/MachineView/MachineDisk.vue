@@ -2,7 +2,7 @@
   <div class="flex items-center gap-2 my-1">
     <i-fluency-hdd v-if="disk.type === 'HDD'" class="text-2xl" />
     <i-fluency-ssd v-else class="text-2xl" />
-    <div class="flexcol justify-between min-w-72">
+    <div class="flexcol justify-between min-w-72 w-full">
       <div class="flex justify-between items-center">
         <p>
           {{ disk.mount }}
