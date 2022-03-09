@@ -3,7 +3,6 @@
     <machine-header :machine="machine" />
     <div class="flexcol gap-2 overflow-hidden overflow-y-visible px-4">
       <machine-processor :machine="machine" />
-      <p>Memory Composition</p>
       <machine-memory-composition :memory="machine.ram" />
       <div class="grid gap-x-4 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 w-full">
         <machine-disk v-for="disk of machine.disks" :key="disk.mount" :disk="disk" />
