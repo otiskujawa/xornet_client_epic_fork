@@ -31,7 +31,7 @@ tr:hover {
 }
 
 th {
-  @apply text-white text-left text-opacity-50 font-normal px-4 py-1.5 ;
+  @apply text-white text-left text-opacity-50 font-normal px-4 py-1.5;
 }
 
 </style>

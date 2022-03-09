@@ -13,6 +13,7 @@
             <tr
               v-for="machine of machines"
               :key="machine.hardware_uuid"
+              :class="router.currentRoute.value.params.uuid === machine.uuid && 'active'"
               @click="router.push({name: 'machine', params: {uuid: machine.uuid}})"
               @mouseenter="soundManager.playHover()"
             >
@@ -211,8 +212,16 @@ const machines = computed(() => state.machines.getAll()
 
 </script>
 
-<style scoped>
-th {
-  @apply text-text text-opacity-50;
+<style lang="postcss" scoped>
+tr {
+  &.active {
+    th {
+      @apply bg-primary-300 text-black ;
+    }
+  }
+  th {
+    @apply text-text text-opacity-50;
+  }
 }
+
 </style>
