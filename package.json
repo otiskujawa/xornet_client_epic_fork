@@ -12,6 +12,7 @@
   },
   "main": "packages/electron/dist/index.cjs",
   "scripts": {
+    "postinstall": "npm i -g nodemon typescript ts-node",
     "build": "node scripts/build.js",
     "precompile": "cross-env MODE=production npm run build",
     "compile": "electron-builder build --config .electron-builder.config.js --dir --config.asar=false",
@@ -26,8 +27,7 @@
     "typecheck-vue": "vue-tsc --noEmit -p packages/vue/tsconfig.json",
     "typecheck": "npm run typecheck-electron && npm run typecheck-preload && npm run typecheck-vue",
     "pretypecheck-vue": "dts-cb -i packages/preload/src/**/*.ts -o packages/preload/exposedInMainWorld.d.ts",
-    "prettify": "eslint --fix \"**/*.{vue,ts,js}\"",
-    "prepare": "husky install"
+    "prettify": "eslint --fix \"**/*.{vue,ts,js}\""
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.14.0",
