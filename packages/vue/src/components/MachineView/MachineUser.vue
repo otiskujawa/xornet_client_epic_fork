@@ -1,5 +1,5 @@
 <template>
-  <div class="flex gap-4 py-4">
+  <div v-if="user" class="flex gap-4 py-4">
     <avatar :user="user" class="w-10" />
     <div class="flexcol">
       <p>{{ user.username }}</p>
