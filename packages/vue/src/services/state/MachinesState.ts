@@ -1,4 +1,4 @@
-import { ref } from "vue";
+import { useLocalStorage } from "@vueuse/core";
 import type { API } from "/@/services/api";
 import { State } from "/@/services/state/State";
 import type { uuid } from "/@/types/api";
@@ -13,7 +13,7 @@ export interface IMachinesState {
  * This keeps tracks of all the machines on the dashboard
  */
 export class MachinesState extends State<IMachinesState> {
-	public filterText = ref("");
+	public filterText = useLocalStorage("filterText", "");
 
 	public constructor(public api: API) {
 		super({
