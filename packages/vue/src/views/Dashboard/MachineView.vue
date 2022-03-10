@@ -1,7 +1,7 @@
 <template>
-  <div v-if="machine && machine.ram" class="flexcol bg">
+  <div class="flexcol bg">
     <machine-header :machine="machine" />
-    <div class="flexcol gap-2 overflow-hidden overflow-y-visible px-4">
+    <div v-if="machine && machine.ram" class="flexcol gap-2 overflow-hidden overflow-y-visible px-4">
       <machine-processor :machine="machine" />
       <machine-memory-composition :memory="machine.ram" :swap="machine.swap" />
       <div class="grid gap-x-4 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 w-full">
@@ -12,9 +12,9 @@
         <machine-temp-sensor v-for="(sensor, i) of machine.temps" :key="i" :sensor="sensor" />
       </div>
     </div>
-  </div>
-  <div v-else class="bg">
-    <base-loading-spinner text="Waiting for data from this machine..." />
+    <div v-else class="bg">
+      <base-loading-spinner text="Waiting for data from this machine..." />
+    </div>
   </div>
 </template>
 
