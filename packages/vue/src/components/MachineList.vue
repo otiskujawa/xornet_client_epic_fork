@@ -159,6 +159,7 @@ const machines = computed(() => state.machines.getAll()
 		machine.name.toLowerCase().includes(state.machines.filterText.value.toLowerCase())
     || state.users.get(machine.owner_uuid).username.toLowerCase().includes(state.machines.filterText.value.toLowerCase()),
 	)
+	.filter(machine => state.settings.general.show_owned ? machine.owner_uuid === state.users.getMe().uuid : machine)
 // This is so you can hide offline machines
 	.filter(machine => state.settings.general.show_offline_machines ? machine : machine.status === 2)
 // This switch is what sorts the columns
