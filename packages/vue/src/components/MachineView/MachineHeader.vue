@@ -5,7 +5,7 @@
         <i-fluency-back />
       </router-link>
       <p class="opacity-50" />
-      <router-link class="p-4 no-drag opacity-50 hover:opacity-100" :to="{name: 'machine', params: {uuid: machine.uuid}}">
+      <router-link v-if="machine" class="p-4 no-drag opacity-50 hover:opacity-100" :to="{name: 'machine', params: {uuid: machine.uuid}}">
         {{ machine.name }}
         ({{ machine.os_name }})
       </router-link>
