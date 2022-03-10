@@ -67,13 +67,13 @@
 </template>
 
 <script setup lang="ts">
-import { isElectron } from "/@/services/logic";
+import { computed } from "vue";
 import { useState } from "/@/app";
-import Avatar from "/@/components/user/Avatar.vue";
 import BaseTooltip from "/@/components/base/BaseTooltip.vue";
 import LogoutButton from "/@/components/NavigationBar/LogoutButton.vue";
 import NavigationButton from "/@/components/NavigationButton.vue";
-import { computed } from "vue";
+import Avatar from "/@/components/user/Avatar.vue";
+import { isElectron } from "/@/services/logic";
 const state = useState();
 const me = computed(() => state.users.getMe());
 

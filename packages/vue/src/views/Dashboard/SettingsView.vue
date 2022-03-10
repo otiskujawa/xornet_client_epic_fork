@@ -62,20 +62,20 @@
 </template>
 
 <script setup lang="ts">
-import { isElectron, logout } from "/@/services/logic";
-import BaseDropdown from "/@/components/base/BaseDropdown.vue";
 import { useState } from "/@/app";
-import BaseSwitch from "/@/components/base/BaseSwitch.vue";
-import TopBar from "/@/components/TopBar.vue";
-import BaseRangeInput from "/@/components/base/BaseRangeInput.vue";
-import OptionField from "/@/components/OptionField.vue";
 import BaseButton from "/@/components/base/BaseButton.vue";
 import BaseConfirmationDialog from "/@/components/base/BaseConfirmationDialog.vue";
+import BaseDropdown from "/@/components/base/BaseDropdown.vue";
+import BaseRangeInput from "/@/components/base/BaseRangeInput.vue";
+import BaseSwitch from "/@/components/base/BaseSwitch.vue";
+import OptionField from "/@/components/OptionField.vue";
+import TopBar from "/@/components/TopBar.vue";
+import { isElectron, logout } from "/@/services/logic";
 const state = useState();
 const deleteAccount = () => state.users.deleteAccount().then(() => logout());
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
 
 .optionList {
   @apply  h-full text-left flexcol items-center w-full max-w-224 gap-2 text-12px text-text px-8;

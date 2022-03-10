@@ -12,6 +12,4 @@ const props = defineProps<{processor: ICPU}>();
 
 </script>
 
-<style scoped lang="postcss">
 
-</style>

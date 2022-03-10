@@ -21,14 +21,14 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useRoute } from "vue-router";
+import MachineMemoryComposition from "../../components/MachineView/MachineMemoryComposition.vue";
 import { useDiscordManager, useState } from "/@/app";
-import MachineHeader from "/@/components/MachineView/MachineHeader.vue";
+import BaseLoadingSpinner from "/@/components/base/BaseLoadingSpinner.vue";
 import MachineDisk from "/@/components/MachineView/MachineDisk.vue";
+import MachineHeader from "/@/components/MachineView/MachineHeader.vue";
 import MachineProcessor from "/@/components/MachineView/MachineProcessor.vue";
 import MachineTempSensor from "/@/components/MachineView/MachineTempSensor.vue";
 import { getMachineOsImageKey } from "/@/services/logic";
-import MachineMemoryComposition from "../../components/MachineView/MachineMemoryComposition.vue";
-import BaseLoadingSpinner from "/@/components/base/BaseLoadingSpinner.vue";
 const route = useRoute();
 const state = useState();
 const machineUuid = computed(() => route.params.uuid as string);
@@ -60,7 +60,7 @@ const machine = computed(() => {
 });
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
 .bg {
 	@apply w-full h-full bg-black bg-opacity-25;
 }

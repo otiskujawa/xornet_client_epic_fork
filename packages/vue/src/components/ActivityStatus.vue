@@ -17,7 +17,7 @@ const state = useState();
 defineProps<{machine: IMachine}>();
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
 .bloom {
   box-shadow: 0px 0px 6px #00FF67;
 }

@@ -7,9 +7,9 @@
 </template>
 
 <script setup lang="ts">
+import { useState } from "/@/app";
 import NavigationBar from "/@/components/NavigationBar.vue";
 import StatusBar from "/@/components/StatusBar.vue";
 import { routes } from "/@/router";
-import { useState } from "/@/app";
 const state = useState();
 </script>

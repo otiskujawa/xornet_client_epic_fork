@@ -30,12 +30,12 @@
   </div>
 </template>
 <script setup lang="ts">
+import { computed, onMounted, ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { useState } from "/@/app";
 import BaseInput from "/@/components/base/BaseInput.vue";
 import TopBar from "/@/components/TopBar.vue";
 import Avatar from "/@/components/user/Avatar.vue";
-import { useState } from "/@/app";
-import { useRoute, useRouter } from "vue-router";
-import { computed, onMounted, ref } from "vue";
 const router = useRouter();
 const route = useRoute();
 const state = useState();

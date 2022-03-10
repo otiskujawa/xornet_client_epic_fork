@@ -28,10 +28,10 @@
   <div v-if="open" class="fullscreen" @click="open = false" />
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
 import { onKeyStroke, useVModel } from "@vueuse/core";
-import BasePopover from "/@/components/base/BasePopover.vue";
+import { ref } from "vue";
 import BaseButton from "/@/components/base/BaseButton.vue";
+import BasePopover from "/@/components/base/BasePopover.vue";
 const open = ref(false);
 
 onKeyStroke("Escape", () => (open.value = false));

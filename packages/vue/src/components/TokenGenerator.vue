@@ -39,13 +39,13 @@
 </template>
 
 <script setup lang="ts">
-import { Ref, computed, onMounted, onUnmounted, ref } from "vue";
 import { useClipboard } from "@vueuse/core";
-import BaseLink from "/@/components/base/BaseLink.vue";
+import { computed, onMounted, onUnmounted, ref } from "vue";
 import { useState } from "/@/app";
-
-import BaseTooltip from "/@/components/base/BaseTooltip.vue";
 import BaseButton from "/@/components/base/BaseButton.vue";
+import BaseLink from "/@/components/base/BaseLink.vue";
+import BaseTooltip from "/@/components/base/BaseTooltip.vue";
+
 const state = useState();
 
 const token = ref<string>();
@@ -75,7 +75,3 @@ onMounted(() => {
 onUnmounted(() => clearInterval(clock.value));
 
 </script>
-
-<style scoped lang="postcss">
-
-</style>

@@ -124,21 +124,21 @@
 </template>
 
 <script setup lang="ts">
+import { onKeyStroke, useLocalStorage } from "@vueuse/core";
 import { computed } from "vue";
+import { useRouter } from "vue-router";
+import { detectBrowser, formatEpoch } from "../services/logic";
+import BaseLoadingSpinner from "./base/BaseLoadingSpinner.vue";
+import MachineListTotals from "./MachineListTotals.vue";
+import DistroIcon from "./shared/DistroIcon.vue";
 import { useSoundManager, useState } from "/@/app";
 import ActivityStatus from "/@/components/ActivityStatus.vue";
+import BaseConfirmationDialog from "/@/components/base/BaseConfirmationDialog.vue";
 import BaseTable from "/@/components/base/BaseTable.vue";
+import BaseTableHeader from "/@/components/base/BaseTableHeader.vue";
 import MachineStat from "/@/components/MachineStat.vue";
 import NetworkSwitch from "/@/components/NetworkSwitch.vue";
 import Avatar from "/@/components/user/Avatar.vue";
-import BaseConfirmationDialog from "/@/components/base/BaseConfirmationDialog.vue";
-import BaseTableHeader from "/@/components/base/BaseTableHeader.vue";
-import { useRouter } from "vue-router";
-import { onKeyStroke, useLocalStorage } from "@vueuse/core";
-import { detectBrowser, formatEpoch } from "../services/logic";
-import DistroIcon from "./shared/DistroIcon.vue";
-import MachineListTotals from "./MachineListTotals.vue";
-import BaseLoadingSpinner from "./base/BaseLoadingSpinner.vue";
 const soundManager = useSoundManager();
 const state = useState();
 const router = useRouter();

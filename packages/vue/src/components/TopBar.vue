@@ -57,18 +57,18 @@
 </template>
 <script setup lang="ts">
 import { computed, ref } from "vue";
+import OptionField from "./OptionField.vue";
 import { useState } from "/@/app";
-
-import BaseInput from "/@/components/base/BaseInput.vue";
-import BaseTooltip from "/@/components/base/BaseTooltip.vue";
 import BaseButton from "/@/components/base/BaseButton.vue";
 import BaseDialog from "/@/components/base/BaseDialog.vue";
-import TokenGenerator from "/@/components/TokenGenerator.vue";
 import BaseDropdown from "/@/components/base/BaseDropdown.vue";
 import BaseDropdownCheckbox from "/@/components/base/BaseDropdownCheckbox.vue";
-import Icon from "/@/components/shared/Icon.vue";
+import BaseInput from "/@/components/base/BaseInput.vue";
 import BaseSwitch from "/@/components/base/BaseSwitch.vue";
-import OptionField from "./OptionField.vue";
+import BaseTooltip from "/@/components/base/BaseTooltip.vue";
+import Icon from "/@/components/shared/Icon.vue";
+import TokenGenerator from "/@/components/TokenGenerator.vue";
+
 const showTokenGenerator = ref(false);
 const columnFilter = ref("");
 const state = useState();

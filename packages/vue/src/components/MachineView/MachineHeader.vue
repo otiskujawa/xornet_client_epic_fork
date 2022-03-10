@@ -35,11 +35,11 @@
 </template>
 
 <script setup lang="ts">
+import ActivityStatus from "../ActivityStatus.vue";
+import MachineUser from "./MachineUser.vue";
+import { useState } from "/@/app";
 import DistroIcon from "/@/components/shared/DistroIcon.vue";
 import type { IMachine } from "/@/types/api/machine";
-import ActivityStatus from "../ActivityStatus.vue";
-import { useState } from "/@/app";
-import MachineUser from "./MachineUser.vue";
 defineProps<{machine: IMachine}>();
 const state = useState();
 </script>

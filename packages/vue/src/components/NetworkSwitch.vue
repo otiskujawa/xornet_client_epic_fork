@@ -15,8 +15,8 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import type { INetwork } from "/@/types/api/machine";
 import { useState } from "/@/app";
+import type { INetwork } from "/@/types/api/machine";
 
 const MINIMUM_BLINK_SPEED = 0.001;
 const props = defineProps<{interfaces: INetwork[]}>();
@@ -68,7 +68,7 @@ const speeds = computed(() => {
 
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
 
 @keyframes flash {
   from {

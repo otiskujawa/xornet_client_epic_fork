@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import type { IMachine } from "/@/types/api/machine";
 import MachineProcessorUsageBars from "/@/components/MachineView/MachineProcessorUsageBars.vue";
+import type { IMachine } from "/@/types/api/machine";
 defineProps<{machine: IMachine}>();
 </script>

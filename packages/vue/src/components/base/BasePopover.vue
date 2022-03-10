@@ -12,8 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import { arrow, computePosition, offset, shift } from "@floating-ui/dom";
 import type { BasePlacement } from "@floating-ui/core";
+import { arrow, computePosition, offset, shift } from "@floating-ui/dom";
 import type { Ref } from "vue";
 import { computed, onMounted, ref } from "vue";
 const props = defineProps<{

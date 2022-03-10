@@ -35,7 +35,7 @@ const totalMemoryCombined = computed(() => props.swap?.total ? props.memory.tota
 const isShowingSwap = computed(() => props.swap && props.swap.used / 1024 / 1024 > 0);
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
 .legend {
   @apply rounded-full w-4 h-4 border-1 border-primary-400;
 }

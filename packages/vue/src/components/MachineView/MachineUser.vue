@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import type { IUser } from "/@/types/api/user";
 import Avatar from "../user/Avatar.vue";
+import type { IUser } from "/@/types/api/user";
 defineProps<{user: IUser}>();
 </script>
