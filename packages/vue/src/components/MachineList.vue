@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full h-full">
+  <div class="flex w-full" style="height: calc(100% - 42px);">
     <div class="flexcol h-full min-w-64" :class="isViewingMachine ? ' w-min' : 'w-full'">
       <machine-list-totals v-if="state.settings.general.enable_totals" :machines="machines" />
       <div v-if="machines.length !== 0" class="overflow-hidden overflow-y-scroll ">
@@ -211,18 +211,27 @@ const machines = computed(() => state.machines.getAll()
 
 const currentIndex = computed(() => machines.value.findIndex(machine => machine.uuid === router.currentRoute.value.params.uuid));
 
-onKeyStroke("ArrowDown", () => {
+const scrollToSelectedMachine = () => {
+	const activeMachine = document.querySelectorAll(".active")[0];
+	activeMachine.scrollIntoView({ block: "center", behavior: "smooth" });
+};
+
+onKeyStroke("ArrowDown", (e) => {
+	e.preventDefault();
 	let nextMachine;
 	if (currentIndex.value + 1 > machines.value.length - 1)
 		nextMachine = machines.value.at(0);
 	else
 		nextMachine = machines.value.at(currentIndex.value + 1);
 	router.push({ name: "machine", params: { uuid: nextMachine?.uuid } });
+	scrollToSelectedMachine();
 });
 
-onKeyStroke("ArrowUp", () => {
+onKeyStroke("ArrowUp", (e) => {
+	e.preventDefault();
 	const nextMachine = machines.value.at(currentIndex.value - 1);
 	router.push({ name: "machine", params: { uuid: nextMachine?.uuid } });
+	scrollToSelectedMachine();
 });
 
 </script>
