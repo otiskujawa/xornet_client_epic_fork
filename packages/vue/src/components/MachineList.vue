@@ -212,7 +212,7 @@ const machines = computed(() => state.machines.getAll()
 const currentIndex = computed(() => machines.value.findIndex(machine => machine.uuid === router.currentRoute.value.params.uuid));
 
 const scrollToSelectedMachine = () => {
-	const activeMachine = document.querySelectorAll(".active")[0];
+	const activeMachine = document.querySelectorAll("tr.active")[0];
 	activeMachine.scrollIntoView({ block: "center", behavior: "smooth" });
 };
 
