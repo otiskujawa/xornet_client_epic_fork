@@ -44,7 +44,6 @@ export class SettingsState {
 		reporter_uptime: false,
 		reporter_version: true,
 		owner: true,
-		action: true,
 	}, { deep: true }).value;
 
 	constructor() {

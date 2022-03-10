@@ -105,11 +105,6 @@
                   </p>
                 </div>
               </th>
-              <th v-if="columns.action && !isViewingMachine" @click.stop>
-                <base-confirmation-dialog v-if="machine.owner_uuid === state.users.getMe().uuid" confirmation-text="Are you sure you want to delete this machine?" @confirm="state.machines.deleteMachine(machine.uuid)">
-                  <i-fluency-trash />
-                </base-confirmation-dialog>
-              </th>
             </tr>
           </template>
         </base-table>
@@ -133,7 +128,6 @@ import MachineListTotals from "./MachineListTotals.vue";
 import DistroIcon from "./shared/DistroIcon.vue";
 import { useSoundManager, useState } from "/@/app";
 import ActivityStatus from "/@/components/ActivityStatus.vue";
-import BaseConfirmationDialog from "/@/components/base/BaseConfirmationDialog.vue";
 import BaseTable from "/@/components/base/BaseTable.vue";
 import BaseTableHeader from "/@/components/base/BaseTableHeader.vue";
 import MachineStat from "/@/components/MachineStat.vue";
