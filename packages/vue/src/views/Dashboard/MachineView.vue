@@ -1,5 +1,5 @@
 <template>
-  <div v-if="machine && machine.ram" class="flexcol bg-black bg-opacity-25 h-full w-full">
+  <div v-if="machine && machine.ram" class="flexcol bg">
     <machine-header :machine="machine" />
     <div class="flexcol gap-2 overflow-hidden overflow-y-visible px-4">
       <machine-processor :machine="machine" />
@@ -13,6 +13,9 @@
       </div>
     </div>
   </div>
+  <div v-else class="bg">
+    <base-loading-spinner text="Waiting for data from this machine..." />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -25,6 +28,7 @@ import MachineProcessor from "/@/components/MachineView/MachineProcessor.vue";
 import MachineTempSensor from "/@/components/MachineView/MachineTempSensor.vue";
 import { getMachineOsImageKey } from "/@/services/logic";
 import MachineMemoryComposition from "../../components/MachineView/MachineMemoryComposition.vue";
+import BaseLoadingSpinner from "/@/components/base/BaseLoadingSpinner.vue";
 const route = useRoute();
 const state = useState();
 const machineUuid = computed(() => route.params.uuid as string);
@@ -55,3 +59,9 @@ const machine = computed(() => {
 	return machine;
 });
 </script>
+
+<style scoped>
+.bg {
+	@apply w-full h-full bg-black bg-opacity-25;
+}
+</style>

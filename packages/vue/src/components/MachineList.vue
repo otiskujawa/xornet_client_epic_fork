@@ -1,8 +1,8 @@
 <template>
   <div class="flex w-full h-full">
-    <div class="flexcol h-full" :class="isViewingMachine ? ' w-min' : 'w-full'">
+    <div class="flexcol h-full min-w-64" :class="isViewingMachine ? ' w-min' : 'w-full'">
       <machine-list-totals v-if="state.settings.general.enable_totals" :machines="machines" />
-      <div class="overflow-hidden overflow-y-scroll ">
+      <div v-if="machines.length !== 0" class="overflow-hidden overflow-y-scroll ">
         <base-table>
           <template v-if="!isViewingMachine" #headers>
             <template v-for="column of Object.keys(columns)" :key="column">
@@ -114,6 +114,7 @@
           </template>
         </base-table>
       </div>
+      <base-loading-spinner v-else text="Waiting for machines..." />
     </div>
     <router-view />
   </div>
@@ -134,6 +135,7 @@ import { onKeyStroke, useLocalStorage } from "@vueuse/core";
 import { detectBrowser, formatEpoch } from "../services/logic";
 import DistroIcon from "./shared/DistroIcon.vue";
 import MachineListTotals from "./MachineListTotals.vue";
+import BaseLoadingSpinner from "./base/BaseLoadingSpinner.vue";
 const soundManager = useSoundManager();
 const state = useState();
 const router = useRouter();
