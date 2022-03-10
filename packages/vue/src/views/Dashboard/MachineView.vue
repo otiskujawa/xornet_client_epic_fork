@@ -1,7 +1,7 @@
 <template>
   <div class="flexcol bg">
     <machine-header :machine="machine" />
-    <div v-if="machine && machine.ram" class="flexcol gap-2 overflow-hidden overflow-y-visible px-4">
+    <div v-if="machine && machine.ram" class="flexcol bg gap-2 overflow-hidden overflow-y-visible p-4">
       <machine-processor :machine="machine" />
       <machine-memory-composition :memory="machine.ram" :swap="machine.swap" />
       <div class="grid gap-x-4 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 w-full">
