@@ -114,6 +114,9 @@
           </template>
         </base-table>
       </div>
+      <h1 v-else-if="state.machines.filterText.value !== ''" class="text-center">
+        No machines found
+      </h1>
       <base-loading-spinner v-else text="Waiting for machines..." />
     </div>
     <router-view />
