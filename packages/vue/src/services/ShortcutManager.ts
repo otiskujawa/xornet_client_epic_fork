@@ -1,6 +1,6 @@
 import { onKeyStroke, useKeyModifier } from "@vueuse/core";
 import router from "/@/router";
-import { isElectron } from "/@/services/logic";
+import { isElectron, nodeEmit } from "/@/services/logic";
 import type { WindowState } from "/@/services/state/WindowState";
 
 export class ShortcutManager {
@@ -14,5 +14,8 @@ export class ShortcutManager {
 		onKeyStroke("1", (e) => { this.ctrl.value && e.preventDefault(); this.ctrl.value && router.push({ name: "machines" }); });
 		onKeyStroke("2", (e) => { this.ctrl.value && e.preventDefault(); this.ctrl.value && router.push({ name: "settings" }); });
 		onKeyStroke("3", (e) => { this.ctrl.value && e.preventDefault(); this.ctrl.value && router.push({ name: "profile" }); });
+
+		if (isElectron())
+			onKeyStroke("F5", () => nodeEmit("refresh"));
 	}
 }

@@ -2,6 +2,7 @@ import { computed } from "vue";
 import { useState } from "../app";
 import router from "../router";
 import type { IMachine } from "../types/api/machine";
+import { isElectron, nodeEmit } from "./logic";
 
 export type CommandPalleteOptionCategory = "route" | "machine" | "appearance" | "sound" | "theme" | "setting";
 
@@ -47,7 +48,7 @@ export const commandPaletteOptions = computed<CommandPalleteOption[]>(() => ([
 	...defineThemeCommands(["nord", "dark", "opera", "galaxy"]),
 	...defineMachineCommands(state.machines.getAll()),
 	defineOption(
-		() => location.reload(),
+		() => isElectron() ? nodeEmit("refresh") : location.reload(),
 		"setting",
 		"Reload Page",
 		"synchronize",
