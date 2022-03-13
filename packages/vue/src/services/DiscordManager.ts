@@ -1,6 +1,7 @@
 import type { Presence } from "discord-rpc";
+import type { IMachine } from "../types/api/machine";
 import type { AppState } from "./state/AppState";
-import { nodeEmit } from "/@/services/logic";
+import { getMachineOsImageKey, nodeEmit } from "/@/services/logic";
 export class DiscordManager {
 	constructor(public state: AppState) {}
 
@@ -10,5 +11,26 @@ export class DiscordManager {
 
 	public clearPresence() {
 		nodeEmit("rpc-clear");
+	}
+
+	public setCurrentlyWatchingMachine(machine: IMachine) {
+		this.updatePresence({
+			state: machine.os_name?.replaceAll("'", ""),
+			details: machine.name,
+			largeImageKey: machine.os_name ? getMachineOsImageKey(machine.os_name) : "main_logo",
+			largeImageText: machine.os_name,
+			smallImageKey: "viewing",
+			smallImageText: `Viewing ${machine.name}`,
+			buttons: [
+				{
+					label: "See Machine",
+					url: `https://xornet.cloud/#/dashboard/machine/${machine.uuid}`,
+				},
+				{
+					label: "GitHub",
+					url: "https://github.com/xornet-cloud/",
+				},
+			],
+		});
 	}
 }

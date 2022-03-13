@@ -2,64 +2,39 @@
   <div class="flexcol bg">
     <machine-header :machine="machine" />
     <div v-if="machine && machine.ram" class="flexcol bg gap-2 overflow-hidden overflow-y-visible p-4">
-      <machine-processor :machine="machine" />
+      <machine-processor-info :machine="machine" />
+      <machine-processor-usage-bars :processor="machine.cpu!" />
       <machine-memory-composition :memory="machine.ram" :swap="machine.swap" />
-      <div class="grid gap-x-4 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 w-full">
-        <machine-disk v-for="disk of machine.disks" :key="disk.mount" :disk="disk" />
-      </div>
-
-      <div class="grid gap-x-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full">
-        <machine-temp-sensor v-for="(sensor, i) of machine.temps" :key="i" :sensor="sensor" />
-      </div>
+      <machine-network-traffic :total-download="machine.td || 0" :total-upload="machine.tu || 0" />
+      <machine-disks :disks="machine.disks!" />
+      <machine-temp-sensors :sensors="machine.temps!" />
     </div>
-    <div v-else class="bg">
-      <base-loading-spinner text="Waiting for data from this machine..." />
-    </div>
+    <base-loading-spinner v-else text="Waiting for data from this machine..." />
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from "vue";
 import { useRoute } from "vue-router";
-import MachineMemoryComposition from "../../components/MachineView/MachineMemoryComposition.vue";
+import MachineMemoryComposition from "/@/components/MachineView/MachineMemoryComposition.vue";
 import { useDiscordManager, useState } from "/@/app";
 import BaseLoadingSpinner from "/@/components/base/BaseLoadingSpinner.vue";
-import MachineDisk from "/@/components/MachineView/MachineDisk.vue";
 import MachineHeader from "/@/components/MachineView/MachineHeader.vue";
-import MachineProcessor from "/@/components/MachineView/MachineProcessor.vue";
-import MachineTempSensor from "/@/components/MachineView/MachineTempSensor.vue";
-import { getMachineOsImageKey } from "/@/services/logic";
+import MachineNetworkTraffic from "/@/components/MachineView/MachineNetworkTraffic.vue";
+import MachineProcessorUsageBars from "/@/components/MachineView/MachineProcessorUsageBars.vue";
+import MachineProcessorInfo from "/@/components/MachineView/MachineProcessorInfo.vue";
+import MachineDisks from "/@/components/MachineView/MachineDisks.vue";
+import MachineTempSensors from "/@/components/MachineView/MachineTempSensors.vue";
 const route = useRoute();
 const state = useState();
+const discord = useDiscordManager();
 const machineUuid = computed(() => route.params.uuid as string);
-
 const machine = computed(() => {
 	const machine = state.machines.get(machineUuid.value);
-	if (machine?.name) {
-		useDiscordManager().updatePresence({
-			state: machine.os_name?.replaceAll("'", ""),
-			details: machine.name,
-			largeImageKey: machine.os_name ? getMachineOsImageKey(machine.os_name) : "main_logo",
-			largeImageText: machine.os_name,
-			smallImageKey: "viewing",
-			smallImageText: `Viewing ${machine.name}`,
-			buttons: [
-				{
-					label: "See Machine",
-					url: `https://xornet.cloud/#/dashboard/machine/${machine.uuid}`,
-				},
-				{
-					label: "GitHub",
-					url: "https://github.com/xornet-cloud/",
-				},
-			],
-		});
-	}
-
+	machine?.name && discord.setCurrentlyWatchingMachine(machine);
 	return machine;
 });
 </script>
-
 <style scoped lang="postcss">
 .bg {
 	@apply w-full h-full bg-black bg-opacity-25;
