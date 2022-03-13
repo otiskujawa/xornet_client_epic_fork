@@ -2,7 +2,7 @@ import type { Presence } from "discord-rpc";
 import type { IMachine } from "../types/api/machine";
 import type { AppState } from "./state/AppState";
 import { getMachineOsImageKey, nodeEmit } from "/@/services/logic";
-export class DiscordManager {
+export class Discord {
 	constructor(public state: AppState) {}
 
 	public updatePresence(args: Presence) {

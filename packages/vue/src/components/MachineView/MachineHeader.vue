@@ -1,11 +1,11 @@
 <template>
-  <div class="flexcol">
+  <div v-if="machine" class="flexcol">
     <div class="px-2 pt-1 drag flex items-center">
       <router-link class="flex no-drag items-center p-4 opacity-50 hover:opacity-100" :to="{name: 'machines'}">
         <i-fluency-back />
       </router-link>
       <p class="opacity-50" />
-      <router-link v-if="machine" class="p-4 no-drag opacity-50 hover:opacity-100" :to="{name: 'machine', params: {uuid: machine.uuid}}">
+      <router-link class="p-4 no-drag opacity-50 hover:opacity-100" :to="{name: 'machine', params: {uuid: machine.uuid}}">
         {{ machine.name }}
         ({{ machine.os_name }})
       </router-link>

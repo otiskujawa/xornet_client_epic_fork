@@ -79,7 +79,7 @@ export class SettingsState {
 		);
 		watch(
 			() => this.client.enable_rich_presence,
-			(before, after) => after && xornet.discordManager.clearPresence(),
+			(before, after) => after && xornet.Discord.clearPresence(),
 		);
 	}
 
