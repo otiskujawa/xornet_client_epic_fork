@@ -21,7 +21,7 @@ const state = useState();
 }
 
 tr:not(.headerRow) {
-  @apply hover:bg-background-400 hover:bg-opacity-50 cursor-pointer;
+  @apply hover:bg-background-400 hover:bg-opacity-50;
 }
 
 tr:hover {

@@ -14,10 +14,9 @@
               v-for="machine of machines"
               :key="machine.hardware_uuid"
               :class="router.currentRoute.value.params.uuid === machine.uuid && 'active'"
-              @click="router.push({name: 'machine', params: {uuid: machine.uuid}})"
               @mouseenter="soundManager.playHover()"
             >
-              <th v-if="columns.hostname">
+              <th v-if="columns.hostname" class="cursor-pointer hover:underline" @click="router.push({name: 'machine', params: {uuid: machine.uuid}})">
                 <machine-stat :value="machine.name" dont-fade>
                   <distro-icon class="text-sm" :name="machine.os_name?.replace(/'/g, '')" />
                   <activity-status :machine="machine" />
