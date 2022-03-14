@@ -29,6 +29,8 @@ export const padNumber = (time: number) => {
 	return floored > 9 ? floored : `0${floored}`;
 };
 
+export const formatDate = (epoch: number) => new Date(epoch).toLocaleString();
+
 export const formatEpoch = (ms?: number) => {
 	if (!ms) return undefined;
 	const days = ~~(ms / (24 * 60 * 60 * 1000));

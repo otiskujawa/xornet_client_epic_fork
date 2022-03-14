@@ -18,9 +18,9 @@
         <br>
         UUID: {{ user.uuid }}
         <br>
-        Account created: {{ new Date(user.created_at).toLocaleString() }}
+        Account created: {{ formatDate(user.created_at) }}
         <br>
-        Edited: {{ new Date(user.updated_at).toLocaleString() }}
+        Edited: {{ formatDate(user.updated_at) }}
         <br>
         <br>
         <div v-if="user.uuid === state.users.getMe().uuid">
@@ -47,6 +47,7 @@ import { useRoute, useRouter } from "vue-router";
 import { useState } from "/@/app";
 import BaseInput from "/@/components/base/BaseInput.vue";
 import Avatar from "/@/components/user/Avatar.vue";
+import { formatDate } from "/@/services/logic";
 const router = useRouter();
 const route = useRoute();
 const state = useState();
