@@ -3,13 +3,13 @@
     <div class="w-full h-full">
       <div
         class="w-full h-18rem bg-cover bg-center bg-norepeat drag"
-        :style="banner"
+        :style="bannerStyle"
       />
       <div class="px-32">
         <div
           class="flex"
         >
-          <avatar :user="user" class="w-32 transform -translate-y-3rem" />
+          <avatar :url="new_avatar || user.avatar" class="w-32 transform -translate-y-3rem" />
           <p class="text-4xl text-center p-4 px-8">
             {{ user.username }}
           </p>
@@ -25,16 +25,16 @@
         <br>
         <div v-if="user.uuid === state.users.getMe().uuid">
           Avatar URL: <base-input
-            v-model="avatar_url"
+            v-model="new_avatar"
             :placeholder="user.avatar"
-            @change="updateAvatar(avatar_url)"
+            @change="updateAvatar()"
           />
         </div>
         <div v-if="user.uuid === state.users.getMe().uuid">
           Banner URL: <base-input
-            v-model="banner_url"
+            v-model="new_banner"
             :placeholder="user.banner"
-            @change="updateBanner(banner_url)"
+            @change="updateBanner()"
           />
         </div>
       </div>
@@ -50,29 +50,17 @@ import Avatar from "/@/components/user/Avatar.vue";
 const router = useRouter();
 const route = useRoute();
 const state = useState();
-const user = computed(() => {
-	if (route.params?.uuid)
-		return state.users.get(route.params?.uuid as string);
-	else
-		return null;
-});
+const user = computed(() => route.params?.uuid ? state.users.get(route.params?.uuid as string) : null);
+const new_avatar = ref("");
+const new_banner = ref("");
+const banner_url = computed(() => new_banner.value || user.value?.banner || "");
+const bannerStyle = computed(() => `
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.25) 100%),
+  url(${banner_url.value});
+`);
 
-const avatar_url = computed(() => user.value?.avatar || "");
-const banner_url = computed(() => user.value?.banner || "");
-
-const banner = computed(() => `
-      background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.25) 100%),
-      url(${banner_url.value});`);
-
-const updateAvatar = (url: string) => {
-	if (user.value)
-		state.users.updateAvatar(url);
-};
-const updateBanner = (url: string) => {
-	if (user.value)
-		state.users.updateBanner(url);
-};
-
+const updateAvatar = () => user.value && state.users.updateAvatar(new_avatar.value);
+const updateBanner = () => user.value && state.users.updateBanner(new_banner.value);
 onMounted(async() => {
 	if (route.name === "profile" && !route.params.uuid) {
 		await state.users.fetchMe();
