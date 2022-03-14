@@ -57,8 +57,8 @@ const user = computed(() => {
 		return null;
 });
 
-const avatar_url = ref(user.value?.avatar || "");
-const banner_url = ref(user.value?.banner || "");
+const avatar_url = computed(() => user.value?.avatar || "");
+const banner_url = computed(() => user.value?.banner || "");
 
 const banner = computed(() => `
       background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.25) 100%),
