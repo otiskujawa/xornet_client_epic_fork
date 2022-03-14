@@ -7,10 +7,10 @@
           class="w-full h-18rem bg-cover bg-center bg-norepeat"
           :style="bannerStyle"
         />
-        <button class="absolute hovershow opacity-0 bg-background-200 bg-opacity-50 rounded-full bottom-4 right-4 p-2 items-center cursor-pointer flex duration-100" @click="is_banner_editor = true">
+        <button v-if="user.uuid === state.users.getMe().uuid" class="absolute hovershow opacity-0 bg-background-200 bg-opacity-50 rounded-full bottom-4 right-4 p-2 items-center cursor-pointer flex duration-100" @click="is_banner_editor = true">
           <i-fluency-edit />
           <base-dialog v-model="is_banner_editor">
-            <div v-if="user.uuid === state.users.getMe().uuid" class="popup">
+            <div class="popup">
               Banner URL: <base-input
                 v-model="new_banner"
                 :placeholder="user.banner"
@@ -25,11 +25,11 @@
           class="flex"
         >
           <div class="w-32 h-32 transform -translate-y-3rem edithover">
-            <button class=" w-full h-full absolute hovershow opacity-0 bg-background-200 bg-opacity-50 rounded-full p-2 items-center cursor-pointer flex duration-100 flexcol justify-center" @click="is_avatar_editor = true">
+            <button v-if="user.uuid === state.users.getMe().uuid" class=" w-full h-full absolute hovershow opacity-0 bg-background-200 bg-opacity-50 rounded-full p-2 items-center cursor-pointer flex duration-100 flexcol justify-center" @click="is_avatar_editor = true">
               <p>change</p>
               <p>avatar</p>
               <base-dialog v-model="is_avatar_editor">
-                <div v-if="user.uuid === state.users.getMe().uuid" class="popup">
+                <div class="popup">
                   Avatar URL: <base-input
                     v-model="new_avatar"
                     :placeholder="user.avatar"
