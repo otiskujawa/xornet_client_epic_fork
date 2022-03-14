@@ -5,6 +5,7 @@ export interface IUser {
 	username: string
 	email: string
 	avatar?: string
+	banner?: string
 	biography?: string
 	created_at: number
 	updated_at: number

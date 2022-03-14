@@ -73,12 +73,30 @@ export class UsersState extends State<IUsersState> {
 	}
 
 	/**
+	 * Set the banner of a user in the state
+	 * @param user The user to set the banner of
+	 * @param banner The URL of the banner to set
+	 */
+	protected setBanner(user: IUser, banner: string) {
+		this.state.users[user.uuid].banner = banner;
+	}
+
+	/**
 	 * Update the avatar of me in the backend and set the new avatar in the state
 	 * @param avatar The URL of the avatar to set
 	 */
 	public async updateAvatar(avatar: string) {
 		const me = this.getMe();
 		me && this.api.request<IUser>("PATCH", "/users/@avatar", { url: avatar }).then((me: IUser) => this.setAvatar(me, avatar));
+	}
+
+	/**
+	 * Update the banner of me in the backend and set the new banner in the state
+	 * @param banner The URL of the banner to set
+	 */
+	public async updateBanner(banner: string) {
+		const me = this.getMe();
+		me && this.api.request<IUser>("PATCH", "/users/@banner", { url: banner }).then((me: IUser) => this.setBanner(me, banner));
 	}
 
 	public async deleteAccount() {
