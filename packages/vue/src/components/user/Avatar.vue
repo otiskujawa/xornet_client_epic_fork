@@ -6,7 +6,7 @@
     <img v-else class="object-cover" :src="user.avatar || defaultAvatar" :alt="user.username" style="aspect-ratio: 1/1">
   </div>
   <div v-else class="rounded-full overflow-hidden">
-    <img class="object-cover" :src="url?.replace(/\s/g, '') || defaultAvatar">
+    <img class="object-cover h-full" :src="url?.replace(/\s/g, '') || defaultAvatar">
   </div>
 </template>
 <script setup lang="ts">
