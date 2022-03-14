@@ -2,7 +2,7 @@
   <div v-if="user" class="w-full h-full flexcol bg-black bg-opacity-25">
     <div class="w-full h-full">
       <div
-        class="w-full h-18rem bg-cover bg-norepeat drag" :style="`
+        class="w-full h-18rem bg-cover bg-center bg-norepeat drag" :style="`
       background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.25) 100%),
       url(${banner_url});`"
       />
