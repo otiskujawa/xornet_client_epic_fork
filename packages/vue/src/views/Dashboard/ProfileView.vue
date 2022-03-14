@@ -2,9 +2,8 @@
   <div v-if="user" class="w-full h-full flexcol bg-black bg-opacity-25">
     <div class="w-full h-full">
       <div
-        class="w-full h-18rem bg-cover bg-center bg-norepeat drag" :style="`
-      background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.25) 100%),
-      url(${banner_url});`"
+        class="w-full h-18rem bg-cover bg-center bg-norepeat drag"
+        :style="banner"
       />
       <div class="px-32">
         <div
@@ -57,9 +56,14 @@ const user = computed(() => {
 	else
 		return null;
 });
-// This is kinda dumb
+
 const avatar_url = ref(user.value?.avatar || "");
 const banner_url = ref(user.value?.banner || "");
+
+const banner = computed(() => `
+      background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.25) 100%),
+      url(${banner_url.value});`);
+
 const updateAvatar = (url: string) => {
 	if (user.value)
 		state.users.updateAvatar(url);
