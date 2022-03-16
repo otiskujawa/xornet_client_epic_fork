@@ -96,13 +96,13 @@
                   <i-fluency-upgrade />
                 </machine-stat>
               </th>
-              <th v-if="columns.owner && !isViewingMachine" @click.stop>
-                <div class="flex items-center gap-3 max-w-32">
-                  <avatar :user="machine.owner" class="w-16px" />
+              <th v-if="columns.owner && !isViewingMachine" class="hover:underline cursor-pointer" @click.stop>
+                <router-link :to="{name: 'profile', params: { uuid: machine.owner_uuid }}" class="flex items-center gap-3 max-w-32">
+                  <avatar :url="machine.owner.avatar" class="w-16px min-w-16px" />
                   <p class="overflow-ellipsis overflow-hidden">
                     {{ machine.owner?.username }}
                   </p>
-                </div>
+                </router-link>
               </th>
             </tr>
           </template>
