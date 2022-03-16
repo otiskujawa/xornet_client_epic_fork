@@ -36,7 +36,7 @@ const createWindow = async() => {
 	mainWindow = new BrowserWindow({
 		show: false, // Use 'ready-to-show' event to show window
 		frame: false,
-		transparent: true,
+		transparent: process.platform !== "win32",
 		icon: "../../../resources/icon.png",
 		minHeight: 400,
 		minWidth: 800,
@@ -64,6 +64,10 @@ const createWindow = async() => {
 		if (isDevelopment) {
 			// mainWindow?.webContents.openDevTools();
 		}
+	});
+
+	mainWindow.on("enter-full-screen", () => {
+		console.log("enter-full-screen");
 	});
 
 	/**
