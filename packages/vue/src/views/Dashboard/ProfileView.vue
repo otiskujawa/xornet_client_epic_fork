@@ -86,9 +86,9 @@ onMounted(async() => {
     &:hover .hovershow {
       @apply opacity-100;
     }
-    &:active .hovershow {
-      @apply bg-primary-400;
-    }
+  }
+  .hovershow:active {
+    @apply bg-primary-400;
   }
   .popup {
     @apply bg-background-200 p-8 flexcol gap-2;
