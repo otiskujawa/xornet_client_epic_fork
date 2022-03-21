@@ -19,10 +19,6 @@ import { arrow, computePosition, offset, shift } from "@floating-ui/dom";
 import type { Ref } from "vue";
 import { computed, onMounted, ref } from "vue";
 
-const proxy = () => {
-	console.log("test");
-};
-
 const props = defineProps<{
 	open?: boolean
 	openOnHover?: boolean
