@@ -38,7 +38,7 @@
                 </div>
               </base-dialog>
             </button>
-            <avatar :url="new_avatar || user.avatar" />
+            <avatar :url="new_avatar || user.avatar" class="h-full" />
           </div>
           <p class="text-4xl text-center p-4 px-8">
             {{ user.username }}
