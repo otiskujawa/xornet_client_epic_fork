@@ -8,6 +8,7 @@
       <machine-network-traffic :total-download="machine.td!" :total-upload="machine.tu!" />
       <machine-disks :disks="machine.disks!" />
       <machine-temp-sensors :sensors="machine.temps!" />
+      <machine-docker v-if="machine.docker" :docker="machine.docker" />
     </div>
     <base-loading-spinner v-else text="Waiting for data from this machine..." />
   </div>
@@ -25,6 +26,7 @@ import MachineProcessorUsageBars from "/@/components/MachineView/MachineProcesso
 import MachineProcessorInfo from "/@/components/MachineView/MachineProcessorInfo.vue";
 import MachineDisks from "/@/components/MachineView/MachineDisks.vue";
 import MachineTempSensors from "/@/components/MachineView/MachineTempSensors.vue";
+import MachineDocker from "/@/components/MachineView/MachineDocker.vue";
 const route = useRoute();
 const state = useState();
 const discord = useDiscord();

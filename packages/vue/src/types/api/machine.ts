@@ -91,7 +91,7 @@ export interface IMachineDynamicData {
 	 * The CPU on the machine
 	 */
 	cpu?: ICPU
-	docker?: DockerStats
+	docker?: DockerStats[]
 	/**
 	 * The RAM on the machine
 	 */
