@@ -1,5 +1,7 @@
 <template>
-  <slot />
+  <div @mouseenter="updatePosition()">
+    <slot />
+  </div>
   <div
     ref="popover"
     class="fixed popover z-1"
@@ -16,6 +18,11 @@ import type { BasePlacement } from "@floating-ui/core";
 import { arrow, computePosition, offset, shift } from "@floating-ui/dom";
 import type { Ref } from "vue";
 import { computed, onMounted, ref } from "vue";
+
+const proxy = () => {
+	console.log("test");
+};
+
 const props = defineProps<{
 	open?: boolean
 	openOnHover?: boolean
@@ -72,7 +79,7 @@ onMounted(async() => {
 <style scoped lang="postcss">
 
 .popover {
-  @apply rounded-4px transform  capitalize transition-all duration-100 ease-in-out;
+  @apply rounded-4px transform  capitalize transition-transform duration-100 ease-in-out;
 
   &.openOnHover,
   &:not(.open) {
