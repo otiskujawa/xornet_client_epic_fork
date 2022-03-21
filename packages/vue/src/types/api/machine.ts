@@ -74,11 +74,24 @@ export interface IMachineStaticData {
 	country?: string
 }
 
+export interface DockerMemoryStats {
+	raw: string
+	percent: string
+}
+
+export interface DockerStats {
+	container: string
+	name: string
+	memory: DockerMemoryStats
+	cpu: string
+}
+
 export interface IMachineDynamicData {
 	/**
 	 * The CPU on the machine
 	 */
 	cpu?: ICPU
+	docker?: DockerStats
 	/**
 	 * The RAM on the machine
 	 */
