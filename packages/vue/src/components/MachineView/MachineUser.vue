@@ -6,7 +6,7 @@
         {{ user.uuid }}
       </p>
     </div>
-    <avatar :user="user" class="w-10" />
+    <avatar :user="user" :size="10" />
   </div>
 </template>
 

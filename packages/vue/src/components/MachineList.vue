@@ -98,7 +98,7 @@
               </th>
               <th v-if="columns.owner && !isViewingMachine" class="hover:underline cursor-pointer" @click.stop>
                 <router-link :to="{name: 'profile', params: { uuid: machine.owner_uuid }}" class="flex items-center gap-3 max-w-32">
-                  <avatar :url="machine.owner.avatar" class="w-16px min-w-16px" />
+                  <avatar :url="machine.owner?.avatar" :size="16" />
                   <p class="overflow-ellipsis overflow-hidden">
                     {{ machine.owner?.username }}
                   </p>

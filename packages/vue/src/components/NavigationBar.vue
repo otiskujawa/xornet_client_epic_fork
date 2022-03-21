@@ -15,7 +15,7 @@
       </navigation-button>
     </div>
     <li class="flex fixed bottom-4 right-4 items-center justify-center ">
-      <avatar :user="me" class="w-16" />
+      <avatar :user="me" :size="16" />
     </li>
   </nav>
   <nav class="h-full hidden sm:flex flex-col justify-between w-min ">
@@ -60,7 +60,7 @@
         </li>
       </base-tooltip>
       <li class="flex p-3 items-center justify-center ">
-        <avatar :user="me" class="w-8" />
+        <avatar :user="me" :size="8" />
       </li>
     </ul>
   </nav>
