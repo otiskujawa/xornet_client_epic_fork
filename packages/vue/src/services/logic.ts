@@ -85,6 +85,7 @@ const OPERATING_SYSTEMS = [
 	"endeavour",
 	"garuda",
 	"raspbian",
+	"gentoo",
 	"darwin",
 	"windows",
 	"kubuntu",
