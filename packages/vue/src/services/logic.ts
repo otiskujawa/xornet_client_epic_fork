@@ -78,6 +78,7 @@ const OPERATING_SYSTEMS = [
 	"redhat",
 	"ubuntu",
 	"openwrt",
+	"clearlinux",
 	"kali",
 	"suse",
 	"endeavour",

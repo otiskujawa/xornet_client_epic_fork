@@ -31,6 +31,7 @@ declare module 'vue' {
     Icon: typeof import('./src/components/shared/Icon.vue')['default']
     IDistrosAlpine: typeof import('~icons/distros/alpine')['default']
     IDistrosArch: typeof import('~icons/distros/arch')['default']
+    IDistrosClearlinux: typeof import('~icons/distros/clearlinux')['default']
     IDistrosDebian: typeof import('~icons/distros/debian')['default']
     IDistrosEndeavour: typeof import('~icons/distros/endeavour')['default']
     IDistrosFedora: typeof import('~icons/distros/fedora')['default']
