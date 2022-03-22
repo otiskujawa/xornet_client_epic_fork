@@ -47,6 +47,7 @@ declare module 'vue' {
     IDistrosRaspbian: typeof import('~icons/distros/raspbian')['default']
     IDistrosRedhat: typeof import('~icons/distros/redhat')['default']
     IDistrosSuse: typeof import('~icons/distros/suse')['default']
+    IDistrosUbnt: typeof import('~icons/distros/ubnt')['default']
     IDistrosUbuntu: typeof import('~icons/distros/ubuntu')['default']
     IDistrosWindows: typeof import('~icons/distros/windows')['default']
     IFluencyActiveState: typeof import('~icons/fluency/active-state')['default']

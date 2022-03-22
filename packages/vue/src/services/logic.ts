@@ -81,6 +81,7 @@ const OPERATING_SYSTEMS = [
 	"clearlinux",
 	"kali",
 	"suse",
+	"ubnt",
 	"endeavour",
 	"garuda",
 	"raspbian",
