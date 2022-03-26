@@ -2,7 +2,6 @@
   <div
     id="main"
     class="h-full flexcol overflow-hidden bg-background-300"
-    :class="state.window.isMaximized || !isElectron() || !state.settings.general.enable_rounded_corners ? 'rounded-0px' : 'rounded-8px'"
   >
     <control-buttons v-if="isElectron()" />
     <command-pallete />
@@ -11,11 +10,9 @@
 </template>
 
 <script setup lang="ts">
-import { useState } from "/@/app";
 import ControlButtons from "/@/components/electron/ControlButtons.vue";
 import { isElectron } from "/@/services/logic";
 import CommandPallete from "/@/components/CommandPallete.vue";
-const state = useState();
 </script>
 
 <style>

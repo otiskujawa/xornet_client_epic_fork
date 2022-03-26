@@ -1,6 +1,6 @@
 <template>
   <div class="flex w-full" style="height: calc(100% - 42px);">
-    <div class="flexcol h-full min-w-64" :class="isViewingMachine ? ' w-min' : 'w-full'">
+    <div class="flexcol h-full min-w-64 overflow-hidden" :class="isViewingMachine ? ' w-min' : 'w-full'">
       <machine-list-totals v-if="state.settings.general.enable_totals" :machines="machines" />
       <div v-if="machines.length !== 0" class="min-h-full overflow-hidden overflow-y-scroll ">
         <base-table>
@@ -96,13 +96,13 @@
                   <i-fluency-upgrade />
                 </machine-stat>
               </th>
-              <th v-if="columns.owner && !isViewingMachine" @click.stop>
-                <div class="flex items-center gap-3 max-w-32">
-                  <avatar :user="machine.owner" class="w-16px" />
+              <th v-if="columns.owner && !isViewingMachine" class="hover:underline cursor-pointer" @click.stop>
+                <router-link :to="{name: 'profile', params: { uuid: machine.owner_uuid }}" class="flex items-center gap-3 max-w-32">
+                  <avatar :url="machine.owner?.avatar" class="w-16px min-w-16px" />
                   <p class="overflow-ellipsis overflow-hidden">
                     {{ machine.owner?.username }}
                   </p>
-                </div>
+                </router-link>
               </th>
             </tr>
           </template>

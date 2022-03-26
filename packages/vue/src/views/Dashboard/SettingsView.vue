@@ -22,9 +22,6 @@
       <option-field label="Bloom Effects" description="Makes the network switch lights and activity lights bloom">
         <base-switch v-model="state.settings.general.enable_bloom" />
       </option-field>
-      <option-field v-if="isElectron()" label="Rounded Window Corners" description="This makes the corners of the window rounded when not maximized">
-        <base-switch v-model="state.settings.general.enable_rounded_corners" />
-      </option-field>
       <option-field label="Use single color for switch lights" description="Sets all the switch lights to the gigabit color regardless of speed">
         <base-switch v-model="state.settings.general.use_single_color_for_switch_lights" />
       </option-field>

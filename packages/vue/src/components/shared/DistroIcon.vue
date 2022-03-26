@@ -18,6 +18,9 @@
   <i-distros-kubuntu v-else-if="icon === 'kubuntu'" />
   <i-distros-nixos v-else-if="icon === 'nixos'" />
   <i-distros-parrot v-else-if="icon === 'parrot'" />
+  <i-distros-clearlinux v-else-if="icon === 'clearlinux'" />
+  <i-distros-gentoo v-else-if="icon === 'gentoo'" />
+  <i-distros-ubnt v-else-if="icon === 'ubnt'" />
   <i-fluency-computer v-else />
 </template>
 <script setup lang="ts">

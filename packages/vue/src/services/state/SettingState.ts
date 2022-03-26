@@ -18,7 +18,6 @@ export class SettingsState {
 		theme: "dark",
 		enable_bloom: false,
 		enable_totals: false,
-		enable_rounded_corners: true,
 		enable_sound_effects: false,
 		enable_status_bar: false,
 		use_single_color_for_switch_lights: false,

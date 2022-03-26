@@ -24,11 +24,7 @@ export class Discord {
 			buttons: [
 				{
 					label: "See Machine",
-					url: `https://xornet.cloud/#/dashboard/machine/${machine.uuid}`,
-				},
-				{
-					label: "GitHub",
-					url: "https://github.com/xornet-cloud/",
+					url: `https://xornet.cloud/#/dashboard/machines/machine/${machine.uuid}`,
 				},
 			],
 		});
