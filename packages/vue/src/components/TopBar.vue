@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full min-h-12 h-12 drag">
+  <div class="topbar w-full min-h-12 h-12 drag">
     <div class="p-2 pr-1 h-full flex items-center gap-2 sm:pr-56 ">
       <base-input v-model="state.machines.filterText.value" placeholder="Filter" class="min-w-24 w-full max-w-full sm:max-w-48 text-xs" />
 
@@ -48,7 +48,7 @@
         <option-field label="Show Owned">
           <base-switch v-model="state.settings.general.show_owned" />
         </option-field>
-        <option-field label="Show Totals">
+        <option-field label="Show Laggy Network Chart">
           <base-switch v-model="state.settings.general.enable_totals" />
         </option-field>
       </div>

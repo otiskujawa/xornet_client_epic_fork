@@ -79,7 +79,7 @@ const me = computed(() => state.users.getMe());
 
 </script>
 
-<style scoped lang="postcss">
+<style lang="postcss">
 nav {
   -webkit-app-region: drag;
 }

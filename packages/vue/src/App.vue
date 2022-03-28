@@ -17,9 +17,14 @@ import CommandPallete from "/@/components/CommandPallete.vue";
 
 <style>
 * {
-  @apply !outline-none fill-current text-sm;
+  @apply !outline-none text-sm;
   scrollbar-width: thin;
   font-family: "Roboto Mono", monospace;
+}
+
+/* im trolling hard with this one */
+*:not(*.apexChart path) {
+  @apply fill-current;
 }
 
 input,

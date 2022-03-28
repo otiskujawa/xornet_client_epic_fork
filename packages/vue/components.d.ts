@@ -13,6 +13,7 @@ declare module 'vue' {
     BaseDropdown: typeof import('./src/components/base/BaseDropdown.vue')['default']
     BaseDropdownCheckbox: typeof import('./src/components/base/BaseDropdownCheckbox.vue')['default']
     BaseForm: typeof import('./src/components/base/BaseForm.vue')['default']
+    BaseGraph: typeof import('./src/components/base/BaseGraph.vue')['default']
     BaseImageInput: typeof import('./src/components/base/BaseImageInput.vue')['default']
     BaseInput: typeof import('./src/components/base/BaseInput.vue')['default']
     BaseKbd: typeof import('./src/components/base/BaseKbd.vue')['default']
