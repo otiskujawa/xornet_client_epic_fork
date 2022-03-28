@@ -39,8 +39,8 @@ const options: ApexOptions = {
 		width: 2,
 	},
 	colors: [
-		"#00bcd4",
 		"#ff00b6",
+		"#00bcd4",
 	],
 	fill: {
 		type: "gradient",
