@@ -7,8 +7,8 @@
   },
   "description": "Xornet is a management dashboard for people to easily view & control their servers from anywhere in the world!",
   "author": {
-    "name": "Geoxor",
-    "url": "https://github.com/Geoxor"
+    "name": "Xornet Cloud",
+    "url": "https://github.com/xornet-cloud"
   },
   "main": "packages/electron/dist/index.cjs",
   "scripts": {
