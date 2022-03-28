@@ -7,6 +7,7 @@
     <i-fluency-country v-if="name === 'country'" />
     <i-fluency-processor v-if="name === 'cau'" />
     <i-fluency-speedometer v-if="name === 'cas'" />
+    <i-fluency-name v-if="name === 'os_name'" />
     <i-fluency-memory v-if="name === 'ram_usage'" />
     <i-fluency-switch v-if="name === 'network_switch'" />
     <i-fluency-temperature v-if="name === 'temperature'" />

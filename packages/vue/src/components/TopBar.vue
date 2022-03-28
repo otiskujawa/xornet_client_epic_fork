@@ -26,6 +26,7 @@
                   .replaceAll('cpu', 'CPU')
                   .replaceAll('gpu', 'GPU')
                   .replaceAll('ram', 'RAM')
+                  .replaceAll('os name', 'Operating System')
                   .replaceAll(/^tu/g, 'Total Upload')
                   .replaceAll(/^td/g, 'Total Download')
                   .replaceAll('cau', 'CPU Usage')

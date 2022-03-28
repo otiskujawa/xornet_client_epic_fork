@@ -22,6 +22,11 @@
                   <activity-status :machine="machine" />
                 </machine-stat>
               </th>
+              <th v-if="columns.os_name && !isViewingMachine">
+                <machine-stat :value="machine.os_name">
+                  <i-fluency-name />
+                </machine-stat>
+              </th>
               <th v-if="columns.cau && !isViewingMachine">
                 <machine-stat :value="machine.cau?.toFixed(2)" suffix="%">
                   <i-fluency-processor />
@@ -192,6 +197,7 @@ const machines = computed(() => state.machines.getAll()
 			case "temperature":
 			case "public_ip":
 			case "reporter_version":
+			case "os_name":
 			case "host_uptime":
 			case "reporter_uptime":
 			case "process_count":
