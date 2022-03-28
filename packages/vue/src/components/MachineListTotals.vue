@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import type { Ref } from "vue";
-import { computed, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 
 import type { IMachine } from "/@/types/api/machine";
 import BaseGraph from "./base/BaseGraph.vue";
@@ -30,12 +30,12 @@ const networkSeries = computed(() => [
 
 const props = defineProps<{machines: (IMachine & {ram_used_gb: number; ram_total_gb: number})[]}>();
 
-watch(() => props.machines, (machines) => {
-	downloads.value.push(machines.reduce((a, b) => a = a + (b.td! || 0), 0));
+setInterval(() => {
+	downloads.value.push(props.machines.reduce((a, b) => a = a + (b.td! || 0), 0));
 	downloads.value.shift();
-	uploads.value.push(machines.reduce((a, b) => a = a + (b.tu! || 0), 0));
+	uploads.value.push(props.machines.reduce((a, b) => a = a + (b.tu! || 0), 0));
 	uploads.value.shift();
-});
+}, 1000);
 
 // const totalRamUsedOverall = computed(() => props.machines.reduce((a, b) => a = a + b.ram_used_gb, 0));
 // const totalRamTotalOverall = computed(() => props.machines.reduce((a, b) => a = a + b.ram_total_gb, 0));
