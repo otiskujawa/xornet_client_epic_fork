@@ -10,7 +10,7 @@ import { computed, ref, watch } from "vue";
 
 import type { IMachine } from "/@/types/api/machine";
 import BaseGraph from "./base/BaseGraph.vue";
-const CHART_BUFFER = 256;
+const CHART_BUFFER = 480;
 
 const uploads: Ref<number[]> = ref(new Array(CHART_BUFFER).fill(0));
 const downloads: Ref<number[]> = ref(new Array(CHART_BUFFER).fill(0));
