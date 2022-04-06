@@ -26,7 +26,7 @@ export class SettingsState {
 		fixed_column_width: false,
 	}).value;
 
-	public columns = useLocalStorage("columnsv2", {
+	public columns = useLocalStorage("columnsv3", {
 		hostname: true,
 		os_name: true,
 		cau: true,
@@ -37,13 +37,15 @@ export class SettingsState {
 		network_switch: true,
 		td: true,
 		tu: true,
+		tvd: true,
+		tvu: true,
 		temperature: false,
 		country: true,
 		public_ip: false,
 		process_count: false,
 		host_uptime: false,
 		reporter_uptime: false,
-		reporter_version: true,
+		reporter_version: false,
 		owner: true,
 	}, { deep: true }).value;
 

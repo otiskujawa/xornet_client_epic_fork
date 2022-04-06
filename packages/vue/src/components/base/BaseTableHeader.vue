@@ -6,8 +6,10 @@
       .replaceAll('gpu', 'GPU')
       .replaceAll('ram', 'RAM')
       .replaceAll('os name', 'Operating System')
-      .replaceAll(/^tu/g, 'Total Upload')
-      .replaceAll(/^td/g, 'Total Download')
+      .replaceAll(/^tu/g, 'Physical Upload')
+      .replaceAll(/^td/g, 'Physical Download')
+      .replaceAll(/^tvu/g, 'Virtual Upload')
+      .replaceAll(/^tvd/g, 'Virtual Download')
       .replaceAll('cau', 'CPU Usage')
       .replaceAll('cas', 'CPU Speed') }}
     <i-fluency-up class="hidden" />

@@ -139,15 +139,25 @@ export interface IMachineDynamicData {
 	 */
 	cas?: number
 	/**
-	 * Total download of all interfaces on the system
+	 * Total download of all physical interfaces on the system
 	 * @computed server-side
 	 */
 	td?: number
 	/**
-	 * Total upload of all interfaces on the system
+	* Total upload of all physical interfaces on the system
+	* @computed server-side
+	*/
+	tu?: number
+	/**
+	* Total download of all virtual interfaces on the system
+	* @computed server-side
+	*/
+	tvd?: number
+	/**
+	 * Total upload of all virtual interfaces on the system
 	 * @computed server-side
 	 */
-	tu?: number
+	tvu?: number
 }
 
 export interface INetwork {

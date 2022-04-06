@@ -65,6 +65,16 @@
                   <i-fluency-up />
                 </machine-stat>
               </th>
+              <th v-if="columns.tvd && !isViewingMachine">
+                <machine-stat :value="machine.tvd?.toFixed(2)" suffix="Mbps">
+                  <i-fluency-down />
+                </machine-stat>
+              </th>
+              <th v-if="columns.tvu && !isViewingMachine">
+                <machine-stat :value="machine.tvu?.toFixed(2)" suffix="Mbps">
+                  <i-fluency-up />
+                </machine-stat>
+              </th>
               <th v-if="columns.temperature && !isViewingMachine">
                 <machine-stat :value="machine.temps?.[0].value?.toFixed(2)" suffix="°C">
                   <i-fluency-temperature />
@@ -194,6 +204,8 @@ const machines = computed(() => state.machines.getAll()
 			case "country":
 			case "td":
 			case "tu":
+			case "tvd":
+			case "tvu":
 			case "temperature":
 			case "public_ip":
 			case "reporter_version":
