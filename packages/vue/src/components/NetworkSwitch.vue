@@ -1,5 +1,5 @@
 <template>
-  <div class="flex gap-3px max-w-64 flex-wrap">
+  <div class="flex gap-2.5px max-w-64 flex-wrap">
     <div
       v-for="iface of interfaces"
       :key="iface.n"
@@ -98,7 +98,7 @@ const speeds = computed(() => {
 }
 
 .cube {
-  @apply w-6px h-6px bg-white bg-opacity-10;
+  @apply w-5px h-5px bg-white bg-opacity-10;
 
   &.bloom {
     animation: flashBloom infinite;

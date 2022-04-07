@@ -16,7 +16,7 @@ export class SettingsState {
 	public general = useLocalStorage("generalSettings", {
 		opacity: 100,
 		theme: "dark",
-		enable_bloom: false,
+		enable_bloom: true,
 		enable_totals: false,
 		enable_sound_effects: false,
 		enable_status_bar: false,
