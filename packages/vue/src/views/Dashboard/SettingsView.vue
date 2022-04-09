@@ -31,26 +31,26 @@
           <div class="flex gap-2 justify-between">
             <div class="exampleNic flexcol">
               <network-interface :iface="{ n: 'b', s: 100, rx: 0, tx: 10000 }" />
-              <p>0.001 Mbps</p>
-            </div>
-            <div class="exampleNic flexcol">
-              <network-interface :iface="{ n: 'b', s: 100, rx: 0, tx: 100000 }" />
               <p>0.01 Mbps</p>
             </div>
             <div class="exampleNic flexcol">
-              <network-interface :iface="{ n: 'c', s: 100, rx: 0, tx: 1000000 }" />
+              <network-interface :iface="{ n: 'c', s: 100, rx: 0, tx: 100000 }" />
+              <p>0.1 Mbps</p>
+            </div>
+            <div class="exampleNic flexcol">
+              <network-interface :iface="{ n: 'd', s: 100, rx: 0, tx: 1000000 }" />
               <p>1 Mbps</p>
             </div>
             <div class="exampleNic flexcol">
-              <network-interface :iface="{ n: 'd', s: 100, rx: 0, tx: 10000000 }" />
+              <network-interface :iface="{ n: 'e', s: 100, rx: 0, tx: 10000000 }" />
               <p>10 Mbps</p>
             </div>
             <div class="exampleNic flexcol">
-              <network-interface :iface="{ n: 'e', s: 100, rx: 0, tx: 100000000 }" />
+              <network-interface :iface="{ n: 'f', s: 100, rx: 0, tx: 100000000 }" />
               <p>100 Mbps</p>
             </div>
             <div class="exampleNic flexcol">
-              <network-interface :iface="{ n: 'f', s: 1000, rx: 0, tx: 1000000000 }" />
+              <network-interface :iface="{ n: 'g', s: 1000, rx: 0, tx: 1000000000 }" />
               <p>1 Gbps</p>
             </div>
             <div class="exampleNic flexcol">
