@@ -1,6 +1,6 @@
 <template>
   <base-popover class="text-xs no-drag" :open="open">
-    <base-button :transparent="transparent" @click="open = !open">
+    <base-button :transparent="transparent" @click="open = !open; navigator.vibrate(30);">
       <slot name="icon" />
       {{ text ? text : value }}
       <i-fluency-down

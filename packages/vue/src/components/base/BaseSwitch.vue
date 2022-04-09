@@ -1,5 +1,5 @@
 <template>
-  <label class="relative inline-block w-10 h-5 no-drag" @click="soundManager.playClick()" @mouseenter="soundManager.playHover()">
+  <label class="relative inline-block w-10 h-5 no-drag" @click="soundManager.playClick(); navigator.vibrate(30);" @mouseenter="soundManager.playHover()">
     <input v-model="value" type="checkbox" class="hidden" :checked="modelValue">
     <span class="slider round" />
   </label>
