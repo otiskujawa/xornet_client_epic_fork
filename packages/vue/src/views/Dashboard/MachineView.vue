@@ -36,6 +36,7 @@ const machine = computed(() => {
 	machine?.name && discord.setCurrentlyWatchingMachine(machine);
 	return machine;
 });
+
 </script>
 <style scoped lang="postcss">
 .bg {

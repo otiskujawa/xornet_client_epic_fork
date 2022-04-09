@@ -1,5 +1,6 @@
 import { useState } from "../app";
 import router from "../router";
+import type { INetwork } from "../types/api/machine";
 
 /**
  *  Returns true if the user is on the electron client
@@ -109,4 +110,8 @@ export const getMachineOsImageKey = (name: string) => {
 export const logout = () => {
 	router.push({ name: "login" });
 	useState().users.logout();
+};
+
+export const isDockerInterface = (iface: INetwork) => {
+	return iface.n.startsWith("veth") || iface.n.startsWith("docker0");
 };

@@ -139,7 +139,7 @@
 import { onKeyStroke, useLocalStorage } from "@vueuse/core";
 import { computed } from "vue";
 import { useRouter } from "vue-router";
-import { detectBrowser, formatEpoch } from "../services/logic";
+import { detectBrowser, formatEpoch, isDockerInterface } from "../services/logic";
 import type { INetwork } from "../types/api/machine";
 import BaseLoadingSpinner from "./base/BaseLoadingSpinner.vue";
 import MachineListTotals from "./MachineListTotals.vue";
@@ -159,9 +159,6 @@ const sortByKey = useLocalStorage("sortByKey", "hostname");
 const sortBy = (field: string) => sortByKey.value = field;
 const browser = detectBrowser();
 const isViewingMachine = computed(() => router.currentRoute.value.name === "machine");
-const isDockerInterface = (iface: INetwork) => {
-	return iface.n.startsWith("veth") || iface.n.startsWith("docker0");
-};
 
 // This whole thing is fucked honestly
 const machines = computed(() => state.machines.getAll()
