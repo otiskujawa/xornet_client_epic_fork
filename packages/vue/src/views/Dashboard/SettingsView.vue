@@ -18,23 +18,36 @@
         <ul class="w-min min-w-64 max-w-max h-full whitespace-nowrap gap-2 rounded-8px ">
           <router-link class="settingsRoute" :to="{name: 'settings.account'}">
             <li>
+              <div class="active ">
+                <br>
+              </div>
               <i-fluency-settings /> Account
             </li>
           </router-link>
 
           <router-link class="settingsRoute" :to="{name: 'settings.appearance'}">
             <li>
+              <div class="active">
+                <br>
+              </div>
               <i-fluency-palette /> Appearance
             </li>
           </router-link>
-          <li v-if="isElectron()">
-            <router-link class="settingsRoute" :to="{name: 'settings.behavior'}">
+
+          <router-link v-if="isElectron()" class="settingsRoute" :to="{name: 'settings.behavior'}">
+            <li>
+              <div class="active">
+                <br>
+              </div>
               <i-fluency-settings /> Behavior
-            </router-link>
-          </li>
+            </li>
+          </router-link>
 
           <router-link class="settingsRoute" :to="{name: 'settings.machinelist'}">
             <li>
+              <div class="active">
+                <br>
+              </div>
               <i-fluency-tasks /> Machine List
             </li>
           </router-link>
@@ -72,10 +85,23 @@ const state = useState();
 }
 
 .settingsRoute {
-  @apply p-2 px-4 hover:bg-background-400 flex items-center gap-3 rounded-4px cursor-pointer;
+  @apply p-2 px-4 flex items-center gap-3 rounded-4px cursor-pointer;
+
+  & .active {
+    @apply opacity-0 h-full w-2 bg-primary-400 rounded-full;
+  }
+
+  &:hover {
+    .active {
+      @apply opacity-50;
+    }
+  }
 
   &.router-link-active {
-    @apply bg-background-600;
+    @apply bg-background-300;
+    .active {
+      @apply opacity-100;
+    }
   }
 
   & li {
