@@ -1,5 +1,5 @@
 <template>
-  <div class="flexcol p-2 w-full bg-background-300 rounded-8px gap-2 ">
+  <div class="flexcol w-full  " :class="!minimal && 'p-2 bg-background-300 rounded-8px gap-2'">
     <div class="option">
       <div class="flexcol  gap-1">
         <label>
@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{label: string; description?: string; newFeature?: boolean}>();
+defineProps<{label: string; minimal?: boolean; description?: string; newFeature?: boolean}>();
 </script>
 
 <style lang="postcss" scoped>

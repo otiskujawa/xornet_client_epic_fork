@@ -41,16 +41,13 @@
       </base-dropdown>
 
       <div class="hidden whitespace-nowrap gap-2 sm:flex w-min">
-        <option-field label="Show Offline">
+        <option-field minimal label="Show Offline">
           <base-switch v-model="state.settings.general.show_offline_machines" />
         </option-field>
-        <option-field label="Show Owned">
+        <option-field minimal label="Show Owned">
           <base-switch v-model="state.settings.general.show_owned" />
         </option-field>
-        <option-field label="MBS">
-          <base-input v-model="state.settings.general.minimum_blink_speed" class="text-white min-w-24" />
-        </option-field>
-        <option-field label="Show Laggy Network Chart">
+        <option-field minimal label="Show Laggy Network Chart">
           <base-switch v-model="state.settings.general.enable_totals" />
         </option-field>
       </div>
