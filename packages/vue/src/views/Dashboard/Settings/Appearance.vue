@@ -16,7 +16,7 @@
     <base-switch v-model="state.settings.general.use_single_color_for_switch_lights" />
   </option-field>
   <option-field new-feature label="Minimum Blink Speed" description="Change the minimum transfer speed (in Mbps) for a interface light to blink">
-    <base-input v-model="state.settings.general.minimum_blink_speed" placeholder="0.001, 0.01" class="text-white w-32" />
+    <base-input v-model="state.settings.general.minimum_blink_speed" placeholder="Mbps" class="text-white w-32" />
     <template #example>
       <div class="flex gap-2 justify-between">
         <div class="exampleNic flexcol">
