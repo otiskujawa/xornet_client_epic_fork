@@ -3,6 +3,7 @@
 # Client
 The frontend client that users will use to interface with their machines
 ![Xornet Client](https://cdn.discordapp.com/attachments/755597803102928966/951413381615726632/unknown.png)
+![Xornet Settings](https://cdn.discordapp.com/attachments/667464431562653706/962395544255356938/unknown.png)
 
 # Installation & Contributing
 
