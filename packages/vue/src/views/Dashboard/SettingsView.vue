@@ -16,24 +16,24 @@
       </div>
       <div class="flex">
         <ul class="w-min min-w-64 max-w-max h-full whitespace-nowrap gap-2 rounded-8px ">
-          <router-link :to="{name: 'settings.account'}">
+          <router-link class="settingsRoute" :to="{name: 'settings.account'}">
             <li>
               <i-fluency-settings /> Account
             </li>
           </router-link>
 
-          <router-link :to="{name: 'settings.appearance'}">
+          <router-link class="settingsRoute" :to="{name: 'settings.appearance'}">
             <li>
               <i-fluency-palette /> Appearance
             </li>
           </router-link>
           <li v-if="isElectron()">
-            <router-link :to="{name: 'settings.behavior'}">
+            <router-link class="settingsRoute" :to="{name: 'settings.behavior'}">
               <i-fluency-settings /> Behavior
             </router-link>
           </li>
 
-          <router-link :to="{name: 'settings.machinelist'}">
+          <router-link class="settingsRoute" :to="{name: 'settings.machinelist'}">
             <li>
               <i-fluency-tasks /> Machine List
             </li>
@@ -71,8 +71,16 @@ const state = useState();
   }
 }
 
-ul > a {
-  @apply p-2 px-4 hover:bg-background-400 flex items-center gap-3 rounded-4px cursor-pointer ;
+.settingsRoute {
+  @apply p-2 px-4 hover:bg-background-400 flex items-center gap-3 rounded-4px cursor-pointer;
+
+  &.router-link-active {
+    @apply bg-background-600;
+  }
+
+  & li {
+    @apply flex items-center gap-3;
+  }
 }
 
 </style>
