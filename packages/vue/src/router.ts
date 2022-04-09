@@ -89,6 +89,10 @@ router.beforeEach((to, from, next) => {
 	if (localStorage.getItem("token") === "undefined" && (to.name !== "login" && to.name !== "signup"))
 		return next({ name: "login" });
 
+	// redirect to settings.account if user goes to /dashboard/settings
+	if (to.name === "settings")
+		return next({ name: "settings.account" });
+
 	next();
 });
 export default router;
