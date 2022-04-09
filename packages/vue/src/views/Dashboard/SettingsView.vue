@@ -123,7 +123,7 @@ const deleteAccount = () => state.users.deleteAccount().then(() => logout());
 }
 
 .exampleNic {
-  @apply bg-background-400 font-light gap-4 items-center justify-center overflow-hidden p-4 rounded-8px;
+  @apply bg-background-400 w-full whitespace-nowrap font-light gap-4 items-center justify-center overflow-hidden p-4 rounded-8px;
   & > p {
     @apply text-white text-center text-xs text-opacity-50;
   }
