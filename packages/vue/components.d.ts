@@ -56,6 +56,7 @@ declare module 'vue' {
     IFluencyAreaChart: typeof import('~icons/fluency/area-chart')['default']
     IFluencyAtSign: typeof import('~icons/fluency/at-sign')['default']
     IFluencyBack: typeof import('~icons/fluency/back')['default']
+    IFluencyBrush: typeof import('~icons/fluency/brush')['default']
     IFluencyClock: typeof import('~icons/fluency/clock')['default']
     IFluencyClose: typeof import('~icons/fluency/close')['default']
     IFluencyColorPalette: typeof import('~icons/fluency/color-palette')['default']

@@ -44,6 +44,28 @@ export const routes: (FancyRouteRecord & { children?: FancyRouteRecord[] })[] = 
 				name: "settings",
 				icon: "settings",
 				component: () => import("./views/Dashboard/SettingsView.vue"),
+				children: [
+					{
+						path: "account",
+						name: "settings.account",
+						component: () => import("./views/Dashboard/Settings/Account.vue"),
+					},
+					{
+						path: "appearance",
+						name: "settings.appearance",
+						component: () => import("./views/Dashboard/Settings/Appearance.vue"),
+					},
+					{
+						path: "behavior",
+						name: "settings.behavior",
+						component: () => import("./views/Dashboard/Settings/Behavior.vue"),
+					},
+					{
+						path: "machinelist",
+						name: "settings.machinelist",
+						component: () => import("./views/Dashboard/Settings/MachineList.vue"),
+					},
+				],
 			},
 			{
 				path: "profile/:uuid?",
