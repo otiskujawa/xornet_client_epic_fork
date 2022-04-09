@@ -31,6 +31,8 @@ const determineInterfaceBlinkSpeed = (iface: INetwork) => {
 			return 150;
 		case 4:
 			return 100;
+		case 5:
+			return 50;
 		default:
 			return 400;
 	}
