@@ -128,6 +128,7 @@ declare module 'vue' {
     NavigationButton: typeof import('./src/components/NavigationButton.vue')['default']
     NetworkInterface: typeof import('./src/components/NetworkInterface.vue')['default']
     NetworkSwitch: typeof import('./src/components/NetworkSwitch.vue')['default']
+    NewTag: typeof import('./src/components/NewTag.vue')['default']
     OptionField: typeof import('./src/components/OptionField.vue')['default']
     PopInTransition: typeof import('./src/components/shared/transitions/PopInTransition.vue')['default']
     StatusBar: typeof import('./src/components/StatusBar.vue')['default']
