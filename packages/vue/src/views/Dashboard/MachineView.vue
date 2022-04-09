@@ -10,12 +10,12 @@
       <machine-temp-sensors :sensors="machine.temps!" />
       <machine-docker v-if="machine.docker" :docker="machine.docker" />
       <div class="border-2 rounded-4px border-background-400">
-        <div class="font-thin bg-background-300 p-2">
-          <p class="opacity-50 ml-2">
+        <div class="font-normal bg-background-300 p-2">
+          <p class=" ml-2">
             Interface Name
           </p>
         </div>
-        <div v-for="iface of machine.network" :key="iface.n" class="px-4 py-1 hover:bg-background-200 flex gap-4 border-1 border-transparent border-t-background-400 items-center">
+        <div v-for="iface of machine.network" :key="iface.n" class="px-4 py-1 hover:bg-background-300 flex gap-4 border-1 border-transparent border-t-background-400 items-center">
           <i-fluency-docker v-if="isDockerInterface(iface)" class="text-xl" />
           <i-fluency-switch v-else class="text-xl" />
           <div>
@@ -25,9 +25,9 @@
                 {{ iface.n }}
               </h1>
             </div>
-            <div class="opacity-40 flex gap-4">
+            <div class="font-extralight flex gap-4">
               <p>
-                Speed: {{ iface.s }}Mbps
+                <span class="opacity-75">Speed: </span> <strong :class="`${determineInterfaceColor(iface)}`">{{ iface.s }}Mbps</strong>
               </p>
             </div>
           </div>
@@ -52,7 +52,7 @@ import MachineDisks from "/@/components/MachineView/MachineDisks.vue";
 import MachineTempSensors from "/@/components/MachineView/MachineTempSensors.vue";
 import MachineDocker from "/@/components/MachineView/MachineDocker.vue";
 import NetworkInterface from "/@/components/NetworkInterface.vue";
-import { isDockerInterface } from "/@/services/logic";
+import { determineInterfaceColor, isDockerInterface } from "/@/services/logic";
 const route = useRoute();
 const state = useState();
 const discord = useDiscord();
@@ -62,7 +62,6 @@ const machine = computed(() => {
 	machine?.name && discord.setCurrentlyWatchingMachine(machine);
 	return machine;
 });
-
 const bitsToHumanReadable = (bits: number) => {
 	const units = ["b", "Kb", "Mb", "Gb", "Tb", "Pb", "Eb", "Zb", "Yb"];
 	const i = ~~(Math.log(bits) / Math.log(1024));

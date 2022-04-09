@@ -115,3 +115,23 @@ export const logout = () => {
 export const isDockerInterface = (iface: INetwork) => {
 	return iface.n.startsWith("veth") || iface.n.startsWith("docker0");
 };
+
+export const determineInterfaceColor = (iface: INetwork) => {
+	if (isDockerInterface(iface)) return "text-docker";
+
+	if (useState().settings.general.use_single_color_for_switch_lights) return "text-1000mbps";
+
+	const log = ~~Math.log10(iface.s);
+	switch (log) {
+		case 2:
+			return "text-100mbps";
+		case 3:
+			return "text-1000mbps";
+		case 4:
+			return "text-10000mbps";
+		case 5:
+			return "text-100000mbps";
+		default:
+			return "text-100mbps";
+	}
+};

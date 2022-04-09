@@ -12,6 +12,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useState } from "../app";
+import { determineInterfaceColor } from "../services/logic";
 import type { INetwork } from "../types/api/machine";
 const state = useState();
 const props = defineProps<{iface: INetwork; docker?: boolean}>();
@@ -35,27 +36,6 @@ const determineInterfaceBlinkSpeed = (iface: INetwork) => {
 			return 400;
 	}
 };
-
-const determineInterfaceColor = (iface: INetwork) => {
-	if (props.docker) return "text-docker";
-
-	if (state.settings.general.use_single_color_for_switch_lights) return "text-1000mbps";
-
-	const log = ~~Math.log10(iface.s);
-	switch (log) {
-		case 2:
-			return "text-100mbps";
-		case 3:
-			return "text-1000mbps";
-		case 4:
-			return "text-10000mbps";
-		case 5:
-			return "text-100000mbps";
-		default:
-			return "text-100mbps";
-	}
-};
-
 const speed = computed(() => determineInterfaceBlinkSpeed(props.iface));
 
 </script>
