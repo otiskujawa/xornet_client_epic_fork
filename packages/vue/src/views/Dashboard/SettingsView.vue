@@ -71,8 +71,8 @@
         </div>
       </option-field>
 
-      <p>
-        Behaviour
+      <p v-if="isElectron()">
+        Behavior
       </p>
       <option-field v-if="isElectron()" label="Discord Rich Presence" description="Show the current machine you're viewing on your Discord status">
         <base-switch v-model="state.settings.client.enable_rich_presence" />
