@@ -79,12 +79,6 @@ export const commandPaletteOptions = computed<CommandPalleteOption[]>(() => ([
 		"sound",
 	),
 	defineOption(
-		() => state.settings.general.enable_status_bar = !state.settings.general.enable_status_bar,
-		"appearance",
-		"Toggle status bar",
-		"palette",
-	),
-	defineOption(
 		() => state.settings.general.enable_totals = !state.settings.general.enable_totals,
 		"appearance",
 		"Toggle total stats",
@@ -107,17 +101,5 @@ export const commandPaletteOptions = computed<CommandPalleteOption[]>(() => ([
 		"route",
 		"Settings Page",
 		"settings",
-	),
-	defineOption(
-		() => state.syncSettings(),
-		"setting",
-		"Sync (read) Settings",
-		"synchronize",
-	),
-	defineOption(
-		() => state.updateSettings(),
-		"setting",
-		"Sync (write) Settings",
-		"synchronize",
 	),
 ]));

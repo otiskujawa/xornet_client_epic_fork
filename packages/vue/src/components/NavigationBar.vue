@@ -48,9 +48,6 @@
       </navigation-button>
     </ul>
     <ul>
-      <div v-if="state.window.isSyncing" class="p-4" name="Syncing settings...">
-        <i-fluency-synchronize class="text-primary-300 w-full h-full animate-spin animate-reverse" />
-      </div>
       <base-tooltip
         text="Logout"
         placement="right"

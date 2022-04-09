@@ -28,7 +28,6 @@ export class Xornet {
 
 	public initDashboard() {
 		this.state.users.fetchMe();
-		this.state.settings.client.enable_autosync && this.state.syncSettings();
 		this.state.machines.fetchMachines().then(() => this.api.createWebsocketConnection(this.state));
 	}
 }

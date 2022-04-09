@@ -8,7 +8,6 @@ import xornet from "/@/app";
  */
 export class SettingsState {
 	public client = useLocalStorage("clientOnlySettings", {
-		enable_autosync: false,
 		enable_rich_presence: true,
 	}).value;
 
@@ -20,7 +19,6 @@ export class SettingsState {
 		enable_bloom: true,
 		enable_totals: false,
 		enable_sound_effects: false,
-		enable_status_bar: false,
 		use_single_color_for_switch_lights: false,
 		show_offline_machines: true,
 		show_owned: false,

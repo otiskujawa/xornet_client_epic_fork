@@ -66,10 +66,6 @@ const createWindow = async() => {
 		}
 	});
 
-	mainWindow.on("enter-full-screen", () => {
-		console.log("enter-full-screen");
-	});
-
 	/**
    * URL for main window.
    * Vite dev server for development.

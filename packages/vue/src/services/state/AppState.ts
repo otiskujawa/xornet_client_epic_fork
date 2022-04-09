@@ -20,26 +20,4 @@ export class AppState {
 		this.settings = new SettingsState();
 		this.window = new WindowState();
 	}
-
-	public syncSettings() {
-		this.window.isSyncing = true;
-		this.api.request<string>("GET", "/users/@settings")
-			.then((newSettings) => {
-				const parsedSettigs = JSON.parse(newSettings);
-				for (const [settingsGroupName, settings] of Object.entries(parsedSettigs)) {
-					for (const [key, value] of Object.entries(settings as any))
-						this.settings[settingsGroupName][key] = value;
-				}
-				this.window.isSyncing = false;
-			})
-			.catch(() => this.window.isSyncing = false);
-	}
-
-	public updateSettings() {
-		this.window.isSyncing = true;
-		const settingsObject = this.settings.toObject();
-		this.api.request<string>("PATCH", "/users/@settings", settingsObject)
-			.then(() => this.window.isSyncing = false)
-			.catch(() => this.window.isSyncing = false);
-	}
 }
