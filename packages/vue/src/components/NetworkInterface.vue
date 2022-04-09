@@ -16,11 +16,10 @@ import { determineInterfaceColor } from "../services/logic";
 import type { INetwork } from "../types/api/machine";
 const state = useState();
 const props = defineProps<{iface: INetwork; docker?: boolean}>();
-const MINIMUM_BLINK_SPEED = 0.001;
 
 const determineInterfaceBlinkSpeed = (iface: INetwork) => {
 	const totalTraffic = (iface.tx + iface.rx) / 1000 / 1000;
-	if (totalTraffic <= MINIMUM_BLINK_SPEED) return 0;
+	if (totalTraffic <= state.settings.general.minimum_blink_speed) return 0;
 
 	const log = ~~Math.log10(totalTraffic);
 	switch (log) {

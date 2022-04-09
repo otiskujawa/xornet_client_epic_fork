@@ -13,9 +13,10 @@ export class SettingsState {
 	}).value;
 
 	// These are snake cased because they are used to index the JSONs we get from the backend as well
-	public general = useLocalStorage("generalSettings", {
+	public general = useLocalStorage("generalSettingsS", {
 		opacity: 100,
 		theme: "dark",
+		minimum_blink_speed: 0.001,
 		enable_bloom: true,
 		enable_totals: false,
 		enable_sound_effects: false,

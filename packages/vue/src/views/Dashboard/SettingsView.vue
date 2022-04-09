@@ -25,6 +25,9 @@
       <option-field label="Use single color for switch lights" description="Sets all the switch lights to the gigabit color regardless of speed">
         <base-switch v-model="state.settings.general.use_single_color_for_switch_lights" />
       </option-field>
+      <option-field new-feature label="Minimum Blink Speed" description="Change the minimum transfer speed (in Mbps) for a interface light to blink">
+        <base-input v-model="state.settings.general.minimum_blink_speed" :placeholder="state.settings.general.minimum_blink_speed" class="text-white w-24" />
+      </option-field>
       <option-field v-if="isElectron()" description="Adjust the window's opacity" label="Background Opacity">
         <div class="flex gap-2 items-center">
           <base-range-input v-model="state.settings.general.opacity" min="0" max="100" step="1" />
@@ -68,6 +71,7 @@ import BaseSwitch from "/@/components/base/BaseSwitch.vue";
 import OptionField from "/@/components/OptionField.vue";
 import TopBar from "/@/components/TopBar.vue";
 import { isElectron, logout } from "/@/services/logic";
+import BaseInput from "/@/components/base/BaseInput.vue";
 const state = useState();
 const deleteAccount = () => state.users.deleteAccount().then(() => logout());
 </script>
