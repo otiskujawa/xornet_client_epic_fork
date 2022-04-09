@@ -53,7 +53,10 @@
                 </machine-stat>
               </th>
               <th v-if="columns.network_switch && !isViewingMachine">
-                <network-switch v-if="machine.network" :interfaces="machine.network" />
+                <network-switch v-if="machine.network" :interfaces="machine.network.filter(iface => !isDockerInterface(iface))" />
+              </th>
+              <th v-if="columns.docker_switch && !isViewingMachine">
+                <network-switch v-if="machine.network" docker :interfaces="machine.network.filter(iface => isDockerInterface(iface))" />
               </th>
               <th v-if="columns.td && !isViewingMachine">
                 <machine-stat :value="machine.td?.toFixed(2)" suffix="Mbps">
@@ -137,6 +140,7 @@ import { onKeyStroke, useLocalStorage } from "@vueuse/core";
 import { computed } from "vue";
 import { useRouter } from "vue-router";
 import { detectBrowser, formatEpoch } from "../services/logic";
+import type { INetwork } from "../types/api/machine";
 import BaseLoadingSpinner from "./base/BaseLoadingSpinner.vue";
 import MachineListTotals from "./MachineListTotals.vue";
 import DistroIcon from "./shared/DistroIcon.vue";
@@ -155,6 +159,9 @@ const sortByKey = useLocalStorage("sortByKey", "hostname");
 const sortBy = (field: string) => sortByKey.value = field;
 const browser = detectBrowser();
 const isViewingMachine = computed(() => router.currentRoute.value.name === "machine");
+const isDockerInterface = (iface: INetwork) => {
+	return iface.n.startsWith("veth") || iface.n.startsWith("docker0");
+};
 
 // This whole thing is fucked honestly
 const machines = computed(() => state.machines.getAll()
@@ -188,7 +195,10 @@ const machines = computed(() => state.machines.getAll()
 				comparison = a.ram_used_gb / a.ram_total_gb < b.ram_used_gb / b.ram_total_gb;
 				break;
 			case "network_switch":
-				comparison = (a.network?.length || "") < (b.network?.length || "");
+				comparison = (a.network?.filter(iface => !isDockerInterface(iface))?.length || "") < (b.network?.filter(iface => !isDockerInterface(iface))?.length || "");
+				break;
+			case "docker_switch":
+				comparison = (a.network?.filter(iface => isDockerInterface(iface))?.length || "") < (b.network?.filter(iface => isDockerInterface(iface))?.length || "");
 				break;
 			case "gpu_usage":
 				comparison = (a.gpu?.gpu_usage || "") < (b.gpu?.gpu_usage || "");

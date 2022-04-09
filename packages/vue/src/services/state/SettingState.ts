@@ -26,15 +26,16 @@ export class SettingsState {
 		fixed_column_width: false,
 	}).value;
 
-	public columns = useLocalStorage("columnsv3", {
+	public columns = useLocalStorage("columnsv144", {
 		hostname: true,
-		os_name: true,
+		os_name: false,
 		cau: true,
 		cas: false,
 		ram_usage: true,
 		gpu_usage: false,
 		gpu_power_usage: false,
 		network_switch: true,
+		docker_switch: true,
 		td: true,
 		tu: true,
 		tvd: true,

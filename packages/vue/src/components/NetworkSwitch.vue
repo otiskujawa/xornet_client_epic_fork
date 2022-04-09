@@ -1,11 +1,11 @@
 <template>
-  <div class="flex gap-2.5px max-w-64 flex-wrap">
+  <div class="flex gap-3px max-w-64 flex-wrap">
     <div
       v-for="iface of interfaces"
       :key="iface.n"
       class="cube"
       :class="[
-        determineInterfaceColor(iface.s),
+        determineInterfaceColor(iface),
         state.settings.general.enable_bloom && 'bloom'
       ]"
       :style="`animation-duration: ${speeds[iface.n]}ms;`"
@@ -19,14 +19,15 @@ import { useState } from "/@/app";
 import type { INetwork } from "/@/types/api/machine";
 
 const MINIMUM_BLINK_SPEED = 0.001;
-const props = defineProps<{interfaces: INetwork[]}>();
+const props = defineProps<{interfaces: INetwork[]; docker?: boolean}>();
 const state = useState();
-const interfaces = computed(() => props.interfaces);
 
-const determineInterfaceColor = (speed: number) => {
+const determineInterfaceColor = (iface: INetwork) => {
+	if (props.docker) return "text-docker";
+
 	if (state.settings.general.use_single_color_for_switch_lights) return "text-1000mbps";
-	const log = ~~Math.log10(speed);
 
+	const log = ~~Math.log10(iface.s);
 	switch (log) {
 		case 2:
 			return "text-100mbps";
@@ -62,7 +63,7 @@ const determineInterfaceBlinkSpeed = (iface: INetwork) => {
 
 const speeds = computed(() => {
 	const nics: Record<string, number> = {};
-	interfaces.value.forEach(iface => (nics[iface.n] = determineInterfaceBlinkSpeed(iface)));
+	props.interfaces.forEach(iface => (nics[iface.n] = determineInterfaceBlinkSpeed(iface)));
 	return nics;
 });
 
@@ -98,7 +99,7 @@ const speeds = computed(() => {
 }
 
 .cube {
-  @apply w-5px h-5px bg-white bg-opacity-10;
+  @apply w-6px h-6px bg-white bg-opacity-10 flex items-center justify-center;
 
   &.bloom {
     animation: flashBloom infinite;

@@ -16,6 +16,8 @@
   --color-caution: 255, 0, 122;              /* #ff007a */
   --color-warning: 255,168,0;                /* #FFA800 */
   --color-active: 0,255,103;                 /* #00ff67 */
+  
+  --color-docker: 13,183,237;           /* #0db7ed */
 
   --color-100mbps: var(--color-warning);
   --color-1000mbps: var(--color-active);
@@ -42,6 +44,8 @@
   --color-active: 163,190,140;               /* #A3BE8C */
   --color-warning: 235,203,139;              /* #EBCB8B */
 
+    --color-docker: 13,183,237;           /* #0db7ed */
+
   --color-100mbps: var(--color-warning);
   --color-1000mbps: var(--color-active);
   --color-10000mbps: var(--color-text);
@@ -67,6 +71,8 @@
   --color-warning: 255,0,72;                  /* #ff0048 */
   --color-active: 4,194,156;                  /* #04c29c */
 
+  --color-docker: 13,183,237;           /* #0db7ed */
+
   --color-100mbps: 247,37,133;                /* #f72585 */
   --color-1000mbps: 114,9,183;                /* #7209b7 */
   --color-10000mbps: 67,97,238;               /* #4361ee */
@@ -91,6 +97,8 @@
     --color-caution: 225,0,216;              /* #e100d8 */
     --color-warning: 59,77,228;              /* #3b4de4 */
     --color-active: 39,229,254;              /* #27e5fe */
+  
+    --color-docker: 13,183,237;           /* #0db7ed */
 	
     --color-100mbps: var(--color-warning);
     --color-1000mbps: var(--color-active);
