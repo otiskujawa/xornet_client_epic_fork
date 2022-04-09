@@ -9,6 +9,23 @@
       <machine-disks :disks="machine.disks!" />
       <machine-temp-sensors :sensors="machine.temps!" />
       <machine-docker v-if="machine.docker" :docker="machine.docker" />
+      <div>
+        <div v-for="iface of machine.network" :key="iface.n" class="flex gap-2 items-center">
+          <i-fluency-docker v-if="isDockerInterface(iface)" class="text-2xl" />
+          <i-fluency-switch v-else class="text-2xl" />
+          <div>
+            <div class="flex items-center gap-2">
+              <network-interface :iface="iface" :docker="isDockerInterface(iface)" />
+              <h1 class="text-lg">
+                {{ iface.n }}
+              </h1>
+            </div>
+            <p class="text-white text-opacity-50">
+              {{ iface.s }}Mbps
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
     <base-loading-spinner v-else text="Waiting for data from this machine..." />
   </div>
@@ -27,6 +44,8 @@ import MachineProcessorInfo from "/@/components/MachineView/MachineProcessorInfo
 import MachineDisks from "/@/components/MachineView/MachineDisks.vue";
 import MachineTempSensors from "/@/components/MachineView/MachineTempSensors.vue";
 import MachineDocker from "/@/components/MachineView/MachineDocker.vue";
+import NetworkInterface from "/@/components/NetworkInterface.vue";
+import { isDockerInterface } from "/@/services/logic";
 const route = useRoute();
 const state = useState();
 const discord = useDiscord();
