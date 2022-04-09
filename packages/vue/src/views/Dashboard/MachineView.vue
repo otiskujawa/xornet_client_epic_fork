@@ -9,20 +9,27 @@
       <machine-disks :disks="machine.disks!" />
       <machine-temp-sensors :sensors="machine.temps!" />
       <machine-docker v-if="machine.docker" :docker="machine.docker" />
-      <div>
-        <div v-for="iface of machine.network" :key="iface.n" class="flex gap-2 items-center">
-          <i-fluency-docker v-if="isDockerInterface(iface)" class="text-2xl" />
-          <i-fluency-switch v-else class="text-2xl" />
+      <div class="border-2 rounded-4px border-background-400">
+        <div class="font-thin bg-background-300 p-2">
+          <p class="opacity-50 ml-2">
+            Interface Name
+          </p>
+        </div>
+        <div v-for="iface of machine.network" :key="iface.n" class="px-4 py-1 hover:bg-background-200 flex gap-4 border-1 border-transparent border-t-background-400 items-center">
+          <i-fluency-docker v-if="isDockerInterface(iface)" class="text-xl" />
+          <i-fluency-switch v-else class="text-xl" />
           <div>
             <div class="flex items-center gap-2">
               <network-interface :iface="iface" :docker="isDockerInterface(iface)" />
-              <h1 class="text-lg">
+              <h1 class="text-lg hover:text-primary-400 hover:underline cursor-pointer">
                 {{ iface.n }}
               </h1>
             </div>
-            <p class="text-white text-opacity-50">
-              {{ iface.s }}Mbps
-            </p>
+            <div class="opacity-40 flex gap-4">
+              <p>
+                Speed: {{ iface.s }}Mbps
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -55,6 +62,12 @@ const machine = computed(() => {
 	machine?.name && discord.setCurrentlyWatchingMachine(machine);
 	return machine;
 });
+
+const bitsToHumanReadable = (bits: number) => {
+	const units = ["b", "Kb", "Mb", "Gb", "Tb", "Pb", "Eb", "Zb", "Yb"];
+	const i = ~~(Math.log(bits) / Math.log(1024));
+	return `${(bits / Math.pow(1024, i)).toFixed(2)} ${units[i]}`;
+};
 
 </script>
 <style scoped lang="postcss">
