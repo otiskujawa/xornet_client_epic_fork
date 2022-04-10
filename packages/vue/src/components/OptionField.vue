@@ -1,7 +1,7 @@
 <template>
-  <div class="flexcol w-full  " :class="!minimal && 'p-2 bg-background-300 rounded-8px gap-2'">
+  <div class="flexcol w-full" :class="!minimal && 'p-4 bg-background-300 rounded-8px gap-2'">
     <div class="option">
-      <div class="flexcol  gap-1">
+      <div class="flexcol gap-1">
         <label>
           <new-tag v-if="newFeature" />
           {{ label }}
@@ -23,6 +23,6 @@ defineProps<{label: string; minimal?: boolean; description?: string; newFeature?
 
 <style lang="postcss" scoped>
 .option {
-  @apply flex w-full my-2 gap-2 items-center justify-between;
+  @apply flex w-full gap-2 items-center justify-between;
 }
 </style>
