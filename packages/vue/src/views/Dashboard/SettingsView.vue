@@ -3,13 +3,13 @@
     <top-bar />
 
     <div class="flexcol gap-12 pt-8 w-full items-center ">
-      <div class="flex gap-4">
-        <avatar :size="14" :url="state.users.getMe()?.avatar" />
+      <div class="flex gap-4 w-full max-w-256 px-1/40  ">
+        <avatar :size="14" :user="state.users.getMe()" />
         <div class="flexcol gap-2">
-          <p class="text-xl">
+          <p class="text-2xl">
             {{ state.users.getMe()?.username }}
           </p>
-          <p class="font-light">
+          <p class="text-white text-opacity-50 font-light">
             {{ state.users.getMe()?.uuid }}
           </p>
         </div>

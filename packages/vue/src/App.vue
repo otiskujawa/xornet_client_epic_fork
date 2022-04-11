@@ -41,6 +41,7 @@ a {
 
 *::-webkit-scrollbar {
   width: 4px;
+  height:4px;
 }
 *:hover::-webkit-scrollbar {
   overflow-y: overlay;
@@ -48,7 +49,7 @@ a {
 *::-webkit-scrollbar-track,
 *::-webkit-scrollbar-corner {
   border-radius: 20px;
-  background: #0000003a;
+  background: rgba(var(--color-background-300));
 }
 *::-webkit-scrollbar-thumb {
   border-radius: 20px;
