@@ -28,9 +28,9 @@ const value = useModelValue(props, "modelValue", emits);
 }
 
 input:checked + .slider {
-  @apply bg-primary-300;
+  @apply bg-primary-400;
   &:hover {
-    @apply bg-primary-400;
+    @apply bg-primary-300;
   }
 }
 

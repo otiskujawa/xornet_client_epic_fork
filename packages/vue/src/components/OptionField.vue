@@ -1,5 +1,5 @@
 <template>
-  <div class="flexcol w-full" :class="!minimal && 'p-4 bg-background-300 rounded-8px gap-2'">
+  <div class="flexcol w-full" :class="!minimal && 'border-1 border-background-500 p-4 bg-background-300 rounded-8px gap-2'">
     <div class="option">
       <div class="flexcol gap-1">
         <label>

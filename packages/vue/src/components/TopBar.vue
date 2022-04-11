@@ -4,12 +4,12 @@
       <base-input v-model="state.machines.filterText.value" placeholder="Machines, users" class="min-w-24 w-full max-w-full sm:max-w-48 text-xs" />
 
       <base-tooltip text="Add machine">
-        <base-button transparent @click="showTokenGenerator = true">
+        <base-button borderless @click="showTokenGenerator = true">
           <i-fluency-plus />
         </base-button>
       </base-tooltip>
 
-      <base-dropdown text="Columns" transparent stay-open>
+      <base-dropdown text="Columns" borderless stay-open>
         <template #icon>
           <i-fluency-select-column />
         </template>

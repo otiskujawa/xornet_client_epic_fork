@@ -14,7 +14,7 @@
           <i-fluency-happy-skull class="w-24px h-24px" />
           No
         </base-button>
-        <base-button transparent class="w-full bg-caution" @click="logout" @mouseover="isSkullHappy = 2" @mouseleave="isSkullHappy = 0">
+        <base-button borderless class="w-full bg-caution" @click="logout" @mouseover="isSkullHappy = 2" @mouseleave="isSkullHappy = 0">
           <i-fluency-pirate-bay class="w-24px h-24px" />
           Yes
         </base-button>
@@ -22,7 +22,7 @@
     </div>
   </base-dialog>
   <base-button
-    transparent
+    borderless
     draggable="false"
     class="p-4 flex items-center justify-center text-69px  text-text opacity-25"
     @click="showConfirmDialog = true"

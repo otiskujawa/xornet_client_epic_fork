@@ -1,6 +1,6 @@
 <template>
   <base-popover class="text-xs no-drag" :open="open">
-    <base-button :transparent="transparent" @click="open = !open;">
+    <base-button :borderless="borderless" @click="open = !open;">
       <slot name="icon" />
       {{ text ? text : value }}
       <i-fluency-down
@@ -40,7 +40,7 @@ const props = defineProps<{
 	options?: any[]
 	text?: string
 	stayOpen?: boolean
-	transparent?: boolean
+	borderless?: boolean
 }>();
 const emit = defineEmits(["update:modelValue"]);
 const value = useVModel(props, "modelValue", emit);

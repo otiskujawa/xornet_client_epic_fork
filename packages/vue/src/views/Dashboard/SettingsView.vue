@@ -86,7 +86,7 @@ const state = useState();
 }
 
 .settingsRoute {
-  @apply p-2 px-4 flex items-center gap-3 rounded-4px cursor-pointer;
+  @apply p-2 px-4 flex items-center gap-3 text-white text-opacity-50 hover:text-opacity-100 rounded-4px cursor-pointer;
 
   & .active {
     @apply opacity-0 h-full w-2 bg-primary-400 rounded-full;
@@ -99,7 +99,7 @@ const state = useState();
   }
 
   &.router-link-active {
-    @apply bg-background-300;
+    @apply bg-background-300 text-opacity-100;
     .active {
       @apply opacity-100;
     }
