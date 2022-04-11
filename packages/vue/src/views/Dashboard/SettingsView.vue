@@ -2,7 +2,7 @@
   <div class="w-full h-full overflow-y-scroll items-center flexcol bg-black bg-opacity-25">
     <top-bar />
 
-    <div class="flexcol gap-12 pt-8 transform -translate-x-12">
+    <div class="flexcol gap-12 pt-8 w-full items-center ">
       <div class="flex gap-4">
         <avatar :size="14" :url="state.users.getMe()?.avatar" />
         <div class="flexcol gap-2">
@@ -14,8 +14,8 @@
           </p>
         </div>
       </div>
-      <div class="flex">
-        <ul class="w-min min-w-64 max-w-max h-full whitespace-nowrap gap-2 rounded-8px ">
+      <div class="flex gap-8 px-8 w-full max-w-256">
+        <ul class="w-full max-w-48 h-full whitespace-nowrap gap-2 rounded-8px ">
           <router-link class="settingsRoute" :to="{name: 'settings.account'}">
             <li>
               <div class="active ">
@@ -72,16 +72,16 @@ const state = useState();
 <style lang="postcss">
 
 .optionList {
-  @apply h-full text-left gap-4 items-center w-full max-w-224 min-w-224 gap-2 text-12px text-text px-8;
+  @apply h-full text-left gap-4 items-center  w-full gap-2 text-12px text-text;
   & > p {
     @apply text-xl w-full ;
   }
 }
 
 .exampleNic {
-  @apply bg-background-400 w-full whitespace-nowrap font-light gap-4 items-center justify-center overflow-hidden p-4 rounded-8px;
+  @apply bg-background-400 w-full whitespace-nowrap font-light gap-4 items-center justify-center overflow-hidden p-1/40 rounded-8px;
   & > p {
-    @apply text-white text-center text-xs text-opacity-50;
+    @apply text-white hidden lg:flex text-center text-xs text-opacity-50;
   }
 }
 
