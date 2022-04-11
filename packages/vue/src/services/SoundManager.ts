@@ -18,21 +18,23 @@ export class SoundManager {
 		const sounds = SoundManager.sounds.hoverSounds;
 		let sound = sounds[~~(Math.random() * sounds.length - 1)];
 		sound = <HTMLAudioElement>sound.cloneNode(false);
-		sound.volume = 0.15;
+		sound.volume = this.state.settings.general.sound_volume / 100;
 		sound.play();
 	}
 
 	public playClick() {
 		if (!this.state.settings.general.enable_sound_effects) return;
 		const sound = <HTMLAudioElement> SoundManager.sounds.click1.cloneNode(false);
-		sound.volume = 0.25;
+		sound.volume = this.state.settings.general.sound_volume / 100;
+		console.log(sound.volume);
 		sound.play();
 	}
 
 	public playEscape() {
 		if (!this.state.settings.general.enable_sound_effects) return;
 		const sound = <HTMLAudioElement> SoundManager.sounds.escape.cloneNode(false);
-		sound.volume = 0.25;
+		sound.volume = this.state.settings.general.sound_volume / 100;
+		console.log(sound.volume);
 		sound.play();
 	}
 }

@@ -6,9 +6,6 @@
   <option-field label="Theme" description="Change the theme of the app">
     <base-dropdown v-model="state.settings.general.theme" stay-open :options="['dark', 'nord', 'opera', 'galaxy']" />
   </option-field>
-  <option-field label="Sound FX" description="Enables sound effects when hovering over buttons etc.">
-    <base-switch v-model="state.settings.general.enable_sound_effects" />
-  </option-field>
   <option-field label="Bloom Effects" description="Makes the network switch lights and activity lights bloom">
     <base-switch v-model="state.settings.general.enable_bloom" />
   </option-field>

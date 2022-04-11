@@ -34,6 +34,15 @@
             </li>
           </router-link>
 
+          <router-link class="settingsRoute" :to="{name: 'settings.sounds'}">
+            <li>
+              <div class="active">
+                <br>
+              </div>
+              <i-fluency-sound /> Sounds
+            </li>
+          </router-link>
+
           <router-link v-if="isElectron()" class="settingsRoute" :to="{name: 'settings.behavior'}">
             <li>
               <div class="active">

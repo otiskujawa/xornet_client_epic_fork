@@ -56,6 +56,11 @@ export const routes: (FancyRouteRecord & { children?: FancyRouteRecord[] })[] = 
 						component: () => import("./views/Dashboard/Settings/Appearance.vue"),
 					},
 					{
+						path: "appearance",
+						name: "settings.sounds",
+						component: () => import("./views/Dashboard/Settings/Sounds.vue"),
+					},
+					{
 						path: "behavior",
 						name: "settings.behavior",
 						component: () => import("./views/Dashboard/Settings/Behavior.vue"),
