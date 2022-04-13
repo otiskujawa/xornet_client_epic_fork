@@ -90,6 +90,7 @@ declare module 'vue' {
     IFluencyServices: typeof import('~icons/fluency/services')['default']
     IFluencySettings: typeof import('~icons/fluency/settings')['default']
     IFluencySkull: typeof import('~icons/fluency/skull')['default']
+    IFluencySoubnd: typeof import('~icons/fluency/soubnd')['default']
     IFluencySound: typeof import('~icons/fluency/sound')['default']
     IFluencySpeedometer: typeof import('~icons/fluency/speedometer')['default']
     IFluencySsd: typeof import('~icons/fluency/ssd')['default']
@@ -129,6 +130,7 @@ declare module 'vue' {
     NewTag: typeof import('./src/components/NewTag.vue')['default']
     OptionField: typeof import('./src/components/OptionField.vue')['default']
     PopInTransition: typeof import('./src/components/shared/transitions/PopInTransition.vue')['default']
+    SettingsCategoryButton: typeof import('./src/components/SettingsCategoryButton.vue')['default']
     TokenGenerator: typeof import('./src/components/TokenGenerator.vue')['default']
     TopBar: typeof import('./src/components/TopBar.vue')['default']
   }

@@ -2,39 +2,27 @@ import type { AppState } from "./state/AppState";
 
 export class SoundManager {
 	constructor(public state: AppState) {}
-	public static sounds = {
-		hoverSounds: [
-			new Audio("sounds/hover_1.wav"),
-			new Audio("sounds/hover_2.wav"),
-			new Audio("sounds/hover_3.wav"),
-			new Audio("sounds/hover_4.wav"),
-		],
-		click1: new Audio("sounds/click.wav"),
+	public sounds: {[key: string]: HTMLAudioElement } = {
+		hover_1: new Audio("sounds/hover_1.wav"),
+		hover_2: new Audio("sounds/hover_2.wav"),
+		hover_3: new Audio("sounds/hover_3.wav"),
+		hover_4: new Audio("sounds/hover_4.wav"),
+		click: new Audio("sounds/click.wav"),
 		escape: new Audio("sounds/escape.wav"),
 	};
 
-	public playHover() {
+	private playSound(sound: HTMLAudioElement) {
 		if (!this.state.settings.general.enable_sound_effects) return;
-		const sounds = SoundManager.sounds.hoverSounds;
-		let sound = sounds[~~(Math.random() * sounds.length - 1)];
-		sound = <HTMLAudioElement>sound.cloneNode(false);
-		sound.volume = this.state.settings.general.sound_volume / 100;
-		sound.play();
+		const soundClone = <HTMLAudioElement> sound.cloneNode(false);
+		soundClone.volume = this.state.settings.general.sound_volume / 100;
+		soundClone.play();
 	}
 
 	public playClick() {
-		if (!this.state.settings.general.enable_sound_effects) return;
-		const sound = <HTMLAudioElement> SoundManager.sounds.click1.cloneNode(false);
-		sound.volume = this.state.settings.general.sound_volume / 100;
-		console.log(sound.volume);
-		sound.play();
+		this.playSound(this.sounds.click);
 	}
 
 	public playEscape() {
-		if (!this.state.settings.general.enable_sound_effects) return;
-		const sound = <HTMLAudioElement> SoundManager.sounds.escape.cloneNode(false);
-		sound.volume = this.state.settings.general.sound_volume / 100;
-		console.log(sound.volume);
-		sound.play();
+		this.playSound(this.sounds.escape);
 	}
 }
