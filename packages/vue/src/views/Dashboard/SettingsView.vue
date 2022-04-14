@@ -13,6 +13,9 @@
           <settings-category-button to="sounds" name="Sounds">
             <i-fluency-sound />
           </settings-category-button>
+          <settings-category-button to="security" name="Security">
+            <i-fluency-key />
+          </settings-category-button>
           <settings-category-button v-if="isElectron()" to="integrations" name="Integrations">
             <i-fluency-settings />
           </settings-category-button>
@@ -30,11 +33,8 @@
 
 <script setup lang="ts">
 import { useState } from "/@/app";
-import TopBar from "/@/components/TopBar.vue";
-import Avatar from "/@/components/user/Avatar.vue";
 import { isElectron } from "/@/services/logic";
 import SettingsCategoryButton from "/@/components/SettingsCategoryButton.vue";
-import AdminTag from "/@/components/tags/AdminTag.vue";
 import UserFlare from "/@/components/UserFlare.vue";
 import { computed } from "vue";
 const state = useState();

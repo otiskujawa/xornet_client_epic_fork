@@ -10,6 +10,12 @@ export interface IUser {
 	created_at: number
 	updated_at: number
 	is_admin: boolean
-	ips?: string[]
 	client_settings: number
+}
+
+export interface IUserLoginHistory {
+	agent: string
+	ip: string
+	timestamp: number
+	location: string
 }

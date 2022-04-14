@@ -8,7 +8,7 @@
             <new-tag v-if="newFeature" />
             {{ label }}
           </label>
-          <p v-if="description" class="font-light text-xs opacity-40">
+          <p v-if="description" class="font-light text-xs opacity-50">
             {{ description }}
           </p>
         </div>
