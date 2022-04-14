@@ -44,7 +44,7 @@
             <p class="text-4xl">
               {{ user.username }}
             </p>
-            <tag v-if="user.is_admin" text="Admin" class="text-cyan-500 bg-cyan-500" />
+            <admin-tag :user="user" />
           </div>
         </div>
       </div>
@@ -61,6 +61,7 @@ import { formatDate } from "/@/services/logic";
 import BaseDialog from "/@/components/base/BaseDialog.vue";
 import NewTag from "/@/components/NewTag.vue";
 import Tag from "/@/components/Tag.vue";
+import AdminTag from "/@/components/tags/AdminTag.vue";
 const router = useRouter();
 const route = useRoute();
 const state = useState();

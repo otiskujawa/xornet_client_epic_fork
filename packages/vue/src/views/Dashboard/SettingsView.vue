@@ -4,13 +4,16 @@
 
     <div class="flexcol gap-12 pt-8 w-full items-center ">
       <div class="flex gap-4 w-full max-w-256 px-1/40  ">
-        <avatar :size="14" :user="state.users.getMe()" />
+        <avatar :size="14" :user="me" />
         <div class="flexcol gap-2">
-          <p class="text-2xl">
-            {{ state.users.getMe()?.username }}
-          </p>
+          <div class="flex items-center gap-4">
+            <p class="text-2xl">
+              {{ me?.username }}
+            </p>
+            <admin-tag :user="me" />
+          </div>
           <p class="text-white text-opacity-50 font-light">
-            {{ state.users.getMe()?.uuid }}
+            {{ me?.uuid }}
           </p>
         </div>
       </div>
@@ -47,7 +50,10 @@ import Avatar from "/@/components/user/Avatar.vue";
 import { isElectron } from "/@/services/logic";
 import NewTag from "/@/components/NewTag.vue";
 import SettingsCategoryButton from "/@/components/SettingsCategoryButton.vue";
+import AdminTag from "/@/components/tags/AdminTag.vue";
+import { computed } from "vue";
 const state = useState();
+const me = computed(() => state.users.getMe());
 </script>
 
 <style lang="postcss">

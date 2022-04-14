@@ -3,7 +3,7 @@
     <div class="option">
       <div class="flexcol gap-1">
         <label class="flex gap-2 items-center">
-          <tag v-if="newFeature" text="New" class="text-primary-500 bg-primary-500" />
+          <new-tag v-if="newFeature" />
           {{ label }}
         </label>
         <p v-if="description" class="font-light text-xs opacity-40">
@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import Tag from "./Tag.vue";
+import NewTag from "./tags/NewTag.vue";
 defineProps<{label: string; minimal?: boolean; description?: string; newFeature?: boolean}>();
 </script>
 

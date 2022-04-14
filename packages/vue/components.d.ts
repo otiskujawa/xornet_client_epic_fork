@@ -5,6 +5,7 @@
 declare module 'vue' {
   export interface GlobalComponents {
     ActivityStatus: typeof import('./src/components/ActivityStatus.vue')['default']
+    AdminTag: typeof import('./src/components/tags/AdminTag.vue')['default']
     Avatar: typeof import('./src/components/user/Avatar.vue')['default']
     BaseButton: typeof import('./src/components/base/BaseButton.vue')['default']
     BaseCheckbox: typeof import('./src/components/base/BaseCheckbox.vue')['default']
@@ -127,7 +128,7 @@ declare module 'vue' {
     NavigationButton: typeof import('./src/components/NavigationButton.vue')['default']
     NetworkInterface: typeof import('./src/components/NetworkInterface.vue')['default']
     NetworkSwitch: typeof import('./src/components/NetworkSwitch.vue')['default']
-    NewTag: typeof import('./src/components/NewTag.vue')['default']
+    NewTag: typeof import('./src/components/tags/NewTag.vue')['default']
     'NewTag copy': typeof import('./src/components/NewTag copy.vue')['default']
     OptionField: typeof import('./src/components/OptionField.vue')['default']
     PopInTransition: typeof import('./src/components/shared/transitions/PopInTransition.vue')['default']
