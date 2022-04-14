@@ -1,10 +1,10 @@
 <template>
   <div class="metric">
-    <i-fluency-up />
+    <i-fluency-down />
     {{ totalDownload.toFixed(2) }}Mbps
   </div>
   <div class="metric">
-    <i-fluency-down />
+    <i-fluency-up />
     {{ totalUpload.toFixed(2) }}Mbps
   </div>
 </template>
