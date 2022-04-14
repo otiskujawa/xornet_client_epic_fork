@@ -1,5 +1,5 @@
 <template>
-  <tag text="New" class="text-primary-500 bg-primary-500" />
+  <tag text="New" class="text-primary-400 bg-primary-400" />
 </template>
 
 <script setup lang="ts">

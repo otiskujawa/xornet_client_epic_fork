@@ -10,9 +10,6 @@
       <navigation-button name="Open Command Palette" :shortcut="isElectron() ? ['Control', 'Shift', 'P'] : ['Control', 'k']" :handle-fn="() => state.window.isShowingCommandPallete = true">
         <i-fluency-command-palette class="text-2xl" />
       </navigation-button>
-      <navigation-button name="settings" :to="{ name: 'settings' }">
-        <i-fluency-settings class="text-2xl" />
-      </navigation-button>
     </div>
     <li class="flex fixed bottom-4 right-4 items-center justify-center ">
       <avatar :user="me" class="w-16" />
@@ -21,30 +18,33 @@
   <nav class="h-full hidden sm:flex flex-col justify-between w-min ">
     <ul>
       <navigation-button name="machines" :shortcut="['Control', '1']" :to="{ name: 'machines' }">
-        <i-fluency-nas class="w-full h-full" />
+        <i-fluency-nas class="icon" />
       </navigation-button>
-      <navigation-button name="settings" :shortcut="['Control', '2']" :to="{ name: 'settings' }">
-        <i-fluency-settings class="w-full h-full" />
+      <navigation-button name="profile" :shortcut="['Control', '2']" :to="{ name: 'profile', params: { uuid: me?.uuid } }">
+        <i-fluency-user class="icon" />
       </navigation-button>
-      <navigation-button name="profile" :shortcut="['Control', '3']" :to="{ name: 'profile', params: { uuid: me?.uuid } }">
-        <i-fluency-user class="w-full h-full" />
+      <navigation-button name="settings" :shortcut="['Control', '3']" :to="{ name: 'settings' }">
+        <i-fluency-settings class="icon" />
+      </navigation-button>
+      <navigation-button v-if="state.users.getMe()?.is_admin" name="admin" :shortcut="['Control', '4']" :to="{ name: 'admin' }">
+        <i-fluency-admin class="icon" />
       </navigation-button>
 
       <div class="px-2">
-        <div class="h-1px bg-black bg-opacity-50 w-full" />
+        <div class="h-1px bg-background-500 w-full" />
       </div>
       <navigation-button name="Open Command Palette" :shortcut="isElectron() ? ['Control', 'Shift', 'P'] : ['Control', 'k']" :handle-fn="() => state.window.isShowingCommandPallete = true">
-        <i-fluency-command-palette class="w-full h-full" />
+        <i-fluency-command-palette class="icon" />
       </navigation-button>
 
       <div class="px-2">
-        <div class="h-1px bg-black bg-opacity-50 w-full" />
+        <div class="h-1px bg-background-500 w-full" />
       </div>
       <navigation-button name="Github Repository" href="https://github.com/xornet-cloud">
-        <i-fluency-github class="w-full h-full" />
+        <i-fluency-github class="icon" />
       </navigation-button>
       <navigation-button name="API Status" href="https://xornet.statuspage.io/">
-        <i-fluency-area-chart class="w-full h-full" />
+        <i-fluency-area-chart class="icon" />
       </navigation-button>
     </ul>
     <ul>
@@ -79,10 +79,12 @@ const me = computed(() => state.users.getMe());
 <style lang="postcss">
 nav {
   -webkit-app-region: drag;
-}
 
+  .icon {
+    @apply w-full h-full;
+  }
+}
 ul {
   -webkit-app-region: no-drag;
 }
-
 </style>

@@ -14,7 +14,6 @@
               v-for="machine of machines"
               :key="machine.hardware_uuid"
               :class="router.currentRoute.value.params.uuid === machine.uuid && 'active'"
-              @mouseenter="soundManager.playHover()"
             >
               <th v-if="columns.hostname" class="cursor-pointer hover:underline" @click="router.push({name: 'machine', params: {uuid: machine.uuid}})">
                 <machine-stat :value="machine.name" dont-fade>

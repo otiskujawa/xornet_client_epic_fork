@@ -1,5 +1,6 @@
 import type { RouteRecordRaw } from "vue-router";
 import { createRouter, createWebHashHistory } from "vue-router";
+import { useState } from "./app";
 
 export type FancyRouteRecord = RouteRecordRaw & { icon?: string };
 
@@ -38,6 +39,12 @@ export const routes: (FancyRouteRecord & { children?: FancyRouteRecord[] })[] = 
 						component: () => import("./views/Dashboard/MachineView.vue"),
 					},
 				],
+			},
+			{
+				path: "admin",
+				name: "admin",
+				icon: "admin",
+				component: () => import("./views/Dashboard/AdminView.vue"),
 			},
 			{
 				path: "settings",
@@ -97,6 +104,9 @@ router.beforeEach((to, from, next) => {
 	// redirect to settings.account if user goes to /dashboard/settings
 	if (to.name === "settings")
 		return next({ name: "settings.account" });
+
+	if (to.name === "admin" && !useState().users.getMe()?.is_admin)
+		return next({ name: "machines" });
 
 	next();
 });

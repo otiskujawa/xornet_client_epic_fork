@@ -1,7 +1,7 @@
 .theme-dark {
-  --color-primary-300: 211,167,255;          /* #D3A7FF */       /* Main Color */
-  --color-primary-400: 180,105,255;          /* #B469FF */
-  --color-primary-500: 129,43,215;           /* #812BD7 */
+  --color-primary-300: 173,133,255;          /* #ad85ff */       /* Main Color */
+  --color-primary-400: 131,69,255;          /* #8345ff */
+  --color-primary-500: 86,3,252;           /* #5603fc */
 
   --color-background-200: 1,4,9;             /* #010409 */
   --color-background-300: 15,19,25;          /* #0F1319 */

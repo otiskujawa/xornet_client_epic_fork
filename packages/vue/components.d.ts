@@ -54,6 +54,7 @@ declare module 'vue' {
     IDistrosUbuntu: typeof import('~icons/distros/ubuntu')['default']
     IDistrosWindows: typeof import('~icons/distros/windows')['default']
     IFluencyActiveState: typeof import('~icons/fluency/active-state')['default']
+    IFluencyAdmin: typeof import('~icons/fluency/admin')['default']
     IFluencyAreaChart: typeof import('~icons/fluency/area-chart')['default']
     IFluencyAtSign: typeof import('~icons/fluency/at-sign')['default']
     IFluencyBack: typeof import('~icons/fluency/back')['default']

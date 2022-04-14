@@ -1,5 +1,5 @@
 <template>
-  <label class="relative inline-block min-w-10 h-5 no-drag" @click="soundManager.playClick();" @mouseenter="soundManager.playHover()">
+  <label class="relative inline-block min-w-10 h-5 no-drag" @click="soundManager.playClick();">
     <input v-model="value" type="checkbox" class="hidden" :checked="modelValue">
     <span class="slider round" />
   </label>
@@ -30,7 +30,7 @@ const value = useModelValue(props, "modelValue", emits);
 input:checked + .slider {
   @apply bg-primary-400;
   &:hover {
-    @apply bg-primary-300;
+    @apply bg-primary-500;
   }
 }
 
