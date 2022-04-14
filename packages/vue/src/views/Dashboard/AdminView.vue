@@ -25,9 +25,11 @@
           <!-- <base-button @click="banUser(user)">
             Ban
           </base-button> -->
-          <base-button @click="deleteUser(user)">
-            Delete
-          </base-button>
+          <base-confirmation-dialog :confirmation-text="`Delete ${user.username}'s account?`" @confirm="deleteUser(user)">
+            <base-button>
+              Delete
+            </base-button>
+          </base-confirmation-dialog>
         </td>
       </tr>
     </table>
@@ -36,15 +38,21 @@
 
 <script setup lang="ts">
 import { useState } from "/@/app";
-import { computed, onMounted } from "vue";
+import { computed, onMounted, ref } from "vue";
 import Avatar from "/@/components/user/Avatar.vue";
 import AdminTag from "/@/components/tags/AdminTag.vue";
 import BaseButton from "/@/components/base/BaseButton.vue";
 import type { IUser } from "/@/types/api/user";
 import { secondsSince, secondsToHuman } from "../../services/logic";
+import { useKeyModifier } from "@vueuse/core";
+import BaseDialog from "/@/components/base/BaseDialog.vue";
+import BaseConfirmationDialog from "/@/components/base/BaseConfirmationDialog.vue";
 
+const isShowingDeletePrompt = ref(false);
 const state = useState();
 const users = computed(() => state.users.getAll());
+const shift = useKeyModifier("Shift");
+
 onMounted(() => state.users.fetchAll());
 
 // const banUser = (user: IUser) => {
