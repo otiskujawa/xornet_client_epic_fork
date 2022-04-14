@@ -48,7 +48,6 @@ import { useState } from "/@/app";
 import TopBar from "/@/components/TopBar.vue";
 import Avatar from "/@/components/user/Avatar.vue";
 import { isElectron } from "/@/services/logic";
-import NewTag from "/@/components/NewTag.vue";
 import SettingsCategoryButton from "/@/components/SettingsCategoryButton.vue";
 import AdminTag from "/@/components/tags/AdminTag.vue";
 import { computed } from "vue";
