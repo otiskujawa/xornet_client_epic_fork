@@ -1,14 +1,17 @@
 <template>
-  <div class="flexcol w-full" :class="!minimal && 'border-1 border-background-500 p-4 bg-background-300 rounded-8px gap-2'">
+  <div class="flexcol w-full" :class="!minimal && ' bg-background-300 p-4  rounded-8px gap-2'">
     <div class="option">
-      <div class="flexcol gap-1">
-        <label class="flex gap-2 items-center">
-          <new-tag v-if="newFeature" />
-          {{ label }}
-        </label>
-        <p v-if="description" class="font-light text-xs opacity-40">
-          {{ description }}
-        </p>
+      <div class="flex items-center gap-4">
+        <slot name="icon" />
+        <div class="flexcol gap-1">
+          <label class="flex gap-2 items-center">
+            <new-tag v-if="newFeature" />
+            {{ label }}
+          </label>
+          <p v-if="description" class="font-light text-xs opacity-40">
+            {{ description }}
+          </p>
+        </div>
       </div>
       <slot />
     </div>

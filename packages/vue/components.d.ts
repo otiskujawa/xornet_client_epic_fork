@@ -64,6 +64,7 @@ declare module 'vue' {
     IFluencyCommandPalette: typeof import('~icons/fluency/command-palette')['default']
     IFluencyComputer: typeof import('~icons/fluency/computer')['default']
     IFluencyCountry: typeof import('~icons/fluency/country')['default']
+    IFluencyDiscord: typeof import('~icons/fluency/discord')['default']
     IFluencyDocker: typeof import('~icons/fluency/docker')['default']
     IFluencyDone: typeof import('~icons/fluency/done')['default']
     IFluencyDown: typeof import('~icons/fluency/down')['default']

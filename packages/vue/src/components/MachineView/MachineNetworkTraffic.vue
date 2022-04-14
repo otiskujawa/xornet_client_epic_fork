@@ -16,7 +16,7 @@ defineProps<{
 }>();
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
 .metric {
   @apply flex items-center gap-2;
 }

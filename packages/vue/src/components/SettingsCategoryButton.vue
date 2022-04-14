@@ -41,7 +41,7 @@ defineProps<{to: string; name: string}>();
   @apply h-4 ease-in-out transition duration-100 transform;
 }
 .settingsRoute {
-  @apply p-2 px-4 flex items-center gap-3 text-white text-opacity-50 hover:text-opacity-100 rounded-4px cursor-pointer;
+  @apply p-2 px-4 flex  items-center gap-3 text-text text-opacity-50 hover:text-opacity-100 rounded-4px cursor-pointer;
 
   & .active {
     @apply opacity-0 h-full w-2 bg-primary-400 rounded-full;

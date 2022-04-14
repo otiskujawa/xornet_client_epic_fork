@@ -84,7 +84,7 @@ onMounted(async() => {
 });
 
 </script>
-<style scoped>
+<style scoped lang="postcss">
   .edithover {
     &:hover .hovershow {
       @apply opacity-100;

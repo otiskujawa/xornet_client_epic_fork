@@ -12,7 +12,7 @@
             </p>
             <admin-tag :user="me" />
           </div>
-          <p class="text-white text-opacity-50 font-light">
+          <p class="text-text text-opacity-50 font-light">
             {{ me?.uuid }}
           </p>
         </div>
@@ -28,7 +28,7 @@
           <settings-category-button to="sounds" name="Sounds">
             <i-fluency-sound />
           </settings-category-button>
-          <settings-category-button v-if="isElectron()" to="behavior" name="Behavior">
+          <settings-category-button v-if="isElectron()" to="integrations" name="Integrations">
             <i-fluency-settings />
           </settings-category-button>
           <settings-category-button to="machinelist" name="Machine List">

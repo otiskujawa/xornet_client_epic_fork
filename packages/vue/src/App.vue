@@ -15,7 +15,7 @@ import { isElectron } from "/@/services/logic";
 import CommandPallete from "/@/components/CommandPallete.vue";
 </script>
 
-<style>
+<style lang="postcss">
 * {
   @apply !outline-none text-sm;
   scrollbar-width: thin;
