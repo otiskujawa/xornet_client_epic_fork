@@ -7,7 +7,6 @@ import type { uuid } from "/@/types/api";
 import type { IMachineDynamicData } from "/@/types/api/machine";
 
 export type Verb = "GET" | "POST" | "DELETE" | "PUT" | "PATCH";
-console.log(import.meta.env.MODE);
 export const BASE_URL = import.meta.env.MODE === "development-local" ? "http://localhost:7000" : "https://backend.xornet.cloud";
 
 export type MittEvent = Record<EventType, unknown>;
@@ -28,7 +27,6 @@ export class API {
 	// TODO: Make this into a class or something because everything happens within this function
 	public createWebsocketConnection(state: AppState) {
 		if (!localStorage.getItem("token") === undefined) return;
-		console.log("creating new connection");
 		this.state = state;
 		// Create WebSocket connection.
 		const socket = new WebSocket(`${BASE_URL.replace("https", "wss").replace("http", "ws")}/client`);
