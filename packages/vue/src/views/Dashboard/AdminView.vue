@@ -7,7 +7,6 @@
         <th>Role</th>
         <th>UUID</th>
         <th>Email</th>
-        <th>IPs</th>
         <th>Created</th>
         <th>Last Login</th>
         <th>Actions</th>
@@ -18,7 +17,6 @@
         <td><admin-tag :user="user" /></td>
         <td>{{ user.uuid }}</td>
         <td>{{ user.email }}</td>
-        <td>{{ user.ips }}</td>
         <td>{{ new Date(user.created_at).toLocaleString() }}</td>
         <td>{{ secondsToHuman(secondsSince(user.updated_at)) }} ago</td>
         <td class="flex gap-2">
