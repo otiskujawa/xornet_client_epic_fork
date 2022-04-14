@@ -7,6 +7,7 @@
         <th>Role</th>
         <th>UUID</th>
         <th>Email</th>
+        <th>IPs</th>
         <th>Created</th>
         <th>Last Login</th>
         <th>Actions</th>
@@ -17,6 +18,7 @@
         <td><admin-tag :user="user" /></td>
         <td>{{ user.uuid }}</td>
         <td>{{ user.email }}</td>
+        <td>{{ user.ips }}</td>
         <td>{{ new Date(user.created_at).toLocaleString() }}</td>
         <td>{{ secondsToHuman(secondsSince(user.updated_at)) }} ago</td>
         <td class="flex gap-2">
@@ -34,7 +36,7 @@
 
 <script setup lang="ts">
 import { useState } from "/@/app";
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import Avatar from "/@/components/user/Avatar.vue";
 import AdminTag from "/@/components/tags/AdminTag.vue";
 import BaseButton from "/@/components/base/BaseButton.vue";
@@ -43,6 +45,7 @@ import { secondsSince, secondsToHuman } from "../../services/logic";
 
 const state = useState();
 const users = computed(() => state.users.getAll());
+onMounted(() => state.users.fetchAll());
 
 const banUser = (user: IUser) => {
 	state.users.banUser();

@@ -90,6 +90,14 @@ export class UsersState extends State<IUsersState> {
 		me && this.api.request<IUser>("PATCH", "/users/@avatar", { url: avatar }).then((me: IUser) => this.setAvatar(me, avatar));
 	}
 
+	public async deleteUser(user: IUser) {
+		this.api.request("DELETE", `/users/${user.uuid}`).then(() => {
+			delete this.state.users[user.uuid];
+		}).catch((e) => {
+			console.log("Failed to delete user", e);
+		});
+	}
+
 	/**
 	 * Update the banner of me in the backend and set the new banner in the state
 	 * @param banner The URL of the banner to set
@@ -175,6 +183,10 @@ export class UsersState extends State<IUsersState> {
 
 	public getAll(): IUser[] {
 		return Object.values(this.state.users);
+	}
+
+	public fetchAll() {
+		this.api.request<IUser[]>("GET", "/users/all").then(users => this.setUsers(users));
 	}
 
 	/**
