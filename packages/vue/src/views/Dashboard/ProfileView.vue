@@ -22,7 +22,7 @@
       </div>
       <div class="px-32">
         <div
-          class="flex"
+          class="flex "
         >
           <div class="w-32 h-32 transform -translate-y-3rem edithover">
             <button v-if="user.uuid === state.users.getMe().uuid" class=" w-full h-full absolute hovershow opacity-0 bg-background-200 bg-opacity-50 rounded-full p-2 items-center cursor-pointer flex duration-100 flexcol justify-center" @click="is_avatar_editor = true">
@@ -40,9 +40,12 @@
             </button>
             <avatar :url="new_avatar || user.avatar" class="h-full" />
           </div>
-          <p class="text-4xl text-center p-4 px-8">
-            {{ user.username }}
-          </p>
+          <div class="flex items-center gap-4 mb-12 px-8">
+            <p class="text-4xl">
+              {{ user.username }}
+            </p>
+            <tag v-if="user.is_admin" text="Admin" class="text-cyan-500 bg-cyan-500" />
+          </div>
         </div>
       </div>
     </div>
@@ -56,6 +59,8 @@ import BaseInput from "/@/components/base/BaseInput.vue";
 import Avatar from "/@/components/user/Avatar.vue";
 import { formatDate } from "/@/services/logic";
 import BaseDialog from "/@/components/base/BaseDialog.vue";
+import NewTag from "/@/components/NewTag.vue";
+import Tag from "/@/components/Tag.vue";
 const router = useRouter();
 const route = useRoute();
 const state = useState();

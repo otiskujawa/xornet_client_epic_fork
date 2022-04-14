@@ -9,5 +9,7 @@ export interface IUser {
 	biography?: string
 	created_at: number
 	updated_at: number
+	is_admin: boolean
+	ips?: string[]
 	client_settings: number
 }

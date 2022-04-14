@@ -16,6 +16,9 @@
       </div>
       <div class="flex gap-8 px-8 w-full max-w-256">
         <ul class="w-full max-w-48 h-full whitespace-nowrap gap-2 rounded-8px ">
+          <settings-category-button to="account" name="Account">
+            <i-fluency-user />
+          </settings-category-button>
           <settings-category-button to="appearance" name="Appearance">
             <i-fluency-palette />
           </settings-category-button>

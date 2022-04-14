@@ -128,9 +128,11 @@ declare module 'vue' {
     NetworkInterface: typeof import('./src/components/NetworkInterface.vue')['default']
     NetworkSwitch: typeof import('./src/components/NetworkSwitch.vue')['default']
     NewTag: typeof import('./src/components/NewTag.vue')['default']
+    'NewTag copy': typeof import('./src/components/NewTag copy.vue')['default']
     OptionField: typeof import('./src/components/OptionField.vue')['default']
     PopInTransition: typeof import('./src/components/shared/transitions/PopInTransition.vue')['default']
     SettingsCategoryButton: typeof import('./src/components/SettingsCategoryButton.vue')['default']
+    Tag: typeof import('./src/components/Tag.vue')['default']
     TokenGenerator: typeof import('./src/components/TokenGenerator.vue')['default']
     TopBar: typeof import('./src/components/TopBar.vue')['default']
   }
