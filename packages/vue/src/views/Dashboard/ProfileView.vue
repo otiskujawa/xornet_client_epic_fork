@@ -7,8 +7,8 @@
           class="w-full h-18rem bg-cover bg-center bg-norepeat"
           :style="bannerStyle"
         />
-        <button v-if="user.uuid === state.users.getMe().uuid" class="absolute hovershow opacity-0 bg-background-200 bg-opacity-50 rounded-full bottom-4 right-4 p-2 items-center cursor-pointer flex duration-100" @click="is_banner_editor = true">
-          <i-fluency-edit />
+        <button v-if="user.uuid === state.users.getMe().uuid" class="w-full h-full absolute hovershow opacity-0 bg-background-200 bg-opacity-50 top-0 left-0 p-2 items-center cursor-pointer flex duration-100 flexcol justify-center" @click="is_banner_editor = true">
+          <p>change<br>banner</p>
           <base-dialog v-model="is_banner_editor">
             <div class="popup">
               Banner URL: <base-input
@@ -20,14 +20,13 @@
           </base-dialog>
         </button>
       </div>
-      <div class="px-32">
+      <div class="px-4 md:px-56 lg:px-80">
         <div
           class="flex "
         >
           <div class="w-32 h-32 transform -translate-y-3rem edithover">
-            <button v-if="user.uuid === state.users.getMe().uuid" class=" w-full h-full absolute hovershow opacity-0 bg-background-200 bg-opacity-50 rounded-full p-2 items-center cursor-pointer flex duration-100 flexcol justify-center" @click="is_avatar_editor = true">
-              <p>change</p>
-              <p>avatar</p>
+            <button v-if="user.uuid === state.users.getMe().uuid" class="w-full h-full absolute hovershow opacity-0 bg-background-200 bg-opacity-50 rounded-full p-2 items-center cursor-pointer flex duration-100 flexcol justify-center" @click="is_avatar_editor = true">
+              <p>change<br>avatar</p>
               <base-dialog v-model="is_avatar_editor">
                 <div class="popup">
                   Avatar URL: <base-input
@@ -48,7 +47,6 @@
           </div>
         </div>
       </div>
-      <p>{{ user.biography }}</p>
     </div>
   </div>
 </template>
@@ -86,15 +84,22 @@ onMounted(async() => {
 
 </script>
 <style scoped lang="postcss">
-  .edithover {
-    &:hover .hovershow {
-      @apply opacity-100;
-    }
+
+.socialList {
+  li {
+    @apply flex items-center gap-2;
   }
-  .hovershow:active {
-    @apply bg-primary-400;
+}
+
+.edithover {
+  &:hover .hovershow {
+    @apply opacity-100;
   }
-  .popup {
-    @apply bg-background-200 p-8 flexcol gap-2;
-  }
+}
+.hovershow:active {
+  @apply bg-primary-400 bg-opacity-25;
+}
+.popup {
+  @apply bg-background-300 p-8 gap-2;
+}
 </style>
