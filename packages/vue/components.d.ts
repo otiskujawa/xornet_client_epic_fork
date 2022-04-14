@@ -138,6 +138,7 @@ declare module 'vue' {
     Tag: typeof import('./src/components/Tag.vue')['default']
     TokenGenerator: typeof import('./src/components/TokenGenerator.vue')['default']
     TopBar: typeof import('./src/components/TopBar.vue')['default']
+    UserFlare: typeof import('./src/components/UserFlare.vue')['default']
   }
 }
 

@@ -1,20 +1,7 @@
 <template>
   <div class="w-full h-full overflow-y-scroll items-center flexcol bg-black bg-opacity-25">
     <div class="flexcol gap-12 pt-24 w-full items-center ">
-      <div class="flex gap-4 w-full items-center max-w-256 px-1/40  ">
-        <avatar :size="16" :user="me" />
-        <div class="flexcol gap-2">
-          <div class="flex items-center gap-4">
-            <p class="text-2xl">
-              {{ me?.username }}
-            </p>
-            <admin-tag :user="me" />
-          </div>
-          <p class="text-text text-opacity-50 font-light">
-            {{ me?.uuid }}
-          </p>
-        </div>
-      </div>
+      <user-flare :user="me" />
       <div class="flex gap-8 px-8 w-full max-w-256">
         <ul class="w-full max-w-48 h-full whitespace-nowrap gap-2 rounded-8px ">
           <settings-category-button to="account" name="Account">
@@ -48,6 +35,7 @@ import Avatar from "/@/components/user/Avatar.vue";
 import { isElectron } from "/@/services/logic";
 import SettingsCategoryButton from "/@/components/SettingsCategoryButton.vue";
 import AdminTag from "/@/components/tags/AdminTag.vue";
+import UserFlare from "/@/components/UserFlare.vue";
 import { computed } from "vue";
 const state = useState();
 const me = computed(() => state.users.getMe());

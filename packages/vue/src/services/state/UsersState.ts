@@ -173,6 +173,10 @@ export class UsersState extends State<IUsersState> {
 		this.state.users[user.uuid] = user;
 	}
 
+	public getAll() {
+		return this.state.users;
+	}
+
 	/**
 	 * Gets a user from the state and if it doesn't exist fetches it
 	 */

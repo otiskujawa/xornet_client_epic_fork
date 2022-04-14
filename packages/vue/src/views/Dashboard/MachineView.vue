@@ -27,7 +27,7 @@
             </div>
             <div class="font-extralight flex gap-4">
               <p>
-                <span class="opacity-75">Speed: </span> <strong :class="`${determineInterfaceColor(iface)}`">{{ iface.s }}Mbps</strong>
+                <span class="opacity-75">Speed: </span> <strong :class="`${determineInterfaceColor(iface)}`">{{ ~~iface.s }}Mbps</strong>
               </p>
             </div>
           </div>
