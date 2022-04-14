@@ -44,14 +44,9 @@ import AdminTag from "/@/components/tags/AdminTag.vue";
 import BaseButton from "/@/components/base/BaseButton.vue";
 import type { IUser } from "/@/types/api/user";
 import { secondsSince, secondsToHuman } from "../../services/logic";
-import { useKeyModifier } from "@vueuse/core";
-import BaseDialog from "/@/components/base/BaseDialog.vue";
 import BaseConfirmationDialog from "/@/components/base/BaseConfirmationDialog.vue";
-
-const isShowingDeletePrompt = ref(false);
 const state = useState();
 const users = computed(() => state.users.getAll());
-const shift = useKeyModifier("Shift");
 
 onMounted(() => state.users.fetchAll());
 
