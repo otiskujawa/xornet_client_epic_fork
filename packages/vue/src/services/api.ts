@@ -5,6 +5,7 @@ import mitt from "mitt";
 import type { AppState } from "/@/services/state/AppState";
 import type { uuid } from "/@/types/api";
 import type { IMachineDynamicData } from "/@/types/api/machine";
+import { ungzip } from "node-gzip";
 
 export type Verb = "GET" | "POST" | "DELETE" | "PUT" | "PATCH";
 console.log(import.meta.env.MODE);
@@ -42,7 +43,7 @@ export class API {
 
 		// Listen for messages
 		socket.addEventListener("message", (message) => {
-			const { e: event, d: data } = JSON.parse(message.data.toString());
+			const { e: event, d: data } = JSON.parse(ungzip(message.data as ArrayBuffer).toString());
 			emitter.emit(event, data);
 		});
 
@@ -56,7 +57,7 @@ export class API {
 		}, 1000);
 
 		// TODO: Move these to a seperate file for organization
-		emitter.on("machineData", (dynamicData) => {
+		emitter.on("machineData", async(dynamicData) => {
 			// state.machines.updateDynamicData(dynamicData.uuid, dynamicData);
 			machineDataBuffer.push(dynamicData);
 		});
