@@ -43,8 +43,10 @@ export class API {
 
 		// Listen for messages
 		socket.addEventListener("message", (message) => {
-			const { e: event, d: data } = JSON.parse(pako.ungzip(message.data, { to: "string" }));
-			emitter.emit(event, data);
+			console.log(pako.ungzip(new Uint8Array(message.data), { to: "string" }));
+
+			// const { e: event, d: data } = JSON.parse();
+			// emitter.emit(event, data);
 		});
 
 		// TODO: remove this once the backend sends stuff every second
