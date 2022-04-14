@@ -48,6 +48,7 @@
           </div>
         </div>
       </div>
+      <p>{{ user.biography }}</p>
     </div>
   </div>
 </template>

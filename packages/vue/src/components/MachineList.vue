@@ -150,6 +150,7 @@ import BaseTableHeader from "/@/components/base/BaseTableHeader.vue";
 import MachineStat from "/@/components/MachineStat.vue";
 import NetworkSwitch from "/@/components/NetworkSwitch.vue";
 import Avatar from "/@/components/user/Avatar.vue";
+import MachineProcessorUsageBars from "./MachineView/MachineProcessorUsageBars.vue";
 const soundManager = useSoundManager();
 const state = useState();
 const router = useRouter();
