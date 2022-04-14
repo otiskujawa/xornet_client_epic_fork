@@ -5,7 +5,7 @@ import mitt from "mitt";
 import type { AppState } from "/@/services/state/AppState";
 import type { uuid } from "/@/types/api";
 import type { IMachineDynamicData } from "/@/types/api/machine";
-import painpeko from "pako";
+import pako from "pako";
 
 export type Verb = "GET" | "POST" | "DELETE" | "PUT" | "PATCH";
 console.log(import.meta.env.MODE);
@@ -43,7 +43,7 @@ export class API {
 
 		// Listen for messages
 		socket.addEventListener("message", (message) => {
-			const { e: event, d: data } = JSON.parse(painpeko.inflate(message.data, { to: "string" }));
+			const { e: event, d: data } = JSON.parse(pako.ungzip(message.data, { to: "string" }));
 			emitter.emit(event, data);
 		});
 
