@@ -22,9 +22,9 @@
         <td>{{ new Date(user.created_at).toLocaleString() }}</td>
         <td>{{ secondsToHuman(secondsSince(user.updated_at)) }} ago</td>
         <td class="flex gap-2">
-          <base-button @click="banUser(user)">
+          <!-- <base-button @click="banUser(user)">
             Ban
-          </base-button>
+          </base-button> -->
           <base-button @click="deleteUser(user)">
             Delete
           </base-button>
@@ -47,9 +47,9 @@ const state = useState();
 const users = computed(() => state.users.getAll());
 onMounted(() => state.users.fetchAll());
 
-const banUser = (user: IUser) => {
-	state.users.banUser();
-};
+// const banUser = (user: IUser) => {
+// 	state.users.banUser();
+// };
 
 const deleteUser = (user: IUser) => {
 	state.users.deleteUser(user);
