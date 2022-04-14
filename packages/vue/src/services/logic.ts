@@ -135,3 +135,35 @@ export const determineInterfaceColor = (iface: INetwork) => {
 			return "text-100mbps";
 	}
 };
+
+export const secondsSince = (before: number) => {
+	return ~~(Date.now() - before) / 1000;
+};
+
+export const secondsToHuman = (sec: number) => {
+	function numberEnding(number: number) {
+		return (number > 1) ? "s" : "";
+	}
+
+	const years = Math.abs(~~(sec / 31536000));
+	if (years)
+		return `${years} year${numberEnding(years)}`;
+
+	const days = Math.abs(~~((sec %= 31536000) / 86400));
+	if (days)
+		return `${days} day${numberEnding(days)}`;
+
+	const hours = Math.abs(~~((sec %= 86400) / 3600));
+	if (hours)
+		return `${hours} hour${numberEnding(hours)}`;
+
+	const minutes = Math.abs(~~((sec %= 3600) / 60));
+	if (minutes)
+		return `${minutes} minute${numberEnding(minutes)}`;
+
+	const seconds = sec % 60;
+	if (seconds)
+		return `${seconds} second${numberEnding(seconds)}`;
+
+	return "less than a second";
+};

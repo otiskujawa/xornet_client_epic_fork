@@ -18,7 +18,7 @@
         <td>{{ user.uuid }}</td>
         <td>{{ user.email }}</td>
         <td>{{ new Date(user.created_at).toLocaleString() }}</td>
-        <td>{{ new Date(user.updated_at).toLocaleString() }}</td>
+        <td>{{ secondsToHuman(secondsSince(user.updated_at)) }} ago</td>
         <td class="flex gap-2">
           <base-button @click="banUser(user)">
             Ban
@@ -39,6 +39,8 @@ import Avatar from "/@/components/user/Avatar.vue";
 import AdminTag from "/@/components/tags/AdminTag.vue";
 import BaseButton from "/@/components/base/BaseButton.vue";
 import type { IUser } from "/@/types/api/user";
+import { secondsSince, secondsToHuman } from "../../services/logic";
+
 const state = useState();
 const users = computed(() => state.users.getAll());
 
