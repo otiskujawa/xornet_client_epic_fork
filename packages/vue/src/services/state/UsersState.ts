@@ -173,8 +173,8 @@ export class UsersState extends State<IUsersState> {
 		this.state.users[user.uuid] = user;
 	}
 
-	public getAll() {
-		return this.state.users;
+	public getAll(): IUser[] {
+		return Object.values(this.state.users);
 	}
 
 	/**
