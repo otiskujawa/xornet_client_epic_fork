@@ -1,10 +1,11 @@
 <template>
-  <img class="w-full max-w-6 max-h-6" :src="`/public/isps/${image}.svg`" :alt="image">
+  <img v-if="image" class="max-h-5 w-min max-w-20" :src="`/public/isps/${image}.svg`" :alt="image">
 </template>
 
 <script setup lang="ts">
 import { computed } from "vue";
 const props = defineProps<{name: string}>();
+
 const KNOWN_ISPS = [
 	"at&t",
 	"comcast",
@@ -35,7 +36,7 @@ const image = computed(() => {
 		if (lowercase.includes(knownIsp))
 			return knownIsp;
 	}
-	return "unknown";
+	return undefined;
 });
 
 </script>

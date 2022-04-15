@@ -6,7 +6,6 @@
     <base-button text="Logout" @click="logout()" />
     <template #example>
       <div class="w-full h-1px bg-background-500 my-2" />
-      <isp-logo />
       <ul v-if="logins.length !== 0" class="flexcol gap-2">
         <li v-for="login of logins " :key="login.timestamp" class="flex items-center gap-4">
           <i-fluency-location class="text-xl" />
@@ -28,7 +27,7 @@
               <p class="text-xs">
                 {{ login.geolocation.isp }}
               </p>
-              <isp-logo :name="login.geolocation.isp" />
+              <isp-logo :name="'vodafone'" />
               •
               <p class="text-xs">
                 {{ secondsToHuman(secondsSince(login.timestamp)) }} ago
