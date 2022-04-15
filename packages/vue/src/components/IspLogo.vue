@@ -1,5 +1,5 @@
 <template>
-  <img v-if="image" class="max-h-5 w-min max-w-20" :src="`/public/isps/${image}.svg`" :alt="image">
+  <img v-if="image" class="max-h-5 w-min max-w-20" :src="`/isps/${image}.svg`" :alt="image">
 </template>
 
 <script setup lang="ts">

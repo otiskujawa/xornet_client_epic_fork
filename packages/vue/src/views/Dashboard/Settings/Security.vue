@@ -19,8 +19,6 @@
                 {{ login.ip }}
               </p>
               •
-              <isp-logo :name="'vodafone'" />
-              •
               <p class="text-xs">
                 {{ secondsToHuman(secondsSince(login.timestamp)) }} ago
               </p>
