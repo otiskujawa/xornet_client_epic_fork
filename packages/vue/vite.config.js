@@ -500,8 +500,8 @@ export default defineConfig({
 		}),
 		Icons({
 			customCollections: {
-				fluency: FileSystemIconLoader("./resources/svg"),
-				distros: FileSystemIconLoader("./resources/distros"),
+				fluency: FileSystemIconLoader("./packages/vue/public/svg"),
+				distros: FileSystemIconLoader("./packages/vue/public/distros"),
 			},
 		}),
 		vue(),

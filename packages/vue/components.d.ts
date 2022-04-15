@@ -114,6 +114,7 @@ declare module 'vue' {
     IFluencyUser: typeof import('~icons/fluency/user')['default']
     IFluencyVideoCard: typeof import('~icons/fluency/video-card')['default']
     IFluencyZap: typeof import('~icons/fluency/zap')['default']
+    IspLogo: typeof import('./src/components/IspLogo.vue')['default']
     LogoutButton: typeof import('./src/components/NavigationBar/LogoutButton.vue')['default']
     MachineDisk: typeof import('./src/components/MachineView/MachineDisk.vue')['default']
     MachineDisks: typeof import('./src/components/MachineView/MachineDisks.vue')['default']
