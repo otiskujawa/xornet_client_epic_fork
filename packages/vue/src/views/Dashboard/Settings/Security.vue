@@ -11,17 +11,21 @@
           <i-fluency-location class="text-xl" />
           <div class="flexcol gap-1 ">
             <p>
-              {{ login.city }}
+              {{ login.geolocation.city }}
             </p>
             <div class="flex gap-2 text-text text-opacity-40 items-center text-xs">
               <p class="text-xs">
                 {{ login.agent ? login.agent.substring(login.agent.indexOf("(") + 1, login.agent.indexOf(";")) : "Unknown device" }}
               </p>
               •
-              <flag :country-code="login.country_code" />
+              <flag :country-code="login.geolocation.country_code" />
               •
               <p class="text-xs">
-                {{ login.ip }}
+                {{ login.geolocation.ip }}
+              </p>
+              •
+              <p class="text-xs">
+                {{ login.geolocation.isp }}
               </p>
               •
               <p class="text-xs">
