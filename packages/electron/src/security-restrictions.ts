@@ -39,9 +39,7 @@ Set<
  * >
  */
 const ALLOWED_EXTERNAL_ORIGINS = new Set<`https://${string}`>([
-	"https://vitejs.dev",
 	"https://github.com",
-	"https://v3.vuejs.org",
 	"https://xornet.statuspage.io",
 ]);
 
