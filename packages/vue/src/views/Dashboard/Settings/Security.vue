@@ -7,19 +7,19 @@
     <template #example>
       <div class="w-full h-1px bg-background-500 my-2" />
       <ul v-if="logins.length !== 0" class="flexcol gap-2">
-        <li v-for="login of logins " :key="login.timestamp" class="flex py-1 items-center gap-4">
+        <li v-for="login of logins " :key="login.timestamp" class="flex py-1  text-text text-opacity-100  items-center gap-4">
           <i-fluency-location class="text-xl" />
           <div class="flexcol gap-1 ">
-            <div class="flex gap-2 text-text text-opacity-40 items-center text-xs">
+            <div class="flex gap-2 items-center text-xs">
               <p class="text-xs">
                 {{ getAgent(login.agent) }}
               </p>
-              •
               <p class="text-xs">
+                •
                 {{ login.ip }}
               </p>
-              •
-              <p class="text-xs">
+              <p v-if="login.timestamp" class="text-xs">
+                •
                 {{ secondsToHuman(secondsSince(login.timestamp)) }} ago
               </p>
             </div>
