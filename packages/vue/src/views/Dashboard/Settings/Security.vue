@@ -6,15 +6,15 @@
     <base-button text="Logout" @click="logout()" />
     <template #example>
       <div class="w-full h-1px bg-background-500 my-2" />
-      <ul v-if="logins.length !== 0">
-        <li v-for="login of logins " :key="login.timestamp">
-          <i-fluency-location class="text-2xl" />
+      <ul v-if="logins.length !== 0" class="flexcol gap-2">
+        <li v-for="login of logins " :key="login.timestamp" class="flex items-center gap-4">
+          <i-fluency-location class="text-xl" />
           <div class="flexcol gap-1">
             <p>
               {{ login.location }}
             </p>
             <p class="text-text text-opacity-40 text-xs">
-              {{ login.agent.substring(login.agent.indexOf("(") + 1, login.agent.indexOf(";")) }} · {{ login.ip }} · {{ secondsToHuman(secondsSince(login.timestamp)) }} ago
+              {{ login.agent ? login.agent.substring(login.agent.indexOf("(") + 1, login.agent.indexOf(";")) : "Unknown device" }} · {{ login.ip }} · {{ secondsToHuman(secondsSince(login.timestamp)) }} ago
             </p>
           </div>
         </li>
