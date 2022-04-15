@@ -13,24 +13,8 @@ export interface IUser {
 	client_settings: number
 }
 
-export interface IGeolocation {
-	ip: string
-	type: string
-	continent: string
-	continent_code: string
-	country: string
-	country_code: string
-	region: string
-	city: string
-	latitude: number
-	longitude: number
-	asn: string
-	org: string
-	isp: string
-}
-
 export interface IUserLoginHistory {
-	geolocation: IGeolocation
+	ip: string
 	agent: string
 	timestamp: number
 }

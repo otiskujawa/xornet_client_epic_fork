@@ -10,23 +10,15 @@
         <li v-for="login of logins " :key="login.timestamp" class="flex items-center gap-4">
           <i-fluency-location class="text-xl" />
           <div class="flexcol gap-1 ">
-            <p>
-              {{ login.geolocation.city }}
-            </p>
             <div class="flex gap-2 text-text text-opacity-40 items-center text-xs">
               <p class="text-xs">
                 {{ login.agent ? login.agent.substring(login.agent.indexOf("(") + 1, login.agent.indexOf(";")) : "Unknown device" }}
               </p>
               •
-              <flag :country-code="login.geolocation.country_code" />
-              •
               <p class="text-xs">
-                {{ login.geolocation.ip }}
+                {{ login.ip }}
               </p>
               •
-              <p class="text-xs">
-                {{ login.geolocation.isp }}
-              </p>
               <isp-logo :name="'vodafone'" />
               •
               <p class="text-xs">
