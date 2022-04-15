@@ -20,7 +20,7 @@
           </base-dialog>
         </button>
       </div>
-      <div class="px-4 md:px-56 lg:px-80">
+      <div class="px-4 sm:px-16 md:px-32 lg:px-80">
         <div
           class="flex "
         >

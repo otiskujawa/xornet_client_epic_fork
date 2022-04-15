@@ -29,6 +29,7 @@ declare module 'vue' {
     CommandPallete: typeof import('./src/components/CommandPallete.vue')['default']
     ControlButtons: typeof import('./src/components/electron/ControlButtons.vue')['default']
     DistroIcon: typeof import('./src/components/shared/DistroIcon.vue')['default']
+    Flag: typeof import('./src/components/Flag.vue')['default']
     FluencyIcon: typeof import('./src/components/shared/FluencyIcon.vue')['default']
     Icon: typeof import('./src/components/shared/Icon.vue')['default']
     IDistrosAlpine: typeof import('~icons/distros/alpine')['default']

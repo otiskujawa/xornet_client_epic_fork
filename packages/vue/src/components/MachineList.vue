@@ -83,7 +83,7 @@
                 </machine-stat>
               </th>
               <th v-if="columns.country && !isViewingMachine">
-                <img v-if="machine.country" class="h-4 rounded-2px" :src="`https://cdn.ipwhois.io/flags/${machine.country.toLowerCase()}.svg`" :alt="machine.country">
+                <flag v-if="machine.country" :country-code="machine.country" />
                 <machine-stat v-else>
                   <i-fluency-country />
                 </machine-stat>
@@ -151,6 +151,7 @@ import MachineStat from "/@/components/MachineStat.vue";
 import NetworkSwitch from "/@/components/NetworkSwitch.vue";
 import Avatar from "/@/components/user/Avatar.vue";
 import MachineProcessorUsageBars from "./MachineView/MachineProcessorUsageBars.vue";
+import Flag from "./Flag.vue";
 const soundManager = useSoundManager();
 const state = useState();
 const router = useRouter();

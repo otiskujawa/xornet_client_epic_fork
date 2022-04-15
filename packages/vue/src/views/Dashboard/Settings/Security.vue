@@ -9,13 +9,25 @@
       <ul v-if="logins.length !== 0" class="flexcol gap-2">
         <li v-for="login of logins " :key="login.timestamp" class="flex items-center gap-4">
           <i-fluency-location class="text-xl" />
-          <div class="flexcol gap-1">
+          <div class="flexcol gap-1 ">
             <p>
-              {{ login.location }}
+              {{ login.city }}
             </p>
-            <p class="text-text text-opacity-40 text-xs">
-              {{ login.agent ? login.agent.substring(login.agent.indexOf("(") + 1, login.agent.indexOf(";")) : "Unknown device" }} · {{ login.ip }} · {{ secondsToHuman(secondsSince(login.timestamp)) }} ago
-            </p>
+            <div class="flex gap-2 text-text text-opacity-40 items-center text-xs">
+              <p class="text-xs">
+                {{ login.agent ? login.agent.substring(login.agent.indexOf("(") + 1, login.agent.indexOf(";")) : "Unknown device" }}
+              </p>
+              •
+              <flag :country-code="login.country_code" />
+              •
+              <p class="text-xs">
+                {{ login.ip }}
+              </p>
+              •
+              <p class="text-xs">
+                {{ secondsToHuman(secondsSince(login.timestamp)) }} ago
+              </p>
+            </div>
           </div>
         </li>
       </ul>
@@ -34,6 +46,7 @@ import BaseButton from "/@/components/base/BaseButton.vue";
 import OptionField from "/@/components/OptionField.vue";
 import { logout, secondsSince, secondsToHuman } from "/@/services/logic";
 import type { IUserLoginHistory } from "/@/types/api/user";
+import Flag from "/@/components/Flag.vue";
 const state = useState();
 const logins: Ref<IUserLoginHistory[]> = ref([]);
 onMounted(async() => {

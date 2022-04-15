@@ -15,7 +15,8 @@ export interface IUser {
 
 export interface IUserLoginHistory {
 	agent: string
-	ip: string
+	city: string
+	country_code: string
 	timestamp: number
-	location: string
+	ip: string
 }

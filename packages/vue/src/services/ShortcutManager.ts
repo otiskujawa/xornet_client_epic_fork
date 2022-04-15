@@ -8,14 +8,23 @@ export class ShortcutManager {
 	public ctrl = useKeyModifier("Control");
 	public shift = useKeyModifier("Shift");
 
+	public ctrlShortcut(key: string, action: () => any) {
+		onKeyStroke(key, (e) => {
+			// Prevent default while control
+			this.ctrl.value && e.preventDefault();
+			// Execute action
+			this.ctrl.value && action();
+		});
+	}
+
 	constructor(public windowState: WindowState) {
 		isElectron()
-			? onKeyStroke("P", () => this.ctrl.value && (this.windowState.isShowingCommandPallete = true))
-			: onKeyStroke("k", (e) => { this.ctrl.value && e.preventDefault(); this.ctrl.value && (this.windowState.isShowingCommandPallete = true); });
-		onKeyStroke("1", (e) => { this.ctrl.value && e.preventDefault(); this.ctrl.value && router.push({ name: "machines" }); });
-		onKeyStroke("2", (e) => { this.ctrl.value && e.preventDefault(); this.ctrl.value && router.push({ name: "profile", params: { uuid: useState().users.getMe()?.uuid } }); });
-		onKeyStroke("3", (e) => { this.ctrl.value && e.preventDefault(); this.ctrl.value && router.push({ name: "settings" }); });
-		onKeyStroke("4", (e) => { this.ctrl.value && e.preventDefault(); this.ctrl.value && router.push({ name: "admin" }); });
+			? this.ctrlShortcut("P", () => this.windowState.isShowingCommandPallete = true)
+			: this.ctrlShortcut("k", () => this.windowState.isShowingCommandPallete = true);
+		this.ctrlShortcut("1", () => router.push({ name: "machines" }));
+		this.ctrlShortcut("2", () => router.push({ name: "profile", params: { uuid: useState().users.getMe()?.uuid } }));
+		this.ctrlShortcut("3", () => router.push({ name: "settings" }));
+		this.ctrlShortcut("4", () => router.push({ name: "admin" }));
 
 		if (isElectron())
 			onKeyStroke("F5", () => nodeEmit("refresh"));

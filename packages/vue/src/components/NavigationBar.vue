@@ -7,6 +7,9 @@
       <navigation-button name="profile" :to="{ name: 'profile', params: { uuid: me?.uuid } }">
         <i-fluency-user class="text-2xl" />
       </navigation-button>
+      <navigation-button name="settings" :shortcut="['Control', '3']" :to="{ name: 'settings' }">
+        <i-fluency-settings class="text-2xl" />
+      </navigation-button>
       <navigation-button name="Open Command Palette" :shortcut="isElectron() ? ['Control', 'Shift', 'P'] : ['Control', 'k']" :handle-fn="() => state.window.isShowingCommandPallete = true">
         <i-fluency-command-palette class="text-2xl" />
       </navigation-button>

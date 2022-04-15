@@ -34,8 +34,7 @@ export class API {
 
 		// Connection opened
 		socket.addEventListener("open", () => {
-			const encoded = JSON.stringify({ e: "login", d: { auth_token: state.users.getToken() } });
-			state.users.getToken() && socket.send(encoded);
+			state.users.getToken() && socket.send(JSON.stringify({ e: "login", d: { auth_token: state.users.getToken() } }));
 		});
 
 		// Listen for messages
