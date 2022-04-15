@@ -7,12 +7,12 @@
     <template #example>
       <div class="w-full h-1px bg-background-500 my-2" />
       <ul v-if="logins.length !== 0" class="flexcol gap-2">
-        <li v-for="login of logins " :key="login.timestamp" class="flex items-center gap-4">
+        <li v-for="login of logins " :key="login.timestamp" class="flex py-1 items-center gap-4">
           <i-fluency-location class="text-xl" />
           <div class="flexcol gap-1 ">
             <div class="flex gap-2 text-text text-opacity-40 items-center text-xs">
               <p class="text-xs">
-                {{ login.agent ? login.agent.substring(login.agent.indexOf("(") + 1, login.agent.indexOf(";")) : "Unknown device" }}
+                {{ getAgent(login.agent) }}
               </p>
               •
               <p class="text-xs">
@@ -43,6 +43,15 @@ import { logout, secondsSince, secondsToHuman } from "/@/services/logic";
 import type { IUserLoginHistory } from "/@/types/api/user";
 import Flag from "/@/components/Flag.vue";
 import IspLogo from "/@/components/IspLogo.vue";
+
+const getAgent = (agent: string) => {
+	if (!agent) return "Unknown device";
+	const browserStyle = agent.substring(agent.indexOf("(") + 1, agent.indexOf(";"));
+	if (browserStyle.trim() === "")
+		return agent;
+	return browserStyle;
+};
+
 const state = useState();
 const logins: Ref<IUserLoginHistory[]> = ref([]);
 onMounted(async() => logins.value = await state.users.fetchLogins());
