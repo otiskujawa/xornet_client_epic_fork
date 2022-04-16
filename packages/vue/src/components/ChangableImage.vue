@@ -5,7 +5,7 @@
       class="w-full h-full bg-cover bg-center bg-norepeat"
       :style="bannerStyle"
     />
-    <button v-if="editable" class="w-full h-full absolute hovershow opacity-0 bg-background-200 bg-opacity-50 top-0 left-0 p-2 items-center cursor-pointer flex duration-100 flexcol justify-center" @click="isShowingDialogue = true">
+    <button v-if="editable" class="select-none w-full h-full absolute hovershow opacity-0 bg-background-200 bg-opacity-50 top-0 left-0 p-2 items-center cursor-pointer flex duration-100 flexcol justify-center" @click="isShowingDialogue = true">
       <p>change<br>{{ name }}</p>
       <base-dialog v-model="isShowingDialogue">
         <div class="popup">
