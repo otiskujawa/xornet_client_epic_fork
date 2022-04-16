@@ -2,7 +2,7 @@
   <p>
     Security
   </p>
-  <option-field new-feature label="Login Activity" description="When you were logged in">
+  <option-field label="Login Activity" description="When you were logged in">
     <base-button text="Logout" @click="logout()" />
     <template #example>
       <div class="w-full h-1px bg-background-500 my-2" />

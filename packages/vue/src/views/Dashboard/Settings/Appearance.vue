@@ -10,18 +10,18 @@
     <base-switch v-model="state.settings.general.enable_bloom" />
   </option-field>
 
-  <option-field label="Rounded Network Interfaces" description="Makes the corners of network interfaces rounded">
+  <option-field new-feature label="Rounded Network Interfaces" description="Makes the corners of network interfaces rounded">
     <base-switch v-model="state.settings.general.rounded_network_interfaces" />
   </option-field>
 
-  <option-field label="Filled Network Interfaces" description="Makes the network interfaces be filled with color instead of a border">
+  <option-field new-feature label="Filled Network Interfaces" description="Makes the network interfaces be filled with color instead of a border">
     <base-switch v-model="state.settings.general.filled_network_interfaces" />
   </option-field>
 
   <option-field label="Use single color for switch lights" description="Sets all the switch lights to the gigabit color regardless of speed">
     <base-switch v-model="state.settings.general.use_single_color_for_switch_lights" />
   </option-field>
-  <option-field new-feature label="Minimum Blink Speed" description="Change the minimum transfer speed (in Mbps) for a interface light to blink">
+  <option-field label="Minimum Blink Speed" description="Change the minimum transfer speed (in Mbps) for a interface light to blink">
     <base-input v-model="state.settings.general.minimum_blink_speed" placeholder="Mbps" class="text-white w-32" />
     <template #example>
       <div class="flex gap-2 justify-between">
