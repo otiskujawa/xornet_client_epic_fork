@@ -169,7 +169,7 @@ export const secondsToHuman = (sec: number) => {
 };
 
 const SLOWEST_BLINK_MS = 5000;
-const FASTER_BLINK_MS = 50;
+const FASTEST_BLINK_MS = 50;
 
 export const determineInterfaceBlinkSpeed = (iface: INetwork) => {
 	const state = useState();
@@ -183,7 +183,7 @@ export const determineInterfaceBlinkSpeed = (iface: INetwork) => {
 		const result = Math.min(ms, SLOWEST_BLINK_MS);
 
 		// flip the result
-		return Math.max(FASTER_BLINK_MS, 700 - result);
+		return Math.max(FASTEST_BLINK_MS, 700 - result);
 	}
 
 	const log = ~~Math.log10(totalTraffic);
