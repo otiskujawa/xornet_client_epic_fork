@@ -47,9 +47,9 @@
         <p
           class="text-left"
         >
-          <strong class="text-primary-400">$ </strong> Set-ExecutionPolicy RemoteSigned -Scope CurrentUser <br>
-          <strong class="text-primary-400">$ </strong> iwr -useb get.scoop.sh | iex <br>
-          <strong class="text-primary-400">$ </strong> scoop install "https://raw.githubusercontent.com/xornet-cloud/Reporter/main/scripts/xornet-reporter.json"
+          <strong class="text-primary-400">> </strong> Set-ExecutionPolicy RemoteSigned -Scope CurrentUser <br>
+          <strong class="text-primary-400">> </strong> iwr -useb get.scoop.sh | iex <br>
+          <strong class="text-primary-400">> </strong> scoop install "https://raw.githubusercontent.com/xornet-cloud/Reporter/main/scripts/xornet-reporter.json"
         </p>
       </div>
     </base-tooltip>
