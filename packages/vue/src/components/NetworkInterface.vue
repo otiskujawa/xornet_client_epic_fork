@@ -23,6 +23,15 @@ const determineInterfaceBlinkSpeed = (iface: INetwork) => {
 	const totalTraffic = (iface.tx + iface.rx) / 1000 / 1000;
 	if (totalTraffic < state.settings.general.minimum_blink_speed) return 0;
 
+	if (state.settings.general.use_new_blink_algorithm) {
+		// the higher the traffic exponentially the less the ms between blinks
+		const ms = totalTraffic ** 0.13 * 100;
+		const result = Math.min(ms, 5000);
+
+		// flip the result
+		return 500 - result;
+	}
+
 	const log = ~~Math.log10(totalTraffic);
 	switch (log) {
 		case 1:

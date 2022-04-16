@@ -20,6 +20,7 @@ export class SettingsState {
 		enable_bloom: true,
 		rounded_network_interfaces: false,
 		filled_network_interfaces: false,
+		use_new_blink_algorithm: true,
 		enable_totals: false,
 		enable_sound_effects: false,
 		use_single_color_for_switch_lights: false,

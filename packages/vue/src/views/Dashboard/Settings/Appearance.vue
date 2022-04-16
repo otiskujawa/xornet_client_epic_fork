@@ -17,6 +17,9 @@
   <option-field new-feature label="Filled Network Interfaces" description="Makes the network interfaces be filled with color instead of a border">
     <base-switch v-model="state.settings.general.filled_network_interfaces" />
   </option-field>
+  <option-field new-feature label="Use new blink speed algorithm" description="This algorithm calculates the blink speed faster based on the traffic instead of using hard-stepped limits which may feel more natural (might have an impact on performance)">
+    <base-switch v-model="state.settings.general.use_new_blink_algorithm" />
+  </option-field>
   <option-field label="Use single color for switch lights" description="Sets all the switch lights to the gigabit color regardless of speed">
     <base-switch v-model="state.settings.general.use_single_color_for_switch_lights" />
   </option-field>
