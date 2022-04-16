@@ -2,7 +2,6 @@ import { useState } from "../app";
 import router from "../router";
 import type { INetwork } from "../types/api/machine";
 
-const state = useState();
 /**
  *  Returns true if the user is on the electron client
  */
@@ -173,6 +172,8 @@ const SLOWEST_BLINK_MS = 5000;
 const FASTER_BLINK_MS = 50;
 
 export const determineInterfaceBlinkSpeed = (iface: INetwork) => {
+	const state = useState();
+
 	const totalTraffic = (iface.tx + iface.rx) / 1000 / 1000;
 	if (totalTraffic < state.settings.general.minimum_blink_speed) return 0;
 
