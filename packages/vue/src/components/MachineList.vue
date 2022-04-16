@@ -2,7 +2,7 @@
   <div class="flex w-full" style="height: calc(100% - 42px);">
     <div class="flexcol h-full min-w-64 overflow-hidden" :class="isViewingMachine ? ' w-min' : 'w-full'">
       <machine-list-totals v-if="state.settings.general.enable_totals" :machines="machines" />
-      <div v-if="machines.length !== 0" class="min-h-full overflow-hidden overflow-y-scroll ">
+      <div v-if="machines.length !== 0" class="min-h-full  overflow-scroll ">
         <base-table>
           <template v-if="!isViewingMachine" #headers>
             <template v-for="column of Object.keys(columns)" :key="column">
