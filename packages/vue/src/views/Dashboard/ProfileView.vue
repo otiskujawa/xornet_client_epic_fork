@@ -2,7 +2,7 @@
   <div v-if="user" class="w-full h-full flexcol bg-black bg-opacity-25">
     <div class="w-full h-8 drag absolute" />
     <changable-image
-      class="h-18rem"
+      class="h-32rem"
       name="banner"
       :update-fn="state.users.updateBanner"
       :input-placeholder="user?.banner"
