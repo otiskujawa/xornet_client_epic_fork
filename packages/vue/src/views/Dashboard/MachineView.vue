@@ -25,9 +25,17 @@
                 {{ iface.n }}
               </h1>
             </div>
-            <div class="font-extralight flex gap-4">
+            <div class="font-extralight text-text text-opacity-75 flex gap-4">
               <p>
-                <span class="opacity-75">Speed: </span> <strong :class="`${determineInterfaceColor(iface)}`">{{ ~~iface.s }}Mbps</strong>
+                <span class="">Speed: </span> <strong :class="`${determineInterfaceColor(iface)}`">{{ ~~iface.s }}Mbps</strong>
+              </p>
+              <p>
+                RX:
+                {{ bitsToHumanReadable(iface.rx ) }}ps
+              </p>
+              <p>
+                TX:
+                {{ bitsToHumanReadable(iface.tx ) }}ps
               </p>
             </div>
           </div>

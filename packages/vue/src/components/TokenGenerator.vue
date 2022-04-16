@@ -107,7 +107,7 @@ onUnmounted(() => clearInterval(clock.value));
 
 </script>
 
-<style>
+<style lang="postcss">
 .copyButton {
   @apply bg-background-300 cursor-pointer w-full p-4 rounded border-4 transition duration-100 text-lg border-transparent hover:border-primary-400;
 }

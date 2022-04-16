@@ -1,5 +1,5 @@
 <template>
-  <button class="flex capitalize items-center justify-between gap-4  p-2 cursor-pointer rounded-2px hover:bg-background-300 focus:bg-background-500 focus:text-white hover:text-white text-left text-text" @click="value = !value; soundManager.playClick()" >
+  <button class="flex capitalize items-center justify-between gap-4  p-2 cursor-pointer rounded-2px hover:bg-background-300 focus:bg-background-500 focus:text-white hover:text-white text-left text-text" @click="value = !value; soundManager.playClick()">
     <div class="flex items-center gap-2">
       <slot />
       {{ text }}

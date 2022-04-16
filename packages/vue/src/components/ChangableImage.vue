@@ -26,7 +26,6 @@ import BaseInput from "./base/BaseInput.vue";
 const props = defineProps<{updateFn: Function; inputPlaceholder?: string; name: string; vignette?: boolean; imageUrl: string | undefined; editable?: boolean}>();
 const newImage = ref("");
 const isShowingDialogue = ref(false);
-
 const bannerStyle = computed(() => props.vignette
 	? `
   background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.25) 100%),
@@ -35,7 +34,6 @@ const bannerStyle = computed(() => props.vignette
 	: `
   background-image: url(${newImage.value || props.imageUrl || ""});
 `);
-
 </script>
 
 <style lang="postcss">
