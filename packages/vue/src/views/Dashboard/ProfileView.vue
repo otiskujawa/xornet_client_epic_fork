@@ -57,11 +57,7 @@ const route = useRoute();
 const state = useState();
 const user = computed(() => route.params?.uuid ? state.users.get(route.params?.uuid as string) : null);
 const userMachines = ref<IDatabaseMachine[]>([]);
-const new_avatar = ref("");
-const is_avatar_editor = ref(false);
-
-const updateAvatar = () => user.value && state.users.updateAvatar(new_avatar.value);
-watch(() => route.params, async() => userMachines.value = await state.users.fetchMachines(route.params.uuid as string));
+watch(() => route.params, async() => route.params.uuid ? await state.users.fetchMachines(route.params.uuid as string) : []);
 onMounted(async() => {
 	userMachines.value = await state.users.fetchMachines(route.params.uuid as string);
 	if (route.name === "profile" && !route.params.uuid) {
@@ -72,12 +68,3 @@ onMounted(async() => {
 });
 
 </script>
-<style scoped lang="postcss">
-
-.socialList {
-  li {
-    @apply flex items-center gap-2;
-  }
-}
-
-</style>
