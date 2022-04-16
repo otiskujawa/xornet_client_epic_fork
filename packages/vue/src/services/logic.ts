@@ -179,11 +179,11 @@ export const determineInterfaceBlinkSpeed = (iface: INetwork) => {
 
 	if (state.settings.general.use_new_blink_algorithm) {
 		// the higher the traffic exponentially the less the ms between blinks
-		const ms = totalTraffic ** 0.25 * 100;
+		const ms = totalTraffic ** 0.15 * 100;
 		const result = Math.min(ms, SLOWEST_BLINK_MS);
 
 		// flip the result
-		return Math.max(FASTEST_BLINK_MS, 700 - result);
+		return Math.max(FASTEST_BLINK_MS, 400 - result);
 	}
 
 	const log = ~~Math.log10(totalTraffic);
