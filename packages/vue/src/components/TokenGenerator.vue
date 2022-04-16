@@ -11,12 +11,12 @@
 
     <base-tooltip :text="copied ? 'Copied!' : 'Click to copy!'" placement="bottom">
       <div
-        class="text-center copyButton"
+        class="text-center copyButton "
         @click="copy(token)"
       >
         <p
           :class="expired && 'line-through'"
-          class="whitespace-nowrap w-120"
+          class="whitespace-nowrap w-full md:w-128 xl:w-230"
         >
           {{ token || 'Generating token...' }}
         </p>
@@ -30,9 +30,9 @@
         @click="copy('curl https://raw.githubusercontent.com/xornet-cloud/Reporter/main/scripts/install.sh | sudo bash')"
       >
         <p
-          class="text-text text-opacity-50 text-left"
+          class="text-left"
         >
-          $ curl https://raw.githubusercontent.com/xornet-cloud/Reporter/main/scripts/install.sh | sudo bash
+          <strong class="text-primary-400">$ </strong> curl https://raw.githubusercontent.com/xornet-cloud/Reporter/main/scripts/install.sh | sudo bash
         </p>
       </div>
     </base-tooltip>
@@ -45,11 +45,11 @@
         @click="copy('Set-ExecutionPolicy RemoteSigned -Scope CurrentUser \niwr -useb get.scoop.sh | iex \nscoop install https://raw.githubusercontent.com/xornet-cloud/Reporter/main/scripts/xornet-reporter.json')"
       >
         <p
-          class="text-text text-opacity-50 text-left"
+          class="text-left"
         >
-          $ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser <br>
-          $ iwr -useb get.scoop.sh | iex <br>
-          $ scoop install "https://raw.githubusercontent.com/xornet-cloud/Reporter/main/scripts/xornet-reporter.json"
+          <strong class="text-primary-400">$ </strong> Set-ExecutionPolicy RemoteSigned -Scope CurrentUser <br>
+          <strong class="text-primary-400">$ </strong> iwr -useb get.scoop.sh | iex <br>
+          <strong class="text-primary-400">$ </strong> scoop install "https://raw.githubusercontent.com/xornet-cloud/Reporter/main/scripts/xornet-reporter.json"
         </p>
       </div>
     </base-tooltip>
