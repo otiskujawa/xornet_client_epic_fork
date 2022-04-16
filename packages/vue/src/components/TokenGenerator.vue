@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-black flexcol gap-4 p-4 w-min text-center">
+  <div class="bg-black flexcol gap-4 p-4 w-min">
     <div class="div flex items-center justify-between">
       <h1 class>
         Signup Token
@@ -11,14 +11,45 @@
 
     <base-tooltip :text="copied ? 'Copied!' : 'Click to copy!'" placement="bottom">
       <div
-        class="bg-white cursor-pointer  w-full bg-opacity-10 p-4 rounded border-4 transition duration-100 uppercase text-lg border-transparent hover:border-primary-400"
+        class="text-center copyButton"
         @click="copy(token)"
       >
         <p
           :class="expired && 'line-through'"
-          class="whitespace-nowrap w-86"
+          class="whitespace-nowrap w-120"
         >
           {{ token || 'Generating token...' }}
+        </p>
+      </div>
+    </base-tooltip>
+    Linux Installer
+
+    <base-tooltip :text="copied ? 'Copied!' : 'Click to copy!'" placement="bottom">
+      <div
+        class="copyButton"
+        @click="copy('curl https://raw.githubusercontent.com/xornet-cloud/Reporter/main/scripts/install.sh | sudo bash')"
+      >
+        <p
+          class="text-left"
+        >
+          $ curl https://raw.githubusercontent.com/xornet-cloud/Reporter/main/scripts/install.sh | sudo bash
+        </p>
+      </div>
+    </base-tooltip>
+
+    Windows Installer
+
+    <base-tooltip :text="copied ? 'Copied!' : 'Click to copy!'" placement="bottom">
+      <div
+        class="copyButton"
+        @click="copy('Set-ExecutionPolicy RemoteSigned -Scope CurrentUser \niwr -useb get.scoop.sh | iex \nscoop install https://raw.githubusercontent.com/xornet-cloud/Reporter/main/scripts/xornet-reporter.json')"
+      >
+        <p
+          class="text-left"
+        >
+          $ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser <br>
+          $ iwr -useb get.scoop.sh | iex <br>
+          $ scoop install "https://raw.githubusercontent.com/xornet-cloud/Reporter/main/scripts/xornet-reporter.json"
         </p>
       </div>
     </base-tooltip>
@@ -31,7 +62,7 @@
         Token will expire in {{ expiresIn }}s
       </p>
 
-      <base-link href="https://github.com/xornet-cloud/Reporter#-how-do-i-add-my-machine-on-xornet">
+      <base-link href="https://github.com/xornet-cloud/Reporter#-installation">
         What to do?
       </base-link>
     </div>
@@ -75,3 +106,9 @@ onMounted(() => {
 onUnmounted(() => clearInterval(clock.value));
 
 </script>
+
+<style>
+.copyButton {
+  @apply bg-white cursor-pointer w-full bg-opacity-10 p-4 rounded border-4 transition duration-100 text-lg border-transparent hover:border-primary-400;
+}
+</style>
