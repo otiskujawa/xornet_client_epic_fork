@@ -30,7 +30,7 @@
         @click="copy('curl https://raw.githubusercontent.com/xornet-cloud/Reporter/main/scripts/install.sh | sudo bash')"
       >
         <p
-          class="text-left"
+          class="text-text text-opacity-50 text-left"
         >
           $ curl https://raw.githubusercontent.com/xornet-cloud/Reporter/main/scripts/install.sh | sudo bash
         </p>
@@ -45,7 +45,7 @@
         @click="copy('Set-ExecutionPolicy RemoteSigned -Scope CurrentUser \niwr -useb get.scoop.sh | iex \nscoop install https://raw.githubusercontent.com/xornet-cloud/Reporter/main/scripts/xornet-reporter.json')"
       >
         <p
-          class="text-left"
+          class="text-text text-opacity-50 text-left"
         >
           $ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser <br>
           $ iwr -useb get.scoop.sh | iex <br>
@@ -109,6 +109,6 @@ onUnmounted(() => clearInterval(clock.value));
 
 <style>
 .copyButton {
-  @apply bg-white cursor-pointer w-full bg-opacity-10 p-4 rounded border-4 transition duration-100 text-lg border-transparent hover:border-primary-400;
+  @apply bg-background-300 cursor-pointer w-full  p-4 rounded border-4 transition duration-100 text-lg border-transparent hover:border-primary-400;
 }
 </style>
