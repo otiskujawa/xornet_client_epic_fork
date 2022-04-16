@@ -170,7 +170,7 @@ const machines = computed(() => state.machines.getAll()
 			ram_used_gb: ~~(machine.ram?.used || 0) / 1024 / 1024,
 			ram_total_gb: ~~(machine.ram?.total || 0) / 1024 / 1024,
 			temperature: machine.temps?.[0].value,
-			owner: state.users.get(machine.owner_uuid),
+			owner: state.users.get(machine?.owner_uuid),
 		});
 	})
 // This is for the filter input so user's can quickly search through machines

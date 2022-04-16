@@ -3,6 +3,7 @@ import { useLocalStorage } from "@vueuse/core";
 import type { API } from "/@/services/api";
 import { State } from "/@/services/state/State";
 import type { uuid } from "/@/types/api";
+import type { IDatabaseMachine, IMachine } from "/@/types/api/machine";
 import type { IUser, IUserLoginHistory } from "/@/types/api/user";
 
 export interface IUsersState {
@@ -39,7 +40,7 @@ export class UsersState extends State<IUsersState> {
 	 * This is a smart lock system that will deny repetitive requests and only do them once
 	 * (this should be improved with some async lock of some sort)
 	 */
-	private async requestUser(uuid: uuid) {
+	private async fetchUser(uuid: uuid) {
 		if (this.requestQueue[uuid] !== undefined) return;
 		this.requestQueue[uuid] = this.fetch(uuid);
 		await this.requestQueue[uuid];
@@ -94,6 +95,7 @@ export class UsersState extends State<IUsersState> {
 		this.api.request("DELETE", `/users/${user.uuid}`).then(() => {
 			delete this.state.users[user.uuid];
 		}).catch((e) => {
+			// eslint-disable-next-line no-console
 			console.log("Failed to delete user", e);
 		});
 	}
@@ -118,10 +120,6 @@ export class UsersState extends State<IUsersState> {
 		return this.get(this.state.me_uuid!);		 	// Return the user from the Record
 	}
 
-	public async fetchLogins(): Promise<IUserLoginHistory[]> {
-		return this.api.request<IUserLoginHistory[]>("GET", "/users/@me/logins");
-	}
-
 	/**
 	 * Fetches the current logged in user object from the backend and sets it
 	 */
@@ -137,6 +135,10 @@ export class UsersState extends State<IUsersState> {
 		if (!uuid) return;
 		const user: IUser = await this.api.request("GET", `/users/${uuid}`);
 		this.set(user);
+	}
+
+	public fetchMachines(uuid: uuid) {
+		return this.api.request<IDatabaseMachine[]>("GET", `/users/${uuid}/machines`);
 	}
 
 	/**
@@ -198,7 +200,7 @@ export class UsersState extends State<IUsersState> {
 	 */
 	public get(uuid: uuid) {
 		const user = this.state.users[uuid];
-		if (!user) this.requestUser(uuid);
+		if (!user) this.fetchUser(uuid);
 		return user;
 	}
 }

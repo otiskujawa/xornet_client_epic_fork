@@ -26,6 +26,7 @@ declare module 'vue' {
     BaseTable: typeof import('./src/components/base/BaseTable.vue')['default']
     BaseTableHeader: typeof import('./src/components/base/BaseTableHeader.vue')['default']
     BaseTooltip: typeof import('./src/components/base/BaseTooltip.vue')['default']
+    ChangableImage: typeof import('./src/components/ChangableImage.vue')['default']
     CommandPallete: typeof import('./src/components/CommandPallete.vue')['default']
     ControlButtons: typeof import('./src/components/electron/ControlButtons.vue')['default']
     DistroIcon: typeof import('./src/components/shared/DistroIcon.vue')['default']

@@ -12,7 +12,7 @@ export class SettingsState {
 	}).value;
 
 	// These are snake cased because they are used to index the JSONs we get from the backend as well
-	public general = useLocalStorage("generalSettingsxdxd", {
+	public general = useLocalStorage("generalSettings", {
 		opacity: 100,
 		sound_volume: 100,
 		theme: "dark",
@@ -26,7 +26,7 @@ export class SettingsState {
 		fixed_column_width: false,
 	}).value;
 
-	public columns = useLocalStorage("columnsv144", {
+	public columns = useLocalStorage("columns", {
 		hostname: true,
 		os_name: false,
 		cau: true,
@@ -38,10 +38,10 @@ export class SettingsState {
 		docker_switch: true,
 		td: true,
 		tu: true,
-		tvd: true,
-		tvu: true,
+		tvd: false,
+		tvu: false,
 		temperature: false,
-		country: true,
+		country: false,
 		public_ip: false,
 		process_count: false,
 		host_uptime: false,

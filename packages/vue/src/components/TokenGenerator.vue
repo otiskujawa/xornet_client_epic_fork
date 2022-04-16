@@ -54,7 +54,7 @@
       </div>
     </base-tooltip>
 
-    <div class="flex  justify-between">
+    <div class="flex justify-between">
       <p v-if="expired" class="text-red-500">
         Token expired, Generate a new one
       </p>
@@ -109,6 +109,6 @@ onUnmounted(() => clearInterval(clock.value));
 
 <style>
 .copyButton {
-  @apply bg-background-300 cursor-pointer w-full  p-4 rounded border-4 transition duration-100 text-lg border-transparent hover:border-primary-400;
+  @apply bg-background-300 cursor-pointer w-full p-4 rounded border-4 transition duration-100 text-lg border-transparent hover:border-primary-400;
 }
 </style>

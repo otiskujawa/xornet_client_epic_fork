@@ -1,44 +1,28 @@
 <template>
   <div v-if="user" class="w-full h-full flexcol bg-black bg-opacity-25">
+    <changable-image
+      class="h-18rem"
+      name="banner"
+      :update-fn="state.users.updateBanner"
+      :input-placeholder="user?.banner"
+      :image-url="user?.banner"
+      :editable="user.uuid === state.users.getMe().uuid"
+      vignette
+    />
     <div class="w-full h-full">
-      <div class="relative edithover">
-        <div class="w-full h-8 drag absolute" />
-        <div
-          class="w-full h-18rem bg-cover bg-center bg-norepeat"
-          :style="bannerStyle"
-        />
-        <button v-if="user.uuid === state.users.getMe().uuid" class="w-full h-full absolute hovershow opacity-0 bg-background-200 bg-opacity-50 top-0 left-0 p-2 items-center cursor-pointer flex duration-100 flexcol justify-center" @click="is_banner_editor = true">
-          <p>change<br>banner</p>
-          <base-dialog v-model="is_banner_editor">
-            <div class="popup">
-              Banner URL: <base-input
-                v-model="new_banner"
-                :placeholder="user.banner"
-                @change="updateBanner()"
-              />
-            </div>
-          </base-dialog>
-        </button>
-      </div>
-      <div class="px-4 sm:px-16 md:px-32 lg:px-80">
+      <div class="px-4 sm:px-16 md:px-32 lg:px-48 xl:px-64">
         <div
           class="flex "
         >
-          <div class="w-32 h-32 transform -translate-y-3rem edithover">
-            <button v-if="user.uuid === state.users.getMe().uuid" class="w-full h-full absolute hovershow opacity-0 bg-background-200 bg-opacity-50 rounded-full p-2 items-center cursor-pointer flex duration-100 flexcol justify-center" @click="is_avatar_editor = true">
-              <p>change<br>avatar</p>
-              <base-dialog v-model="is_avatar_editor">
-                <div class="popup">
-                  Avatar URL: <base-input
-                    v-model="new_avatar"
-                    :placeholder="user.avatar"
-                    @change="updateAvatar()"
-                  />
-                </div>
-              </base-dialog>
-            </button>
-            <avatar :url="new_avatar || user.avatar" class="h-full" />
-          </div>
+          <changable-image
+            class="w-32 h-32 transform -translate-y-3rem rounded-full overflow-hidden"
+            name="avatar"
+            :update-fn="state.users.updateAvatar"
+            :input-placeholder="user?.avatar"
+            :image-url="user?.avatar"
+            :editable="user.uuid === state.users.getMe().uuid"
+            vignette
+          />
           <div class="flex items-center gap-4 mb-12 px-8">
             <p class="text-4xl">
               {{ user.username }}
@@ -46,35 +30,42 @@
             <admin-tag :user="user" />
           </div>
         </div>
+        <div class="flex flexcol gap-2">
+          <div class="flex gap-4 items-center">
+            <p class="text-2xl">
+              {{ userMachines.length }}
+            </p>
+            <p class="text-lg text-text text-opacity-75 font-light">
+              Machines
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useState } from "/@/app";
 import BaseInput from "/@/components/base/BaseInput.vue";
 import Avatar from "/@/components/user/Avatar.vue";
 import BaseDialog from "/@/components/base/BaseDialog.vue";
 import AdminTag from "/@/components/tags/AdminTag.vue";
+import type { IDatabaseMachine, IMachine } from "/@/types/api/machine";
+import ChangableImage from "../../components/ChangableImage.vue";
 const router = useRouter();
 const route = useRoute();
 const state = useState();
 const user = computed(() => route.params?.uuid ? state.users.get(route.params?.uuid as string) : null);
+const userMachines = ref<IDatabaseMachine[]>([]);
 const new_avatar = ref("");
-const new_banner = ref("");
-const is_banner_editor = ref(false);
 const is_avatar_editor = ref(false);
-const banner_url = computed(() => new_banner.value || user.value?.banner || "");
-const bannerStyle = computed(() => `
-  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.25) 100%),
-  url(${banner_url.value});
-`);
 
 const updateAvatar = () => user.value && state.users.updateAvatar(new_avatar.value);
-const updateBanner = () => user.value && state.users.updateBanner(new_banner.value);
+watch(() => route.params, async() => userMachines.value = await state.users.fetchMachines(route.params.uuid as string));
 onMounted(async() => {
+	userMachines.value = await state.users.fetchMachines(route.params.uuid as string);
 	if (route.name === "profile" && !route.params.uuid) {
 		await state.users.fetchMe();
 		const user = state.users.getMe();
@@ -91,15 +82,4 @@ onMounted(async() => {
   }
 }
 
-.edithover {
-  &:hover .hovershow {
-    @apply opacity-100;
-  }
-}
-.hovershow:active {
-  @apply bg-primary-400 bg-opacity-25;
-}
-.popup {
-  @apply bg-background-300 p-8 gap-2;
-}
 </style>

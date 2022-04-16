@@ -1,6 +1,6 @@
 <template>
-  <router-link class="settingsRoute" :to="{name: `settings.${to}`}">
-    <li>
+  <li>
+    <router-link class="settingsRoute" :to="{name: `settings.${to}`}">
       <div class="active">
         <br>
       </div>
@@ -8,8 +8,8 @@
         <slot />
       </div>
       {{ name }}
-    </li>
-  </router-link>
+    </router-link>
+  </li>
 </template>
 
 <script setup lang="ts">
