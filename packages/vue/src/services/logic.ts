@@ -2,6 +2,7 @@ import { useState } from "../app";
 import router from "../router";
 import type { INetwork } from "../types/api/machine";
 
+const state = useState();
 /**
  *  Returns true if the user is on the electron client
  */
@@ -166,4 +167,37 @@ export const secondsToHuman = (sec: number) => {
 		return `${seconds} second${numberEnding(seconds)}`;
 
 	return "less than a second";
+};
+
+const SLOWEST_BLINK_MS = 5000;
+const FASTER_BLINK_MS = 50;
+
+export const determineInterfaceBlinkSpeed = (iface: INetwork) => {
+	const totalTraffic = (iface.tx + iface.rx) / 1000 / 1000;
+	if (totalTraffic < state.settings.general.minimum_blink_speed) return 0;
+
+	if (state.settings.general.use_new_blink_algorithm) {
+		// the higher the traffic exponentially the less the ms between blinks
+		const ms = totalTraffic ** 0.25 * 100;
+		const result = Math.min(ms, SLOWEST_BLINK_MS);
+
+		// flip the result
+		return Math.max(FASTER_BLINK_MS, 700 - result);
+	}
+
+	const log = ~~Math.log10(totalTraffic);
+	switch (log) {
+		case 1:
+			return 400;
+		case 2:
+			return 200;
+		case 3:
+			return 150;
+		case 4:
+			return 100;
+		case 5:
+			return 50;
+		default:
+			return 400;
+	}
 };
