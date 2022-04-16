@@ -1,6 +1,5 @@
 <template>
   <div class="relative edithover">
-    <div class="w-full h-8 drag absolute" />
     <div
       class="w-full h-full bg-cover bg-center bg-norepeat"
       :style="bannerStyle"
