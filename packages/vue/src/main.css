@@ -17,7 +17,7 @@
   --color-warning: 255,168,0;                /* #FFA800 */
   --color-active: 0,255,103;                 /* #00ff67 */
   
-  --color-docker: 13,183,237;           /* #0db7ed */
+  --color-docker: 13,198,255;           /* #0dc6ff */
 
   --color-100mbps: var(--color-warning);
   --color-1000mbps: var(--color-active);
