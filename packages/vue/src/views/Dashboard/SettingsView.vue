@@ -23,7 +23,7 @@
             <i-fluency-tasks />
           </settings-category-button>
         </ul>
-        <div class="optionList flexcol">
+        <div class="optionList mb-32 flexcol">
           <router-view />
         </div>
       </div>
@@ -55,6 +55,10 @@ const me = computed(() => state.users.getMe());
   & > p {
     @apply text-white hidden lg:flex text-center text-xs text-opacity-50;
   }
+}
+
+.optionList > p {
+  @apply my-4;
 }
 
 </style>
