@@ -3,8 +3,8 @@ import { useLocalStorage } from "@vueuse/core";
 import type { API } from "/@/services/api";
 import { State } from "/@/services/state/State";
 import type { uuid } from "/@/types/api";
-import type { IDatabaseMachine, IMachine } from "/@/types/api/machine";
-import type { IUser, IUserLoginHistory } from "/@/types/api/user";
+import type { IDatabaseMachine } from "/@/types/api/machine";
+import type { IUser } from "/@/types/api/user";
 
 export interface IUsersState {
 	users: Record<uuid, IUser>
