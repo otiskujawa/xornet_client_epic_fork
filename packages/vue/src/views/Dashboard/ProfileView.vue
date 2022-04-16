@@ -12,9 +12,7 @@
     />
     <div class="w-full h-full">
       <div class="px-4 sm:px-16 md:px-32 lg:px-48 xl:px-64">
-        <div
-          class="flex "
-        >
+        <div class="flex">
           <changable-image
             class="w-32 h-32 transform -translate-y-3rem rounded-full overflow-hidden"
             name="avatar"
@@ -22,7 +20,6 @@
             :input-placeholder="user?.avatar"
             :image-url="user?.avatar"
             :editable="user.uuid === state.users.getMe().uuid"
-            vignette
           />
           <div class="flex items-center gap-4 mb-12 px-8">
             <p class="text-4xl">
