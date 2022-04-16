@@ -22,7 +22,7 @@ defaults:
 jobs:
 
   draft:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     outputs:
       release-note: ${{ steps.release-note.outputs.release-note }}
       version: ${{ steps.version.outputs.build-version }}

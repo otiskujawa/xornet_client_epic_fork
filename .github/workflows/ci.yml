@@ -21,7 +21,7 @@ on:
 jobs:
   test-check:
     name: Unit Tests 
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - uses: actions/checkout@v2
@@ -39,7 +39,7 @@ jobs:
 
   # lint-check: 
   #   name: Linting 
-  #   runs-on: ubuntu-latest
+  #   runs-on: self-hosted
 
   #   steps:
   #     - uses: actions/checkout@v2
@@ -57,7 +57,7 @@ jobs:
 
   # type-check:
   #   name: Typecheck
-  #   runs-on: ubuntu-latest
+  #   runs-on: self-hosted
 
   #   strategy:
   #     fail-fast: false
