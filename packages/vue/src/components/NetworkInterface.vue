@@ -3,7 +3,9 @@
     class="cube"
     :class="[
       determineInterfaceColor(iface),
-      state.settings.general.enable_bloom && 'bloom'
+      state.settings.general.enable_bloom && 'bloom',
+      state.settings.general.rounded_network_interfaces ? 'rounded-full' : 'rounded-0px',
+      state.settings.general.filled_network_interfaces ? 'filled' : 'stroked'
     ]"
     :style="`animation-duration: ${speed}ms;`"
   />
@@ -43,41 +45,79 @@ const speed = computed(() => determineInterfaceBlinkSpeed(props.iface));
 
 <style scoped lang="postcss">
 
-@keyframes flash {
+@keyframes flashStroked {
   from {
-    @apply bg-current bg-opacity-100;
+    @apply border-current;
   }
   49% {
-    @apply bg-current bg-opacity-100;
+    @apply border-current;
   }
   50% {
-    @apply bg-white bg-opacity-10;
+    @apply border-current;
   }
 }
 
-@keyframes flashBloom {
+@keyframes flashStrokedBloom {
   from {
-    @apply bg-current bg-opacity-100;
+    @apply border-current;
     box-shadow: 0px 0px 6px currentColor;
   }
   49% {
-    @apply bg-current bg-opacity-100;
+    @apply border-current;
     box-shadow: 0px 0px 6px currentColor;
   }
   50% {
-    @apply bg-white bg-opacity-10;
+    @apply border-current;
+    box-shadow: 0px 0px 6px #00000000;
+  }
+}
+
+@keyframes flashFilled {
+  from {
+    @apply bg-current;
+  }
+  49% {
+    @apply bg-current;
+  }
+  50% {
+    @apply bg-current;
+  }
+}
+
+@keyframes flashFilledBloom {
+  from {
+    @apply bg-current;
+    box-shadow: 0px 0px 6px currentColor;
+  }
+  49% {
+    @apply bg-current;
+    box-shadow: 0px 0px 6px currentColor;
+  }
+  50% {
+    @apply bg-current;
     box-shadow: 0px 0px 6px #00000000;
   }
 }
 
 .cube {
-  @apply w-6px h-6px bg-white bg-opacity-10 flex items-center justify-center;
+  @apply w-6px h-6px border-1 bg-background-400 border-transparent flex items-center justify-center;
 
-  &.bloom {
-    animation: flashBloom infinite;
+  &.stroked {
+    &.bloom {
+      animation: flashStrokedBloom infinite;
+    }
+    &:not(.bloom) {
+      animation: flashStroked infinite;
+    }
   }
-  &:not(.bloom) {
-    animation: flash infinite;
+
+  &.filled {
+    &.bloom {
+      animation: flashFilledBloom infinite;
+    }
+    &:not(.bloom) {
+      animation: flashFilled infinite;
+    }
   }
 }
 </style>

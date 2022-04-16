@@ -18,6 +18,8 @@ export class SettingsState {
 		theme: "dark",
 		minimum_blink_speed: 0.01,
 		enable_bloom: true,
+		rounded_network_interfaces: false,
+		filled_network_interfaces: false,
 		enable_totals: false,
 		enable_sound_effects: false,
 		use_single_color_for_switch_lights: false,
