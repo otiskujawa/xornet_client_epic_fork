@@ -74,7 +74,7 @@ function getDataUnit(a: number) {
 	if (!a) return "Mbps";
 	const c = 1024;
 	const e = ["Mbps", "Gbps", "Tbps", "Pbps", "Ebps", "Zbps", "Ybps"];
-	const f = Math.floor(Math.log(a) / Math.log(c));
+	const f = ~~(Math.log(a) / Math.log(c));
 
 	return `${e[f]}`;
 }
@@ -84,7 +84,7 @@ function getDataValue(a: number, b: number) {
 	if (!a) return "0";
 	const c = 1024;
 	const d = b || 2;
-	const f = Math.floor(Math.log(a) / Math.log(c));
+	const f = ~~(Math.log(a) / Math.log(c));
 
 	return `${parseFloat((a / Math.pow(c, f)).toFixed(d))}`;
 }
