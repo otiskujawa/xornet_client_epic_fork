@@ -25,8 +25,7 @@
             {{ machine.uuid }}
           </p>
         </div>
-        <network-switch :interfaces="machine.network?.filter(iface => !isDockerInterface(iface))" />
-        <network-switch docker :interfaces="machine.network?.filter(iface => isDockerInterface(iface))" />
+        <network-switch :interfaces="machine.network" />
         <base-confirmation-dialog v-if="machine.owner_uuid === state.users.getMe().uuid" confirmation-text="Are you sure you want to delete this machine?" @confirm="state.machines.deleteMachine(machine.uuid)">
           <i-fluency-trash class="text-4xl cursor-pointer hover:text-primary-500" />
         </base-confirmation-dialog>

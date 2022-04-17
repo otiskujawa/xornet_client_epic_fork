@@ -9,7 +9,7 @@
     <i-fluency-speedometer v-if="name === 'cas'" />
     <i-fluency-name v-if="name === 'os_name'" />
     <i-fluency-memory v-if="name === 'ram_usage'" />
-    <i-fluency-switch v-if="name === 'network_switch' || name === 'docker_switch'" />
+    <i-fluency-switch v-if="name === 'network_switch' || name === 'docker_switch' || name === 'firewall_switch'" />
     <i-fluency-temperature v-if="name === 'temperature'" />
     <i-fluency-thor-hammer v-if="name === 'action'" />
     <i-fluency-up v-if="name === 'tu' || name === 'tvu'" />

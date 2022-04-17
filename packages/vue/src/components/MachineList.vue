@@ -52,10 +52,25 @@
                 </machine-stat>
               </th>
               <th v-if="columns.network_switch && !isViewingMachine">
-                <network-switch v-if="machine.network" :interfaces="machine.network.filter(iface => !isDockerInterface(iface))" />
+                <network-switch v-if="machine.network" :interfaces="machine.network.filter(iface => !isDockerInterface(iface) && !isFirewallInterface(iface))" />
+                <div v-else class="flex whitespace-nowrap gap-2 items-center opacity-50">
+                  <slot />
+                  n/a
+                </div>
               </th>
               <th v-if="columns.docker_switch && !isViewingMachine">
-                <network-switch v-if="machine.network" docker :interfaces="machine.network.filter(iface => isDockerInterface(iface))" />
+                <network-switch v-if="machine.network" :interfaces="machine.network.filter(iface => isDockerInterface(iface))" />
+                <div v-else class="flex whitespace-nowrap gap-2 items-center opacity-50">
+                  <slot />
+                  n/a
+                </div>
+              </th>
+              <th v-if="columns.firewall_switch && !isViewingMachine">
+                <network-switch v-if="machine.network" :interfaces="machine.network.filter(iface => isFirewallInterface(iface))" />
+                <div v-else class="flex whitespace-nowrap gap-2 items-center opacity-50">
+                  <slot />
+                  n/a
+                </div>
               </th>
               <th v-if="columns.td && !isViewingMachine">
                 <machine-stat :value="machine.td?.toFixed(2)" suffix="Mbps">
@@ -138,21 +153,18 @@
 import { onKeyStroke, useLocalStorage } from "@vueuse/core";
 import { computed } from "vue";
 import { useRouter } from "vue-router";
-import { detectBrowser, formatEpoch, isDockerInterface } from "../services/logic";
-import type { INetwork } from "../types/api/machine";
+import { detectBrowser, formatEpoch, isDockerInterface, isFirewallInterface } from "../services/logic";
 import BaseLoadingSpinner from "./base/BaseLoadingSpinner.vue";
 import MachineListTotals from "./MachineListTotals.vue";
 import DistroIcon from "./shared/DistroIcon.vue";
-import { useSoundManager, useState } from "/@/app";
+import { useState } from "/@/app";
 import ActivityStatus from "/@/components/ActivityStatus.vue";
 import BaseTable from "/@/components/base/BaseTable.vue";
 import BaseTableHeader from "/@/components/base/BaseTableHeader.vue";
 import MachineStat from "/@/components/MachineStat.vue";
 import NetworkSwitch from "/@/components/NetworkSwitch.vue";
 import Avatar from "/@/components/user/Avatar.vue";
-import MachineProcessorUsageBars from "./MachineView/MachineProcessorUsageBars.vue";
 import Flag from "./Flag.vue";
-const soundManager = useSoundManager();
 const state = useState();
 const router = useRouter();
 const columns = computed(() => state.settings.columns);
@@ -193,10 +205,13 @@ const machines = computed(() => state.machines.getAll()
 				comparison = a.ram_used_gb / a.ram_total_gb < b.ram_used_gb / b.ram_total_gb;
 				break;
 			case "network_switch":
-				comparison = (a.network?.filter(iface => !isDockerInterface(iface))?.length || "") < (b.network?.filter(iface => !isDockerInterface(iface))?.length || "");
+				comparison = (a.network?.filter(iface => !isDockerInterface(iface) && !isFirewallInterface(iface))?.length || "") < (b.network?.filter(iface => !isDockerInterface(iface) && !isFirewallInterface(iface))?.length || "");
 				break;
 			case "docker_switch":
 				comparison = (a.network?.filter(iface => isDockerInterface(iface))?.length || "") < (b.network?.filter(iface => isDockerInterface(iface))?.length || "");
+				break;
+			case "firewall_switch":
+				comparison = (a.network?.filter(iface => isFirewallInterface(iface))?.length || "") < (b.network?.filter(iface => isFirewallInterface(iface))?.length || "");
 				break;
 			case "gpu_usage":
 				comparison = (a.gpu?.gpu_usage || "") < (b.gpu?.gpu_usage || "");

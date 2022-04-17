@@ -17,6 +17,7 @@
         </div>
         <div v-for="iface of machine.network" :key="iface.n" class="px-4 py-1 hover:bg-background-300 flex gap-4 border-1 border-transparent border-t-background-400 items-center">
           <i-fluency-docker v-if="isDockerInterface(iface)" class="text-xl" />
+          <i-fluency-firewall v-else-if="isFirewallInterface(iface)" class="text-xl" />
           <i-fluency-switch v-else class="text-xl" />
           <div>
             <div class="flex items-center gap-2">
@@ -60,7 +61,7 @@ import MachineDisks from "/@/components/MachineView/MachineDisks.vue";
 import MachineTempSensors from "/@/components/MachineView/MachineTempSensors.vue";
 import MachineDocker from "/@/components/MachineView/MachineDocker.vue";
 import NetworkInterface from "/@/components/NetworkInterface.vue";
-import { determineInterfaceColor, isDockerInterface } from "/@/services/logic";
+import { determineInterfaceColor, isDockerInterface, isFirewallInterface } from "/@/services/logic";
 const route = useRoute();
 const state = useState();
 const discord = useDiscord();

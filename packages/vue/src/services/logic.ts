@@ -116,8 +116,13 @@ export const isDockerInterface = (iface: INetwork) => {
 	return iface.n.startsWith("veth") || iface.n.startsWith("docker0");
 };
 
+export const isFirewallInterface = (iface: INetwork) => {
+	return iface.n.startsWith("fwbr") || iface.n.startsWith("fwln") || iface.n.startsWith("fwpr");
+};
+
 export const determineInterfaceColor = (iface: INetwork) => {
 	if (isDockerInterface(iface)) return "text-docker";
+	if (isFirewallInterface(iface)) return "text-firewall";
 
 	if (useState().settings.general.use_single_color_for_network_interfaces) return "text-1000mbps";
 

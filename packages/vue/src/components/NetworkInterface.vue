@@ -17,7 +17,7 @@ import { useState } from "../app";
 import { determineInterfaceBlinkSpeed, determineInterfaceColor } from "../services/logic";
 import type { INetwork } from "../types/api/machine";
 const state = useState();
-const props = defineProps<{iface: INetwork; docker?: boolean}>();
+const props = defineProps<{iface: INetwork }>();
 const speed = computed(() => determineInterfaceBlinkSpeed(props.iface));
 </script>
 

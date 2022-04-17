@@ -3,7 +3,6 @@
     <network-interface
       v-for="iface of interfaces"
       :key="iface.n"
-      :docker="docker"
       :iface="iface"
     />
   </div>
@@ -12,5 +11,5 @@
 <script setup lang="ts">
 import type { INetwork } from "/@/types/api/machine";
 import NetworkInterface from "./NetworkInterface.vue";
-defineProps<{interfaces?: INetwork[]; docker?: boolean}>();
+defineProps<{interfaces?: INetwork[]}>();
 </script>
