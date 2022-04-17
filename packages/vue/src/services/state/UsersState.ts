@@ -5,9 +5,10 @@ import { State } from "/@/services/state/State";
 import type { uuid } from "/@/types/api";
 import type { IDatabaseMachine } from "/@/types/api/machine";
 import type { IUser, IUserLoginHistory } from "/@/types/api/user";
+import { User } from "/@/types/api/user";
 
 export interface IUsersState {
-	users: Record<uuid, IUser>
+	users: Record<uuid, User>
 	me_uuid: uuid | undefined
 }
 
@@ -59,7 +60,7 @@ export class UsersState extends State<IUsersState> {
 	/**
 	 * Sets the user in the state and as me
 	 */
-	protected setMe(user: IUser) {
+	protected setMe(user: User) {
 		this.set(user); 													// Set the user
 		this.state.me_uuid = user.uuid; 					// Set this user as me
 	}
@@ -125,7 +126,7 @@ export class UsersState extends State<IUsersState> {
 	 */
 	public async fetchMe() {
 		const user: IUser = await this.api.request("GET", "/users/@me");
-		this.setMe(user);
+		this.setMe(new User(user));
 	}
 
 	/**
@@ -134,7 +135,7 @@ export class UsersState extends State<IUsersState> {
 	protected async fetch(uuid: uuid) {
 		if (!uuid) return;
 		const user: IUser = await this.api.request("GET", `/users/${uuid}`);
-		this.set(user);
+		this.set(new User(user));
 	}
 
 	public fetchMachines(uuid: uuid) {
@@ -165,7 +166,7 @@ export class UsersState extends State<IUsersState> {
 	public async login(form: UserLoginInput) {
 		const response: {token: string; user: IUser} = await this.api.request("POST", "/users/@login", form);
 		this.token.value = response.token;
-		this.setMe(response.user);
+		this.setMe(new User(response.user));
 	}
 
 	/**
@@ -174,29 +175,29 @@ export class UsersState extends State<IUsersState> {
 	public async signup(form: UserSignupInput) {
 		const response: {token: string; user: IUser} = await this.api.request("POST", "/users/@signup", form);
 		this.token.value = response.token;
-		this.setMe(response.user);
+		this.setMe(new User(response.user));
 	}
 
 	/**
 	 * Sets an array of users to the state
 	 */
-	protected setUsers(users: IUser[]) {
+	protected setUsers(users: User[]) {
 		users.forEach(user => this.set(user));
 	}
 
 	/**
 	 * Sets a user to the state
 	 */
-	protected set(user: IUser) {
+	protected set(user: User) {
 		this.state.users[user.uuid] = user;
 	}
 
-	public getAll(): IUser[] {
+	public getAll(): User[] {
 		return Object.values(this.state.users);
 	}
 
 	public fetchAll() {
-		this.api.request<IUser[]>("GET", "/users/all").then(users => this.setUsers(users));
+		this.api.request<IUser[]>("GET", "/users/all").then(users => this.setUsers(users.map(user => new User(user))));
 	}
 
 	/**
