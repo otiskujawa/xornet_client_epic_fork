@@ -21,7 +21,7 @@
     <base-switch v-model="state.settings.general.use_new_blink_algorithm" />
   </option-field>
   <option-field label="Use single color for switch lights" description="Sets all the switch lights to the gigabit color regardless of speed">
-    <base-switch v-model="state.settings.general.use_single_color_for_switch_lights" />
+    <base-switch v-model="state.settings.general.use_single_color_for_network_interfaces" />
   </option-field>
   <option-field label="Minimum Blink Speed" description="Change the minimum transfer speed (in Mbps) for a interface light to blink">
     <base-input v-model="state.settings.general.minimum_blink_speed" placeholder="Mbps" class="text-white w-32" />

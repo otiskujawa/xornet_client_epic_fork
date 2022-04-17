@@ -119,7 +119,7 @@ export const isDockerInterface = (iface: INetwork) => {
 export const determineInterfaceColor = (iface: INetwork) => {
 	if (isDockerInterface(iface)) return "text-docker";
 
-	if (useState().settings.general.use_single_color_for_switch_lights) return "text-1000mbps";
+	if (useState().settings.general.use_single_color_for_network_interfaces) return "text-1000mbps";
 
 	const log = ~~Math.log10(iface.s);
 	switch (log) {
