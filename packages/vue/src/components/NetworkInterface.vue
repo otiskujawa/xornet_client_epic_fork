@@ -38,15 +38,18 @@ const speed = computed(() => determineInterfaceBlinkSpeed(props.iface));
 @keyframes flashStrokedBloom {
   from {
     @apply border-current;
-    box-shadow: 0px 0px 6px currentColor;
+    box-shadow: 0px 0px 6px currentColor, inset 0px 0px 1px currentColor;
+
   }
   49% {
     @apply border-current;
-    box-shadow: 0px 0px 6px currentColor;
+    box-shadow: 0px 0px 6px currentColor, inset 0px 0px 1px currentColor;
+
   }
   50% {
     @apply border-current;
-    box-shadow: 0px 0px 6px #00000000;
+    box-shadow: 0px 0px 6px #00000000, inset 0px 0px 1px #00000000;
+
   }
 }
 
@@ -65,15 +68,18 @@ const speed = computed(() => determineInterfaceBlinkSpeed(props.iface));
 @keyframes flashFilledBloom {
   from {
     @apply bg-current;
-    box-shadow: 0px 0px 6px currentColor;
+    box-shadow: 0px 0px 6px currentColor, inset 0px 0px 1px currentColor;
+
   }
   49% {
     @apply bg-current;
-    box-shadow: 0px 0px 6px currentColor;
+    box-shadow: 0px 0px 6px currentColor, inset 0px 0px 1px currentColor;
+
   }
   50% {
     @apply bg-current;
-    box-shadow: 0px 0px 6px #00000000;
+    box-shadow: 0px 0px 6px #00000000, inset 0px 0px 1px #00000000;
+
   }
 }
 
