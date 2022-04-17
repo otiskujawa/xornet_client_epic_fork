@@ -4,7 +4,7 @@
     :class="[
       determineInterfaceColor(iface),
       state.settings.general.enable_bloom && 'bloom',
-      state.settings.general.rounded_network_interfaces ? 'rounded-full' : 'rounded-0px',
+      state.settings.general.rounded_network_interfaces ? 'rounded-full' : 'rounded-1px',
       state.settings.general.filled_network_interfaces ? 'filled' : 'stroked'
     ]"
     :style="`animation-duration: ${speed}ms;`"
