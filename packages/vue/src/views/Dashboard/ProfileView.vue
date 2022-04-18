@@ -43,10 +43,13 @@
         <base-form title="Label Creator">
           <base-input v-for="key of Object.keys(labelForm)" :key="key" v-model="labelForm[key]" :placeholder="key" />
         </base-form>
-        <base-button text="create" @click="state.labels.create(labelForm)" />
+        <div class="flex">
+          <base-button text="create" @click="state.labels.create(labelForm)" />
+          <base-button text="delete all" @click="deleteAllLabels()" />
+        </div>
 
         <div>
-          <label-tag v-for="label in state.labels.getAll()" :key="label.uuid" :label="label" @click="state.labels.delete(label)" />
+          <label-tag v-for="label in state.labels.getAll()" :key="label.uuid" :label="label" />
         </div>
       </div>
     </div>
@@ -78,6 +81,14 @@ onMounted(async() => {
 		router.push({ name: "profile", params: { uuid: user?.uuid } });
 	}
 });
+
+const deleteAllLabels = () => {
+	const labels = state.labels.getAll();
+	for (let i = 0; i < labels.length; i++) {
+		const label = labels[i];
+		state.labels.delete(label);
+	}
+};
 
 const labelForm = reactive<ILabelProperties>({
 	name: "NewLabel",
