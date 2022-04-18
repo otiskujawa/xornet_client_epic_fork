@@ -1,4 +1,5 @@
 import type { uuid } from "/@/types/api/index";
+import { BaseDatabaseItem } from "/@/types/api/index";
 
 export interface IUser {
 	uuid: uuid
@@ -18,27 +19,22 @@ export interface IUserLoginHistory {
 	timestamp: number
 }
 
-export class User implements IUser {
-	public uuid: uuid;
+export class User extends BaseDatabaseItem implements IUser {
 	public username: string;
 	public email: string;
 	public avatar?: string;
 	public banner?: string;
 	public biography?: string;
-	public created_at: number;
-	public updated_at: number;
 	public is_admin: boolean;
 	public login_history: IUserLoginHistory[] = [];
 
-	constructor(user: IUser) {
-		this.uuid = user.uuid;
-		this.username = user.username;
-		this.email = user.email;
-		this.avatar = user.avatar;
-		this.banner = user.banner;
-		this.biography = user.biography;
-		this.created_at = user.created_at;
-		this.updated_at = user.updated_at;
-		this.is_admin = user.is_admin;
+	constructor(data: IUser) {
+		super(data);
+		this.username = data.username;
+		this.email = data.email;
+		this.avatar = data.avatar;
+		this.banner = data.banner;
+		this.biography = data.biography;
+		this.is_admin = data.is_admin;
 	}
 }

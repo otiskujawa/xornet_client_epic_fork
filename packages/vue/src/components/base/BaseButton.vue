@@ -1,6 +1,9 @@
 <template>
   <button
-    :class="!borderless && 'border-1 border-opacity-50  hover:border-opacity-75 border-primary-400 '"
+    :class="[
+      !borderless && 'border-1 border-opacity-50  hover:border-opacity-75 border-primary-400 ',
+      text ? 'px-4 py-2' : 'p-2'
+    ]"
     class="
       active:shadow-xl
       active:scale-90 transform no-drag
@@ -11,7 +14,7 @@
       disabled:cursor-not-allowed
       cursor-pointer flex items-center
       gap-2 transition duration-100
-      rounded-4px px-4 py-2
+      rounded-4px
     "
     @click="soundManager.playClick();"
   >

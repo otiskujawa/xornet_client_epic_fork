@@ -1,48 +1,39 @@
 <template>
-  <div v-if="machine" class="flexcol">
-    <div class="px-2 pt-1 drag flex items-center">
-      <router-link class="flex no-drag items-center p-4 opacity-50 hover:opacity-100" :to="{name: 'machines'}">
+  <div v-if="machine" class="pr-4 py-1 flex justify-between">
+    <div class="flex gap-2 items-center">
+      <router-link class="flex no-drag items-center p-4 pr-2 opacity-50 hover:opacity-100" :to="{name: 'machines'}">
         <i-fluency-back />
       </router-link>
+      <distro-icon class="text-2xl" :name="machine.os_name" />
       <p class="opacity-50" />
-      <router-link class="p-4 no-drag opacity-50 hover:opacity-100" :to="{name: 'machine', params: {uuid: machine.uuid}}">
-        {{ machine.name }}
-        ({{ machine.os_name }})
-      </router-link>
-    </div>
-    <div class="text-lg px-4 pb-3 flex justify-between">
-      <div class="flex gap-4 items-center">
-        <distro-icon class="text-4xl" :name="machine.os_name" />
-        <div class="flexcol">
-          <div class="flex gap-1 items-center">
-            <activity-status :machine="machine" />
-            <h1>
-              {{ machine.name }}
-              ({{ machine.os_name }})
-            </h1>
-          </div>
-          <p class="opacity-35">
-            {{ machine.uuid }}
-          </p>
+      <router-link class="no-drag flexcol text-text text-opacity-50 hover:text-opacity-100" :to="{name: 'machine', params: {uuid: machine.uuid}}">
+        <div class="flex items-center gap-2">
+          <activity-status :machine="machine" />
+          {{ machine.name }}
+          ({{ machine.os_name }})
         </div>
-        <network-switch :interfaces="machine.network" />
-        <base-confirmation-dialog v-if="machine.owner_uuid === state.users.getMe().uuid" confirmation-text="Are you sure you want to delete this machine?" @confirm="state.machines.deleteMachine(machine.uuid)">
-          <i-fluency-trash class="text-4xl cursor-pointer hover:text-primary-500" />
-        </base-confirmation-dialog>
-      </div>
-      <machine-user :user="state.users.get(machine.owner_uuid)" />
+        <p class="text-xs text-text text-opacity-25">
+          {{ machine.uuid }}
+        </p>
+      </router-link>
+      <base-confirmation-dialog v-if="machine.owner_uuid === state.users.getMe().uuid" confirmation-text="Are you sure you want to delete this machine?" @confirm="state.machines.deleteMachine(machine.uuid)">
+        <base-button text="Delete">
+          <i-fluency-trash />
+        </base-button>
+      </base-confirmation-dialog>
     </div>
+    <machine-user :user="state.users.get(machine.owner_uuid)" />
   </div>
 </template>
 
 <script setup lang="ts">
 import ActivityStatus from "../ActivityStatus.vue";
-import NetworkSwitch from "../NetworkSwitch.vue";
-import MachineUser from "./MachineUser.vue";
 import { useState } from "/@/app";
 import DistroIcon from "/@/components/shared/DistroIcon.vue";
-import { isDockerInterface } from "/@/services/logic";
 import type { IMachine } from "/@/types/api/machine";
+import BaseButton from "../base/BaseButton.vue";
+import BaseConfirmationDialog from "../base/BaseConfirmationDialog.vue";
+import MachineUser from "./MachineUser.vue";
 defineProps<{machine: IMachine}>();
 const state = useState();
 </script>

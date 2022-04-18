@@ -38,20 +38,32 @@
             </p>
           </div>
         </div>
+
+        <h1>My Labels</h1>
+        <base-form title="Label Creator">
+          <base-input v-for="key of Object.keys(labelForm)" :key="key" v-model="labelForm[key]" :placeholder="key" />
+        </base-form>
+        <base-button text="create" @click="state.labels.create(labelForm)" />
+
+        <div>
+          <label-tag v-for="label in state.labels.getAll()" :key="label.uuid" :label="label" @click="state.labels.delete(label)" />
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from "vue";
+import { computed, onMounted, reactive, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useState } from "/@/app";
-import BaseInput from "/@/components/base/BaseInput.vue";
-import Avatar from "/@/components/user/Avatar.vue";
-import BaseDialog from "/@/components/base/BaseDialog.vue";
 import AdminTag from "/@/components/tags/AdminTag.vue";
 import type { IDatabaseMachine, IMachine } from "/@/types/api/machine";
 import ChangableImage from "../../components/ChangableImage.vue";
+import LabelTag from "/@/components/tags/LabelTag.vue";
+import type { ILabelProperties } from "/@/types/api/label";
+import BaseForm from "/@/components/base/BaseForm.vue";
+import BaseInput from "/@/components/base/BaseInput.vue";
+import BaseButton from "/@/components/base/BaseButton.vue";
 const router = useRouter();
 const route = useRoute();
 const state = useState();
@@ -65,6 +77,13 @@ onMounted(async() => {
 		const user = state.users.getMe();
 		router.push({ name: "profile", params: { uuid: user?.uuid } });
 	}
+});
+
+const labelForm = reactive<ILabelProperties>({
+	name: "NewLabel",
+	color: "#ff00b6",
+	description: "This label is happy",
+	icon: "tag",
 });
 
 </script>

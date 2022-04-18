@@ -1,8 +1,7 @@
 <template>
   <base-popover class="text-xs no-drag" :open="open">
-    <base-button :borderless="borderless" @click="open = !open;">
+    <base-button :text=" text ? text : value" :borderless="borderless" @click="open = !open;">
       <slot name="icon" />
-      {{ text ? text : value }}
       <i-fluency-down
         class="transform transition duration-100"
         :class="[open && 'rotate-180']"
