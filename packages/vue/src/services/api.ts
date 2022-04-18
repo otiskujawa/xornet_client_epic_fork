@@ -5,6 +5,7 @@ import mitt from "mitt";
 import type { AppState } from "/@/services/state/AppState";
 import type { uuid } from "/@/types/api";
 import type { IMachineDynamicData } from "/@/types/api/machine";
+import pako from "pako";
 
 export type Verb = "GET" | "POST" | "DELETE" | "PUT" | "PATCH";
 export const BASE_URL = import.meta.env.MODE === "development-local" ? "http://localhost:7000" : "https://backend.xornet.cloud";
@@ -24,6 +25,14 @@ export class API {
 		isDead && this.state && this.createWebsocketConnection(this.state);
 	}, 5000);
 
+	public async decompressMessage(message: Blob): Promise<{event: string; data: any}> {
+		const arrayBuffer = await message.arrayBuffer();
+		const uint8array = new Uint8Array(arrayBuffer);
+		const decompressed = pako.ungzip(uint8array);
+		const { e: event, d: data } = JSON.parse(String.fromCharCode.apply(null, decompressed as unknown as number[]));
+		return { event, data: data ? JSON.parse(data) : data };
+	}
+
 	// TODO: Make this into a class or something because everything happens within this function
 	public createWebsocketConnection(state: AppState) {
 		if (!localStorage.getItem("token") === undefined) return;
@@ -38,8 +47,8 @@ export class API {
 		});
 
 		// Listen for messages
-		socket.addEventListener("message", (message) => {
-			const { e: event, d: data } = JSON.parse(message.data);
+		socket.addEventListener("message", async(message) => {
+			const { event, data } = await	this.decompressMessage(message.data);
 			emitter.emit(event, data);
 		});
 
