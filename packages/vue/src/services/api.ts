@@ -30,7 +30,7 @@ export class API {
 		const uint8array = new Uint8Array(arrayBuffer);
 		const decompressed = pako.ungzip(uint8array);
 		const { e: event, d: data } = JSON.parse(String.fromCharCode.apply(null, decompressed as unknown as number[]));
-		return { event, data: data ? JSON.parse(data) : data };
+		return { event, data };
 	}
 
 	// TODO: Make this into a class or something because everything happens within this function
