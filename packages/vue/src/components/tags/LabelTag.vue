@@ -1,5 +1,5 @@
 <template>
-  <tag :text="label.name" :color="label.color">
+  <tag :text="label.name" :color="label.color" :description="label.description">
     <i-fluency-tag />
   </tag>
 </template>

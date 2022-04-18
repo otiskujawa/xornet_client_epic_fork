@@ -41,14 +41,17 @@
 
         <h1>My Labels</h1>
         <base-form title="Label Creator">
-          <base-input v-for="key of Object.keys(labelForm)" :key="key" v-model="labelForm[key]" :placeholder="key" />
+          <base-input v-model="labelForm.name" placeholder="name" />
+          color: <input v-model="labelForm.color" type="color">
+          <base-input v-model="labelForm.icon" placeholder="icon" />
+          <base-input v-model="labelForm.description" placeholder="description" />
         </base-form>
         <div class="flex">
           <base-button text="create" @click="state.labels.create(labelForm)" />
           <base-button text="delete all" @click="deleteAllLabels()" />
         </div>
 
-        <div>
+        <div class="flex flex-wrap gap-2">
           <label-tag v-for="label in state.labels.getAll()" :key="label.uuid" :label="label" />
         </div>
       </div>
