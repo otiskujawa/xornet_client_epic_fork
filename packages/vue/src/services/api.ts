@@ -48,7 +48,8 @@ export class API {
 
 		// Listen for messages
 		socket.addEventListener("message", async(message) => {
-			const { event, data } = await	this.decompressMessage(message.data);
+			const { e: event, d: data } = JSON.parse(message.data);
+			// const { event, data } = await	this.decompressMessage(message.data);
 			emitter.emit(event, data);
 		});
 
