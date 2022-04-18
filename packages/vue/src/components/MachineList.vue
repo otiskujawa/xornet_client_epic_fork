@@ -220,7 +220,7 @@ const machines = computed(() => state.machines.getAll()
 				comparison = (a.gpu?.power_usage || "") < (b.gpu?.power_usage || "");
 				break;
 			case "owner":
-				comparison = (a.owner.username.toLowerCase() || "") > (b.owner.username.toLowerCase() || "");
+				comparison = (a.owner?.username.toLowerCase() || "") > (b.owner?.username.toLowerCase() || "");
 				break;
 			case "cau":
 			case "cas":
