@@ -1,5 +1,5 @@
 <template>
-  <div v-if="user" class="w-full h-full flexcol bg-black bg-opacity-25">
+  <div v-if="user" class="w-full overflow-scroll h-full flexcol bg-black bg-opacity-25">
     <div class="w-full h-8 drag absolute" />
     <changable-image
       class="h-32rem"

@@ -1,9 +1,9 @@
 <template>
-  <div ref="tag" class="flex items-center gap-2 h-min w-min rounded-full border-1 border-current bg-opacity-10 px-2.5 py-1 ">
+  <div ref="tag" class="flex items-center gap-2 h-min w-min rounded-full border-1 border-current bg-opacity-10 px-2.5 py-1.5 ">
     <slot />
     <div>
       {{ text }}
-      <p class="w-full opacity-75 whitespace-nowrap text-xs font-light mr-2">
+      <p class="w-full opacity-75 whitespace-nowrap text-xs font-normal mr-2">
         {{ description }}
       </p>
     </div>
