@@ -38,22 +38,6 @@
             </p>
           </div>
         </div>
-
-        <h1>My Labels</h1>
-        <base-form title="Label Creator">
-          <base-input v-model="labelForm.name" placeholder="name" />
-          color: <input v-model="labelForm.color" type="color">
-          <base-input v-model="labelForm.icon" placeholder="icon" />
-          <base-input v-model="labelForm.description" placeholder="description" />
-        </base-form>
-        <div class="flex">
-          <base-button text="create" @click="state.labels.create(labelForm)" />
-          <base-button text="delete all" @click="deleteAllLabels()" />
-        </div>
-
-        <div class="flex flex-wrap gap-2">
-          <label-tag v-for="label in state.labels.getAll()" :key="label.uuid" :label="label" />
-        </div>
       </div>
     </div>
   </div>
@@ -63,13 +47,8 @@ import { computed, onMounted, reactive, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useState } from "/@/app";
 import AdminTag from "/@/components/tags/AdminTag.vue";
-import type { IDatabaseMachine, IMachine } from "/@/types/api/machine";
+import type { IDatabaseMachine } from "/@/types/api/machine";
 import ChangableImage from "../../components/ChangableImage.vue";
-import LabelTag from "/@/components/tags/LabelTag.vue";
-import type { ILabelProperties } from "/@/types/api/label";
-import BaseForm from "/@/components/base/BaseForm.vue";
-import BaseInput from "/@/components/base/BaseInput.vue";
-import BaseButton from "/@/components/base/BaseButton.vue";
 const router = useRouter();
 const route = useRoute();
 const state = useState();
@@ -84,20 +63,4 @@ onMounted(async() => {
 		router.push({ name: "profile", params: { uuid: user?.uuid } });
 	}
 });
-
-const deleteAllLabels = () => {
-	const labels = state.labels.getAll();
-	for (let i = 0; i < labels.length; i++) {
-		const label = labels[i];
-		state.labels.delete(label);
-	}
-};
-
-const labelForm = reactive<ILabelProperties>({
-	name: "NewLabel",
-	color: "#ff00b6",
-	description: "This label is happy",
-	icon: "tag",
-});
-
 </script>
