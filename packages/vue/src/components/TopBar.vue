@@ -41,9 +41,6 @@
       </base-dropdown>
 
       <div class="hidden whitespace-nowrap gap-2 sm:flex w-min">
-        <option-field minimal label="Show Offline">
-          <base-switch v-model="state.settings.general.show_offline_machines" />
-        </option-field>
         <option-field minimal label="Show Owned">
           <base-switch v-model="state.settings.general.show_owned" />
         </option-field>

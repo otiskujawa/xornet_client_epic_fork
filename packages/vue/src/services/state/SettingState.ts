@@ -24,7 +24,6 @@ export class SettingsState {
 		use_new_blink_algorithm: true,
 		enable_totals: false,
 		enable_sound_effects: false,
-		show_offline_machines: true,
 		show_owned: false,
 		fixed_column_width: false,
 	}).value;

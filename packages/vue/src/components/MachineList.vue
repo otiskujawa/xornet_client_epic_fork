@@ -213,8 +213,6 @@ const machines = computed(() => state.machines.getAll()
     || state.users.get(machine.owner_uuid).username.toLowerCase().includes(state.machines.filterText.value.toLowerCase()),
 	)
 	.filter(machine => state.settings.general.show_owned ? machine.owner_uuid === state.users.getMe().uuid : machine)
-// This is so you can hide offline machines
-	.filter(machine => state.settings.general.show_offline_machines ? machine : machine.status === MachineStatus.Synced || machine.status === MachineStatus.HeartbeatMissed)
 // This switch is what sorts the columns
 	.sort((a, b) => {
 		let comparison = false;
