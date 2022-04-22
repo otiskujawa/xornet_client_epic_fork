@@ -195,7 +195,7 @@ const machines = computed(() => state.machines.getAll()
 		let { status } = machine;
 
 		// TODO: move this into a method of machine when you'll refactor the state
-		if (machine.last_heartbeat < Date.now() - 15000) status = MachineStatus.HeartbeatMissed;
+		if (machine.last_heartbeat < Date.now() - 10000) status = MachineStatus.HeartbeatMissed;
 		else if (machine.last_heartbeat < Date.now() - 2500) status = MachineStatus.Desync;
 
 		return ({
