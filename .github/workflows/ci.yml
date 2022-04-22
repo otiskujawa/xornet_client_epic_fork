@@ -29,11 +29,9 @@ jobs:
         with:
           node-version: 17 # Need for pnpm >=7.7
 
-      # TODO: Install not all dependencies, but only those required for this workflow
       - name: Install dependencies
         run: npm i
 
-      # Type checking is divided into three separate commands for more convenient logs
       - name: Run unit tests
         run: npm run test
 
@@ -47,7 +45,6 @@ jobs:
   #       with:
   #         node-version: 17 # Need for pnpm >=7.7
 
-  #     # TODO: Install not all dependencies, but only those required for this workflow
   #     - name: Install dependencies
   #       run: npm i 
 
@@ -73,7 +70,6 @@ jobs:
   #       with:
   #         node-version: 17.6 # Need for pnpm >=7.7
 
-  #     # TODO: Install not all dependencies, but only those required for this workflow
   #     - name: Install dependencies
   #       run: npm i
 
