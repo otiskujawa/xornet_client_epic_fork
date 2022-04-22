@@ -194,8 +194,9 @@ const machines = computed(() => state.machines.getAll()
 	.map((machine) => {
 		let { status } = machine;
 
-		if (machine.last_heartbeat < Date.now() - 5000) status = MachineStatus.HeartbeatMissed;
-		else if (machine.last_heartbeat < Date.now() - 2000) status = MachineStatus.Desync;
+		// TODO: move this into a method of machine when you'll refactor the state
+		if (machine.last_heartbeat < Date.now() - 10000) status = MachineStatus.HeartbeatMissed;
+		else if (machine.last_heartbeat < Date.now() - 5000) status = MachineStatus.Desync;
 
 		return ({
 			...machine,
@@ -266,8 +267,10 @@ const machines = computed(() => state.machines.getAll()
 
 		// For some reason this ends up being reversed only
 		// in firefox so this will do as a temp fix for now
-		return browser === "firefox" ? comparison ? -1 : 1 : comparison ? 1 : -1;
-	}));
+		return browser === "firefox" ? comparison ? 1 : -1 : comparison ? -1 : 1;
+	}).sort(machine => machine.status === MachineStatus.Offline || machine.status === MachineStatus.Unknown ? -1 : 1),
+
+);
 
 const currentIndex = computed(() => machines.value.findIndex(machine => machine.uuid === router.currentRoute.value.params.uuid));
 
