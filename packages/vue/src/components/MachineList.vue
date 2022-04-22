@@ -209,10 +209,10 @@ const machines = computed(() => state.machines.getAll()
 		});
 	})
 // This is for the filter input so user's can quickly search through machines
-	.filter(machine =>
-		machine.name.toLowerCase().includes(state.machines.filterText.value.toLowerCase())
-    || state.users.get(machine.owner_uuid).username.toLowerCase().includes(state.machines.filterText.value.toLowerCase()),
-	)
+	.filter((machine) => {
+		return 		machine.name.toLowerCase().includes(state.machines.filterText.value.toLowerCase())
+    || state.users.get(machine.owner_uuid)?.username.toLowerCase().includes(state.machines.filterText.value.toLowerCase());
+	})
 	.filter(machine => state.settings.general.show_owned ? machine.owner_uuid === state.users.getMe().uuid : machine)
 // This switch is what sorts the columns
 	.sort((a, b) => {
