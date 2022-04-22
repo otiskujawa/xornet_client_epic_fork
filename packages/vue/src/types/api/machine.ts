@@ -3,7 +3,9 @@ import type { uuid } from "/@/types/api/index";
 export const enum MachineStatus {
 	Unknown,
 	Offline,
-	Online,
+	HeartbeatMissed,
+	Desync,
+	Synced
 }
 
 export interface IMachine extends IMachineDynamicData, IMachineStaticData {
@@ -16,6 +18,7 @@ export interface IMachine extends IMachineDynamicData, IMachineStaticData {
 	access: string[]
 	created_at: number
 	updated_at: number
+	last_heartbeat: number
 }
 
 export interface IDatabaseMachine {

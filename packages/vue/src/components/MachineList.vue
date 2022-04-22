@@ -21,6 +21,20 @@
                   <activity-status :machine="machine" />
                 </machine-stat>
               </th>
+              <th v-if="columns.status && !isViewingMachine">
+                <div v-if="machine.status === MachineStatus.Synced " class="text-9px font-semibold w-min rounded-2px  p-0.5 px-1 flex items-center justify-center text-active bg-active bg-opacity-15 border-1 border-active">
+                  SYNCED
+                </div>
+                <div v-else-if="machine.status === MachineStatus.Desync" class="text-9px font-semibold whitespace-nowrap w-min rounded-2px  p-0.5 px-1 flex items-center justify-center text-orange-400 bg-orange-400 bg-opacity-15 border-1 border-orange-400">
+                  DESYNC
+                </div>
+                <div v-else-if="machine.status === MachineStatus.HeartbeatMissed" class="text-9px font-semibold whitespace-nowrap w-min rounded-2px  p-0.5 px-1 flex items-center justify-center text-red-500 bg-red-500 bg-opacity-15 border-1 border-red-500">
+                  HEARTBEAT MISSED
+                </div>
+                <div v-else class="text-9px w-min rounded-2px font-semibold p-0.5 px-1 flex items-center justify-center text-gray-600 bg-gray-600 bg-opacity-15 border-1 border-gray-600">
+                  OFFLINE
+                </div>
+              </th>
               <th v-if="columns.os_name && !isViewingMachine">
                 <machine-stat :value="machine.os_name">
                   <i-fluency-name />
@@ -164,6 +178,7 @@ import BaseTableHeader from "/@/components/base/BaseTableHeader.vue";
 import MachineStat from "/@/components/MachineStat.vue";
 import NetworkSwitch from "/@/components/NetworkSwitch.vue";
 import Avatar from "/@/components/user/Avatar.vue";
+import { MachineStatus } from "/@/types/api/machine";
 import Flag from "./Flag.vue";
 const state = useState();
 const router = useRouter();
@@ -177,12 +192,19 @@ const isViewingMachine = computed(() => router.currentRoute.value.name === "mach
 const machines = computed(() => state.machines.getAll()
 // Compute a bunch of properties so we don't have to do it multiple times
 	.map((machine) => {
+		let { status } = machine;
+
+		if (machine.last_heartbeat < Date.now() - 5000) status = MachineStatus.HeartbeatMissed;
+		else if (machine.last_heartbeat < Date.now() - 2000) status = MachineStatus.Desync;
+
 		return ({
 			...machine,
 			ram_used_gb: ~~(machine.ram?.used || 0) / 1024 / 1024,
 			ram_total_gb: ~~(machine.ram?.total || 0) / 1024 / 1024,
 			temperature: machine.temps?.[0].value,
 			owner: state.users.get(machine?.owner_uuid),
+			// set heartbeat missed if last update was more than 3 seconds ago
+			status,
 		});
 	})
 // This is for the filter input so user's can quickly search through machines
@@ -192,7 +214,7 @@ const machines = computed(() => state.machines.getAll()
 	)
 	.filter(machine => state.settings.general.show_owned ? machine.owner_uuid === state.users.getMe().uuid : machine)
 // This is so you can hide offline machines
-	.filter(machine => state.settings.general.show_offline_machines ? machine : machine.status === 2)
+	.filter(machine => state.settings.general.show_offline_machines ? machine : machine.status === MachineStatus.Synced || machine.status === MachineStatus.HeartbeatMissed)
 // This switch is what sorts the columns
 	.sort((a, b) => {
 		let comparison = false;
@@ -225,6 +247,7 @@ const machines = computed(() => state.machines.getAll()
 			case "cau":
 			case "cas":
 			case "country":
+			case "status":
 			case "td":
 			case "tu":
 			case "tvd":
@@ -245,10 +268,8 @@ const machines = computed(() => state.machines.getAll()
 
 		// For some reason this ends up being reversed only
 		// in firefox so this will do as a temp fix for now
-		return browser === "firefox" ? comparison ? 1 : -1 : comparison ? -1 : 1;
-	})
-// This puts all the offline machines at the bottom
-	.sort(a => a.status === 2 ? -1 : 1));
+		return browser === "firefox" ? comparison ? -1 : 1 : comparison ? 1 : -1;
+	}));
 
 const currentIndex = computed(() => machines.value.findIndex(machine => machine.uuid === router.currentRoute.value.params.uuid));
 

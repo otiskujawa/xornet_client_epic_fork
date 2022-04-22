@@ -29,9 +29,10 @@ export class SettingsState {
 		fixed_column_width: false,
 	}).value;
 
-	public columns = useLocalStorage("columnsrtfbhj", {
+	public columns = useLocalStorage("columnsrwnsjddinf", {
 		hostname: true,
 		os_name: false,
+		status: true,
 		cau: true,
 		cas: false,
 		ram_usage: true,
@@ -39,7 +40,7 @@ export class SettingsState {
 		gpu_power_usage: false,
 		network_switch: true,
 		docker_switch: true,
-		firewall_switch: true,
+		firewall_switch: false,
 		td: true,
 		tu: true,
 		tvd: false,
