@@ -30,12 +30,12 @@
                 </machine-stat>
               </th>
               <th v-if="columns.cau && !isViewingMachine">
-                <machine-stat :value="machine.cau" suffix="%">
+                <machine-stat :value="machine.cau?.toFixed()" suffix="%">
                   <i-fluency-processor />
                 </machine-stat>
               </th>
               <th v-if="columns.cas && !isViewingMachine">
-                <machine-stat :value="machine.cas" suffix="MHz">
+                <machine-stat :value="machine.cas?.toFixed()" suffix="MHz">
                   <i-fluency-speedometer />
                 </machine-stat>
               </th>
