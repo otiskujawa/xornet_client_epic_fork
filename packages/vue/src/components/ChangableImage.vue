@@ -11,7 +11,7 @@
           Image URL: <base-input
             v-model="newImage"
             :placeholder="inputPlaceholder || 'Image URL...'"
-            @change="updateFn(newImage)"
+            @change="() => emit('update', newImage)"
           />
         </div>
       </base-dialog>
@@ -23,7 +23,8 @@
 import { computed, ref } from "vue";
 import BaseDialog from "./base/BaseDialog.vue";
 import BaseInput from "./base/BaseInput.vue";
-const props = defineProps<{updateFn: Function; inputPlaceholder?: string; name: string; vignette?: boolean; imageUrl: string | undefined; editable?: boolean}>();
+const props = defineProps<{inputPlaceholder?: string; name: string; vignette?: boolean; imageUrl: string | undefined; editable?: boolean}>();
+const emit = defineEmits(["update"]);
 const newImage = ref("");
 const isShowingDialogue = ref(false);
 const bannerStyle = computed(() => props.vignette
