@@ -4,7 +4,7 @@ import type { EventType } from "mitt";
 import mitt from "mitt";
 import type { AppState } from "/@/services/state/AppState";
 import type { uuid } from "/@/types/api";
-import type { IMachineDynamicData } from "/@/types/api/machine";
+import type { IDatabaseMachine, IMachineDynamicData } from "/@/types/api/machine";
 import pako from "pako";
 
 export type Verb = "GET" | "POST" | "DELETE" | "PUT" | "PATCH";
@@ -13,7 +13,8 @@ export const BASE_URL = import.meta.env.MODE === "development-local" ? "http://l
 export type MittEvent = Record<EventType, unknown>;
 export interface BackendToClientEvents {
 	[key: string | symbol]: unknown
-	dynamicData: IMachineDynamicData & { uuid: uuid }
+	"dynamic-data": IMachineDynamicData & { uuid: uuid }
+	"machine-added": IDatabaseMachine
 }
 
 export class API {
@@ -67,6 +68,8 @@ export class API {
 			// state.machines.updateDynamicData(dynamicData.uuid, dynamicData);
 			dynamicDataBuffer.push(dynamicData);
 		});
+
+		emitter.on("machine-added", machine => this.state?.machines.set(machine));
 
 		emitter.on("heartbeat", () => this.lastHeartbeat = Date.now());
 	}

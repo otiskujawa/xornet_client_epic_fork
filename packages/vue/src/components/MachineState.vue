@@ -31,11 +31,9 @@ import type { IMachine } from "/@/types/api/machine";
 import { MachineStatus } from "/@/types/api/machine";
 defineProps<{machine: IMachine}>();
 const state = useState();
-
 </script>
 
 <style scoped lang="postcss">
-
 div {
   @apply text-9px w-min rounded-2px border-1 whitespace-nowrap font-semibold p-0.5 px-1 flex items-center justify-center;
 }
