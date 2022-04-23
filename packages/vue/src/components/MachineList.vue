@@ -257,8 +257,8 @@ const machines = computed(() => state.machines.getAll()
 
 		// For some reason this ends up being reversed only
 		// in firefox so this will do as a temp fix for now
-		return browser === "firefox" ? comparison ? -1 : 1 : comparison ? 1 : -1;
-	}).sort(machine => machine.status === MachineStatus.Offline || machine.status === MachineStatus.Unknown ? -1 : 1),
+		return browser === "firefox" ? comparison ? 1 : -1 : comparison ? -1 : 1;
+	}).sort((a, b) => (a.status || MachineStatus.Unknown) < (b.status || MachineStatus.Unknown) ? 1 : -1),
 
 );
 
