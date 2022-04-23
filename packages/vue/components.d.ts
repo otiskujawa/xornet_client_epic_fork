@@ -135,6 +135,7 @@ declare module 'vue' {
     MachineProcessorInfo: typeof import('./src/components/MachineView/MachineProcessorInfo.vue')['default']
     MachineProcessorUsageBars: typeof import('./src/components/MachineView/MachineProcessorUsageBars.vue')['default']
     MachineStat: typeof import('./src/components/MachineStat.vue')['default']
+    MachineState: typeof import('./src/components/MachineState.vue')['default']
     MachineTempSensor: typeof import('./src/components/MachineView/MachineTempSensor.vue')['default']
     MachineTempSensors: typeof import('./src/components/MachineView/MachineTempSensors.vue')['default']
     MachineUser: typeof import('./src/components/MachineView/MachineUser.vue')['default']

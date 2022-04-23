@@ -7,7 +7,7 @@
   <div
     v-else-if="machine.status === MachineStatus.Desync"
     :class="state.settings.general.enable_bloom && 'bloom'"
-    class="w-5px h-5px rounded-full text-orange-400 bg-orange-400 mr-1"
+    class="w-5px h-5px rounded-full text-green-400 bg-green-400 mr-1"
   />
   <div
     v-else-if="machine.status === MachineStatus.HeartbeatMissed"

@@ -22,18 +22,7 @@
                 </machine-stat>
               </th>
               <th v-if="columns.status && !isViewingMachine">
-                <div v-if="machine.status === MachineStatus.Synced " class="text-9px font-semibold w-min rounded-2px  p-0.5 px-1 flex items-center justify-center text-active bg-active bg-opacity-15 border-1 border-active">
-                  SYNCED
-                </div>
-                <div v-else-if="machine.status === MachineStatus.Desync" class="text-9px font-semibold whitespace-nowrap w-min rounded-2px  p-0.5 px-1 flex items-center justify-center text-orange-400 bg-orange-400 bg-opacity-15 border-1 border-orange-400">
-                  DESYNC
-                </div>
-                <div v-else-if="machine.status === MachineStatus.HeartbeatMissed" class="text-9px font-semibold whitespace-nowrap w-min rounded-2px  p-0.5 px-1 flex items-center justify-center text-red-500 bg-red-500 bg-opacity-15 border-1 border-red-500">
-                  HEARTBEAT MISSED
-                </div>
-                <div v-else class="text-9px w-min rounded-2px font-semibold p-0.5 px-1 flex items-center justify-center text-gray-600 bg-gray-600 bg-opacity-15 border-1 border-gray-600">
-                  OFFLINE
-                </div>
+                <machine-state :machine="machine" />
               </th>
               <th v-if="columns.os_name && !isViewingMachine">
                 <machine-stat :value="machine.os_name">
@@ -180,6 +169,7 @@ import NetworkSwitch from "/@/components/NetworkSwitch.vue";
 import Avatar from "/@/components/user/Avatar.vue";
 import { MachineStatus } from "/@/types/api/machine";
 import Flag from "./Flag.vue";
+import MachineState from "./MachineState.vue";
 const state = useState();
 const router = useRouter();
 const columns = computed(() => state.settings.columns);
@@ -195,8 +185,8 @@ const machines = computed(() => state.machines.getAll()
 		let { status } = machine;
 
 		// TODO: move this into a method of machine when you'll refactor the state
-		if (machine.last_heartbeat < Date.now() - 10000) status = MachineStatus.HeartbeatMissed;
-		else if (machine.last_heartbeat < Date.now() - 2500) status = MachineStatus.Desync;
+		if (machine.last_heartbeat < Date.now() - 5000) status = MachineStatus.HeartbeatMissed;
+		else if (machine.last_heartbeat < Date.now() - 1100) status = MachineStatus.Desync;
 
 		return ({
 			...machine,
