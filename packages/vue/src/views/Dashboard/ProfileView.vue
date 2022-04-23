@@ -6,9 +6,9 @@
       name="banner"
       :input-placeholder="user?.banner"
       :image-url="user?.banner"
-      :editable="user.uuid === state.users.getMe().uuid"
+      :is-editable="user.uuid === state.users.getMe().uuid"
       vignette
-      @update="(newImage) => state.users.updateBanner(newImage)"
+      @update="(newImage: string) => state.users.updateBanner(newImage)"
     />
     <div class="w-full h-full">
       <div class="px-4 sm:px-16 md:px-32 lg:px-48 xl:px-64">
@@ -18,8 +18,8 @@
             name="avatar"
             :input-placeholder="user?.avatar"
             :image-url="user?.avatar"
-            :editable="user.uuid === state.users.getMe().uuid"
-            @update="(newImage) => state.users.updateAvatar(newImage)"
+            :is-editable="user.uuid === state.users.getMe().uuid"
+            @update="(newImage: string) => state.users.updateAvatar(newImage)"
           />
           <div class="flex items-center gap-4 mb-12 px-8">
             <p class="text-4xl">
