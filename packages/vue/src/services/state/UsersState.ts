@@ -88,8 +88,6 @@ export class UsersState extends State<IUsersState> {
 	 * @param avatar The URL of the avatar to set
 	 */
 	public async updateAvatar(avatar: string) {
-		console.log(this.getMe);
-		console.log(this);
 		const me = this.getMe();
 		me && this.api.request<IUser>("PATCH", "/users/@avatar", { url: avatar }).then((me: IUser) => this.setAvatar(me, avatar));
 	}
