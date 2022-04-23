@@ -6,9 +6,9 @@
       </router-link>
       <distro-icon class="text-2xl" :name="machine.os_name" />
       <p class="opacity-50" />
-      <router-link class="no-drag flexcol text-text text-opacity-50 hover:text-opacity-100" :to="{name: 'machine', params: {uuid: machine.uuid}}">
+      <router-link class="no-drag flexcol gap-1 text-text text-opacity-50 hover:text-opacity-100" :to="{name: 'machine', params: {uuid: machine.uuid}}">
         <div class="flex items-center gap-2">
-          <activity-status :machine="machine" />
+          <machine-state :machine="machine" />
           {{ machine.name }}
           ({{ machine.os_name }})
         </div>
@@ -33,6 +33,7 @@ import DistroIcon from "/@/components/shared/DistroIcon.vue";
 import type { IMachine } from "/@/types/api/machine";
 import BaseButton from "../base/BaseButton.vue";
 import BaseConfirmationDialog from "../base/BaseConfirmationDialog.vue";
+import MachineState from "../MachineState.vue";
 import MachineUser from "./MachineUser.vue";
 defineProps<{machine: IMachine}>();
 const state = useState();
