@@ -1,4 +1,4 @@
-![Logo](https://cdn.discordapp.com/attachments/755597803102928966/931042317878587412/logo.svg)
+![Logo](https://cdn.discordapp.com/attachments/755597803102928966/967382192038752287/logo.svg)
 
 # Client
 The frontend client that users will use to interface with their machines
