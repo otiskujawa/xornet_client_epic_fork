@@ -1,8 +1,8 @@
 <template>
   <div
-    v-if="machine.status === MachineStatus.Synced"
+    v-if="machine.status === MachineStatus.Online"
     :class="state.settings.general.enable_bloom && 'bloom'"
-    class="bg-active"
+    class="bg-active text-active"
   />
   <div
     v-else-if="machine.status === MachineStatus.Desync"

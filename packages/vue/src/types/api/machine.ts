@@ -5,7 +5,7 @@ export const enum MachineStatus {
 	Offline,
 	HeartbeatMissed,
 	Desync,
-	Synced,
+	Online,
 	Updating
 }
 

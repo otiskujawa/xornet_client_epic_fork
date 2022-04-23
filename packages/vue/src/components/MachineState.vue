@@ -1,9 +1,9 @@
 <template>
   <div
-    v-if="machine.status === MachineStatus.Synced "
-    class="state text-active bg-active bg-opacity-15"
+    v-if="machine.status === MachineStatus.Online "
+    class="state text-active cursor-pointer bg-active bg-opacity-15"
   >
-    SYNCED
+    ONLINE
   </div>
   <div
     v-else-if="machine.status === MachineStatus.Desync"
@@ -15,7 +15,7 @@
     v-else-if="machine.status === MachineStatus.Updating"
     class="state text-cyan-500 bg-cyan-500 bg-opacity-15"
   >
-    <base-loading-spinner class="mr-1 w-11px h-11px" />
+    <base-loading-spinner class="mr-1 w-9px h-9px" />
     UPDATING
   </div>
   <div
@@ -38,7 +38,7 @@ import type { IMachine } from "/@/types/api/machine";
 import { MachineStatus } from "/@/types/api/machine";
 import BaseLoadingSpinner from "./base/BaseLoadingSpinner.vue";
 defineProps<{machine: IMachine}>();
-const state = useState();
+useState();
 </script>
 
 <style scoped lang="postcss">
