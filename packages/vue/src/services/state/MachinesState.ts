@@ -45,7 +45,6 @@ export class MachinesState extends State<IMachinesState> {
 
 	public updateDynamicData(machineUuid: uuid, data: IMachineDynamicData) {
 		const target = this.get(machineUuid);
-		if (!target) return;
 		target && Object.assign(target, { last_heartbeat: Date.now(), ...data });
 		target.status = MachineStatus.Synced;
 	}

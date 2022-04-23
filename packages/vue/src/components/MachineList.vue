@@ -30,12 +30,12 @@
                 </machine-stat>
               </th>
               <th v-if="columns.cau && !isViewingMachine">
-                <machine-stat :value="machine.cau?.toFixed(2)" suffix="%">
+                <machine-stat :value="machine.cau" suffix="%">
                   <i-fluency-processor />
                 </machine-stat>
               </th>
               <th v-if="columns.cas && !isViewingMachine">
-                <machine-stat :value="machine.cas?.toFixed(2)" suffix="MHz">
+                <machine-stat :value="machine.cas" suffix="MHz">
                   <i-fluency-speedometer />
                 </machine-stat>
               </th>
@@ -186,7 +186,7 @@ const machines = computed(() => state.machines.getAll()
 
 		// TODO: move this into a method of machine when you'll refactor the state
 		if (machine.last_heartbeat < Date.now() - 5000) status = MachineStatus.HeartbeatMissed;
-		else if (machine.last_heartbeat < Date.now() - 1100) status = MachineStatus.Desync;
+		else if (machine.last_heartbeat < Date.now() - 1000) status = MachineStatus.Desync;
 
 		return ({
 			...machine,

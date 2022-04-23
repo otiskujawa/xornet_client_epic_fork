@@ -55,18 +55,19 @@ export class API {
 		});
 
 		// TODO: remove this once the backend sends stuff every second
-		const dynamicDataBuffer: (IMachineDynamicData & { uuid: string })[] = [];
+		const buffer: (IMachineDynamicData & { uuid: string })[] = [];
+
+		// empty the buffer every 1 second and update the state
 		setInterval(() => {
-			dynamicDataBuffer.forEach((dynamicData) => {
-				state.machines.updateDynamicData(dynamicData.uuid, dynamicData);
-				dynamicDataBuffer.shift();
-			});
+			if (buffer.length === 0) return;
+			buffer.map(({ uuid, ...rest }) => state.machines.updateDynamicData(uuid, rest));
+			buffer.length = 0;
 		}, 1000);
 
 		// TODO: Move these to a seperate file for organization
 		emitter.on("dynamic-data", async(dynamicData) => {
 			// state.machines.updateDynamicData(dynamicData.uuid, dynamicData);
-			dynamicDataBuffer.push(dynamicData);
+			buffer.push(dynamicData);
 		});
 
 		emitter.on("machine-added", machine => this.state?.machines.set(machine));
