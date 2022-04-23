@@ -5,7 +5,8 @@ export const enum MachineStatus {
 	Offline,
 	HeartbeatMissed,
 	Desync,
-	Synced
+	Synced,
+	Updating
 }
 
 export interface IMachine extends IMachineDynamicData, IMachineStaticData {

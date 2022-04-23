@@ -1,6 +1,6 @@
 <template>
   <div
-    class="cube"
+    class="nic"
     :class="[
       determineInterfaceColor(iface),
       state.settings.general.enable_bloom && 'bloom',
@@ -83,7 +83,7 @@ const speed = computed(() => determineInterfaceBlinkSpeed(props.iface));
   }
 }
 
-.cube {
+.nic {
   @apply w-6px h-6px border-1 bg-background-400 border-transparent flex items-center justify-center;
 
   &.stroked {
