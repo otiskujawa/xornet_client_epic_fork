@@ -10,6 +10,12 @@ import type { BaseDatabaseItem } from "/@/types/api";
  *
  * The limitation is that this does assume that every database item in the backend has at least
  * the same structure as @IBaseDatabaseItem and the same endpoints
+ *
+ * The item should have the following routes in the backend at minimum
+ * @GET    /${item}/:uuid  => returns the item with the given id
+ * @GET    /${item}/all    => returns all the items
+ * @POST   /${item}/new    => creates a new item
+ * @DELETE /${item}/:uuid  => deletes the item with the given id
  */
 export class CachableItemManager<T extends BaseDatabaseItem, D extends Object> extends State<{items: Record<string, T>}> {
 	private requestQueue: Record<string, Promise<T>> = {};
