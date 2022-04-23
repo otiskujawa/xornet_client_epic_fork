@@ -13,7 +13,7 @@ export const BASE_URL = import.meta.env.MODE === "development-local" ? "http://l
 export type MittEvent = Record<EventType, unknown>;
 export interface BackendToClientEvents {
 	[key: string | symbol]: unknown
-	machineData: IMachineDynamicData & { uuid: uuid }
+	dynamicData: IMachineDynamicData & { uuid: uuid }
 }
 
 export class API {
@@ -54,18 +54,18 @@ export class API {
 		});
 
 		// TODO: remove this once the backend sends stuff every second
-		const machineDataBuffer: (IMachineDynamicData & { uuid: string })[] = [];
+		const dynamicDataBuffer: (IMachineDynamicData & { uuid: string })[] = [];
 		setInterval(() => {
-			machineDataBuffer.forEach((dynamicData) => {
+			dynamicDataBuffer.forEach((dynamicData) => {
 				state.machines.updateDynamicData(dynamicData.uuid, dynamicData);
-				machineDataBuffer.shift();
+				dynamicDataBuffer.shift();
 			});
 		}, 1000);
 
 		// TODO: Move these to a seperate file for organization
-		emitter.on("machineData", async(dynamicData) => {
+		emitter.on("dynamic-data", async(dynamicData) => {
 			// state.machines.updateDynamicData(dynamicData.uuid, dynamicData);
-			machineDataBuffer.push(dynamicData);
+			dynamicDataBuffer.push(dynamicData);
 		});
 
 		emitter.on("heartbeat", () => this.lastHeartbeat = Date.now());
