@@ -7,12 +7,13 @@
     <i-fluency-country v-if="name === 'country'" />
     <i-fluency-processor v-if="name === 'cau'" />
     <i-fluency-speedometer v-if="name === 'cas'" />
+    <i-fluency-name v-if="name === 'os_name'" />
     <i-fluency-memory v-if="name === 'ram_usage'" />
-    <i-fluency-switch v-if="name === 'network_switch'" />
+    <i-fluency-switch v-if="name === 'network_switch' || name === 'docker_switch' || name === 'firewall_switch'" />
     <i-fluency-temperature v-if="name === 'temperature'" />
     <i-fluency-thor-hammer v-if="name === 'action'" />
-    <i-fluency-up v-if="name === 'tu'" />
-    <i-fluency-down v-if="name === 'td'" />
+    <i-fluency-up v-if="name === 'tu' || name === 'tvu'" />
+    <i-fluency-down v-if="name === 'td' || name === 'tvd'" />
     <i-fluency-user v-if="name === 'owner'" />
     <i-fluency-upgrade v-if="name === 'reporter_version'" />
     <i-fluency-video-card v-if="name === 'gpu_usage'" />

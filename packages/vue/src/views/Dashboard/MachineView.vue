@@ -1,53 +1,85 @@
 <template>
-  <div v-if="machine" class="flexcol bg-black bg-opacity-25 h-full w-full">
+  <div class="flexcol bg">
     <machine-header :machine="machine" />
-    <div class="flexcol gap-2 px-4 overflow-y-scroll">
-      <machine-user :user="owner" />
-      <machine-processor :machine="machine" />
-      <machine-disk v-for="disk of machine.disks" :key="disk.mount" :disk="disk" />
-      <machine-temp-sensor v-for="sensor of machine.temps" :key="sensor.label" :sensor="sensor" />
+    <div v-if="machine && machine.ram" class="flexcol bg gap-2 overflow-hidden overflow-y-visible p-4">
+      <machine-processor-info :machine="machine" />
+      <machine-processor-usage-bars :processor="machine.cpu!" />
+      <machine-memory-composition :memory="machine.ram" :swap="machine.swap" />
+      <machine-network-traffic :total-download="machine.td!" :total-upload="machine.tu!" />
+      <machine-disks :disks="machine.disks!" />
+      <machine-temp-sensors :sensors="machine.temps!" />
+      <machine-docker v-if="machine.docker" :docker="machine.docker" />
+      <div class="border-2 rounded-4px border-background-400">
+        <div class="font-normal bg-background-300 p-2">
+          <p class=" ml-2">
+            Interface Name
+          </p>
+        </div>
+        <div v-for="iface of machine.network" :key="iface.n" class="px-4 py-1 hover:bg-background-300 flex gap-4 border-1 border-transparent border-t-background-400 items-center">
+          <i-fluency-docker v-if="isDockerInterface(iface)" class="text-xl" />
+          <i-fluency-firewall v-else-if="isFirewallInterface(iface)" class="text-xl" />
+          <i-fluency-switch v-else class="text-xl" />
+          <div>
+            <div class="flex items-center gap-2">
+              <network-interface :iface="iface" :docker="isDockerInterface(iface)" />
+              <h1 class="text-lg hover:text-primary-400 hover:underline cursor-pointer">
+                {{ iface.n }}
+              </h1>
+            </div>
+            <div class="font-extralight text-text text-opacity-75 flex gap-4">
+              <p>
+                <span class="">Speed: </span> <strong :class="`${determineInterfaceColor(iface)}`">{{ ~~iface.s }}Mbps</strong>
+              </p>
+              <p>
+                RX:
+                {{ bitsToHumanReadable(iface.rx ) }}ps
+              </p>
+              <p>
+                TX:
+                {{ bitsToHumanReadable(iface.tx ) }}ps
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <base-loading-spinner v-else text="Waiting for data from this machine..." />
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from "vue";
 import { useRoute } from "vue-router";
-import { useDiscordManager, useState } from "/@/app";
+import MachineMemoryComposition from "/@/components/MachineView/MachineMemoryComposition.vue";
+import { useDiscord, useState } from "/@/app";
+import BaseLoadingSpinner from "/@/components/base/BaseLoadingSpinner.vue";
 import MachineHeader from "/@/components/MachineView/MachineHeader.vue";
-import MachineDisk from "/@/components/MachineView/MachineDisk.vue";
-import MachineProcessor from "/@/components/MachineView/MachineProcessor.vue";
-import MachineTempSensor from "/@/components/MachineView/MachineTempSensor.vue";
-import MachineUser from "/@/components/MachineView/MachineUser.vue";
-import { getMachineOsImageKey } from "/@/services/logic";
+import MachineNetworkTraffic from "/@/components/MachineView/MachineNetworkTraffic.vue";
+import MachineProcessorUsageBars from "/@/components/MachineView/MachineProcessorUsageBars.vue";
+import MachineProcessorInfo from "/@/components/MachineView/MachineProcessorInfo.vue";
+import MachineDisks from "/@/components/MachineView/MachineDisks.vue";
+import MachineTempSensors from "/@/components/MachineView/MachineTempSensors.vue";
+import MachineDocker from "/@/components/MachineView/MachineDocker.vue";
+import NetworkInterface from "/@/components/NetworkInterface.vue";
+import { determineInterfaceColor, isDockerInterface, isFirewallInterface } from "/@/services/logic";
 const route = useRoute();
 const state = useState();
+const discord = useDiscord();
 const machineUuid = computed(() => route.params.uuid as string);
-
 const machine = computed(() => {
 	const machine = state.machines.get(machineUuid.value);
-	if (machine?.name) {
-		useDiscordManager().updatePresence({
-			state: machine.os_name?.replaceAll("'", ""),
-			details: machine.name,
-			largeImageKey: machine.os_name ? getMachineOsImageKey(machine.os_name) : "main_logo",
-			largeImageText: machine.os_name,
-			smallImageKey: "viewing",
-			smallImageText: `Viewing ${machine.name}`,
-			buttons: [
-				{
-					label: "See Machine",
-					url: `https://xornet.cloud/#/dashboard/machine/${machine.uuid}`,
-				},
-				{
-					label: "GitHub",
-					url: "https://github.com/xornet-cloud/",
-				},
-			],
-		});
-	}
-
+	machine?.name && discord.setCurrentlyWatchingMachine(machine);
 	return machine;
 });
-const owner = state.users.get(machine.value?.owner_uuid);
+const bitsToHumanReadable = (bits: number) => {
+	const units = ["b", "Kb", "Mb", "Gb", "Tb", "Pb", "Eb", "Zb", "Yb"];
+	const i = ~~(Math.log(bits) / Math.log(1024));
+	return `${(bits / Math.pow(1024, i)).toFixed(2)} ${units[i]}`;
+};
+
 </script>
+<style scoped lang="postcss">
+.bg {
+	@apply w-full h-full bg-black bg-opacity-25;
+}
+</style>

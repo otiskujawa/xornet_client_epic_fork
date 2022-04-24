@@ -21,7 +21,7 @@ const state = useState();
 }
 
 tr:not(.headerRow) {
-  @apply hover:bg-background-400 hover:bg-opacity-50 cursor-pointer;
+  @apply hover:bg-background-400 hover:bg-opacity-50;
 }
 
 tr:hover {
@@ -31,7 +31,7 @@ tr:hover {
 }
 
 th {
-  @apply text-white text-left text-opacity-50 font-normal px-4 py-1.5 ;
+  @apply text-white text-left text-opacity-50 font-normal px-4 py-1.5;
 }
 
 </style>

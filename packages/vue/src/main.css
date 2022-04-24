@@ -1,7 +1,7 @@
 .theme-dark {
-  --color-primary-300: 211,167,255;          /* #D3A7FF */       /* Main Color */
-  --color-primary-400: 180,105,255;          /* #B469FF */
-  --color-primary-500: 129,43,215;           /* #812BD7 */
+  --color-primary-300: 173,133,255;          /* #ad85ff */       /* Main Color */
+  --color-primary-400: 131,69,255;          /* #8345ff */
+  --color-primary-500: 86,3,252;           /* #5603fc */
 
   --color-background-200: 1,4,9;             /* #010409 */
   --color-background-300: 15,19,25;          /* #0F1319 */
@@ -16,11 +16,14 @@
   --color-caution: 255, 0, 122;              /* #ff007a */
   --color-warning: 255,168,0;                /* #FFA800 */
   --color-active: 0,255,103;                 /* #00ff67 */
+  
+  --color-docker: 13,198,255;           /* #0dc6ff */
+  --color-firewall: 235,79,52;           /* #eb4f34 */
 
   --color-100mbps: var(--color-warning);
   --color-1000mbps: var(--color-active);
   --color-10000mbps: 0,255,238;              /* #00ffee */ 
-  --color-100000mbps: 187,255,255;           /* #bbffff */ 
+  --color-100000mbps: 187,255,255;           /* #e5ffff */ 
 }
 
 .theme-nord {
@@ -41,6 +44,9 @@
   --color-caution: 191,97,106;               /* #BF616A */
   --color-active: 163,190,140;               /* #A3BE8C */
   --color-warning: 235,203,139;              /* #EBCB8B */
+
+  --color-docker: 13,198,255;           /* #0dc6ff */
+  --color-firewall: 235,79,52;           /* #eb4f34 */
 
   --color-100mbps: var(--color-warning);
   --color-1000mbps: var(--color-active);
@@ -67,10 +73,13 @@
   --color-warning: 255,0,72;                  /* #ff0048 */
   --color-active: 4,194,156;                  /* #04c29c */
 
-  --color-100mbps: var(--color-warning);
-  --color-1000mbps: var(--color-active);
-  --color-10000mbps: 0,255,238;               /* #00ffee */ 
-  --color-100000mbps: 187,255,255;            /* #bbffff */ 
+  --color-docker: 13,198,255;           /* #0dc6ff */
+  --color-firewall: 235,79,52;           /* #eb4f34 */
+
+  --color-100mbps: 247,37,133;                /* #f72585 */
+  --color-1000mbps: 114,9,183;                /* #7209b7 */
+  --color-10000mbps: 67,97,238;               /* #4361ee */
+  --color-100000mbps: 76,201,240;             /* #4cc9f0 */
 }
 
 .theme-galaxy {
@@ -91,6 +100,9 @@
     --color-caution: 225,0,216;              /* #e100d8 */
     --color-warning: 59,77,228;              /* #3b4de4 */
     --color-active: 39,229,254;              /* #27e5fe */
+  
+    --color-docker: 13,198,255;           /* #0dc6ff */
+    --color-firewall: 235,79,52;           /* #eb4f34 */
 	
     --color-100mbps: var(--color-warning);
     --color-1000mbps: var(--color-active);

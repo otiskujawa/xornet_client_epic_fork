@@ -39,8 +39,8 @@ const search = ref("");
 const state = useState();
 const commandPalleteInput = ref() as Ref<HTMLInputElement>;
 const focusKeyFilter = [
-	"Control",
 	"Backspace",
+	"Control",
 	"q",
 	"w",
 	"e",
@@ -103,7 +103,7 @@ const focusKeyFilter = [
 	"8",
 	"9",
 ];
-onKeyDown(focusKeyFilter, () => commandPalleteInput.value.focus());
+onKeyDown(focusKeyFilter, () => state.window.isShowingCommandPallete && commandPalleteInput.value.focus());
 watch(
 	() => state.window.isShowingCommandPallete,
 	() => {

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-black flexcol gap-4 p-4 w-min text-center">
+  <div class="bg-black flexcol gap-4 p-4 w-min">
     <div class="div flex items-center justify-between">
       <h1 class>
         Signup Token
@@ -11,19 +11,50 @@
 
     <base-tooltip :text="copied ? 'Copied!' : 'Click to copy!'" placement="bottom">
       <div
-        class="bg-white cursor-pointer  w-full bg-opacity-10 p-4 rounded border-4 transition duration-100 uppercase text-lg border-transparent hover:border-primary-400"
+        class="text-center copyButton "
         @click="copy(token)"
       >
         <p
           :class="expired && 'line-through'"
-          class="whitespace-nowrap w-86"
+          class="whitespace-nowrap w-full md:w-128 xl:w-230"
         >
           {{ token || 'Generating token...' }}
         </p>
       </div>
     </base-tooltip>
+    Linux Installer
 
-    <div class="flex  justify-between">
+    <base-tooltip :text="copied ? 'Copied!' : 'Click to copy!'" placement="bottom">
+      <div
+        class="copyButton"
+        @click="copy('curl https://raw.githubusercontent.com/xornet-cloud/Reporter/main/scripts/install.sh | sudo bash')"
+      >
+        <p
+          class="text-left"
+        >
+          <strong class="text-primary-400">$ </strong> curl https://raw.githubusercontent.com/xornet-cloud/Reporter/main/scripts/install.sh | sudo bash
+        </p>
+      </div>
+    </base-tooltip>
+
+    Windows Installer
+
+    <base-tooltip :text="copied ? 'Copied!' : 'Click to copy!'" placement="bottom">
+      <div
+        class="copyButton"
+        @click="copy('Set-ExecutionPolicy RemoteSigned -Scope CurrentUser \niwr -useb get.scoop.sh | iex \nscoop install https://raw.githubusercontent.com/xornet-cloud/Reporter/main/scripts/xornet-reporter.json')"
+      >
+        <p
+          class="text-left"
+        >
+          <strong class="text-primary-400">> </strong> Set-ExecutionPolicy RemoteSigned -Scope CurrentUser <br>
+          <strong class="text-primary-400">> </strong> iwr -useb get.scoop.sh | iex <br>
+          <strong class="text-primary-400">> </strong> scoop install "https://raw.githubusercontent.com/xornet-cloud/Reporter/main/scripts/xornet-reporter.json"
+        </p>
+      </div>
+    </base-tooltip>
+
+    <div class="flex justify-between">
       <p v-if="expired" class="text-red-500">
         Token expired, Generate a new one
       </p>
@@ -31,7 +62,7 @@
         Token will expire in {{ expiresIn }}s
       </p>
 
-      <base-link href="https://github.com/xornet-cloud/Reporter#-how-do-i-add-my-machine-on-xornet">
+      <base-link href="https://github.com/xornet-cloud/Reporter#-installation">
         What to do?
       </base-link>
     </div>
@@ -39,28 +70,23 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref, Ref } from "vue";
 import { useClipboard } from "@vueuse/core";
-import BaseLink from "/@/components/base/BaseLink.vue";
+import { computed, onMounted, onUnmounted, ref } from "vue";
 import { useState } from "/@/app";
-
-import BaseTooltip from "/@/components/base/BaseTooltip.vue";
 import BaseButton from "/@/components/base/BaseButton.vue";
+import BaseLink from "/@/components/base/BaseLink.vue";
+import BaseTooltip from "/@/components/base/BaseTooltip.vue";
+
 const state = useState();
 
-const token = <Ref<string>>ref();
-const { copy, copied } = useClipboard({ source: token });
+const token = ref<string>();
+const { copy, copied } = useClipboard({ source: token.value });
 
 const expiresAt = ref<number>();
 const expiresIn = ref<number>();
 const expired = computed(() => expiresIn.value! <= 0);
 
 const clock = ref();
-onMounted(() => {
-  if (!token.value) regenerateToken();
-  clock.value = setInterval(() => updateExpiration(), 1000)
-})
-onUnmounted(() => clearInterval(clock.value));
 
 const regenerateToken = async() => {
 	token.value = "";
@@ -73,8 +99,16 @@ const updateExpiration = () => {
 	expiresIn.value = ~~((expiresAt.value! - Date.now()) / 1000);
 };
 
+onMounted(() => {
+	if (!token.value) regenerateToken();
+	clock.value = setInterval(() => updateExpiration(), 1000);
+});
+onUnmounted(() => clearInterval(clock.value));
+
 </script>
 
-<style scoped lang="postcss">
-
+<style lang="postcss">
+.copyButton {
+  @apply bg-background-300 cursor-pointer w-full p-4 rounded border-4 transition duration-100 text-lg border-transparent hover:border-primary-400;
+}
 </style>

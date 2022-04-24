@@ -3,7 +3,10 @@ import type { uuid } from "/@/types/api/index";
 export const enum MachineStatus {
 	Unknown,
 	Offline,
+	HeartbeatMissed,
+	Desync,
 	Online,
+	Updating
 }
 
 export interface IMachine extends IMachineDynamicData, IMachineStaticData {
@@ -16,6 +19,7 @@ export interface IMachine extends IMachineDynamicData, IMachineStaticData {
 	access: string[]
 	created_at: number
 	updated_at: number
+	last_heartbeat: number
 }
 
 export interface IDatabaseMachine {
@@ -74,15 +78,32 @@ export interface IMachineStaticData {
 	country?: string
 }
 
+export interface DockerMemoryStats {
+	raw: string
+	percent: string
+}
+
+export interface DockerStats {
+	container: string
+	name: string
+	memory: DockerMemoryStats
+	cpu: string
+}
+
 export interface IMachineDynamicData {
 	/**
 	 * The CPU on the machine
 	 */
 	cpu?: ICPU
+	docker?: DockerStats[]
 	/**
 	 * The RAM on the machine
 	 */
 	ram?: IRAM
+	/**
+	 * The swap memory of the machine
+	 */
+	swap?: ISwap
 	/**
 	 * The GPU on the machine
 	 */
@@ -122,15 +143,25 @@ export interface IMachineDynamicData {
 	 */
 	cas?: number
 	/**
-	 * Total download of all interfaces on the system
+	 * Total download of all physical interfaces on the system
 	 * @computed server-side
 	 */
 	td?: number
 	/**
-	 * Total upload of all interfaces on the system
+	* Total upload of all physical interfaces on the system
+	* @computed server-side
+	*/
+	tu?: number
+	/**
+	* Total download of all virtual interfaces on the system
+	* @computed server-side
+	*/
+	tvd?: number
+	/**
+	 * Total upload of all virtual interfaces on the system
 	 * @computed server-side
 	 */
-	tu?: number
+	tvu?: number
 }
 
 export interface INetwork {
@@ -149,6 +180,8 @@ export interface IRAM {
 	total: number
 	used: number
 }
+
+export type ISwap = IRAM;
 
 export interface IGPU {
 	brand: string

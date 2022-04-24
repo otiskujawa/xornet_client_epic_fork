@@ -36,7 +36,7 @@ const createWindow = async() => {
 	mainWindow = new BrowserWindow({
 		show: false, // Use 'ready-to-show' event to show window
 		frame: false,
-		transparent: true,
+		transparent: process.platform !== "win32",
 		icon: "../../../resources/icon.png",
 		minHeight: 400,
 		minWidth: 800,
@@ -44,6 +44,7 @@ const createWindow = async() => {
 		vibrancy: "dark",
 		title: "Xornet",
 		webPreferences: {
+			webSecurity: true,
 			nativeWindowOpen: true,
 			nodeIntegration: true,
 			webviewTag: false, // The webview tag is not recommended. Consider alternatives like iframe or Electron's BrowserView. https://www.electronjs.org/docs/latest/api/webview-tag#warning
@@ -83,6 +84,12 @@ ipcMain.on("event", (_, event: { name: string; data: string }) => {
 	switch (event.name) {
 		case "rpc":
 			discordRPC.updateRichPresence(event.data as Presence);
+			break;
+		case "rpc-clear":
+			discordRPC.clearRichPresesnce();
+			break;
+		case "refresh":
+			mainWindow?.reload();
 			break;
 		case "close":
 			app.quit();

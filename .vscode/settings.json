@@ -3,15 +3,12 @@
   "editor.formatOnSave": false,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
-    "source.organizeImports": false
+    "source.organizeImports": false,
   },
   "typescript.inlayHints.variableTypes.enabled": false,
   "typescript.inlayHints.parameterNames.enabled": "all",
   "files.associations": {
     "*.css": "postcss"
   },
-  "i18n-ally.keystyle": "nested",
-  "i18n-ally.localesPaths": "locales",
-  "i18n-ally.sortKeys": true,
   "typescript.tsdk": "node_modules/typescript/lib"
 }

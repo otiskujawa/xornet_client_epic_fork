@@ -5,6 +5,9 @@
     <p class="opacity-35">
       {{ machine.cpu_model }}
     </p>
+    <p class="opacity-75 text-primary-400">
+      (current @ {{ (machine.cas! / 1000).toFixed(2) }}GHz)
+    </p>
   </div>
 </template>
 

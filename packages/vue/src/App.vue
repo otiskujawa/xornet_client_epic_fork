@@ -2,7 +2,6 @@
   <div
     id="main"
     class="h-full flexcol overflow-hidden bg-background-300"
-    :class="state.window.isMaximized || !isElectron() || !state.settings.general.enable_rounded_corners ? 'rounded-0px' : 'rounded-8px'"
   >
     <control-buttons v-if="isElectron()" />
     <command-pallete />
@@ -11,17 +10,21 @@
 </template>
 
 <script setup lang="ts">
-import { useState } from "/@/app";
 import ControlButtons from "/@/components/electron/ControlButtons.vue";
 import { isElectron } from "/@/services/logic";
 import CommandPallete from "/@/components/CommandPallete.vue";
-const state = useState();
 </script>
+
 <style lang="postcss">
 * {
-  @apply !outline-none fill-current text-sm;
+  @apply !outline-none text-sm;
   scrollbar-width: thin;
   font-family: "Roboto Mono", monospace;
+}
+
+/* im trolling hard with this one */
+*:not(*.apexChart path) {
+  @apply fill-current;
 }
 
 input,
@@ -38,6 +41,7 @@ a {
 
 *::-webkit-scrollbar {
   width: 4px;
+  height:4px;
 }
 *:hover::-webkit-scrollbar {
   overflow-y: overlay;
@@ -45,11 +49,11 @@ a {
 *::-webkit-scrollbar-track,
 *::-webkit-scrollbar-corner {
   border-radius: 20px;
-  background: #0000003a;
+  background: rgba(var(--color-background-300));
 }
 *::-webkit-scrollbar-thumb {
   border-radius: 20px;
-  background: rgba(var(--color-primary-500));
+  background: rgba(var(--color-background-500));
   border: transparent;
 }
 

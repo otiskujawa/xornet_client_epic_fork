@@ -7,37 +7,41 @@
   },
   "description": "Xornet is a management dashboard for people to easily view & control their servers from anywhere in the world!",
   "author": {
-    "name": "Geoxor",
-    "url": "https://github.com/Geoxor"
+    "name": "Xornet Cloud",
+    "url": "https://github.com/xornet-cloud"
   },
   "main": "packages/electron/dist/index.cjs",
   "scripts": {
+    "postinstall": "npm i -g nodemon typescript ts-node",
     "build": "node scripts/build.js",
     "precompile": "cross-env MODE=production npm run build",
     "compile": "electron-builder build --config .electron-builder.config.js --dir --config.asar=false",
     "pretest": "npm run build",
     "test": "npx vitest --config vitest.config.ts",
-    "dev": "node scripts/watch.js",
+    "dev": "npm run dev-staged",
+    "dev-staged": "cross-env MODE=development-staged node scripts/watch.js",
+    "dev-local": "cross-env MODE=development-local node scripts/watch.js",
     "lint": "eslint \"**/*.{vue,ts,js}\"",
     "typecheck-electron": "tsc --noEmit -p packages/electron/tsconfig.json",
     "typecheck-preload": "tsc --noEmit -p packages/preload/tsconfig.json",
     "typecheck-vue": "vue-tsc --noEmit -p packages/vue/tsconfig.json",
     "typecheck": "npm run typecheck-electron && npm run typecheck-preload && npm run typecheck-vue",
     "pretypecheck-vue": "dts-cb -i packages/preload/src/**/*.ts -o packages/preload/exposedInMainWorld.d.ts",
-    "prettify": "eslint --fix \"**/*.{vue,ts,js}\"",
-    "prepare": "husky install"
+    "prettify": "eslint --fix \"**/*.{vue,ts,js}\""
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.14.0",
     "@types/discord-rpc": "^4.0.0",
     "@types/electron-devtools-installer": "2.2.0",
+    "@types/node-gzip": "^1.1.0",
+    "@types/pako": "^1.0.3",
     "@typescript-eslint/eslint-plugin": "5.7.0",
     "@typescript-eslint/parser": "^5.8.0",
     "@vitejs/plugin-vue": "2.0.1",
     "c8": "^7.10.0",
     "cross-env": "7.0.3",
     "dts-for-context-bridge": "0.7.0",
-    "electron": "16.0.5",
+    "electron": "^16.1.1",
     "electron-builder": "22.14.5",
     "electron-devtools-installer": "3.2.0",
     "eslint": "^7.12.1",
@@ -57,11 +61,15 @@
     "@floating-ui/core": "^0.2.2",
     "@floating-ui/dom": "^0.1.8",
     "@vueuse/core": "^7.4.1",
+    "apexcharts": "^3.33.2",
+    "bloatware": "^1.0.0",
     "discord-rpc": "^4.0.1",
     "electron-updater": "4.6.5",
     "mitt": "^3.0.0",
+    "pako": "^2.0.4",
     "vite-plugin-pwa": "^0.11.12",
     "vue": "3.2.26",
-    "vue-router": "4.0.12"
+    "vue-router": "4.0.12",
+    "vue3-apexcharts": "^1.4.1"
   }
 }

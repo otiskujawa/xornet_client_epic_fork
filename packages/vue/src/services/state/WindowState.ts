@@ -3,7 +3,6 @@ import { State } from "/@/services/state/State";
 export interface IWindowState {
 	isMaximized: boolean
 	isShowingCommandPallete: boolean
-	isSyncing: boolean
 }
 
 /**
@@ -14,16 +13,7 @@ export class WindowState extends State<IWindowState> {
 		super({
 			isMaximized: false,
 			isShowingCommandPallete: false,
-			isSyncing: false,
 		});
-	}
-
-	public get isSyncing() {
-		return this.state.isSyncing;
-	}
-
-	public set isSyncing(value: boolean) {
-		this.state.isSyncing = value;
 	}
 
 	public get isShowingCommandPallete() {

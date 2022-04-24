@@ -21,7 +21,7 @@ on:
 jobs:
   test-check:
     name: Unit Tests 
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - uses: actions/checkout@v2
@@ -29,17 +29,15 @@ jobs:
         with:
           node-version: 17 # Need for pnpm >=7.7
 
-      # TODO: Install not all dependencies, but only those required for this workflow
       - name: Install dependencies
         run: npm i
 
-      # Type checking is divided into three separate commands for more convenient logs
       - name: Run unit tests
         run: npm run test
 
   # lint-check: 
   #   name: Linting 
-  #   runs-on: ubuntu-latest
+  #   runs-on: self-hosted
 
   #   steps:
   #     - uses: actions/checkout@v2
@@ -47,7 +45,6 @@ jobs:
   #       with:
   #         node-version: 17 # Need for pnpm >=7.7
 
-  #     # TODO: Install not all dependencies, but only those required for this workflow
   #     - name: Install dependencies
   #       run: npm i 
 
@@ -55,28 +52,27 @@ jobs:
   #     - name: Lint check
   #       run: npm run lint
 
-  type-check:
-    name: Typecheck
-    runs-on: ubuntu-latest
+  # type-check:
+  #   name: Typecheck
+  #   runs-on: self-hosted
 
-    strategy:
-      fail-fast: false
-      matrix: 
-        package: 
-          - electron
-          - preload
-          - vue
+  #   strategy:
+  #     fail-fast: false
+  #     matrix: 
+  #       package: 
+  #         - electron
+  #         - preload
+  #         - vue
 
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 17 # Need for pnpm >=7.7
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: actions/setup-node@v2
+  #       with:
+  #         node-version: 17.6 # Need for pnpm >=7.7
 
-      # TODO: Install not all dependencies, but only those required for this workflow
-      - name: Install dependencies
-        run: npm i
+  #     - name: Install dependencies
+  #       run: npm i
 
-      # Type checking is divided into three separate commands for more convenient logs
-      - name: Typecheck ${{matrix.package}}
-        run: npm run typecheck-${{matrix.package}}
+  #     # Type checking is divided into three separate commands for more convenient logs
+  #     - name: Typecheck ${{matrix.package}}
+  #       run: npm run typecheck-${{matrix.package}}

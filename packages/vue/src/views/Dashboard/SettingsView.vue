@@ -1,72 +1,64 @@
 <template>
   <div class="w-full h-full overflow-y-scroll items-center flexcol bg-black bg-opacity-25">
-    <top-bar />
-    <div class="optionList">
-      <p>
-        Appearance & Aesthetics
-      </p>
-      <option-field label="Theme" description="Change the theme of the app">
-        <base-dropdown v-model="state.settings.general.theme" stay-open :options="['dark', 'nord', 'opera', 'galaxy']" />
-      </option-field>
-      <option-field label="Sound FX" description="Enables sound effects when hovering over buttons etc.">
-        <base-switch v-model="state.settings.general.enable_sound_effects" />
-      </option-field>
-      <option-field label="Bloom Effects" description="Makes the network switch lights and activity lights bloom">
-        <base-switch v-model="state.settings.general.enable_bloom" />
-      </option-field>
-      <option-field v-if="isElectron()" label="Rounded Window Corners" description="This makes the corners of the window rounded when not maximized">
-        <base-switch v-model="state.settings.general.enable_rounded_corners" />
-      </option-field>
-      <option-field label="Use single color for switch lights" description="Sets all the switch lights to the gigabit color regardless of speed">
-        <base-switch v-model="state.settings.general.use_single_color_for_switch_lights" />
-      </option-field>
-      <option-field v-if="isElectron()" description="Adjust the window's opacity" label="Background Opacity">
-        <div class="flex gap-2 items-center">
-          <base-range-input v-model="state.settings.general.opacity" min="0" max="100" step="1" />
-          {{ state.settings.general.opacity }}%
+    <div class="flexcol gap-12 pt-24 w-full items-center ">
+      <user-flare :user="me" />
+      <div class="flex gap-8 px-8 w-full max-w-256">
+        <ul class="w-full max-w-48 h-full whitespace-nowrap gap-2 rounded-8px ">
+          <settings-category-button to="account" name="Account">
+            <i-fluency-user />
+          </settings-category-button>
+          <settings-category-button to="appearance" name="Appearance">
+            <i-fluency-palette />
+          </settings-category-button>
+          <settings-category-button to="sounds" name="Sounds">
+            <i-fluency-sound />
+          </settings-category-button>
+          <settings-category-button to="security" name="Security">
+            <i-fluency-key />
+          </settings-category-button>
+          <settings-category-button v-if="isElectron()" to="integrations" name="Integrations">
+            <i-fluency-settings />
+          </settings-category-button>
+          <settings-category-button to="machinelist" name="Machine List">
+            <i-fluency-tasks />
+          </settings-category-button>
+        </ul>
+        <div class="optionList mb-32 flexcol">
+          <router-view />
         </div>
-      </option-field>
-
-      <p>
-        Behaviour
-      </p>
-      <option-field label="Sync on startup (client only)" description="Synchronize your settings with the backend when opening the client">
-        <base-switch v-model="state.settings.client.enable_autosync" />
-      </option-field>
-      <option-field label="Status Bar" description="Show the debug status bar at the bottom">
-        <base-switch v-model="state.settings.general.enable_status_bar" />
-      </option-field>
-
-      <p>
-        Machine List
-      </p>
-      <option-field label="Show Offline Machines" description="Show offline machines on the machine list">
-        <base-switch v-model="state.settings.general.show_offline_machines" />
-      </option-field>
-      <option-field label="Show Total Machine Stats" description="Show sum stats of all machines on the machine list ">
-        <base-switch v-model="state.settings.general.enable_totals" />
-      </option-field>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { isElectron } from "/@/services/logic";
-import BaseDropdown from "/@/components/base/BaseDropdown.vue";
 import { useState } from "/@/app";
-import BaseSwitch from "/@/components/base/BaseSwitch.vue";
-import TopBar from "/@/components/TopBar.vue";
-import BaseRangeInput from "/@/components/base/BaseRangeInput.vue";
-import OptionField from "/@/components/OptionField.vue";
+import { isElectron } from "/@/services/logic";
+import SettingsCategoryButton from "/@/components/SettingsCategoryButton.vue";
+import UserFlare from "/@/components/UserFlare.vue";
+import { computed } from "vue";
 const state = useState();
+const me = computed(() => state.users.getMe());
 </script>
 
-<style scoped>
+<style lang="postcss">
 
 .optionList {
-  @apply  h-full text-left flexcol items-center w-full max-w-224 gap-2 text-12px text-text px-8;
-  & p {
-    @apply text-xl w-full pt-16;
+  @apply h-full text-left gap-4 items-center  w-full gap-2 text-12px text-text;
+  & > p {
+    @apply text-xl w-full ;
   }
 }
+
+.exampleNic {
+  @apply bg-background-400 w-full whitespace-nowrap font-light gap-4 items-center justify-center overflow-hidden p-1/40 rounded-8px;
+  & > p {
+    @apply text-white hidden lg:flex text-center text-xs text-opacity-50;
+  }
+}
+
+.optionList > p {
+  @apply my-4;
+}
+
 </style>

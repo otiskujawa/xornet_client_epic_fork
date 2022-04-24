@@ -6,17 +6,17 @@ export class DiscordRPC {
 	public client = new Client({ transport: "ipc" });
 	constructor() {
 		this.client.on("ready", () => {
-			this.updateRichPresence({
-				state: "Monitoring Machines",
-				largeImageKey: "main_logo",
-				largeImageText: "Xornet Cloud",
-			});
+			// Do something when ready
 		});
 		this.connect();
 	}
 
 	public connect() {
 		this.client.login({ clientId: this.CLIENT_ID }).catch(() => this.connect());
+	}
+
+	public clearRichPresesnce() {
+		this.client.clearActivity();
 	}
 
 	public updateRichPresence(args: Presence) {
