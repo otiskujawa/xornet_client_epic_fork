@@ -1,7 +1,6 @@
 import type { uuid } from "/@/types/api/index";
 
 export const enum MachineStatus {
-	Unknown,
 	Offline,
 	HeartbeatMissed,
 	Desync,

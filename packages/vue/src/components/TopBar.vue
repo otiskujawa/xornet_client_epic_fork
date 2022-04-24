@@ -44,8 +44,8 @@
         <option-field minimal label="Show Owned">
           <base-switch v-model="state.settings.general.show_owned" />
         </option-field>
-        <option-field minimal label="Show Laggy Network Chart">
-          <base-switch v-model="state.settings.general.enable_totals" />
+        <option-field minimal label="Online Only">
+          <base-switch v-model="state.settings.general.online_only" />
         </option-field>
       </div>
 

@@ -1,7 +1,6 @@
 <template>
   <div class="flex w-full" style="height: calc(100% - 42px);">
     <div class="flexcol h-full min-w-64 overflow-hidden" :class="isViewingMachine ? ' w-min' : 'w-full'">
-      <machine-list-totals v-if="state.settings.general.enable_totals" :machines="machines" />
       <div v-if="machines.length !== 0" class="min-h-full  overflow-scroll ">
         <base-table>
           <template v-if="!isViewingMachine" #headers>
@@ -153,12 +152,13 @@
 </template>
 
 <script setup lang="ts">
+/* eslint-disable eqeqeq */
+
 import { onKeyStroke, useLocalStorage } from "@vueuse/core";
 import { computed } from "vue";
 import { useRouter } from "vue-router";
 import { detectBrowser, formatEpoch, isDockerInterface, isFirewallInterface } from "../services/logic";
 import BaseLoadingSpinner from "./base/BaseLoadingSpinner.vue";
-import MachineListTotals from "./MachineListTotals.vue";
 import DistroIcon from "./shared/DistroIcon.vue";
 import { useState } from "/@/app";
 import ActivityStatus from "/@/components/ActivityStatus.vue";
@@ -187,6 +187,7 @@ const machines = computed(() => state.machines.getAll()
 		// TODO: move this into a method of machine when you'll refactor the state
 		if (machine.last_heartbeat < Date.now() - 5000) status = MachineStatus.HeartbeatMissed;
 		else if (machine.last_heartbeat < Date.now() - 1000) status = MachineStatus.Desync;
+		else if (status == null) status = MachineStatus.Offline;
 
 		return ({
 			...machine,
@@ -258,7 +259,8 @@ const machines = computed(() => state.machines.getAll()
 		// For some reason this ends up being reversed only
 		// in firefox so this will do as a temp fix for now
 		return browser === "firefox" ? comparison ? 1 : -1 : comparison ? -1 : 1;
-	}).sort((a, b) => (a.status || MachineStatus.Unknown) < (b.status || MachineStatus.Unknown) ? 1 : -1),
+	}).sort(machine => ((machine.status != MachineStatus.Offline) ? -1 : 1))
+	.filter(machine => state.settings.general.online_only ? (machine.status != MachineStatus.Offline) : machine),
 
 );
 
