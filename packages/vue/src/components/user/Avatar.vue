@@ -1,5 +1,5 @@
 <template>
-  <div v-if="user && user.uuid" :style="style" class="rounded-full">
+  <div v-if="user && user.uuid" :style="style" class="rounded-full ">
     <router-link draggable="false" :to="{ name: 'profile', params: { uuid: user.uuid }}">
       <img class="rounded-full object-cover object-center w-full h-full " :src="user.avatar || defaultAvatar" :alt="user.username">
     </router-link>
@@ -18,6 +18,6 @@ const props = defineProps<{
 	size?: number
 }>();
 
-const style = computed(() => props.size ? `width: ${props.size * 4}px; height: ${props.size * 4}px;` : "");
+const style = computed(() => props.size ? `width: ${props.size * 4}px; height: ${props.size * 4}px; min-width: ${props.size * 4}px; min-height: ${props.size * 4}px;` : "");
 
 </script>
