@@ -51,7 +51,7 @@ const me = computed(() => state.users.getMe());
 }
 
 .exampleNic {
-  @apply bg-background-400 w-full whitespace-nowrap font-light gap-4 items-center justify-center overflow-hidden p-1/40 rounded-8px;
+  @apply bg-background-200 bg-opacity-50 w-full whitespace-nowrap font-light gap-4 items-center justify-center overflow-hidden p-1/40 rounded-8px;
   & > p {
     @apply text-white hidden lg:flex text-center text-xs text-opacity-50;
   }
