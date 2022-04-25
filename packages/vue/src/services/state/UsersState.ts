@@ -41,7 +41,7 @@ export class UsersState extends State<IUsersState> {
 	 * This is a smart lock system that will deny repetitive requests and only do them once
 	 * (this should be improved with some async lock of some sort)
 	 */
-	private async fetchUser(uuid: uuid) {
+	public async fetchUser(uuid: uuid) {
 		if (this.requestQueue[uuid] !== undefined) return;
 		this.requestQueue[uuid] = this.fetch(uuid);
 		await this.requestQueue[uuid];

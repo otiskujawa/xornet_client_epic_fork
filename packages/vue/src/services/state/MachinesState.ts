@@ -1,4 +1,5 @@
 import { useLocalStorage } from "@vueuse/core";
+import { useState } from "/@/app";
 import type { API } from "/@/services/api";
 import { State } from "/@/services/state/State";
 import type { uuid } from "/@/types/api";
@@ -41,7 +42,10 @@ export class MachinesState extends State<IMachinesState> {
 
 	public setAll(machines: IDatabaseMachine[]) {
 		this.state.machines = {};
-		machines.forEach(machine => this.set(machine));
+		machines.forEach((machine) => {
+			this.set(machine);
+			useState().users.fetchUser(machine.owner_uuid);
+		});
 	}
 
 	public updateDynamicData(machineUuid: uuid, data: IMachineDynamicData) {
