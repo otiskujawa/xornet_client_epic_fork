@@ -136,6 +136,7 @@ declare module 'vue' {
     MachineTempSensor: typeof import('./src/components/MachineView/MachineTempSensor.vue')['default']
     MachineTempSensors: typeof import('./src/components/MachineView/MachineTempSensors.vue')['default']
     MachineUser: typeof import('./src/components/MachineView/MachineUser.vue')['default']
+    MiniProfile: typeof import('./src/components/MiniProfile.vue')['default']
     NavigationBar: typeof import('./src/components/NavigationBar.vue')['default']
     NavigationButton: typeof import('./src/components/NavigationButton.vue')['default']
     NetworkInterface: typeof import('./src/components/NetworkInterface.vue')['default']

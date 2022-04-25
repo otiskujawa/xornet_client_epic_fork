@@ -138,12 +138,14 @@
                 </machine-stat>
               </th>
               <th v-if="columns.owner && !isViewingMachine" class="hover:underline cursor-pointer" @click.stop>
-                <router-link :to="{name: 'profile', params: { uuid: machine.owner_uuid }}" class="flex items-center gap-3 max-w-32">
-                  <avatar :url="machine.owner?.avatar" class="w-16px min-w-16px" />
-                  <p class="overflow-ellipsis overflow-hidden">
-                    {{ machine.owner?.username }}
-                  </p>
-                </router-link>
+                <mini-profile :user="machine.owner">
+                  <router-link :to="{name: 'profile', params: { uuid: machine.owner_uuid }}" class="flex items-center gap-3 max-w-32">
+                    <avatar :url="machine.owner?.avatar" class="w-16px min-w-16px" />
+                    <p class="overflow-ellipsis overflow-hidden">
+                      {{ machine.owner?.username }}
+                    </p>
+                  </router-link>
+                </mini-profile>
               </th>
             </tr>
           </template>
@@ -178,6 +180,8 @@ import { MachineStatus } from "/@/types/api/machine";
 import Flag from "./Flag.vue";
 import MachineState from "./MachineState.vue";
 import LabelTag from "./tags/LabelTag.vue";
+import MiniProfile from "./MiniProfile.vue";
+
 const state = useState();
 const router = useRouter();
 const columns = computed(() => state.settings.columns);

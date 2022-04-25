@@ -22,7 +22,9 @@
         </base-button>
       </base-confirmation-dialog>
     </div>
-    <machine-user :user="state.users.get(machine.owner_uuid)" />
+    <mini-profile :user="state.users.get(machine.owner_uuid)">
+      <machine-user :user="state.users.get(machine.owner_uuid)" />
+    </mini-profile>
   </div>
 </template>
 
@@ -34,6 +36,7 @@ import type { IMachine } from "/@/types/api/machine";
 import BaseButton from "../base/BaseButton.vue";
 import BaseConfirmationDialog from "../base/BaseConfirmationDialog.vue";
 import MachineState from "../MachineState.vue";
+import MiniProfile from "../MiniProfile.vue";
 import MachineUser from "./MachineUser.vue";
 defineProps<{machine: IMachine}>();
 const state = useState();
