@@ -94,6 +94,11 @@
                   <i-fluency-up />
                 </machine-stat>
               </th>
+              <th v-if="columns.labels && !isViewingMachine">
+                <div class="flex gap-2 flex-wrap max-w-96">
+                  <label-tag v-for="uuid of machine.labels" :key="uuid" no-description :label="state.labels.get(uuid)" />
+                </div>
+              </th>
               <th v-if="columns.temperature && !isViewingMachine">
                 <machine-stat :value="machine.temps?.[0].value?.toFixed(2)" suffix="°C">
                   <i-fluency-temperature />
@@ -170,6 +175,7 @@ import Avatar from "/@/components/user/Avatar.vue";
 import { MachineStatus } from "/@/types/api/machine";
 import Flag from "./Flag.vue";
 import MachineState from "./MachineState.vue";
+import LabelTag from "./tags/LabelTag.vue";
 const state = useState();
 const router = useRouter();
 const columns = computed(() => state.settings.columns);
@@ -244,6 +250,7 @@ const machines = computed(() => state.machines.getAll()
 			case "tvu":
 			case "temperature":
 			case "public_ip":
+			case "labels":
 			case "reporter_version":
 			case "os_name":
 			case "host_uptime":

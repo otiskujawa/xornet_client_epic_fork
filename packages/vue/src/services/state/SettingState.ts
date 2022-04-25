@@ -28,7 +28,7 @@ export class SettingsState {
 		fixed_column_width: false,
 	}).value;
 
-	public columns = useLocalStorage("columnsrwnsjddinf", {
+	public columns = useLocalStorage("columnsuisnduisdnf", {
 		hostname: true,
 		os_name: false,
 		status: true,
@@ -44,6 +44,7 @@ export class SettingsState {
 		tu: true,
 		tvd: false,
 		tvu: false,
+		labels: true,
 		temperature: false,
 		country: false,
 		public_ip: false,

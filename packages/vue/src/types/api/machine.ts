@@ -11,6 +11,7 @@ export const enum MachineStatus {
 export interface IMachine extends IMachineDynamicData, IMachineStaticData {
 	uuid: uuid
 	owner_uuid: uuid
+	labels: string[]
 	hardware_uuid: uuid
 	access_token: string
 	name: string

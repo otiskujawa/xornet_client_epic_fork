@@ -1,8 +1,10 @@
 <template>
-  <div ref="tag" :class="text ? 'py-0.5' : 'py-1.5'" class="flex items-center gap-2 h-min w-min rounded-full border-1 border-current bg-opacity-10 px-2.5 ">
+  <div ref="tag" :class="text ? 'py-1' : 'py-1.5'" class="flex items-center gap-2 h-min w-min rounded-full border-1 border-current bg-opacity-10 px-2 ">
     <slot />
     <div>
-      {{ text }}
+      <p class=" text-xs">
+        {{ text }}
+      </p>
       <p class="w-full opacity-75 whitespace-nowrap text-xs font-normal mr-2">
         {{ description }}
       </p>
