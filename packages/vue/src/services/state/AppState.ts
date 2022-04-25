@@ -1,7 +1,7 @@
 import type { API } from "../api";
 import { CachableItemManager } from "../../types/api/CachableItem";
-import type { ILabelProperties } from "../../types/api/Label";
-import { Label } from "../../types/api/Label";
+import type { ILabelProperties } from "../../types/api/label";
+import { Label } from "../../types/api/label";
 import { MachinesState } from "./MachinesState";
 import { SettingsState } from "./SettingState";
 import { UsersState } from "./UsersState";
