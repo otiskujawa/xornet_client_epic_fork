@@ -11,15 +11,12 @@
     <base-switch v-model="state.settings.general.compact_columns" />
 
     <template #example>
-      <div class="flex gap-2 p-2 justify-between bg-background-200 bg-opacity-50 rounded-8px">
+      <div class="flex gap-2 py-2 justify-between bg-background-200 bg-opacity-50 rounded-8px">
         <base-table>
           <template #rows>
             <tr
               v-for="machine of FAKE_MACHINES"
               :key="machine.hardware_uuid"
-              :class="[
-                state.settings.general.compact_columns && 'compact'
-              ]"
             >
               <th class="cursor-pointer hover:underline">
                 <machine-stat :value="machine.name" dont-fade>
@@ -194,13 +191,3 @@ const FAKE_MACHINES = [{
 ];
 
 </script>
-
-<style>
-
-tr {
-  th {
-    @apply px-2;
-  }
-}
-
-</style>

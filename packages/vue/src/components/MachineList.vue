@@ -14,7 +14,6 @@
               :key="machine.hardware_uuid"
               :class="[
                 router.currentRoute.value.params.uuid === machine.uuid && 'active',
-                state.settings.general.compact_columns && 'compact'
               ]"
             >
               <th v-if="columns.hostname" class="cursor-pointer hover:underline" @click="router.push({name: 'machine', params: {uuid: machine.uuid}})">
@@ -305,11 +304,11 @@ onKeyStroke("ArrowUp", (e) => {
 tr {
   &.active {
     th {
-      @apply bg-primary-300 text-black ;
+      @apply bg-primary-300 text-black;
     }
   }
   th {
-    @apply text-text text-opacity-50;
+    @apply text-text text-opacity-50 ;
   }
 }
 

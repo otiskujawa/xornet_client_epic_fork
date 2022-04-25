@@ -39,7 +39,7 @@ const createWindow = async() => {
 		transparent: process.platform !== "win32",
 		icon: "../../../resources/icon.png",
 		minHeight: 400,
-		minWidth: 800,
+		minWidth: 400,
 		width: 1100,
 		vibrancy: "dark",
 		title: "Xornet",
