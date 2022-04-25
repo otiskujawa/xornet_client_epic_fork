@@ -55,6 +55,7 @@
     <i-fluency-tasks v-if="icon === 'tasks'" />
     <i-fluency-temperature v-if="icon === 'temperature'" />
     <i-fluency-terminal v-if="icon === 'terminal'" />
+    <i-fluency-flask v-if="icon === 'flask'" />
     <i-fluency-thor-hammer v-if="icon === 'thor-hammer'" />
     <i-fluency-trash v-if="icon === 'trash'" />
     <i-fluency-unmaximize v-if="icon === 'unmaximize'" />

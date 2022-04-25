@@ -95,7 +95,7 @@
                 </machine-stat>
               </th>
               <th v-if="columns.labels && !isViewingMachine">
-                <div class="flex gap-2 flex-wrap max-w-96">
+                <div class="flex gap-2 flex-wrap min-w-64">
                   <label-tag v-for="uuid of machine.labels" :key="uuid" no-description :label="state.labels.get(uuid)" />
                 </div>
               </th>
