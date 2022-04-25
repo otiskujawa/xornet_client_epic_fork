@@ -74,6 +74,7 @@ declare module 'vue' {
     IFluencyDown: typeof import('~icons/fluency/down')['default']
     IFluencyEdit: typeof import('~icons/fluency/edit')['default']
     IFluencyFirewall: typeof import('~icons/fluency/firewall')['default']
+    IFluencyFlask: typeof import('~icons/fluency/flask')['default']
     IFluencyGithub: typeof import('~icons/fluency/github')['default']
     IFluencyHappySkull: typeof import('~icons/fluency/happy-skull')['default']
     IFluencyHdd: typeof import('~icons/fluency/hdd')['default']
