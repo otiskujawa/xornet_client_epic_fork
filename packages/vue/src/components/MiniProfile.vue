@@ -11,7 +11,7 @@
           :image-url="user.banner"
           vignette
         />
-        <div class=" p-8 text-text flex gap-6 items-center transform -translate-y-20">
+        <div class="px-8 text-text flex gap-6 items-center transform -translate-y-12">
           <avatar :url="user.avatar" :size="24" />
           <div class="flex gap-4 pt-12 items-center">
             <h1 class=" text-2xl">
