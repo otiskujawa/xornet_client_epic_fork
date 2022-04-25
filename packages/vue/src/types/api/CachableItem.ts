@@ -90,6 +90,7 @@ export class CachableItemManager<T extends BaseDatabaseItem, D extends Object> e
    * @param items The items to set
    */
 	public setAll(items: T[]) {
+		this.state.items = {};
 		items.forEach(item => this.set(item));
 	}
 }

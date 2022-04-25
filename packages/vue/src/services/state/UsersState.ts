@@ -182,6 +182,7 @@ export class UsersState extends State<IUsersState> {
 	 * Sets an array of users to the state
 	 */
 	protected setUsers(users: User[]) {
+		this.state.users = {};
 		users.forEach(user => this.set(user));
 	}
 

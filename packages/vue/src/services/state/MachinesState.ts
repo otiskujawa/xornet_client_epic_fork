@@ -27,7 +27,7 @@ export class MachinesState extends State<IMachinesState> {
 	}
 
 	public async fetchMachines() {
-		this.setMachines(await this.api.request("GET", "/users/@me/machines"));
+		this.setAll(await this.api.request("GET", "/users/@me/machines"));
 	}
 
 	public async deleteMachine(uuid: uuid) {
@@ -39,7 +39,8 @@ export class MachinesState extends State<IMachinesState> {
 		return Object.values(this.state.machines).length;
 	}
 
-	public setMachines(machines: IDatabaseMachine[]) {
+	public setAll(machines: IDatabaseMachine[]) {
+		this.state.machines = {};
 		machines.forEach(machine => this.set(machine));
 	}
 
