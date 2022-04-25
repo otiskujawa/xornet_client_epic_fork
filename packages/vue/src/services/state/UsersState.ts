@@ -34,7 +34,7 @@ export class UsersState extends State<IUsersState> {
 		super({
 			me_uuid: undefined,
 			users: {},
-		});
+		}, "users");
 	}
 
 	/**

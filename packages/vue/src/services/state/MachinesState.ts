@@ -18,7 +18,7 @@ export class MachinesState extends State<IMachinesState> {
 	public constructor(public api: API) {
 		super({
 			machines: {},
-		});
+		}, "machines");
 	}
 
 	public async generateToken() {
