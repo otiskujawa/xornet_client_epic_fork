@@ -47,6 +47,9 @@
         <option-field minimal label="Online Only">
           <base-switch v-model="state.settings.general.online_only" />
         </option-field>
+        <option-field minimal label="Compact">
+          <base-switch v-model=" state.settings.general.compact_columns" />
+        </option-field>
       </div>
 
       <base-dialog v-model="showTokenGenerator" unsized>

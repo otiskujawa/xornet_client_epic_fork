@@ -19,6 +19,7 @@ export class SettingsState {
 		minimum_blink_speed: 0.01,
 		enable_bloom: true,
 		rounded_network_interfaces: false,
+		compact_columns: false,
 		online_only: true,
 		filled_network_interfaces: false,
 		use_single_color_for_network_interfaces: false,

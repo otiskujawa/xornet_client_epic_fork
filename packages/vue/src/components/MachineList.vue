@@ -12,16 +12,19 @@
             <tr
               v-for="machine of machines"
               :key="machine.hardware_uuid"
-              :class="router.currentRoute.value.params.uuid === machine.uuid && 'active'"
+              :class="[
+                router.currentRoute.value.params.uuid === machine.uuid && 'active',
+                state.settings.general.compact_columns && 'compact'
+              ]"
             >
               <th v-if="columns.hostname" class="cursor-pointer hover:underline" @click="router.push({name: 'machine', params: {uuid: machine.uuid}})">
                 <machine-stat :value="machine.name" dont-fade>
                   <distro-icon class="text-sm" :name="machine.os_name?.replace(/'/g, '')" />
-                  <activity-status :machine="machine" />
+                  <activity-status :status="machine.status" />
                 </machine-stat>
               </th>
               <th v-if="columns.status && !isViewingMachine">
-                <machine-state :machine="machine" />
+                <machine-state :status="machine.status" />
               </th>
               <th v-if="columns.os_name && !isViewingMachine">
                 <machine-stat :value="machine.os_name">

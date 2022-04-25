@@ -8,7 +8,7 @@
       <p class="opacity-50" />
       <router-link class="no-drag flexcol gap-1 text-text text-opacity-50 hover:text-opacity-100" :to="{name: 'machine', params: {uuid: machine.uuid}}">
         <div class="flex items-center gap-2">
-          <machine-state :machine="machine" />
+          <machine-state :status="machine.status" />
           {{ machine.name }}
           ({{ machine.os_name }})
         </div>

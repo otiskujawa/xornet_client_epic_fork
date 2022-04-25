@@ -1,25 +1,25 @@
 <template>
   <div
-    v-if="machine.status === MachineStatus.Online "
+    v-if="status === MachineStatus.Online "
     class="state text-active cursor-pointer bg-active bg-opacity-15"
   >
     ONLINE
   </div>
   <div
-    v-else-if="machine.status === MachineStatus.Desync"
+    v-else-if="status === MachineStatus.Desync"
     class="state text-green-400 bg-green-400 bg-opacity-15"
   >
     DESYNC
   </div>
   <div
-    v-else-if="machine.status === MachineStatus.Updating"
+    v-else-if="status === MachineStatus.Updating"
     class="state text-cyan-500 bg-cyan-500 bg-opacity-15"
   >
     <base-loading-spinner class="mr-1 w-9px h-9px" />
     UPDATING
   </div>
   <div
-    v-else-if="machine.status === MachineStatus.HeartbeatMissed"
+    v-else-if="status === MachineStatus.HeartbeatMissed"
     class="state text-red-500 bg-red-500 bg-opacity-15"
   >
     HEARTBEAT MISSED
@@ -37,7 +37,7 @@ import { useState } from "../app";
 import type { IMachine } from "/@/types/api/machine";
 import { MachineStatus } from "/@/types/api/machine";
 import BaseLoadingSpinner from "./base/BaseLoadingSpinner.vue";
-defineProps<{machine: IMachine}>();
+defineProps<{status: IMachine["status"]}>();
 useState();
 </script>
 

@@ -34,4 +34,11 @@ th {
   @apply text-white text-left text-opacity-50 font-normal px-4 py-1.5;
 }
 
+tr.compact {
+
+  th {
+    @apply py-1;
+  }
+}
+
 </style>

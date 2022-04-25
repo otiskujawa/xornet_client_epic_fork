@@ -7,17 +7,50 @@
     <base-dropdown v-model="state.settings.general.theme" stay-open :options="['dark', 'nord', 'opera', 'galaxy']" />
   </option-field>
 
+  <option-field new-feature label="Dense machine list" description="Squishes the vertical spacing between each machine">
+    <base-switch v-model="state.settings.general.compact_columns" />
+
+    <template #example>
+      <div class="flex gap-2 p-2 justify-between bg-background-200 bg-opacity-50 rounded-8px">
+        <base-table>
+          <template #rows>
+            <tr
+              v-for="machine of FAKE_MACHINES"
+              :key="machine.hardware_uuid"
+              :class="[
+                state.settings.general.compact_columns && 'compact'
+              ]"
+            >
+              <th class="cursor-pointer hover:underline">
+                <machine-stat :value="machine.name" dont-fade>
+                  <distro-icon class="text-sm" :name="machine.os_name" />
+                  <activity-status :status="machine.status" />
+                </machine-stat>
+              </th>
+              <th>
+                <machine-state :status="machine.status" />
+              </th>
+              <th>
+                <network-switch :interfaces="machine.network" />
+              </th>
+            </tr>
+          </template>
+        </base-table>
+      </div>
+    </template>
+  </option-field>
+
   <p>Network Interfaces</p>
   <option-field label="Bloom Effects" description="Makes the network switch lights and activity lights bloom">
     <base-switch v-model="state.settings.general.enable_bloom" />
   </option-field>
-  <option-field new-feature label="Rounded Network Interfaces" description="Makes the corners of network interfaces rounded">
+  <option-field label="Rounded Network Interfaces" description="Makes the corners of network interfaces rounded">
     <base-switch v-model="state.settings.general.rounded_network_interfaces" />
   </option-field>
-  <option-field new-feature label="Filled Network Interfaces" description="Makes the network interfaces be filled with color instead of a border">
+  <option-field label="Filled Network Interfaces" description="Makes the network interfaces be filled with color instead of a border">
     <base-switch v-model="state.settings.general.filled_network_interfaces" />
   </option-field>
-  <option-field new-feature label="Use new blink speed algorithm" description="This algorithm calculates the blink speed faster based on the traffic instead of using hard-stepped limits which may feel more natural (might have an impact on performance)">
+  <option-field label="Use new blink speed algorithm" description="This algorithm calculates the blink speed faster based on the traffic instead of using hard-stepped limits which may feel more natural (might have an impact on performance)">
     <base-switch v-model="state.settings.general.use_new_blink_algorithm" />
   </option-field>
   <option-field label="Use single color for switch lights" description="Sets all the switch lights to the gigabit color regardless of speed">
@@ -81,5 +114,93 @@ import BaseSwitch from "/@/components/base/BaseSwitch.vue";
 import NetworkInterface from "/@/components/NetworkInterface.vue";
 import OptionField from "/@/components/OptionField.vue";
 import { isElectron } from "/@/services/logic";
+import BaseTable from "/@/components/base/BaseTable.vue";
+import { MachineStatus } from "/@/types/api/machine";
+import MachineStat from "/@/components/MachineStat.vue";
+import ActivityStatus from "/@/components/ActivityStatus.vue";
+import DistroIcon from "/@/components/shared/DistroIcon.vue";
+import MachineState from "/@/components/MachineState.vue";
+import NetworkSwitch from "/@/components/NetworkSwitch.vue";
 const state = useState();
+
+const DUMMY_INTERFACE = {
+	n: "t",
+	s: 1000,
+	tx: 501205,
+	rx: 29412,
+};
+
+const DUMMY_INTERFACE_OFFLINE = {
+	n: "t",
+	s: 1000,
+	tx: 0,
+	rx: 0,
+};
+
+const DUMMY_NETWORK_SWITCH_OFFLINE = [
+	DUMMY_INTERFACE_OFFLINE,
+	DUMMY_INTERFACE_OFFLINE,
+	DUMMY_INTERFACE_OFFLINE,
+	DUMMY_INTERFACE_OFFLINE,
+	DUMMY_INTERFACE_OFFLINE,
+];
+
+const DUMMY_NETWORK_SWITCH = [
+	DUMMY_INTERFACE,
+	DUMMY_INTERFACE,
+	DUMMY_INTERFACE,
+	DUMMY_INTERFACE,
+	DUMMY_INTERFACE,
+];
+
+const FAKE_MACHINES = [{
+	hardware_uuid: "1",
+	name: "xnet-kumitsu",
+	os_name: "garuda",
+	status: MachineStatus.Online,
+	network: DUMMY_NETWORK_SWITCH,
+},
+{
+	hardware_uuid: "2",
+	name: "xnet-harukame",
+	os_name: "debian",
+	status: MachineStatus.Desync,
+	network: DUMMY_NETWORK_SWITCH,
+
+},
+{
+	hardware_uuid: "3",
+	name: "xnet-yoimitsu",
+	os_name: "debian",
+	status: MachineStatus.Desync,
+	network: DUMMY_NETWORK_SWITCH,
+
+},
+{
+	hardware_uuid: "4",
+	name: "xnet-kannata",
+	os_name: "debian",
+	status: MachineStatus.Offline,
+	network: DUMMY_NETWORK_SWITCH_OFFLINE,
+},
+{
+	hardware_uuid: "5",
+	name: "xnet-tokyo",
+	os_name: "alpine",
+	status: MachineStatus.Offline,
+	network: DUMMY_NETWORK_SWITCH_OFFLINE,
+},
+
+];
+
 </script>
+
+<style>
+
+tr {
+  th {
+    @apply px-2;
+  }
+}
+
+</style>
