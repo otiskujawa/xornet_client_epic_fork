@@ -1,8 +1,8 @@
 <template>
-  <div class="w-full h-full overflow-y-scroll items-center flexcol bg-black bg-opacity-25">
-    <div class="flexcol gap-12 pt-24 w-full items-center ">
+  <div class="w-full h-full overflow-y-scroll items-center flexcol bg-background-200">
+    <div class="flexcol gap-12 w-full items-center ">
       <user-flare :user="me" />
-      <div class="flex gap-8 px-8 w-full max-w-256">
+      <div class="flex gap-8 transform -translate-y-16 px-8 w-full max-h-full max-w-256">
         <ul class="w-full max-w-48 h-full whitespace-nowrap gap-2 rounded-8px ">
           <settings-category-button to="account" name="Account">
             <i-fluency-user />
