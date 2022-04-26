@@ -1,5 +1,6 @@
 <template>
   <div class="flexcol w-full items-center">
+    <div class="w-full h-8 drag absolute" />
     <changable-image
       :is-editable="true"
       name="banner"
