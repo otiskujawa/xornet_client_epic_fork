@@ -77,11 +77,6 @@ export const routes: (FancyRouteRecord & { children?: FancyRouteRecord[] })[] = 
 						name: "settings.integrations",
 						component: () => import("./views/Dashboard/Settings/Integrations.vue"),
 					},
-					{
-						path: "machinelist",
-						name: "settings.machinelist",
-						component: () => import("./views/Dashboard/Settings/MachineList.vue"),
-					},
 				],
 			},
 			{

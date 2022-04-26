@@ -19,9 +19,6 @@
           <settings-category-button v-if="isElectron()" to="integrations" name="Integrations">
             <i-fluency-settings />
           </settings-category-button>
-          <settings-category-button to="machinelist" name="Machine List">
-            <i-fluency-tasks />
-          </settings-category-button>
         </ul>
         <div class="optionList mb-32 flexcol">
           <router-view />

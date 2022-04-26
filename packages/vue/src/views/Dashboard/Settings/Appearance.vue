@@ -152,37 +152,35 @@ const DUMMY_NETWORK_SWITCH = [
 
 const FAKE_MACHINES = [{
 	hardware_uuid: "1",
-	name: "xnet-kumitsu",
+	name: "xornet-kumitsu",
 	os_name: "garuda",
 	status: MachineStatus.Online,
 	network: DUMMY_NETWORK_SWITCH,
 },
 {
 	hardware_uuid: "2",
-	name: "xnet-harukame",
+	name: "xornet-harukame",
 	os_name: "debian",
 	status: MachineStatus.Desync,
 	network: DUMMY_NETWORK_SWITCH,
-
 },
 {
 	hardware_uuid: "3",
-	name: "xnet-yoimitsu",
+	name: "xornet-yoimitsu",
 	os_name: "debian",
 	status: MachineStatus.Desync,
 	network: DUMMY_NETWORK_SWITCH,
-
 },
 {
 	hardware_uuid: "4",
-	name: "xnet-kannata",
+	name: "xornet-kannata",
 	os_name: "debian",
 	status: MachineStatus.Offline,
 	network: DUMMY_NETWORK_SWITCH_OFFLINE,
 },
 {
 	hardware_uuid: "5",
-	name: "xnet-tokyo",
+	name: "xornet-tokyo",
 	os_name: "alpine",
 	status: MachineStatus.Offline,
 	network: DUMMY_NETWORK_SWITCH_OFFLINE,
