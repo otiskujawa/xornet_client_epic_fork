@@ -22,13 +22,13 @@
                   <activity-status :status="machine.status" />
                 </machine-stat>
               </th>
-              <th v-if="columns.status && !isViewingMachine">
-                <machine-state :status="machine.status" />
-              </th>
               <th v-if="columns.os_name && !isViewingMachine">
                 <machine-stat :value="machine.os_name">
                   <i-fluency-name />
                 </machine-stat>
+              </th>
+              <th v-if="columns.status && !isViewingMachine">
+                <machine-state :status="machine.status" />
               </th>
               <th v-if="columns.cau && !isViewingMachine">
                 <machine-stat :value="machine.cau?.toFixed()" suffix="%">
