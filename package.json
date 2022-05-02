@@ -2,7 +2,7 @@
   "name": "xornet",
   "private": true,
   "engines": {
-    "node": ">=v17.3",
+    "node": ">=18.0.0",
     "npm": ">=8.1"
   },
   "description": "Xornet is a management dashboard for people to easily view & control their servers from anywhere in the world!",
