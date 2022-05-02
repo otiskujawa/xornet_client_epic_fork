@@ -120,7 +120,9 @@
     </template>
   </option-field>
 
-  <p>Window</p>
+  <p v-if="isElectron()">
+    Window
+  </p>
   <option-field v-if="isElectron()" description="Adjust the window's opacity" label="Background Opacity">
     <div class="flex gap-2 items-center">
       <base-range-input v-model="state.settings.general.opacity" min="0" max="100" step="1" />
