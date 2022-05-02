@@ -7,7 +7,34 @@
     <base-dropdown v-model="state.settings.general.theme" stay-open :options="['dark', 'nord', 'opera', 'galaxy']" />
   </option-field>
 
-  <option-field new-feature label="Dense machine list" description="Squishes the vertical spacing between each machine">
+  <option-field new-feature label="Label Scaling" description="Change how big the labels are">
+    <input v-model="state.settings.general.label_scale" type="range" step="1" min="0" max="2">
+
+    <template #example>
+      <div class="flex gap-2 p-2 py-8 justify-center bg-background-200 bg-opacity-50 rounded-8px">
+        <label-tag
+          :label="{
+            owner_uuid: '1',
+            name: 'example-label',
+            color: '#ff00b6',
+            icon: 'computer',
+            description: 'This is an example label'
+          } as Label"
+        />
+        <label-tag
+          :label="{
+            owner_uuid: '1',
+            name: 'example-label',
+            color: '#ff00b6',
+            icon: 'computer',
+            description: 'This is an example label'
+          } as Label"
+        />
+      </div>
+    </template>
+  </option-field>
+
+  <option-field label="Dense machine list" description="Squishes the vertical spacing between each machine">
     <base-switch v-model="state.settings.general.compact_columns" />
 
     <template #example>
@@ -118,6 +145,8 @@ import ActivityStatus from "/@/components/ActivityStatus.vue";
 import DistroIcon from "/@/components/shared/DistroIcon.vue";
 import MachineState from "/@/components/MachineState.vue";
 import NetworkSwitch from "/@/components/NetworkSwitch.vue";
+import LabelTag from "/@/components/tags/LabelTag.vue";
+import { Label } from "/@/types/api/label";
 const state = useState();
 
 const DUMMY_INTERFACE = {

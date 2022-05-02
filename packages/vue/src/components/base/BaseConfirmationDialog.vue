@@ -14,7 +14,7 @@
       </div>
     </div>
   </base-dialog>
-  <div @click="shift ? $emit('confirm') : showConfirmDialog = true">
+  <div v-if="visible" @click="shift ? $emit('confirm') : showConfirmDialog = true">
     <slot />
   </div>
 </template>
@@ -25,6 +25,6 @@ import BaseButton from "/@/components/base/BaseButton.vue";
 import BaseDialog from "/@/components/base/BaseDialog.vue";
 const shift = useKeyModifier("Shift");
 const showConfirmDialog = ref(false);
-defineProps<{confirmationText: string}>();
+defineProps<{confirmationText: string; visible?: boolean}>();
 defineEmits(["confirm", "cancel"]);
 </script>

@@ -50,6 +50,7 @@
         <option-field minimal label="Compact">
           <base-switch v-model=" state.settings.general.compact_columns" />
         </option-field>
+        <input v-model="state.settings.general.label_scale" class="no-drag" type="range" step="1" min="0" max="2">
       </div>
 
       <base-dialog v-model="showTokenGenerator" unsized>

@@ -16,6 +16,7 @@ export class SettingsState {
 		opacity: 100,
 		sound_volume: 100,
 		theme: "dark",
+		label_scale: 1,
 		minimum_blink_speed: 0.01,
 		enable_bloom: true,
 		rounded_network_interfaces: false,

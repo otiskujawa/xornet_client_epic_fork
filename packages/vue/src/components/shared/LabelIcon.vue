@@ -75,7 +75,7 @@ defineProps<{ icon: string }>();
 .labelIcon {
 @apply flex items-center justify-center;
   & > svg {
-    @apply h-4 w-4;
+    @apply h-full w-full;
   }
 }
 </style>
