@@ -22,7 +22,7 @@
         </base-button>
       </base-confirmation-dialog>
     </div>
-    <mini-profile :user="state.users.get(machine.owner_uuid)">
+    <mini-profile v-if="state.users.get(machine.owner_uuid)" :user="state.users.get(machine.owner_uuid)">
       <machine-user :user="state.users.get(machine.owner_uuid)" />
     </mini-profile>
   </div>

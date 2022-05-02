@@ -137,7 +137,7 @@
                   <i-fluency-upgrade />
                 </machine-stat>
               </th>
-              <mini-profile :user="machine.owner">
+              <mini-profile v-if="machine.owner" :user="machine.owner">
                 <th v-if="columns.owner && !isViewingMachine" class="hover:underline cursor-pointer" @click.stop>
                   <router-link :to="{name: 'profile', params: { uuid: machine.owner_uuid }}" class="flex items-center gap-3 max-w-32">
                     <avatar :url="machine.owner?.avatar" :size="4" />
@@ -197,8 +197,7 @@ const machines = computed(() => state.machines.getAll()
 		let { status } = machine;
 
 		// TODO: move this into a method of machine when you'll refactor the state
-		if (machine.last_heartbeat < Date.now() - 5000) status = MachineStatus.HeartbeatMissed;
-		else if (machine.last_heartbeat < Date.now() - 1000) status = MachineStatus.Desync;
+		if (machine.last_heartbeat < Date.now() - 1000) status = MachineStatus.Desync;
 		else if (status == null) status = MachineStatus.Offline;
 
 		return ({
@@ -213,7 +212,7 @@ const machines = computed(() => state.machines.getAll()
 	})
 // This is for the filter input so user's can quickly search through machines
 	.filter((machine) => {
-		return 		machine.name.toLowerCase().includes(state.machines.filterText.value.toLowerCase())
+		return machine.name?.toLowerCase().includes(state.machines.filterText.value.toLowerCase())
     || state.users.get(machine.owner_uuid)?.username.toLowerCase().includes(state.machines.filterText.value.toLowerCase());
 	})
 	.filter(machine => state.settings.general.show_owned ? machine.owner_uuid === state.users.getMe().uuid : machine)

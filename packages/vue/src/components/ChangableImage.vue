@@ -23,7 +23,7 @@
 import { computed, ref } from "vue";
 import BaseDialog from "./base/BaseDialog.vue";
 import BaseInput from "./base/BaseInput.vue";
-const props = defineProps<{inputPlaceholder?: string; name: string; verticalVignette?: boolean; vignette?: boolean; imageUrl: string | undefined; isEditable?: boolean}>();
+const props = defineProps<{inputPlaceholder?: string; name: string; verticalVignette?: boolean; vignette?: boolean; imageUrl?: string; isEditable?: boolean}>();
 const emit = defineEmits(["update"]);
 const newImage = ref("");
 const isShowingDialogue = ref(false);

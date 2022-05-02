@@ -1,11 +1,10 @@
 import type { uuid } from "/@/types/api/index";
 
-export const enum MachineStatus {
+export enum MachineStatus {
 	Offline,
-	HeartbeatMissed,
-	Desync,
 	Online,
-	Updating
+	Updating,
+	Desync
 }
 
 export interface IMachine extends IMachineDynamicData, IMachineStaticData {
