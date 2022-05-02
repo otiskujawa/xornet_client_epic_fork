@@ -15,6 +15,7 @@ export interface BackendToClientEvents {
 	[key: string | symbol]: unknown
 	"dynamic-data": IMachineDynamicData & { uuid: uuid }
 	"machine-added": IDatabaseMachine
+	"machine-disconnected": IDatabaseMachine
 }
 
 export class API {
@@ -71,6 +72,7 @@ export class API {
 		});
 
 		emitter.on("machine-added", machine => this.state?.machines.set(machine));
+		emitter.on("machine-disconnected", machine => this.state?.machines.set(machine));
 
 		emitter.on("heartbeat", () => this.lastHeartbeat = Date.now());
 	}
