@@ -50,7 +50,6 @@
         <option-field minimal label="Compact">
           <base-switch v-model=" state.settings.general.compact_columns" />
         </option-field>
-
         <option-field minimal label="Label Scaling">
           <input v-model="state.settings.general.label_scale" class="no-drag" type="range" step="1" min="0" max="2">
         </option-field>

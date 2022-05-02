@@ -11,7 +11,14 @@
       >
         {{ text }}
       </p>
-      <p class="w-full opacity-75 text-xs font-normal mr-2">
+      <p
+        class="w-full opacity-75 font-normal mr-2"
+        :class="[
+          state.settings.general.label_scale == 0 && 'text-9px',
+          state.settings.general.label_scale == 1 && 'text-xs',
+          state.settings.general.label_scale == 2 && 'text-sm',
+        ]"
+      >
         {{ description }}
       </p>
     </div>
