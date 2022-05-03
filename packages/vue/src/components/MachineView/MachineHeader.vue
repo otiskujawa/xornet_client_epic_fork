@@ -16,16 +16,14 @@
           {{ machine.uuid }}
         </p>
       </router-link>
-
-      <div class="flex gap-2 items-center">
-        <label-tag v-for="label of machine.labels" :key="state.labels.get(label)?.uuid" :label="state.labels.get(label)" />
-      </div>
-
-      <base-confirmation-dialog v-if="machine.owner_uuid === state.users.getMe().uuid" confirmation-text="Are you sure you want to delete this machine?" @confirm="state.machines.deleteMachine(machine.uuid)">
+      <base-confirmation-dialog confirmation-text="Are you sure you want to delete this machine?" @confirm="state.machines.deleteMachine(machine.uuid)">
         <base-button text="Delete">
           <i-fluency-trash />
         </base-button>
       </base-confirmation-dialog>
+      <div class="flex gap-2 items-center">
+        <label-tag v-for="label of machine.labels" :key="state.labels.get(label)?.uuid" :label="state.labels.get(label)" />
+      </div>
     </div>
     <mini-profile v-if="state.users.get(machine.owner_uuid)" :user="state.users.get(machine.owner_uuid)">
       <machine-user :user="state.users.get(machine.owner_uuid)" />

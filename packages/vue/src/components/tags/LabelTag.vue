@@ -1,6 +1,6 @@
 <template>
   <tag v-if="label" :text="label.name" :color="label.color" class="whitespace-nowrap" :description="noDescription ? undefined : label.description " @mouseenter="isShowingDelete = true" @mouseleave="isShowingDelete = false">
-    <base-confirmation-dialog :visible="isShowingDelete && !isDeleting" confirmation-text="Are you sure you want to delete this label?" @confirm="isDeleting = true; state.labels.delete(label).then(() => isDeleting = false)">
+    <base-confirmation-dialog :invisible="!isShowingDelete && !isDeleting" confirmation-text="Are you sure you want to delete this label?" @confirm="isDeleting = true; state.labels.delete(label).then(() => isDeleting = false)">
       <div
         class="flex items-center justify-center"
         :class="[
