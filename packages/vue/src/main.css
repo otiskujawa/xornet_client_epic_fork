@@ -3,7 +3,7 @@
   --color-primary-400: 131,69,255;          /* #8345ff */
   --color-primary-500: 86,3,252;           /* #5603fc */
 
-  --color-background-200: 1,4,9;             /* #010409 */
+  --color-background-200: 11,14,19;          /* #0b0e13 */
   --color-background-300: 15,19,25;          /* #0F1319 */
   --color-background-400: 24,29,37;          /* #181D25 */
   --color-background-500: 35,41,49;          /* #232931 */
@@ -76,10 +76,10 @@
   --color-docker: 13,198,255;           /* #0dc6ff */
   --color-firewall: 235,79,52;           /* #eb4f34 */
 
-  --color-100mbps: 247,37,133;                /* #f72585 */
-  --color-1000mbps: 114,9,183;                /* #7209b7 */
-  --color-10000mbps: 67,97,238;               /* #4361ee */
-  --color-100000mbps: 76,201,240;             /* #4cc9f0 */
+  --color-100mbps:   242,99,165;                /* #f263a5 */
+  --color-1000mbps:   67,97,238;                 /* #4361ee */
+  --color-10000mbps:  76,201,240;                /* #4cc9f0 */
+  --color-100000mbps: 187,255,255;            /* #bbffff*/ 
 }
 
 .theme-galaxy {

@@ -16,19 +16,21 @@ export class SettingsState {
 		opacity: 100,
 		sound_volume: 100,
 		theme: "dark",
+		label_scale: 1,
 		minimum_blink_speed: 0.01,
 		enable_bloom: true,
 		rounded_network_interfaces: false,
+		compact_columns: false,
+		online_only: true,
 		filled_network_interfaces: false,
 		use_single_color_for_network_interfaces: false,
 		use_new_blink_algorithm: true,
-		enable_totals: false,
 		enable_sound_effects: false,
 		show_owned: false,
 		fixed_column_width: false,
 	}).value;
 
-	public columns = useLocalStorage("columnsrwnsjddinf", {
+	public columns = useLocalStorage("columnsuisnduisdnf", {
 		hostname: true,
 		os_name: false,
 		status: true,
@@ -44,6 +46,7 @@ export class SettingsState {
 		tu: true,
 		tvd: false,
 		tvu: false,
+		labels: true,
 		temperature: false,
 		country: false,
 		public_ip: false,

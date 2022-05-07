@@ -1,7 +1,6 @@
 <template>
   <div class="flex w-full" style="height: calc(100% - 42px);">
     <div class="flexcol h-full min-w-64 overflow-hidden" :class="isViewingMachine ? ' w-min' : 'w-full'">
-      <machine-list-totals v-if="state.settings.general.enable_totals" :machines="machines" />
       <div v-if="machines.length !== 0" class="min-h-full  overflow-scroll ">
         <base-table>
           <template v-if="!isViewingMachine" #headers>
@@ -13,21 +12,23 @@
             <tr
               v-for="machine of machines"
               :key="machine.hardware_uuid"
-              :class="router.currentRoute.value.params.uuid === machine.uuid && 'active'"
+              :class="[
+                router.currentRoute.value.params.uuid === machine.uuid && 'active',
+              ]"
             >
               <th v-if="columns.hostname" class="cursor-pointer hover:underline" @click="router.push({name: 'machine', params: {uuid: machine.uuid}})">
                 <machine-stat :value="machine.name" dont-fade>
                   <distro-icon class="text-sm" :name="machine.os_name?.replace(/'/g, '')" />
-                  <activity-status :machine="machine" />
+                  <activity-status :status="machine.status" />
                 </machine-stat>
-              </th>
-              <th v-if="columns.status && !isViewingMachine">
-                <machine-state :machine="machine" />
               </th>
               <th v-if="columns.os_name && !isViewingMachine">
                 <machine-stat :value="machine.os_name">
                   <i-fluency-name />
                 </machine-stat>
+              </th>
+              <th v-if="columns.status && !isViewingMachine">
+                <machine-state :status="machine.status" />
               </th>
               <th v-if="columns.cau && !isViewingMachine">
                 <machine-stat :value="machine.cau?.toFixed()" suffix="%">
@@ -95,6 +96,11 @@
                   <i-fluency-up />
                 </machine-stat>
               </th>
+              <th v-if="columns.labels && !isViewingMachine">
+                <div class="flex gap-2 flex-wrap min-w-full max-w-64">
+                  <label-tag v-for="uuid of machine.labels" :key="uuid" no-description :label="state.labels.get(uuid)" />
+                </div>
+              </th>
               <th v-if="columns.temperature && !isViewingMachine">
                 <machine-stat :value="machine.temps?.[0].value?.toFixed(2)" suffix="°C">
                   <i-fluency-temperature />
@@ -131,14 +137,16 @@
                   <i-fluency-upgrade />
                 </machine-stat>
               </th>
-              <th v-if="columns.owner && !isViewingMachine" class="hover:underline cursor-pointer" @click.stop>
-                <router-link :to="{name: 'profile', params: { uuid: machine.owner_uuid }}" class="flex items-center gap-3 max-w-32">
-                  <avatar :url="machine.owner?.avatar" class="w-16px min-w-16px" />
-                  <p class="overflow-ellipsis overflow-hidden">
-                    {{ machine.owner?.username }}
-                  </p>
-                </router-link>
-              </th>
+              <mini-profile v-if="machine.owner" :user="machine.owner">
+                <th v-if="columns.owner && !isViewingMachine" class="hover:underline cursor-pointer" @click.stop>
+                  <router-link :to="{name: 'profile', params: { uuid: machine.owner_uuid }}" class="flex items-center gap-3 max-w-32">
+                    <avatar :url="machine.owner?.avatar" :size="4" />
+                    <p class="overflow-ellipsis overflow-hidden">
+                      {{ machine.owner?.username }}
+                    </p>
+                  </router-link>
+                </th>
+              </mini-profile>
             </tr>
           </template>
         </base-table>
@@ -153,12 +161,13 @@
 </template>
 
 <script setup lang="ts">
+/* eslint-disable eqeqeq */
+
 import { onKeyStroke, useLocalStorage } from "@vueuse/core";
 import { computed } from "vue";
 import { useRouter } from "vue-router";
 import { detectBrowser, formatEpoch, isDockerInterface, isFirewallInterface } from "../services/logic";
 import BaseLoadingSpinner from "./base/BaseLoadingSpinner.vue";
-import MachineListTotals from "./MachineListTotals.vue";
 import DistroIcon from "./shared/DistroIcon.vue";
 import { useState } from "/@/app";
 import ActivityStatus from "/@/components/ActivityStatus.vue";
@@ -170,6 +179,9 @@ import Avatar from "/@/components/user/Avatar.vue";
 import { MachineStatus } from "/@/types/api/machine";
 import Flag from "./Flag.vue";
 import MachineState from "./MachineState.vue";
+import LabelTag from "./tags/LabelTag.vue";
+import MiniProfile from "./MiniProfile.vue";
+
 const state = useState();
 const router = useRouter();
 const columns = computed(() => state.settings.columns);
@@ -185,8 +197,8 @@ const machines = computed(() => state.machines.getAll()
 		let { status } = machine;
 
 		// TODO: move this into a method of machine when you'll refactor the state
-		if (machine.last_heartbeat < Date.now() - 5000) status = MachineStatus.HeartbeatMissed;
-		else if (machine.last_heartbeat < Date.now() - 1000) status = MachineStatus.Desync;
+		if (machine.last_heartbeat < Date.now() - 1000) status = MachineStatus.Desync;
+		else if (status == null) status = MachineStatus.Offline;
 
 		return ({
 			...machine,
@@ -200,7 +212,7 @@ const machines = computed(() => state.machines.getAll()
 	})
 // This is for the filter input so user's can quickly search through machines
 	.filter((machine) => {
-		return 		machine.name.toLowerCase().includes(state.machines.filterText.value.toLowerCase())
+		return machine.name?.toLowerCase().includes(state.machines.filterText.value.toLowerCase())
     || state.users.get(machine.owner_uuid)?.username.toLowerCase().includes(state.machines.filterText.value.toLowerCase());
 	})
 	.filter(machine => state.settings.general.show_owned ? machine.owner_uuid === state.users.getMe().uuid : machine)
@@ -243,6 +255,7 @@ const machines = computed(() => state.machines.getAll()
 			case "tvu":
 			case "temperature":
 			case "public_ip":
+			case "labels":
 			case "reporter_version":
 			case "os_name":
 			case "host_uptime":
@@ -258,7 +271,8 @@ const machines = computed(() => state.machines.getAll()
 		// For some reason this ends up being reversed only
 		// in firefox so this will do as a temp fix for now
 		return browser === "firefox" ? comparison ? 1 : -1 : comparison ? -1 : 1;
-	}).sort((a, b) => (a.status || MachineStatus.Unknown) < (b.status || MachineStatus.Unknown) ? 1 : -1),
+	}).sort(machine => ((machine.status != MachineStatus.Offline) ? -1 : 1))
+	.filter(machine => state.settings.general.online_only ? (machine.status != MachineStatus.Offline) : machine),
 
 );
 
@@ -293,11 +307,11 @@ onKeyStroke("ArrowUp", (e) => {
 tr {
   &.active {
     th {
-      @apply bg-primary-300 text-black ;
+      @apply bg-primary-300 text-black;
     }
   }
   th {
-    @apply text-text text-opacity-50;
+    @apply text-text text-opacity-50 ;
   }
 }
 

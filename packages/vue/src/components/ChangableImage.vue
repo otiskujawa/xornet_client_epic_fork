@@ -23,18 +23,27 @@
 import { computed, ref } from "vue";
 import BaseDialog from "./base/BaseDialog.vue";
 import BaseInput from "./base/BaseInput.vue";
-const props = defineProps<{inputPlaceholder?: string; name: string; vignette?: boolean; imageUrl: string | undefined; isEditable?: boolean}>();
+const props = defineProps<{inputPlaceholder?: string; name: string; verticalVignette?: boolean; vignette?: boolean; imageUrl?: string; isEditable?: boolean}>();
 const emit = defineEmits(["update"]);
 const newImage = ref("");
 const isShowingDialogue = ref(false);
-const bannerStyle = computed(() => props.vignette
-	? `
-  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.25) 100%),
-  url(${newImage.value || props.imageUrl || ""});
-`
-	: `
-  background-image: url(${newImage.value || props.imageUrl || ""});
-`);
+const bannerStyle = computed(() => {
+	if (props.vignette) {
+		return `
+      background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.25) 100%),
+      url(${newImage.value || props.imageUrl || ""});
+    `;
+	}
+	else if (props.verticalVignette) {
+		return `
+      background-image: linear-gradient(180deg, rgba(var(--color-background-200), 0) 0%, rgba(var(--color-background-200), 1) 100%),
+      url(${newImage.value || props.imageUrl || ""});
+    `;
+	}
+	else {
+		return `background-image: url(${newImage.value || props.imageUrl || ""});`;
+	}
+});
 </script>
 
 <style lang="postcss">

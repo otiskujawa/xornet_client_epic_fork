@@ -72,6 +72,7 @@ export function nodeEmit(name: string, data?: any) {
 
 const OPERATING_SYSTEMS = [
 	"arch",
+	"alpine",
 	"debian",
 	"freebsd",
 	"fedora",

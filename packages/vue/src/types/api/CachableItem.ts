@@ -21,7 +21,7 @@ export class CachableItemManager<T extends BaseDatabaseItem, D extends Object> e
 	private requestQueue: Record<string, Promise<T>> = {};
 
 	constructor(private api: API, private Constructor: { new(data: T, api: API): T }, private itemEndpoint: string) {
-		super({ items: {} });
+		super({ items: {} }, itemEndpoint);
 	}
 
 	/**
@@ -90,6 +90,7 @@ export class CachableItemManager<T extends BaseDatabaseItem, D extends Object> e
    * @param items The items to set
    */
 	public setAll(items: T[]) {
+		this.state.items = {};
 		items.forEach(item => this.set(item));
 	}
 }

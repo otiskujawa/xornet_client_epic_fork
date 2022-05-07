@@ -1,8 +1,8 @@
 <template>
-  <div class="w-full h-full overflow-y-scroll items-center flexcol bg-black bg-opacity-25">
-    <div class="flexcol gap-12 pt-24 w-full items-center ">
+  <div class="w-full h-full overflow-y-scroll items-center flexcol bg-background-200">
+    <div class="flexcol gap-12 w-full items-center ">
       <user-flare :user="me" />
-      <div class="flex gap-8 px-8 w-full max-w-256">
+      <div class="flex gap-8 transform -translate-y-16 px-8 w-full max-h-full max-w-256">
         <ul class="w-full max-w-48 h-full whitespace-nowrap gap-2 rounded-8px ">
           <settings-category-button to="account" name="Account">
             <i-fluency-user />
@@ -18,9 +18,6 @@
           </settings-category-button>
           <settings-category-button v-if="isElectron()" to="integrations" name="Integrations">
             <i-fluency-settings />
-          </settings-category-button>
-          <settings-category-button to="machinelist" name="Machine List">
-            <i-fluency-tasks />
           </settings-category-button>
         </ul>
         <div class="optionList mb-32 flexcol">
@@ -51,7 +48,7 @@ const me = computed(() => state.users.getMe());
 }
 
 .exampleNic {
-  @apply bg-background-400 w-full whitespace-nowrap font-light gap-4 items-center justify-center overflow-hidden p-1/40 rounded-8px;
+  @apply bg-background-200 bg-opacity-50 w-full whitespace-nowrap font-light gap-4 items-center justify-center overflow-hidden p-1/40 rounded-8px;
   & > p {
     @apply text-white hidden lg:flex text-center text-xs text-opacity-50;
   }

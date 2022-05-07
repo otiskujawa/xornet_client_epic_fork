@@ -1,21 +1,21 @@
 <template>
   <div
-    v-if="machine.status === MachineStatus.Online"
+    v-if="status === MachineStatus.Online"
     :class="state.settings.general.enable_bloom && 'bloom'"
     class="bg-active text-active"
   />
   <div
-    v-else-if="machine.status === MachineStatus.Desync"
+    v-else-if="status === MachineStatus.Desync"
     :class="state.settings.general.enable_bloom && 'bloom'"
     class="text-green-400 bg-green-400"
   />
   <div
-    v-else-if="machine.status === MachineStatus.Updating"
+    v-else-if="status === MachineStatus.Updating"
     :class="state.settings.general.enable_bloom && 'bloom'"
     class="text-cyan-500 bg-cyan-500"
   />
   <div
-    v-else-if="machine.status === MachineStatus.HeartbeatMissed"
+    v-else-if="status === MachineStatus.HeartbeatMissed"
     :class="state.settings.general.enable_bloom && 'bloom'"
     class="text-red-500 bg-red-500"
   />
@@ -30,7 +30,7 @@ import { useState } from "/@/app";
 import type { IMachine } from "/@/types/api/machine";
 import { MachineStatus } from "/@/types/api/machine";
 const state = useState();
-defineProps<{machine: IMachine}>();
+defineProps<{status: IMachine["status"]}>();
 
 </script>
 
