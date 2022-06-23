@@ -20,7 +20,7 @@ You can just download installer from release page
 
 ##### 1. Install git and npm
 ##### 2. Clone source code
-For example: `git clone https://github.com/xornet-cloud/Client/`
+`git clone https://github.com/xornet-cloud/Client/`
 ##### 3. Go to new directory
 `cd Client`
 ##### 4. Install needed packages
@@ -33,4 +33,4 @@ For example: `git clone https://github.com/xornet-cloud/Client/`
 
 `npm run build` compile only vue (for web version)
 
-If you encounter a problem with the installation, ask dev or create an issue
+### If you will encounter a problem with the installation, ask dev or create an issue
