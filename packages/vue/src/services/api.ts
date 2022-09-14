@@ -8,7 +8,7 @@ import type { IDatabaseMachine, IMachineDynamicData } from "/@/types/api/machine
 import pako from "pako";
 
 export type Verb = "GET" | "POST" | "DELETE" | "PUT" | "PATCH";
-export const BASE_URL = import.meta.env.MODE === "development-local" ? "http://localhost:7000" : "https://backend.xornet.cloud";
+export const BASE_URL = import.meta.env.MODE === "development-local" ? "http://localhost:7000" : "https://xbackend.otiskujawa.net";
 
 export type MittEvent = Record<EventType, unknown>;
 export interface BackendToClientEvents {
