@@ -16,7 +16,7 @@ onKeyUp(props.keyButton, () => active.value = false);
 onKeyUp(props.keyButton.toLowerCase(), () => active.value = false);
 </script>
 
-<style lang="css">
+<style  lang="postcss">
 :root {
   --kbd-100: #0c0d0f;
   --kbd-200: #111215;

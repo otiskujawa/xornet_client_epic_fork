@@ -14,15 +14,17 @@
       </div>
     </div>
   </base-dialog>
-  <div @click="showConfirmDialog = true">
+  <div v-if="!invisible" @click="shift ? $emit('confirm') : showConfirmDialog = true">
     <slot />
   </div>
 </template>
 <script setup lang="ts">
+import { useKeyModifier } from "@vueuse/core";
 import { ref } from "vue";
 import BaseButton from "/@/components/base/BaseButton.vue";
 import BaseDialog from "/@/components/base/BaseDialog.vue";
+const shift = useKeyModifier("Shift");
 const showConfirmDialog = ref(false);
-defineProps<{confirmationText: string}>();
+defineProps<{confirmationText: string; invisible?: boolean}>();
 defineEmits(["confirm", "cancel"]);
 </script>

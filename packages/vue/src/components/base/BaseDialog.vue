@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onKeyStroke, useVModel } from "@vueuse/core";
+import { onKeyStroke, useKeyModifier, useVModel } from "@vueuse/core";
 import { useSoundManager } from "/@/app";
 import PopInTransition from "/@/components/shared/transitions/PopInTransition.vue";
 const soundManager = useSoundManager();
@@ -13,6 +13,7 @@ const close = () => {
 	open.value = false;
 	open.value && soundManager.playEscape();
 };
+
 onKeyStroke("Escape", () => close());
 </script>
 

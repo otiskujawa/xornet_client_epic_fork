@@ -17,8 +17,8 @@
   </teleport>
 </template>
 <script setup lang="ts">
-import { nodeEmit } from "/@/services/logic";
 import { useState } from "/@/app";
+import { nodeEmit } from "/@/services/logic";
 
 const state = useState();
 const onCloseClick = () => nodeEmit("close");

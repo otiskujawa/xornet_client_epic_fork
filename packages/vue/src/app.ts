@@ -3,7 +3,7 @@
 // conflicting circular dependancies of modules requiring each other to be
 // initialized before themselves which is a massive code structure issue
 
-import { DiscordManager } from "./services/DiscordManager";
+import { Discord } from "./services/Discord";
 import { API } from "/@/services/api";
 import { ShortcutManager } from "/@/services/ShortcutManager";
 import { SoundManager } from "/@/services/SoundManager";
@@ -20,7 +20,7 @@ export class Xornet {
 	public state: AppState = new AppState(this.api);
 	public shortcutManager: ShortcutManager = new ShortcutManager(this.state.window);
 	public soundManager: SoundManager = new SoundManager(this.state);
-	public discordManager: DiscordManager = new DiscordManager(this.state);
+	public Discord: Discord = new Discord(this.state);
 
 	constructor() {
 		this.initDashboard();
@@ -28,7 +28,6 @@ export class Xornet {
 
 	public initDashboard() {
 		this.state.users.fetchMe();
-		this.state.settings.client.enable_autosync && this.state.syncSettings();
 		this.state.machines.fetchMachines().then(() => this.api.createWebsocketConnection(this.state));
 	}
 }
@@ -39,7 +38,7 @@ const xornet = new Xornet();
 // Alias function for scope bounds
 export const useState = () => xornet.state;
 export const useSoundManager = () => xornet.soundManager;
-export const useDiscordManager = () => xornet.discordManager;
+export const useDiscord = () => xornet.Discord;
 
 // Export the middle-end as a default export
 export default xornet;

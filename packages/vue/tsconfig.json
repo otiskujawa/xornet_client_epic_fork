@@ -5,8 +5,10 @@
     "paths": {
       "/@/*": ["./src/*"]
     },
+    "jsx": "preserve",
     "lib": ["ESNext", "dom", "dom.iterable"],
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true
   },
 
   "include": [

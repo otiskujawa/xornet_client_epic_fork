@@ -1,5 +1,5 @@
 <template>
-  <base-popover open-on-hover arrow :placement="placement" class="tooltip">
+  <base-popover open-on-hover :placement="placement" class="tooltip" :class="borderless ? '' : 'bg-tooltip-background p-2' ">
     <slot />
     <template #content>
       {{ text }}
@@ -14,6 +14,7 @@ import BasePopover from "/@/components/base/BasePopover.vue";
 defineProps<{
 	text?: string
 	placement?: BasePlacement
+	borderless?: boolean
 }>();
 </script>
 
@@ -22,10 +23,7 @@ defineProps<{
   @apply z-2;
 }
 .tooltip.popover {
-  @apply p-2 bg-tooltip-background text-tooltip-text shadow-xl;
+  @apply text-tooltip-text shadow-xl;
 }
 
-.tooltip .arrow {
-  @apply absolute w-2 h-2 rotate-45 transform bg-tooltip-background;
-}
 </style>

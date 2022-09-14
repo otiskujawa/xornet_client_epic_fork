@@ -21,7 +21,6 @@
     <i-fluency-ping v-if="icon === 'ping'" />
     <i-fluency-pirate-bay v-if="icon === 'pirate-bay'" />
     <i-fluency-plus v-if="icon === 'plus'" />
-    <i-fluency-synchronize v-if="icon === 'synchronize'" />
     <i-fluency-palette v-if="icon === 'palette'" />
     <i-fluency-processes v-if="icon === 'processes'" />
     <i-fluency-processor v-if="icon === 'processor'" />

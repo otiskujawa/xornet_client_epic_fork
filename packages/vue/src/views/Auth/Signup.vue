@@ -23,11 +23,11 @@
 <script setup lang="ts">
 import { computed, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
+import xornet, { useState } from "/@/app";
 import BaseButton from "/@/components/base/BaseButton.vue";
 import BaseForm from "/@/components/base/BaseForm.vue";
 import BaseInput from "/@/components/base/BaseInput.vue";
 import BaseLink from "/@/components/base/BaseLink.vue";
-import xornet, { useState } from "/@/app";
 const router = useRouter();
 const state = useState();
 const errorText = ref("");
@@ -49,7 +49,3 @@ const onSubmit = async() => state.users.signup(form).then(() => {
 });
 
 </script>
-
-<style scoped lang="postcss">
-
-</style>

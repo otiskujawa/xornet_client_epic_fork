@@ -1,8 +1,7 @@
 <template>
   <base-popover class="text-xs no-drag" :open="open">
-    <base-button :transparent="transparent" @click="open = !open">
+    <base-button :text=" text ? text : value" :borderless="borderless" @click="open = !open;">
       <slot name="icon" />
-      {{ text ? text : value }}
       <i-fluency-down
         class="transform transition duration-100"
         :class="[open && 'rotate-180']"
@@ -28,10 +27,10 @@
   <div v-if="open" class="fullscreen" @click="open = false" />
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
 import { onKeyStroke, useVModel } from "@vueuse/core";
-import BasePopover from "/@/components/base/BasePopover.vue";
+import { ref } from "vue";
 import BaseButton from "/@/components/base/BaseButton.vue";
+import BasePopover from "/@/components/base/BasePopover.vue";
 const open = ref(false);
 
 onKeyStroke("Escape", () => (open.value = false));
@@ -40,7 +39,7 @@ const props = defineProps<{
 	options?: any[]
 	text?: string
 	stayOpen?: boolean
-	transparent?: boolean
+	borderless?: boolean
 }>();
 const emit = defineEmits(["update:modelValue"]);
 const value = useVModel(props, "modelValue", emit);

@@ -8,43 +8,53 @@ import xornet from "/@/app";
  */
 export class SettingsState {
 	public client = useLocalStorage("clientOnlySettings", {
-		enable_autosync: false,
 		enable_rich_presence: true,
 	}).value;
 
 	// These are snake cased because they are used to index the JSONs we get from the backend as well
 	public general = useLocalStorage("generalSettings", {
 		opacity: 100,
+		sound_volume: 100,
 		theme: "dark",
-		enable_bloom: false,
-		enable_totals: false,
-		enable_rounded_corners: true,
+		label_scale: 1,
+		minimum_blink_speed: 0.01,
+		enable_bloom: true,
+		rounded_network_interfaces: false,
+		compact_columns: false,
+		online_only: true,
+		filled_network_interfaces: false,
+		use_single_color_for_network_interfaces: false,
+		use_new_blink_algorithm: true,
 		enable_sound_effects: false,
-		enable_status_bar: false,
-		use_single_color_for_switch_lights: false,
-		show_offline_machines: true,
+		show_owned: false,
 		fixed_column_width: false,
 	}).value;
 
-	public columns = useLocalStorage("columns", {
+	public columns = useLocalStorage("columnsuisnduisdnf", {
 		hostname: true,
+		os_name: false,
+		status: true,
 		cau: true,
 		cas: false,
 		ram_usage: true,
 		gpu_usage: false,
 		gpu_power_usage: false,
 		network_switch: true,
+		docker_switch: true,
+		firewall_switch: false,
 		td: true,
 		tu: true,
+		tvd: false,
+		tvu: false,
+		labels: true,
 		temperature: false,
-		country: true,
+		country: false,
 		public_ip: false,
 		process_count: false,
 		host_uptime: false,
 		reporter_uptime: false,
-		reporter_version: true,
+		reporter_version: false,
 		owner: true,
-		action: true,
 	}, { deep: true }).value;
 
 	constructor() {
@@ -79,7 +89,7 @@ export class SettingsState {
 		);
 		watch(
 			() => this.client.enable_rich_presence,
-			(before, after) => after && xornet.discordManager.clearPresence(),
+			(before, after) => after && xornet.Discord.clearPresence(),
 		);
 	}
 

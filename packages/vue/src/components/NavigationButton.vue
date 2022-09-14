@@ -35,8 +35,8 @@
 
 <script setup lang="ts">
 import type { RouteLocationRaw } from "vue-router";
-import BaseKbd from "/@/components/base/BaseKbd.vue";
 import BaseTooltip from "./base/BaseTooltip.vue";
+import BaseKbd from "/@/components/base/BaseKbd.vue";
 
 defineProps<{
 	to?: RouteLocationRaw

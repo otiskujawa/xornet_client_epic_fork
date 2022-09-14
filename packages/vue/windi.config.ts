@@ -22,6 +22,8 @@ export default defineConfig({
 				"text": withOpacityValue("text"),
 				"caution": withOpacityValue("caution"),
 				"active": withOpacityValue("active"),
+				"docker": withOpacityValue("docker"),
+				"firewall": withOpacityValue("firewall"),
 				"100mbps": withOpacityValue("100mbps"),
 				"1000mbps": withOpacityValue("1000mbps"),
 				"10000mbps": withOpacityValue("10000mbps"),

@@ -7,11 +7,11 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useDiscordManager } from "/@/app";
+import { useDiscord } from "/@/app";
 import MachineList from "/@/components/MachineList.vue";
 import TopBar from "/@/components/TopBar.vue";
 onMounted(() => {
-	useDiscordManager().updatePresence({
+	useDiscord().updatePresence({
 		state: "Monitoring Machines",
 		largeImageKey: "main_logo",
 		largeImageText: "Xornet Cloud",

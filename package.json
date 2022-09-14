@@ -2,16 +2,17 @@
   "name": "xornet",
   "private": true,
   "engines": {
-    "node": ">=v17.3",
+    "node": ">=18.0.0",
     "npm": ">=8.1"
   },
   "description": "Xornet is a management dashboard for people to easily view & control their servers from anywhere in the world!",
   "author": {
-    "name": "Geoxor",
-    "url": "https://github.com/Geoxor"
+    "name": "Xornet Cloud",
+    "url": "https://github.com/xornet-cloud"
   },
   "main": "packages/electron/dist/index.cjs",
   "scripts": {
+    "postinstall": "npm i -g nodemon typescript ts-node",
     "build": "node scripts/build.js",
     "precompile": "cross-env MODE=production npm run build",
     "compile": "electron-builder build --config .electron-builder.config.js --dir --config.asar=false",
@@ -26,25 +27,25 @@
     "typecheck-vue": "vue-tsc --noEmit -p packages/vue/tsconfig.json",
     "typecheck": "npm run typecheck-electron && npm run typecheck-preload && npm run typecheck-vue",
     "pretypecheck-vue": "dts-cb -i packages/preload/src/**/*.ts -o packages/preload/exposedInMainWorld.d.ts",
-    "prettify": "eslint --fix \"**/*.{vue,ts,js}\"",
-    "prepare": "husky install"
+    "prettify": "eslint --fix \"**/*.{vue,ts,js}\""
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.14.0",
     "@types/discord-rpc": "^4.0.0",
     "@types/electron-devtools-installer": "2.2.0",
+    "@types/node-gzip": "^1.1.0",
+    "@types/pako": "^1.0.3",
     "@typescript-eslint/eslint-plugin": "5.7.0",
     "@typescript-eslint/parser": "^5.8.0",
     "@vitejs/plugin-vue": "2.0.1",
     "c8": "^7.10.0",
     "cross-env": "7.0.3",
     "dts-for-context-bridge": "0.7.0",
-    "electron": "16.0.5",
+    "electron": "^16.1.1",
     "electron-builder": "22.14.5",
     "electron-devtools-installer": "3.2.0",
     "eslint": "^7.12.1",
     "eslint-plugin-vue": "8.2.0",
-    "husky": "^7.0.4",
     "playwright": "1.17.1",
     "typescript": "4.5.4",
     "unplugin-icons": "^0.12.23",
@@ -59,9 +60,11 @@
     "@floating-ui/core": "^0.2.2",
     "@floating-ui/dom": "^0.1.8",
     "@vueuse/core": "^7.4.1",
+    "bloatware": "^1.0.0",
     "discord-rpc": "^4.0.1",
     "electron-updater": "4.6.5",
     "mitt": "^3.0.0",
+    "pako": "^2.0.4",
     "vite-plugin-pwa": "^0.11.12",
     "vue": "3.2.26",
     "vue-router": "4.0.12"

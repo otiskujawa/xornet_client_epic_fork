@@ -1,4 +1,5 @@
-import { ref } from "vue";
+import { useLocalStorage } from "@vueuse/core";
+import { useState } from "/@/app";
 import type { API } from "/@/services/api";
 import { State } from "/@/services/state/State";
 import type { uuid } from "/@/types/api";
@@ -13,12 +14,12 @@ export interface IMachinesState {
  * This keeps tracks of all the machines on the dashboard
  */
 export class MachinesState extends State<IMachinesState> {
-	public filterText = ref("");
+	public filterText = useLocalStorage("filterText", "");
 
 	public constructor(public api: API) {
 		super({
 			machines: {},
-		});
+		}, "machines");
 	}
 
 	public async generateToken() {
@@ -27,7 +28,7 @@ export class MachinesState extends State<IMachinesState> {
 	}
 
 	public async fetchMachines() {
-		this.setMachines(await this.api.request("GET", "/users/@me/machines"));
+		this.setAll(await this.api.request("GET", "/users/@me/machines"));
 	}
 
 	public async deleteMachine(uuid: uuid) {
@@ -39,14 +40,17 @@ export class MachinesState extends State<IMachinesState> {
 		return Object.values(this.state.machines).length;
 	}
 
-	public setMachines(machines: IDatabaseMachine[]) {
-		machines.forEach(machine => this.set(machine));
+	public setAll(machines: IDatabaseMachine[]) {
+		this.state.machines = {};
+		machines.forEach((machine) => {
+			this.set(machine);
+			useState().users.fetchUser(machine.owner_uuid);
+		});
 	}
 
 	public updateDynamicData(machineUuid: uuid, data: IMachineDynamicData) {
 		const target = this.get(machineUuid);
-		if (!target) return;
-		target && Object.assign(target, data);
+		target && Object.assign(target, { last_heartbeat: Date.now(), ...data });
 		target.status = MachineStatus.Online;
 	}
 
