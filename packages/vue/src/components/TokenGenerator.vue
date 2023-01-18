@@ -27,12 +27,12 @@
     <base-tooltip :text="copied ? 'Copied!' : 'Click to copy!'" placement="bottom">
       <div
         class="copyButton"
-        @click="copy('curl https://raw.githubusercontent.com/xornet-cloud/Reporter/main/scripts/install.sh | sudo bash')"
+        @click="copy('curl https://raw.githubusercontent.com/otiskujawa/Reporter/main/scripts/install.sh | sudo bash')"
       >
         <p
           class="text-left"
         >
-          <strong class="text-primary-400">$ </strong> curl https://raw.githubusercontent.com/xornet-cloud/Reporter/main/scripts/install.sh | sudo bash
+          <strong class="text-primary-400">$ </strong> curl https://raw.githubusercontent.com/otiskujawa/Reporter/main/scripts/install.sh | sudo bash
         </p>
       </div>
     </base-tooltip>
@@ -42,14 +42,14 @@
     <base-tooltip :text="copied ? 'Copied!' : 'Click to copy!'" placement="bottom">
       <div
         class="copyButton"
-        @click="copy('Set-ExecutionPolicy RemoteSigned -Scope CurrentUser \niwr -useb get.scoop.sh | iex \nscoop install https://raw.githubusercontent.com/xornet-cloud/Reporter/main/scripts/xornet-reporter.json')"
+        @click="copy('Set-ExecutionPolicy RemoteSigned -Scope CurrentUser \niwr -useb get.scoop.sh | iex \nscoop install https://raw.githubusercontent.com/otiskujawa/Reporter/main/scripts/xornet-reporter.json')"
       >
         <p
           class="text-left"
         >
           <strong class="text-primary-400">> </strong> Set-ExecutionPolicy RemoteSigned -Scope CurrentUser <br>
           <strong class="text-primary-400">> </strong> iwr -useb get.scoop.sh | iex <br>
-          <strong class="text-primary-400">> </strong> scoop install "https://raw.githubusercontent.com/xornet-cloud/Reporter/main/scripts/xornet-reporter.json"
+          <strong class="text-primary-400">> </strong> scoop install "https://raw.githubusercontent.com/otiskujawa/Reporter/main/scripts/xornet-reporter.json"
         </p>
       </div>
     </base-tooltip>
@@ -62,7 +62,7 @@
         Token will expire in {{ expiresIn }}s
       </p>
 
-      <base-link href="https://github.com/xornet-cloud/Reporter#-installation">
+      <base-link href="https://github.com/otiskujawa/Reporter#-installation">
         What to do?
       </base-link>
     </div>
