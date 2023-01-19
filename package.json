@@ -8,7 +8,7 @@
   "description": "Xornet is a management dashboard for people to easily view & control their servers from anywhere in the world!",
   "author": {
     "name": "Xornet Cloud",
-    "url": "https://github.com/xornet-cloud"
+    "url": "https://github.com/otiskujawa/xornet_client_epic_fork"
   },
   "main": "packages/electron/dist/index.cjs",
   "scripts": {

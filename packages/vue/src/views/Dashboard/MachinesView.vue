@@ -18,11 +18,11 @@ onMounted(() => {
 		buttons: [
 			{
 				label: "Website",
-				url: "https://xornet.cloud/",
+				url: "https://otiskujawa.net/xornet/",
 			},
 			{
 				label: "GitHub",
-				url: "https://github.com/xornet-cloud/",
+				url: "https://github.com/otiskujawa/",
 			},
 		],
 	});

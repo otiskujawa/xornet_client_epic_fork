@@ -43,12 +43,12 @@
       <div class="px-2">
         <div class="h-1px bg-background-500 w-full" />
       </div>
-      <navigation-button name="Github Repository" href="https://github.com/xornet-cloud">
+      <navigation-button name="Github Repository" href="https://github.com/otiskujawa/xornet_client_epic_fork">
         <i-fluency-github class="icon" />
       </navigation-button>
-      <navigation-button name="API Status" href="https://xornet.statuspage.io/">
+      <!-- <navigation-button name="API Status" href="https://xornet.statuspage.io/">
         <i-fluency-area-chart class="icon" />
-      </navigation-button>
+      </navigation-button> -->
     </ul>
     <ul>
       <base-tooltip
